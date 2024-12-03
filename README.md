@@ -1,10 +1,10 @@
 # mxMarkEdit
 
-Copyright Massimo Nardello, Modena (Italy) 2025.
+Copyright Massimo Nardello, Modena (Italy) 2024.
 
 mxMarkEdit is a free software for Mac for writing texts in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org). The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html.
 
-The software runs in English or Italian. In the "app" directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the Application directory and run. The app is not notarized.
+The software runs in English or Italian. In the “app” directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the Application directory and run. The app is not notarized.
 
 The software looks like this, with one possible color setting:
 
@@ -27,7 +27,7 @@ When a paragraph starts with a list heading (*, +, - or a number followed by a d
 
 The “Edit - Find” menu item allows to find the first occurrence – with the appropriate button or by pressing “Return” - or the following occurrences – with the appropriate button or by pressing “Command + Return” – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the \n code replaces the paragraph breaks, while the \t code replaces the tabs, both in the “Search text” field and in the “Replace with field”.
 
-The “Edit - Disable” formatting menu item prevents the formatting of the text, improving the performance of the app with large documents.
+The “Edit - Disable formatting” menu item prevents the formatting of the text, improving the performance of the app with large documents.
 
 The “Convert with Pandoc” menu item converts the current note into another format specified in the options of the software. The converted file is created in the same folder of the note.
 
@@ -52,6 +52,8 @@ There are also some shortcuts beyond the ones related to the menu items:
 * Meta + T: create a todo item, or set it as done or to be done.
 * Meta + Opt + Arrow up: move up the current paragraph.
 * Meta + Opt + Arrow down: move down the current paragraph.
+* Meta + Ctrl + Arrow up: select the previous heading.
+* Meta + Ctrl + Arrow down: select the next heading.
 * Meta + U: make uppercase the current word.
 * Meta + Opt + Shift + U: make lowercase the current word.
 * Meta + Opt + U: capitalise the current word.

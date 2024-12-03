@@ -369,19 +369,16 @@ end;
 procedure TfmMain.FormDropFiles(Sender: TObject; const FileNames: array of string);
 begin
   // Open file from file association
-  if dbText.Text = '' then
-  begin
-    if FileExistsUTF8(FileNames[0]) = True then
-    try
-      stFileName := FileNames[0];
-      dbText.Lines.LoadFromFile(stFileName);
-      MoveToPos;
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        checkTextInDocument(nil);
-      UpdateLastFile;
-    except
-      MessageDlg(msg004, mtWarning, [mbOK], 0);
-    end;
+  if FileExistsUTF8(FileNames[0]) = True then
+  try
+    stFileName := FileNames[0];
+    dbText.Lines.LoadFromFile(stFileName);
+    MoveToPos;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      checkTextInDocument(nil);
+    UpdateLastFile;
+  except
+    MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
 end;
 
