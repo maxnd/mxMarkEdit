@@ -4,6 +4,8 @@ Copyright Massimo Nardello, Modena (Italy) 2025.
 
 mxMarkEdit is a free software for Mac for writing texts in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org). The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html.
 
+The software runs in English or Italian. In the "app" directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the Application directory and run. The app is not notarized.
+
 The software looks like this, with one possible color setting:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot1.png)
