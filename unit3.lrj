@@ -1,0 +1,19 @@
+{"version":1,"strings":[
+{"hash":108725763,"name":"tfmoptions.caption","sourcebytes":[79,112,116,105,111,110,115],"value":"Options"},
+{"hash":90639189,"name":"tfmoptions.lnstfonts.caption","sourcebytes":[70,111,110,116,32,110,97,109,101],"value":"Font name"},
+{"hash":1339,"name":"tfmoptions.bnclose.caption","sourcebytes":[79,75],"value":"OK"},
+{"hash":64791522,"name":"tfmoptions.bnstfonttitle1colormod.caption","sourcebytes":[84,105,116,108,101,115,32,49,32,99,111,108,111,114],"value":"Titles 1 color"},
+{"hash":149807250,"name":"tfmoptions.bnstfonttitle3colormod.caption","sourcebytes":[84,105,116,108,101,115,32,51,32,45,32,54,32,99,111,108,111,114],"value":"Titles 3 - 6 color"},
+{"hash":56976851,"name":"tfmoptions.lbpanoptions.caption","sourcebytes":[79,112,116,105,111,110,115,32,111,102,32,80,97,110,100,111,99],"value":"Options of Pandoc"},
+{"hash":31538371,"name":"tfmoptions.edpanoptions.text","sourcebytes":[43,102,111,111,116,110,111,116,101,115,43,105,110,108,105,110,101,95,110,111,116,101,115],"value":"+footnotes+inline_notes"},
+{"hash":3454376,"name":"tfmoptions.edpanoutput.text","sourcebytes":[46,100,111,99,120],"value":".docx"},
+{"hash":204473685,"name":"tfmoptions.lbpanoutput.caption","sourcebytes":[79,117,116,112,117,116,32,102,105,108,101],"value":"Output file"},
+{"hash":205991173,"name":"tfmoptions.lbpantemplate.caption","sourcebytes":[84,101,109,112,108,97,116,101],"value":"Template"},
+{"hash":119955560,"name":"tfmoptions.edpantemplate.text","sourcebytes":[119,111,114,100,45,116,101,109,112,108,97,116,101,46,100,111,99,120],"value":"word-template.docx"},
+{"hash":231619507,"name":"tfmoptions.lbpanpath.caption","sourcebytes":[80,97,116,104,32,111,102,32,80,97,110,100,111,99],"value":"Path of Pandoc"},
+{"hash":230927711,"name":"tfmoptions.edpanpath.text","sourcebytes":[47,117,115,114,47,108,111,99,97,108,47,98,105,110,47],"value":"/usr/local/bin/"},
+{"hash":81568738,"name":"tfmoptions.bnstfonttitle2colormod.caption","sourcebytes":[84,105,116,108,101,115,32,50,32,99,111,108,111,114],"value":"Titles 2 color"},
+{"hash":84613378,"name":"tfmoptions.bnstfontquotecolor.caption","sourcebytes":[81,117,111,116,101,32,97,110,100,32,102,111,111,116,110,111,116,101,32,99,111,108,111,114],"value":"Quote and footnote color"},
+{"hash":107876242,"name":"tfmoptions.bnstfonttextcolormod.caption","sourcebytes":[84,101,120,116,32,99,111,108,111,114],"value":"Text color"},
+{"hash":256115346,"name":"tfmoptions.cdcolordialog.title","sourcebytes":[83,101,108,101,99,116,32,97,32,99,111,108,111,114],"value":"Select a color"}
+]}

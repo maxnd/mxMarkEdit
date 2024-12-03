@@ -1,0 +1,9 @@
+{"version":1,"strings":[
+{"hash":94079128,"name":"tfmsearch.caption","sourcebytes":[83,101,97,114,99,104],"value":"Search"},
+{"hash":12204740,"name":"tfmsearch.lbfind.caption","sourcebytes":[84,101,120,116,32,116,111,32,102,105,110,100],"value":"Text to find"},
+{"hash":5048740,"name":"tfmsearch.bnfirst.caption","sourcebytes":[70,105,114,115,116],"value":"First"},
+{"hash":347380,"name":"tfmsearch.bnnext.caption","sourcebytes":[78,101,120,116],"value":"Next"},
+{"hash":4863637,"name":"tfmsearch.bnok.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":217821912,"name":"tfmsearch.lbreplace.caption","sourcebytes":[82,101,112,108,97,99,101,32,119,105,116,104],"value":"Replace with"},
+{"hash":131047692,"name":"tfmsearch.bnreplace.caption","sourcebytes":[82,101,112,108,97,99,101,32,97,108,108],"value":"Replace all"}
+]}

@@ -1,0 +1,320 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tfmcopyright.caption
+msgctxt "tfmcopyright.caption"
+msgid "Copyright"
+msgstr ""
+
+#: tfmcopyright.lbapp.caption
+msgid "Website of mxMarkEdit"
+msgstr ""
+
+#: tfmcopyright.lbcopyrightauthor2.caption
+msgid "Massimo Nardello, Modena (Italy) 2024."
+msgstr ""
+
+#: tfmcopyright.lbcopyrightauthor3.caption
+msgid "Author and copyright:"
+msgstr ""
+
+#: tfmcopyright.lbcopyrightdesc.caption
+msgid "A free software to manage Markdown documents."
+msgstr ""
+
+#: tfmcopyright.lbcopyrightname.caption
+msgctxt "tfmcopyright.lbcopyrightname.caption"
+msgid "mxMarkEdit"
+msgstr ""
+
+#: tfmcopyright.lbcopyrightvers.caption
+msgid "Version"
+msgstr ""
+
+#: tfmcopyright.lbcopyrightvers1.caption
+msgid "1.0.0.0"
+msgstr ""
+
+#: tfmcopyright.lbok.caption
+msgctxt "tfmcopyright.lbok.caption"
+msgid "OK"
+msgstr ""
+
+#: tfmmain.caption
+msgctxt "tfmmain.caption"
+msgid "mxMarkEdit"
+msgstr ""
+
+#: tfmmain.lbchars.caption
+msgid "Chars: 0"
+msgstr ""
+
+#: tfmmain.lbdatetime.caption
+msgid " "
+msgstr ""
+
+#: tfmmain.micopyright.caption
+msgctxt "tfmmain.micopyright.caption"
+msgid "Copyright"
+msgstr ""
+
+#: tfmmain.miedit.caption
+msgid "Edit"
+msgstr ""
+
+#: tfmmain.mieditcopy.caption
+msgid "Copy"
+msgstr ""
+
+#: tfmmain.mieditcut.caption
+msgid "Cut"
+msgstr ""
+
+#: tfmmain.mieditdisableform.caption
+msgctxt "tfmmain.mieditdisableform.caption"
+msgid "Disable formatting"
+msgstr ""
+
+#: tfmmain.mieditdisspell.caption
+msgid "Disable spell checking"
+msgstr ""
+
+#: tfmmain.mieditfind.caption
+msgid "Find"
+msgstr ""
+
+#: tfmmain.mieditpaste.caption
+msgid "Paste"
+msgstr ""
+
+#: tfmmain.mieditselectall.caption
+msgid "Select all"
+msgstr ""
+
+#: tfmmain.mifile.caption
+msgid "File"
+msgstr ""
+
+#: tfmmain.mifilenew.caption
+msgid "New"
+msgstr ""
+
+#: tfmmain.mifileopen.caption
+msgid "Open..."
+msgstr ""
+
+#: tfmmain.mifileopenlast1.caption
+msgid "miFileOpenLast1"
+msgstr ""
+
+#: tfmmain.mifileopenlast2.caption
+msgid "miFileOpenLast2"
+msgstr ""
+
+#: tfmmain.mifileopenlast3.caption
+msgid "miFileOpenLast3"
+msgstr ""
+
+#: tfmmain.mifileopenlast4.caption
+msgid "miFileOpenLast4"
+msgstr ""
+
+#: tfmmain.mifilesave.caption
+msgid "Save"
+msgstr ""
+
+#: tfmmain.mifilesaveas.caption
+msgid "Save as..."
+msgstr ""
+
+#: tfmmain.mihelp.caption
+msgid "?"
+msgstr ""
+
+#: tfmmain.mitools.caption
+msgid "Tools"
+msgstr ""
+
+#: tfmmain.mitoolshidelist.caption
+msgid "Hide titles and todo list"
+msgstr ""
+
+#: tfmmain.mitoolsopenwin.caption
+msgid "Open another window"
+msgstr ""
+
+#: tfmmain.mitoolsoptions.caption
+msgctxt "tfmmain.mitoolsoptions.caption"
+msgid "Options"
+msgstr ""
+
+#: tfmmain.mitoolspandoc.caption
+msgid "Convert with Pandoc"
+msgstr ""
+
+#: tfmmain.mitoolstrans1.caption
+msgid "None"
+msgstr ""
+
+#: tfmmain.mitoolstrans2.caption
+msgid "Middle"
+msgstr ""
+
+#: tfmmain.mitoolstrans3.caption
+msgid "High"
+msgstr ""
+
+#: tfmmain.mitoolstransparency.caption
+msgid "Transparency"
+msgstr ""
+
+#: tfmmain.odopen.title
+msgid "Open Markdown files"
+msgstr ""
+
+#: tfmmain.sdsave.title
+msgid "Save Markdown files"
+msgstr ""
+
+#: tfmoptions.bnclose.caption
+msgctxt "tfmoptions.bnclose.caption"
+msgid "OK"
+msgstr ""
+
+#: tfmoptions.bnstfontquotecolor.caption
+msgid "Quote and footnote color"
+msgstr ""
+
+#: tfmoptions.bnstfonttextcolormod.caption
+msgid "Text color"
+msgstr ""
+
+#: tfmoptions.bnstfonttitle1colormod.caption
+msgid "Titles 1 color"
+msgstr ""
+
+#: tfmoptions.bnstfonttitle2colormod.caption
+msgid "Titles 2 color"
+msgstr ""
+
+#: tfmoptions.bnstfonttitle3colormod.caption
+msgid "Titles 3 - 6 color"
+msgstr ""
+
+#: tfmoptions.caption
+msgctxt "tfmoptions.caption"
+msgid "Options"
+msgstr ""
+
+#: tfmoptions.cdcolordialog.title
+msgid "Select a color"
+msgstr ""
+
+#: tfmoptions.edpanoptions.text
+msgid "+footnotes+inline_notes"
+msgstr ""
+
+#: tfmoptions.edpanoutput.text
+msgid ".docx"
+msgstr ""
+
+#: tfmoptions.edpanpath.text
+msgid "/usr/local/bin/"
+msgstr ""
+
+#: tfmoptions.edpantemplate.text
+msgid "word-template.docx"
+msgstr ""
+
+#: tfmoptions.lbpanoptions.caption
+msgid "Options of Pandoc"
+msgstr ""
+
+#: tfmoptions.lbpanoutput.caption
+msgid "Output file"
+msgstr ""
+
+#: tfmoptions.lbpanpath.caption
+msgid "Path of Pandoc"
+msgstr ""
+
+#: tfmoptions.lbpantemplate.caption
+msgid "Template"
+msgstr ""
+
+#: tfmoptions.lnstfonts.caption
+msgid "Font name"
+msgstr ""
+
+#: tfmsearch.bnfirst.caption
+msgid "First"
+msgstr ""
+
+#: tfmsearch.bnnext.caption
+msgid "Next"
+msgstr ""
+
+#: tfmsearch.bnok.caption
+msgid "Close"
+msgstr ""
+
+#: tfmsearch.bnreplace.caption
+msgid "Replace all"
+msgstr ""
+
+#: tfmsearch.caption
+msgid "Search"
+msgstr ""
+
+#: tfmsearch.lbfind.caption
+msgid "Text to find"
+msgstr ""
+
+#: tfmsearch.lbreplace.caption
+msgid "Replace with"
+msgstr ""
+
+#: unit1.dateformat
+msgid "en"
+msgstr ""
+
+#: unit1.msg001
+msgid "Characters:"
+msgstr ""
+
+#: unit1.msg002
+msgid "Discard text changes?"
+msgstr ""
+
+#: unit1.msg003
+msgid "It was not possible to save the current file."
+msgstr ""
+
+#: unit1.msg004
+msgid "It was not possible to load the selected file."
+msgstr ""
+
+#: unit1.msg005
+msgid "Create a new document?"
+msgstr ""
+
+#: unit1.msg006
+msgid "It was not possible to load the last used file."
+msgstr ""
+
+#: unit1.msg007
+msgid "The file is not available."
+msgstr ""
+
+#: unit2.msgfnd001
+msgid "Text not found."
+msgstr ""
+
+#: unit2.msgfnd002
+msgid "Replace all the recurrences of"
+msgstr ""
+
+#: unit2.msgfnd003
+msgid "with"
+msgstr ""
+

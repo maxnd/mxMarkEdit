@@ -1,0 +1,192 @@
+object fmOptions: TfmOptions
+  Left = 450
+  Height = 347
+  Top = 178
+  Width = 547
+  ActiveControl = cbStFonts
+  BorderIcons = []
+  BorderStyle = bsDialog
+  Caption = 'Options'
+  ClientHeight = 347
+  ClientWidth = 547
+  Color = clForm
+  KeyPreview = True
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  Position = poDesktopCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '3.7.0.0'
+  object cbStFonts: TComboBox
+    Left = 43
+    Height = 20
+    Top = 48
+    Width = 220
+    ItemHeight = 26
+    Style = csDropDownList
+    TabOrder = 0
+    OnChange = cbStFontsChange
+  end
+  object lnStFonts: TLabel
+    Left = 43
+    Height = 16
+    Top = 24
+    Width = 64
+    Caption = 'Font name'
+    ParentColor = False
+  end
+  object bnClose: TButton
+    Left = 437
+    Height = 30
+    Top = 298
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'OK'
+    TabOrder = 9
+    TabStop = False
+    OnClick = bnCloseClick
+  end
+  object bnStFontTitle1ColorMod: TButton
+    Left = 294
+    Height = 36
+    Top = 79
+    Width = 218
+    Caption = 'Titles 1 color'
+    TabOrder = 2
+    OnClick = bnStFontTitle1ColorModClick
+  end
+  object bnStFontTitle3ColorMod: TButton
+    Left = 294
+    Height = 36
+    Top = 120
+    Width = 218
+    Caption = 'Titles 3 - 6 color'
+    TabOrder = 4
+    OnClick = bnStFontTitle3ColorModClick
+  end
+  object lbPanOptions: TLabel
+    Left = 45
+    Height = 16
+    Top = 173
+    Width = 112
+    Caption = 'Options of Pandoc'
+    ParentColor = False
+  end
+  object edPanOptions: TEdit
+    Left = 43
+    Height = 22
+    Top = 193
+    Width = 289
+    ParentColor = True
+    TabOrder = 5
+    Text = '+footnotes+inline_notes'
+  end
+  object edPanOutput: TEdit
+    Left = 344
+    Height = 22
+    Top = 253
+    Width = 168
+    ParentColor = True
+    TabOrder = 8
+    Text = '.docx'
+  end
+  object lbPanOutput: TLabel
+    Left = 344
+    Height = 16
+    Top = 233
+    Width = 64
+    Caption = 'Output file'
+    ParentColor = False
+  end
+  object lbPanTemplate: TLabel
+    Left = 45
+    Height = 16
+    Top = 233
+    Width = 56
+    Caption = 'Template'
+    ParentColor = False
+  end
+  object edPanTemplate: TEdit
+    Left = 45
+    Height = 22
+    Top = 253
+    Width = 287
+    ParentColor = True
+    TabOrder = 7
+    Text = 'word-template.docx'
+  end
+  object lbPanPath: TLabel
+    Left = 344
+    Height = 16
+    Top = 173
+    Width = 92
+    Caption = 'Path of Pandoc'
+    ParentColor = False
+  end
+  object edPanPath: TEdit
+    Left = 344
+    Height = 22
+    Top = 193
+    Width = 168
+    ParentColor = True
+    TabOrder = 6
+    Text = '/usr/local/bin/'
+  end
+  object bnStFontTitle2ColorMod: TButton
+    Left = 43
+    Height = 36
+    Top = 120
+    Width = 220
+    Caption = 'Titles 2 color'
+    TabOrder = 3
+    OnClick = bnStFontTitle2ColorModClick
+  end
+  object bnStFontQuoteColor: TButton
+    Left = 45
+    Height = 36
+    Top = 79
+    Width = 218
+    Caption = 'Quote and footnote color'
+    TabOrder = 1
+    OnClick = bnStFontQuoteColorClick
+  end
+  object bnStFontTextColorMod: TButton
+    Left = 294
+    Height = 36
+    Top = 38
+    Width = 218
+    Caption = 'Text color'
+    TabOrder = 10
+    OnClick = bnStFontTextColorModClick
+  end
+  object cdColorDialog: TColorDialog
+    Title = 'Select a color'
+    Color = clBlack
+    CustomColors.Strings = (
+      'ColorA=000000'
+      'ColorB=000080'
+      'ColorC=008000'
+      'ColorD=008080'
+      'ColorE=800000'
+      'ColorF=800080'
+      'ColorG=808000'
+      'ColorH=808080'
+      'ColorI=C0C0C0'
+      'ColorJ=0000FF'
+      'ColorK=00FF00'
+      'ColorL=00FFFF'
+      'ColorM=FF0000'
+      'ColorN=FF00FF'
+      'ColorO=FFFF00'
+      'ColorP=FFFFFF'
+      'ColorQ=C0DCC0'
+      'ColorR=F0CAA6'
+      'ColorS=F0FBFF'
+      'ColorT=A4A0A0'
+    )
+    Left = 304
+    Top = 200
+  end
+end
