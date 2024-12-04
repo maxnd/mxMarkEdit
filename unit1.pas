@@ -130,6 +130,7 @@ type
       textOffset: integer): NSMutableParagraphStyle;
     procedure LabelFileNameChars;
     procedure MoveToPos;
+    procedure RenumberList(blAll: boolean);
     function SaveFile: boolean;
     procedure UpdateLastFile;
   public
@@ -341,7 +342,8 @@ begin
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     layoutManager.setAllowsNonContiguousLayout(False);
   sgTitles.ColCount := 2;
-  sgTitles.ColWidths[0] := 512;
+  sgTitles.ColWidths[0] := 1024;
+  // The Col[1] cannot be made hidden, anyway
   sgTitles.ColWidths[1] := -1;
   // Open file from paramater on console
   if ParamStrUTF8(1) <> '' then
@@ -611,7 +613,7 @@ end;
 procedure TfmMain.dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
   stClip: string;
-  iPos: integer;
+  i, iPos: integer;
   rngStart, rngEnd: NSRange;
   stText: WideString;
 begin
@@ -690,6 +692,12 @@ begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         moveToBeginningOfParagraph(nil);
       Clipboard.AsText := stClip;
+      if TryStrToInt(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1],
+        1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) - 1), i) = True then
+      begin
+        RenumberList(False);
+        FormatListTitleTodo;
+      end;
     end;
     key := 0;
   end
@@ -716,6 +724,12 @@ begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         moveToBeginningOfParagraph(nil);
       Clipboard.AsText := stClip;
+      if TryStrToInt(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1],
+        1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) - 1), i) = True then
+      begin
+        RenumberList(False);
+        FormatListTitleTodo;
+      end;
     end;
     key := 0;
   end
@@ -874,7 +888,7 @@ end;
 
 procedure TfmMain.dbTextKeyPress(Sender: TObject; var Key: char);
 var
-  i: integer;
+  i, iLine: integer;
 begin
   if key = #13 then
   begin
@@ -939,6 +953,8 @@ begin
         Inc(i);
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).
           insertText(NSStringUtf8(IntToStr(i) + '. '));
+        RenumberList(False);
+        FormatListTitleTodo;
       end;
     end;
   end;
@@ -1026,7 +1042,7 @@ end;
 procedure TfmMain.sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: Integer;
   aState: TGridDrawState);
 begin
-  if sgTitles.Cells[1, aRow] = '*' then
+  if sgTitles.Cells[1, aRow] = ' ' then
   begin
     sgTitles.Canvas.Brush.Color := clHighlightList;
   end;
@@ -1424,7 +1440,7 @@ begin
       begin
         if sgTitles.RowCount > 0 then
         begin
-          sgTitles.Cells[1, sgTitles.RowCount - 1] := '*';
+          sgTitles.Cells[1, sgTitles.RowCount - 1] := ' ';
         end;
       end
       else
@@ -1520,7 +1536,7 @@ begin
         sgTitles.Cells[0, sgTitles.RowCount - 1] := string(stTitle);
         if blPosInHeading = True then
         begin
-          sgTitles.Cells[1, sgTitles.RowCount - 1] := '*';
+          sgTitles.Cells[1, sgTitles.RowCount - 1] := ' ';
           blPosInHeading := False;
         end;
         stTitle := '';
@@ -1827,6 +1843,102 @@ begin
   rng.length := 1;
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     scrollRangeToVisible(rng);
+end;
+
+procedure TfmMain.RenumberList(blAll: boolean);
+var
+  i, iStart, iEnd, iPos, iNum, iTest: integer;
+  rng: NSRange;
+  stText: WideString;
+begin
+  if dbText.Text = '' then
+  begin
+    Exit;
+  end;
+  iPos := dbText.SelStart;
+  stText := WideString(dbText.Text);
+  if blAll = True then
+  begin
+    iStart := 0;
+    iEnd := Length(stText) - 6;
+  end
+  else
+  begin
+    // characterAtIndex is 0 based
+    iStart := iPos - 1;
+    while ((iStart >= 0) and (iStart < Length(stText) - 3)) do
+    begin
+      if ((stText[iStart] = LineEnding) and (stText[iStart + 1] =
+        LineEnding)) then
+      begin
+        Break;
+      end;
+      Dec(iStart);
+    end;
+    Inc(iStart);
+    iEnd := iPos - 1;
+    while (iEnd < Length(stText) - 5) do
+    begin
+      if ((stText[iEnd] = LineEnding) and (stText[iEnd + 1] = LineEnding)) then
+      begin
+        Break;
+      end;
+      Inc(iEnd);
+    end;
+  end;
+  iNum := 1;
+  for i := iStart to iEnd do
+  begin
+    if ((i >= iEnd) or (iEnd > Length(stText) - 5)) then
+    begin
+      Continue;
+    end;
+    if ((stText[i] = LineEnding) or (i = 0)) then
+    begin
+      if ((TryStrToInt(string(stText[i + 1]), iTest) = True) and
+        (stText[i + 2] = '.') and (stText[i + 3] = ' ')) then
+      begin
+        rng.location := i;
+        rng.length := 1;
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          insertText_replacementRange(NSStringUtf8(IntToStr(iNum)), rng);
+        iEnd := iEnd + UTF8Length(IntToStr(iNum)) - 1;
+        if iNum > 9 then
+        begin
+          Insert(' ', stText, i + 1);
+        end;
+        if iPos > i + 1 then
+        begin
+          iPos := iPos + UTF8Length(IntToStr(iNum)) - 1;
+        end;
+        Inc(iNum);
+      end
+      else
+      if ((TryStrToInt(string(stText[i + 1]) + string(stText[i + 2]), iTest) =
+        True) and (stText[i + 3] = '.') and (stText[i + 4] = ' ')) then
+      begin
+        rng.location := i;
+        rng.length := 2;
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          insertText_replacementRange(NSStringUtf8(IntToStr(iNum)), rng);
+        iEnd := iEnd + UTF8Length(IntToStr(iNum)) - 2;
+        if iNum < 10 then
+        begin
+          Delete(stText, i + 2, 1);
+        end;
+        if iPos > i + 1 then
+        begin
+          iPos := iPos + UTF8Length(IntToStr(iNum)) - 2;
+        end;
+        Inc(iNum);
+      end
+      else
+      begin
+        iNum := 1;
+      end;
+    end;
+  end;
+  dbText.SelStart := iPos;
 end;
 
 // *******************************************************

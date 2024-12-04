@@ -1118,7 +1118,7 @@ object fmMain: TfmMain
     BorderSpacing.Right = 10
     BorderStyle = bsNone
     Color = 2632235
-    ColCount = 1
+    ColCount = 0
     Constraints.MinWidth = 200
     DefaultColWidth = 512
     DefaultRowHeight = 28
@@ -1134,7 +1134,7 @@ object fmMain: TfmMain
     ParentDoubleBuffered = False
     ParentFont = False
     ParentShowHint = False
-    RowCount = 1
+    RowCount = 0
     ScrollBars = ssAutoVertical
     ShowHint = True
     TabOrder = 3
@@ -1142,9 +1142,6 @@ object fmMain: TfmMain
     OnDrawCell = sgTitlesDrawCell
     OnGetCellHint = sgTitlesGetCellHint
     OnPrepareCanvas = sgTitlesPrepareCanvas
-    ColWidths = (
-      64
-    )
   end
   object mmMenu: TMainMenu
     Left = 328
