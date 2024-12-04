@@ -169,11 +169,13 @@ msgid "Transparency"
 msgstr ""
 
 #: tfmmain.odopen.title
-msgid "Open Markdown files"
+msgctxt "tfmmain.odopen.title"
+msgid "Open Markdown file"
 msgstr ""
 
 #: tfmmain.sdsave.title
-msgid "Save Markdown files"
+msgctxt "tfmmain.sdsave.title"
+msgid "Save Markdown file"
 msgstr ""
 
 #: tfmoptions.bnclose.caption
@@ -276,6 +278,20 @@ msgstr ""
 
 #: unit1.dateformat
 msgid "en"
+msgstr ""
+
+#: unit1.dlg001
+msgid "Markdown files|*.md|All files|*"
+msgstr ""
+
+#: unit1.dlg002
+msgctxt "unit1.dlg002"
+msgid "Save Markdown file"
+msgstr ""
+
+#: unit1.dlg003
+msgctxt "unit1.dlg003"
+msgid "Open Markdown file"
 msgstr ""
 
 #: unit1.msg001

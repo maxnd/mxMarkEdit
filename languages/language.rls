@@ -3,7 +3,7 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'opyright.caption'#10'msgctxt "tfmcopyright.caption"'#10'msgid "Copyright"'
   +#10'msgstr ""'#10#10'#: tfmcopyright.lbapp.caption'#10'msgid "Website of mxM'
   +'arkEdit"'#10'msgstr "Sito web di mxMarkEdit"'#10#10'#: tfmcopyright.lbcopyr'
-  +'ightauthor2.caption'#10'msgid "Massimo Nardello, Modena (Italy) 2025."'#10
+  +'ightauthor2.caption'#10'msgid "Massimo Nardello, Modena (Italy) 2024."'#10
   +'msgstr ""'#10#10'#: tfmcopyright.lbcopyrightauthor3.caption'#10'msgid "Auth'
   +'or and copyright:"'#10'msgstr "Autore e copyright:"'#10#10'#: tfmcopyright.'
   +'lbcopyrightdesc.caption'#10'msgid "A free software to manage Markdown docum'
@@ -50,52 +50,56 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'tion'#10'msgid "Middle"'#10'msgstr "Media"'#10#10'#: tfmmain.mitoolstrans3.'
   +'caption'#10'msgid "High"'#10'msgstr "Alta"'#10#10'#: tfmmain.mitoolstranspa'
   +'rency.caption'#10'msgid "Transparency"'#10'msgstr "Trasparenza"'#10#10'#: t'
-  +'fmmain.odopen.title'#10'msgid "Open Markdown files"'#10'msgstr "Apri file M'
-  +'arkdown"'#10#10'#: tfmmain.sdsave.title'#10'msgid "Save Markdown files"'#10
-  +'msgstr "Salva file Markdown"'#10#10'#: tfmoptions.bnclose.caption'#10'msgct'
-  +'xt "tfmoptions.bnclose.caption"'#10'msgid "OK"'#10'msgstr ""'#10#10'#: tfmo'
-  +'ptions.bnstfontquotecolor.caption'#10'msgid "Quote and footnote color"'#10
-  +'msgstr "Colore citazioni e note"'#10#10'#: tfmoptions.bnstfonttextcolormod.'
-  +'caption'#10'msgid "Text color"'#10'msgstr "Colore testo"'#10#10'#: tfmoptio'
-  +'ns.bnstfonttitle1colormod.caption'#10'msgid "Titles 1 color"'#10'msgstr "Co'
-  +'lore titoli 1"'#10#10'#: tfmoptions.bnstfonttitle2colormod.caption'#10'msgi'
-  +'d "Titles 2 color"'#10'msgstr "Colore titoli 2"'#10#10'#: tfmoptions.bnstfo'
-  +'nttitle3colormod.caption'#10'msgid "Titles 3 - 6 color"'#10'msgstr "Colore '
-  +'titoli 3 - 6"'#10#10'#: tfmoptions.caption'#10'msgctxt "tfmoptions.caption"'
-  +#10'msgid "Options"'#10'msgstr "Opzioni"'#10#10'#: tfmoptions.cdcolordialog.'
-  ,'title'#10'msgid "Select a color"'#10'msgstr "Selezionare un colore"'#10#10
-  +'#: tfmoptions.edpanoptions.text'#10'msgid "+footnotes+inline_notes"'#10'msg'
-  +'str ""'#10#10'#: tfmoptions.edpanoutput.text'#10'msgid ".docx"'#10'msgstr "'
-  +'"'#10#10'#: tfmoptions.edpanpath.text'#10'msgid "/usr/local/bin/"'#10'msgst'
-  +'r ""'#10#10'#: tfmoptions.edpantemplate.text'#10'msgid "word-template.docx"'
-  +#10'msgstr ""'#10#10'#: tfmoptions.lbpanoptions.caption'#10'msgid "Options o'
-  +'f Pandoc"'#10'msgstr "Opzioni di Pandoc"'#10#10'#: tfmoptions.lbpanoutput.c'
-  +'aption'#10'msgid "Output file"'#10'msgstr "File di output"'#10#10'#: tfmopt'
-  +'ions.lbpanpath.caption'#10'msgid "Path of Pandoc"'#10'msgstr "Percorso di P'
-  +'andoc"'#10#10'#: tfmoptions.lbpantemplate.caption'#10'msgid "Template"'#10
-  +'msgstr "Modello"'#10#10'#: tfmoptions.lnstfonts.caption'#10'msgid "Font nam'
-  +'e"'#10'msgstr "Nome del font"'#10#10'#: tfmsearch.bnfirst.caption'#10'msgid'
-  +' "First"'#10'msgstr "Primo"'#10#10'#: tfmsearch.bnnext.caption'#10'msgid "N'
-  +'ext"'#10'msgstr "Seguente"'#10#10'#: tfmsearch.bnok.caption'#10'msgid "Clos'
-  +'e"'#10'msgstr "Chiudi"'#10#10'#: tfmsearch.bnreplace.caption'#10'msgid "Rep'
-  +'lace all"'#10'msgstr "Sostituisci tutto"'#10#10'#: tfmsearch.caption'#10'ms'
-  +'gid "Search"'#10'msgstr "Cerca"'#10#10'#: tfmsearch.lbfind.caption'#10'msgi'
-  +'d "Text to find"'#10'msgstr "Testo da cercare"'#10#10'#: tfmsearch.lbreplac'
-  +'e.caption'#10'msgid "Replace with"'#10'msgstr "Sostituisci con"'#10#10'#: u'
-  +'nit1.dateformat'#10'msgid "en"'#10'msgstr "it"'#10#10'#: unit1.msg001'#10'm'
-  +'sgid "Characters:"'#10'msgstr "Caratteri:"'#10#10'#: unit1.msg002'#10'msgid'
-  +' "Discard text changes?"'#10'msgstr "Scartare le modifiche al testo?"'#10#10
-  +'#: unit1.msg003'#10'msgid "It was not possible to save the current file."'
-  +#10'msgstr "Non '#195#168' stato possibile salvare il file corrente."'#10#10
-  +'#: unit1.msg004'#10'msgid "It was not possible to load the selected file."'
-  +#10'msgstr "Non '#195#168' stato possibile aprire il file selezionato."'#10
-  +#10'#: unit1.msg005'#10'msgid "Create a new document?"'#10'msgstr "Creare un'
-  +' nuovo documento?"'#10#10'#: unit1.msg006'#10'msgid "It was not possible to'
-  +' load the last used file."'#10'msgstr "Non '#195#168' stato possibile aprir'
-  +'e l''ultimo file utilizzato."'#10#10'#: unit1.msg007'#10'msgid "The file is'
-  +' not available."'#10'msgstr "Il file non '#195#168' disponibile."'#10#10'#:'
-  +' unit2.msgfnd001'#10'msgid "Text not found."'#10'msgstr "Testo non trovato.'
-  +'"'#10#10'#: unit2.msgfnd002'#10'msgid "Replace all the recurrences of"'#10
+  +'fmmain.odopen.title'#10'msgid "Open Markdown file"'#10'msgstr "Apri file Ma'
+  +'rkdown"'#10#10'#: tfmmain.sdsave.title'#10'msgid "Save Markdown file"'#10'm'
+  +'sgstr "Salva file Markdown"'#10#10'#: tfmoptions.bnclose.caption'#10'msgctx'
+  +'t "tfmoptions.bnclose.caption"'#10'msgid "OK"'#10'msgstr ""'#10#10'#: tfmop'
+  +'tions.bnstfontquotecolor.caption'#10'msgid "Quote and footnote color"'#10'm'
+  +'sgstr "Colore citazioni e note"'#10#10'#: tfmoptions.bnstfonttextcolormod.c'
+  +'aption'#10'msgid "Text color"'#10'msgstr "Colore testo"'#10#10'#: tfmoption'
+  +'s.bnstfonttitle1colormod.caption'#10'msgid "Titles 1 color"'#10'msgstr "Col'
+  +'ore titoli 1"'#10#10'#: tfmoptions.bnstfonttitle2colormod.caption'#10'msgid'
+  +' "Titles 2 color"'#10'msgstr "Colore titoli 2"'#10#10'#: tfmoptions.bnstfon'
+  +'ttitle3colormod.caption'#10'msgid "Titles 3 - 6 color"'#10'msgstr "Colore t'
+  +'itoli 3 - 6"'#10#10'#: tfmoptions.caption'#10'msgid "Options"'#10'msgstr "O'
+  +'pzioni"'#10#10'#: tfmoptions.cdcolordialog.title'#10'msgid "Select a color"'
+  ,#10'msgstr "Selezionare un colore"'#10#10'#: tfmoptions.edpanoptions.text'#10
+  +'msgid "+footnotes+inline_notes"'#10'msgstr ""'#10#10'#: tfmoptions.edpanout'
+  +'put.text'#10'msgid ".docx"'#10'msgstr ""'#10#10'#: tfmoptions.edpanpath.tex'
+  +'t'#10'msgid "/usr/local/bin/"'#10'msgstr ""'#10#10'#: tfmoptions.edpantempl'
+  +'ate.text'#10'msgid "word-template.docx"'#10'msgstr ""'#10#10'#: tfmoptions.'
+  +'lbpanoptions.caption'#10'msgid "Options of Pandoc"'#10'msgstr "Opzioni di P'
+  +'andoc"'#10#10'#: tfmoptions.lbpanoutput.caption'#10'msgid "Output file"'#10
+  +'msgstr "File di output"'#10#10'#: tfmoptions.lbpanpath.caption'#10'msgid "P'
+  +'ath of Pandoc"'#10'msgstr "Percorso di Pandoc"'#10#10'#: tfmoptions.lbpante'
+  +'mplate.caption'#10'msgid "Template"'#10'msgstr "Modello"'#10#10'#: tfmoptio'
+  +'ns.lnstfonts.caption'#10'msgid "Font name"'#10'msgstr "Nome del font"'#10#10
+  +'#: tfmsearch.bnfirst.caption'#10'msgid "First"'#10'msgstr "Primo"'#10#10'#:'
+  +' tfmsearch.bnnext.caption'#10'msgid "Next"'#10'msgstr "Seguente"'#10#10'#: '
+  +'tfmsearch.bnok.caption'#10'msgid "Close"'#10'msgstr "Chiudi"'#10#10'#: tfms'
+  +'earch.bnreplace.caption'#10'msgid "Replace all"'#10'msgstr "Sostituisci tut'
+  +'to"'#10#10'#: tfmsearch.caption'#10'msgid "Search"'#10'msgstr "Cerca"'#10#10
+  +'#: tfmsearch.lbfind.caption'#10'msgid "Text to find"'#10'msgstr "Testo da c'
+  +'ercare"'#10#10'#: tfmsearch.lbreplace.caption'#10'msgid "Replace with"'#10
+  +'msgstr "Sostituisci con"'#10#10'#: unit1.dateformat'#10'msgid "en"'#10'msgs'
+  +'tr "it"'#10#10'#: unit1.dlg001'#10'msgid "Markdown files|*.md|All files|*"'
+  +#10'msgstr "File Markdown|*.md|Tutti i file|*"'#10#10'#: unit1.dlg002'#10'ms'
+  +'gctxt "unit1.dlg002"'#10'msgid "Save Markdown file"'#10'msgstr "Salva file '
+  +'Markdown"'#10#10'#: unit1.dlg003'#10'msgctxt "unit1.dlg003"'#10'msgid "Open'
+  +' Markdown file"'#10'msgstr "Apri file Markdown"'#10#10'#: unit1.msg001'#10
+  +'msgid "Characters:"'#10'msgstr "Caratteri:"'#10#10'#: unit1.msg002'#10'msgi'
+  +'d "Discard text changes?"'#10'msgstr "Scartare le modifiche al testo?"'#10
+  +#10'#: unit1.msg003'#10'msgid "It was not possible to save the current file.'
+  +'"'#10'msgstr "Non '#195#168' stato possibile salvare il file corrente."'#10
+  +#10'#: unit1.msg004'#10'msgid "It was not possible to load the selected file'
+  +'."'#10'msgstr "Non '#195#168' stato possibile aprire il file selezionato."'
+  +#10#10'#: unit1.msg005'#10'msgid "Create a new document?"'#10'msgstr "Creare'
+  +' un nuovo documento?"'#10#10'#: unit1.msg006'#10'msgid "It was not possible'
+  +' to load the last used file."'#10'msgstr "Non '#195#168' stato possibile ap'
+  +'rire l''ultimo file utilizzato."'#10#10'#: unit1.msg007'#10'msgid "The file'
+  +' is not available."'#10'msgstr "Il file non '#195#168' disponibile."'#10#10
+  +'#: unit2.msgfnd001'#10'msgid "Text not found."'#10'msgstr "Testo non trovat'
+  +'o."'#10#10'#: unit2.msgfnd002'#10'msgid "Replace all the recurrences of"'#10
   +'msgstr "Sostituire tutte le occorrenze di"'#10#10'#: unit2.msgfnd003'#10'ms'
   +'gid "with"'#10'msgstr "con"'#10#10
 ]);

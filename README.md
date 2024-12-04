@@ -21,7 +21,7 @@ Some Markdown markers are hidden, as the text contained within them is properly 
 
 The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned.
 
-At the left of the text, it’s available a list of the titles (starting with #) and todo items (starting with – [ ]  or – [X] ). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. Moving the cursor in the text, the corresponding title or todo item is underlined.
+At the left of the text, it’s available a list of the titles (starting with #) and todo items (starting with – [ ]  or – [X] ). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. Moving the cursor in the text, the corresponding title or todo item is highlighted.
 
 When a paragraph starts with a list heading (*, +, - or a number followed by a dot and a space), the “Return” key creates a new paragraph with the same heading.
 

@@ -1045,14 +1045,14 @@ object fmMain: TfmMain
   OnKeyDown = FormKeyDown
   LCLVersion = '3.7.0.0'
   object dbText: TMemo
-    Left = 263
+    Left = 273
     Height = 575
     Top = 10
-    Width = 671
+    Width = 661
     Align = alClient
     BorderSpacing.Top = 10
     BorderStyle = bsNone
-    Color = clForm
+    Color = 2632235
     Font.Height = 22
     Font.Name = 'Avenir Next'
     ParentFont = False
@@ -1066,10 +1066,11 @@ object fmMain: TfmMain
     OnKeyUp = dbTextKeyUp
   end
   object spTitles: TSplitter
-    Left = 258
+    Left = 268
     Height = 585
     Top = 0
     Width = 5
+    Color = clForm
     ParentColor = False
   end
   object pnBottom: TPanel
@@ -1081,6 +1082,7 @@ object fmMain: TfmMain
     BevelOuter = bvNone
     ClientHeight = 25
     ClientWidth = 934
+    Color = clForm
     Font.Height = 14
     ParentBackground = False
     ParentColor = False
@@ -1105,16 +1107,17 @@ object fmMain: TfmMain
   end
   object sgTitles: TStringGrid
     Cursor = crHandPoint
-    Left = 0
+    Left = 10
     Height = 575
     Top = 10
     Width = 248
     Align = alLeft
     AutoEdit = False
+    BorderSpacing.Left = 10
     BorderSpacing.Top = 10
     BorderSpacing.Right = 10
     BorderStyle = bsNone
-    Color = clForm
+    Color = 2632235
     ColCount = 1
     Constraints.MinWidth = 200
     DefaultColWidth = 512
@@ -1138,6 +1141,7 @@ object fmMain: TfmMain
     OnClick = sgTitlesClick
     OnDrawCell = sgTitlesDrawCell
     OnGetCellHint = sgTitlesGetCellHint
+    OnPrepareCanvas = sgTitlesPrepareCanvas
     ColWidths = (
       64
     )

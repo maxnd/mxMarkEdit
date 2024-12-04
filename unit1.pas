@@ -119,6 +119,8 @@ type
       aRect: TRect; aState: TGridDrawState);
     procedure sgTitlesGetCellHint(Sender: TObject; ACol, ARow: integer;
       var HintText: string);
+    procedure sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: Integer;
+      aState: TGridDrawState);
     procedure tmDateTimeTimer(Sender: TObject);
   private
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
@@ -145,6 +147,7 @@ var
   clTitle2: TColor = clBlack;
   clTitle3: TColor = clBlack;
   clFootQuote: TColor = clSilver;
+  clHighlightList: TColor = clDkGray;
   stFontMono: string = 'Menlo';
   iFontMonoSize: smallint = 20;
   stFileName: string = '';
@@ -198,6 +201,7 @@ begin
     sgTitles.Font.Color := clWhite;
     lbChars.Font.Color := clSilver;
     lbDateTime.Font.Color := clSilver;
+    clHighlightList := $005E5E5E;
   end
   else
   begin
@@ -210,6 +214,8 @@ begin
     pnBottom.Color := clForm;
     lbChars.Font.Color := clDkGray;
     lbDateTime.Font.Color := clDkGray;
+    clHighlightList := $00EBEBEB;
+
   end;
   sgTitles.FocusRectVisible := False;
   lbChars.Caption := msg001 + ' 0';
@@ -1004,14 +1010,6 @@ begin
   begin
     sgTitles.canvas.Font.Color := clTitle1;
   end;
-  if sgTitles.Cells[1, aRow] = '*' then
-  begin
-    sgTitles.canvas.Font.Style := [fsUnderline];
-  end
-  else
-  begin
-    sgTitles.canvas.Font.Style := [];
-  end;
   sgTitles.Canvas.TextOut(aRect.Left + 3, aRect.Top + 5,
     sgTitles.Cells[aCol, aRow]);
 end;
@@ -1022,6 +1020,15 @@ begin
   if sgTitles.Canvas.TextWidth(sgTitles.Cells[ACol, ARow]) > sgTitles.Width - 20 then
   begin
     HintText := sgTitles.Cells[ACol, ARow];
+  end;
+end;
+
+procedure TfmMain.sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: Integer;
+  aState: TGridDrawState);
+begin
+  if sgTitles.Cells[1, aRow] = '*' then
+  begin
+    sgTitles.Canvas.Brush.Color := clHighlightList;
   end;
 end;
 
@@ -1790,6 +1797,7 @@ end;
 procedure TfmMain.MoveToPos;
 var
   stText: WideString;
+  rng: NSRange;
 begin
   stText := WideString(dbText.Text);
   if ((stFileName = LastDatabase1) and (LastPosDatabase1 > -1) and
@@ -1815,6 +1823,10 @@ begin
   begin
     dbText.SelStart := LastPosDatabase4;
   end;
+  rng.location := dbText.SelStart;
+  rng.length := 1;
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    scrollRangeToVisible(rng);
 end;
 
 // *******************************************************

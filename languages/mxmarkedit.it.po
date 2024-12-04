@@ -169,11 +169,11 @@ msgid "Transparency"
 msgstr "Trasparenza"
 
 #: tfmmain.odopen.title
-msgid "Open Markdown files"
+msgid "Open Markdown file"
 msgstr "Apri file Markdown"
 
 #: tfmmain.sdsave.title
-msgid "Save Markdown files"
+msgid "Save Markdown file"
 msgstr "Salva file Markdown"
 
 #: tfmoptions.bnclose.caption
@@ -202,7 +202,6 @@ msgid "Titles 3 - 6 color"
 msgstr "Colore titoli 3 - 6"
 
 #: tfmoptions.caption
-msgctxt "tfmoptions.caption"
 msgid "Options"
 msgstr "Opzioni"
 
@@ -277,6 +276,20 @@ msgstr "Sostituisci con"
 #: unit1.dateformat
 msgid "en"
 msgstr "it"
+
+#: unit1.dlg001
+msgid "Markdown files|*.md|All files|*"
+msgstr "File Markdown|*.md|Tutti i file|*"
+
+#: unit1.dlg002
+msgctxt "unit1.dlg002"
+msgid "Save Markdown file"
+msgstr "Salva file Markdown"
+
+#: unit1.dlg003
+msgctxt "unit1.dlg003"
+msgid "Open Markdown file"
+msgstr "Apri file Markdown"
 
 #: unit1.msg001
 msgid "Characters:"
