@@ -30,6 +30,6 @@
 {"hash":108725763,"name":"tfmmain.mitoolsoptions.caption","sourcebytes":[79,112,116,105,111,110,115],"value":"Options"},
 {"hash":63,"name":"tfmmain.mihelp.caption","sourcebytes":[63],"value":"?"},
 {"hash":134789012,"name":"tfmmain.micopyright.caption","sourcebytes":[67,111,112,121,114,105,103,104,116],"value":"Copyright"},
-{"hash":244404483,"name":"tfmmain.odopen.title","sourcebytes":[79,112,101,110,32,77,97,114,107,100,111,119,110,32,102,105,108,101,115],"value":"Open Markdown files"},
-{"hash":24191235,"name":"tfmmain.sdsave.title","sourcebytes":[83,97,118,101,32,77,97,114,107,100,111,119,110,32,102,105,108,101,115],"value":"Save Markdown files"}
+{"hash":216601877,"name":"tfmmain.odopen.title","sourcebytes":[79,112,101,110,32,77,97,114,107,100,111,119,110,32,102,105,108,101],"value":"Open Markdown file"},
+{"hash":202838549,"name":"tfmmain.sdsave.title","sourcebytes":[83,97,118,101,32,77,97,114,107,100,111,119,110,32,102,105,108,101],"value":"Save Markdown file"}
 ]}

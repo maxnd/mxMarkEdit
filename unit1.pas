@@ -166,6 +166,9 @@ resourcestring
   msg005 = 'Create a new document?';
   msg006 = 'It was not possible to load the last used file.';
   msg007 = 'The file is not available.';
+  dlg001 = 'Markdown files|*.md|All files|*';
+  dlg002 = 'Save Markdown file';
+  dlg003 = 'Open Markdown file';
   dateformat = 'en';
 
 implementation
@@ -210,6 +213,10 @@ begin
   end;
   sgTitles.FocusRectVisible := False;
   lbChars.Caption := msg001 + ' 0';
+  sdSave.Filter := dlg001;
+  sdSave.Title := dlg002;
+  odOpen.Filter := dlg001;
+  odOpen.Title := dlg003;
   myHomeDir := GetUserDir + 'Library/Preferences/';
   myConfigFile := 'mxmarkedit';
   if DirectoryExists(myHomeDir) = False then
@@ -1065,8 +1072,6 @@ begin
   begin
     Exit;
   end;
-  dbText.Clear;
-  sgTitles.Clear;
   if odOpen.Execute then
   try
     stFileName := odOpen.FileName;
@@ -1218,17 +1223,20 @@ end;
 
 procedure TfmMain.miEditCopyClick(Sender: TObject);
 begin
-  dbText.CopyToClipboard;
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    copy_(nil);
 end;
 
 procedure TfmMain.miEditCutClick(Sender: TObject);
 begin
-  dbText.CutToClipboard;
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    cut(nil);
 end;
 
 procedure TfmMain.miEditPasteClick(Sender: TObject);
 begin
-  dbText.PasteFromClipboard;
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    pasteAsPlainText(nil);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     checkTextInDocument(nil);
 end;

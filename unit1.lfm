@@ -1300,14 +1300,14 @@ object fmMain: TfmMain
     end
   end
   object odOpen: TOpenDialog
-    Title = 'Open Markdown files'
+    Title = 'Open Markdown file'
     DefaultExt = '.*.md'
     Filter = 'Markdown files|*.md|All files|*'
     Left = 109
     Top = 94
   end
   object sdSave: TSaveDialog
-    Title = 'Save Markdown files'
+    Title = 'Save Markdown file'
     DefaultExt = '.md'
     Filter = 'Markdown files|*.md|All files|*'
     Left = 202
