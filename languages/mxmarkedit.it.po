@@ -169,10 +169,12 @@ msgid "Transparency"
 msgstr "Trasparenza"
 
 #: tfmmain.odopen.title
+msgctxt "tfmmain.odopen.title"
 msgid "Open Markdown file"
 msgstr "Apri file Markdown"
 
 #: tfmmain.sdsave.title
+msgctxt "tfmmain.sdsave.title"
 msgid "Save Markdown file"
 msgstr "Salva file Markdown"
 
@@ -180,6 +182,10 @@ msgstr "Salva file Markdown"
 msgctxt "tfmoptions.bnclose.caption"
 msgid "OK"
 msgstr ""
+
+#: tfmoptions.bnstfontcodecolormod.caption
+msgid "Code color"
+msgstr "Colore codice"
 
 #: tfmoptions.bnstfontquotecolor.caption
 msgid "Quote and footnote color"
@@ -202,6 +208,7 @@ msgid "Titles 3 - 6 color"
 msgstr "Colore titoli 3 - 6"
 
 #: tfmoptions.caption
+msgctxt "tfmoptions.caption"
 msgid "Options"
 msgstr "Opzioni"
 

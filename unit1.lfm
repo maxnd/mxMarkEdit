@@ -1171,25 +1171,30 @@ object fmMain: TfmMain
       end
       object miSepLastFiles: TMenuItem
         Caption = '-'
+        Visible = False
       end
       object miFileOpenLast1: TMenuItem
         Caption = 'miFileOpenLast1'
         ShortCut = 4145
+        Visible = False
         OnClick = miFileOpenLast1Click
       end
       object miFileOpenLast2: TMenuItem
         Caption = 'miFileOpenLast2'
         ShortCut = 4146
+        Visible = False
         OnClick = miFileOpenLast2Click
       end
       object miFileOpenLast3: TMenuItem
         Caption = 'miFileOpenLast3'
         ShortCut = 4147
+        Visible = False
         OnClick = miFileOpenLast3Click
       end
       object miFileOpenLast4: TMenuItem
         Caption = 'miFileOpenLast4'
         ShortCut = 4148
+        Visible = False
         OnClick = miFileOpenLast4Click
       end
     end

@@ -130,7 +130,7 @@ type
       textOffset: integer): NSMutableParagraphStyle;
     procedure LabelFileNameChars;
     procedure MoveToPos;
-    procedure RenumberList(blAll: boolean);
+    procedure RenumberList;
     function SaveFile: boolean;
     procedure UpdateLastFile;
   public
@@ -148,9 +148,10 @@ var
   clTitle2: TColor = clBlack;
   clTitle3: TColor = clBlack;
   clFootQuote: TColor = clSilver;
+  clCode: TColor = clSilver;
   clHighlightList: TColor = clDkGray;
   stFontMono: string = 'Menlo';
-  iFontMonoSize: smallint = 20;
+  iFontMonoSize: smallint = 12;
   stFileName: string = '';
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
   LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: Integer;
@@ -202,6 +203,11 @@ begin
     sgTitles.Font.Color := clWhite;
     lbChars.Font.Color := clSilver;
     lbDateTime.Font.Color := clSilver;
+    clTitle1 := clWhite;
+    clTitle2 := clWhite;
+    clTitle3 := clWhite;
+    clFootQuote := clSilver;
+    clCode := clSilver;
     clHighlightList := $005E5E5E;
   end
   else
@@ -215,8 +221,12 @@ begin
     pnBottom.Color := clForm;
     lbChars.Font.Color := clDkGray;
     lbDateTime.Font.Color := clDkGray;
+    clTitle1 := clBlack;
+    clTitle2 := clBlack;
+    clTitle3 := clBlack;
+    clFootQuote := clSilver;
+    clCode := clSilver;
     clHighlightList := $00EBEBEB;
-
   end;
   sgTitles.FocusRectVisible := False;
   lbChars.Caption := msg001 + ' 0';
@@ -262,6 +272,8 @@ begin
       clTitle3 := StringToColor(MyIni.ReadString('mxmarkedit', 'title3', 'clTitle3'));
       clFootQuote := StringToColor(MyIni.ReadString('mxmarkedit',
         'footquote', 'clFootQuote'));
+      clCode := StringToColor(MyIni.ReadString('mxmarkedit',
+        'code', 'clCode'));
       sgTitles.Width := MyIni.ReadInteger('mxmarkedit', 'titlewidth', 400);
       stFileName := MyIni.ReadString('mxmarkedit', 'filename', '');
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
@@ -568,6 +580,7 @@ begin
     MyIni.WriteString('mxmarkedit', 'title2', ColorToString(clTitle2));
     MyIni.WriteString('mxmarkedit', 'title3', ColorToString(clTitle3));
     MyIni.WriteString('mxmarkedit', 'footquote', ColorToString(clFootQuote));
+    MyIni.WriteString('mxmarkedit', 'code', ColorToString(clCode));
     MyIni.WriteInteger('mxmarkedit', 'titlewidth', sgTitles.Width);
     MyIni.WriteString('mxmarkedit', 'filename', stFileName);
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
@@ -692,10 +705,10 @@ begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         moveToBeginningOfParagraph(nil);
       Clipboard.AsText := stClip;
-      if TryStrToInt(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1],
-        1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) - 1), i) = True then
+      if TryStrToInt(UTF8Copy(dbText.Lines[dbText.CaretPos.Y],
+        1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y]) - 1), i) = True then
       begin
-        RenumberList(False);
+        RenumberList;
         FormatListTitleTodo;
       end;
     end;
@@ -727,7 +740,7 @@ begin
       if TryStrToInt(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1],
         1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) - 1), i) = True then
       begin
-        RenumberList(False);
+        RenumberList;
         FormatListTitleTodo;
       end;
     end;
@@ -777,6 +790,11 @@ begin
   else
   if ((key = Ord('B')) and (Shift = [ssMeta])) then
   begin
+    if UTF8Copy(dbText.Text, dbText.SelStart, 1) = LineEnding then
+    begin
+      key := 0;
+      Exit;
+    end;
     if dbText.SelLength = 0 then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -800,6 +818,11 @@ begin
   else
   if ((key = Ord('I')) and (Shift = [ssMeta])) then
   begin
+    if UTF8Copy(dbText.Text, dbText.SelStart, 1) = LineEnding then
+    begin
+      key := 0;
+      Exit;
+    end;
     if dbText.SelLength = 0 then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -953,7 +976,7 @@ begin
         Inc(i);
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).
           insertText(NSStringUtf8(IntToStr(i) + '. '));
-        RenumberList(False);
+        RenumberList;
         FormatListTitleTodo;
       end;
     end;
@@ -1335,6 +1358,7 @@ end;
 
 procedure TfmMain.miCopyrightClick(Sender: TObject);
 begin
+  showmessage(inttostr(dbText.SelStart));
   fmCopyright.ShowModal;
 end;
 
@@ -1347,9 +1371,9 @@ procedure TfmMain.FormatListTitleTodo;
 var
   i, iLen, iPos, iTopRow: integer;
   blHeading, blPosInHeading, blBoldItalics, blItalics, blBold, blMono,
-  blQuote, blFootnote: boolean;
+  blQuote, blStartLinesQuote, blFootnote: boolean;
   iStartHeading, iStartBoldItalics, iStartItalics, iStartBold,
-  iStartMono, iStartQuote, iStartFootnote: integer;
+  iStartMono, iStartQuote, iStartLinesQuote, iStartFootnote: integer;
   stText: WideString = '';
   stTitle: WideString = '';
   stSpaces: string = '';
@@ -1364,6 +1388,7 @@ begin
   blItalics := False;
   blBold := False;
   blMono := False;
+  blStartLinesQuote := False;
   blQuote := False;
   blFootnote := False;
   blPosInHeading := False;
@@ -1373,6 +1398,7 @@ begin
   iStartBold := -1;
   iStartMono := -1;
   iStartQuote := -1;
+  iStartLinesQuote := -1;
   iStartFootnote := -1;
   stText := WideString(dbText.Text);
   iLen := Length(stText);
@@ -1455,8 +1481,11 @@ begin
         (Copy(stText, i, 4) = '### ') or (Copy(stText, i, 5) = '#### ') or
         (Copy(stText, i, 6) = '##### ') or (Copy(stText, i, 7) = '###### ')) then
       begin
-        blHeading := True;
-        iStartHeading := i;
+        if blStartLinesQuote = False then
+        begin
+          blHeading := True;
+          iStartHeading := i;
+        end;
       end;
     end
     else
@@ -1465,7 +1494,10 @@ begin
       if ((Copy(stText, i, 6) = '- [ ] ') or (Copy(stText, i, 6) = '- [x] ') or
         (Copy(stText, i, 6) = '- [X] ')) then
       begin
-        blHeading := True;
+        if blStartLinesQuote = False then
+        begin
+          blHeading := True;
+        end;
       end;
     end
     else
@@ -1646,10 +1678,39 @@ begin
           addAttribute_value_range(NSFontAttributeName, miniFont, rng);
       end;
     end
-    // Mono
-    else if stText[i] = '`' then
+    else
+    // Lines of code
+    if ((stText[i] = '`') and (stText[i + 1] = '`')
+      and (stText[i + 2] = '`') and (stText[i + 3] = LineEnding) and
+      (blStartLinesQuote = False)) then
     begin
-      if ((blMono = False) and (stText[i + 1] <> ' ')) then
+      blStartLinesQuote := True;
+      blBoldItalics := False;
+      blItalics := False;
+      blBold := False;
+      blMono := False;
+      blFootnote := False;
+      blHeading := False;
+      iStartLinesQuote := i;
+    end
+    else
+    if ((stText[i] = '`') and (stText[i + 1] = '`')
+      and (stText[i + 2] = '`') and (blStartLinesQuote = True)) then
+    begin
+      blStartLinesQuote := False;
+      rng.location := iStartLinesQuote - 1;
+      rng.length := i - iStartLinesQuote + 1;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+        addAttribute_value_range(NSFontAttributeName, monoFont, rng);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setTextColor_range(ColorToNSColor(clCode), rng);
+    end
+    else
+    // Mono
+    if stText[i] = '`' then
+    begin
+      if ((blMono = False) and (blStartLinesQuote = False) and
+        (stText[i + 1] <> ' ')) then
       begin
         blMono := True;
         iStartMono := i;
@@ -1662,14 +1723,19 @@ begin
         rng.length := i - iStartMono + 1;
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
           addAttribute_value_range(NSFontAttributeName, monoFont, rng);
-        rng.location := iStartMono - 1;
-        rng.length := 1;
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-          addAttribute_value_range(NSFontAttributeName, miniFont, rng);
-        rng.location := i - 1;
-        rng.length := 1;
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-          addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+          setTextColor_range(ColorToNSColor(clCode), rng);
+        if i > iStartMono + 1 then
+        begin
+          rng.location := iStartMono - 1;
+          rng.length := 1;
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          rng.location := i - 1;
+          rng.length := 1;
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+        end;
       end;
     end
     // Footnote
@@ -1690,6 +1756,13 @@ begin
         setTextColor_range(ColorToNSColor(clFootQuote), rng);
     end;
     Inc(i);
+  end;
+  if dbText.SelStart > iLen - 2 then
+  begin
+    if sgTitles.RowCount > 0 then
+    begin
+      sgTitles.Cells[1, sgTitles.RowCount - 1] := ' ';
+    end;
   end;
   sgTitles.TopRow := iTopRow;
 end;
@@ -1845,7 +1918,7 @@ begin
     scrollRangeToVisible(rng);
 end;
 
-procedure TfmMain.RenumberList(blAll: boolean);
+procedure TfmMain.RenumberList;
 var
   i, iStart, iEnd, iPos, iNum, iTest: integer;
   rng: NSRange;
@@ -1857,34 +1930,25 @@ begin
   end;
   iPos := dbText.SelStart;
   stText := WideString(dbText.Text);
-  if blAll = True then
+  iStart := iPos - 1;
+  while ((iStart >= 0) and (iStart < Length(stText) - 3)) do
   begin
-    iStart := 0;
-    iEnd := Length(stText) - 6;
-  end
-  else
+    if (((stText[iStart] = LineEnding) or (iStart = 0)) and (stText[iStart + 1] =
+      LineEnding)) then
+    begin
+      Break;
+    end;
+    Dec(iStart);
+  end;
+  Inc(iStart);
+  iEnd := iPos + 1;
+  while (iEnd < Length(stText) - 5) do
   begin
-    // characterAtIndex is 0 based
-    iStart := iPos - 1;
-    while ((iStart >= 0) and (iStart < Length(stText) - 3)) do
+    if ((stText[iEnd] = LineEnding) and (stText[iEnd + 1] = LineEnding)) then
     begin
-      if ((stText[iStart] = LineEnding) and (stText[iStart + 1] =
-        LineEnding)) then
-      begin
-        Break;
-      end;
-      Dec(iStart);
+      Break;
     end;
-    Inc(iStart);
-    iEnd := iPos - 1;
-    while (iEnd < Length(stText) - 5) do
-    begin
-      if ((stText[iEnd] = LineEnding) and (stText[iEnd + 1] = LineEnding)) then
-      begin
-        Break;
-      end;
-      Inc(iEnd);
-    end;
+    Inc(iEnd);
   end;
   iNum := 1;
   for i := iStart to iEnd do

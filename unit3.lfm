@@ -1,13 +1,13 @@
 object fmOptions: TfmOptions
   Left = 450
-  Height = 347
+  Height = 409
   Top = 178
   Width = 547
   ActiveControl = cbStFonts
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Options'
-  ClientHeight = 347
+  ClientHeight = 409
   ClientWidth = 547
   Color = clForm
   KeyPreview = True
@@ -23,7 +23,7 @@ object fmOptions: TfmOptions
     Left = 43
     Height = 20
     Top = 48
-    Width = 220
+    Width = 469
     ItemHeight = 26
     Style = csDropDownList
     TabOrder = 0
@@ -40,36 +40,36 @@ object fmOptions: TfmOptions
   object bnClose: TButton
     Left = 437
     Height = 30
-    Top = 298
+    Top = 360
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
-    TabOrder = 9
+    TabOrder = 11
     TabStop = False
     OnClick = bnCloseClick
   end
   object bnStFontTitle1ColorMod: TButton
     Left = 294
     Height = 36
-    Top = 79
+    Top = 128
     Width = 218
     Caption = 'Titles 1 color'
-    TabOrder = 2
+    TabOrder = 4
     OnClick = bnStFontTitle1ColorModClick
   end
   object bnStFontTitle3ColorMod: TButton
     Left = 294
     Height = 36
-    Top = 120
+    Top = 168
     Width = 218
     Caption = 'Titles 3 - 6 color'
-    TabOrder = 4
+    TabOrder = 6
     OnClick = bnStFontTitle3ColorModClick
   end
   object lbPanOptions: TLabel
     Left = 45
     Height = 16
-    Top = 173
+    Top = 237
     Width = 112
     Caption = 'Options of Pandoc'
     ParentColor = False
@@ -77,25 +77,25 @@ object fmOptions: TfmOptions
   object edPanOptions: TEdit
     Left = 43
     Height = 22
-    Top = 193
+    Top = 257
     Width = 289
     ParentColor = True
-    TabOrder = 5
+    TabOrder = 7
     Text = '+footnotes+inline_notes'
   end
   object edPanOutput: TEdit
     Left = 344
     Height = 22
-    Top = 253
+    Top = 317
     Width = 168
     ParentColor = True
-    TabOrder = 8
+    TabOrder = 10
     Text = '.docx'
   end
   object lbPanOutput: TLabel
     Left = 344
     Height = 16
-    Top = 233
+    Top = 297
     Width = 64
     Caption = 'Output file'
     ParentColor = False
@@ -103,7 +103,7 @@ object fmOptions: TfmOptions
   object lbPanTemplate: TLabel
     Left = 45
     Height = 16
-    Top = 233
+    Top = 297
     Width = 56
     Caption = 'Template'
     ParentColor = False
@@ -111,16 +111,16 @@ object fmOptions: TfmOptions
   object edPanTemplate: TEdit
     Left = 45
     Height = 22
-    Top = 253
+    Top = 317
     Width = 287
     ParentColor = True
-    TabOrder = 7
+    TabOrder = 9
     Text = 'word-template.docx'
   end
   object lbPanPath: TLabel
     Left = 344
     Height = 16
-    Top = 173
+    Top = 237
     Width = 92
     Caption = 'Path of Pandoc'
     ParentColor = False
@@ -128,38 +128,47 @@ object fmOptions: TfmOptions
   object edPanPath: TEdit
     Left = 344
     Height = 22
-    Top = 193
+    Top = 257
     Width = 168
     ParentColor = True
-    TabOrder = 6
+    TabOrder = 8
     Text = '/usr/local/bin/'
   end
   object bnStFontTitle2ColorMod: TButton
     Left = 43
     Height = 36
-    Top = 120
+    Top = 168
     Width = 220
     Caption = 'Titles 2 color'
-    TabOrder = 3
+    TabOrder = 5
     OnClick = bnStFontTitle2ColorModClick
   end
   object bnStFontQuoteColor: TButton
     Left = 45
     Height = 36
-    Top = 79
+    Top = 128
     Width = 218
     Caption = 'Quote and footnote color'
-    TabOrder = 1
+    TabOrder = 3
     OnClick = bnStFontQuoteColorClick
   end
   object bnStFontTextColorMod: TButton
-    Left = 294
+    Left = 45
     Height = 36
-    Top = 38
+    Top = 88
     Width = 218
     Caption = 'Text color'
-    TabOrder = 10
+    TabOrder = 1
     OnClick = bnStFontTextColorModClick
+  end
+  object bnStFontCodeColorMod: TButton
+    Left = 294
+    Height = 36
+    Top = 88
+    Width = 218
+    Caption = 'Code color'
+    TabOrder = 2
+    OnClick = bnStFontCodeColorModClick
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'
@@ -187,6 +196,6 @@ object fmOptions: TfmOptions
       'ColorT=A4A0A0'
     )
     Left = 304
-    Top = 200
+    Top = 264
   end
 end

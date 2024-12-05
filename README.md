@@ -16,6 +16,7 @@ Some Markdown markers are hidden, as the text contained within them is properly 
 
 * italics (\*), bold (\*\*) and bold italics (\*\*\*);
 * code, in monospace font (`);
+* lines of code, in monospace font (```);
 * inline footnotes (contained between ^[ and ]);
 * citations (start with the character > followed by a space).
 
@@ -23,7 +24,9 @@ The markers cannot be escaped as far as the formatting of mxMarkEdit is concerne
 
 At the left of the text, it’s available a list of the titles (starting with #) and todo items (starting with – [ ]  or – [X] ). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. Moving the cursor in the text, the corresponding title or todo item is highlighted.
 
-When a paragraph starts with a list heading (*, +, - or a number followed by a dot and a space), the “Return” key creates a new paragraph with the same heading.
+When a paragraph starts with a list heading (*, +, - or a number followed by a dot and a space), the “Return” key creates a new paragraph with the same heading. The numbered lists are properly renumbered if necessary.
+
+The last four opened files are available in the “File” menu. When they are opened, the cursor move to the last position it had during the last editing.
 
 The “Edit - Find” menu item allows to find the first occurrence – with the appropriate button or by pressing “Return” - or the following occurrences – with the appropriate button or by pressing “Command + Return” – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the \n code replaces the paragraph breaks, while the \t code replaces the tabs, both in the “Search text” field and in the “Replace with field”.
 

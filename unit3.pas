@@ -36,6 +36,7 @@ type
 
   TfmOptions = class(TForm)
     bnClose: TButton;
+    bnStFontCodeColorMod: TButton;
     bnStFontQuoteColor: TButton;
     bnStFontTextColorMod: TButton;
     bnStFontTitle3ColorMod: TButton;
@@ -53,6 +54,7 @@ type
     lbPanPath: TLabel;
     lnStFonts: TLabel;
     procedure bnCloseClick(Sender: TObject);
+    procedure bnStFontCodeColorModClick(Sender: TObject);
     procedure bnStFontQuoteColorClick(Sender: TObject);
     procedure bnStFontTextColorModClick(Sender: TObject);
     procedure bnStFontTitle3ColorModClick(Sender: TObject);
@@ -162,6 +164,16 @@ begin
   if cdColorDialog.Execute then
   begin
     fmMain.dbText.Font.Color := cdColorDialog.Color;
+    fmMain.FormatListTitleTodo;
+  end;
+end;
+
+procedure TfmOptions.bnStFontCodeColorModClick(Sender: TObject);
+begin
+  cdColorDialog.Color := clCode;
+  if cdColorDialog.Execute then
+  begin
+    clCode := cdColorDialog.Color;
     fmMain.FormatListTitleTodo;
   end;
 end;
