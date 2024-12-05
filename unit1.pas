@@ -1358,7 +1358,6 @@ end;
 
 procedure TfmMain.miCopyrightClick(Sender: TObject);
 begin
-  showmessage(inttostr(dbText.SelStart));
   fmCopyright.ShowModal;
 end;
 
