@@ -61,6 +61,6 @@ There are also some shortcuts beyond the ones related to the menu items:
 * Meta + Opt + Shift + U: make lowercase the current word.
 * Meta + Opt + U: capitalise the current word.
 
-The software creates the two configuration file:
+The software creates these two configuration files:
 - `/Users/[username]/Library/Preferences/mxmarkedit`
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
