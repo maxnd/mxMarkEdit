@@ -151,7 +151,7 @@ var
   clCode: TColor = clSilver;
   clHighlightList: TColor = clDkGray;
   stFontMono: string = 'Menlo';
-  iFontMonoSize: smallint = 12;
+  iFontMonoSize: smallint = 18;
   stFileName: string = '';
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
   LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: Integer;

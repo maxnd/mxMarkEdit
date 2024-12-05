@@ -1053,7 +1053,7 @@ object fmMain: TfmMain
     BorderSpacing.Top = 10
     BorderStyle = bsNone
     Color = 2632235
-    Font.Height = 22
+    Font.Height = -21
     Font.Name = 'Avenir Next'
     ParentFont = False
     ScrollBars = ssAutoVertical
