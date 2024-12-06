@@ -30,6 +30,8 @@ The last four opened files are available in the “File” menu. When they are o
 
 The “Edit - Find” menu item allows to find the first occurrence – with the appropriate button or by pressing “Return” - or the following occurrences – with the appropriate button or by pressing “Command + Return” – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the \n code replaces the paragraph breaks, while the \t code replaces the tabs, both in the “Search text” field and in the “Replace with field”.
 
+The “Edit - Insert link to file” allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link.	
+
 The “Edit - Disable formatting” menu item prevents the formatting of the text, improving the performance of the app with large documents.
 
 The “Convert with Pandoc” menu item converts the current note into another format specified in the options of the software. The converted file is created in the same folder of the note.
@@ -38,7 +40,7 @@ The “Open another window” menu item opens another instance of the software i
 
 The “Transparency” menu item activate or deactivate the transparency of the software interface.
 
-The “Tools - Options” menu item opens the options, where are specified the name of the font of the text, the color of the footnotes and quotes, the color of the first level, second level and other level titles, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (.docx, .odt, etc.). See the Pandoc manual for more information.
+The “Tools - Options” menu item opens the options, where are specified the name and the color of the font of the text, the color of the monospace font, of the footnotes and quotes, of the first level, second level and other level titles, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (.docx, .odt, etc.). See the Pandoc manual for more information.
 
 The other menu items are self-explaining.
 

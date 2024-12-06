@@ -17,6 +17,7 @@
 {"hash":5671589,"name":"tfmmain.mieditpaste.caption","sourcebytes":[80,97,115,116,101],"value":"Paste"},
 {"hash":195296268,"name":"tfmmain.mieditselectall.caption","sourcebytes":[83,101,108,101,99,116,32,97,108,108],"value":"Select all"},
 {"hash":315460,"name":"tfmmain.mieditfind.caption","sourcebytes":[70,105,110,100],"value":"Find"},
+{"hash":241257573,"name":"tfmmain.mieditlink.caption","sourcebytes":[73,110,115,101,114,116,32,108,105,110,107,32,116,111,32,102,105,108,101],"value":"Insert link to file"},
 {"hash":88985447,"name":"tfmmain.mieditdisableform.caption","sourcebytes":[68,105,115,97,98,108,101,32,102,111,114,109,97,116,116,105,110,103],"value":"Disable formatting"},
 {"hash":260980711,"name":"tfmmain.mieditdisspell.caption","sourcebytes":[68,105,115,97,98,108,101,32,115,112,101,108,108,32,99,104,101,99,107,105,110,103],"value":"Disable spell checking"},
 {"hash":5989939,"name":"tfmmain.mitools.caption","sourcebytes":[84,111,111,108,115],"value":"Tools"},
@@ -31,5 +32,6 @@
 {"hash":63,"name":"tfmmain.mihelp.caption","sourcebytes":[63],"value":"?"},
 {"hash":134789012,"name":"tfmmain.micopyright.caption","sourcebytes":[67,111,112,121,114,105,103,104,116],"value":"Copyright"},
 {"hash":216601877,"name":"tfmmain.odopen.title","sourcebytes":[79,112,101,110,32,77,97,114,107,100,111,119,110,32,102,105,108,101],"value":"Open Markdown file"},
-{"hash":202838549,"name":"tfmmain.sdsave.title","sourcebytes":[83,97,118,101,32,77,97,114,107,100,111,119,110,32,102,105,108,101],"value":"Save Markdown file"}
+{"hash":202838549,"name":"tfmmain.sdsave.title","sourcebytes":[83,97,118,101,32,77,97,114,107,100,111,119,110,32,102,105,108,101],"value":"Save Markdown file"},
+{"hash":201759301,"name":"tfmmain.odlink.title","sourcebytes":[79,112,101,110,32,102,105,108,101],"value":"Open file"}
 ]}

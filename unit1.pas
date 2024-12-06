@@ -40,6 +40,7 @@ type
     dbText: TMemo;
     lbDateTime: TLabel;
     lbChars: TLabel;
+    miEditLink: TMenuItem;
     miEditDisableForm: TMenuItem;
     miEditDisSpell: TMenuItem;
     miSepLastFiles: TMenuItem;
@@ -49,13 +50,15 @@ type
     miFileOpenLast4: TMenuItem;
     miToolsHideList: TMenuItem;
     miToolsOpenWin: TMenuItem;
+    odLink: TOpenDialog;
     Sep3: TMenuItem;
-    Sep4: TMenuItem;
+    Sep5: TMenuItem;
+    Sep6: TMenuItem;
     miToolsTrans3: TMenuItem;
     miToolsTrans2: TMenuItem;
     miToolsTrans1: TMenuItem;
     miToolsTransparency: TMenuItem;
-    Sep2: TMenuItem;
+    Sep4: TMenuItem;
     miToolsOptions: TMenuItem;
     miToolsPandoc: TMenuItem;
     miCopyright: TMenuItem;
@@ -77,7 +80,7 @@ type
     mmMenu: TMainMenu;
     miFile: TMenuItem;
     pnBottom: TPanel;
-    Sep1a: TMenuItem;
+    Sep2: TMenuItem;
     spTitles: TSplitter;
     tmDateTime: TTimer;
     sgTitles: TStringGrid;
@@ -91,6 +94,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure miEditLinkClick(Sender: TObject);
     procedure miEditDisableFormClick(Sender: TObject);
     procedure miEditDisSpellClick(Sender: TObject);
     procedure miToolsHideListClick(Sender: TObject);
@@ -174,6 +178,8 @@ resourcestring
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
+  dlg004 = 'All files|*';
+  dlg005 = 'Open file';
   dateformat = 'en';
 
 implementation
@@ -234,6 +240,8 @@ begin
   sdSave.Title := dlg002;
   odOpen.Filter := dlg001;
   odOpen.Title := dlg003;
+  odLink.Filter := dlg004;
+  odLink.Title := dlg005;
   myHomeDir := GetUserDir + 'Library/Preferences/';
   myConfigFile := 'mxmarkedit';
   if DirectoryExists(myHomeDir) = False then
@@ -1295,6 +1303,19 @@ end;
 procedure TfmMain.miEditFindClick(Sender: TObject);
 begin
   fmSearch.Show;
+end;
+
+procedure TfmMain.miEditLinkClick(Sender: TObject);
+var
+  stLink: String;
+begin
+  if odLink.Execute then
+  begin
+    stLink := odLink.FileName;
+    stLink := 'file://' + StringReplace(stLink, ' ', '%20', [rfReplaceAll]);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      insertText(NSStringUtf8(stLink));
+  end;
 end;
 
 procedure TfmMain.miToolsPandocClick(Sender: TObject);

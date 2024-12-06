@@ -1127,7 +1127,7 @@ object fmMain: TfmMain
     FixedCols = 0
     FixedRows = 0
     Flat = True
-    Font.Height = 14
+    Font.Height = -16
     GridLineStyle = psClear
     MouseWheelOption = mwGrid
     Options = [goVertLine, goHorzLine, goRangeSelect, goSmoothScroll, goCellHints]
@@ -1228,7 +1228,15 @@ object fmMain: TfmMain
         ShortCut = 4166
         OnClick = miEditFindClick
       end
-      object Sep1a: TMenuItem
+      object Sep2: TMenuItem
+        Caption = '-'
+      end
+      object miEditLink: TMenuItem
+        Caption = 'Insert link to file'
+        ShortCut = 4172
+        OnClick = miEditLinkClick
+      end
+      object Sep3: TMenuItem
         Caption = '-'
       end
       object miEditDisableForm: TMenuItem
@@ -1249,12 +1257,12 @@ object fmMain: TfmMain
         ShortCut = 4176
         OnClick = miToolsPandocClick
       end
-      object Sep2: TMenuItem
+      object Sep4: TMenuItem
         Caption = '-'
       end
       object miToolsHideList: TMenuItem
         Caption = 'Hide titles and todo list'
-        ShortCut = 4172
+        ShortCut = 12364
         OnClick = miToolsHideListClick
       end
       object miToolsOpenWin: TMenuItem
@@ -1262,7 +1270,7 @@ object fmMain: TfmMain
         ShortCut = 12375
         OnClick = miToolsOpenWinClick
       end
-      object Sep3: TMenuItem
+      object Sep5: TMenuItem
         Caption = '-'
       end
       object miToolsTransparency: TMenuItem
@@ -1288,7 +1296,7 @@ object fmMain: TfmMain
           OnClick = miToolsTrans3Click
         end
       end
-      object Sep4: TMenuItem
+      object Sep6: TMenuItem
         Caption = '-'
       end
       object miToolsOptions: TMenuItem
@@ -1323,5 +1331,12 @@ object fmMain: TfmMain
     OnTimer = tmDateTimeTimer
     Left = 275
     Top = 184
+  end
+  object odLink: TOpenDialog
+    Title = 'Open file'
+    DefaultExt = '.*'
+    Filter = 'All files|*'
+    Left = 440
+    Top = 168
   end
 end
