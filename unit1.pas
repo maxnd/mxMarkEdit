@@ -1029,6 +1029,7 @@ var
   i, iLen, iHeader: integer;
   stText: WideString = '';
   rng: NSRange;
+  blCode: boolean = False;
 begin
   stText := WideString(dbText.Text);
   iLen := Length(stText);
@@ -1036,11 +1037,28 @@ begin
   iHeader := 0;
   while i <= iLen do
   begin
+    if ((stText[i] = '`') and (stText[i + 1] = '`') and
+      (stText[i + 2] = '`') and ((stText[i - 1] = LineEnding) or
+      (i = 1))) then
+    begin
+      if blCode = False then
+      begin
+        blCode := True;
+      end
+      else
+      begin
+        blCode := False;
+      end;
+    end
+    else
     if (((stText[i] = '#') or ((stText[i] = '-') and (stText[i + 1] = ' ') and
       (stText[i + 2] = '[') and (stText[i + 4] = ']'))) and
       ((i = 1) or (stText[i - 1] = LineEnding))) then
     begin
-      Inc(iHeader);
+      if blCode = False then
+      begin
+        Inc(iHeader);
+      end;
       if iHeader = sgTitles.Row + 1 then
       begin
         dbText.SelStart := i - 1;
@@ -1052,6 +1070,7 @@ begin
           showFindIndicatorForRange(rng);
         dbText.SelStart := i - 1;
         dbText.SetFocus;
+        FormatListTitleTodo;
         Break;
       end;
     end;
@@ -1971,6 +1990,10 @@ begin
   begin
     dbText.SelStart := LastPosDatabase4;
     sgTitles.TopRow := TopIndexDatabase4;
+  end
+  else
+  begin
+    dbText.SelStart := 0;
   end;
   rng.location := dbText.SelStart;
   rng.length := 1;
