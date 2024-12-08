@@ -9,7 +9,6 @@ object fmSearch: TfmSearch
   ClientHeight = 211
   ClientWidth = 440
   Color = clForm
-  FormStyle = fsStayOnTop
   Icon.Data = {
     1E75000000000100010055550000010020000875000016000000280000005500
     0000AA0000000100200000000000E47000006400000064000000000000000000
@@ -1019,7 +1018,7 @@ object fmSearch: TfmSearch
   object edReplace: TEdit
     Left = 27
     Height = 22
-    Top = 110
+    Top = 112
     Width = 386
     Anchors = [akTop, akLeft, akRight]
     ParentColor = True

@@ -533,6 +533,7 @@ object fmCopyright: TfmCopyright
     000000000000000000000000A03CFF1FFD3C48BBF4B269800000000049454E44
     AE426082
   }
+  KeyPreview = True
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   Position = poDesktopCenter
@@ -1449,7 +1450,6 @@ object fmCopyright: TfmCopyright
     Top = 59
     Width = 321
     Caption = 'A free software to manage Markdown documents.'
-    Font.Color = 34047
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1460,7 +1460,6 @@ object fmCopyright: TfmCopyright
     Top = 78
     Width = 131
     Caption = 'Author and copyright:'
-    Font.Color = 34047
     ParentColor = False
     ParentFont = False
   end
@@ -1470,7 +1469,6 @@ object fmCopyright: TfmCopyright
     Top = 98
     Width = 241
     Caption = 'Massimo Nardello, Modena (Italy) 2024.'
-    Font.Color = 34047
     ParentColor = False
     ParentFont = False
   end
@@ -1478,9 +1476,8 @@ object fmCopyright: TfmCopyright
     Left = 230
     Height = 16
     Top = 118
-    Width = 26
-    Caption = '1.0.1'
-    Font.Color = 34047
+    Width = 28
+    Caption = '1.0.2'
     ParentColor = False
     ParentFont = False
   end
@@ -1490,7 +1487,6 @@ object fmCopyright: TfmCopyright
     Top = 118
     Width = 45
     Caption = 'Version'
-    Font.Color = 34047
     ParentColor = False
     ParentFont = False
   end
@@ -1501,7 +1497,6 @@ object fmCopyright: TfmCopyright
     Top = 144
     Width = 140
     Caption = 'Website of mxMarkEdit'
-    Font.Color = 34047
     Font.Style = [fsUnderline]
     ParentColor = False
     ParentFont = False
@@ -1609,7 +1604,6 @@ object fmCopyright: TfmCopyright
     Width = 540
     BorderStyle = bsNone
     Color = clForm
-    Font.Color = 34047
     Font.Height = -13
     HideSelection = False
     ParentFont = False

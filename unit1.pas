@@ -159,6 +159,7 @@ var
   stFileName: string = '';
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
   LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: Integer;
+  TopIndexDatabase1, TopIndexDatabase2, TopIndexDatabase3, TopIndexDatabase4: Integer;
   blFileSaved: boolean = True;
   blDisableFormatting: boolean = False;
   pandocPath: string = '/usr/local/bin/';
@@ -294,6 +295,7 @@ begin
       begin
         LastDatabase1 := MyIni.ReadString('mxmarkedit', 'lastfile1', '');
         miFileOpenLast1.Caption := ExtractFileNameOnly(LastDatabase1);
+        miFileOpenLast1.Visible := True;
       end
       else
       begin
@@ -303,6 +305,7 @@ begin
       begin
         LastDatabase2 := MyIni.ReadString('mxmarkedit', 'lastfile2', '');
         miFileOpenLast2.Caption := ExtractFileNameOnly(LastDatabase2);
+        miFileOpenLast2.Visible := True;
       end
       else
       begin
@@ -312,6 +315,7 @@ begin
       begin
         LastDatabase3 := MyIni.ReadString('mxmarkedit', 'lastfile3', '');
         miFileOpenLast3.Caption := ExtractFileNameOnly(LastDatabase3);
+        miFileOpenLast3.Visible := True;
       end
       else
       begin
@@ -321,6 +325,7 @@ begin
       begin
         LastDatabase4 := MyIni.ReadString('mxmarkedit', 'lastfile4', '');
         miFileOpenLast4.Caption := ExtractFileNameOnly(LastDatabase4);
+        miFileOpenLast4.Visible := True;
       end
       else
       begin
@@ -331,11 +336,19 @@ begin
         (miFileOpenLast4.Visible = False)) then
       begin
         miSepLastFiles.Visible := False;
+      end
+      else
+      begin
+        miSepLastFiles.Visible := True;
       end;
-      LastPosDatabase1 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase1', -1);
-      LastPosDatabase2 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase2', -1);
-      LastPosDatabase3 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase3', -1);
-      LastPosDatabase4 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase4', -1);
+      LastPosDatabase1 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase1', 0);
+      LastPosDatabase2 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase2', 0);
+      LastPosDatabase3 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase3', 0);
+      LastPosDatabase4 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase4', 0);
+      TopIndexDatabase1 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase1', 0);
+      TopIndexDatabase2 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase2', 0);
+      TopIndexDatabase3 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase3', 0);
+      TopIndexDatabase4 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase4', 0);
     finally
       MyIni.Free;
     end;
@@ -554,8 +567,15 @@ begin
 end;
 
 procedure TfmMain.FormActivate(Sender: TObject);
+var
+  rng: NSRange;
 begin
   LabelFileNameChars;
+  // scrollRangeToVisible in MoveToPos doesn't work OnCreate
+  rng.location := dbText.SelStart;
+  rng.length := 1;
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    scrollRangeToVisible(rng);
 end;
 
 procedure TfmMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -614,6 +634,10 @@ begin
     MyIni.WriteInteger('mxmarkedit', 'lastposdatabase2', LastPosDatabase2);
     MyIni.WriteInteger('mxmarkedit', 'lastposdatabase3', LastPosDatabase3);
     MyIni.WriteInteger('mxmarkedit', 'lastposdatabase4', LastPosDatabase4);
+    MyIni.WriteInteger('mxmarkedit', 'topindexdatabase1', TopIndexDatabase1);
+    MyIni.WriteInteger('mxmarkedit', 'topindexdatabase2', TopIndexDatabase2);
+    MyIni.WriteInteger('mxmarkedit', 'topindexdatabase3', TopIndexDatabase3);
+    MyIni.WriteInteger('mxmarkedit', 'topindexdatabase4', TopIndexDatabase4);
   finally
     MyIni.Free;
   end;
@@ -919,7 +943,7 @@ end;
 
 procedure TfmMain.dbTextKeyPress(Sender: TObject; var Key: char);
 var
-  i, iLine: integer;
+  i: integer;
 begin
   if key = #13 then
   begin
@@ -932,6 +956,7 @@ begin
       (dbText.Lines[dbText.CaretPos.Y - 1] = '* ') or
       ((TryStrToInt(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1],
       1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) - 1), i) = True) and
+      (UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) > 1) and
       (UTF8Length(dbText.Lines[dbText.CaretPos.Y - 1]) =
       UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) + 1))) then
     begin
@@ -1173,6 +1198,7 @@ begin
       myList := TStringList.Create;
       myList.Text := dbText.Text;
       myList.SaveToFile(stFileName);
+      UpdateLastFile;
     finally
       myList.Free;
     end;
@@ -1302,7 +1328,7 @@ end;
 
 procedure TfmMain.miEditFindClick(Sender: TObject);
 begin
-  fmSearch.Show;
+  fmSearch.ShowModal;
 end;
 
 procedure TfmMain.miEditLinkClick(Sender: TObject);
@@ -1793,7 +1819,9 @@ begin
   begin
     lbChars.Caption := ExtractFileDir(stFileName) + '/  •  ' +
       ExtractFileName(stFileName) + '  •  ' + msg001 + ' ' +
-      FormatFloat('#,##0', UTF8Length(dbText.Text));
+      FormatFloat('#,##0',
+        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        textStorage.characters.count);
   end
   else
   begin
@@ -1807,6 +1835,7 @@ begin
   begin
     LastDatabase2 := LastDatabase1;
     LastPosDatabase2 := LastPosDatabase1;
+    TopIndexDatabase2 := TopIndexDatabase1;
     LastDatabase1 := stFileName;
   end
   else if stFileName = LastDatabase3 then
@@ -1815,6 +1844,8 @@ begin
     LastDatabase2 := LastDatabase1;
     LastPosDatabase3 := LastPosDatabase2;
     LastPosDatabase2 := LastPosDatabase1;
+    TopIndexDatabase3 := TopIndexDatabase2;
+    TopIndexDatabase2 := TopIndexDatabase1;
     LastDatabase1 := stFileName;
   end
   else if stFileName <> LastDatabase1 then
@@ -1825,6 +1856,9 @@ begin
     LastPosDatabase4 := LastPosDatabase3;
     LastPosDatabase3 := LastPosDatabase2;
     LastPosDatabase2 := LastPosDatabase1;
+    TopIndexDatabase4 := TopIndexDatabase3;
+    TopIndexDatabase3 := TopIndexDatabase2;
+    TopIndexDatabase2 := TopIndexDatabase1;
     LastDatabase1 := stFileName;
   end;
   if LastDatabase1 <> '' then
@@ -1869,21 +1903,25 @@ begin
         if stFileName = LastDatabase1 then
         begin
           LastPosDatabase1 := dbText.SelStart;
+          TopIndexDatabase1 := sgTitles.TopRow;
         end
         else
         if stFileName = LastDatabase2 then
         begin
           LastPosDatabase2 := dbText.SelStart;
+          TopIndexDatabase2 := sgTitles.TopRow;
         end
         else
         if stFileName = LastDatabase3 then
         begin
           LastPosDatabase3 := dbText.SelStart;
+          TopIndexDatabase3 := sgTitles.TopRow;
         end
         else
         if stFileName = LastDatabase4 then
         begin
           LastPosDatabase4 := dbText.SelStart;
+          TopIndexDatabase4 := sgTitles.TopRow;
         end;
       finally
         myList.Free;
@@ -1905,35 +1943,38 @@ end;
 
 procedure TfmMain.MoveToPos;
 var
-  stText: WideString;
   rng: NSRange;
 begin
-  stText := WideString(dbText.Text);
   if ((stFileName = LastDatabase1) and (LastPosDatabase1 > -1) and
     (LastPosDatabase1 < Length(dbText.Text))) then
   begin
     dbText.SelStart := LastPosDatabase1;
+    sgTitles.TopRow := TopIndexDatabase1;
   end
   else
   if ((stFileName = LastDatabase2) and (LastPosDatabase2 > -1) and
     (LastPosDatabase2 < Length(dbText.Text))) then
   begin
     dbText.SelStart := LastPosDatabase2;
+    sgTitles.TopRow := TopIndexDatabase2;
   end
   else
   if ((stFileName = LastDatabase3) and (LastPosDatabase3 > -1) and
     (LastPosDatabase3 < Length(dbText.Text))) then
   begin
     dbText.SelStart := LastPosDatabase3;
+    sgTitles.TopRow := TopIndexDatabase3;
   end
   else
   if ((stFileName = LastDatabase4) and (LastPosDatabase4 > -1) and
     (LastPosDatabase4 < Length(dbText.Text))) then
   begin
     dbText.SelStart := LastPosDatabase4;
+    sgTitles.TopRow := TopIndexDatabase4;
   end;
   rng.location := dbText.SelStart;
   rng.length := 1;
+  FormatListTitleTodo;
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     scrollRangeToVisible(rng);
 end;

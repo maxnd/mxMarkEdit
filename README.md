@@ -1,10 +1,12 @@
 # mxMarkEdit
 
+Version 1.0.2, published on December 8 2024.
+
 Copyright Massimo Nardello, Modena (Italy) 2024.
 
 mxMarkEdit is a free software for Mac for writing texts in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org). The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html.
 
-The software runs in English or Italian. In the “app” directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the Application directory and run. The app is not notarized.
+The software runs in English or Italian. In the “app” directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the Application directory and run. The app is not signed nor notarized.
 
 The software looks like this, with one possible color setting:
 
@@ -20,7 +22,7 @@ Some Markdown markers are hidden, as the text contained within them is properly 
 * inline footnotes (contained between ^[ and ]);
 * citations (start with the character > followed by a space).
 
-The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned.
+The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned. Pandoc should instead manage them properly.
 
 At the left of the text, it’s available a list of the titles (starting with #) and todo items (starting with – [ ]  or – [X] ). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. Moving the cursor in the text, the corresponding title or todo item is highlighted.
 
@@ -53,7 +55,7 @@ There are also some shortcuts beyond the ones related to the menu items:
 * Meta + Shift + D: insert the current date and time.
 * Meta + B: format the selected text in bold or the current word if no text is selected.
 * Meta + I: format the selected text in bold or the current word if no text is selected.
-* Meta + G: find the next recurrence of the text specified in the search form.
+* Meta + G: find the next recurrence of the text specified in the search form, even if it’s closed.
 * Meta + T: create a todo item, or set it as done or to be done.
 * Meta + Opt + Arrow up: move up the current paragraph.
 * Meta + Opt + Arrow down: move down the current paragraph.

@@ -1091,14 +1091,14 @@ object fmMain: TfmMain
     object lbChars: TLabel
       Left = 20
       Height = 17
-      Top = 4
+      Top = 3
       Width = 54
       Caption = 'Chars: 0'
     end
     object lbDateTime: TLabel
       Left = 908
       Height = 17
-      Top = 4
+      Top = 3
       Width = 4
       Alignment = taRightJustify
       Anchors = [akTop, akRight]
@@ -1174,25 +1174,21 @@ object fmMain: TfmMain
         Visible = False
       end
       object miFileOpenLast1: TMenuItem
-        Caption = 'miFileOpenLast1'
         ShortCut = 4145
         Visible = False
         OnClick = miFileOpenLast1Click
       end
       object miFileOpenLast2: TMenuItem
-        Caption = 'miFileOpenLast2'
         ShortCut = 4146
         Visible = False
         OnClick = miFileOpenLast2Click
       end
       object miFileOpenLast3: TMenuItem
-        Caption = 'miFileOpenLast3'
         ShortCut = 4147
         Visible = False
         OnClick = miFileOpenLast3Click
       end
       object miFileOpenLast4: TMenuItem
-        Caption = 'miFileOpenLast4'
         ShortCut = 4148
         Visible = False
         OnClick = miFileOpenLast4Click

@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.0.0"
+msgid "1.0.2"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -83,6 +83,11 @@ msgstr "Disabilita correzione"
 msgid "Find"
 msgstr "Trova"
 
+#: tfmmain.mieditlink.caption
+msgctxt "tfmmain.mieditlink.caption"
+msgid "Insert link to file"
+msgstr "Inserisci link a file"
+
 #: tfmmain.mieditpaste.caption
 msgid "Paste"
 msgstr "Incolla"
@@ -102,22 +107,6 @@ msgstr "Nuovo"
 #: tfmmain.mifileopen.caption
 msgid "Open..."
 msgstr "Apri..."
-
-#: tfmmain.mifileopenlast1.caption
-msgid "miFileOpenLast1"
-msgstr ""
-
-#: tfmmain.mifileopenlast2.caption
-msgid "miFileOpenLast2"
-msgstr ""
-
-#: tfmmain.mifileopenlast3.caption
-msgid "miFileOpenLast3"
-msgstr ""
-
-#: tfmmain.mifileopenlast4.caption
-msgid "miFileOpenLast4"
-msgstr ""
 
 #: tfmmain.mifilesave.caption
 msgid "Save"
@@ -167,6 +156,11 @@ msgstr "Alta"
 #: tfmmain.mitoolstransparency.caption
 msgid "Transparency"
 msgstr "Trasparenza"
+
+#: tfmmain.odlink.title
+msgctxt "tfmmain.odlink.title"
+msgid "Open file"
+msgstr ""
 
 #: tfmmain.odopen.title
 msgctxt "tfmmain.odopen.title"
@@ -297,6 +291,15 @@ msgstr "Salva file Markdown"
 msgctxt "unit1.dlg003"
 msgid "Open Markdown file"
 msgstr "Apri file Markdown"
+
+#: unit1.dlg004
+msgid "All files|*"
+msgstr ""
+
+#: unit1.dlg005
+msgctxt "unit1.dlg005"
+msgid "Open file"
+msgstr ""
 
 #: unit1.msg001
 msgid "Characters:"
