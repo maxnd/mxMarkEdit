@@ -3,6 +3,7 @@ object fmMain: TfmMain
   Height = 610
   Top = 144
   Width = 934
+  ActiveControl = dbText
   AlphaBlend = True
   Caption = 'mxMarkEdit'
   ClientHeight = 610
@@ -1045,10 +1046,10 @@ object fmMain: TfmMain
   OnKeyDown = FormKeyDown
   LCLVersion = '3.7.0.0'
   object dbText: TMemo
-    Left = 273
+    Left = 175
     Height = 575
     Top = 10
-    Width = 661
+    Width = 759
     Align = alClient
     BorderSpacing.Top = 10
     BorderStyle = bsNone
@@ -1066,7 +1067,7 @@ object fmMain: TfmMain
     OnKeyUp = dbTextKeyUp
   end
   object spTitles: TSplitter
-    Left = 268
+    Left = 170
     Height = 585
     Top = 0
     Width = 5
@@ -1105,43 +1106,78 @@ object fmMain: TfmMain
       Caption = ' '
     end
   end
-  object sgTitles: TStringGrid
-    Cursor = crHandPoint
-    Left = 10
-    Height = 575
-    Top = 10
-    Width = 248
+  object pnTitTodo: TPanel
+    Left = 0
+    Height = 585
+    Top = 0
+    Width = 170
     Align = alLeft
-    AutoEdit = False
-    BorderSpacing.Left = 10
-    BorderSpacing.Top = 10
-    BorderSpacing.Right = 10
-    BorderStyle = bsNone
-    Color = 2632235
-    ColCount = 0
-    Constraints.MinWidth = 200
-    DefaultColWidth = 512
-    DefaultRowHeight = 28
-    DoubleBuffered = False
-    ExtendedSelect = False
-    FixedCols = 0
-    FixedRows = 0
-    Flat = True
-    Font.Height = -16
-    GridLineStyle = psClear
-    MouseWheelOption = mwGrid
-    Options = [goVertLine, goHorzLine, goRangeSelect, goSmoothScroll, goCellHints]
-    ParentDoubleBuffered = False
-    ParentFont = False
-    ParentShowHint = False
-    RowCount = 0
-    ScrollBars = ssAutoVertical
-    ShowHint = True
+    BevelOuter = bvNone
+    ClientHeight = 585
+    ClientWidth = 170
     TabOrder = 3
-    OnClick = sgTitlesClick
-    OnDrawCell = sgTitlesDrawCell
-    OnGetCellHint = sgTitlesGetCellHint
-    OnPrepareCanvas = sgTitlesPrepareCanvas
+    object cbFilter: TComboBox
+      Left = 10
+      Height = 20
+      Top = 560
+      Width = 150
+      Align = alBottom
+      BorderSpacing.Left = 5
+      BorderSpacing.Right = 5
+      BorderSpacing.Around = 5
+      ItemHeight = 19
+      ItemIndex = 0
+      Items.Strings = (
+        'All the headings'
+        'Headings 1 - 5'
+        'Headings 1 - 4'
+        'Headings 1 - 3'
+        'Headings 1 - 2'
+        'Headings 1'
+      )
+      ReadOnly = True
+      TabOrder = 0
+      Text = 'All the headings'
+      OnChange = cbFilterChange
+    end
+    object sgTitles: TStringGrid
+      Cursor = crHandPoint
+      Left = 10
+      Height = 545
+      Top = 10
+      Width = 200
+      Align = alClient
+      AutoEdit = False
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 10
+      BorderSpacing.Right = 10
+      BorderStyle = bsNone
+      Color = 2632235
+      ColCount = 0
+      Constraints.MinWidth = 200
+      DefaultColWidth = 512
+      DefaultRowHeight = 28
+      DoubleBuffered = False
+      ExtendedSelect = False
+      FixedCols = 0
+      FixedRows = 0
+      Flat = True
+      Font.Height = -16
+      GridLineStyle = psClear
+      MouseWheelOption = mwGrid
+      Options = [goVertLine, goHorzLine, goRangeSelect, goSmoothScroll, goCellHints]
+      ParentDoubleBuffered = False
+      ParentFont = False
+      ParentShowHint = False
+      RowCount = 0
+      ScrollBars = ssAutoVertical
+      ShowHint = True
+      TabOrder = 1
+      OnClick = sgTitlesClick
+      OnDrawCell = sgTitlesDrawCell
+      OnGetCellHint = sgTitlesGetCellHint
+      OnPrepareCanvas = sgTitlesPrepareCanvas
+    end
   end
   object mmMenu: TMainMenu
     Left = 328

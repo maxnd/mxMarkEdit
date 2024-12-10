@@ -23,7 +23,7 @@ object fmOptions: TfmOptions
     Left = 43
     Height = 20
     Top = 48
-    Width = 469
+    Width = 220
     ItemHeight = 26
     Style = csDropDownList
     TabOrder = 0
@@ -169,6 +169,24 @@ object fmOptions: TfmOptions
     Caption = 'Code color'
     TabOrder = 2
     OnClick = bnStFontCodeColorModClick
+  end
+  object cbStFontsMono: TComboBox
+    Left = 294
+    Height = 20
+    Top = 48
+    Width = 220
+    ItemHeight = 26
+    Style = csDropDownList
+    TabOrder = 12
+    OnChange = cbStFontsMonoChange
+  end
+  object lnStFontsMono: TLabel
+    Left = 294
+    Height = 16
+    Top = 24
+    Width = 98
+    Caption = 'Mono font name'
+    ParentColor = False
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'

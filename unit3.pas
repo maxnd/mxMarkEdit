@@ -42,6 +42,7 @@ type
     bnStFontTitle3ColorMod: TButton;
     bnStFontTitle1ColorMod: TButton;
     bnStFontTitle2ColorMod: TButton;
+    cbStFontsMono: TComboBox;
     edPanOptions: TEdit;
     edPanTemplate: TEdit;
     edPanOutput: TEdit;
@@ -53,6 +54,7 @@ type
     lbPanOutput: TLabel;
     lbPanPath: TLabel;
     lnStFonts: TLabel;
+    lnStFontsMono: TLabel;
     procedure bnCloseClick(Sender: TObject);
     procedure bnStFontCodeColorModClick(Sender: TObject);
     procedure bnStFontQuoteColorClick(Sender: TObject);
@@ -61,6 +63,7 @@ type
     procedure bnStFontTitle2ColorModClick(Sender: TObject);
     procedure bnStFontTitle1ColorModClick(Sender: TObject);
     procedure cbStFontsChange(Sender: TObject);
+    procedure cbStFontsMonoChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -108,7 +111,9 @@ begin
         i).description));
     end;
   end;
+  cbStFontsMono.Items := cbStFonts.Items;
   cbStFonts.ItemIndex := 0;
+  cbStFontsMono.ItemIndex := 0;
 end;
 
 procedure TfmOptions.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -123,6 +128,7 @@ end;
 procedure TfmOptions.FormShow(Sender: TObject);
 begin
   cbStFonts.ItemIndex := cbStFonts.Items.IndexOf(fmMain.dbText.Font.Name);
+  cbStFontsMono.ItemIndex := cbStFontsMono.Items.IndexOf(stFontMono);
   edPanOptions.Text := pandocOptions;
   edPanTemplate.Text := pandocTemplate;
   edPanOutput.Text := pandocOutput;
@@ -140,6 +146,12 @@ end;
 procedure TfmOptions.cbStFontsChange(Sender: TObject);
 begin
   fmMain.dbText.Font.Name := cbStFonts.Text;
+  fmMain.FormatListTitleTodo;
+end;
+
+procedure TfmOptions.cbStFontsMonoChange(Sender: TObject);
+begin
+  stFontMono := cbStFontsMono.Text;
   fmMain.FormatListTitleTodo;
 end;
 

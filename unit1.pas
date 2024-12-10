@@ -37,6 +37,7 @@ type
   { TfmMain }
 
   TfmMain = class(TForm)
+    cbFilter: TComboBox;
     dbText: TMemo;
     lbDateTime: TLabel;
     lbChars: TLabel;
@@ -51,6 +52,7 @@ type
     miToolsHideList: TMenuItem;
     miToolsOpenWin: TMenuItem;
     odLink: TOpenDialog;
+    pnTitTodo: TPanel;
     Sep3: TMenuItem;
     Sep5: TMenuItem;
     Sep6: TMenuItem;
@@ -81,9 +83,10 @@ type
     miFile: TMenuItem;
     pnBottom: TPanel;
     Sep2: TMenuItem;
+    sgTitles: TStringGrid;
     spTitles: TSplitter;
     tmDateTime: TTimer;
-    sgTitles: TStringGrid;
+    procedure cbFilterChange(Sender: TObject);
     procedure dbTextChange(Sender: TObject);
     procedure dbTextClick(Sender: TObject);
     procedure dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -127,6 +130,7 @@ type
       aState: TGridDrawState);
     procedure tmDateTimeTimer(Sender: TObject);
   private
+    procedure CheckDouble;
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
     function GetPara(txt: NSTextStorage; textOffset: integer;
       isReadOnly, useDefault: boolean): NSParagraphStyle;
@@ -148,9 +152,11 @@ type
 var
   fmMain: TfmMain;
   myHomeDir, myConfigFile: string;
+  iTitleTodoRowHeight: Integer = 28;
   clTitle1: TColor = clBlack;
   clTitle2: TColor = clBlack;
   clTitle3: TColor = clBlack;
+  clRepetition: TColor = $005766EA;
   clFootQuote: TColor = clSilver;
   clCode: TColor = clSilver;
   clHighlightList: TColor = clDkGray;
@@ -176,11 +182,18 @@ resourcestring
   msg005 = 'Create a new document?';
   msg006 = 'It was not possible to load the last used file.';
   msg007 = 'The file is not available.';
+  msg008 = 'The current document has no name.';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
   dlg004 = 'All files|*';
   dlg005 = 'Open file';
+  lb001 = 'All the headings';
+  lb002 = 'Headings 1 - 5';
+  lb003 = 'Headings 1 - 4';
+  lb004 = 'Headings 1 - 3';
+  lb005 = 'Headings 1 - 2';
+  lb006 = 'Headings 1';
   dateformat = 'en';
 
 implementation
@@ -243,6 +256,14 @@ begin
   odOpen.Title := dlg003;
   odLink.Filter := dlg004;
   odLink.Title := dlg005;
+  cbFilter.Items.Clear;
+  cbFilter.Items.Add(lb006);
+  cbFilter.Items.Add(lb005);
+  cbFilter.Items.Add(lb004);
+  cbFilter.Items.Add(lb003);
+  cbFilter.Items.Add(lb002);
+  cbFilter.Items.Add(lb001);
+  cbFilter.ItemIndex := 5;
   myHomeDir := GetUserDir + 'Library/Preferences/';
   myConfigFile := 'mxmarkedit';
   if DirectoryExists(myHomeDir) = False then
@@ -274,6 +295,7 @@ begin
       dbText.Font.Size := MyIni.ReadInteger('mxmarkedit', 'fontsize', 22);
       dbText.Font.Color := StringToColor(MyIni.ReadString('mxmarkedit',
         'fontcolor', ColorToString(dbText.Font.Color)));
+      stFontMono := MyIni.ReadString('mxmarkedit', 'fontmononame', 'Menlo');
       iFontMonoSize := MyIni.ReadInteger('mxmarkedit', 'fontmonosize', 20);
       clTitle1 := StringToColor(MyIni.ReadString('mxmarkedit', 'title1',
         'clTitle1'));
@@ -283,7 +305,7 @@ begin
         'footquote', 'clFootQuote'));
       clCode := StringToColor(MyIni.ReadString('mxmarkedit',
         'code', 'clCode'));
-      sgTitles.Width := MyIni.ReadInteger('mxmarkedit', 'titlewidth', 400);
+      pnTitTodo.Width := MyIni.ReadInteger('mxmarkedit', 'titlewidth', 400);
       stFileName := MyIni.ReadString('mxmarkedit', 'filename', '');
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
         '+footnotes+inline_notes');
@@ -551,15 +573,15 @@ end;
 
 procedure TfmMain.miToolsHideListClick(Sender: TObject);
 begin
-  if sgTitles.Visible = True then
+  if pnTitTodo.Visible = True then
   begin
-    sgTitles.Visible := False;
+    pnTitTodo.Visible := False;
     spTitles.Visible := False;
     miToolsHideList.Checked := True;
   end
   else
   begin
-    sgTitles.Visible := True;
+    pnTitTodo.Visible := True;
     spTitles.Visible := True;
     miToolsHideList.Checked := False;
     FormatListTitleTodo;
@@ -576,6 +598,7 @@ begin
   rng.length := 1;
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     scrollRangeToVisible(rng);
+  dbText.SetFocus;
 end;
 
 procedure TfmMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -603,13 +626,14 @@ begin
     MyIni.WriteString('mxmarkedit', 'fontname', dbText.Font.Name);
     MyIni.WriteInteger('mxmarkedit', 'fontsize', dbText.Font.Size);
     MyIni.WriteString('mxmarkedit', 'fontcolor', ColorToString(dbText.Font.Color));
+    MyIni.WriteString('mxmarkedit', 'fontmononame', stFontMono);
     MyIni.WriteInteger('mxmarkedit', 'fontmonosize', iFontMonoSize);
     MyIni.WriteString('mxmarkedit', 'title1', ColorToString(clTitle1));
     MyIni.WriteString('mxmarkedit', 'title2', ColorToString(clTitle2));
     MyIni.WriteString('mxmarkedit', 'title3', ColorToString(clTitle3));
     MyIni.WriteString('mxmarkedit', 'footquote', ColorToString(clFootQuote));
     MyIni.WriteString('mxmarkedit', 'code', ColorToString(clCode));
-    MyIni.WriteInteger('mxmarkedit', 'titlewidth', sgTitles.Width);
+    MyIni.WriteInteger('mxmarkedit', 'titlewidth', pnTitTodo.Width);
     MyIni.WriteString('mxmarkedit', 'filename', stFileName);
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
     MyIni.WriteString('mxmarkedit', 'panoutputput', pandocOutput);
@@ -648,6 +672,12 @@ begin
   FormatListTitleTodo;
   LabelFileNameChars;
   blFileSaved := False;
+end;
+
+procedure TfmMain.cbFilterChange(Sender: TObject);
+begin
+  FormatListTitleTodo;
+  dbText.SetFocus;
 end;
 
 procedure TfmMain.dbTextClick(Sender: TObject);
@@ -922,22 +952,31 @@ begin
     key := 0;
   end
   else
+  if ((key = Ord('Y')) and (Shift = [ssMeta])) then
+  begin
+    CheckDouble;
+    key := 0;
+  end
+  else
   if ((key = Ord('U')) and (Shift = [ssMeta])) then
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       uppercaseWord(nil);
+    key := 0;
   end
   else
   if ((key = Ord('U')) and (Shift = [ssMeta, ssAlt, ssShift])) then
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       lowercaseWord(nil);
+    key := 0;
   end
   else
   if ((key = Ord('U')) and (Shift = [ssMeta, ssAlt])) then
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       capitalizeWord(nil);
+    key := 0;
   end;
 end;
 
@@ -1367,7 +1406,18 @@ procedure TfmMain.miToolsPandocClick(Sender: TObject);
 var
   stArgument, stOutput: string;
 begin
-  if ((stFileName = '') or (FileExistsUTF8(stFileName) = False)) then
+  if stFileName = '' then
+  begin
+    MessageDlg(msg008, mtWarning, [mbOK], 0);
+    Exit;
+  end
+  else
+  if FileExistsUTF8(stFileName) = False then
+  begin
+    MessageDlg(msg007, mtWarning, [mbOK], 0);
+    Exit;
+  end;
+  if SaveFile = False then
   begin
     Exit;
   end;
@@ -1434,7 +1484,7 @@ end;
 
 procedure TfmMain.FormatListTitleTodo;
 var
-  i, iLen, iPos, iTopRow: integer;
+  i, iLen, iPos, iTopRow, iLevel: integer;
   blHeading, blPosInHeading, blBoldItalics, blItalics, blBold, blMono,
   blQuote, blStartLinesQuote, blFootnote: boolean;
   iStartHeading, iStartBoldItalics, iStartItalics, iStartBold,
@@ -1532,6 +1582,7 @@ begin
         if sgTitles.RowCount > 0 then
         begin
           sgTitles.Cells[1, sgTitles.RowCount - 1] := ' ';
+          sgTitles.RowHeights[sgTitles.RowCount - 1] := iTitleTodoRowHeight;
         end;
       end
       else
@@ -1622,11 +1673,13 @@ begin
         else
         begin
           stSpaces := '';
+          iLevel := 0;
           while Pos('#', stTitle) > 0 do
           begin
             stTitle := '  ' + stTitle;
             stTitle[Pos('#', stTitle)] := ' ';
             stSpaces := stSpaces + '   ';
+            Inc(iLevel);
           end;
         end;
         sgTitles.RowCount := sgTitles.RowCount + 1;
@@ -1636,6 +1689,15 @@ begin
           sgTitles.Cells[1, sgTitles.RowCount - 1] := ' ';
           blPosInHeading := False;
         end;
+        if ((iLevel <= cbFilter.ItemIndex + 1) or
+          (sgTitles.Cells[1, sgTitles.RowCount - 1] = ' ')) then
+        begin
+          sgTitles.RowHeights[sgTitles.RowCount - 1] := iTitleTodoRowHeight;
+        end
+        else
+        begin
+          sgTitles.RowHeights[sgTitles.RowCount - 1] := 0;
+         end;
         stTitle := '';
       end
       else
@@ -1662,7 +1724,8 @@ begin
       Continue;
     end;
     // Bold Italics
-    if ((stText[i] = '*') and (stText[i + 1] = '*') and (stText[i + 2] = '*')) then
+    if (((stText[i] = '*') and (stText[i + 1] = '*') and (stText[i + 2] = '*')) or
+      ((stText[i] = '_') and (stText[i + 1] = '_') and (stText[i + 2] = '_'))) then
     begin
       if ((blBoldItalics = False) and (blMono = False) and
         (stText[i + 3] <> ' ')) then
@@ -1691,7 +1754,8 @@ begin
       end;
     end
     // Bold
-    else if ((stText[i] = '*') and (stText[i + 1] = '*')) then
+    else if (((stText[i] = '*') and (stText[i + 1] = '*')) or
+      ((stText[i] = '_') and (stText[i + 1] = '_'))) then
     begin
       if ((blBold = False) and (blMono = False) and (stText[i + 2] <> ' ')) then
       begin
@@ -1717,7 +1781,8 @@ begin
       end;
     end
     // Italics
-    else if ((stText[i] = '*') and (stText[i - 1] <> '*')) then
+    else if (((stText[i] = '*') and (stText[i - 1] <> '*')) or
+      ((stText[i] = '_') and (stText[i - 1] <> '_'))) then
     begin
       if ((blItalics = False) and (blMono = False) and
         (stText[i + 1] <> ' ')) then
@@ -1746,8 +1811,8 @@ begin
     else
     // Lines of code
     if ((stText[i] = '`') and (stText[i + 1] = '`')
-      and (stText[i + 2] = '`') and (stText[i + 3] = LineEnding) and
-      (blStartLinesQuote = False)) then
+      and (stText[i + 2] = '`') and (blStartLinesQuote = False) and
+      ((i = 1) or (stText[i - 1] = LineEnding))) then
     begin
       blStartLinesQuote := True;
       blBoldItalics := False;
@@ -1846,6 +1911,89 @@ begin
   begin
     lbChars.Caption := msg001 + ' ' + FormatFloat('#,##0', UTF8Length(dbText.Text));
   end;
+end;
+
+procedure TfmMain.CheckDouble;
+var
+  rng: NSRange;
+  iLen, i, iSelStart: Integer;
+  slList1, slList2: TStringList;
+  stWord: NSAttributedString;
+begin
+  try
+    Screen.Cursor := crHourGlass;
+    slList1 := TStringList.Create;
+    slList2 := TStringList.Create;
+    i := 0;
+    iSelStart := -1;
+    if dbText.SelLength = 0 then
+    begin
+      rng.location := 0;
+      rng.length := 1;
+      iLen := Length(WideString(dbText.Text));
+    end
+    else
+    begin
+      rng.location := dbText.SelStart;
+      rng.length := 1;
+      iLen := dbText.SelStart + dbText.SelLength;
+      iSelStart := dbText.SelStart;
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setSelectedRange(rng);
+    while rng.location + rng.length < iLen - 1 do
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveWordForward(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        selectWord(nil);
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).selectedRange;
+      if ((UTF8Copy(dbText.Text, rng.location + 1, 2) = '. ') or
+        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '.' + LineEnding)) then
+      begin
+        slList1.Text := slList2.Text;
+        slList2.Clear;
+      end;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveBackward(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveBackward(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        selectWord(nil);
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).selectedRange;
+      stWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        attributedSubstringFromRange(rng);
+      slList2.Add(NSStringToString(stWord.string_));
+      if slList1.IndexOf(NSStringToString(stWord.string_)) > -1 then
+      begin
+        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+          setTextColor_range(ColorToNSColor(clRepetition), rng);
+      end;
+      Inc(i);
+      if i > 3000 then
+      begin
+        dbText.SelLength := 0;
+        Application.ProcessMessages;
+        i := 0;
+      end;
+    end;
+    if iSelStart = -1 then
+    begin
+      dbText.SelStart := 0;
+    end
+    else
+    begin
+      dbText.SelStart := iSelStart;
+    end;
+    dbText.SelLength := 0;
+  finally
+    Screen.Cursor := crDefault;
+    slList1.Free;
+    slList2.Free;
+  end;
+
 end;
 
 procedure TfmMain.UpdateLastFile;
