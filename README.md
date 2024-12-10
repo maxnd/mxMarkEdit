@@ -16,7 +16,7 @@ The main features of mxMarkEdit are the followings.
 
 Some Markdown markers are hidden, as the text contained within them is properly formatted. These markers are:
 
-* italics (\* or \_), bold (\*\* or \_\_) and bold italics (\*\*\* or \_\_\_);
+* italics (\* or \_), bold (\*\* or \_ \_) and bold italics (\*\*\* or \_ \_ \_);
 * code, in monospace font (`);
 * lines of code, in monospace font (```);
 * inline footnotes (contained between ^[ and ]);
