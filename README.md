@@ -62,7 +62,7 @@ There are also some shortcuts beyond the ones related to the menu items:
 * Meta + Opt + Arrow down: move down the current paragraph.
 * Meta + Ctrl + Arrow up: select the previous heading.
 * Meta + Ctrl + Arrow down: select the next heading.
-* Meta + Y: print in red all the words of a paragraph that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked.
+* Meta + Y: print in red all the words of each paragraph that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked.
 * Meta + U: make uppercase the current word.
 * Meta + Opt + Shift + U: make lowercase the current word.
 * Meta + Opt + U: capitalise the current word.
