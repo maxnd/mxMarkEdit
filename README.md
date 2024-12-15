@@ -1,12 +1,12 @@
 # mxMarkEdit
 
-Version 1.0.3, published on December 10 2024.
+Version 1.0.4, published on December 15 2024.
 
 Copyright Massimo Nardello, Modena (Italy) 2024.
 
 mxMarkEdit is a free software for Mac for writing texts in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org). The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html.
 
-The software runs in English or Italian. In the “app” directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the Application directory and run. The app is not signed nor notarized.
+The software runs in English or Italian. In the “app” directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the “Application” directory and run. The app is not signed nor notarized.
 
 The software looks like this, with one possible color setting:
 
@@ -16,6 +16,7 @@ The main features of mxMarkEdit are the followings.
 
 Some Markdown markers are hidden, as the text contained within them is properly formatted. These markers are:
 
+* headers (from # to ######);
 * italics (\* or \_), bold (\*\* or \_ \_) and bold italics (\*\*\* or \_ \_ \_);
 * code, in monospace font (`);
 * lines of code, in monospace font (```);
@@ -34,7 +35,12 @@ The last four opened files are available in the “File” menu. When they are o
 
 The “Edit - Find” menu item allows to find the first occurrence – with the appropriate button or by pressing “Return” - or the following occurrences – with the appropriate button or by pressing “Command + Return” – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the \n code replaces the paragraph breaks, while the \t code replaces the tabs, both in the “Search text” field and in the “Replace with field”.
 
-The “Edit - Insert link to file” allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link.	
+The “Edit - Insert link to file” allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link.
+
+The “Edit - Find duplicate words” prints in red all the words of each paragraph, separated by dot and space or dot and Return, that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked.
+
+The “Edit - Show current title or toto” put at the top of the left list the title or todo item the cursor is under to.
+	
 The “Edit - Disable formatting” menu item prevents the formatting of the text, improving the performance of the app with large documents.
 
 The “Convert with Pandoc” menu item converts the current note into another format specified in the options of the software. The converted file is created in the same folder of the note.
@@ -62,7 +68,8 @@ There are also some shortcuts beyond the ones related to the menu items:
 * Meta + Opt + Arrow down: move down the current paragraph.
 * Meta + Ctrl + Arrow up: select the previous heading.
 * Meta + Ctrl + Arrow down: select the next heading.
-* Meta + Y: print in red all the words of each paragraph that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked.
+* Meta + Shift + J: set the current position of the cursor in the bookmark.
+* Meta + J: move the cursor to the position already set in the bookmark.
 * Meta + U: make uppercase the current word.
 * Meta + Opt + Shift + U: make lowercase the current word.
 * Meta + Opt + U: capitalise the current word.

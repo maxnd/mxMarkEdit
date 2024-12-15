@@ -37,10 +37,14 @@ type
   { TfmMain }
 
   TfmMain = class(TForm)
+    bvList: TBevel;
     cbFilter: TComboBox;
     dbText: TMemo;
     lbDateTime: TLabel;
     lbChars: TLabel;
+    miEditShowCurrent: TMenuItem;
+    miEditFindDuplicate: TMenuItem;
+    miEditHideList: TMenuItem;
     miEditLink: TMenuItem;
     miEditDisableForm: TMenuItem;
     miEditDisSpell: TMenuItem;
@@ -49,7 +53,6 @@ type
     miFileOpenLast2: TMenuItem;
     miFileOpenLast3: TMenuItem;
     miFileOpenLast4: TMenuItem;
-    miToolsHideList: TMenuItem;
     miToolsOpenWin: TMenuItem;
     odLink: TOpenDialog;
     pnTitTodo: TPanel;
@@ -97,16 +100,18 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure miEditFindDuplicateClick(Sender: TObject);
+    procedure miEditHideListClick(Sender: TObject);
     procedure miEditLinkClick(Sender: TObject);
     procedure miEditDisableFormClick(Sender: TObject);
     procedure miEditDisSpellClick(Sender: TObject);
-    procedure miToolsHideListClick(Sender: TObject);
     procedure miCopyrightClick(Sender: TObject);
     procedure miEditCopyClick(Sender: TObject);
     procedure miEditCutClick(Sender: TObject);
     procedure miEditFindClick(Sender: TObject);
     procedure miEditPasteClick(Sender: TObject);
     procedure miEditSelectAllClick(Sender: TObject);
+    procedure miEditShowCurrentClick(Sender: TObject);
     procedure miFileNewClick(Sender: TObject);
     procedure miFileOpenClick(Sender: TObject);
     procedure miFileOpenLast1Click(Sender: TObject);
@@ -130,7 +135,6 @@ type
       aState: TGridDrawState);
     procedure tmDateTimeTimer(Sender: TObject);
   private
-    procedure CheckDouble;
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
     function GetPara(txt: NSTextStorage; textOffset: integer;
       isReadOnly, useDefault: boolean): NSParagraphStyle;
@@ -142,6 +146,7 @@ type
     function SaveFile: boolean;
     procedure UpdateLastFile;
   public
+    procedure ShowCurrentTitleTodo;
     procedure FormatListTitleTodo;
     function UTF8CocoaPos(const SearchForText, SearchInText: string;
       StartPos: SizeInt = 1): PtrInt;
@@ -163,6 +168,7 @@ var
   stFontMono: string = 'Menlo';
   iFontMonoSize: smallint = 18;
   stFileName: string = '';
+  iBookmarkPos: Integer = 0;
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
   LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: Integer;
   TopIndexDatabase1, TopIndexDatabase2, TopIndexDatabase3, TopIndexDatabase4: Integer;
@@ -407,10 +413,13 @@ begin
     try
       stFileName := ParamStrUTF8(1);
       dbText.Lines.LoadFromFile(stFileName);
+      iBookmarkPos := 0;
       MoveToPos;
+      LabelFileNameChars;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         checkTextInDocument(nil);
       UpdateLastFile;
+      ShowCurrentTitleTodo;
     except
       MessageDlg(msg004, mtWarning, [mbOK], 0);
     end;
@@ -422,10 +431,13 @@ begin
     try
       odOpen.FileName := stFileName;
       dbText.Lines.LoadFromFile(stFileName);
+      iBookmarkPos := 0;
       MoveToPos;
+      LabelFileNameChars;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         checkTextInDocument(nil);
       UpdateLastFile;
+      ShowCurrentTitleTodo;
     except
       MessageDlg(msg006, mtWarning, [mbOK], 0);
     end
@@ -443,10 +455,13 @@ begin
   try
     stFileName := FileNames[0];
     dbText.Lines.LoadFromFile(stFileName);
+    iBookmarkPos := 0;
     MoveToPos;
+    LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
     UpdateLastFile;
+    ShowCurrentTitleTodo;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
@@ -521,40 +536,6 @@ begin
   end;
 end;
 
-procedure TfmMain.miEditDisableFormClick(Sender: TObject);
-var
-  iLen: integer;
-  stText: WideString = '';
-  myFont: NSFont;
-  fd: NSFontDescriptor;
-  rng: NSRange;
-begin
-  miEditDisableForm.Checked := not miEditDisableForm.Checked;
-  if miEditDisableForm.Checked = True then
-  begin
-    blDisableFormatting := True;
-    stText := WideString(dbText.Text);
-    iLen := Length(stText);
-    rng.location := 0;
-    rng.length := iLen;
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      setTextColor_range(ColorToNSColor(dbText.Font.Color), rng);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-      applyFontTraits_range(NSUnboldFontMask, rng);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-      applyFontTraits_range(NSUnitalicFontMask, rng);
-    fd := FindFont(dbText.Font.Name, 0);
-    myFont := NSFont.fontWithDescriptor_size(fd, -dbText.font.Height);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-      addAttribute_value_range(NSFontAttributeName, myFont, rng);
-  end
-  else
-  begin
-    blDisableFormatting := False;
-    FormatListTitleTodo;
-  end;
-end;
-
 procedure TfmMain.miEditDisSpellClick(Sender: TObject);
 begin
   if miEditDisSpell.Checked = False then
@@ -568,23 +549,6 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setContinuousSpellCheckingEnabled(True);
     miEditDisSpell.Checked := False;
-  end;
-end;
-
-procedure TfmMain.miToolsHideListClick(Sender: TObject);
-begin
-  if pnTitTodo.Visible = True then
-  begin
-    pnTitTodo.Visible := False;
-    spTitles.Visible := False;
-    miToolsHideList.Checked := True;
-  end
-  else
-  begin
-    pnTitTodo.Visible := True;
-    spTitles.Visible := True;
-    miToolsHideList.Checked := False;
-    FormatListTitleTodo;
   end;
 end;
 
@@ -683,6 +647,7 @@ end;
 procedure TfmMain.dbTextClick(Sender: TObject);
 begin
   FormatListTitleTodo;
+  LabelFileNameChars
 end;
 
 procedure TfmMain.dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -690,6 +655,7 @@ var
   stClip: string;
   i, iPos: integer;
   rngStart, rngEnd: NSRange;
+  blCode: boolean;
   stText: WideString;
 begin
   if ((key = 8) and (Shift = [ssMeta, ssShift])) then
@@ -816,10 +782,18 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
     iPos := dbText.SelStart;
+    blCode := False;
     while iPos > -1 do
     begin
-      if ((stText[iPos] = '#') and ((stText[iPos - 1] = LineEnding) or
+      if ((stText[iPos] = '`') and (stText[iPos + 1] = '`') and
+        (stText[iPos + 2] = '`') and ((stText[iPos - 1] = LineEnding) or
         (iPos = 1))) then
+      begin
+        blCode := not blCode;
+      end
+      else
+      if ((stText[iPos] = '#') and ((stText[iPos - 1] = LineEnding) or
+        (iPos = 1)) and (blCode = False)) then
       begin
         dbText.SelStart := iPos;
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -837,9 +811,18 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToEndOfParagraph(nil);
     iPos := dbText.SelStart;
+    blCode := False;
     while iPos <= Length(stText) do
     begin
-      if ((stText[iPos] = '#') and (stText[iPos - 1] = LineEnding)) then
+      if ((stText[iPos] = '`') and (stText[iPos + 1] = '`') and
+        (stText[iPos + 2] = '`') and ((stText[iPos - 1] = LineEnding) or
+        (iPos = 1))) then
+      begin
+        blCode := not blCode;
+      end
+      else
+      if ((stText[iPos] = '#') and (stText[iPos - 1] = LineEnding) and
+        (blCode = False)) then
       begin
         dbText.SelStart := iPos;
         Break;
@@ -952,9 +935,18 @@ begin
     key := 0;
   end
   else
-  if ((key = Ord('Y')) and (Shift = [ssMeta])) then
+  if ((key = Ord('J')) and (Shift = [ssMeta, ssShift])) then
   begin
-    CheckDouble;
+    iBookmarkPos := dbText.SelStart;
+    key := 0;
+  end
+  else
+  if ((key = Ord('J')) and (Shift = [ssMeta])) then
+  begin
+    if UTF8Length(dbText.Text) > iBookmarkPos then
+    begin
+      dbText.SelStart := iBookmarkPos;
+    end;
     key := 0;
   end
   else
@@ -1060,6 +1052,7 @@ begin
   if ((key > 36) and (key < 41)) then
   begin
     FormatListTitleTodo;
+    LabelFileNameChars;
   end;
 end;
 
@@ -1213,10 +1206,13 @@ begin
   try
     stFileName := odOpen.FileName;
     dbText.Lines.LoadFromFile(stFileName);
+    iBookmarkPos := 0;
     MoveToPos;
+    LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
     UpdateLastFile;
+    ShowCurrentTitleTodo;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
@@ -1277,10 +1273,13 @@ begin
   try
     stFileName := LastDatabase1;
     dbText.Lines.LoadFromFile(stFileName);
+    iBookmarkPos := 0;
     MoveToPos;
+    LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
     UpdateLastFile;
+    ShowCurrentTitleTodo;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
@@ -1300,7 +1299,9 @@ begin
   try
     stFileName := LastDatabase2;
     dbText.Lines.LoadFromFile(stFileName);
+    iBookmarkPos := 0;
     MoveToPos;
+    LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
     UpdateLastFile;
@@ -1323,7 +1324,9 @@ begin
   try
     stFileName := LastDatabase3;
     dbText.Lines.LoadFromFile(stFileName);
+    iBookmarkPos := 0;
     MoveToPos;
+    LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
     UpdateLastFile;
@@ -1346,7 +1349,9 @@ begin
   try
     stFileName := LastDatabase4;
     dbText.Lines.LoadFromFile(stFileName);
+    iBookmarkPos := 0;
     MoveToPos;
+    LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
     UpdateLastFile;
@@ -1400,6 +1405,149 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       insertText(NSStringUtf8(stLink));
   end;
+end;
+
+procedure TfmMain.miEditFindDuplicateClick(Sender: TObject);
+var
+  rng: NSRange;
+  iLen, i, iSelStart: Integer;
+  slList1, slList2: TStringList;
+  stWord: NSAttributedString;
+begin
+  try
+    Screen.Cursor := crHourGlass;
+    slList1 := TStringList.Create;
+    slList2 := TStringList.Create;
+    i := 0;
+    iSelStart := -1;
+    if dbText.SelLength = 0 then
+    begin
+      rng.location := 0;
+      rng.length := 1;
+      iLen := Length(WideString(dbText.Text));
+    end
+    else
+    begin
+      rng.location := dbText.SelStart;
+      rng.length := 1;
+      iLen := dbText.SelStart + dbText.SelLength;
+      iSelStart := dbText.SelStart;
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setSelectedRange(rng);
+    while rng.location + rng.length < iLen - 1 do
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveWordForward(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        selectWord(nil);
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).selectedRange;
+      if ((UTF8Copy(dbText.Text, rng.location + 1, 2) = '. ') or
+        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '.' + LineEnding)) then
+      begin
+        slList1.Text := slList2.Text;
+        slList2.Clear;
+      end;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveBackward(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveBackward(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        selectWord(nil);
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).selectedRange;
+      stWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        attributedSubstringFromRange(rng);
+      slList2.Add(NSStringToString(stWord.string_));
+      if slList1.IndexOf(NSStringToString(stWord.string_)) > -1 then
+      begin
+        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+          setTextColor_range(ColorToNSColor(clRepetition), rng);
+      end;
+      Inc(i);
+      if i > 3000 then
+      begin
+        dbText.SelLength := 0;
+        Application.ProcessMessages;
+        i := 0;
+      end;
+    end;
+    if iSelStart = -1 then
+    begin
+      dbText.SelStart := 0;
+    end
+    else
+    begin
+      dbText.SelStart := iSelStart;
+    end;
+    dbText.SelLength := 0;
+  finally
+    Screen.Cursor := crDefault;
+    slList1.Free;
+    slList2.Free;
+  end;
+end;
+
+procedure TfmMain.miEditShowCurrentClick(Sender: TObject);
+begin
+  ShowCurrentTitleTodo;
+end;
+
+procedure TfmMain.miEditHideListClick(Sender: TObject);
+begin
+  if pnTitTodo.Visible = True then
+  begin
+    pnTitTodo.Visible := False;
+    spTitles.Visible := False;
+    miEditHideList.Checked := True;
+    FormatListTitleTodo;
+  end
+  else
+  begin
+    pnTitTodo.Visible := True;
+    spTitles.Visible := True;
+    miEditHideList.Checked := False;
+    FormatListTitleTodo;
+    ShowCurrentTitleTodo;
+  end;
+end;
+
+procedure TfmMain.miEditDisableFormClick(Sender: TObject);
+var
+  iLen, iPos: integer;
+  stText: WideString = '';
+  myFont: NSFont;
+  fd: NSFontDescriptor;
+  rng: NSRange;
+begin
+  miEditDisableForm.Checked := not miEditDisableForm.Checked;
+  iPos := dbText.SelStart;
+  if miEditDisableForm.Checked = True then
+  begin
+    blDisableFormatting := True;
+    stText := WideString(dbText.Text);
+    iLen := Length(stText);
+    rng.location := 0;
+    rng.length := iLen;
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setTextColor_range(ColorToNSColor(dbText.Font.Color), rng);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+      applyFontTraits_range(NSUnboldFontMask, rng);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+      applyFontTraits_range(NSUnitalicFontMask, rng);
+    fd := FindFont(dbText.Font.Name, 0);
+    myFont := NSFont.fontWithDescriptor_size(fd, -dbText.font.Height);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+      addAttribute_value_range(NSFontAttributeName, myFont, rng);
+  end
+  else
+  begin
+    blDisableFormatting := False;
+    FormatListTitleTodo;
+  end;
+  Application.ProcessMessages;
+  dbText.SelStart := iPos;
 end;
 
 procedure TfmMain.miToolsPandocClick(Sender: TObject);
@@ -1496,7 +1644,11 @@ var
   myFont, monoFont, miniFont: NSFont;
   rng: NSRange;
 begin
-  if dbText.Text = '' then Exit;
+  if ((dbText.Text = '') or ((blDisableFormatting = True) and
+    (pnTitTodo.Visible = False))) then
+  begin
+    Exit;
+  end;
   iTopRow := sgTitles.TopRow;
   blHeading := False;
   blBoldItalics := False;
@@ -1515,6 +1667,7 @@ begin
   iStartQuote := -1;
   iStartLinesQuote := -1;
   iStartFootnote := -1;
+  iLevel := -1;
   stText := WideString(dbText.Text);
   iLen := Length(stText);
   rng.location := 0;
@@ -1640,26 +1793,88 @@ begin
       if blHeading = True then
       begin
         blHeading := False;
-        rng.location := iStartHeading - 1;
-        rng.length := i - iStartHeading + 1;
         if blDisableFormatting = False then
         begin
           if Copy(stTitle, 1, 2) = '# ' then
           begin
+            rng.location := iStartHeading - 1;
+            rng.length := 1;
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            rng.location := iStartHeading;
+            rng.length := i - iStartHeading;
             TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clTitle1), rng);
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              applyFontTraits_range(NSBoldFontMask, rng);
           end
           else if Copy(stTitle, 1, 3) = '## ' then
           begin
+            rng.location := iStartHeading - 1;
+            rng.length := 2;
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            rng.location := iStartHeading + 1;
+            rng.length := i - iStartHeading - 1;
             TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clTitle2), rng);
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              applyFontTraits_range(NSItalicFontMask, rng);
           end
-          else if Copy(stTitle, 1, 3) = '###' then
+          else if Copy(stTitle, 1, 4) = '### ' then
           begin
+            rng.location := iStartHeading - 1;
+            rng.length := 3;
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            rng.location := iStartHeading + 2;
+            rng.length := i - iStartHeading - 2;
             TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clTitle3), rng);
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              applyFontTraits_range(NSItalicFontMask, rng);
+          end
+          else if Copy(stTitle, 1, 5) = '#### ' then
+          begin
+            rng.location := iStartHeading - 1;
+            rng.length := 4;
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            rng.location := iStartHeading + 3;
+            rng.length := i - iStartHeading - 3;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clTitle3), rng);
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              applyFontTraits_range(NSItalicFontMask, rng);
+          end
+          else if Copy(stTitle, 1, 6) = '##### ' then
+          begin
+            rng.location := iStartHeading - 1;
+            rng.length := 5;
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            rng.location := iStartHeading + 4;
+            rng.length := i - iStartHeading - 4;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clTitle3), rng);
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              applyFontTraits_range(NSItalicFontMask, rng);
+          end
+          else if Copy(stTitle, 1, 7) = '###### ' then
+          begin
+            rng.location := iStartHeading - 1;
+            rng.length := 6;
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            rng.location := iStartHeading + 5;
+            rng.length := i - iStartHeading - 5;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clTitle3), rng);
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              applyFontTraits_range(NSItalicFontMask, rng);
           end;
         end;
+        iLevel := 0;
         if Copy(stTitle, 1, 6) = '- [ ] ' then
         begin
           stTitle := stSpaces + '  □ ' + Copy(stTitle, 7, Length(stTitle));
@@ -1674,12 +1889,46 @@ begin
         begin
           stSpaces := '';
           iLevel := 0;
-          while Pos('#', stTitle) > 0 do
+          if Copy(stTitle, 1, 2) = '# ' then
           begin
-            stTitle := '  ' + stTitle;
-            stTitle[Pos('#', stTitle)] := ' ';
-            stSpaces := stSpaces + '   ';
-            Inc(iLevel);
+            stTitle := '   ' + Copy(stTitle, 3, Length(stTitle));
+            stSpaces := stSpaces + '    ';
+            iLevel := 1;
+          end
+          else
+          if Copy(stTitle, 1, 3) = '## ' then
+          begin
+            stTitle := '      ' + Copy(stTitle, 4, Length(stTitle));
+            stSpaces := stSpaces + '       ';
+            iLevel := 2;
+          end
+          else
+          if Copy(stTitle, 1, 4) = '### ' then
+          begin
+            stTitle := '         ' + Copy(stTitle, 5, Length(stTitle));
+            stSpaces := stSpaces + '          ';
+            iLevel := 3;
+          end
+          else
+          if Copy(stTitle, 1, 5) = '#### ' then
+          begin
+            stTitle := '            ' + Copy(stTitle, 6, Length(stTitle));
+            stSpaces := stSpaces + '             ';
+            iLevel := 4;
+          end
+          else
+          if Copy(stTitle, 1, 6) = '##### ' then
+          begin
+            stTitle := '               ' + Copy(stTitle, 7, Length(stTitle));
+            stSpaces := stSpaces + '                ';
+            iLevel := 5;
+          end
+          else
+          if Copy(stTitle, 1, 7) = '###### ' then
+          begin
+            stTitle := '                  ' + Copy(stTitle, 8, Length(stTitle));
+            stSpaces := stSpaces + '                   ';
+            iLevel := 6;
           end;
         end;
         sgTitles.RowCount := sgTitles.RowCount + 1;
@@ -1898,102 +2147,29 @@ begin
 end;
 
 procedure TfmMain.LabelFileNameChars;
-begin
-  if stFileName <> '' then
-  begin
-    lbChars.Caption := ExtractFileDir(stFileName) + '/  •  ' +
-      ExtractFileName(stFileName) + '  •  ' + msg001 + ' ' +
-      FormatFloat('#,##0',
-        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-        textStorage.characters.count);
-  end
-  else
-  begin
-    lbChars.Caption := msg001 + ' ' + FormatFloat('#,##0', UTF8Length(dbText.Text));
-  end;
-end;
-
-procedure TfmMain.CheckDouble;
 var
-  rng: NSRange;
-  iLen, i, iSelStart: Integer;
-  slList1, slList2: TStringList;
-  stWord: NSAttributedString;
+  iLength, iPos: Integer;
 begin
-  try
-    Screen.Cursor := crHourGlass;
-    slList1 := TStringList.Create;
-    slList2 := TStringList.Create;
-    i := 0;
-    iSelStart := -1;
-    if dbText.SelLength = 0 then
+  iLength := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+    textStorage.characters.count;
+  iPos := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+    selectedRange.location;
+  if iLength > 0 then
     begin
-      rng.location := 0;
-      rng.length := 1;
-      iLen := Length(WideString(dbText.Text));
+    if stFileName <> '' then
+    begin
+      lbChars.Caption := ExtractFileDir(stFileName) + '/  •  ' +
+        ExtractFileName(stFileName) + '  •  ' + msg001 + ' ' +
+        FormatFloat('#,##0', iLength) + ' (' +
+        FormatFloat('#0', iPos / iLength * 100) + '%)'
     end
     else
     begin
-      rng.location := dbText.SelStart;
-      rng.length := 1;
-      iLen := dbText.SelStart + dbText.SelLength;
-      iSelStart := dbText.SelStart;
+      lbChars.Caption := msg001 + ' ' +
+      FormatFloat('#,##0', iLength) + ' (' +
+      FormatFloat('#0', iPos / iLength * 100) + '%)'
     end;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      setSelectedRange(rng);
-    while rng.location + rng.length < iLen - 1 do
-    begin
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        moveWordForward(nil);
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        selectWord(nil);
-      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-        documentView).selectedRange;
-      if ((UTF8Copy(dbText.Text, rng.location + 1, 2) = '. ') or
-        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '.' + LineEnding)) then
-      begin
-        slList1.Text := slList2.Text;
-        slList2.Clear;
-      end;
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        moveBackward(nil);
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        moveBackward(nil);
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        selectWord(nil);
-      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-        documentView).selectedRange;
-      stWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        attributedSubstringFromRange(rng);
-      slList2.Add(NSStringToString(stWord.string_));
-      if slList1.IndexOf(NSStringToString(stWord.string_)) > -1 then
-      begin
-        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-          setTextColor_range(ColorToNSColor(clRepetition), rng);
-      end;
-      Inc(i);
-      if i > 3000 then
-      begin
-        dbText.SelLength := 0;
-        Application.ProcessMessages;
-        i := 0;
-      end;
-    end;
-    if iSelStart = -1 then
-    begin
-      dbText.SelStart := 0;
-    end
-    else
-    begin
-      dbText.SelStart := iSelStart;
-    end;
-    dbText.SelLength := 0;
-  finally
-    Screen.Cursor := crDefault;
-    slList1.Free;
-    slList2.Free;
   end;
-
 end;
 
 procedure TfmMain.UpdateLastFile;
@@ -2235,6 +2411,23 @@ begin
     end;
   end;
   dbText.SelStart := iPos;
+end;
+
+procedure TfmMain.ShowCurrentTitleTodo;
+var
+  i: Integer;
+begin
+  if ((pnTitTodo.Visible = True) and (sgTitles.RowCount > 0)) then
+  begin
+    for i := 0 to sgTitles.RowCount - 1 do
+    begin
+      if sgTitles.Cells[1, i] = ' ' then
+      begin
+        sgTitles.TopRow := i;
+        Break;
+      end;
+    end;
+  end;
 end;
 
 // *******************************************************

@@ -155,11 +155,10 @@ end;
 
 procedure TfmSearch.bnReplaceClick(Sender: TObject);
 var
-  stFind, stReplace, stText: string;
-  rng: NSRange;
+  stFind, stReplace: string;
 begin
-  if MessageDlg(msgFnd002 + ' "' + edFind.Text + '" ' + msgFnd003 +
-    ' "' + edReplace.Text + '"?', mtConfirmation, [mbOK, mbCancel], 0) = mrOk then
+  if MessageDlg(msgFnd002 + ' “' + edFind.Text + '” ' + LineEnding + msgFnd003 +
+    ' “' + edReplace.Text + '”?', mtConfirmation, [mbOK, mbCancel], 0) = mrOk then
   begin
     stFind := UTF8StringReplace(edFind.Text, '\n', LineEnding, [rfReplaceAll]);
     stFind := UTF8StringReplace(stFind, '\t', #9, [rfReplaceAll]);
@@ -167,6 +166,7 @@ begin
     stReplace := UTF8StringReplace(stReplace, '\t', #9, [rfReplaceAll]);
     fmMain.dbText.Text := UTF8StringReplace(fmMain.dbText.Text, stFind,
       stReplace, [rfIgnoreCase, rfReplaceAll]);
+    fmMain.dbText.SelStart := 0;
     fmMain.Show;
   end;
 end;

@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.3"
+msgid "1.0.4"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -88,6 +88,15 @@ msgstr ""
 msgid "Find"
 msgstr ""
 
+#: tfmmain.mieditfindduplicate.caption
+msgid "Find duplicate words"
+msgstr ""
+
+#: tfmmain.miedithidelist.caption
+msgctxt "tfmmain.miedithidelist.caption"
+msgid "Hide titles and todo list"
+msgstr ""
+
 #: tfmmain.mieditlink.caption
 msgctxt "tfmmain.mieditlink.caption"
 msgid "Insert link to file"
@@ -99,6 +108,10 @@ msgstr ""
 
 #: tfmmain.mieditselectall.caption
 msgid "Select all"
+msgstr ""
+
+#: tfmmain.mieditshowcurrent.caption
+msgid "Show current title or todo"
 msgstr ""
 
 #: tfmmain.mifile.caption
@@ -127,10 +140,6 @@ msgstr ""
 
 #: tfmmain.mitools.caption
 msgid "Tools"
-msgstr ""
-
-#: tfmmain.mitoolshidelist.caption
-msgid "Hide titles and todo list"
 msgstr ""
 
 #: tfmmain.mitoolsopenwin.caption

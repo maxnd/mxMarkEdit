@@ -1047,7 +1047,7 @@ object fmMain: TfmMain
   LCLVersion = '3.7.0.0'
   object dbText: TMemo
     Left = 175
-    Height = 575
+    Height = 572
     Top = 10
     Width = 759
     Align = alClient
@@ -1068,7 +1068,7 @@ object fmMain: TfmMain
   end
   object spTitles: TSplitter
     Left = 170
-    Height = 585
+    Height = 582
     Top = 0
     Width = 5
     Color = clForm
@@ -1076,30 +1076,30 @@ object fmMain: TfmMain
   end
   object pnBottom: TPanel
     Left = 0
-    Height = 25
-    Top = 585
+    Height = 28
+    Top = 582
     Width = 934
     Align = alBottom
     BevelOuter = bvNone
-    ClientHeight = 25
+    ClientHeight = 28
     ClientWidth = 934
     Color = clForm
-    Font.Height = 14
+    Font.Height = -16
     ParentBackground = False
     ParentColor = False
     ParentFont = False
     TabOrder = 2
     object lbChars: TLabel
       Left = 20
-      Height = 17
-      Top = 3
-      Width = 54
+      Height = 18
+      Top = 4
+      Width = 61
       Caption = 'Chars: 0'
     end
     object lbDateTime: TLabel
       Left = 908
-      Height = 17
-      Top = 3
+      Height = 18
+      Top = 4
       Width = 4
       Alignment = taRightJustify
       Anchors = [akTop, akRight]
@@ -1108,24 +1108,23 @@ object fmMain: TfmMain
   end
   object pnTitTodo: TPanel
     Left = 0
-    Height = 585
+    Height = 582
     Top = 0
     Width = 170
     Align = alLeft
     BevelOuter = bvNone
-    ClientHeight = 585
+    ClientHeight = 582
     ClientWidth = 170
     TabOrder = 3
     object cbFilter: TComboBox
-      Left = 10
+      Left = 15
       Height = 20
-      Top = 560
-      Width = 150
-      Align = alBottom
+      Top = 10
+      Width = 145
+      Align = alTop
       BorderSpacing.Left = 5
-      BorderSpacing.Right = 5
-      BorderSpacing.Around = 5
-      ItemHeight = 19
+      BorderSpacing.Around = 10
+      ItemHeight = 26
       ItemIndex = 0
       Items.Strings = (
         'All the headings'
@@ -1136,6 +1135,7 @@ object fmMain: TfmMain
         'Headings 1'
       )
       ReadOnly = True
+      Style = csDropDownList
       TabOrder = 0
       Text = 'All the headings'
       OnChange = cbFilterChange
@@ -1143,8 +1143,8 @@ object fmMain: TfmMain
     object sgTitles: TStringGrid
       Cursor = crHandPoint
       Left = 10
-      Height = 545
-      Top = 10
+      Height = 531
+      Top = 51
       Width = 200
       Align = alClient
       AutoEdit = False
@@ -1177,6 +1177,16 @@ object fmMain: TfmMain
       OnDrawCell = sgTitlesDrawCell
       OnGetCellHint = sgTitlesGetCellHint
       OnPrepareCanvas = sgTitlesPrepareCanvas
+    end
+    object bvList: TBevel
+      Left = 10
+      Height = 1
+      Top = 40
+      Width = 150
+      Align = alTop
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 10
+      Shape = bsTopLine
     end
   end
   object mmMenu: TMainMenu
@@ -1268,8 +1278,23 @@ object fmMain: TfmMain
         ShortCut = 4172
         OnClick = miEditLinkClick
       end
+      object miEditFindDuplicate: TMenuItem
+        Caption = 'Find duplicate words'
+        ShortCut = 4185
+        OnClick = miEditFindDuplicateClick
+      end
+      object miEditShowCurrent: TMenuItem
+        Caption = 'Show current title or todo'
+        ShortCut = 20556
+        OnClick = miEditShowCurrentClick
+      end
       object Sep3: TMenuItem
         Caption = '-'
+      end
+      object miEditHideList: TMenuItem
+        Caption = 'Hide titles and todo list'
+        ShortCut = 12364
+        OnClick = miEditHideListClick
       end
       object miEditDisableForm: TMenuItem
         Caption = 'Disable formatting'
@@ -1291,11 +1316,6 @@ object fmMain: TfmMain
       end
       object Sep4: TMenuItem
         Caption = '-'
-      end
-      object miToolsHideList: TMenuItem
-        Caption = 'Hide titles and todo list'
-        ShortCut = 12364
-        OnClick = miToolsHideListClick
       end
       object miToolsOpenWin: TMenuItem
         Caption = 'Open another window'
