@@ -29,7 +29,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, CocoaAll,
   CocoaTextEdits, CocoaUtils, Clipbrd, Menus, StdCtrls, Grids, ExtCtrls,
-  DefaultTranslator, translate, IniFiles, LazUTF8, LazUTF16,
+  DefaultTranslator, translate, IniFiles, LazUTF8, LazUTF16, FileUtil,
   LazFileUtils, Unix, Types;
 
 type
@@ -135,6 +135,8 @@ type
       aState: TGridDrawState);
     procedure tmDateTimeTimer(Sender: TObject);
   private
+    procedure CreateBackup;
+    procedure CreateYAML;
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
     function GetPara(txt: NSTextStorage; textOffset: integer;
       isReadOnly, useDefault: boolean): NSParagraphStyle;
@@ -162,9 +164,11 @@ var
   clTitle2: TColor = clBlack;
   clTitle3: TColor = clBlack;
   clRepetition: TColor = $005766EA;
-  clFootQuote: TColor = clSilver;
+  clFootnote: TColor = clSilver;
+  clLink: TColor = clSilver;
   clCode: TColor = clSilver;
   clHighlightList: TColor = clDkGray;
+  clHighlightText: TColor = clGreen;
   stFontMono: string = 'Menlo';
   iFontMonoSize: smallint = 18;
   stFileName: string = '';
@@ -189,6 +193,8 @@ resourcestring
   msg006 = 'It was not possible to load the last used file.';
   msg007 = 'The file is not available.';
   msg008 = 'The current document has no name.';
+  msg009 = 'It was not possible to create the backup file.';
+  msg010 = 'Find the repeated words in all the current document?';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -232,9 +238,12 @@ begin
     clTitle1 := clWhite;
     clTitle2 := clWhite;
     clTitle3 := clWhite;
-    clFootQuote := clSilver;
+    clFootnote := clSilver;
+    clLink := clSilver;
     clCode := clSilver;
     clHighlightList := $005E5E5E;
+    clRepetition := $005766EA;
+    clHighlightText := $00445D31;
   end
   else
   begin
@@ -250,9 +259,12 @@ begin
     clTitle1 := clBlack;
     clTitle2 := clBlack;
     clTitle3 := clBlack;
-    clFootQuote := clSilver;
+    clFootnote := clSilver;
+    clLink := clSilver;
     clCode := clSilver;
     clHighlightList := $00EBEBEB;
+    clRepetition := clRed;
+    clHighlightText := $0079FBD4;
   end;
   sgTitles.FocusRectVisible := False;
   lbChars.Caption := msg001 + ' 0';
@@ -270,6 +282,7 @@ begin
   cbFilter.Items.Add(lb002);
   cbFilter.Items.Add(lb001);
   cbFilter.ItemIndex := 5;
+  CreateYAML;
   myHomeDir := GetUserDir + 'Library/Preferences/';
   myConfigFile := 'mxmarkedit';
   if DirectoryExists(myHomeDir) = False then
@@ -307,8 +320,10 @@ begin
         'clTitle1'));
       clTitle2 := StringToColor(MyIni.ReadString('mxmarkedit', 'title2', 'clTitle2'));
       clTitle3 := StringToColor(MyIni.ReadString('mxmarkedit', 'title3', 'clTitle3'));
-      clFootQuote := StringToColor(MyIni.ReadString('mxmarkedit',
-        'footquote', 'clFootQuote'));
+      clFootnote := StringToColor(MyIni.ReadString('mxmarkedit',
+        'footnote', 'clFootnote'));
+      clLink := StringToColor(MyIni.ReadString('mxmarkedit',
+        'link', 'clLink'));
       clCode := StringToColor(MyIni.ReadString('mxmarkedit',
         'code', 'clCode'));
       pnTitTodo.Width := MyIni.ReadInteger('mxmarkedit', 'titlewidth', 400);
@@ -402,10 +417,6 @@ begin
   // To avoid messing text on formatting
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     layoutManager.setAllowsNonContiguousLayout(False);
-  sgTitles.ColCount := 2;
-  sgTitles.ColWidths[0] := 1024;
-  // The Col[1] cannot be made hidden, anyway
-  sgTitles.ColWidths[1] := -1;
   // Open file from paramater on console
   if ParamStrUTF8(1) <> '' then
   begin
@@ -557,6 +568,7 @@ var
   rng: NSRange;
 begin
   LabelFileNameChars;
+  FormatListTitleTodo;
   // scrollRangeToVisible in MoveToPos doesn't work OnCreate
   rng.location := dbText.SelStart;
   rng.length := 1;
@@ -595,7 +607,8 @@ begin
     MyIni.WriteString('mxmarkedit', 'title1', ColorToString(clTitle1));
     MyIni.WriteString('mxmarkedit', 'title2', ColorToString(clTitle2));
     MyIni.WriteString('mxmarkedit', 'title3', ColorToString(clTitle3));
-    MyIni.WriteString('mxmarkedit', 'footquote', ColorToString(clFootQuote));
+    MyIni.WriteString('mxmarkedit', 'footnote', ColorToString(clFootnote));
+    MyIni.WriteString('mxmarkedit', 'link', ColorToString(clLink));
     MyIni.WriteString('mxmarkedit', 'code', ColorToString(clCode));
     MyIni.WriteInteger('mxmarkedit', 'titlewidth', pnTitTodo.Width);
     MyIni.WriteString('mxmarkedit', 'filename', stFileName);
@@ -629,6 +642,7 @@ begin
   finally
     MyIni.Free;
   end;
+  CreateBackup;
 end;
 
 procedure TfmMain.dbTextChange(Sender: TObject);
@@ -954,6 +968,8 @@ begin
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       uppercaseWord(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveForward(nil);
     key := 0;
   end
   else
@@ -961,6 +977,8 @@ begin
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       lowercaseWord(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveForward(nil);
     key := 0;
   end
   else
@@ -968,6 +986,44 @@ begin
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       capitalizeWord(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveForward(nil);
+    key := 0;
+  end
+  else
+  if ((key = Ord('E')) and (Shift = [ssMeta])) then
+  begin
+    if miEditDisableForm.Checked = True then
+    begin
+      miEditDisableFormClick(nil);
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToEndOfParagraph(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveForward(nil);
+    while (((dbText.Lines[dbText.CaretPos.Y] = '') or
+      (dbText.Lines[dbText.CaretPos.Y] = '---') or
+      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '# ') or
+      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 3) = '## ') or
+      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 4) = '### ') or
+      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) = '#### ') or
+      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = '##### ') or
+      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) = '###### '))
+      and (dbText.CaretPos.Y < dbText.Lines.Count)) do
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveForward(nil);
+    end;
+    FormatListTitleTodo;
+    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+      addAttribute_value_range(NSBackgroundColorAttributeName,
+      ColorToNSColor(clHighlightText), rngStart);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rngStart);
+    ShowCurrentTitleTodo;
     key := 0;
   end;
 end;
@@ -1177,23 +1233,9 @@ begin
   begin
     Exit;
   end;
+  CreateBackup;
   stFileName := '';
-  dbText.Clear;
-  sgTitles.Clear;
-  dbText.Lines.Add('---');
-  dbText.Lines.Add('title: ');
-  dbText.Lines.Add('author: ');
-  if dateformat = 'en' then
-  begin
-    dbText.Lines.Add('date: ' + FormatDateTime('mmmm dd yyyy', Date()));
-  end
-  else
-  begin
-    dbText.Lines.Add('date: ' + FormatDateTime('dd mmmm yyyy', Date()));
-  end;
-  dbText.Lines.Add('abstract: ');
-  dbText.Lines.Add('---');
-  dbText.SelStart := 11;
+  CreateYAML;
 end;
 
 procedure TfmMain.miFileOpenClick(Sender: TObject);
@@ -1202,6 +1244,7 @@ begin
   begin
     Exit;
   end;
+  CreateBackup;
   if odOpen.Execute then
   try
     stFileName := odOpen.FileName;
@@ -1269,6 +1312,7 @@ begin
   begin
     Exit;
   end;
+  CreateBackup;
   if FileExistsUTF8(LastDatabase1) then
   try
     stFileName := LastDatabase1;
@@ -1295,6 +1339,7 @@ begin
   begin
     Exit;
   end;
+  CreateBackup;
   if FileExistsUTF8(LastDatabase2) then
   try
     stFileName := LastDatabase2;
@@ -1320,6 +1365,7 @@ begin
   begin
     Exit;
   end;
+  CreateBackup;
   if FileExistsUTF8(LastDatabase3) then
   try
     stFileName := LastDatabase3;
@@ -1345,6 +1391,7 @@ begin
   begin
     Exit;
   end;
+  CreateBackup;
   if FileExistsUTF8(LastDatabase4) then
   try
     stFileName := LastDatabase4;
@@ -1391,7 +1438,7 @@ end;
 
 procedure TfmMain.miEditFindClick(Sender: TObject);
 begin
-  fmSearch.ShowModal;
+  fmSearch.Show;
 end;
 
 procedure TfmMain.miEditLinkClick(Sender: TObject);
@@ -1404,6 +1451,8 @@ begin
     stLink := 'file://' + StringReplace(stLink, ' ', '%20', [rfReplaceAll]);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       insertText(NSStringUtf8(stLink));
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      checkTextInDocument(nil);
   end;
 end;
 
@@ -1414,6 +1463,13 @@ var
   slList1, slList2: TStringList;
   stWord: NSAttributedString;
 begin
+  if dbText.SelLength = 0 then
+  begin
+    if MessageDlg(msg010, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+    begin
+      Exit;
+    end;
+  end;
   try
     Screen.Cursor := crHourGlass;
     slList1 := TStringList.Create;
@@ -1435,6 +1491,12 @@ begin
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setSelectedRange(rng);
+    if iSelStart = -1 then
+    begin
+      dbText.SelStart := 0;
+      // To clear the selection of the title
+      FormatListTitleTodo;
+    end;
     while rng.location + rng.length < iLen - 1 do
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1443,8 +1505,8 @@ begin
         selectWord(nil);
       rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
         documentView).selectedRange;
-      if ((UTF8Copy(dbText.Text, rng.location + 1, 2) = '. ') or
-        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '.' + LineEnding)) then
+      if ((UTF8Copy(dbText.Text, rng.location, 2) = '. ') or
+        (UTF8Copy(dbText.Text, rng.location, 2) = '.' + LineEnding)) then
       begin
         slList1.Text := slList2.Text;
         slList2.Clear;
@@ -1634,14 +1696,14 @@ procedure TfmMain.FormatListTitleTodo;
 var
   i, iLen, iPos, iTopRow, iLevel: integer;
   blHeading, blPosInHeading, blBoldItalics, blItalics, blBold, blMono,
-  blQuote, blStartLinesQuote, blFootnote: boolean;
+  blQuote, blStartLinesQuote, blFootnote, blLink: boolean;
   iStartHeading, iStartBoldItalics, iStartItalics, iStartBold,
-  iStartMono, iStartQuote, iStartLinesQuote, iStartFootnote: integer;
+  iStartMono, iStartQuote, iStartLinesQuote, iStartFootnote, iStartLink: integer;
   stText: WideString = '';
   stTitle: WideString = '';
   stSpaces: string = '';
   fd: NSFontDescriptor;
-  myFont, monoFont, miniFont: NSFont;
+  myFont, quoteFont, monoFont, miniFont: NSFont;
   rng: NSRange;
 begin
   if ((dbText.Text = '') or ((blDisableFormatting = True) and
@@ -1658,6 +1720,7 @@ begin
   blStartLinesQuote := False;
   blQuote := False;
   blFootnote := False;
+  blLink := False;
   blPosInHeading := False;
   iStartHeading := -1;
   iStartBoldItalics := -1;
@@ -1667,6 +1730,7 @@ begin
   iStartQuote := -1;
   iStartLinesQuote := -1;
   iStartFootnote := -1;
+  iStartLink := -1;
   iLevel := -1;
   stText := WideString(dbText.Text);
   iLen := Length(stText);
@@ -1684,6 +1748,9 @@ begin
     myFont := NSFont.fontWithDescriptor_size(fd, -dbText.font.Height);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
       addAttribute_value_range(NSFontAttributeName, myFont, rng);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+      removeAttribute_range(NSBackgroundColorAttributeName, rng);
+    quoteFont := NSFont.fontWithDescriptor_size(fd, -dbText.font.Height - 4);
     miniFont := NSFont.fontWithDescriptor_size(fd, 1);
     fd := FindFont(stFontMono, 0);
     monoFont := NSFont.fontWithDescriptor_size(fd, iFontMonoSize);
@@ -1787,6 +1854,7 @@ begin
       blBold := False;
       blMono := False;
       blFootnote := False;
+      blLink := False;
     end;
     if ((stText[i] = LineEnding) or (i = iLen)) then
     begin
@@ -1958,8 +2026,8 @@ begin
           blQuote := False;
           rng.location := iStartQuote - 1;
           rng.length := i - iStartQuote + 1;
-          TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-            setTextColor_range(ColorToNSColor(clFootQuote), rng);
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+          addAttribute_value_range(NSFontAttributeName, quoteFont, rng);
           rng.location := iStartQuote - 1;
           rng.length := 1;
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
@@ -2069,6 +2137,7 @@ begin
       blBold := False;
       blMono := False;
       blFootnote := False;
+      blLink := False;
       blHeading := False;
       iStartLinesQuote := i;
     end
@@ -2132,7 +2201,32 @@ begin
       rng.location := iStartFootnote - 1;
       rng.length := i - iStartFootnote + 1;
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-        setTextColor_range(ColorToNSColor(clFootQuote), rng);
+        setTextColor_range(ColorToNSColor(clFootnote), rng);
+    end
+    // Link
+    else if stText[i] = '[' then
+    begin
+      if blLink = False then
+      begin
+        blLink := True;
+        if stText[i - 1] = '!' then
+        begin
+          iStartLink := i - 1;
+        end
+        else
+        begin
+          iStartLink := i;
+        end;
+      end;
+    end
+    else if ((stText[i] = ']') and (stText[i + 1] = '(') and
+      (blLink = True)) then
+    begin
+      blLink := False;
+      rng.location := iStartLink - 1;
+      rng.length := i - iStartLink + 1;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setTextColor_range(ColorToNSColor(clLink), rng);
     end;
     Inc(i);
   end;
@@ -2426,6 +2520,44 @@ begin
         sgTitles.TopRow := i;
         Break;
       end;
+    end;
+  end;
+end;
+
+procedure TfmMain.CreateYAML;
+begin
+  dbText.Clear;
+  sgTitles.Clear;
+  dbText.Lines.Add('---');
+  dbText.Lines.Add('title: ');
+  dbText.Lines.Add('author: ');
+  if dateformat = 'en' then
+  begin
+    dbText.Lines.Add('date: ' + FormatDateTime('mmmm dd yyyy', Date()));
+  end
+  else
+  begin
+    dbText.Lines.Add('date: ' + FormatDateTime('dd mmmm yyyy', Date()));
+  end;
+  dbText.Lines.Add('abstract: ');
+  dbText.Lines.Add('---');
+  dbText.SelStart := 11;
+end;
+
+procedure TfmMain.CreateBackup;
+begin
+  if stFileName <> '' then
+  begin
+    if FileExistsUTF8(stFileName) = True then
+    try
+      if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) +
+        '.bak') = True then
+      begin
+        DeleteFileUTF8(ExtractFileNameWithoutExt(stFileName) + '.bak');
+      end;
+      CopyFile(stFileName, ExtractFileNameWithoutExt(stFileName) + '.bak');
+    except
+      MessageDlg(msg009, mtWarning, [mbOK], 0);
     end;
   end;
 end;

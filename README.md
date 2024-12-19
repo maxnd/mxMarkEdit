@@ -1,6 +1,6 @@
 # mxMarkEdit
 
-Version 1.0.4, published on December 15 2024.
+Version 1.0.5, published on December 19 2024.
 
 Copyright Massimo Nardello, Modena (Italy) 2024.
 
@@ -21,7 +21,7 @@ Some Markdown markers are hidden, as the text contained within them is properly 
 * code, in monospace font (`);
 * lines of code, in monospace font (```);
 * inline footnotes (contained between ^[ and ]);
-* citations (start with the character > followed by a space).
+* citations (start with the character > followed by a space), that are printed with a smaller font size.
 
 The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned. Pandoc should instead manage them properly.
 
@@ -32,6 +32,8 @@ Below this list there is combo box in which it’s possible to select the level 
 When a paragraph starts with a list heading (*, +, - or a number followed by a dot and a space), the “Return” key creates a new paragraph with the same heading. The numbered lists are properly renumbered if necessary.
 
 The last four opened files are available in the “File” menu. When they are opened, the cursor move to the last position it had during the last editing.
+
+When a file is closed, a backup copy is created.
 
 The “Edit - Find” menu item allows to find the first occurrence – with the appropriate button or by pressing “Return” - or the following occurrences – with the appropriate button or by pressing “Command + Return” – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the \n code replaces the paragraph breaks, while the \t code replaces the tabs, both in the “Search text” field and in the “Replace with field”.
 
@@ -49,7 +51,7 @@ The “Open another window” menu item opens another instance of the software i
 
 The “Transparency” menu item activate or deactivate the transparency of the software interface.
 
-The “Tools - Options” menu item opens the options, where are specified the name and the color of the font of the text, the name and the color of the monospace font, the color of the footnotes and quotes, of the first level, second level and other level titles, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (.docx, .odt, etc.). See the Pandoc manual for more information.
+The “Tools - Options” menu item opens the options, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the first level, second level and other level titles, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (.docx, .odt, etc.). See the Pandoc manual for more information.
 
 The other menu items are self-explaining.
 
@@ -70,6 +72,7 @@ There are also some shortcuts beyond the ones related to the menu items:
 * Meta + Ctrl + Arrow down: select the next heading.
 * Meta + Shift + J: set the current position of the cursor in the bookmark.
 * Meta + J: move the cursor to the position already set in the bookmark.
+* Meta + E: prints the following paragraph with a green background, skipping the empty lines and the headings; this is useful to use mxMarkEdit for presentations.
 * Meta + U: make uppercase the current word.
 * Meta + Opt + Shift + U: make lowercase the current word.
 * Meta + Opt + U: capitalise the current word.

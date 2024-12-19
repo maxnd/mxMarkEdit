@@ -13,9 +13,10 @@
 {"hash":231619507,"name":"tfmoptions.lbpanpath.caption","sourcebytes":[80,97,116,104,32,111,102,32,80,97,110,100,111,99],"value":"Path of Pandoc"},
 {"hash":230927711,"name":"tfmoptions.edpanpath.text","sourcebytes":[47,117,115,114,47,108,111,99,97,108,47,98,105,110,47],"value":"/usr/local/bin/"},
 {"hash":81568738,"name":"tfmoptions.bnstfonttitle2colormod.caption","sourcebytes":[84,105,116,108,101,115,32,50,32,99,111,108,111,114],"value":"Titles 2 color"},
-{"hash":84613378,"name":"tfmoptions.bnstfontquotecolor.caption","sourcebytes":[81,117,111,116,101,32,97,110,100,32,102,111,111,116,110,111,116,101,32,99,111,108,111,114],"value":"Quote and footnote color"},
+{"hash":225276706,"name":"tfmoptions.bnstfontlinkcolor.caption","sourcebytes":[76,105,110,107,32,99,111,108,111,114],"value":"Link color"},
 {"hash":107876242,"name":"tfmoptions.bnstfonttextcolormod.caption","sourcebytes":[84,101,120,116,32,99,111,108,111,114],"value":"Text color"},
 {"hash":124717250,"name":"tfmoptions.bnstfontcodecolormod.caption","sourcebytes":[67,111,100,101,32,99,111,108,111,114],"value":"Code color"},
-{"hash":54013461,"name":"tfmoptions.lnstfontsmono.caption","sourcebytes":[77,111,110,111,32,102,111,110,116,32,110,97,109,101],"value":"Mono font name"},
+{"hash":12725813,"name":"tfmoptions.lnstfontsmono.caption","sourcebytes":[67,111,100,101,32,102,111,110,116,32,110,97,109,101],"value":"Code font name"},
+{"hash":16978194,"name":"tfmoptions.bnstfontfootcolor.caption","sourcebytes":[70,111,111,116,110,111,116,101,32,99,111,108,111,114],"value":"Footnote color"},
 {"hash":256115346,"name":"tfmoptions.cdcolordialog.title","sourcebytes":[83,101,108,101,99,116,32,97,32,99,111,108,111,114],"value":"Select a color"}
 ]}

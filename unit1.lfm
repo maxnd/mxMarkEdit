@@ -1153,7 +1153,16 @@ object fmMain: TfmMain
       BorderSpacing.Right = 10
       BorderStyle = bsNone
       Color = 2632235
-      ColCount = 0
+      ColCount = 2
+      Columns = <      
+        item
+          Title.Caption = ''
+          Width = 1024
+        end      
+        item
+          Title.Caption = ''
+          Visible = False
+        end>
       Constraints.MinWidth = 200
       DefaultColWidth = 512
       DefaultRowHeight = 28
@@ -1169,7 +1178,6 @@ object fmMain: TfmMain
       ParentDoubleBuffered = False
       ParentFont = False
       ParentShowHint = False
-      RowCount = 0
       ScrollBars = ssAutoVertical
       ShowHint = True
       TabOrder = 1

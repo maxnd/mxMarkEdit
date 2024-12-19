@@ -37,7 +37,8 @@ type
   TfmOptions = class(TForm)
     bnClose: TButton;
     bnStFontCodeColorMod: TButton;
-    bnStFontQuoteColor: TButton;
+    bnStFontFootColor: TButton;
+    bnStFontLinkColor: TButton;
     bnStFontTextColorMod: TButton;
     bnStFontTitle3ColorMod: TButton;
     bnStFontTitle1ColorMod: TButton;
@@ -57,7 +58,8 @@ type
     lnStFontsMono: TLabel;
     procedure bnCloseClick(Sender: TObject);
     procedure bnStFontCodeColorModClick(Sender: TObject);
-    procedure bnStFontQuoteColorClick(Sender: TObject);
+    procedure bnStFontFootColorClick(Sender: TObject);
+    procedure bnStFontLinkColorClick(Sender: TObject);
     procedure bnStFontTextColorModClick(Sender: TObject);
     procedure bnStFontTitle3ColorModClick(Sender: TObject);
     procedure bnStFontTitle2ColorModClick(Sender: TObject);
@@ -160,12 +162,22 @@ begin
   bnClose.SetFocus;
 end;
 
-procedure TfmOptions.bnStFontQuoteColorClick(Sender: TObject);
+procedure TfmOptions.bnStFontLinkColorClick(Sender: TObject);
 begin
-  cdColorDialog.Color := clFootQuote;
+  cdColorDialog.Color := clLink;
   if cdColorDialog.Execute then
   begin
-    clFootQuote := cdColorDialog.Color;
+    clLink := cdColorDialog.Color;
+    fmMain.FormatListTitleTodo;
+  end;
+end;
+
+procedure TfmOptions.bnStFontFootColorClick(Sender: TObject);
+begin
+  cdColorDialog.Color := clFootnote;
+  if cdColorDialog.Execute then
+  begin
+    clFootnote := cdColorDialog.Color;
     fmMain.FormatListTitleTodo;
   end;
 end;

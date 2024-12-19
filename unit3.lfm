@@ -1,13 +1,13 @@
 object fmOptions: TfmOptions
   Left = 450
-  Height = 409
+  Height = 475
   Top = 178
   Width = 547
   ActiveControl = cbStFonts
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Options'
-  ClientHeight = 409
+  ClientHeight = 475
   ClientWidth = 547
   Color = clForm
   KeyPreview = True
@@ -40,36 +40,36 @@ object fmOptions: TfmOptions
   object bnClose: TButton
     Left = 437
     Height = 30
-    Top = 360
+    Top = 426
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
-    TabOrder = 11
+    TabOrder = 13
     TabStop = False
     OnClick = bnCloseClick
   end
   object bnStFontTitle1ColorMod: TButton
-    Left = 294
-    Height = 36
-    Top = 128
-    Width = 218
-    Caption = 'Titles 1 color'
-    TabOrder = 4
-    OnClick = bnStFontTitle1ColorModClick
-  end
-  object bnStFontTitle3ColorMod: TButton
-    Left = 294
+    Left = 45
     Height = 36
     Top = 168
     Width = 218
-    Caption = 'Titles 3 - 6 color'
+    Caption = 'Titles 1 color'
     TabOrder = 6
+    OnClick = bnStFontTitle1ColorModClick
+  end
+  object bnStFontTitle3ColorMod: TButton
+    Left = 43
+    Height = 36
+    Top = 208
+    Width = 218
+    Caption = 'Titles 3 - 6 color'
+    TabOrder = 8
     OnClick = bnStFontTitle3ColorModClick
   end
   object lbPanOptions: TLabel
     Left = 45
     Height = 16
-    Top = 237
+    Top = 285
     Width = 112
     Caption = 'Options of Pandoc'
     ParentColor = False
@@ -77,25 +77,25 @@ object fmOptions: TfmOptions
   object edPanOptions: TEdit
     Left = 43
     Height = 22
-    Top = 257
+    Top = 305
     Width = 289
     ParentColor = True
-    TabOrder = 7
+    TabOrder = 9
     Text = '+footnotes+inline_notes'
   end
   object edPanOutput: TEdit
     Left = 344
     Height = 22
-    Top = 317
+    Top = 365
     Width = 168
     ParentColor = True
-    TabOrder = 10
+    TabOrder = 12
     Text = '.docx'
   end
   object lbPanOutput: TLabel
     Left = 344
     Height = 16
-    Top = 297
+    Top = 345
     Width = 64
     Caption = 'Output file'
     ParentColor = False
@@ -103,7 +103,7 @@ object fmOptions: TfmOptions
   object lbPanTemplate: TLabel
     Left = 45
     Height = 16
-    Top = 297
+    Top = 345
     Width = 56
     Caption = 'Template'
     ParentColor = False
@@ -111,16 +111,16 @@ object fmOptions: TfmOptions
   object edPanTemplate: TEdit
     Left = 45
     Height = 22
-    Top = 317
+    Top = 365
     Width = 287
     ParentColor = True
-    TabOrder = 9
+    TabOrder = 11
     Text = 'word-template.docx'
   end
   object lbPanPath: TLabel
     Left = 344
     Height = 16
-    Top = 237
+    Top = 285
     Width = 92
     Caption = 'Path of Pandoc'
     ParentColor = False
@@ -128,29 +128,29 @@ object fmOptions: TfmOptions
   object edPanPath: TEdit
     Left = 344
     Height = 22
-    Top = 257
+    Top = 305
     Width = 168
     ParentColor = True
-    TabOrder = 8
+    TabOrder = 10
     Text = '/usr/local/bin/'
   end
   object bnStFontTitle2ColorMod: TButton
-    Left = 43
+    Left = 294
     Height = 36
     Top = 168
     Width = 220
     Caption = 'Titles 2 color'
-    TabOrder = 5
+    TabOrder = 7
     OnClick = bnStFontTitle2ColorModClick
   end
-  object bnStFontQuoteColor: TButton
+  object bnStFontLinkColor: TButton
     Left = 45
     Height = 36
     Top = 128
     Width = 218
-    Caption = 'Quote and footnote color'
-    TabOrder = 3
-    OnClick = bnStFontQuoteColorClick
+    Caption = 'Link color'
+    TabOrder = 4
+    OnClick = bnStFontLinkColorClick
   end
   object bnStFontTextColorMod: TButton
     Left = 45
@@ -158,7 +158,7 @@ object fmOptions: TfmOptions
     Top = 88
     Width = 218
     Caption = 'Text color'
-    TabOrder = 1
+    TabOrder = 2
     OnClick = bnStFontTextColorModClick
   end
   object bnStFontCodeColorMod: TButton
@@ -167,7 +167,7 @@ object fmOptions: TfmOptions
     Top = 88
     Width = 218
     Caption = 'Code color'
-    TabOrder = 2
+    TabOrder = 3
     OnClick = bnStFontCodeColorModClick
   end
   object cbStFontsMono: TComboBox
@@ -177,16 +177,25 @@ object fmOptions: TfmOptions
     Width = 220
     ItemHeight = 26
     Style = csDropDownList
-    TabOrder = 12
+    TabOrder = 1
     OnChange = cbStFontsMonoChange
   end
   object lnStFontsMono: TLabel
     Left = 294
     Height = 16
     Top = 24
-    Width = 98
-    Caption = 'Mono font name'
+    Width = 97
+    Caption = 'Code font name'
     ParentColor = False
+  end
+  object bnStFontFootColor: TButton
+    Left = 296
+    Height = 36
+    Top = 128
+    Width = 218
+    Caption = 'Footnote color'
+    TabOrder = 5
+    OnClick = bnStFontFootColorClick
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'
@@ -214,6 +223,6 @@ object fmOptions: TfmOptions
       'ColorT=A4A0A0'
     )
     Left = 304
-    Top = 264
+    Top = 312
   end
 end
