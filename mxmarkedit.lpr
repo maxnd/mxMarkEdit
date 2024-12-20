@@ -33,7 +33,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, unit1, unit2, unit3, copyright
   {$IFDEF Darwin}
-    , clocale, iosxlocale, translate
+    , clocale, iosxlocale, translate, unit4
   {$ENDIF}
   { you can add units after this };
 
@@ -46,6 +46,7 @@ begin
   Application.CreateForm(TfmMain, fmMain);
   Application.CreateForm(TfmSearch, fmSearch);
   Application.CreateForm(TfmOptions, fmOptions);
+  Application.CreateForm(TfmTasks, fmTasks);
   Application.CreateForm(TfmCopyright, fmCopyright);
   Application.Run;
 end.

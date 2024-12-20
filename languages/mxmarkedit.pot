@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.4"
+msgid "1.0.6"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -112,6 +112,10 @@ msgstr ""
 
 #: tfmmain.mieditshowcurrent.caption
 msgid "Show current title or todo"
+msgstr ""
+
+#: tfmmain.miedittasks.caption
+msgid "Show todo form"
 msgstr ""
 
 #: tfmmain.mifile.caption
@@ -195,8 +199,12 @@ msgstr ""
 msgid "Code color"
 msgstr ""
 
-#: tfmoptions.bnstfontquotecolor.caption
-msgid "Quote and footnote color"
+#: tfmoptions.bnstfontfootcolor.caption
+msgid "Footnote color"
+msgstr ""
+
+#: tfmoptions.bnstfontlinkcolor.caption
+msgid "Link color"
 msgstr ""
 
 #: tfmoptions.bnstfonttextcolormod.caption
@@ -261,7 +269,7 @@ msgid "Font name"
 msgstr ""
 
 #: tfmoptions.lnstfontsmono.caption
-msgid "Mono font name"
+msgid "Code font name"
 msgstr ""
 
 #: tfmsearch.bnfirst.caption
@@ -273,6 +281,7 @@ msgid "Next"
 msgstr ""
 
 #: tfmsearch.bnok.caption
+msgctxt "tfmsearch.bnok.caption"
 msgid "Close"
 msgstr ""
 
@@ -290,6 +299,31 @@ msgstr ""
 
 #: tfmsearch.lbreplace.caption
 msgid "Replace with"
+msgstr ""
+
+#: tfmtasks.bnok.caption
+msgctxt "tfmtasks.bnok.caption"
+msgid "Close"
+msgstr ""
+
+#: tfmtasks.caption
+msgid "Todo form"
+msgstr ""
+
+#: tfmtasks.sgtasks.columns[0].title.caption
+msgid "Row"
+msgstr ""
+
+#: tfmtasks.sgtasks.columns[1].title.caption
+msgid "Done"
+msgstr ""
+
+#: tfmtasks.sgtasks.columns[2].title.caption
+msgid "Deadline"
+msgstr ""
+
+#: tfmtasks.sgtasks.columns[3].title.caption
+msgid "Title"
 msgstr ""
 
 #: unit1.dateformat
@@ -378,6 +412,14 @@ msgstr ""
 msgid "The current document has no name."
 msgstr ""
 
+#: unit1.msg009
+msgid "It was not possible to create the backup file."
+msgstr ""
+
+#: unit1.msg010
+msgid "Find the repeated words in all the current document?"
+msgstr ""
+
 #: unit2.msgfnd001
 msgid "Text not found."
 msgstr ""
@@ -388,5 +430,13 @@ msgstr ""
 
 #: unit2.msgfnd003
 msgid "with"
+msgstr ""
+
+#: unit4.tsk001
+msgid "day"
+msgstr ""
+
+#: unit4.tsk002
+msgid "days"
 msgstr ""
 

@@ -1,0 +1,91 @@
+object fmTasks: TfmTasks
+  Left = 316
+  Height = 549
+  Top = 234
+  Width = 1004
+  BorderIcons = []
+  BorderStyle = bsDialog
+  Caption = 'Todo form'
+  ClientHeight = 549
+  ClientWidth = 1004
+  KeyPreview = True
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  Position = poDesktopCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '3.7.0.0'
+  object sgTasks: TStringGrid
+    Left = 15
+    Height = 492
+    Top = 10
+    Width = 974
+    Align = alClient
+    AutoEdit = False
+    BorderSpacing.Left = 5
+    BorderSpacing.Right = 5
+    BorderSpacing.Around = 10
+    Color = clForm
+    ColCount = 4
+    ColumnClickSorts = True
+    Columns = <    
+      item
+        Title.Caption = 'Row'
+        Visible = False
+      end    
+      item
+        Title.Caption = 'Done'
+        Width = 70
+      end    
+      item
+        Title.Caption = 'Deadline'
+        Width = 180
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 710
+      end>
+    ExtendedSelect = False
+    FixedColor = clForm
+    FixedCols = 0
+    Flat = True
+    GridLineColor = clBackground
+    HeaderHotZones = []
+    MouseWheelOption = mwGrid
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goColSizing, goRowSelect, goSmoothScroll]
+    RowCount = 2
+    TabOrder = 0
+    OnDblClick = sgTasksDblClick
+    OnDrawCell = sgTasksDrawCell
+    ColWidths = (
+      0
+      70
+      180
+      710
+    )
+  end
+  object pnTasks: TPanel
+    Left = 0
+    Height = 37
+    Top = 512
+    Width = 1004
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 37
+    ClientWidth = 1004
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 1
+    object bnOK: TButton
+      Left = 912
+      Height = 32
+      Top = -5
+      Width = 75
+      Anchors = [akRight, akBottom]
+      Caption = 'Close'
+      TabOrder = 0
+      TabStop = False
+      OnClick = bnOKClick
+    end
+  end
+end

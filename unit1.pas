@@ -30,7 +30,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, CocoaAll,
   CocoaTextEdits, CocoaUtils, Clipbrd, Menus, StdCtrls, Grids, ExtCtrls,
   DefaultTranslator, translate, IniFiles, LazUTF8, LazUTF16, FileUtil,
-  LazFileUtils, Unix, Types;
+  LazFileUtils, Unix, Types, DateUtils;
 
 type
 
@@ -42,6 +42,7 @@ type
     dbText: TMemo;
     lbDateTime: TLabel;
     lbChars: TLabel;
+    miEditTasks: TMenuItem;
     miEditShowCurrent: TMenuItem;
     miEditFindDuplicate: TMenuItem;
     miEditHideList: TMenuItem;
@@ -112,6 +113,7 @@ type
     procedure miEditPasteClick(Sender: TObject);
     procedure miEditSelectAllClick(Sender: TObject);
     procedure miEditShowCurrentClick(Sender: TObject);
+    procedure miEditTasksClick(Sender: TObject);
     procedure miFileNewClick(Sender: TObject);
     procedure miFileOpenClick(Sender: TObject);
     procedure miFileOpenLast1Click(Sender: TObject);
@@ -210,7 +212,7 @@ resourcestring
 
 implementation
 
-uses copyright, unit2, unit3;
+uses copyright, unit2, unit3, unit4;
 
   {$R *.lfm}
 
@@ -671,6 +673,7 @@ var
   rngStart, rngEnd: NSRange;
   blCode: boolean;
   stText: WideString;
+  myDate: TDate;
 begin
   if ((key = 8) and (Shift = [ssMeta, ssShift])) then
   begin
@@ -903,7 +906,8 @@ begin
     key := 0;
   end
   else
-  if ((key = Ord('T')) and (Shift = [ssMeta])) then
+  if ((key = Ord('T')) and ((Shift = [ssMeta]) or
+    (Shift = [ssAlt, ssMeta]))) then
   begin
     if ((Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = '- [ ] ') or
       ((TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
@@ -943,8 +947,18 @@ begin
         textStorage.string_.paragraphRangeForRange(TCocoaTextView(
         NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
       rngStart.Length := 0;
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText_replacementRange(NSStringUtf8('- [ ] '), rngStart);
+      if Shift = [ssAlt, ssMeta] then
+      begin
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          insertText_replacementRange(NSStringUtf8('- [ ] '), rngStart);
+      end
+      else
+      begin
+        myDate := Date;
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          insertText_replacementRange(NSStringUtf8('- [ ] ' +
+          FormatDateTime('yyyy-mm-dd', IncWeek(myDate, 1)) + ' • '), rngStart);
+      end;
     end;
     key := 0;
   end
@@ -1025,12 +1039,56 @@ begin
       scrollRangeToVisible(rngStart);
     ShowCurrentTitleTodo;
     key := 0;
+  end
+  else
+  if ((key = Ord('1')) and (Shift = [ssAlt, ssMeta])) then
+  begin
+   cbFilter.ItemIndex := 0;
+   FormatListTitleTodo;
+   dbText.SetFocus;
+  end
+  else
+  if ((key = Ord('2')) and (Shift = [ssAlt, ssMeta])) then
+  begin
+   cbFilter.ItemIndex := 1;
+   FormatListTitleTodo;
+   dbText.SetFocus;
+  end
+  else
+  if ((key = Ord('3')) and (Shift = [ssAlt, ssMeta])) then
+  begin
+   cbFilter.ItemIndex := 2;
+   FormatListTitleTodo;
+   dbText.SetFocus;
+  end
+  else
+  if ((key = Ord('4')) and (Shift = [ssAlt, ssMeta])) then
+  begin
+   cbFilter.ItemIndex := 3;
+   FormatListTitleTodo;
+   dbText.SetFocus;
+  end
+  else
+  if ((key = Ord('5')) and (Shift = [ssAlt, ssMeta])) then
+  begin
+   cbFilter.ItemIndex := 4;
+   FormatListTitleTodo;
+   dbText.SetFocus;
+  end
+  else
+  if ((key = Ord('6')) and (Shift = [ssAlt, ssMeta])) then
+  begin
+   cbFilter.ItemIndex := 5;
+   FormatListTitleTodo;
+   dbText.SetFocus;
   end;
 end;
 
 procedure TfmMain.dbTextKeyPress(Sender: TObject; var Key: char);
 var
   i: integer;
+  myDate: TDate;
+  fs: TFormatSettings;
 begin
   if key = #13 then
   begin
@@ -1054,22 +1112,55 @@ begin
     end
     else
     begin
+      fs := DefaultFormatSettings;
+      fs.DateSeparator := '-';
+      fs.ShortDateFormat := 'yyyy/mm/dd';
       if UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 1, 6) = '- [ ] ' then
       begin
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-          insertText(NSStringUtf8('- [ ] '));
+        if TryStrToDate(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 10),
+          myDate, fs) = True then
+        begin
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+            insertText(NSStringUtf8('- [ ] ' +
+            UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 13)));
+        end
+        else
+        begin
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+            insertText(NSStringUtf8('- [ ] '));
+        end;
       end
       else
       if UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 1, 6) = '- [X] ' then
       begin
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-          insertText(NSStringUtf8('- [X] '));
+        if TryStrToDate(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 10),
+          myDate, fs) = True then
+        begin
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+            insertText(NSStringUtf8('- [X] ' +
+            UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 13)));
+        end
+        else
+        begin
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+            insertText(NSStringUtf8('- [X] '));
+        end;
       end
       else
       if UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 1, 6) = '- [x] ' then
       begin
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-          insertText(NSStringUtf8('- [x] '));
+        if TryStrToDate(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 13),
+          myDate, fs) = True then
+        begin
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+            insertText(NSStringUtf8('- [x] ' +
+            UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 10)));
+        end
+        else
+        begin
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+            insertText(NSStringUtf8('- [x] '));
+        end;
       end
       else
       if UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 1, 2) = '* ' then
@@ -1554,6 +1645,11 @@ end;
 procedure TfmMain.miEditShowCurrentClick(Sender: TObject);
 begin
   ShowCurrentTitleTodo;
+end;
+
+procedure TfmMain.miEditTasksClick(Sender: TObject);
+begin
+  fmTasks.ShowModal;
 end;
 
 procedure TfmMain.miEditHideListClick(Sender: TObject);

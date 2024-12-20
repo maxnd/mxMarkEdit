@@ -1044,6 +1044,7 @@ object fmMain: TfmMain
   OnCreate = FormCreate
   OnDropFiles = FormDropFiles
   OnKeyDown = FormKeyDown
+  SnapOptions.SnapToMonitor = True
   LCLVersion = '3.7.0.0'
   object dbText: TMemo
     Left = 175
@@ -1295,6 +1296,11 @@ object fmMain: TfmMain
         Caption = 'Show current title or todo'
         ShortCut = 20556
         OnClick = miEditShowCurrentClick
+      end
+      object miEditTasks: TMenuItem
+        Caption = 'Show todo form'
+        ShortCut = 45132
+        OnClick = miEditTasksClick
       end
       object Sep3: TMenuItem
         Caption = '-'

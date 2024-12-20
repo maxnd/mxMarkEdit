@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.4"
+msgid "1.0.6"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -112,6 +112,10 @@ msgstr "Seleziona tutto"
 #: tfmmain.mieditshowcurrent.caption
 msgid "Show current title or todo"
 msgstr "Mostra il titolo o l'attività corrente"
+
+#: tfmmain.miedittasks.caption
+msgid "Show todo form"
+msgstr "Mostra la maschera attività"
 
 #: tfmmain.mifile.caption
 msgid "File"
@@ -194,9 +198,13 @@ msgstr ""
 msgid "Code color"
 msgstr "Colore codice"
 
-#: tfmoptions.bnstfontquotecolor.caption
-msgid "Quote and footnote color"
-msgstr "Colore citazioni e note"
+#: tfmoptions.bnstfontfootcolor.caption
+msgid "Footnote color"
+msgstr "Colore note"
+
+#: tfmoptions.bnstfontlinkcolor.caption
+msgid "Link color"
+msgstr "Colore link"
 
 #: tfmoptions.bnstfonttextcolormod.caption
 msgid "Text color"
@@ -260,8 +268,8 @@ msgid "Font name"
 msgstr "Nome del font"
 
 #: tfmoptions.lnstfontsmono.caption
-msgid "Mono font name"
-msgstr "Nome del font mono"
+msgid "Code font name"
+msgstr "Nome del font per codice"
 
 #: tfmsearch.bnfirst.caption
 msgid "First"
@@ -272,6 +280,7 @@ msgid "Next"
 msgstr "Seguente"
 
 #: tfmsearch.bnok.caption
+msgctxt "tfmsearch.bnok.caption"
 msgid "Close"
 msgstr "Chiudi"
 
@@ -290,6 +299,31 @@ msgstr "Testo da cercare"
 #: tfmsearch.lbreplace.caption
 msgid "Replace with"
 msgstr "Sostituisci con"
+
+#: tfmtasks.bnok.caption
+msgctxt "tfmtasks.bnok.caption"
+msgid "Close"
+msgstr "Chiudi"
+
+#: tfmtasks.caption
+msgid "Todo form"
+msgstr "Maschera attività"
+
+#: tfmtasks.sgtasks.columns[0].title.caption
+msgid "Row"
+msgstr ""
+
+#: tfmtasks.sgtasks.columns[1].title.caption
+msgid "Done"
+msgstr "Svolta"
+
+#: tfmtasks.sgtasks.columns[2].title.caption
+msgid "Deadline"
+msgstr "Scadenza"
+
+#: tfmtasks.sgtasks.columns[3].title.caption
+msgid "Title"
+msgstr "Titolo"
 
 #: unit1.dateformat
 msgid "en"
@@ -377,6 +411,14 @@ msgstr "Il file non è disponibile."
 msgid "The current document has no name."
 msgstr "Il documento corrente non ha un nome."
 
+#: unit1.msg009
+msgid "It was not possible to create the backup file."
+msgstr "Non è stato possibile creare il file di backup."
+
+#: unit1.msg010
+msgid "Find the repeated words in all the current document?"
+msgstr "Trovare le parole ripetute in tutto il documento corrente?"
+
 #: unit2.msgfnd001
 msgid "Text not found."
 msgstr "Testo non trovato."
@@ -388,4 +430,12 @@ msgstr "Sostituire tutte le occorrenze di"
 #: unit2.msgfnd003
 msgid "with"
 msgstr "con"
+
+#: unit4.tsk001
+msgid "day"
+msgstr "giorno"
+
+#: unit4.tsk002
+msgid "days"
+msgstr "giorni"
 
