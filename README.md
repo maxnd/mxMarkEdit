@@ -57,7 +57,7 @@ The `Edit - Find` menu item allows to find the first occurrence – with the app
 
 The `Edit - Insert link to file` allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link.
 
-The `Edit - Find duplicate words` prints in red all the words of each paragraph, separated by dot and space or dot and Return, that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
+The `Edit - Find duplicate words` prints in red all the words of each paragraph, separated by dot and space or dot and `Return`, that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
 
 The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form to sort the data, which are initially sorted by deadline. The date of the expired items is printed in red.
 
@@ -67,7 +67,7 @@ The `Edit - Disable formatting` menu item prevents the formatting of the text, i
 
 The `Convert with Pandoc` menu item converts the current note into another format specified in the options of the software. The converted file is created in the same folder of the note.
 
-The `Open another window` menu item opens another instance of the software if it’s located in the Applications directory.
+The `Open another window` menu item opens another instance of the software if it’s located in the `Applications` directory.
 
 The `Transparency` menu item activate or deactivate the transparency of the software interface.
 
