@@ -1,12 +1,12 @@
 # mxMarkEdit
 
-Version 1.0.6, published on December 20 2024.
+Version 1.0.7, published on December 21 2024.
 
 Copyright Massimo Nardello, Modena (Italy) 2024.
 
 mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org). The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html.
 
-The software runs in English or Italian. In the “app” directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the “Application” directory and run. The app is not signed nor notarized.
+The software runs in English or Italian. In the “app” directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the “Application” directory and run. *The app is signed by the author*, but nor notarized.
 
 The software looks like this, with one possible color setting:
 
@@ -64,7 +64,7 @@ The “Open another window” menu item opens another instance of the software i
 
 The “Transparency” menu item activate or deactivate the transparency of the software interface.
 
-The “Tools - Options” menu item opens the options, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the first level, second level and other level titles, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (.docx, .odt, etc.). See the Pandoc manual for more information.
+The “Tools - Options” menu item opens the options, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (.docx, .odt, etc.). See the Pandoc manual for more information.
 
 The other menu items are self-explaining.
 

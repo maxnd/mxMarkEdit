@@ -150,7 +150,11 @@ begin
     end;
     iLength := iLength + StrToNSString(fmMain.dbText.Lines[i], True).length + 1;
   end;
-  sgTasks.SortColRow(True, 2);
+  if sgTasks.RowCount > 1 then
+  begin
+    sgTasks.SortColRow(True, 2);
+    sgTasks.Row := 1;
+  end;
 end;
 
 procedure TfmTasks.bnOKClick(Sender: TObject);
@@ -162,6 +166,7 @@ procedure TfmTasks.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 var
   i: Integer;
+  rng: NSRange;
 begin
   if key = 13 then
   begin
@@ -170,6 +175,12 @@ begin
       if TryStrToInt(sgTasks.Cells[0, sgTasks.Row], i) = True then
       begin
         fmMain.dbText.SelStart := i;
+        Application.ProcessMessages;
+        rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+          textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+          NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+          showFindIndicatorForRange(rng);
       end;
     end;
     Close;
@@ -184,15 +195,22 @@ end;
 procedure TfmTasks.sgTasksDblClick(Sender: TObject);
 var
   i: Integer;
+  rng: NSRange;
 begin
   if sgTasks.RowCount > 1 then
   begin
     if TryStrToInt(sgTasks.Cells[0, sgTasks.Row], i) = True then
     begin
       fmMain.dbText.SelStart := i;
+      Application.ProcessMessages;
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        showFindIndicatorForRange(rng);
     end;
+    Close;
   end;
-  Close;
 end;
 
 procedure TfmTasks.sgTasksDrawCell(Sender: TObject; aCol, aRow: Integer;

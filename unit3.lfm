@@ -1052,7 +1052,7 @@ object fmOptions: TfmOptions
     Left = 43
     Height = 20
     Top = 48
-    Width = 220
+    Width = 218
     ItemHeight = 26
     Style = csDropDownList
     TabOrder = 0
@@ -1073,26 +1073,26 @@ object fmOptions: TfmOptions
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
-    TabOrder = 13
+    TabOrder = 14
     TabStop = False
     OnClick = bnCloseClick
   end
   object bnStFontTitle1ColorMod: TButton
-    Left = 45
+    Left = 294
     Height = 36
     Top = 168
     Width = 218
     Caption = 'Titles 1 color'
-    TabOrder = 6
+    TabOrder = 7
     OnClick = bnStFontTitle1ColorModClick
   end
   object bnStFontTitle3ColorMod: TButton
-    Left = 43
+    Left = 296
     Height = 36
     Top = 208
     Width = 218
     Caption = 'Titles 3 - 6 color'
-    TabOrder = 8
+    TabOrder = 9
     OnClick = bnStFontTitle3ColorModClick
   end
   object lbPanOptions: TLabel
@@ -1109,7 +1109,7 @@ object fmOptions: TfmOptions
     Top = 305
     Width = 289
     ParentColor = True
-    TabOrder = 9
+    TabOrder = 10
     Text = '+footnotes+inline_notes'
   end
   object edPanOutput: TEdit
@@ -1118,7 +1118,7 @@ object fmOptions: TfmOptions
     Top = 365
     Width = 168
     ParentColor = True
-    TabOrder = 12
+    TabOrder = 13
     Text = '.docx'
   end
   object lbPanOutput: TLabel
@@ -1143,7 +1143,7 @@ object fmOptions: TfmOptions
     Top = 365
     Width = 287
     ParentColor = True
-    TabOrder = 11
+    TabOrder = 12
     Text = 'word-template.docx'
   end
   object lbPanPath: TLabel
@@ -1160,16 +1160,16 @@ object fmOptions: TfmOptions
     Top = 305
     Width = 168
     ParentColor = True
-    TabOrder = 10
+    TabOrder = 11
     Text = '/usr/local/bin/'
   end
   object bnStFontTitle2ColorMod: TButton
-    Left = 294
+    Left = 43
     Height = 36
-    Top = 168
-    Width = 220
+    Top = 208
+    Width = 218
     Caption = 'Titles 2 color'
-    TabOrder = 7
+    TabOrder = 8
     OnClick = bnStFontTitle2ColorModClick
   end
   object bnStFontLinkColor: TButton
@@ -1203,7 +1203,7 @@ object fmOptions: TfmOptions
     Left = 294
     Height = 20
     Top = 48
-    Width = 220
+    Width = 218
     ItemHeight = 26
     Style = csDropDownList
     TabOrder = 1
@@ -1225,6 +1225,15 @@ object fmOptions: TfmOptions
     Caption = 'Footnote color'
     TabOrder = 5
     OnClick = bnStFontFootColorClick
+  end
+  object bnStFontTodoColor: TButton
+    Left = 45
+    Height = 36
+    Top = 168
+    Width = 218
+    Caption = 'Todo color'
+    TabOrder = 6
+    OnClick = bnStFontTodoColorClick
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'

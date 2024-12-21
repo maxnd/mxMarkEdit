@@ -43,6 +43,7 @@ type
     bnStFontTitle3ColorMod: TButton;
     bnStFontTitle1ColorMod: TButton;
     bnStFontTitle2ColorMod: TButton;
+    bnStFontTodoColor: TButton;
     cbStFontsMono: TComboBox;
     edPanOptions: TEdit;
     edPanTemplate: TEdit;
@@ -64,6 +65,7 @@ type
     procedure bnStFontTitle3ColorModClick(Sender: TObject);
     procedure bnStFontTitle2ColorModClick(Sender: TObject);
     procedure bnStFontTitle1ColorModClick(Sender: TObject);
+    procedure bnStFontTodoColorClick(Sender: TObject);
     procedure cbStFontsChange(Sender: TObject);
     procedure cbStFontsMonoChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -208,6 +210,16 @@ begin
   if cdColorDialog.Execute then
   begin
     clTitle1 := cdColorDialog.Color;
+    fmMain.FormatListTitleTodo;
+  end;
+end;
+
+procedure TfmOptions.bnStFontTodoColorClick(Sender: TObject);
+begin
+  cdColorDialog.Color := clTodo;
+  if cdColorDialog.Execute then
+  begin
+    clTodo := cdColorDialog.Color;
     fmMain.FormatListTitleTodo;
   end;
 end;

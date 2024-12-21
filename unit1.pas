@@ -171,6 +171,7 @@ var
   clCode: TColor = clSilver;
   clHighlightList: TColor = clDkGray;
   clHighlightText: TColor = clGreen;
+  clTodo: TColor = clBlack;
   stFontMono: string = 'Menlo';
   iFontMonoSize: smallint = 18;
   stFileName: string = '';
@@ -246,6 +247,7 @@ begin
     clHighlightList := $005E5E5E;
     clRepetition := $005766EA;
     clHighlightText := $00445D31;
+    clTodo := clWhite;
   end
   else
   begin
@@ -267,6 +269,7 @@ begin
     clHighlightList := $00EBEBEB;
     clRepetition := clRed;
     clHighlightText := $0079FBD4;
+    clTodo := clBlack;
   end;
   sgTitles.FocusRectVisible := False;
   lbChars.Caption := msg001 + ' 0';
@@ -328,6 +331,8 @@ begin
         'link', 'clLink'));
       clCode := StringToColor(MyIni.ReadString('mxmarkedit',
         'code', 'clCode'));
+      clTodo := StringToColor(MyIni.ReadString('mxmarkedit',
+        'todo', 'clTodo'));
       pnTitTodo.Width := MyIni.ReadInteger('mxmarkedit', 'titlewidth', 400);
       stFileName := MyIni.ReadString('mxmarkedit', 'filename', '');
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
@@ -612,6 +617,7 @@ begin
     MyIni.WriteString('mxmarkedit', 'footnote', ColorToString(clFootnote));
     MyIni.WriteString('mxmarkedit', 'link', ColorToString(clLink));
     MyIni.WriteString('mxmarkedit', 'code', ColorToString(clCode));
+    MyIni.WriteString('mxmarkedit', 'todo', ColorToString(clTodo));
     MyIni.WriteInteger('mxmarkedit', 'titlewidth', pnTitTodo.Width);
     MyIni.WriteString('mxmarkedit', 'filename', stFileName);
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
@@ -1263,7 +1269,7 @@ begin
   if ((Pos('  ☑ ', sgTitles.Cells[aCol, aRow]) > 0) or
     (Pos('  □ ', sgTitles.Cells[aCol, aRow]) > 0)) then
   begin
-    sgTitles.canvas.Font.Color := dbText.Font.Color;
+    sgTitles.canvas.Font.Color := clTodo;
   end
   else
   if Copy(sgTitles.Cells[aCol, aRow], 1, 9) = '         ' then
@@ -1929,6 +1935,7 @@ begin
         if blStartLinesQuote = False then
         begin
           blHeading := True;
+          iStartHeading := i;
         end;
       end;
     end
@@ -2041,12 +2048,20 @@ begin
         iLevel := 0;
         if Copy(stTitle, 1, 6) = '- [ ] ' then
         begin
+          rng.location := iStartHeading - 1;
+          rng.length := i - iStartHeading + 1;
+          TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            setTextColor_range(ColorToNSColor(clTodo), rng);
           stTitle := stSpaces + '  □ ' + Copy(stTitle, 7, Length(stTitle));
         end
         else
         if ((Copy(stTitle, 1, 6) = '- [X] ') or
           (Copy(stTitle, 1, 6) = '- [x] ')) then
         begin
+          rng.location := iStartHeading - 1;
+          rng.length := i - iStartHeading + 1;
+          TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            setTextColor_range(ColorToNSColor(clTodo), rng);
           stTitle := stSpaces + '  ☑ ' + Copy(stTitle, 7, Length(stTitle));
         end
         else
