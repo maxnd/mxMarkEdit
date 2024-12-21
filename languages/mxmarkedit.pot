@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.6"
+msgid "1.0.7"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -221,6 +221,10 @@ msgstr ""
 
 #: tfmoptions.bnstfonttitle3colormod.caption
 msgid "Titles 3 - 6 color"
+msgstr ""
+
+#: tfmoptions.bnstfonttodocolor.caption
+msgid "Todo color"
 msgstr ""
 
 #: tfmoptions.caption
