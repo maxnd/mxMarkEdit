@@ -8,6 +8,8 @@ mxMarkEdit is a free software for Mac for writing texts and todo items in [Markd
 
 The software runs in English or Italian. In the “app” directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the “Application” directory and run. *The app is signed by the author*, but nor notarized.
 
+To run the app on macOS Sequoia, follow the Apple guidelines in https://support.apple.com/en-us/102445.
+
 The software looks like this, with one possible color setting:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot1.png)
