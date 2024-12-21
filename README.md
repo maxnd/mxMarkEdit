@@ -33,8 +33,8 @@ Other Markdown markers are not hidden, but are printed in a different color defi
 
 * lines of code, printed in monospace font (\`\`\`);
 * inline footnotes, contained between `^[` and `]`);
-* links to websites or files, like [my web site](www.mywebsite.com)
-* links to pictures, like ![my picture](img.jpg).
+* links to websites or files, like `[my web site](www.mywebsite.com)`;
+* links to pictures, like `![my picture](img.jpg)`.
 
 The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned. Pandoc should instead manage them properly.
 
