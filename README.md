@@ -81,7 +81,7 @@ There are also some shortcuts beyond the ones related to the menu items:
 
 * `Meta` + `Opt` + `1-6`: select one of the six filter options above the title and todo list.
 * `Meta` + `+` or `-`: change the size of the normal font.
-* `Meta` + `Ctrl` + `+` or `-`: change the size of the mono font, which is Menlo.
+* `Meta` + `Ctrl` + `+` or `-`: change the size of the mono font.
 * `Meta` + `Shift` + `Backspace`: delete the current line.
 * `Meta` + `D`: insert the current date.
 * `Meta` + `Shift` + `D`: insert the current date and time.
