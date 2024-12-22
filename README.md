@@ -16,7 +16,7 @@ To run the app on macOS Sequoia, follow the Apple guidelines in https://support.
 
 1. Open `System Settings`.
 2. Click `Privacy & Security`, scroll down, and click the `Open Anyway` button to confirm your intent to open the app.
-3. The warning prompt reappears and, if you're absolutely sure that you want to open the app anyway, you can click `Open`.
+3. The warning prompt reappears and you can click `Open`.
 
 ## Look of the app
 
