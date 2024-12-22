@@ -1,3 +1,5 @@
+<img align="left" src="https://github.com/maxnd/mxMarkEdit/blob/main/icon.png">
+
 # mxMarkEdit
 
 Version 1.0.7, published on December 21 2024.
