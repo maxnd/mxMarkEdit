@@ -111,8 +111,9 @@ There are also some shortcuts beyond the ones related to the menu items:
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalise the current word.
 
-## Further notes
+## Configuration files
 
-The software creates these two configuration files:
+The software creates these two configuration files that can be deleted to reset the configuration of the app:
+
 - `/Users/[username]/Library/Preferences/mxmarkedit`
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
