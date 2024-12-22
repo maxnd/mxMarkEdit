@@ -4,13 +4,21 @@ Version 1.0.7, published on December 21 2024.
 
 Copyright Massimo Nardello, Modena (Italy) 2024.
 
-mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), that must be installed in the system in use. The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html.
+mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), that must be installed in the system in use. The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
 
-The software runs in English or Italian. In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the `Application` directory and run. The app is signed by the author, but it’s not notarized.
+## Download and install
+
+In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the `Application` directory and run. The app is signed by the author, but it’s not notarized.  
 
 To download the app, click on this link: https://github.com/maxnd/mxMarkEdit/raw/main/app/mxMarkEdit.zip.
 
-To run the app on macOS Sequoia, follow the Apple guidelines in https://support.apple.com/en-us/102445.
+To run the app on macOS Sequoia, follow the Apple guidelines in https://support.apple.com/en-us/102445. Basically, after you've tried to open the app, follow these steps:
+
+1. Open `System Settings`.
+2. Click `Privacy & Security`, scroll down, and click the `Open Anyway` button to confirm your intent to open the app.
+3. The warning prompt reappears and, if you're absolutely sure that you want to open the app anyway, you can click `Open`.
+
+## Look of the app
 
 The software looks like this, with one possible color setting:
 
