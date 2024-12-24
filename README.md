@@ -1,6 +1,6 @@
 # mxMarkEdit
 
-Version 1.0.7, published on December 21 2024.
+Version 1.0.8, published on 24 December 2024.
 
 Copyright Massimo Nardello, Modena (Italy) 2024.
 
@@ -12,7 +12,7 @@ In the `app` directory of the source code there is an app compiled for Mac with 
 
 To download the app, click on this link: https://github.com/maxnd/mxMarkEdit/raw/main/app/mxMarkEdit.zip.
 
-To run the app on macOS Sequoia, follow the Apple guidelines in https://support.apple.com/en-us/102445. Basically, after you've tried to open the app, follow these steps:
+To run the app on macOS Sequoia, follow the Apple guidelines in https://support.apple.com/en-us/102445. Basically, after you’ve tried to open the app, follow these steps:
 
 1. Open `System Settings`.
 2. Click `Privacy & Security`, scroll down, and click the `Open Anyway` button to confirm your intent to open the app.
@@ -52,8 +52,7 @@ At the left of the text, there’s a list of the titles (starting with `#`) and 
 
 Above this list there is combo box in which it’s possible to select the level of the headings to be shown. The todo items and the heading under which the cursor is located are always shown.
 
-In the todo items, it’s possibile to add a deadline. The format of the date should be `year-month-day`, where month and day are always of two digits. The date must be followed by 3 separator characters before the title of the todo item. For instance: 
-`- [X] 2024-12-05 • Buy some food`. The shortcut `Meta + T` mentioned below insert automatically the todo marker and the deadline a week ahead in the proper format.
+In the todo items, it’s possibile to add a deadline. The format of the date should be `year-month-day`, where month and day are always of two digits. The date must be followed by 3 separator characters before the title of the todo item. For instance: `- [X] 2024-12-05 • Buy some food`. The shortcut `Meta + T` mentioned below insert automatically the todo marker and the deadline a week ahead in the proper format.
 
 When a paragraph starts with a list heading (`*`, `+`, `-` or a number followed by a dot and a space), the `Return` key creates a new paragraph with the same heading. The numbered lists are properly renumbered if necessary.
 
@@ -69,7 +68,7 @@ The `Edit - Insert link to file` allows to select a file and to insert its path 
 
 The `Edit - Find duplicate words` prints in red all the words of each paragraph, separated by dot and space or dot and `Return`, that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
 
-The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form to sort the data, which are initially sorted by deadline. The date of the expired items is printed in red.
+The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form to sort the data, which are initially sorted by deadline. The date of the expired items is printed in red. The box at the bottom allows to hide the todo items already done.
 
 The `Edit - Show current title or toto` put at the top of the left list the title or todo item the cursor is under to.
 	
@@ -81,7 +80,7 @@ The `Open another window` menu item opens another instance of the software if it
 
 The `Transparency` menu item activate or deactivate the transparency of the software interface.
 
-The `Tools - Options` menu item opens the options, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). See the Pandoc manual for more information.
+The `Tools - Options` menu item opens the options, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the delay in days for the new deadlines, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). See the Pandoc manual for more information.
 
 The other menu items are self-explaining.
 
@@ -98,7 +97,7 @@ There are also some shortcuts beyond the ones related to the menu items:
 * `Meta` + `B`: format the selected text in bold or the current word if no text is selected.
 * `Meta` + `I`: format the selected text in italics or the current word if no text is selected.
 * `Meta` + `G`: find the next recurrence of the text specified in the search form, even if it’s closed.
-* `Meta` + `T`: create a todo item with a deadline of a week, or set it as done or to be done.
+* `Meta` + `T`: create a todo item with a deadline whose delay in days is specified in the options (default is 7), or set it as done or to be done.
 * `Meta` + `Opt` + `T`: create a todo item without a deadline, or set it as done or to be done.
 * `Meta` + `Opt` + `Arrow up`: move up the current paragraph.
 * `Meta` + `Opt` + `Arrow down`: move down the current paragraph.

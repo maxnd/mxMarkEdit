@@ -35,10 +35,12 @@ type
   { TfmTasks }
 
   TfmTasks = class(TForm)
+    cbHide: TCheckBox;
     pnTasks: TPanel;
     sgTasks: TStringGrid;
     bnOK: TButton;
     procedure bnOKClick(Sender: TObject);
+    procedure cbHideClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -46,6 +48,7 @@ type
     procedure sgTasksDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
   private
+    procedure CreateList;
 
   public
 
@@ -54,6 +57,7 @@ type
 var
   fmTasks: TfmTasks;
   fs: TFormatSettings;
+  clProperRed: TColor = clRed;
 
 resourcestring
 
@@ -74,92 +78,31 @@ begin
   fs := DefaultFormatSettings;
   fs.DateSeparator := '-';
   fs.ShortDateFormat := 'yyyy/mm/dd';
+  if IsAppDark = True then
+  begin
+    clProperRed := $005662FF;
+    sgTasks.SelectedColor := $005E5E5E;
+  end
+  else
+  begin
+    clProperRed := clRed;
+    sgTasks.SelectedColor := $00EBEBEB;
+  end;
 end;
 
 procedure TfmTasks.FormActivate(Sender: TObject);
-var
-  i, iLength: Integer;
-  dtDeadline: TDate;
-  stDays: String;
 begin
-  sgTasks.RowCount := 1;
-  iLength := 0;
-  for i := 0 to fmMain.dbText.Lines.Count - 1 do
-  begin
-    if UTF8Copy(fmMain.dbText.Lines[i], 1, 6) = '- [ ] ' then
-    begin
-      sgTasks.RowCount := sgTasks.RowCount + 1;
-      sgTasks.Cells[0, sgTasks.RowCount - 1] := IntToStr(iLength);
-      if TryStrToDate(UTF8Copy(fmMain.dbText.Lines[i], 7, 10),
-        dtDeadline, fs) = True then
-      begin
-        stDays := FloatToStr(dtDeadline - Date);
-        if ((stDays = '1') or (stDays = '-1')) then
-        begin
-          stDays := stDays + ' ' + tsk001;
-        end
-        else
-        begin
-          stDays := stDays + ' ' + tsk002;
-        end;
-        sgTasks.Cells[2, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 7, 10) +
-          ' (' + stDays + ')';
-        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 20,
-          UTF8Length(fmMain.dbText.Lines[i]));
-      end
-      else
-      begin
-        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 7, UTF8Length(fmMain.dbText.Lines[i]));
-      end;
-      sgTasks.Cells[1, sgTasks.RowCount - 1] := '0';
-    end
-    else
-    if ((UTF8Copy(fmMain.dbText.Lines[i], 1, 6) = '- [X] ') or
-      (UTF8Copy(fmMain.dbText.Lines[i], 1, 6) = '- [x] ')) then
-    begin
-      sgTasks.RowCount := sgTasks.RowCount + 1;
-      sgTasks.Cells[0, sgTasks.RowCount - 1] := IntToStr(iLength);
-      if TryStrToDate(UTF8Copy(fmMain.dbText.Lines[i], 7, 10),
-        dtDeadline, fs) = True then
-      begin
-        stDays := FloatToStr(dtDeadline - Date);
-        if ((stDays = '1') or (stDays = '-1')) then
-        begin
-          stDays := stDays + ' ' + tsk001;
-        end
-        else
-        begin
-          stDays := stDays + ' ' + tsk002;
-        end;
-        sgTasks.Cells[2, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 7, 10) +
-          ' (' + stDays + ')';
-        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 20,
-          UTF8Length(fmMain.dbText.Lines[i]));
-      end
-      else
-      begin
-        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 7, UTF8Length(fmMain.dbText.Lines[i]));
-      end;
-      sgTasks.Cells[1, sgTasks.RowCount - 1] := '1';
-    end;
-    iLength := iLength + StrToNSString(fmMain.dbText.Lines[i], True).length + 1;
-  end;
-  if sgTasks.RowCount > 1 then
-  begin
-    sgTasks.SortColRow(True, 2);
-    sgTasks.Row := 1;
-  end;
+  CreateList;
 end;
 
 procedure TfmTasks.bnOKClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfmTasks.cbHideClick(Sender: TObject);
+begin
+  CreateList;
 end;
 
 procedure TfmTasks.FormKeyDown(Sender: TObject; var Key: Word;
@@ -238,7 +181,7 @@ begin
     begin
       if ((myDate <= Date) and (sgTasks.Cells[1, aRow] = '0')) then
       begin
-        sgTasks.Canvas.Font.Color := clRed;
+        sgTasks.Canvas.Font.Color := clProperRed;
       end
       else
       begin
@@ -247,6 +190,88 @@ begin
       sgTasks.Canvas.TextOut(aRect.Left + 3, aRect.Top + 5,
         sgTasks.Cells[aCol, aRow]);
     end;
+  end;
+end;
+
+procedure TfmTasks.CreateList;
+var
+  i, iLength: Integer;
+  dtDeadline: TDate;
+  stDays: String;
+begin
+  sgTasks.RowCount := 1;
+  iLength := 0;
+  for i := 0 to fmMain.dbText.Lines.Count - 1 do
+  begin
+    if UTF8Copy(fmMain.dbText.Lines[i], 1, 6) = '- [ ] ' then
+    begin
+      sgTasks.RowCount := sgTasks.RowCount + 1;
+      sgTasks.Cells[0, sgTasks.RowCount - 1] := IntToStr(iLength);
+      if TryStrToDate(UTF8Copy(fmMain.dbText.Lines[i], 7, 10),
+        dtDeadline, fs) = True then
+      begin
+        stDays := FloatToStr(dtDeadline - Date);
+        if ((stDays = '1') or (stDays = '-1')) then
+        begin
+          stDays := stDays + ' ' + tsk001;
+        end
+        else
+        begin
+          stDays := stDays + ' ' + tsk002;
+        end;
+        sgTasks.Cells[2, sgTasks.RowCount - 1] :=
+          UTF8Copy(fmMain.dbText.Lines[i], 7, 10) +
+          ' (' + stDays + ')';
+        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+          UTF8Copy(fmMain.dbText.Lines[i], 20,
+          UTF8Length(fmMain.dbText.Lines[i]));
+      end
+      else
+      begin
+        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+          UTF8Copy(fmMain.dbText.Lines[i], 7, UTF8Length(fmMain.dbText.Lines[i]));
+      end;
+      sgTasks.Cells[1, sgTasks.RowCount - 1] := '0';
+    end
+    else
+    if (((UTF8Copy(fmMain.dbText.Lines[i], 1, 6) = '- [X] ') or
+      (UTF8Copy(fmMain.dbText.Lines[i], 1, 6) = '- [x] ')) and
+      (cbHide.Checked = False)) then
+    begin
+      sgTasks.RowCount := sgTasks.RowCount + 1;
+      sgTasks.Cells[0, sgTasks.RowCount - 1] := IntToStr(iLength);
+      if TryStrToDate(UTF8Copy(fmMain.dbText.Lines[i], 7, 10),
+        dtDeadline, fs) = True then
+      begin
+        stDays := FloatToStr(dtDeadline - Date);
+        if ((stDays = '1') or (stDays = '-1')) then
+        begin
+          stDays := stDays + ' ' + tsk001;
+        end
+        else
+        begin
+          stDays := stDays + ' ' + tsk002;
+        end;
+        sgTasks.Cells[2, sgTasks.RowCount - 1] :=
+          UTF8Copy(fmMain.dbText.Lines[i], 7, 10) +
+          ' (' + stDays + ')';
+        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+          UTF8Copy(fmMain.dbText.Lines[i], 20,
+          UTF8Length(fmMain.dbText.Lines[i]));
+      end
+      else
+      begin
+        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+          UTF8Copy(fmMain.dbText.Lines[i], 7, UTF8Length(fmMain.dbText.Lines[i]));
+      end;
+      sgTasks.Cells[1, sgTasks.RowCount - 1] := '1';
+    end;
+    iLength := iLength + StrToNSString(fmMain.dbText.Lines[i], True).length + 1;
+  end;
+  if sgTasks.RowCount > 1 then
+  begin
+    sgTasks.SortColRow(True, 2);
+    sgTasks.Row := 1;
   end;
 end;
 

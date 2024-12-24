@@ -29,7 +29,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, CocoaAll,
   CocoaTextEdits, CocoaUtils, Clipbrd, Menus, StdCtrls, Grids, ExtCtrls,
-  DefaultTranslator, translate, IniFiles, LazUTF8, LazUTF16, FileUtil,
+  DefaultTranslator, translate, IniFiles, LazUTF8, FileUtil,
   LazFileUtils, Unix, Types, DateUtils;
 
 type
@@ -176,6 +176,7 @@ var
   iFontMonoSize: smallint = 18;
   stFileName: string = '';
   iBookmarkPos: Integer = 0;
+  iDelay: Integer = 7;
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
   LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: Integer;
   TopIndexDatabase1, TopIndexDatabase2, TopIndexDatabase3, TopIndexDatabase4: Integer;
@@ -335,6 +336,7 @@ begin
         'todo', 'clTodo'));
       pnTitTodo.Width := MyIni.ReadInteger('mxmarkedit', 'titlewidth', 400);
       stFileName := MyIni.ReadString('mxmarkedit', 'filename', '');
+      iDelay := MyIni.ReadInteger('mxmarkedit', 'delay', 7);
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
         '+footnotes+inline_notes');
       pandocTemplate := MyIni.ReadString('mxmarkedit', 'pantemplate',
@@ -620,6 +622,7 @@ begin
     MyIni.WriteString('mxmarkedit', 'todo', ColorToString(clTodo));
     MyIni.WriteInteger('mxmarkedit', 'titlewidth', pnTitTodo.Width);
     MyIni.WriteString('mxmarkedit', 'filename', stFileName);
+    MyIni.WriteInteger('mxmarkedit', 'delay', iDelay);
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
     MyIni.WriteString('mxmarkedit', 'panoutputput', pandocOutput);
     MyIni.WriteString('mxmarkedit', 'panpath', pandocPath);
@@ -963,7 +966,8 @@ begin
         myDate := Date;
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).
           insertText_replacementRange(NSStringUtf8('- [ ] ' +
-          FormatDateTime('yyyy-mm-dd', IncWeek(myDate, 1)) + ' • '), rngStart);
+          FormatDateTime('yyyy-mm-dd', IncDay(myDate,
+          StrToInt(fmOptions.cbDelay.Text))) + ' • '), rngStart);
       end;
     end;
     key := 0;
@@ -1796,7 +1800,7 @@ end;
 
 procedure TfmMain.FormatListTitleTodo;
 var
-  i, iLen, iPos, iTopRow, iLevel: integer;
+  i, iLen, iPos, iTopRow, iLevel, iIndent, iTab: integer;
   blHeading, blPosInHeading, blBoldItalics, blItalics, blBold, blMono,
   blQuote, blStartLinesQuote, blFootnote, blLink: boolean;
   iStartHeading, iStartBoldItalics, iStartItalics, iStartBold,
@@ -1807,6 +1811,9 @@ var
   fd: NSFontDescriptor;
   myFont, quoteFont, monoFont, miniFont: NSFont;
   rng: NSRange;
+  par: NSMutableParagraphStyle;
+  tabs: NSMutableArray;
+  tab: NSTextTab;
 begin
   if ((dbText.Text = '') or ((blDisableFormatting = True) and
     (pnTitTodo.Visible = False))) then
@@ -1838,6 +1845,21 @@ begin
   iLen := Length(stText);
   rng.location := 0;
   rng.length := iLen;
+  tabs := NSMutableArray.alloc.init;
+  iIndent := dbText.Font.Size * 5 - dbText.Font.Size div 3;
+  for iTab := 1 to 30 do
+  begin
+    tab := NSTextTab.alloc.initWithType_location(NSLeftTabStopType,
+      iTab * iIndent);
+    Tabs.addObject(tab);
+    tab.Release;
+  end;
+  par := GetWritePara(TCocoaTextView(
+    NSScrollView(dbText.Handle).documentView).textStorage, 1);
+  par.setTabStops(tabs);
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    textStorage.addAttribute_value_range(NSParagraphStyleAttributeName,
+    par, rng);
   if blDisableFormatting = False then
   begin
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).

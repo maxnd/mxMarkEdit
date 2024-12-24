@@ -19,5 +19,9 @@
 {"hash":12725813,"name":"tfmoptions.lnstfontsmono.caption","sourcebytes":[67,111,100,101,32,102,111,110,116,32,110,97,109,101],"value":"Code font name"},
 {"hash":16978194,"name":"tfmoptions.bnstfontfootcolor.caption","sourcebytes":[70,111,111,116,110,111,116,101,32,99,111,108,111,114],"value":"Footnote color"},
 {"hash":23984338,"name":"tfmoptions.bnstfonttodocolor.caption","sourcebytes":[84,111,100,111,32,99,111,108,111,114],"value":"Todo color"},
+{"hash":60415,"name":"tfmoptions.lbexistmodel.caption","sourcebytes":[226,151,143],"value":"\u25CF"},
+{"hash":60415,"name":"tfmoptions.lbexistexe.caption","sourcebytes":[226,151,143],"value":"\u25CF"},
+{"hash":55,"name":"tfmoptions.cbdelay.text","sourcebytes":[55],"value":"7"},
+{"hash":54714435,"name":"tfmoptions.lnstdelay.caption","sourcebytes":[68,101,108,97,121,32,105,110,32,100,97,121,115,32,102,111,114,32,116,104,101,32,110,101,119,32,100,101,97,100,108,105,110,101,115],"value":"Delay in days for the new deadlines"},
 {"hash":256115346,"name":"tfmoptions.cdcolordialog.title","sourcebytes":[83,101,108,101,99,116,32,97,32,99,111,108,111,114],"value":"Select a color"}
 ]}

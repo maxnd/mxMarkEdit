@@ -1299,7 +1299,7 @@ object fmMain: TfmMain
       end
       object miEditTasks: TMenuItem
         Caption = 'Show todo form'
-        ShortCut = 45132
+        ShortCut = 36940
         OnClick = miEditTasksClick
       end
       object Sep3: TMenuItem

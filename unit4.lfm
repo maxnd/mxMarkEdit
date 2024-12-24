@@ -79,13 +79,22 @@ object fmTasks: TfmTasks
     object bnOK: TButton
       Left = 912
       Height = 32
-      Top = -5
+      Top = -3
       Width = 75
       Anchors = [akRight, akBottom]
       Caption = 'Close'
       TabOrder = 0
       TabStop = False
       OnClick = bnOKClick
+    end
+    object cbHide: TCheckBox
+      Left = 14
+      Height = 18
+      Top = 3
+      Width = 118
+      Caption = 'Hide done items'
+      TabOrder = 1
+      OnClick = cbHideClick
     end
   end
 end

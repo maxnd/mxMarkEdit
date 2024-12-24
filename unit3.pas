@@ -28,7 +28,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
-  ExtCtrls, Menus, LazUTF8, CocoaAll, CocoaUtils, translate;
+  ExtCtrls, Menus, LazUTF8, CocoaAll, CocoaUtils, translate, LazFileUtils;
 
 type
 
@@ -45,17 +45,21 @@ type
     bnStFontTitle2ColorMod: TButton;
     bnStFontTodoColor: TButton;
     cbStFontsMono: TComboBox;
+    cbDelay: TComboBox;
     edPanOptions: TEdit;
     edPanTemplate: TEdit;
     edPanOutput: TEdit;
     edPanPath: TEdit;
     cbStFonts: TComboBox;
     cdColorDialog: TColorDialog;
+    lbExistModel: TLabel;
+    lbExistExe: TLabel;
     lbPanOptions: TLabel;
     lbPanTemplate: TLabel;
     lbPanOutput: TLabel;
     lbPanPath: TLabel;
     lnStFonts: TLabel;
+    lnStDelay: TLabel;
     lnStFontsMono: TLabel;
     procedure bnCloseClick(Sender: TObject);
     procedure bnStFontCodeColorModClick(Sender: TObject);
@@ -66,8 +70,11 @@ type
     procedure bnStFontTitle2ColorModClick(Sender: TObject);
     procedure bnStFontTitle1ColorModClick(Sender: TObject);
     procedure bnStFontTodoColorClick(Sender: TObject);
+    procedure cbDelayChange(Sender: TObject);
     procedure cbStFontsChange(Sender: TObject);
     procedure cbStFontsMonoChange(Sender: TObject);
+    procedure edPanPathChange(Sender: TObject);
+    procedure edPanTemplateChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -118,6 +125,7 @@ begin
   cbStFontsMono.Items := cbStFonts.Items;
   cbStFonts.ItemIndex := 0;
   cbStFontsMono.ItemIndex := 0;
+  cbDelay.ItemIndex := iDelay;
 end;
 
 procedure TfmOptions.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -137,6 +145,22 @@ begin
   edPanTemplate.Text := pandocTemplate;
   edPanOutput.Text := pandocOutput;
   edPanPath.Text := pandocPath;
+  if FileExistsUTF8(edPanPath.Text + 'pandoc') then
+  begin
+    lbExistExe.Font.Color := clGreen;
+  end
+  else
+  begin
+    lbExistExe.Font.Color := clRed;
+  end;
+  if FileExistsUTF8(edPanTemplate.Text) then
+  begin
+    lbExistModel.Font.Color := clGreen;
+  end
+  else
+  begin
+    lbExistModel.Font.Color := clRed;
+  end;
 end;
 
 procedure TfmOptions.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -157,6 +181,30 @@ procedure TfmOptions.cbStFontsMonoChange(Sender: TObject);
 begin
   stFontMono := cbStFontsMono.Text;
   fmMain.FormatListTitleTodo;
+end;
+
+procedure TfmOptions.edPanPathChange(Sender: TObject);
+begin
+  if FileExistsUTF8(edPanPath.Text + 'pandoc') then
+  begin
+    lbExistExe.Font.Color := clGreen;
+  end
+  else
+  begin
+    lbExistExe.Font.Color := clRed;
+  end;
+end;
+
+procedure TfmOptions.edPanTemplateChange(Sender: TObject);
+begin
+  if FileExistsUTF8(edPanTemplate.Text) then
+  begin
+    lbExistModel.Font.Color := clGreen;
+  end
+  else
+  begin
+    lbExistModel.Font.Color := clRed;
+  end;
 end;
 
 procedure TfmOptions.FormActivate(Sender: TObject);
@@ -222,6 +270,11 @@ begin
     clTodo := cdColorDialog.Color;
     fmMain.FormatListTitleTodo;
   end;
+end;
+
+procedure TfmOptions.cbDelayChange(Sender: TObject);
+begin
+  iDelay := cbDelay.ItemIndex;
 end;
 
 procedure TfmOptions.bnStFontTitle2ColorModClick(Sender: TObject);
