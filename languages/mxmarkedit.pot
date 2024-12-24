@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.7"
+msgid "1.0.8"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -232,6 +232,10 @@ msgctxt "tfmoptions.caption"
 msgid "Options"
 msgstr ""
 
+#: tfmoptions.cbdelay.text
+msgid "7"
+msgstr ""
+
 #: tfmoptions.cdcolordialog.title
 msgid "Select a color"
 msgstr ""
@@ -252,6 +256,16 @@ msgstr ""
 msgid "word-template.docx"
 msgstr ""
 
+#: tfmoptions.lbexistexe.caption
+msgctxt "tfmoptions.lbexistexe.caption"
+msgid "●"
+msgstr ""
+
+#: tfmoptions.lbexistmodel.caption
+msgctxt "tfmoptions.lbexistmodel.caption"
+msgid "●"
+msgstr ""
+
 #: tfmoptions.lbpanoptions.caption
 msgid "Options of Pandoc"
 msgstr ""
@@ -266,6 +280,10 @@ msgstr ""
 
 #: tfmoptions.lbpantemplate.caption
 msgid "Template"
+msgstr ""
+
+#: tfmoptions.lnstdelay.caption
+msgid "Delay in days for the new deadlines"
 msgstr ""
 
 #: tfmoptions.lnstfonts.caption
@@ -312,6 +330,10 @@ msgstr ""
 
 #: tfmtasks.caption
 msgid "Todo form"
+msgstr ""
+
+#: tfmtasks.cbhide.caption
+msgid "Hide done items"
 msgstr ""
 
 #: tfmtasks.sgtasks.columns[0].title.caption

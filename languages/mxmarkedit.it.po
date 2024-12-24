@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.7"
+msgid "1.0.8"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -231,6 +231,10 @@ msgctxt "tfmoptions.caption"
 msgid "Options"
 msgstr "Opzioni"
 
+#: tfmoptions.cbdelay.text
+msgid "7"
+msgstr ""
+
 #: tfmoptions.cdcolordialog.title
 msgid "Select a color"
 msgstr "Selezionare un colore"
@@ -251,6 +255,16 @@ msgstr ""
 msgid "word-template.docx"
 msgstr ""
 
+#: tfmoptions.lbexistexe.caption
+msgctxt "tfmoptions.lbexistexe.caption"
+msgid "●"
+msgstr ""
+
+#: tfmoptions.lbexistmodel.caption
+msgctxt "tfmoptions.lbexistmodel.caption"
+msgid "●"
+msgstr ""
+
 #: tfmoptions.lbpanoptions.caption
 msgid "Options of Pandoc"
 msgstr "Opzioni di Pandoc"
@@ -266,6 +280,10 @@ msgstr "Percorso di Pandoc"
 #: tfmoptions.lbpantemplate.caption
 msgid "Template"
 msgstr "Modello"
+
+#: tfmoptions.lnstdelay.caption
+msgid "Delay in days for the new deadlines"
+msgstr "Ritardo in giorni per le nuove scadenze"
 
 #: tfmoptions.lnstfonts.caption
 msgid "Font name"
@@ -312,6 +330,10 @@ msgstr "Chiudi"
 #: tfmtasks.caption
 msgid "Todo form"
 msgstr "Maschera attività"
+
+#: tfmtasks.cbhide.caption
+msgid "Hide done items"
+msgstr "Nascondi attività svolte"
 
 #: tfmtasks.sgtasks.columns[0].title.caption
 msgid "Row"
