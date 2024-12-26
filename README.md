@@ -28,7 +28,7 @@ This is the form that summarises the todo items typed in the document:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot2.png)
 
-This is the form od the options of the app:
+This is the form of the options of the app:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot3.png)
 
