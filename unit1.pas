@@ -177,10 +177,12 @@ var
   stFileName: string = '';
   iBookmarkPos: Integer = 0;
   iDelay: Integer = 7;
+  iLineSpacing: Double = 1.0;
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
   LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: Integer;
   TopIndexDatabase1, TopIndexDatabase2, TopIndexDatabase3, TopIndexDatabase4: Integer;
   blFileSaved: boolean = True;
+  blFileMod: boolean = False;
   blDisableFormatting: boolean = False;
   pandocPath: string = '/usr/local/bin/';
   pandocOptions: string = '+footnotes+inline_notes';
@@ -337,6 +339,7 @@ begin
       pnTitTodo.Width := MyIni.ReadInteger('mxmarkedit', 'titlewidth', 400);
       stFileName := MyIni.ReadString('mxmarkedit', 'filename', '');
       iDelay := MyIni.ReadInteger('mxmarkedit', 'delay', 7);
+      iLineSpacing := MyIni.ReadFloat('mxmarkedit', 'linespacing', 1.0);
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
         '+footnotes+inline_notes');
       pandocTemplate := MyIni.ReadString('mxmarkedit', 'pantemplate',
@@ -440,6 +443,7 @@ begin
         checkTextInDocument(nil);
       UpdateLastFile;
       ShowCurrentTitleTodo;
+      blFileMod := False;
     except
       MessageDlg(msg004, mtWarning, [mbOK], 0);
     end;
@@ -458,6 +462,7 @@ begin
         checkTextInDocument(nil);
       UpdateLastFile;
       ShowCurrentTitleTodo;
+      blFileMod := False;
     except
       MessageDlg(msg006, mtWarning, [mbOK], 0);
     end
@@ -482,6 +487,7 @@ begin
       checkTextInDocument(nil);
     UpdateLastFile;
     ShowCurrentTitleTodo;
+    blFileMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
@@ -623,6 +629,7 @@ begin
     MyIni.WriteInteger('mxmarkedit', 'titlewidth', pnTitTodo.Width);
     MyIni.WriteString('mxmarkedit', 'filename', stFileName);
     MyIni.WriteInteger('mxmarkedit', 'delay', iDelay);
+    MyIni.WriteFloat('mxmarkedit', 'linespacing', iLineSpacing);
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
     MyIni.WriteString('mxmarkedit', 'panoutputput', pandocOutput);
     MyIni.WriteString('mxmarkedit', 'panpath', pandocPath);
@@ -661,6 +668,7 @@ begin
   FormatListTitleTodo;
   LabelFileNameChars;
   blFileSaved := False;
+  blFileMod := True;
 end;
 
 procedure TfmMain.cbFilterChange(Sender: TObject);
@@ -1357,6 +1365,7 @@ begin
       checkTextInDocument(nil);
     UpdateLastFile;
     ShowCurrentTitleTodo;
+    blFileMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
@@ -1425,6 +1434,7 @@ begin
       checkTextInDocument(nil);
     UpdateLastFile;
     ShowCurrentTitleTodo;
+    blFileMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
@@ -1451,6 +1461,7 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
     UpdateLastFile;
+    blFileMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
@@ -1477,6 +1488,7 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
     UpdateLastFile;
+    blFileMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
@@ -1503,6 +1515,7 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
     UpdateLastFile;
+    blFileMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
@@ -1563,6 +1576,7 @@ var
   iLen, i, iSelStart: Integer;
   slList1, slList2: TStringList;
   stWord: NSAttributedString;
+  blPeriod: boolean = False;
 begin
   if dbText.SelLength = 0 then
   begin
@@ -1606,11 +1620,21 @@ begin
         selectWord(nil);
       rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
         documentView).selectedRange;
-      if ((UTF8Copy(dbText.Text, rng.location, 2) = '. ') or
-        (UTF8Copy(dbText.Text, rng.location, 2) = '.' + LineEnding)) then
+      if ((UTF8Copy(dbText.Text, rng.location + 1, 2) = '. ') or
+        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '.' + LineEnding) or
+        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '! ') or
+        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '!' + LineEnding) or
+        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '? ') or
+        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '?' + LineEnding) or
+        // Sometimes the rng.location + 1 must be rng.location
+        (UTF8Copy(dbText.Text, rng.location, 2) = '. ') or
+        (UTF8Copy(dbText.Text, rng.location, 2) = '.' + LineEnding) or
+        (UTF8Copy(dbText.Text, rng.location, 2) = '! ') or
+        (UTF8Copy(dbText.Text, rng.location, 2) = '!' + LineEnding) or
+        (UTF8Copy(dbText.Text, rng.location, 2) = '? ') or
+        (UTF8Copy(dbText.Text, rng.location, 2) = '?' + LineEnding)) then
       begin
-        slList1.Text := slList2.Text;
-        slList2.Clear;
+        blPeriod := True;
       end;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         moveBackward(nil);
@@ -1627,6 +1651,12 @@ begin
       begin
         TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
           setTextColor_range(ColorToNSColor(clRepetition), rng);
+      end;
+      if blPeriod = True then
+      begin
+        slList1.Text := slList2.Text;
+        slList2.Clear;
+        blPeriod := False;
       end;
       Inc(i);
       if i > 3000 then
@@ -1856,6 +1886,7 @@ begin
   end;
   par := GetWritePara(TCocoaTextView(
     NSScrollView(dbText.Handle).documentView).textStorage, 1);
+  par.setLineHeightMultiple(iLineSpacing);
   par.setTabStops(tabs);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     textStorage.addAttribute_value_range(NSParagraphStyleAttributeName,
@@ -2679,7 +2710,7 @@ end;
 
 procedure TfmMain.CreateBackup;
 begin
-  if stFileName <> '' then
+  if ((blFileMod = True) and (stFileName <> '')) then
   begin
     if FileExistsUTF8(stFileName) = True then
     try

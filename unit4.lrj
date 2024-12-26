@@ -5,5 +5,6 @@
 {"hash":192621797,"name":"tfmtasks.sgtasks.columns[2].title.caption","sourcebytes":[68,101,97,100,108,105,110,101],"value":"Deadline"},
 {"hash":5966629,"name":"tfmtasks.sgtasks.columns[3].title.caption","sourcebytes":[84,105,116,108,101],"value":"Title"},
 {"hash":4863637,"name":"tfmtasks.bnok.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
-{"hash":220616947,"name":"tfmtasks.cbhide.caption","sourcebytes":[72,105,100,101,32,100,111,110,101,32,105,116,101,109,115],"value":"Hide done items"}
+{"hash":220616947,"name":"tfmtasks.cbhide.caption","sourcebytes":[72,105,100,101,32,100,111,110,101,32,105,116,101,109,115],"value":"Hide done items"},
+{"hash":304761,"name":"tfmtasks.bncopy.caption","sourcebytes":[67,111,112,121],"value":"Copy"}
 ]}

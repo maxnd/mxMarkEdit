@@ -46,6 +46,7 @@ type
     bnStFontTodoColor: TButton;
     cbStFontsMono: TComboBox;
     cbDelay: TComboBox;
+    cbLineSpacing: TComboBox;
     edPanOptions: TEdit;
     edPanTemplate: TEdit;
     edPanOutput: TEdit;
@@ -58,6 +59,7 @@ type
     lbPanTemplate: TLabel;
     lbPanOutput: TLabel;
     lbPanPath: TLabel;
+    lnStLineSpace: TLabel;
     lnStFonts: TLabel;
     lnStDelay: TLabel;
     lnStFontsMono: TLabel;
@@ -71,6 +73,7 @@ type
     procedure bnStFontTitle1ColorModClick(Sender: TObject);
     procedure bnStFontTodoColorClick(Sender: TObject);
     procedure cbDelayChange(Sender: TObject);
+    procedure cbLineSpacingChange(Sender: TObject);
     procedure cbStFontsChange(Sender: TObject);
     procedure cbStFontsMonoChange(Sender: TObject);
     procedure edPanPathChange(Sender: TObject);
@@ -138,9 +141,15 @@ begin
 end;
 
 procedure TfmOptions.FormShow(Sender: TObject);
+var
+  stLineSpacing: String;
 begin
   cbStFonts.ItemIndex := cbStFonts.Items.IndexOf(fmMain.dbText.Font.Name);
   cbStFontsMono.ItemIndex := cbStFontsMono.Items.IndexOf(stFontMono);
+  stLineSpacing := FormatFloat('0.0', iLineSpacing);
+  stLineSpacing := stLineSpacing[1] + '.' + stLineSpacing[3];
+  cbLineSpacing.ItemIndex := cbLineSpacing.Items.
+    IndexOf(stLineSpacing);
   edPanOptions.Text := pandocOptions;
   edPanTemplate.Text := pandocTemplate;
   edPanOutput.Text := pandocOutput;
@@ -275,6 +284,26 @@ end;
 procedure TfmOptions.cbDelayChange(Sender: TObject);
 begin
   iDelay := cbDelay.ItemIndex;
+end;
+
+procedure TfmOptions.cbLineSpacingChange(Sender: TObject);
+begin
+  case cbLineSpacing.ItemIndex of
+    0: iLineSpacing := 0.8;
+    1: iLineSpacing := 0.9;
+    2: iLineSpacing := 1.0;
+    3: iLineSpacing := 1.1;
+    4: iLineSpacing := 1.2;
+    5: iLineSpacing := 1.3;
+    6: iLineSpacing := 1.4;
+    7: iLineSpacing := 1.5;
+    8: iLineSpacing := 1.6;
+    9: iLineSpacing := 1.7;
+    10: iLineSpacing := 1.8;
+    11: iLineSpacing := 1.9;
+    12: iLineSpacing := 2.0;
+  end;
+  fmMain.FormatListTitleTodo;
 end;
 
 procedure TfmOptions.bnStFontTitle2ColorModClick(Sender: TObject);

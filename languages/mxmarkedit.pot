@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.8"
+msgid "1.0.9"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -68,6 +68,7 @@ msgid "Edit"
 msgstr ""
 
 #: tfmmain.mieditcopy.caption
+msgctxt "tfmmain.mieditcopy.caption"
 msgid "Copy"
 msgstr ""
 
@@ -236,6 +237,11 @@ msgstr ""
 msgid "7"
 msgstr ""
 
+#: tfmoptions.cblinespacing.text
+msgctxt "tfmoptions.cblinespacing.text"
+msgid "1.0"
+msgstr ""
+
 #: tfmoptions.cdcolordialog.title
 msgid "Select a color"
 msgstr ""
@@ -283,7 +289,7 @@ msgid "Template"
 msgstr ""
 
 #: tfmoptions.lnstdelay.caption
-msgid "Delay in days for the new deadlines"
+msgid "Delay in days for the deadlines"
 msgstr ""
 
 #: tfmoptions.lnstfonts.caption
@@ -292,6 +298,10 @@ msgstr ""
 
 #: tfmoptions.lnstfontsmono.caption
 msgid "Code font name"
+msgstr ""
+
+#: tfmoptions.lnstlinespace.caption
+msgid "Line spacing"
 msgstr ""
 
 #: tfmsearch.bnfirst.caption
@@ -321,6 +331,11 @@ msgstr ""
 
 #: tfmsearch.lbreplace.caption
 msgid "Replace with"
+msgstr ""
+
+#: tfmtasks.bncopy.caption
+msgctxt "tfmtasks.bncopy.caption"
+msgid "Copy"
 msgstr ""
 
 #: tfmtasks.bnok.caption

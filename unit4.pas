@@ -28,17 +28,20 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Grids, ExtCtrls,
-  StdCtrls, LazUTF8, translate, Types, CocoaAll, CocoaTextEdits, CocoaUtils;
+  StdCtrls, LazUTF8, translate, Types, CocoaAll, CocoaTextEdits, CocoaUtils,
+  Clipbrd;
 
 type
 
   { TfmTasks }
 
   TfmTasks = class(TForm)
+    bnCopy: TButton;
     cbHide: TCheckBox;
     pnTasks: TPanel;
     sgTasks: TStringGrid;
     bnOK: TButton;
+    procedure bnCopyClick(Sender: TObject);
     procedure bnOKClick(Sender: TObject);
     procedure cbHideClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -98,6 +101,34 @@ end;
 procedure TfmTasks.bnOKClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfmTasks.bnCopyClick(Sender: TObject);
+var
+  stClip: String = '';
+  i: Integer;
+begin
+  if sgTasks.RowCount > 1 then
+  begin
+    for i := 1 to sgTasks.RowCount - 1 do
+    begin
+      if sgTasks.Cells[1, i] = '1' then
+      begin
+        stClip := stClip + '●'#9;
+      end
+      else
+      begin
+        stClip := stClip + '○'#9;
+      end;
+      if sgTasks.Cells[2, i] <> '' then
+      begin
+        stClip := stClip + UTF8Copy(sgTasks.Cells[2, i], 1, 10) + #9 +
+          UTF8Copy(sgTasks.Cells[2, i], 12, UTF8Length(sgTasks.Cells[2, i])) + #9;
+      end;
+      stClip := stClip + sgTasks.Cells[3, i] + LineEnding;
+    end;
+  end;
+  Clipboard.AsText := stClip;
 end;
 
 procedure TfmTasks.cbHideClick(Sender: TObject);

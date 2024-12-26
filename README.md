@@ -1,6 +1,6 @@
 # mxMarkEdit
 
-Version 1.0.8, published on 24 December 2024.
+Version 1.0.9, published on 26 December 2024.
 
 Copyright Massimo Nardello, Modena (Italy) 2024.
 
@@ -28,6 +28,10 @@ This is the form that summarises the todo items typed in the document:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot2.png)
 
+This is the form od the options of the app:
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot3.png)
+
 ## Main features
 
 The main features of mxMarkEdit are the followings.
@@ -36,12 +40,12 @@ Some Markdown markers are hidden, as the text that follows them or is contained 
 
 * headers (beginning with `#`, `##`, `###`, `####`, `#####` and `######`);
 * italics (`*` or `_`), bold (`**` or `__`) and bold italics (`***` or `___`);
-* code, printed in monospace font (`);
-* citations, which start with the character `>` followed by a space, that are printed with a smaller font size.
+* code, shown in monospace font (`);
+* citations, which start with the character `>` followed by a space, that are shown with a smaller font size.
 
-Other Markdown markers are not hidden, but are printed in a different color defined by the user:
+Other Markdown markers are not hidden, but are shown in a different color defined by the user:
 
-* lines of code, printed in monospace font (\`\`\`);
+* lines of code, shown in monospace font (\`\`\`);
 * inline footnotes, contained between `^[` and `]`);
 * links to websites or files, like `[my web site](www.mywebsite.com)`;
 * links to pictures, like `![my picture](img.jpg)`.
@@ -66,12 +70,12 @@ The `Edit - Find` menu item allows to find the first occurrence – with the app
 
 The `Edit - Insert link to file` allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link.
 
-The `Edit - Find duplicate words` prints in red all the words of each paragraph, separated by dot and space or dot and `Return`, that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
+The `Edit - Find duplicate words` shows in red all the words of each paragraph, separated by dot and space or dot and `Return`, that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
 
-The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form to sort the data, which are initially sorted by deadline. The date of the expired items is printed in red. The box at the bottom allows to hide the todo items already done.
+The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form to sort the data, which are initially sorted by deadline. The date of the expired items is shown in red. The box at the bottom allows to hide the todo items already done. The button `Copy` copies into the clipboard the content of the form. The values are separated by tab, so that they may be pasted in the columns of a spreadsheet.
 
 The `Edit - Show current title or toto` put at the top of the left list the title or todo item the cursor is under to.
-	
+
 The `Edit - Disable formatting` menu item prevents the formatting of the text, improving the performance of the app with large documents.
 
 The `Convert with Pandoc` menu item converts the current note into another format specified in the options of the software. The converted file is created in the same folder of the note.
@@ -80,7 +84,7 @@ The `Open another window` menu item opens another instance of the software if it
 
 The `Transparency` menu item activate or deactivate the transparency of the software interface.
 
-The `Tools - Options` menu item opens the options, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the delay in days for the new deadlines, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). See the Pandoc manual for more information.
+The `Tools - Options` menu item opens the options, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the line spacing value (1.0 is the default), the delay in days for the new deadlines, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). See the Pandoc manual for more information.
 
 The other menu items are self-explaining.
 
@@ -105,7 +109,7 @@ There are also some shortcuts beyond the ones related to the menu items:
 * `Meta` + `Ctrl` + `Arrow down`: select the next heading.
 * `Meta` + `Shift` + `J`: set the current position of the cursor in the bookmark.
 * `Meta` + `J`: move the cursor to the position already set in the bookmark.
-* `Meta` + `E`: prints the following paragraph with a green background, skipping the empty lines and the headings; this is useful to use mxMarkEdit for presentations.
+* `Meta` + `E`: shows the following paragraph with a green background, skipping the empty lines and the headings; this is useful to use mxMarkEdit for presentations.
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalise the current word.
