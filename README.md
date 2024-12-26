@@ -8,7 +8,7 @@ mxMarkEdit is a free software for Mac for writing texts and todo items in [Markd
 
 ## Download and install
 
-In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the `Application` directory and run. The app is signed by the author, but it’s not notarized.  
+In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the `Application` directory and run. The app is signed by the author, but it’s not notarized.
 
 To download the app, click on this link: https://github.com/maxnd/mxMarkEdit/raw/main/app/mxMarkEdit.zip.
 
@@ -24,11 +24,11 @@ The software looks like this, with one possible color setting:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot1.png)
 
-This is the form that summarises the todo items typed in the document:
+The form that summarises the todo items typed in the document looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot2.png)
 
-This is the form of the options of the app:
+The form of the options of the app looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot3.png)
 
@@ -52,39 +52,39 @@ Other Markdown markers are not hidden, but are shown in a different color define
 
 The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned. Pandoc should instead manage them properly.
 
-At the left of the text, there’s a list of the titles (starting with `#`) and todo items (starting with `– [ ]`  or `– [X]`). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. Moving the cursor in the text, the corresponding title or todo item is highlighted.
+At the left of the text, there’s a list of the titles (starting with `#`) and todo items (starting with `– [ ]`  or `– [X]`). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. While moving the cursor in the text, the corresponding title or todo item is highlighted.
 
 Above this list there is combo box in which it’s possible to select the level of the headings to be shown. The todo items and the heading under which the cursor is located are always shown.
 
-In the todo items, it’s possibile to add a deadline. The format of the date should be `year-month-day`, where month and day are always of two digits. The date must be followed by 3 separator characters before the title of the todo item. For instance: `- [X] 2024-12-05 • Buy some food`. The shortcut `Meta + T` mentioned below insert automatically the todo marker and the deadline a week ahead in the proper format.
+In the todo items, it’s possibile to add a deadline. The format of the date should be `year-month-day`, where month and day are always of two digits. The date must be followed by 3 separator characters before the title of the todo item. For instance: `- [X] 2024-12-05 • Buy some food`. The shortcut `Meta + T` mentioned below insert automatically the todo marker and the deadline in the proper format with a delay in days that is specified by the user in the options of the app.
 
 When a paragraph starts with a list heading (`*`, `+`, `-` or a number followed by a dot and a space), the `Return` key creates a new paragraph with the same heading. The numbered lists are properly renumbered if necessary.
 
-When a file is closed, a backup copy is created.
+When a file that has been modified is closed, a backup copy is created.
 
 ## Menu items 
 
 The last four opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing.
 
-The `Edit - Find` menu item allows to find the first occurrence – with the appropriate button or by pressing `Return` - or the following occurrences – with the appropriate button or by pressing `Command + Return` – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the `\n` code replaces the paragraph breaks, while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with field`.
+The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the `\n` code replaces the paragraph breaks, while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field.
 
 The `Edit - Insert link to file` allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link.
 
-The `Edit - Find duplicate words` shows in red all the words of each paragraph, separated by dot and space or dot and `Return`, that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
+The `Edit - Find duplicate words` shows in red all the words of each paragraph, separated by `.`, `?` or `!` followed by space or `Return`, that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
 
-The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form to sort the data, which are initially sorted by deadline. The date of the expired items is shown in red. The box at the bottom allows to hide the todo items already done. The button `Copy` copies into the clipboard the content of the form. The values are separated by tab, so that they may be pasted in the columns of a spreadsheet.
+The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the columns of a spreadsheet.
 
-The `Edit - Show current title or toto` put at the top of the left list the title or todo item the cursor is under to.
+The `Edit - Show current title or toto` shows at the top of the left list the title or todo item the cursor is under to.
 
 The `Edit - Disable formatting` menu item prevents the formatting of the text, improving the performance of the app with large documents.
 
-The `Convert with Pandoc` menu item converts the current note into another format specified in the options of the software. The converted file is created in the same folder of the note.
+The `Convert with Pandoc` menu item converts the current note into another format specified in the options of the software. The converted file is created in the same folder of the current document.
 
 The `Open another window` menu item opens another instance of the software if it’s located in the `Applications` directory.
 
 The `Transparency` menu item activate or deactivate the transparency of the software interface.
 
-The `Tools - Options` menu item opens the options, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the line spacing value (1.0 is the default), the delay in days for the new deadlines, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). See the Pandoc manual for more information.
+The `Tools - Options` menu item opens the options of the app, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the line spacing value (1.0 is the default), the delay in days for the new deadlines, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). See the Pandoc manual for more information.
 
 The other menu items are self-explaining.
 
