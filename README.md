@@ -1,6 +1,6 @@
 # mxMarkEdit
 
-Version 1.0.9, published on 26 December 2024.
+Version 1.0.10, published on 26 December 2024.
 
 Copyright Massimo Nardello, Modena (Italy) 2024.
 
@@ -66,11 +66,11 @@ When a file that has been modified is closed, a backup copy is created.
 
 The last four opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing.
 
-The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the `\n` code replaces the paragraph breaks, while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field.
+The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`.
 
 The `Edit - Insert link to file` allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link.
 
-The `Edit - Find duplicate words` shows in red all the words of each paragraph, separated by `.`, `?` or `!` followed by space or `Return`, that are present also in the previous paragraph, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
+The `Edit - Find duplicate words` shows in red all the words of each paragraph, separated by `.`, `?` or `!` followed by `space` or `Return`, that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
 
 The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the columns of a spreadsheet.
 
@@ -84,7 +84,7 @@ The `Open another window` menu item opens another instance of the software if it
 
 The `Transparency` menu item activate or deactivate the transparency of the software interface.
 
-The `Tools - Options` menu item opens the options of the app, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the line spacing value (1.0 is the default), the delay in days for the new deadlines, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). See the Pandoc manual for more information.
+The `Tools - Options` menu item opens the options of the app, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the line spacing value (1.0 is the default), the delay in days for the new deadlines, the size of the normal font and of the code font, the Pandoc options, the path to the Pandoc executable, the possible Word or Writer template to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). See the Pandoc manual for more information.
 
 The other menu items are self-explaining.
 

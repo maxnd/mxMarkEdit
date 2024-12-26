@@ -1,13 +1,13 @@
 object fmOptions: TfmOptions
   Left = 450
-  Height = 492
+  Height = 551
   Top = 178
   Width = 547
   ActiveControl = cbStFonts
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Options'
-  ClientHeight = 492
+  ClientHeight = 551
   ClientWidth = 547
   Color = clForm
   Icon.Data = {
@@ -1069,11 +1069,11 @@ object fmOptions: TfmOptions
   object bnClose: TButton
     Left = 437
     Height = 30
-    Top = 443
+    Top = 502
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
-    TabOrder = 16
+    TabOrder = 22
     TabStop = False
     OnClick = bnCloseClick
   end
@@ -1098,7 +1098,7 @@ object fmOptions: TfmOptions
   object lbPanOptions: TLabel
     Left = 45
     Height = 16
-    Top = 325
+    Top = 389
     Width = 112
     Caption = 'Options of Pandoc'
     ParentColor = False
@@ -1106,25 +1106,25 @@ object fmOptions: TfmOptions
   object edPanOptions: TEdit
     Left = 43
     Height = 22
-    Top = 345
+    Top = 409
     Width = 289
     ParentColor = True
-    TabOrder = 12
+    TabOrder = 18
     Text = '+footnotes+inline_notes'
   end
   object edPanOutput: TEdit
     Left = 344
     Height = 22
-    Top = 405
+    Top = 469
     Width = 168
     ParentColor = True
-    TabOrder = 15
+    TabOrder = 21
     Text = '.docx'
   end
   object lbPanOutput: TLabel
     Left = 344
     Height = 16
-    Top = 385
+    Top = 449
     Width = 64
     Caption = 'Output file'
     ParentColor = False
@@ -1132,7 +1132,7 @@ object fmOptions: TfmOptions
   object lbPanTemplate: TLabel
     Left = 45
     Height = 16
-    Top = 385
+    Top = 449
     Width = 56
     Caption = 'Template'
     ParentColor = False
@@ -1140,17 +1140,17 @@ object fmOptions: TfmOptions
   object edPanTemplate: TEdit
     Left = 45
     Height = 22
-    Top = 405
+    Top = 469
     Width = 267
     ParentColor = True
-    TabOrder = 14
+    TabOrder = 20
     Text = 'word-template.docx'
     OnChange = edPanTemplateChange
   end
   object lbPanPath: TLabel
     Left = 344
     Height = 16
-    Top = 325
+    Top = 389
     Width = 92
     Caption = 'Path of Pandoc'
     ParentColor = False
@@ -1158,10 +1158,10 @@ object fmOptions: TfmOptions
   object edPanPath: TEdit
     Left = 344
     Height = 22
-    Top = 345
+    Top = 409
     Width = 149
     ParentColor = True
-    TabOrder = 13
+    TabOrder = 19
     Text = '/usr/local/bin/'
     OnChange = edPanPathChange
   end
@@ -1240,7 +1240,7 @@ object fmOptions: TfmOptions
   object lbExistModel: TLabel
     Left = 320
     Height = 16
-    Top = 408
+    Top = 472
     Width = 12
     Caption = '●'
     Font.Color = clGreen
@@ -1249,16 +1249,16 @@ object fmOptions: TfmOptions
   object lbExistExe: TLabel
     Left = 500
     Height = 16
-    Top = 348
+    Top = 412
     Width = 12
     Caption = '●'
     Font.Color = clGreen
     ParentFont = False
   end
   object cbDelay: TComboBox
-    Left = 300
+    Left = 296
     Height = 20
-    Top = 280
+    Top = 347
     Width = 120
     ItemHeight = 26
     ItemIndex = 7
@@ -1282,14 +1282,14 @@ object fmOptions: TfmOptions
       '180'
     )
     Style = csDropDownList
-    TabOrder = 11
+    TabOrder = 17
     Text = '7'
     OnChange = cbDelayChange
   end
   object lnStDelay: TLabel
-    Left = 304
+    Left = 298
     Height = 16
-    Top = 256
+    Top = 323
     Width = 185
     Caption = 'Delay in days for the deadlines'
     ParentColor = False
@@ -1297,7 +1297,7 @@ object fmOptions: TfmOptions
   object lnStLineSpace: TLabel
     Left = 45
     Height = 16
-    Top = 256
+    Top = 323
     Width = 76
     Caption = 'Line spacing'
     ParentColor = False
@@ -1305,7 +1305,7 @@ object fmOptions: TfmOptions
   object cbLineSpacing: TComboBox
     Left = 45
     Height = 20
-    Top = 280
+    Top = 347
     Width = 120
     ItemHeight = 26
     ItemIndex = 2
@@ -1325,9 +1325,87 @@ object fmOptions: TfmOptions
       '2.0'
     )
     Style = csDropDownList
-    TabOrder = 10
+    TabOrder = 16
     Text = '1.0'
     OnChange = cbLineSpacingChange
+  end
+  object lbStSize: TLabel
+    Left = 43
+    Height = 16
+    Top = 261
+    Width = 114
+    Caption = 'Size of normal font'
+    ParentColor = False
+  end
+  object edStSize: TEdit
+    Left = 43
+    Height = 22
+    Top = 284
+    Width = 50
+    NumbersOnly = True
+    ParentColor = True
+    ReadOnly = True
+    TabOrder = 10
+    Text = '12'
+  end
+  object edStSizePlus: TButton
+    Left = 103
+    Height = 21
+    Top = 285
+    Width = 24
+    Caption = '+'
+    TabOrder = 11
+    TabStop = False
+    OnClick = edStSizePlusClick
+  end
+  object edStSizeLess: TButton
+    Left = 131
+    Height = 21
+    Top = 285
+    Width = 24
+    Caption = '-'
+    TabOrder = 12
+    TabStop = False
+    OnClick = edStSizeLessClick
+  end
+  object lbStSizeMono: TLabel
+    Left = 298
+    Height = 16
+    Top = 261
+    Width = 103
+    Caption = 'Size of code font'
+    ParentColor = False
+  end
+  object edStSizeMono: TEdit
+    Left = 296
+    Height = 22
+    Top = 284
+    Width = 50
+    NumbersOnly = True
+    ParentColor = True
+    ReadOnly = True
+    TabOrder = 13
+    Text = '10'
+  end
+  object edStSizeMonoPlus: TButton
+    Left = 356
+    Height = 21
+    Top = 285
+    Width = 24
+    Caption = '+'
+    TabOrder = 14
+    TabStop = False
+    OnClick = edStSizeMonoPlusClick
+  end
+  object edStSizeMonoLess: TButton
+    Left = 384
+    Height = 21
+    Top = 285
+    Width = 24
+    Caption = '-'
+    TabOrder = 15
+    TabStop = False
+    OnClick = edStSizeMonoLessClick
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'
@@ -1354,7 +1432,7 @@ object fmOptions: TfmOptions
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    Left = 200
-    Top = 280
+    Left = 264
+    Top = 160
   end
 end

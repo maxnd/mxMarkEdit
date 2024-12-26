@@ -53,12 +53,20 @@ type
     edPanPath: TEdit;
     cbStFonts: TComboBox;
     cdColorDialog: TColorDialog;
+    edStSize: TEdit;
+    edStSizeLess: TButton;
+    edStSizePlus: TButton;
+    edStSizeMono: TEdit;
+    edStSizeMonoLess: TButton;
+    edStSizeMonoPlus: TButton;
     lbExistModel: TLabel;
     lbExistExe: TLabel;
     lbPanOptions: TLabel;
     lbPanTemplate: TLabel;
     lbPanOutput: TLabel;
     lbPanPath: TLabel;
+    lbStSize: TLabel;
+    lbStSizeMono: TLabel;
     lnStLineSpace: TLabel;
     lnStFonts: TLabel;
     lnStDelay: TLabel;
@@ -78,6 +86,10 @@ type
     procedure cbStFontsMonoChange(Sender: TObject);
     procedure edPanPathChange(Sender: TObject);
     procedure edPanTemplateChange(Sender: TObject);
+    procedure edStSizeLessClick(Sender: TObject);
+    procedure edStSizeMonoLessClick(Sender: TObject);
+    procedure edStSizeMonoPlusClick(Sender: TObject);
+    procedure edStSizePlusClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -146,6 +158,8 @@ var
 begin
   cbStFonts.ItemIndex := cbStFonts.Items.IndexOf(fmMain.dbText.Font.Name);
   cbStFontsMono.ItemIndex := cbStFontsMono.Items.IndexOf(stFontMono);
+  edStSize.Text := IntToStr(fmMain.dbText.Font.Size);
+  edStSizeMono.text := IntToStr(iFontMonoSize);
   stLineSpacing := FormatFloat('0.0', iLineSpacing);
   stLineSpacing := stLineSpacing[1] + '.' + stLineSpacing[3];
   cbLineSpacing.ItemIndex := cbLineSpacing.Items.
@@ -213,6 +227,46 @@ begin
   else
   begin
     lbExistModel.Font.Color := clRed;
+  end;
+end;
+
+procedure TfmOptions.edStSizePlusClick(Sender: TObject);
+begin
+  if fmMain.dbText.Font.Size < 128 then
+  begin
+    edStSize.Text := IntToStr(StrToInt(edStSize.Text) + 1);
+    fmMain.dbText.Font.Size := StrToInt(edStSize.Text);
+    fmMain.FormatListTitleTodo;
+  end;
+end;
+
+procedure TfmOptions.edStSizeLessClick(Sender: TObject);
+begin
+  if fmMain.dbText.Font.Size > 6 then
+  begin
+    edStSize.Text := IntToStr(StrToInt(edStSize.Text) - 1);
+    fmMain.dbText.Font.Size := StrToInt(edStSize.Text);
+    fmMain.FormatListTitleTodo;
+  end;
+end;
+
+procedure TfmOptions.edStSizeMonoPlusClick(Sender: TObject);
+begin
+  if iFontMonoSize < 128 then
+  begin
+    edStSizeMono.Text := IntToStr(StrToInt(edStSizeMono.Text) + 1);
+    iFontMonoSize := StrToInt(edStSizeMono.Text);
+    fmMain.FormatListTitleTodo;
+  end;
+end;
+
+procedure TfmOptions.edStSizeMonoLessClick(Sender: TObject);
+begin
+  if iFontMonoSize > 6 then
+  begin
+    edStSizeMono.Text := IntToStr(StrToInt(edStSizeMono.Text) - 1);
+    iFontMonoSize := StrToInt(edStSizeMono.Text);
+    fmMain.FormatListTitleTodo;
   end;
 end;
 

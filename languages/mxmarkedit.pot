@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.9"
+msgid "1.0.10"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -262,6 +262,34 @@ msgstr ""
 msgid "word-template.docx"
 msgstr ""
 
+#: tfmoptions.edstsize.text
+msgid "12"
+msgstr ""
+
+#: tfmoptions.edstsizeless.caption
+msgctxt "tfmoptions.edstsizeless.caption"
+msgid "-"
+msgstr ""
+
+#: tfmoptions.edstsizemono.text
+msgid "10"
+msgstr ""
+
+#: tfmoptions.edstsizemonoless.caption
+msgctxt "tfmoptions.edstsizemonoless.caption"
+msgid "-"
+msgstr ""
+
+#: tfmoptions.edstsizemonoplus.caption
+msgctxt "tfmoptions.edstsizemonoplus.caption"
+msgid "+"
+msgstr ""
+
+#: tfmoptions.edstsizeplus.caption
+msgctxt "tfmoptions.edstsizeplus.caption"
+msgid "+"
+msgstr ""
+
 #: tfmoptions.lbexistexe.caption
 msgctxt "tfmoptions.lbexistexe.caption"
 msgid "●"
@@ -286,6 +314,14 @@ msgstr ""
 
 #: tfmoptions.lbpantemplate.caption
 msgid "Template"
+msgstr ""
+
+#: tfmoptions.lbstsize.caption
+msgid "Size of normal font"
+msgstr ""
+
+#: tfmoptions.lbstsizemono.caption
+msgid "Size of code font"
 msgstr ""
 
 #: tfmoptions.lnstdelay.caption

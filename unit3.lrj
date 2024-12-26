@@ -25,5 +25,13 @@
 {"hash":251457059,"name":"tfmoptions.lnstdelay.caption","sourcebytes":[68,101,108,97,121,32,105,110,32,100,97,121,115,32,102,111,114,32,116,104,101,32,100,101,97,100,108,105,110,101,115],"value":"Delay in days for the deadlines"},
 {"hash":257415479,"name":"tfmoptions.lnstlinespace.caption","sourcebytes":[76,105,110,101,32,115,112,97,99,105,110,103],"value":"Line spacing"},
 {"hash":13328,"name":"tfmoptions.cblinespacing.text","sourcebytes":[49,46,48],"value":"1.0"},
+{"hash":90437220,"name":"tfmoptions.lbstsize.caption","sourcebytes":[83,105,122,101,32,111,102,32,110,111,114,109,97,108,32,102,111,110,116],"value":"Size of normal font"},
+{"hash":834,"name":"tfmoptions.edstsize.text","sourcebytes":[49,50],"value":"12"},
+{"hash":43,"name":"tfmoptions.edstsizeplus.caption","sourcebytes":[43],"value":"+"},
+{"hash":45,"name":"tfmoptions.edstsizeless.caption","sourcebytes":[45],"value":"-"},
+{"hash":225759348,"name":"tfmoptions.lbstsizemono.caption","sourcebytes":[83,105,122,101,32,111,102,32,99,111,100,101,32,102,111,110,116],"value":"Size of code font"},
+{"hash":832,"name":"tfmoptions.edstsizemono.text","sourcebytes":[49,48],"value":"10"},
+{"hash":43,"name":"tfmoptions.edstsizemonoplus.caption","sourcebytes":[43],"value":"+"},
+{"hash":45,"name":"tfmoptions.edstsizemonoless.caption","sourcebytes":[45],"value":"-"},
 {"hash":256115346,"name":"tfmoptions.cdcolordialog.title","sourcebytes":[83,101,108,101,99,116,32,97,32,99,111,108,111,114],"value":"Select a color"}
 ]}

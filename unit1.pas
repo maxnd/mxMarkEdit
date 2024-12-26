@@ -1646,12 +1646,13 @@ begin
         documentView).selectedRange;
       stWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         attributedSubstringFromRange(rng);
-      slList2.Add(NSStringToString(stWord.string_));
-      if slList1.IndexOf(NSStringToString(stWord.string_)) > -1 then
+      if ((slList1.IndexOf(NSStringToString(stWord.string_)) > -1) or
+        (slList2.IndexOf(NSStringToString(stWord.string_)) > -1)) then
       begin
         TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
           setTextColor_range(ColorToNSColor(clRepetition), rng);
       end;
+      slList2.Add(NSStringToString(stWord.string_));
       if blPeriod = True then
       begin
         slList1.Text := slList2.Text;

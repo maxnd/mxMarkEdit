@@ -162,8 +162,10 @@ begin
   begin
     stFind := UTF8StringReplace(edFind.Text, '\n', LineEnding, [rfReplaceAll]);
     stFind := UTF8StringReplace(stFind, '\t', #9, [rfReplaceAll]);
+    stFind := UTF8StringReplace(stFind, '\r', #13, [rfReplaceAll]);
     stReplace := UTF8StringReplace(edReplace.Text, '\n', LineEnding, [rfReplaceAll]);
     stReplace := UTF8StringReplace(stReplace, '\t', #9, [rfReplaceAll]);
+    stReplace := UTF8StringReplace(stReplace, '\r', #13, [rfReplaceAll]);
     fmMain.dbText.Text := UTF8StringReplace(fmMain.dbText.Text, stFind,
       stReplace, [rfIgnoreCase, rfReplaceAll]);
     fmMain.dbText.SelStart := 0;
