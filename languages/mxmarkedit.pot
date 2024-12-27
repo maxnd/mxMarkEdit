@@ -11,7 +11,7 @@ msgid "Website of mxMarkEdit"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightauthor2.caption
-msgid "Massimo Nardello, Modena (Italy) 2024."
+msgid "Massimo Nardello, Modena (Italy) 2024 - 2025"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightauthor3.caption
@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.10"
+msgid "1.0.11"
 msgstr ""
 
 #: tfmcopyright.lbok.caption

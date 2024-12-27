@@ -1,7 +1,7 @@
 // ***********************************************************************
 // ***********************************************************************
 // mxMarkEdit 1.x
-// Author and copyright: Massimo Nardello, Modena (Italy) 2024.
+// Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 // Free software released under GPL licence version 3 or later.
 
 // This program is free software: you can redistribute it and/or modify
@@ -441,6 +441,8 @@ begin
       LabelFileNameChars;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         checkTextInDocument(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        undoManager.removeAllActions;
       UpdateLastFile;
       ShowCurrentTitleTodo;
       blFileMod := False;
@@ -460,6 +462,8 @@ begin
       LabelFileNameChars;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         checkTextInDocument(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        undoManager.removeAllActions;
       UpdateLastFile;
       ShowCurrentTitleTodo;
       blFileMod := False;
@@ -485,6 +489,8 @@ begin
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      undoManager.removeAllActions;
     UpdateLastFile;
     ShowCurrentTitleTodo;
     blFileMod := False;
@@ -865,6 +871,12 @@ begin
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
+  end
+  else
+  if ((key = Ord('R')) and (Shift = [ssMeta])) then
+  begin
+    RenumberList;
+    key := 0;
   end
   else
   if ((key = Ord('B')) and (Shift = [ssMeta])) then
@@ -1363,6 +1375,8 @@ begin
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      undoManager.removeAllActions;
     UpdateLastFile;
     ShowCurrentTitleTodo;
     blFileMod := False;
@@ -1398,6 +1412,10 @@ procedure TfmMain.miFileSaveAsClick(Sender: TObject);
 var
   myList: TStringList;
 begin
+  if UTF8Copy(dbText.Lines[1], 1, 7) = 'title: ' then
+  begin
+    sdSave.FileName := UTF8Copy(dbText.Lines[1], 8, 100) + '.md';
+  end;
   if sdSave.Execute then
   try
     stFileName := sdSave.FileName;
@@ -1432,6 +1450,8 @@ begin
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      undoManager.removeAllActions;
     UpdateLastFile;
     ShowCurrentTitleTodo;
     blFileMod := False;
@@ -1460,6 +1480,8 @@ begin
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      undoManager.removeAllActions;
     UpdateLastFile;
     blFileMod := False;
   except
@@ -1487,6 +1509,8 @@ begin
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      undoManager.removeAllActions;
     UpdateLastFile;
     blFileMod := False;
   except
@@ -1514,6 +1538,8 @@ begin
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      undoManager.removeAllActions;
     UpdateLastFile;
     blFileMod := False;
   except

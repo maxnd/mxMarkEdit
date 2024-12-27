@@ -114,49 +114,49 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'tutto"'#10#10'#: tfmsearch.caption'#10'msgid "Search"'#10'msgstr "Cerca"'#10
   +#10'#: tfmsearch.lbfind.caption'#10'msgid "Text to find"'#10'msgstr "Testo d'
   +'a cercare"'#10#10'#: tfmsearch.lbreplace.caption'#10'msgid "Replace with"'
-  +#10'msgstr "Sostituisci con"'#10#10'#: tfmtasks.bncopy.caption'#10'#, fuzzy'
-  +#10'msgctxt "tfmtasks.bncopy.caption"'#10'msgid "Copy"'#10'msgstr "Copia"'#10
-  +#10'#: tfmtasks.bnok.caption'#10'msgctxt "tfmtasks.bnok.caption"'#10'msgid "'
-  +'Close"'#10'msgstr "Chiudi"'#10#10'#: tfmtasks.caption'#10'msgid "Todo form"'
-  +#10'msgstr "Maschera attivit'#195#160'"'#10#10'#: tfmtasks.cbhide.caption'#10
-  +'msgid "Hide done items"'#10'msgstr "Nascondi attivit'#195#160' svolte"'#10
-  +#10'#: tfmtasks.sgtasks.columns[0].title.caption'#10'msgid "Row"'#10'msgstr '
-  +'""'#10#10'#: tfmtasks.sgtasks.columns[1].title.caption'#10'msgid "Done"'#10
-  +'msgstr "Svolta"'#10#10'#: tfmtasks.sgtasks.columns[2].title.caption'#10'msg'
-  +'id "Deadline"'#10'msgstr "Scadenza"'#10#10'#: tfmtasks.sgtasks.columns[3].t'
-  +'itle.caption'#10'msgid "Title"'#10'msgstr "Titolo"'#10#10'#: unit1.dateform'
-  +'at'#10'msgid "en"'#10'msgstr "it"'#10#10'#: unit1.dlg001'#10'msgid "Markdow'
-  +'n files|*.md|All files|*"'#10'msgstr "File Markdown|*.md|Tutti i file|*"'#10
-  ,#10'#: unit1.dlg002'#10'msgctxt "unit1.dlg002"'#10'msgid "Save Markdown file'
-  +'"'#10'msgstr "Salva file Markdown"'#10#10'#: unit1.dlg003'#10'msgctxt "unit'
-  +'1.dlg003"'#10'msgid "Open Markdown file"'#10'msgstr "Apri file Markdown"'#10
-  +#10'#: unit1.dlg004'#10'msgid "All files|*"'#10'msgstr "Tutti i file|*"'#10
-  +#10'#: unit1.dlg005'#10'msgctxt "unit1.dlg005"'#10'msgid "Open file"'#10'msg'
-  +'str "Apri file"'#10#10'#: unit1.lb001'#10'msgctxt "unit1.lb001"'#10'msgid "'
-  +'All the headings"'#10'msgstr "Tutte le intestazioni"'#10#10'#: unit1.lb002'
-  +#10'msgctxt "unit1.lb002"'#10'msgid "Headings 1 - 5"'#10'msgstr "Intestazion'
-  +'i 1 - 5"'#10#10'#: unit1.lb003'#10'msgid "Headings 1 - 4"'#10'msgstr "Intes'
-  +'tazioni 1 - 4"'#10#10'#: unit1.lb004'#10'msgid "Headings 1 - 3"'#10'msgstr '
-  +'"Intestazioni 1 - 3"'#10#10'#: unit1.lb005'#10'msgid "Headings 1 - 2"'#10'm'
-  +'sgstr "Intestazioni 1 - 2"'#10#10'#: unit1.lb006'#10'msgctxt "unit1.lb006"'
-  +#10'msgid "Headings 1"'#10'msgstr "Intestazioni 1"'#10#10'#: unit1.msg001'#10
-  +'msgid "Characters:"'#10'msgstr "Caratteri:"'#10#10'#: unit1.msg002'#10'msgi'
-  +'d "Discard text changes?"'#10'msgstr "Scartare le modifiche al testo?"'#10
-  +#10'#: unit1.msg003'#10'msgid "It was not possible to save the current file.'
-  +'"'#10'msgstr "Non '#195#168' stato possibile salvare il file corrente."'#10
-  +#10'#: unit1.msg004'#10'msgid "It was not possible to load the selected file'
-  +'."'#10'msgstr "Non '#195#168' stato possibile aprire il file selezionato."'
-  +#10#10'#: unit1.msg005'#10'msgid "Create a new document?"'#10'msgstr "Creare'
-  +' un nuovo documento?"'#10#10'#: unit1.msg006'#10'msgid "It was not possible'
-  +' to load the last used file."'#10'msgstr "Non '#195#168' stato possibile ap'
-  +'rire l''ultimo file utilizzato."'#10#10'#: unit1.msg007'#10'msgid "The file'
-  +' is not available."'#10'msgstr "Il file non '#195#168' disponibile."'#10#10
-  +'#: unit1.msg008'#10'msgid "The current document has no name."'#10'msgstr "I'
-  +'l documento corrente non ha un nome."'#10#10'#: unit1.msg009'#10'msgid "It '
-  +'was not possible to create the backup file."'#10'msgstr "Non '#195#168' sta'
-  +'to possibile creare il file di backup."'#10#10'#: unit1.msg010'#10'msgid "F'
-  +'ind the repeated words in all the current document?"'#10'msgstr "Trovare le'
-  +' parole ripetute in tutto il documento corrente?"'#10#10'#: unit2.msgfnd001'
+  +#10'msgstr "Sostituisci con"'#10#10'#: tfmtasks.bncopy.caption'#10'msgctxt "'
+  +'tfmtasks.bncopy.caption"'#10'msgid "Copy"'#10'msgstr "Copia"'#10#10'#: tfmt'
+  +'asks.bnok.caption'#10'msgctxt "tfmtasks.bnok.caption"'#10'msgid "Close"'#10
+  +'msgstr "Chiudi"'#10#10'#: tfmtasks.caption'#10'msgid "Todo form"'#10'msgstr'
+  +' "Maschera attivit'#195#160'"'#10#10'#: tfmtasks.cbhide.caption'#10'msgid "'
+  +'Hide done items"'#10'msgstr "Nascondi attivit'#195#160' svolte"'#10#10'#: t'
+  +'fmtasks.sgtasks.columns[0].title.caption'#10'msgid "Row"'#10'msgstr ""'#10
+  +#10'#: tfmtasks.sgtasks.columns[1].title.caption'#10'msgid "Done"'#10'msgstr'
+  +' "Svolta"'#10#10'#: tfmtasks.sgtasks.columns[2].title.caption'#10'msgid "De'
+  +'adline"'#10'msgstr "Scadenza"'#10#10'#: tfmtasks.sgtasks.columns[3].title.c'
+  +'aption'#10'msgid "Title"'#10'msgstr "Titolo"'#10#10'#: unit1.dateformat'#10
+  +'msgid "en"'#10'msgstr "it"'#10#10'#: unit1.dlg001'#10'msgid "Markdown files'
+  +'|*.md|All files|*"'#10'msgstr "File Markdown|*.md|Tutti i file|*"'#10#10'#:'
+  ,' unit1.dlg002'#10'msgctxt "unit1.dlg002"'#10'msgid "Save Markdown file"'#10
+  +'msgstr "Salva file Markdown"'#10#10'#: unit1.dlg003'#10'msgctxt "unit1.dlg0'
+  +'03"'#10'msgid "Open Markdown file"'#10'msgstr "Apri file Markdown"'#10#10'#'
+  +': unit1.dlg004'#10'msgid "All files|*"'#10'msgstr "Tutti i file|*"'#10#10'#'
+  +': unit1.dlg005'#10'msgctxt "unit1.dlg005"'#10'msgid "Open file"'#10'msgstr '
+  +'"Apri file"'#10#10'#: unit1.lb001'#10'msgctxt "unit1.lb001"'#10'msgid "All '
+  +'the headings"'#10'msgstr "Tutte le intestazioni"'#10#10'#: unit1.lb002'#10
+  +'msgctxt "unit1.lb002"'#10'msgid "Headings 1 - 5"'#10'msgstr "Intestazioni 1'
+  +' - 5"'#10#10'#: unit1.lb003'#10'msgid "Headings 1 - 4"'#10'msgstr "Intestaz'
+  +'ioni 1 - 4"'#10#10'#: unit1.lb004'#10'msgid "Headings 1 - 3"'#10'msgstr "In'
+  +'testazioni 1 - 3"'#10#10'#: unit1.lb005'#10'msgid "Headings 1 - 2"'#10'msgs'
+  +'tr "Intestazioni 1 - 2"'#10#10'#: unit1.lb006'#10'msgctxt "unit1.lb006"'#10
+  +'msgid "Headings 1"'#10'msgstr "Intestazioni 1"'#10#10'#: unit1.msg001'#10'm'
+  +'sgid "Characters:"'#10'msgstr "Caratteri:"'#10#10'#: unit1.msg002'#10'msgid'
+  +' "Discard text changes?"'#10'msgstr "Scartare le modifiche al testo?"'#10#10
+  +'#: unit1.msg003'#10'msgid "It was not possible to save the current file."'
+  +#10'msgstr "Non '#195#168' stato possibile salvare il file corrente."'#10#10
+  +'#: unit1.msg004'#10'msgid "It was not possible to load the selected file."'
+  +#10'msgstr "Non '#195#168' stato possibile aprire il file selezionato."'#10
+  +#10'#: unit1.msg005'#10'msgid "Create a new document?"'#10'msgstr "Creare un'
+  +' nuovo documento?"'#10#10'#: unit1.msg006'#10'msgid "It was not possible to'
+  +' load the last used file."'#10'msgstr "Non '#195#168' stato possibile aprir'
+  +'e l''ultimo file utilizzato."'#10#10'#: unit1.msg007'#10'msgid "The file is'
+  +' not available."'#10'msgstr "Il file non '#195#168' disponibile."'#10#10'#:'
+  +' unit1.msg008'#10'msgid "The current document has no name."'#10'msgstr "Il '
+  +'documento corrente non ha un nome."'#10#10'#: unit1.msg009'#10'msgid "It wa'
+  +'s not possible to create the backup file."'#10'msgstr "Non '#195#168' stato'
+  +' possibile creare il file di backup."'#10#10'#: unit1.msg010'#10'msgid "Fin'
+  +'d the repeated words in all the current document?"'#10'msgstr "Trovare le p'
+  +'arole ripetute in tutto il documento corrente?"'#10#10'#: unit2.msgfnd001'
   +#10'msgid "Text not found."'#10'msgstr "Testo non trovato."'#10#10'#: unit2.'
   +'msgfnd002'#10'msgid "Replace all the recurrences of"'#10'msgstr "Sostituire'
   +' tutte le occorrenze di"'#10#10'#: unit2.msgfnd003'#10'msgid "with"'#10'msg'

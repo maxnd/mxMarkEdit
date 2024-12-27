@@ -1,7 +1,7 @@
 // **********************************************************************
 // ***********************************************************************
 // mxMarkEdit 1.x
-// Author and copyright: Massimo Nardello, Modena (Italy) 2024.
+// Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 // Free software released under GPL licence version 3 or later.
 
 // This program is free software: you can redistribute it and/or modify

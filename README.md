@@ -1,8 +1,8 @@
 # mxMarkEdit
 
-Version 1.0.10, published on 26 December 2024.
+Version 1.0.11, published on 27 December 2024.
 
-Copyright Massimo Nardello, Modena (Italy) 2024.
+Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
 mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), that must be installed in the system in use. The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
 
@@ -92,6 +92,8 @@ The other menu items are self-explaining.
 
 There are also some shortcuts beyond the ones related to the menu items:
 
+* `Meta` + `Z`: undo the last action.
+* `Meta` + `Shift` + `Y`: redo the last action.
 * `Meta` + `Opt` + `1-6`: select one of the six filter options above the title and todo list.
 * `Meta` + `+` or `-`: change the size of the normal font.
 * `Meta` + `Ctrl` + `+` or `-`: change the size of the mono font.
@@ -100,6 +102,7 @@ There are also some shortcuts beyond the ones related to the menu items:
 * `Meta` + `Shift` + `D`: insert the current date and time.
 * `Meta` + `B`: format the selected text in bold or the current word if no text is selected.
 * `Meta` + `I`: format the selected text in italics or the current word if no text is selected.
+* `Meta` + `R`: if the cursor is inside a numbered list, renumbers the list.
 * `Meta` + `G`: find the next recurrence of the text specified in the search form, even if it’s closed.
 * `Meta` + `T`: create a todo item with a deadline whose delay in days is specified in the options (default is 7), or set it as done or to be done.
 * `Meta` + `Opt` + `T`: create a todo item without a deadline, or set it as done or to be done.
