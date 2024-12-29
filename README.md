@@ -1,6 +1,6 @@
 # mxMarkEdit
 
-Version 1.0.11, published on 27 December 2024.
+Version 1.0.12, published on 29 December 2024.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -45,8 +45,9 @@ Some Markdown markers are hidden, as the text that follows them or is contained 
 
 Other Markdown markers are not hidden, but are shown in a different color defined by the user:
 
-* lines of code, shown in monospace font (\`\`\`);
-* inline footnotes, contained between `^[` and `]`);
+* lines of code, shown in monospace font, among the markers \`\`\` at the beginning of a paragraph;
+* footnotes, like `[^1]` and `[^1]: Text of the footnote`;
+* inline footnotes, like `^[Text of the footnote.]`;
 * links to websites or files, like `[my web site](www.mywebsite.com)`;
 * links to pictures, like `![my picture](img.jpg)`.
 
@@ -72,7 +73,7 @@ The `Edit - Insert link to file` allows to select a file and to insert its path 
 
 The `Edit - Find duplicate words` shows in red all the words of each paragraph, separated by `.`, `?` or `!` followed by `space` or `Return`, that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
 
-The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the columns of a spreadsheet.
+The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the columns of a spreadsheet. See below for the shortcuts active on this form.
 
 The `Edit - Show current title or toto` shows at the top of the left list the title or todo item the cursor is under to.
 
@@ -103,6 +104,7 @@ There are also some shortcuts beyond the ones related to the menu items:
 * `Meta` + `B`: format the selected text in bold or the current word if no text is selected.
 * `Meta` + `I`: format the selected text in italics or the current word if no text is selected.
 * `Meta` + `R`: if the cursor is inside a numbered list, renumbers the list.
+* `Meta` + `Shift` + `R`: renumbers all the possible footnotes references.
 * `Meta` + `G`: find the next recurrence of the text specified in the search form, even if it’s closed.
 * `Meta` + `T`: create a todo item with a deadline whose delay in days is specified in the options (default is 7), or set it as done or to be done.
 * `Meta` + `Opt` + `T`: create a todo item without a deadline, or set it as done or to be done.
@@ -116,6 +118,15 @@ There are also some shortcuts beyond the ones related to the menu items:
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalise the current word.
+* `Meta` + `Shift` + `F`:
+  * within a footnote reference in the document (e.g. `[^1]`), moves the cursor to the corresponding footnote;
+  * within a footnote (e.g. `[^1]: This is the text of the footnote.`), moves the cursor to the corresponding footnote reference in the document; 
+  * in other positions, creates a new footnote reference and a new footnote, both properly numbered.
+
+In the *Todo form*:
+
+* `Meta` + `Opt` + `H`: hide the todo items already done.
+* `Meta` + `T`: toggle the state of the selected todo item from to be done to done, and vice versa.
 
 ## Configuration files
 

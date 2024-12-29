@@ -83,7 +83,7 @@ object fmTasks: TfmTasks
       Width = 75
       Anchors = [akRight, akBottom]
       Caption = 'Close'
-      TabOrder = 2
+      TabOrder = 3
       TabStop = False
       OnClick = bnOKClick
     end
@@ -103,9 +103,20 @@ object fmTasks: TfmTasks
       Width = 75
       Anchors = [akRight, akBottom]
       Caption = 'Copy'
-      TabOrder = 1
+      TabOrder = 2
       TabStop = False
       OnClick = bnCopyClick
+    end
+    object bnToggle: TButton
+      Left = 681
+      Height = 32
+      Top = -3
+      Width = 125
+      Anchors = [akRight, akBottom]
+      Caption = 'Toggle state'
+      TabOrder = 1
+      TabStop = False
+      OnClick = bnToggleClick
     end
   end
 end

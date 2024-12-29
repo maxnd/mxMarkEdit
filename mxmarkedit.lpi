@@ -101,8 +101,15 @@
     </SearchPaths>
     <CodeGeneration>
       <TargetCPU Value="aarch64"/>
+      <Optimizations>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
     </CodeGeneration>
     <Linking>
+      <Debugging>
+        <RunWithoutDebug Value="True"/>
+        <DebugInfoType Value="dsDwarf2Set"/>
+      </Debugging>
       <Options>
         <Win32>
           <GraphicApplication Value="True"/>

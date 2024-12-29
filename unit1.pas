@@ -146,8 +146,10 @@ type
       textOffset: integer): NSMutableParagraphStyle;
     procedure LabelFileNameChars;
     procedure MoveToPos;
+    procedure RenumberFootnotes;
     procedure RenumberList;
     function SaveFile: boolean;
+    procedure SelectInsertFootnote;
     procedure UpdateLastFile;
   public
     procedure ShowCurrentTitleTodo;
@@ -184,6 +186,7 @@ var
   blFileSaved: boolean = True;
   blFileMod: boolean = False;
   blDisableFormatting: boolean = False;
+  blTextOnChange: boolean = False;
   pandocPath: string = '/usr/local/bin/';
   pandocOptions: string = '+footnotes+inline_notes';
   pandocTemplate: string = 'word-template.docx';
@@ -201,6 +204,7 @@ resourcestring
   msg008 = 'The current document has no name.';
   msg009 = 'It was not possible to create the backup file.';
   msg010 = 'Find the repeated words in all the current document?';
+  msg011 = 'It''s not possible to create a footnote reference at the beginning of a paragraph.';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -743,6 +747,12 @@ begin
     key := 0;
   end
   else
+  if ((key = Ord('F')) and (Shift = [ssMeta, ssShift])) then
+  begin
+    SelectInsertFootnote;
+    key := 0;
+  end
+  else
   if ((key = 38) and (Shift = [ssAlt, ssMeta])) then
   begin
     if dbText.CaretPos.y > 0 then
@@ -777,7 +787,6 @@ begin
         1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y]) - 1), i) = True then
       begin
         RenumberList;
-        FormatListTitleTodo;
       end;
     end;
     key := 0;
@@ -809,7 +818,6 @@ begin
         1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) - 1), i) = True then
       begin
         RenumberList;
-        FormatListTitleTodo;
       end;
     end;
     key := 0;
@@ -876,6 +884,12 @@ begin
   if ((key = Ord('R')) and (Shift = [ssMeta])) then
   begin
     RenumberList;
+    key := 0;
+  end
+  else
+  if ((key = Ord('R')) and (Shift = [ssMeta, ssShift])) then
+  begin
+    RenumberFootnotes;
     key := 0;
   end
   else
@@ -1218,7 +1232,6 @@ begin
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).
           insertText(NSStringUtf8(IntToStr(i) + '. '));
         RenumberList;
-        FormatListTitleTodo;
       end;
     end;
   end;
@@ -1412,7 +1425,8 @@ procedure TfmMain.miFileSaveAsClick(Sender: TObject);
 var
   myList: TStringList;
 begin
-  if UTF8Copy(dbText.Lines[1], 1, 7) = 'title: ' then
+  if ((UTF8Length(dbText.Lines[1]) > 8) and
+    (UTF8Copy(dbText.Lines[1], 1, 7) = 'title: ')) then
   begin
     sdSave.FileName := UTF8Copy(dbText.Lines[1], 8, 100) + '.md';
   end;
@@ -1830,7 +1844,7 @@ end;
 
 procedure TfmMain.miToolsTrans2Click(Sender: TObject);
 begin
-  fmMain.AlphaBlendValue := 210;
+  fmMain.AlphaBlendValue := 200;
   miToolsTrans2.Checked := True;
 end;
 
@@ -1872,9 +1886,14 @@ var
   tabs: NSMutableArray;
   tab: NSTextTab;
 begin
-  if ((dbText.Text = '') or ((blDisableFormatting = True) and
+  if ((blTextOnChange = True) or ((blDisableFormatting = True) and
     (pnTitTodo.Visible = False))) then
   begin
+    Exit;
+  end;
+  if dbText.Text = '' then
+  begin
+    sgTitles.Clear;
     Exit;
   end;
   iTopRow := sgTitles.TopRow;
@@ -2378,7 +2397,8 @@ begin
       end;
     end
     // Footnote
-    else if ((stText[i] = '^') and (stText[i + 1] = '[')) then
+    else if (((stText[i] = '^') and (stText[i + 1] = '[')) or
+      ((stText[i] = '[') and (stText[i + 1] = '^'))) then
     begin
       if blFootnote = False then
       begin
@@ -2429,6 +2449,250 @@ begin
     end;
   end;
   sgTitles.TopRow := iTopRow;
+end;
+
+procedure TfmMain.SelectInsertFootnote;
+var
+  iPos, iOrigPos, iNew: integer;
+  rng: NSRange;
+  stAttWord: NSAttributedString;
+  stWord: String;
+begin
+  if dbText.Text = '' then
+  begin
+    Exit;
+  end;
+  blTextOnChange := True;
+  if dbText.SelStart = StrToNSString(dbText.Text, True).length then
+  begin
+    dbText.Lines.Add('');
+    dbText.SelStart := dbText.SelStart - 2;
+  end;
+  iOrigPos := dbText.SelStart;
+  if UTF8Copy(dbText.Lines[dbText.CaretPos.y], 1, 2) = '[^' then
+  begin
+    iPos := UTF8CocoaPos(']', dbText.Lines[dbText.CaretPos.y]);
+    dbText.SelStart := UTF8CocoaPos(UTF8Copy(dbText.Lines[dbText.CaretPos.y],
+      1, iPos), dbText.Text) + iPos - 1;
+    FormatListTitleTodo;
+  end
+  else
+  begin
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      selectWord(nil);
+    rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+      documentView).selectedRange;
+    stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      attributedSubstringFromRange(rng);
+    if UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) = ']' then
+    begin
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        moveBackward(nil);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        moveBackward(nil);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        selectWord(nil);
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).selectedRange;
+      stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        attributedSubstringFromRange(rng);
+    end
+    else
+    if UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) = '^' then
+    begin
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        moveForward(nil);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        selectWord(nil);
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).selectedRange;
+      stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        attributedSubstringFromRange(rng);
+    end
+    else
+    if UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) = '[' then
+    begin
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        moveForward(nil);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        selectWord(nil);
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).selectedRange;
+      stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        attributedSubstringFromRange(rng);
+    end;
+    stWord := NSStringToString(stAttWord.string_);
+    if TryStrToInt(stWord, iNew) = True then
+    begin
+      if UTF8CocoaPos(LineEnding + '[^' + IntToStr(iNew) + ']:',
+        dbText.Text, 1) > 0 then
+      begin
+        dbText.SelStart := UTF8CocoaPos(LineEnding + '[^' + IntToStr(iNew) + ']:',
+          dbText.Text, 1) + UTF8Length(IntToStr(iNew)) + 5;
+        dbText.SelLength := 0;
+        FormatListTitleTodo;
+      end;
+    end
+    else
+    begin
+      dbText.SelLength := 0;
+      dbText.SelStart := iOrigPos;
+      if dbText.CaretPos.X = 0 then
+      begin
+        MessageDlg(msg011, mtWarning, [mbOK], 0);
+      end
+      else
+      begin
+        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+          insertText(NSStringUtf8('[^0]'));
+        dbText.Lines.Add('[^0]: ' + #1);
+        RenumberFootnotes;
+        dbText.SelStart := UTF8CocoaPos(#1, dbText.Text) - 1;
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          deleteForward(nil);
+      end;
+    end;
+  end;
+  blTextOnChange := False;
+  FormatListTitleTodo
+end;
+
+procedure TfmMain.RenumberFootnotes;
+var
+  blFootNum, blFootnote: boolean;
+  iStartFootNum, iStartFootnote, iNum, iIncNum, i, iLen, iLine, n: integer;
+  stNum: String;
+  stText: WideString;
+  rng: NSRange;
+  slNumList, slFootnotes: TStringList;
+begin
+  if dbText.Text = '' then
+  begin
+    Exit;
+  end;
+  blTextOnChange := True;
+  blFootNum := False;
+  blFootnote := False;
+  iStartFootNum := -1;
+  iStartFootnote := -1;
+  iNum := -1;
+  iIncNum := 1;
+  stNum := '';
+  stText := WideString(dbText.Text);
+  iLen := Length(stText);
+  rng.location := 0;
+  rng.length := iLen;
+  i := 1;
+  slNumList := TStringList.Create;
+  slFootnotes := TStringList.Create;
+  try
+    while i <= iLen do
+    begin
+      if ((stText[i] = '^') and (stText[i - 1] = '[') and
+        (stText[i - 2] <> LineEnding)) then
+      begin
+        if blFootNum = False then
+        begin
+          blFootNum := True;
+          iStartFootNum := i;
+        end
+      end
+      else
+      if ((stText[i] = '^') and (stText[i - 1] = '[') and
+        (stText[i - 2] = LineEnding)) then
+      begin
+        if blFootnote = False then
+        begin
+          blFootnote := True;
+          iStartFootnote := i;
+        end
+      end
+      else
+      if ((stText[i] = ']') and (blFootNum = True)) then
+      begin
+        blFootNum := False;
+        rng.location := iStartFootNum;
+        rng.length := i - iStartFootNum - 1;
+        if TryStrToInt(stNum, iNum) = True then
+        begin
+          if iIncNum <> iNum then
+          begin
+            slNumList.Add(stNum);
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              insertText_replacementRange(NSStringUtf8(IntToStr(iIncNum)), rng);
+            stText := WideString(dbText.Text);
+            iLen := Length(stText);
+          end
+          else
+          begin
+            slNumList.Add('');
+          end;
+          Inc(iIncNum);
+        end;
+        stNum := '';
+      end
+      else
+      if ((stText[i] = ']') and (stText[i + 1] = ':') and
+        (blFootnote = True)) then
+      begin
+        blFootnote := False;
+        rng.location := iStartFootnote;
+        rng.length := i - iStartFootnote - 1;
+        iNum := slNumList.IndexOf(stNum);
+        if iNum > -1 then
+        begin
+          TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            insertText_replacementRange(NSStringUtf8(IntToStr(iNum + 1)), rng);
+          stText := WideString(dbText.Text);
+          iLen := Length(stText);
+        end;
+        stNum := '';
+      end
+      else
+      if ((blFootNum = True) or (blFootnote = True)) then
+      begin
+        stNum := stNum + stText[i];
+      end;
+      Inc(i);
+    end;
+    for iLine := 0 to dbText.Lines.Count - 1 do
+    begin
+      if UTF8Copy(dbText.Lines[iLine], 1, 2) = '[^' then
+      begin
+        if TryStrToInt(UTF8Copy(dbText.Lines[iLine], 3,
+          UTF8Pos(']', dbText.Lines[iLine]) - 3), iNum) then
+        begin
+          Break;
+        end;
+      end;
+    end;
+    for i := iLine to dbText.Lines.Count - 1 do
+    begin
+      if TryStrToInt(UTF8Copy(dbText.Lines[i], 3,
+        UTF8Pos(']', dbText.Lines[i]) - 3), iNum) then
+      slFootnotes.Add(FormatFloat('000000', iNum) + dbText.Lines[i]);
+    end;
+    slFootnotes.Sort;
+    if slFootnotes.Count > 0 then
+    begin
+      n := 0;
+      for i := iLine to dbText.Lines.Count - 1 do
+      begin
+        dbText.Lines[i] := UTF8Copy(slFootnotes[n], 7,
+          UTF8Length(slFootnotes[n]));
+        Inc(n);
+        if n > slFootnotes.Count - 1 then
+        begin
+          Break;
+        end;
+      end;
+    end;
+  finally
+    slNumList.Free;
+    slFootnotes.Free;
+    blTextOnChange := False;
+  end;
+  FormatListTitleTodo
 end;
 
 procedure TfmMain.LabelFileNameChars;
@@ -2621,6 +2885,7 @@ begin
   begin
     Exit;
   end;
+  blTextOnChange := True;
   iPos := dbText.SelStart;
   stText := WideString(dbText.Text);
   iStart := iPos - 1;
@@ -2696,6 +2961,8 @@ begin
     end;
   end;
   dbText.SelStart := iPos;
+  blTextOnChange := False;
+  FormatListTitleTodo;
 end;
 
 procedure TfmMain.ShowCurrentTitleTodo;
@@ -2717,6 +2984,7 @@ end;
 
 procedure TfmMain.CreateYAML;
 begin
+  blTextOnChange := True;
   dbText.Clear;
   sgTitles.Clear;
   dbText.Lines.Add('---');
@@ -2733,6 +3001,8 @@ begin
   dbText.Lines.Add('abstract: ');
   dbText.Lines.Add('---');
   dbText.SelStart := 11;
+  blTextOnChange := False;
+  FormatListTitleTodo;
 end;
 
 procedure TfmMain.CreateBackup;

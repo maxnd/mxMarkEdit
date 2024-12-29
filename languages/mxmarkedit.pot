@@ -379,6 +379,10 @@ msgctxt "tfmtasks.bnok.caption"
 msgid "Close"
 msgstr ""
 
+#: tfmtasks.bntoggle.caption
+msgid "Toggle state"
+msgstr ""
+
 #: tfmtasks.caption
 msgid "Todo form"
 msgstr ""
@@ -495,6 +499,10 @@ msgstr ""
 
 #: unit1.msg010
 msgid "Find the repeated words in all the current document?"
+msgstr ""
+
+#: unit1.msg011
+msgid "It's not possible to create a footnote reference at the beginning of a paragraph."
 msgstr ""
 
 #: unit2.msgfnd001

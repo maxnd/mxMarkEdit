@@ -37,12 +37,14 @@ type
 
   TfmTasks = class(TForm)
     bnCopy: TButton;
+    bnToggle: TButton;
     cbHide: TCheckBox;
     pnTasks: TPanel;
     sgTasks: TStringGrid;
     bnOK: TButton;
     procedure bnCopyClick(Sender: TObject);
     procedure bnOKClick(Sender: TObject);
+    procedure bnToggleClick(Sender: TObject);
     procedure cbHideClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -101,6 +103,44 @@ end;
 procedure TfmTasks.bnOKClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfmTasks.bnToggleClick(Sender: TObject);
+var
+  rng: NSRange;
+begin
+  if sgTasks.RowCount > 1 then
+  begin
+    if sgTasks.Cells[1, sgTasks.Row] = '0' then
+    begin
+      sgTasks.Cells[1, sgTasks.Row] := '1';
+      fmMain.dbText.SelStart := StrToInt(sgTasks.Cells[0, sgTasks.Row]);
+      Application.ProcessMessages;
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        selectedRange;
+      rng.location := rng.location + 3;
+      rng.length := 1;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8('X'), rng);
+      fmMain.FormatListTitleTodo;
+      if cbHide.Checked = True then
+      begin
+        CreateList;
+      end;
+    end
+    else
+    begin
+      sgTasks.Cells[1, sgTasks.Row] := '0';
+      Application.ProcessMessages;
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        selectedRange;
+      rng.location := rng.location + 3;
+      rng.length := 1;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      insertText_replacementRange(NSStringUtf8(' '), rng);
+      fmMain.FormatListTitleTodo;
+    end;
+  end;
 end;
 
 procedure TfmTasks.bnCopyClick(Sender: TObject);
@@ -163,6 +203,22 @@ begin
   if key = 27 then
   begin
     Close
+  end
+  else
+  if ((key = Ord('T')) and (Shift = [ssMeta])) then
+  begin
+    bnToggleClick(nil);
+    key := 0;
+  end
+  else
+  if ((key = Ord('H')) and (Shift = [ssMeta, ssAlt])) then
+  begin
+    cbHide.Checked := not cbHide.Checked;
+    if cbHide.Checked = true then
+    begin
+      CreateList;
+    end;
+    key := 0;
   end;
 end;
 
