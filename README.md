@@ -157,7 +157,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Arrow up`: moves to the top of the grid.
 * `Meta` + `Arrow down`: moves down to the last edited row.
 * `Meta` + `Arrow left`: moves to the left end of the grid.
-* `Meta` + `Arrow right`: moves the the right end of the grid.
+* `Meta` + `Arrow right`: moves to the right end of the grid.
 * `Meta` + `C`: copies the content of the selected cells in the clipboard.
 * `Meta` + `V`: pastes the content of the clipboard in the current and following cells or in a document.
 
