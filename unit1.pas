@@ -140,6 +140,8 @@ type
     procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
+    procedure sgTableSetEditText(Sender: TObject; ACol, ARow: Integer;
+      const Value: string);
     procedure sgTitlesClick(Sender: TObject);
     procedure sgTitlesDrawCell(Sender: TObject; aCol, aRow: integer;
       aRect: TRect; aState: TGridDrawState);
@@ -593,6 +595,7 @@ begin
     if pnGrid.Height = 1 then
     begin
       pnGrid.Height := 400;
+      sgTable.SetFocus;
     end
     else
     begin
@@ -1455,10 +1458,8 @@ end;
 
 procedure TfmMain.sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
-  i: integer;
+  i: Integer;
 begin
-  blTableMod := True;
-  blTableSaved := False;
   if ((key = 8) and (Shift = [ssMeta, ssShift])) then
   begin
     sgTable.DeleteColRow(False, sgTable.Row);
@@ -1559,6 +1560,13 @@ begin
     sgTable.Canvas.Font.Style := [];
     sgTable.Canvas.Font.Color := dbText.Font.Color;
   end;
+end;
+
+procedure TfmMain.sgTableSetEditText(Sender: TObject; ACol, ARow: Integer;
+  const Value: string);
+begin
+  blTableMod := True;
+  blTableSaved := False;
 end;
 
 procedure TfmMain.tmDateTimeTimer(Sender: TObject);
