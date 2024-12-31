@@ -159,7 +159,6 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Arrow left`: moves to the left end of the grid.
 * `Meta` + `Arrow right`: moves the the right end of the grid.
 * `Meta` + `C`: copies the content of the selected cells in the clipboard.
-* `Meta` + `X`: cuts the content of the selected cells in the clipboard.
 * `Meta` + `V`: pastes the content of the clipboard in the current and following cells or in a document.
 
 ## Backup
