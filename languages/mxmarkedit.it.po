@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.0.11"
+msgid "1.1.0"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -57,6 +57,13 @@ msgstr "Caratteri: 0"
 #: tfmmain.lbdatetime.caption
 msgid " "
 msgstr " "
+
+#: tfmmain.lbfindgrid.caption
+#, fuzzy
+#| msgid "Find"
+msgctxt "tfmmain.lbfindgrid.caption"
+msgid "Find"
+msgstr "Trova"
 
 #: tfmmain.micopyright.caption
 msgctxt "tfmmain.micopyright.caption"
@@ -86,6 +93,7 @@ msgid "Disable spell checking"
 msgstr "Disabilita correzione"
 
 #: tfmmain.mieditfind.caption
+msgctxt "tfmmain.mieditfind.caption"
 msgid "Find"
 msgstr "Trova"
 
@@ -459,6 +467,14 @@ msgstr "Intestazioni 1 - 2"
 msgctxt "unit1.lb006"
 msgid "Headings 1"
 msgstr "Intestazioni 1"
+
+#: unit1.lb007
+msgid "Tables names"
+msgstr "Nomi tabelle"
+
+#: unit1.lb008
+msgid "Tables"
+msgstr "Tabelle"
 
 #: unit1.msg001
 msgid "Characters:"

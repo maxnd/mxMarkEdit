@@ -1,13 +1,12 @@
 object fmMain: TfmMain
-  Left = 321
+  Left = 204
   Height = 610
-  Top = 144
-  Width = 934
-  ActiveControl = dbText
+  Top = 142
+  Width = 1053
   AlphaBlend = True
   Caption = 'mxMarkEdit'
   ClientHeight = 610
-  ClientWidth = 934
+  ClientWidth = 1053
   Icon.Data = {
     5C8000000000010001000000000001002000468000001600000089504E470D0A
     1A0A0000000D49484452000004000000040008060000007F1D2B830000800D49
@@ -1046,32 +1045,11 @@ object fmMain: TfmMain
   OnKeyDown = FormKeyDown
   SnapOptions.SnapToMonitor = True
   LCLVersion = '3.7.0.0'
-  object dbText: TMemo
-    Left = 175
-    Height = 572
-    Top = 10
-    Width = 759
-    Align = alClient
-    BorderSpacing.Top = 10
-    BorderStyle = bsNone
-    Color = 2632235
-    Font.Height = -21
-    Font.Name = 'Avenir Next'
-    ParentFont = False
-    ScrollBars = ssAutoVertical
-    TabOrder = 0
-    WantTabs = True
-    OnChange = dbTextChange
-    OnClick = dbTextClick
-    OnKeyDown = dbTextKeyDown
-    OnKeyPress = dbTextKeyPress
-    OnKeyUp = dbTextKeyUp
-  end
   object spTitles: TSplitter
     Left = 170
     Height = 582
     Top = 0
-    Width = 5
+    Width = 6
     Color = clForm
     ParentColor = False
   end
@@ -1079,17 +1057,17 @@ object fmMain: TfmMain
     Left = 0
     Height = 28
     Top = 582
-    Width = 934
+    Width = 1053
     Align = alBottom
     BevelOuter = bvNone
     ClientHeight = 28
-    ClientWidth = 934
+    ClientWidth = 1053
     Color = clForm
     Font.Height = -16
     ParentBackground = False
     ParentColor = False
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
     object lbChars: TLabel
       Left = 20
       Height = 18
@@ -1098,7 +1076,7 @@ object fmMain: TfmMain
       Caption = 'Chars: 0'
     end
     object lbDateTime: TLabel
-      Left = 908
+      Left = 1027
       Height = 18
       Top = 4
       Width = 4
@@ -1116,7 +1094,7 @@ object fmMain: TfmMain
     BevelOuter = bvNone
     ClientHeight = 582
     ClientWidth = 170
-    TabOrder = 3
+    TabOrder = 2
     object cbFilter: TComboBox
       Left = 15
       Height = 20
@@ -1196,6 +1174,122 @@ object fmMain: TfmMain
       BorderSpacing.Left = 10
       BorderSpacing.Right = 10
       Shape = bsTopLine
+    end
+  end
+  object pnBackground: TPanel
+    Left = 176
+    Height = 582
+    Top = 0
+    Width = 877
+    Align = alClient
+    BevelColor = clForm
+    BevelOuter = bvNone
+    ClientHeight = 582
+    ClientWidth = 877
+    Font.Color = clForm
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 3
+    object dbText: TMemo
+      Left = 0
+      Height = 419
+      Top = 10
+      Width = 877
+      Align = alClient
+      BorderSpacing.Top = 10
+      BorderStyle = bsNone
+      Color = 2632235
+      Font.Height = -21
+      Font.Name = 'Avenir Next'
+      ParentFont = False
+      ScrollBars = ssAutoVertical
+      TabOrder = 0
+      WantTabs = True
+      OnChange = dbTextChange
+      OnClick = dbTextClick
+      OnKeyDown = dbTextKeyDown
+      OnKeyPress = dbTextKeyPress
+      OnKeyUp = dbTextKeyUp
+    end
+    object spTable: TSplitter
+      Cursor = crVSplit
+      Left = 0
+      Height = 5
+      Top = 429
+      Width = 877
+      Align = alBottom
+      Color = clForm
+      ParentColor = False
+      ResizeAnchor = akBottom
+    end
+    object pnGrid: TPanel
+      Left = 0
+      Height = 148
+      Top = 434
+      Width = 877
+      Align = alBottom
+      BevelOuter = bvNone
+      ClientHeight = 148
+      ClientWidth = 877
+      TabOrder = 2
+      object sgTable: TStringGrid
+        Left = 0
+        Height = 106
+        Top = 0
+        Width = 877
+        Align = alClient
+        Color = clForm
+        ColCount = 106
+        ColRowDragIndicatorColor = clForm
+        DefaultColWidth = 280
+        DefaultRowHeight = 24
+        FixedColor = clForm
+        Flat = True
+        Font.Height = -16
+        HeaderPushZones = []
+        MouseWheelOption = mwGrid
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goColSizing, goEditing, goTabs, goDblClickAutoSize, goSmoothScroll, goFixedRowNumbering, goSelectionActive, goCellHints, goTruncCellHints]
+        ParentFont = False
+        ParentShowHint = False
+        RowCount = 2000
+        ShowHint = True
+        TabOrder = 0
+        OnDrawCell = sgTableDrawCell
+        OnKeyDown = sgTableKeyDown
+        OnPrepareCanvas = sgTablePrepareCanvas
+      end
+      object pnFindGrid: TPanel
+        Left = 0
+        Height = 42
+        Top = 106
+        Width = 877
+        Align = alBottom
+        BevelOuter = bvNone
+        BorderStyle = bsSingle
+        ClientHeight = 40
+        ClientWidth = 875
+        ParentFont = False
+        TabOrder = 1
+        object edFindGrid: TEdit
+          Left = 103
+          Height = 22
+          Top = 11
+          Width = 227
+          TabOrder = 0
+          OnKeyDown = edFindGridKeyDown
+        end
+        object lbFindGrid: TLabel
+          Left = 49
+          Height = 16
+          Top = 13
+          Width = 26
+          Alignment = taRightJustify
+          Caption = 'Find'
+          Font.Color = clBlack
+          ParentFont = False
+        end
+      end
     end
   end
   object mmMenu: TMainMenu

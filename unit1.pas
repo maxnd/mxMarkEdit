@@ -1,4 +1,4 @@
-// ***********************************************************************
+//***********************************************************************
 // ***********************************************************************
 // mxMarkEdit 1.x
 // Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
@@ -30,7 +30,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, CocoaAll,
   CocoaTextEdits, CocoaUtils, Clipbrd, Menus, StdCtrls, Grids, ExtCtrls,
   DefaultTranslator, translate, IniFiles, LazUTF8, FileUtil,
-  LazFileUtils, Unix, Types, DateUtils;
+  LazFileUtils, Unix, Types, DateUtils, LCLType;
 
 type
 
@@ -42,6 +42,7 @@ type
     dbText: TMemo;
     lbDateTime: TLabel;
     lbChars: TLabel;
+    lbFindGrid: TLabel;
     miEditTasks: TMenuItem;
     miEditShowCurrent: TMenuItem;
     miEditFindDuplicate: TMenuItem;
@@ -56,6 +57,8 @@ type
     miFileOpenLast4: TMenuItem;
     miToolsOpenWin: TMenuItem;
     odLink: TOpenDialog;
+    pnBackground: TPanel;
+    pnGrid: TPanel;
     pnTitTodo: TPanel;
     Sep3: TMenuItem;
     Sep5: TMenuItem;
@@ -88,14 +91,18 @@ type
     pnBottom: TPanel;
     Sep2: TMenuItem;
     sgTitles: TStringGrid;
+    sgTable: TStringGrid;
+    spTable: TSplitter;
     spTitles: TSplitter;
     tmDateTime: TTimer;
+    edFindGrid: TEdit;
     procedure cbFilterChange(Sender: TObject);
     procedure dbTextChange(Sender: TObject);
     procedure dbTextClick(Sender: TObject);
     procedure dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure dbTextKeyPress(Sender: TObject; var Key: char);
     procedure dbTextKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure edFindGridKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -128,17 +135,23 @@ type
     procedure miToolsTrans1Click(Sender: TObject);
     procedure miToolsTrans2Click(Sender: TObject);
     procedure miToolsTrans3Click(Sender: TObject);
+    procedure sgTableDrawCell(Sender: TObject; aCol, aRow: integer;
+      aRect: TRect; aState: TGridDrawState);
+    procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
+      aState: TGridDrawState);
     procedure sgTitlesClick(Sender: TObject);
     procedure sgTitlesDrawCell(Sender: TObject; aCol, aRow: integer;
       aRect: TRect; aState: TGridDrawState);
     procedure sgTitlesGetCellHint(Sender: TObject; ACol, ARow: integer;
       var HintText: string);
-    procedure sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: Integer;
+    procedure sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
     procedure tmDateTimeTimer(Sender: TObject);
   private
     procedure CreateBackup;
     procedure CreateYAML;
+    procedure FindInGrid;
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
     function GetPara(txt: NSTextStorage; textOffset: integer;
       isReadOnly, useDefault: boolean): NSParagraphStyle;
@@ -150,6 +163,7 @@ type
     procedure RenumberList;
     function SaveFile: boolean;
     procedure SelectInsertFootnote;
+    procedure SetTable;
     procedure UpdateLastFile;
   public
     procedure ShowCurrentTitleTodo;
@@ -163,7 +177,7 @@ type
 var
   fmMain: TfmMain;
   myHomeDir, myConfigFile: string;
-  iTitleTodoRowHeight: Integer = 28;
+  iTitleTodoRowHeight: integer = 28;
   clTitle1: TColor = clBlack;
   clTitle2: TColor = clBlack;
   clTitle3: TColor = clBlack;
@@ -177,14 +191,16 @@ var
   stFontMono: string = 'Menlo';
   iFontMonoSize: smallint = 18;
   stFileName: string = '';
-  iBookmarkPos: Integer = 0;
-  iDelay: Integer = 7;
-  iLineSpacing: Double = 1.0;
+  iBookmarkPos: integer = 0;
+  iDelay: integer = 7;
+  iLineSpacing: double = 1.0;
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
-  LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: Integer;
-  TopIndexDatabase1, TopIndexDatabase2, TopIndexDatabase3, TopIndexDatabase4: Integer;
+  LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: integer;
+  TopIndexDatabase1, TopIndexDatabase2, TopIndexDatabase3, TopIndexDatabase4: integer;
   blFileSaved: boolean = True;
   blFileMod: boolean = False;
+  blTableSaved: boolean = True;
+  blTableMod: boolean = False;
   blDisableFormatting: boolean = False;
   blTextOnChange: boolean = False;
   pandocPath: string = '/usr/local/bin/';
@@ -216,6 +232,8 @@ resourcestring
   lb004 = 'Headings 1 - 3';
   lb005 = 'Headings 1 - 2';
   lb006 = 'Headings 1';
+  lb007 = 'Tables names';
+  lb008 = 'Tables';
   dateformat = 'en';
 
 implementation
@@ -243,7 +261,16 @@ begin
   begin
     dbText.Font.Color := clWhite;
     sgTitles.Font.Color := clWhite;
+    sgTable.FixedGridLineColor := $005E5E5E;
+    sgTable.GridLineColor := $005E5E5E;
+    sgTable.Color := $00282A2B;
+    sgTable.FixedColor := $00282A2B;
+    sgTable.FocusColor := clSilver;
+    sgTable.Editor.Color := $00282A2B;
+    sgTable.SelectedColor := $00454545;
     lbChars.Font.Color := clSilver;
+    lbFindGrid.Font.Color := clSilver;
+    edFindGrid.Font.Color := clSilver;
     lbDateTime.Font.Color := clSilver;
     clTitle1 := clWhite;
     clTitle2 := clWhite;
@@ -262,10 +289,20 @@ begin
     sgTitles.Font.Color := clBlack;
     dbText.Color := clWhite;
     sgTitles.Color := clWhite;
+    sgTable.FixedGridLineColor := clSilver;
+    sgTable.GridLineColor := clSilver;
+    sgTable.Color := clWhite;
+    sgTable.Editor.Color := clWhite;
+    sgTable.FixedColor := clWhite;
+    sgTable.BorderStyle := bsNone;
+    sgTable.FocusColor := clGray;
+    sgTable.SelectedColor := clSilver;
     fmMain.Color := clWhite;
     spTitles.Color := clForm;
     pnBottom.Color := clForm;
     lbChars.Font.Color := clDkGray;
+    lbFindGrid.Font.Color := clDkGray;
+    edFindGrid.Font.Color := clDkGray;
     lbDateTime.Font.Color := clDkGray;
     clTitle1 := clBlack;
     clTitle2 := clBlack;
@@ -279,6 +316,10 @@ begin
     clTodo := clBlack;
   end;
   sgTitles.FocusRectVisible := False;
+  sgTable.FocusRectVisible := False;
+  sgTable.TitleFont.Style := [fsBold];
+  pnGrid.Height := 1;
+  SetTable;
   lbChars.Caption := msg001 + ' 0';
   sdSave.Filter := dlg001;
   sdSave.Title := dlg002;
@@ -334,12 +375,9 @@ begin
       clTitle3 := StringToColor(MyIni.ReadString('mxmarkedit', 'title3', 'clTitle3'));
       clFootnote := StringToColor(MyIni.ReadString('mxmarkedit',
         'footnote', 'clFootnote'));
-      clLink := StringToColor(MyIni.ReadString('mxmarkedit',
-        'link', 'clLink'));
-      clCode := StringToColor(MyIni.ReadString('mxmarkedit',
-        'code', 'clCode'));
-      clTodo := StringToColor(MyIni.ReadString('mxmarkedit',
-        'todo', 'clTodo'));
+      clLink := StringToColor(MyIni.ReadString('mxmarkedit', 'link', 'clLink'));
+      clCode := StringToColor(MyIni.ReadString('mxmarkedit', 'code', 'clCode'));
+      clTodo := StringToColor(MyIni.ReadString('mxmarkedit', 'todo', 'clTodo'));
       pnTitTodo.Width := MyIni.ReadInteger('mxmarkedit', 'titlewidth', 400);
       stFileName := MyIni.ReadString('mxmarkedit', 'filename', '');
       iDelay := MyIni.ReadInteger('mxmarkedit', 'delay', 7);
@@ -412,6 +450,7 @@ begin
       MyIni.Free;
     end;
   end;
+  sgTable.Font.Color := dbText.Font.Color;
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     setContinuousSpellCheckingEnabled(True);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -440,6 +479,19 @@ begin
     try
       stFileName := ParamStrUTF8(1);
       dbText.Lines.LoadFromFile(stFileName);
+      if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+      begin
+        sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+          #9, False);
+        if pnGrid.Height = 1 then
+        begin
+          pnGrid.Height := 400;
+        end;
+      end
+      else
+      begin
+        pnGrid.Height := 1;
+      end;
       iBookmarkPos := 0;
       MoveToPos;
       LabelFileNameChars;
@@ -450,6 +502,7 @@ begin
       UpdateLastFile;
       ShowCurrentTitleTodo;
       blFileMod := False;
+      blTableMod := False;
     except
       MessageDlg(msg004, mtWarning, [mbOK], 0);
     end;
@@ -461,6 +514,19 @@ begin
     try
       odOpen.FileName := stFileName;
       dbText.Lines.LoadFromFile(stFileName);
+      if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+      begin
+        sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+          #9, False);
+        if pnGrid.Height = 1 then
+        begin
+          pnGrid.Height := 400;
+        end;
+      end
+      else
+      begin
+        pnGrid.Height := 1;
+      end;
       iBookmarkPos := 0;
       MoveToPos;
       LabelFileNameChars;
@@ -471,6 +537,7 @@ begin
       UpdateLastFile;
       ShowCurrentTitleTodo;
       blFileMod := False;
+      blTableMod := False;
     except
       MessageDlg(msg006, mtWarning, [mbOK], 0);
     end
@@ -488,6 +555,19 @@ begin
   try
     stFileName := FileNames[0];
     dbText.Lines.LoadFromFile(stFileName);
+    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+    begin
+      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        #9, False);
+      if pnGrid.Height = 1 then
+      begin
+        pnGrid.Height := 400;
+      end;
+    end
+    else
+    begin
+      pnGrid.Height := 1;
+    end;
     iBookmarkPos := 0;
     MoveToPos;
     LabelFileNameChars;
@@ -498,6 +578,7 @@ begin
     UpdateLastFile;
     ShowCurrentTitleTodo;
     blFileMod := False;
+    blTableMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
@@ -507,6 +588,19 @@ procedure TfmMain.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState
 var
   rng: NSRange;
 begin
+  if ((key = Ord('T')) and (Shift = [ssShift, ssMeta])) then
+  begin
+    if pnGrid.Height = 1 then
+    begin
+      pnGrid.Height := 400;
+    end
+    else
+    begin
+      pnGrid.Height := 1;
+    end;
+    key := 0;
+  end
+  else
   if ((key = 187) and (Shift = [ssMeta])) then
   begin
     if dbText.Font.Size < 128 then
@@ -690,7 +784,7 @@ end;
 procedure TfmMain.dbTextClick(Sender: TObject);
 begin
   FormatListTitleTodo;
-  LabelFileNameChars
+  LabelFileNameChars;
 end;
 
 procedure TfmMain.dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -783,8 +877,8 @@ begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         moveToBeginningOfParagraph(nil);
       Clipboard.AsText := stClip;
-      if TryStrToInt(UTF8Copy(dbText.Lines[dbText.CaretPos.Y],
-        1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y]) - 1), i) = True then
+      if TryStrToInt(UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1,
+        UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y]) - 1), i) = True then
       begin
         RenumberList;
       end;
@@ -949,8 +1043,7 @@ begin
     key := 0;
   end
   else
-  if ((key = Ord('T')) and ((Shift = [ssMeta]) or
-    (Shift = [ssAlt, ssMeta]))) then
+  if ((key = Ord('T')) and ((Shift = [ssMeta]) or (Shift = [ssAlt, ssMeta]))) then
   begin
     if ((Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = '- [ ] ') or
       ((TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
@@ -1000,8 +1093,8 @@ begin
         myDate := Date;
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).
           insertText_replacementRange(NSStringUtf8('- [ ] ' +
-          FormatDateTime('yyyy-mm-dd', IncDay(myDate,
-          StrToInt(fmOptions.cbDelay.Text))) + ' • '), rngStart);
+          FormatDateTime('yyyy-mm-dd',
+          IncDay(myDate, StrToInt(fmOptions.cbDelay.Text))) + ' • '), rngStart);
       end;
     end;
     key := 0;
@@ -1060,14 +1153,14 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveForward(nil);
     while (((dbText.Lines[dbText.CaretPos.Y] = '') or
-      (dbText.Lines[dbText.CaretPos.Y] = '---') or
-      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '# ') or
-      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 3) = '## ') or
-      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 4) = '### ') or
-      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) = '#### ') or
-      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = '##### ') or
-      (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) = '###### '))
-      and (dbText.CaretPos.Y < dbText.Lines.Count)) do
+        (dbText.Lines[dbText.CaretPos.Y] = '---') or
+        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '# ') or
+        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 3) = '## ') or
+        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 4) = '### ') or
+        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) = '#### ') or
+        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = '##### ') or
+        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) = '###### ')) and
+        (dbText.CaretPos.Y < dbText.Lines.Count)) do
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         moveForward(nil);
@@ -1087,44 +1180,44 @@ begin
   else
   if ((key = Ord('1')) and (Shift = [ssAlt, ssMeta])) then
   begin
-   cbFilter.ItemIndex := 0;
-   FormatListTitleTodo;
-   dbText.SetFocus;
+    cbFilter.ItemIndex := 0;
+    FormatListTitleTodo;
+    dbText.SetFocus;
   end
   else
   if ((key = Ord('2')) and (Shift = [ssAlt, ssMeta])) then
   begin
-   cbFilter.ItemIndex := 1;
-   FormatListTitleTodo;
-   dbText.SetFocus;
+    cbFilter.ItemIndex := 1;
+    FormatListTitleTodo;
+    dbText.SetFocus;
   end
   else
   if ((key = Ord('3')) and (Shift = [ssAlt, ssMeta])) then
   begin
-   cbFilter.ItemIndex := 2;
-   FormatListTitleTodo;
-   dbText.SetFocus;
+    cbFilter.ItemIndex := 2;
+    FormatListTitleTodo;
+    dbText.SetFocus;
   end
   else
   if ((key = Ord('4')) and (Shift = [ssAlt, ssMeta])) then
   begin
-   cbFilter.ItemIndex := 3;
-   FormatListTitleTodo;
-   dbText.SetFocus;
+    cbFilter.ItemIndex := 3;
+    FormatListTitleTodo;
+    dbText.SetFocus;
   end
   else
   if ((key = Ord('5')) and (Shift = [ssAlt, ssMeta])) then
   begin
-   cbFilter.ItemIndex := 4;
-   FormatListTitleTodo;
-   dbText.SetFocus;
+    cbFilter.ItemIndex := 4;
+    FormatListTitleTodo;
+    dbText.SetFocus;
   end
   else
   if ((key = Ord('6')) and (Shift = [ssAlt, ssMeta])) then
   begin
-   cbFilter.ItemIndex := 5;
-   FormatListTitleTodo;
-   dbText.SetFocus;
+    cbFilter.ItemIndex := 5;
+    FormatListTitleTodo;
+    dbText.SetFocus;
   end;
 end;
 
@@ -1260,8 +1353,7 @@ begin
   while i <= iLen do
   begin
     if ((stText[i] = '`') and (stText[i + 1] = '`') and
-      (stText[i + 2] = '`') and ((stText[i - 1] = LineEnding) or
-      (i = 1))) then
+      (stText[i + 2] = '`') and ((stText[i - 1] = LineEnding) or (i = 1))) then
     begin
       if blCode = False then
       begin
@@ -1336,12 +1428,136 @@ begin
   end;
 end;
 
-procedure TfmMain.sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: Integer;
+procedure TfmMain.sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: integer;
   aState: TGridDrawState);
 begin
   if sgTitles.Cells[1, aRow] = ' ' then
   begin
     sgTitles.Canvas.Brush.Color := clHighlightList;
+  end;
+end;
+
+procedure TfmMain.sgTableDrawCell(Sender: TObject; aCol, aRow: integer;
+  aRect: TRect; aState: TGridDrawState);
+begin
+  sgTable.Canvas.TextOut(aRect.Left + 4, aRect.Top,
+    sgTable.Cells[aCol, aRow]);
+end;
+
+procedure TfmMain.edFindGridKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+begin
+  if ((key = 13) or (((key = Ord('G')) and (Shift = [ssMeta])))) then
+  begin
+    FindInGrid;
+    key := 0;
+  end;
+end;
+
+procedure TfmMain.sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+var
+  i: integer;
+begin
+  blTableMod := True;
+  blTableSaved := False;
+  if ((key = 8) and (Shift = [ssMeta, ssShift])) then
+  begin
+    sgTable.DeleteColRow(False, sgTable.Row);
+    sgTable.RowCount := 2000;
+    key := 0;
+  end
+  else
+  if ((key = Ord('G')) and (Shift = [ssMeta])) then
+  begin
+    FindInGrid;
+    key := 0;
+  end
+  else
+  if ((key = Ord('I')) and (Shift = [ssMeta, ssShift])) then
+  begin
+    if sgTable.Row < sgTable.RowCount - 1 then
+    begin
+      sgTable.InsertColRow(False, sgTable.Row);
+      sgTable.Row := sgTable.Row - 1;
+      sgTable.RowCount := 2000;
+    end;
+    key := 0;
+  end
+  else
+  if ((key = 37) and (Shift = [ssMeta])) then
+  begin
+    sgTable.Col := 1;
+    key := 0;
+  end
+  else
+  if ((key = 38) and (Shift = [ssMeta])) then
+  begin
+    sgTable.Row := 1;
+    key := 0;
+  end
+  else
+  if ((key = 38) and (Shift = [ssAlt, ssMeta])) then
+  begin
+    if sgTable.Row > 1 then
+    begin
+      sgTable.MoveColRow(False, sgTable.Row, sgTable.Row - 1);
+      key := 0;
+    end;
+  end
+  else
+  if ((key = 39) and (Shift = [ssMeta])) then
+  begin
+    sgTable.Col := sgTable.ColCount - 1;
+    key := 0;
+  end
+  else
+  if ((key = 40) and (Shift = [ssMeta])) then
+  begin
+    for i := sgTable.RowCount - 1 downto 2 do
+    begin
+      if ((sgTable.Cells[2, i] <> '') or (sgTable.Cells[3, i] <> '') or
+        (sgTable.Cells[4, i] <> '')) then
+      begin
+        sgTable.Row := i;
+        Break;
+      end;
+    end;
+    key := 0;
+  end
+  else
+  if ((key = 40) and (Shift = [ssAlt, ssMeta])) then
+  begin
+    if sgTable.Row < sgTable.RowCount - 1 then
+    begin
+      sgTable.MoveColRow(False, sgTable.Row, sgTable.Row + 1);
+      key := 0;
+    end;
+  end;
+end;
+
+procedure TfmMain.sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
+  aState: TGridDrawState);
+begin
+  if aRow = 0 then
+  begin
+    sgTable.Canvas.Font.Style := [fsBold];
+    sgTable.Canvas.Font.Color := clTitle1;
+  end
+  else
+  if ((sgTable.Cells[1, aRow] <> '') and (aCol = 1)) then
+  begin
+    sgTable.Canvas.Font.Style := [fsBold];
+    sgTable.Canvas.Font.Color := clTitle2;
+  end
+  else
+  if ((sgTable.Cells[1, aRow] <> '') and (aCol > 1)) then
+  begin
+    sgTable.Canvas.Font.Style := [fsBold];
+    sgTable.Canvas.Font.Color := clTitle3;
+  end
+  else
+  begin
+    sgTable.Canvas.Font.Style := [];
+    sgTable.Canvas.Font.Color := dbText.Font.Color;
   end;
 end;
 
@@ -1370,6 +1586,9 @@ begin
   CreateBackup;
   stFileName := '';
   CreateYAML;
+  sgTable.RowCount := 1;
+  sgTable.RowCount := 2000;
+  pnGrid.Height := 1;
 end;
 
 procedure TfmMain.miFileOpenClick(Sender: TObject);
@@ -1381,8 +1600,23 @@ begin
   CreateBackup;
   if odOpen.Execute then
   try
+    sgTable.RowCount := 1;
+    sgTable.RowCount := 2000;
     stFileName := odOpen.FileName;
     dbText.Lines.LoadFromFile(stFileName);
+    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+    begin
+      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        #9, False);
+      if pnGrid.Height = 1 then
+      begin
+        pnGrid.Height := 400;
+      end;
+    end
+    else
+    begin
+      pnGrid.Height := 1;
+    end;
     iBookmarkPos := 0;
     MoveToPos;
     LabelFileNameChars;
@@ -1393,6 +1627,7 @@ begin
     UpdateLastFile;
     ShowCurrentTitleTodo;
     blFileMod := False;
+    blTableMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
@@ -1408,10 +1643,16 @@ begin
       myList := TStringList.Create;
       myList.Text := dbText.Text;
       myList.SaveToFile(stFileName);
+      blFileSaved := True;
     finally
       myList.Free;
     end;
-    blFileSaved := False;
+    if blTableSaved = False then
+    begin
+      sgTable.SaveToCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        #9, False);
+      blTableSaved := True;
+    end;
   except
     MessageDlg(msg003, mtWarning, [mbOK], 0);
   end
@@ -1437,12 +1678,15 @@ begin
       myList := TStringList.Create;
       myList.Text := dbText.Text;
       myList.SaveToFile(stFileName);
+      blFileSaved := True;
       UpdateLastFile;
     finally
       myList.Free;
     end;
+    sgTable.SaveToCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+      #9, False);
     LabelFileNameChars;
-    blFileSaved := False;
+    blTableSaved := True;
   except
     MessageDlg(msg003, mtWarning, [mbOK], 0);
   end;
@@ -1457,8 +1701,23 @@ begin
   CreateBackup;
   if FileExistsUTF8(LastDatabase1) then
   try
+    sgTable.RowCount := 1;
+    sgTable.RowCount := 2000;
     stFileName := LastDatabase1;
     dbText.Lines.LoadFromFile(stFileName);
+    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+    begin
+      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        #9, False);
+      if pnGrid.Height = 1 then
+      begin
+        pnGrid.Height := 400;
+      end;
+    end
+    else
+    begin
+      pnGrid.Height := 1;
+    end;
     iBookmarkPos := 0;
     MoveToPos;
     LabelFileNameChars;
@@ -1469,6 +1728,7 @@ begin
     UpdateLastFile;
     ShowCurrentTitleTodo;
     blFileMod := False;
+    blTableMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
@@ -1487,8 +1747,23 @@ begin
   CreateBackup;
   if FileExistsUTF8(LastDatabase2) then
   try
+    sgTable.RowCount := 1;
+    sgTable.RowCount := 2000;
     stFileName := LastDatabase2;
     dbText.Lines.LoadFromFile(stFileName);
+    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+    begin
+      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        #9, False);
+      if pnGrid.Height = 1 then
+      begin
+        pnGrid.Height := 400;
+      end;
+    end
+    else
+    begin
+      pnGrid.Height := 1;
+    end;
     iBookmarkPos := 0;
     MoveToPos;
     LabelFileNameChars;
@@ -1498,6 +1773,7 @@ begin
       undoManager.removeAllActions;
     UpdateLastFile;
     blFileMod := False;
+    blTableMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
@@ -1516,8 +1792,23 @@ begin
   CreateBackup;
   if FileExistsUTF8(LastDatabase3) then
   try
+    sgTable.RowCount := 1;
+    sgTable.RowCount := 2000;
     stFileName := LastDatabase3;
     dbText.Lines.LoadFromFile(stFileName);
+    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+    begin
+      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        #9, False);
+      if pnGrid.Height = 1 then
+      begin
+        pnGrid.Height := 400;
+      end;
+    end
+    else
+    begin
+      pnGrid.Height := 1;
+    end;
     iBookmarkPos := 0;
     MoveToPos;
     LabelFileNameChars;
@@ -1527,6 +1818,7 @@ begin
       undoManager.removeAllActions;
     UpdateLastFile;
     blFileMod := False;
+    blTableMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
@@ -1545,8 +1837,23 @@ begin
   CreateBackup;
   if FileExistsUTF8(LastDatabase4) then
   try
+    sgTable.RowCount := 1;
+    sgTable.RowCount := 2000;
     stFileName := LastDatabase4;
     dbText.Lines.LoadFromFile(stFileName);
+    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+    begin
+      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        #9, False);
+      if pnGrid.Height = 1 then
+      begin
+        pnGrid.Height := 400;
+      end;
+    end
+    else
+    begin
+      pnGrid.Height := 1;
+    end;
     iBookmarkPos := 0;
     MoveToPos;
     LabelFileNameChars;
@@ -1556,6 +1863,7 @@ begin
       undoManager.removeAllActions;
     UpdateLastFile;
     blFileMod := False;
+    blTableMod := False;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
@@ -1567,27 +1875,39 @@ end;
 
 procedure TfmMain.miEditCopyClick(Sender: TObject);
 begin
-  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-    copy_(nil);
+  if sgTable.Focused = False then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      copy_(nil);
+  end;
 end;
 
 procedure TfmMain.miEditCutClick(Sender: TObject);
 begin
-  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-    cut(nil);
+  if sgTable.Focused = False then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      cut(nil);
+  end;
 end;
 
 procedure TfmMain.miEditPasteClick(Sender: TObject);
 begin
-  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-    pasteAsPlainText(nil);
-  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-    checkTextInDocument(nil);
+  if sgTable.Focused = False then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      pasteAsPlainText(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      checkTextInDocument(nil);
+  end;
 end;
 
 procedure TfmMain.miEditSelectAllClick(Sender: TObject);
 begin
-  dbText.SelectAll;
+  if sgTable.Focused = False then
+  begin
+    dbText.SelectAll;
+  end;
 end;
 
 procedure TfmMain.miEditFindClick(Sender: TObject);
@@ -1597,7 +1917,7 @@ end;
 
 procedure TfmMain.miEditLinkClick(Sender: TObject);
 var
-  stLink: String;
+  stLink: string;
 begin
   if odLink.Execute then
   begin
@@ -1613,7 +1933,7 @@ end;
 procedure TfmMain.miEditFindDuplicateClick(Sender: TObject);
 var
   rng: NSRange;
-  iLen, i, iSelStart: Integer;
+  iLen, i, iSelStart: integer;
   slList1, slList2: TStringList;
   stWord: NSAttributedString;
   blPeriod: boolean = False;
@@ -1791,7 +2111,9 @@ end;
 
 procedure TfmMain.miToolsPandocClick(Sender: TObject);
 var
-  stArgument, stOutput: string;
+  stArgument, stInput, stOutput, stLine, stHeader: string;
+  slDocTable: TStringList;
+  x, y, n, iLastRow: integer;
 begin
   if stFileName = '' then
   begin
@@ -1809,16 +2131,87 @@ begin
     Exit;
   end;
   stOutput := ExtractFileNameWithoutExt(stFileName) + pandocOutput;
+  if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+  try
+    iLastRow := -1;
+    for y := sgTable.RowCount - 1 downto 1 do
+    begin
+      for x := 1 to sgTable.ColCount - 1 do
+      begin
+        if sgTable.Cells[x, y] <> '' then
+        begin
+          iLastRow := y;
+          Break;
+        end;
+      end;
+      if iLastRow > -1 then
+      begin
+        Break;
+      end;
+    end;
+    slDocTable := TStringList.Create;
+    slDocTable.Text := dbText.Text;
+    slDocTable.Add('');
+    slDocTable.Add('# ' + lb008);
+    slDocTable.Add('');
+    y := 1;
+    while y <= iLastRow do
+    begin
+      if sgTable.Cells[1, y] <> '' then
+      begin
+        slDocTable.Add('## ' + sgTable.Cells[1, y]);
+        slDocTable.Add('');
+        stLine := '| ';
+        stHeader := '|';
+        for x := 2 to sgTable.ColCount - 1 do
+        begin
+          if sgTable.Cells[x, y] = '' then
+          begin
+            Break;
+          end;
+          stLine := stLine + sgTable.Cells[x, y] + ' | ';
+          stHeader := stHeader + '-----|';
+        end;
+        slDocTable.Add(stLine);
+        slDocTable.Add(stHeader);
+        Inc(y);
+        while ((sgTable.Cells[1, y] = '') and (y <= iLastRow)) do
+        begin
+          stLine := '| ';
+          for n := 2 to x - 1 do
+          begin
+            if sgTable.Cells[n, y] <> '' then
+            begin
+              stLine := stLine + sgTable.Cells[n, y] + ' | ';
+            end;
+          end;
+          if stLine <> '| ' then
+          begin
+            slDocTable.Add(stLine);
+          end;
+          Inc(y);
+        end;
+      end;
+    end;
+    slDocTable.SaveToFile(ExtractFileNameWithoutExt(stFileName) + '.export');
+    stInput := ExtractFileNameWithoutExt(stFileName) + '.export';
+  finally
+    slDocTable.Free;
+  end
+  else
+  begin
+    stInput := stFileName;
+  end;
   if FileExistsUTF8(pandocTemplate) then
   begin
     stArgument := pandocPath + 'pandoc ' + '--from markdown' +
-      pandocOptions + ' -s "' + stFileName + '" -o "' + stOutput +
+      pandocOptions + ' -s "' + stInput + '" -o "' + stOutput +
       '" --reference-doc "' + pandocTemplate + '" && open "' + stOutput + '"';
   end
   else
   begin
     stArgument := pandocPath + 'pandoc ' + '--from markdown' +
-      pandocOptions + ' -s "' + stFileName + '" -o "' + stOutput +
+      pandocOptions + ' -s "' + stInput + '" -o "' + stOutput +
       '" && open "' + stOutput + '"';
   end;
   try
@@ -1874,8 +2267,8 @@ var
   i, iLen, iPos, iTopRow, iLevel, iIndent, iTab: integer;
   blHeading, blPosInHeading, blBoldItalics, blItalics, blBold, blMono,
   blQuote, blStartLinesQuote, blFootnote, blLink: boolean;
-  iStartHeading, iStartBoldItalics, iStartItalics, iStartBold,
-  iStartMono, iStartQuote, iStartLinesQuote, iStartFootnote, iStartLink: integer;
+  iStartHeading, iStartBoldItalics, iStartItalics, iStartBold, iStartMono,
+  iStartQuote, iStartLinesQuote, iStartFootnote, iStartLink: integer;
   stText: WideString = '';
   stTitle: WideString = '';
   stSpaces: string = '';
@@ -1925,8 +2318,7 @@ begin
   iIndent := dbText.Font.Size * 5 - dbText.Font.Size div 3;
   for iTab := 1 to 30 do
   begin
-    tab := NSTextTab.alloc.initWithType_location(NSLeftTabStopType,
-      iTab * iIndent);
+    tab := NSTextTab.alloc.initWithType_location(NSLeftTabStopType, iTab * iIndent);
     Tabs.addObject(tab);
     tab.Release;
   end;
@@ -2224,7 +2616,7 @@ begin
         else
         begin
           sgTitles.RowHeights[sgTitles.RowCount - 1] := 0;
-         end;
+        end;
         stTitle := '';
       end
       else
@@ -2237,7 +2629,7 @@ begin
           rng.location := iStartQuote - 1;
           rng.length := i - iStartQuote + 1;
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-          addAttribute_value_range(NSFontAttributeName, quoteFont, rng);
+            addAttribute_value_range(NSFontAttributeName, quoteFont, rng);
           rng.location := iStartQuote - 1;
           rng.length := 1;
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
@@ -2337,8 +2729,8 @@ begin
     end
     else
     // Lines of code
-    if ((stText[i] = '`') and (stText[i + 1] = '`')
-      and (stText[i + 2] = '`') and (blStartLinesQuote = False) and
+    if ((stText[i] = '`') and (stText[i + 1] = '`') and
+      (stText[i + 2] = '`') and (blStartLinesQuote = False) and
       ((i = 1) or (stText[i - 1] = LineEnding))) then
     begin
       blStartLinesQuote := True;
@@ -2352,8 +2744,8 @@ begin
       iStartLinesQuote := i;
     end
     else
-    if ((stText[i] = '`') and (stText[i + 1] = '`')
-      and (stText[i + 2] = '`') and (blStartLinesQuote = True)) then
+    if ((stText[i] = '`') and (stText[i + 1] = '`') and
+      (stText[i + 2] = '`') and (blStartLinesQuote = True)) then
     begin
       blStartLinesQuote := False;
       rng.location := iStartLinesQuote - 1;
@@ -2430,8 +2822,7 @@ begin
         end;
       end;
     end
-    else if ((stText[i] = ']') and (stText[i + 1] = '(') and
-      (blLink = True)) then
+    else if ((stText[i] = ']') and (stText[i + 1] = '(') and (blLink = True)) then
     begin
       blLink := False;
       rng.location := iStartLink - 1;
@@ -2456,7 +2847,7 @@ var
   iPos, iOrigPos, iNew: integer;
   rng: NSRange;
   stAttWord: NSAttributedString;
-  stWord: String;
+  stWord: string;
 begin
   if dbText.Text = '' then
   begin
@@ -2527,8 +2918,8 @@ begin
       if UTF8CocoaPos(LineEnding + '[^' + IntToStr(iNew) + ']:',
         dbText.Text, 1) > 0 then
       begin
-        dbText.SelStart := UTF8CocoaPos(LineEnding + '[^' + IntToStr(iNew) + ']:',
-          dbText.Text, 1) + UTF8Length(IntToStr(iNew)) + 5;
+        dbText.SelStart := UTF8CocoaPos(LineEnding + '[^' + IntToStr(iNew) +
+          ']:', dbText.Text, 1) + UTF8Length(IntToStr(iNew)) + 5;
         dbText.SelLength := 0;
         FormatListTitleTodo;
       end;
@@ -2554,14 +2945,14 @@ begin
     end;
   end;
   blTextOnChange := False;
-  FormatListTitleTodo
+  FormatListTitleTodo;
 end;
 
 procedure TfmMain.RenumberFootnotes;
 var
   blFootNum, blFootnote: boolean;
   iStartFootNum, iStartFootnote, iNum, iIncNum, i, iLen, iLine, n: integer;
-  stNum: String;
+  stNum: string;
   stText: WideString;
   rng: NSRange;
   slNumList, slFootnotes: TStringList;
@@ -2595,7 +2986,7 @@ begin
         begin
           blFootNum := True;
           iStartFootNum := i;
-        end
+        end;
       end
       else
       if ((stText[i] = '^') and (stText[i - 1] = '[') and
@@ -2605,7 +2996,7 @@ begin
         begin
           blFootnote := True;
           iStartFootnote := i;
-        end
+        end;
       end
       else
       if ((stText[i] = ']') and (blFootNum = True)) then
@@ -2668,9 +3059,9 @@ begin
     end;
     for i := iLine to dbText.Lines.Count - 1 do
     begin
-      if TryStrToInt(UTF8Copy(dbText.Lines[i], 3,
-        UTF8Pos(']', dbText.Lines[i]) - 3), iNum) then
-      slFootnotes.Add(FormatFloat('000000', iNum) + dbText.Lines[i]);
+      if TryStrToInt(UTF8Copy(dbText.Lines[i], 3, UTF8Pos(']', dbText.Lines[i]) -
+        3), iNum) then
+        slFootnotes.Add(FormatFloat('000000', iNum) + dbText.Lines[i]);
     end;
     slFootnotes.Sort;
     if slFootnotes.Count > 0 then
@@ -2692,31 +3083,30 @@ begin
     slFootnotes.Free;
     blTextOnChange := False;
   end;
-  FormatListTitleTodo
+  FormatListTitleTodo;
 end;
 
 procedure TfmMain.LabelFileNameChars;
 var
-  iLength, iPos: Integer;
+  iLength, iPos: integer;
 begin
   iLength := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-    textStorage.characters.count;
+    textStorage.characters.Count;
   iPos := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
     selectedRange.location;
   if iLength > 0 then
-    begin
+  begin
     if stFileName <> '' then
     begin
       lbChars.Caption := ExtractFileDir(stFileName) + '/  •  ' +
         ExtractFileName(stFileName) + '  •  ' + msg001 + ' ' +
         FormatFloat('#,##0', iLength) + ' (' +
-        FormatFloat('#0', iPos / iLength * 100) + '%)'
+        FormatFloat('#0', iPos / iLength * 100) + '%)';
     end
     else
     begin
-      lbChars.Caption := msg001 + ' ' +
-      FormatFloat('#,##0', iLength) + ' (' +
-      FormatFloat('#0', iPos / iLength * 100) + '%)'
+      lbChars.Caption := msg001 + ' ' + FormatFloat('#,##0', iLength) +
+        ' (' + FormatFloat('#0', iPos / iLength * 100) + '%)';
     end;
   end;
 end;
@@ -2831,6 +3221,12 @@ begin
       end;
     end;
   end;
+  if ((blTableSaved = False) and (stFileName <> '')) then
+  begin
+    sgTable.SaveToCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+      #9, False);
+    blTableSaved := True;
+  end;
 end;
 
 procedure TfmMain.MoveToPos;
@@ -2891,8 +3287,8 @@ begin
   iStart := iPos - 1;
   while ((iStart >= 0) and (iStart < Length(stText) - 3)) do
   begin
-    if (((stText[iStart] = LineEnding) or (iStart = 0)) and (stText[iStart + 1] =
-      LineEnding)) then
+    if (((stText[iStart] = LineEnding) or (iStart = 0)) and
+      (stText[iStart + 1] = LineEnding)) then
     begin
       Break;
     end;
@@ -2967,7 +3363,7 @@ end;
 
 procedure TfmMain.ShowCurrentTitleTodo;
 var
-  i: Integer;
+  i: integer;
 begin
   if ((pnTitTodo.Visible = True) and (sgTitles.RowCount > 0)) then
   begin
@@ -2976,6 +3372,26 @@ begin
       if sgTitles.Cells[1, i] = ' ' then
       begin
         sgTitles.TopRow := i;
+        Break;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmMain.FindInGrid;
+var
+  i: integer;
+begin
+  if ((pnGrid.Height > 1) and (edFindGrid.Text <> '') and
+    (sgTable.Row < sgTable.RowCount - 1)) then
+  begin
+    for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+    begin
+      if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
+        UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
+      begin
+        sgTable.Row := i;
+        sgTable.SetFocus;
         Break;
       end;
     end;
@@ -3021,6 +3437,40 @@ begin
       MessageDlg(msg009, mtWarning, [mbOK], 0);
     end;
   end;
+  if ((blTableMod = True) and (stFileName <> '')) then
+  begin
+    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') = True then
+    try
+      if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) +
+        '.cvs.bak') = True then
+      begin
+        DeleteFileUTF8(ExtractFileNameWithoutExt(stFileName) + '.cvs.bak');
+      end;
+      CopyFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        ExtractFileNameWithoutExt(stFileName) + '.cvs.bak');
+    except
+      MessageDlg(msg009, mtWarning, [mbOK], 0);
+    end;
+  end;
+end;
+
+procedure TfmMain.SetTable;
+var
+  i: integer;
+begin
+  sgTable.Cells[1, 0] := lb007;
+  for i := 2 to sgTable.ColCount - 1 do
+  begin
+    if i < 28 then
+      sgTable.Cells[i, 0] := Chr(i + 63) + '1'
+    else if i < 54 then
+      sgTable.Cells[i, 0] := Chr(i + 37) + '2'
+    else if i < 80 then
+      sgTable.Cells[i, 0] := Chr(i + 11) + '3'
+    else if i < 106 then
+      sgTable.Cells[i, 0] := Chr(i - 15) + '4';
+  end;
+  sgTable.ColWidths[0] := 50;
 end;
 
 // *******************************************************

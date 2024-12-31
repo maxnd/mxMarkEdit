@@ -1,10 +1,10 @@
 # mxMarkEdit
 
-Version 1.0.12, published on 29 December 2024.
+Version 1.1.0, published on 31 December 2024.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
-mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), that must be installed in the system in use. The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
+mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), that must be installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data. The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
 
 ## Download and install
 
@@ -24,17 +24,21 @@ The software looks like this, with one possible color setting:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot1.png)
 
-The form that summarises the todo items typed in the document looks like this:
+When the tables grid is shown, the software looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot2.png)
 
-The form of the options of the app looks like this:
+The form that summarises the todo items typed in the document looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot3.png)
 
-## Main features
+The form of the options of the app looks like this:
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot4.png)
 
 The main features of mxMarkEdit are the followings.
+
+## Formatting
 
 Some Markdown markers are hidden, as the text that follows them or is contained within them is properly formatted. These markers are:
 
@@ -53,15 +57,27 @@ Other Markdown markers are not hidden, but are shown in a different color define
 
 The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned. Pandoc should instead manage them properly.
 
+When a paragraph starts with a list heading (`*`, `+`, `-` or a number followed by a dot and a space), the `Return` key creates a new paragraph with the same heading. The numbered lists are properly renumbered if necessary.
+
+## Titles and todo list
+
 At the left of the text, there’s a list of the titles (starting with `#`) and todo items (starting with `– [ ]`  or `– [X]`). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. While moving the cursor in the text, the corresponding title or todo item is highlighted.
 
 Above this list there is combo box in which it’s possible to select the level of the headings to be shown. The todo items and the heading under which the cursor is located are always shown.
 
 In the todo items, it’s possibile to add a deadline. The format of the date should be `year-month-day`, where month and day are always of two digits. The date must be followed by 3 separator characters before the title of the todo item. For instance: `- [X] 2024-12-05 • Buy some food`. The shortcut `Meta + T` mentioned below insert automatically the todo marker and the deadline in the proper format with a delay in days that is specified by the user in the options of the app.
 
-When a paragraph starts with a list heading (`*`, `+`, `-` or a number followed by a dot and a space), the `Return` key creates a new paragraph with the same heading. The numbered lists are properly renumbered if necessary.
+## Tables
 
-When a file that has been modified is closed, a backup copy is created.
+At the bottom of the text there’s a Excel-like grid of 105 columns and 2000 rows which may contain simple tables. It’s hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the titles, it’s possibile to insert any kind of data. It’s possibile to add more tables in the grid, adding other titles under the `Table names` column, like in the screenshot above.
+
+The content of the table is saved in a separate file with the same name of the one in use, but with the extension `.csv`. This file may be imported in a spreadsheet. What the current document is exported to Pandoc, if there are some data in the tables grid, the software creates a new file with the extension `export` which contains both the document and the tables properly formatted in Markdown format. In the converted document in Word or Writer format, the tables are located at the end of the text.
+
+In the tables grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be cut or copied in the clipboard and pasted in another position of the grid.
+
+At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type in it the text to be found and press `Return` to select the following cell after the current one in just the current column that contains that text. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
+
+See below for some useful shortcuts available in this grid.
 
 ## Menu items 
 
@@ -91,42 +107,64 @@ The other menu items are self-explaining.
 
 ## Shortcuts
 
-There are also some shortcuts beyond the ones related to the menu items:
+There are also some shortcuts beyond the ones related to the menu items.
 
-* `Meta` + `Z`: undo the last action.
-* `Meta` + `Shift` + `Y`: redo the last action.
-* `Meta` + `Opt` + `1-6`: select one of the six filter options above the title and todo list.
-* `Meta` + `+` or `-`: change the size of the normal font.
-* `Meta` + `Ctrl` + `+` or `-`: change the size of the mono font.
-* `Meta` + `Shift` + `Backspace`: delete the current line.
-* `Meta` + `D`: insert the current date.
-* `Meta` + `Shift` + `D`: insert the current date and time.
-* `Meta` + `B`: format the selected text in bold or the current word if no text is selected.
-* `Meta` + `I`: format the selected text in italics or the current word if no text is selected.
+### In the main form
+
+* `Meta` + `Z`: undoes the last action.
+* `Meta` + `Shift` + `Y`: redoes the last action.
+* `Meta` + `Opt` + `1-6`: selects one of the six filter options above the title and todo list.
+* `Meta` + `+` or `-`: changes the size of the normal font.
+* `Meta` + `Ctrl` + `+` or `-`: changes the size of the mono font.
+* `Meta` + `Shift` + `Backspace`: deletes the current paragraph.
+* `Meta` + `D`: inserts the current date.
+* `Meta` + `Shift` + `D`: inserts the current date and time.
+* `Meta` + `B`: formats the selected text in bold or the current word if no text is selected.
+* `Meta` + `I`: formats the selected text in italics or the current word if no text is selected.
 * `Meta` + `R`: if the cursor is inside a numbered list, renumbers the list.
 * `Meta` + `Shift` + `R`: renumbers all the possible footnotes references.
-* `Meta` + `G`: find the next recurrence of the text specified in the search form, even if it’s closed.
-* `Meta` + `T`: create a todo item with a deadline whose delay in days is specified in the options (default is 7), or set it as done or to be done.
-* `Meta` + `Opt` + `T`: create a todo item without a deadline, or set it as done or to be done.
-* `Meta` + `Opt` + `Arrow up`: move up the current paragraph.
-* `Meta` + `Opt` + `Arrow down`: move down the current paragraph.
-* `Meta` + `Ctrl` + `Arrow up`: select the previous heading.
-* `Meta` + `Ctrl` + `Arrow down`: select the next heading.
-* `Meta` + `Shift` + `J`: set the current position of the cursor in the bookmark.
-* `Meta` + `J`: move the cursor to the position already set in the bookmark.
+* `Meta` + `G`: finds the next recurrence of the text specified in the search form, even if it’s closed.
+* `Meta` + `T`: creates a todo item with a deadline whose delay in days is specified in the options (default is 7), or sets it as done or to be done.
+* `Meta` + `Opt` + `T`: creates a todo item without a deadline, or set it as done or to be done.
+* `Meta` + `Opt` + `Arrow up`: moves up the current paragraph.
+* `Meta` + `Opt` + `Arrow down`: moves down the current paragraph.
+* `Meta` + `Ctrl` + `Arrow up`: selects the previous heading.
+* `Meta` + `Ctrl` + `Arrow down`: selects the next heading.
+* `Meta` + `Shift` + `J`: sets the current position of the cursor in the bookmark.
+* `Meta` + `J`: moves the cursor to the position already set in the bookmark.
 * `Meta` + `E`: shows the following paragraph with a green background, skipping the empty lines and the headings; this is useful to use mxMarkEdit for presentations.
-* `Meta` + `U`: make uppercase the current word.
-* `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
-* `Meta` + `Opt` + `U`: capitalise the current word.
+* `Meta` + `U`: makes uppercase the current word.
+* `Meta` + `Opt` + `Shift` + `U`: makes lowercase the current word.
+* `Meta` + `Opt` + `U`: capitalises the current word.
+* `Meta` + `Shift` + `T`: shows the tables grid.
 * `Meta` + `Shift` + `F`:
   * within a footnote reference in the document (e.g. `[^1]`), moves the cursor to the corresponding footnote;
   * within a footnote (e.g. `[^1]: This is the text of the footnote.`), moves the cursor to the corresponding footnote reference in the document; 
   * in other positions, creates a new footnote reference and a new footnote, both properly numbered.
 
-In the *Todo form*:
+### In the todo form
 
-* `Meta` + `Opt` + `H`: hide the todo items already done.
-* `Meta` + `T`: toggle the state of the selected todo item from to be done to done, and vice versa.
+* `Meta` + `Opt` + `H`: hides the todo items already done.
+* `Meta` + `T`: toggles the state of the selected todo item from to be done to done, and vice versa.
+
+### In the tables grid
+
+* `Meta` + `Shift` + `I`: inserts a new row.
+* `Meta` + `Shift` + `Backspace`: deletes the current row.
+* `Meta` + `G`: search the text in the `Find` field starting from the current position and just in the current column.
+* `Meta` + `Opt` + `Arrow up`: moves up the current row.
+* `Meta` + `Opt` + `Arrow down`: moves down the current row.
+* `Meta` + `Arrow up`: moves to the top of the grid.
+* `Meta` + `Arrow down`: moves down to the last edited row.
+* `Meta` + `Arrow left`: moves to the left end of the grid.
+* `Meta` + `Arrow right`: moves the the right end of the grid.
+* `Meta` + `C`: copies the content of the selected cells in the clipboard.
+* `Meta` + `X`: cuts the content of the selected cells in the clipboard.
+* `Meta` + `V`: pastes the content of the clipboard in the current and following cells or in a document.
+
+## Backup
+
+When a file that has been modified is closed, a backup copy is created with the `.bak` extension.
 
 ## Configuration files
 
