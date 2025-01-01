@@ -150,6 +150,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 ### In the tables grid
 
 * `Meta` + `Shift` + `I`: insert a new row.
+* `Backspace`: delete the content of the current cell.
 * `Meta` + `Shift` + `Backspace`: delete the current row.
 * `Meta` + `G`: search the text in the `Find` field starting from the current position and just in the current column.
 * `Meta` + `Opt` + `Arrow up`: move up the current row.
