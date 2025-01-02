@@ -26,7 +26,7 @@ The software looks like this, with one possible color setting:
 
 When the tables grid is shown, the software looks like this:
 
-3![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot2.png)
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot2.png)
 
 The form that summarises the todo items typed in the document looks like this:
 
