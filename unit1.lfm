@@ -1275,7 +1275,7 @@ object fmMain: TfmMain
         object edFindGrid: TEdit
           Left = 103
           Height = 22
-          Top = 11
+          Top = 9
           Width = 227
           TabOrder = 0
           OnKeyDown = edFindGridKeyDown
@@ -1283,7 +1283,7 @@ object fmMain: TfmMain
         object lbFindGrid: TLabel
           Left = 49
           Height = 16
-          Top = 13
+          Top = 11
           Width = 26
           Alignment = taRightJustify
           Caption = 'Find'

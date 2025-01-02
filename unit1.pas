@@ -223,6 +223,9 @@ resourcestring
   msg009 = 'It was not possible to create the backup file.';
   msg010 = 'Find the repeated words in all the current document?';
   msg011 = 'It''s not possible to create a footnote reference at the beginning of a paragraph.';
+  msg012 = 'It''s not possible to insert a new row since the last one contains some data.';
+  msg013 = 'Delete the current row?';
+  msg014 = 'Sort the content of current column of the current table?';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -1458,12 +1461,18 @@ end;
 
 procedure TfmMain.sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
-  i: Integer;
+  i, x, iTop, iBottom, iNextTable: Integer;
+  stField: String;
 begin
   if ((key = 8) and (Shift = [ssMeta, ssShift])) then
   begin
-    sgTable.DeleteColRow(False, sgTable.Row);
-    sgTable.RowCount := 2000;
+    if MessageDlg(msg013, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
+    begin
+      sgTable.DeleteColRow(False, sgTable.Row);
+      sgTable.RowCount := 2000;
+      blTableMod := True;
+      blTableSaved := False;
+    end;
     key := 0;
   end
   else
@@ -1477,10 +1486,53 @@ begin
   begin
     if sgTable.Row < sgTable.RowCount - 1 then
     begin
+      for i := 1 to sgTable.ColCount - 1 do
+      begin
+        if sgTable.Cells[i, sgTable.RowCount - 1] <> '' then
+        begin
+          MessageDlg(msg012, mtWarning, [mbOK], 0);
+          key := 0;
+          Exit;
+        end;
+      end;
       sgTable.InsertColRow(False, sgTable.Row);
       sgTable.Row := sgTable.Row - 1;
       sgTable.RowCount := 2000;
+      blTableMod := True;
+      blTableSaved := False;
     end;
+    key := 0;
+  end
+  else
+  if ((key = Ord('S')) and (Shift = [ssMeta, ssCtrl])) then
+  begin
+    if MessageDlg(msg014, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
+    begin
+      iTop := -1;
+      iBottom := -1;
+      for i := sgTable.Row downto 1 do
+      begin
+        if sgTable.Cells[1, i] <> '' then
+        begin
+          iTop := i + 1;
+          Break;
+        end;
+      end;
+      for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+      begin
+        if sgTable.Cells[1, i] <> '' then
+        begin
+          iBottom := i - 1;
+          Break;
+        end;
+      end;
+      if ((iTop > -1) and (iBottom > -1)) then
+      begin
+        sgTable.SortColRow(True, sgTable.Col, iTop, iBottom);
+      end;
+    end;
+    blTableMod := True;
+    blTableSaved := False;
     key := 0;
   end
   else
@@ -1490,9 +1542,135 @@ begin
     key := 0;
   end
   else
+  if ((key = 37) and (Shift = [ssAlt, ssMeta])) then
+  begin
+    if ((sgTable.Col < 3) or (sgTable.Row = sgTable.RowCount - 1) or
+      (sgTable.Col = 1)) then
+    begin
+      key := 0;
+      Exit;
+    end;
+    iTop := -1;
+    iBottom := -1;
+    for i := sgTable.Row downto 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        iTop := i;
+        Break;
+      end;
+    end;
+    for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end;
+      iBottom := i - 1;
+    end;
+    if ((iTop > -1) and (iBottom > -1)) then
+    begin
+      for i := iTop to iBottom do
+      begin
+        stField := sgTable.Cells[sgTable.Col, i];
+        sgTable.Cells[sgTable.Col, i] := sgTable.Cells[sgTable.Col - 1, i];
+        sgTable.Cells[sgTable.Col - 1, i] := stField;
+      end;
+      sgTable.Col := sgTable.Col - 1;
+    end;
+    blTableMod := True;
+    blTableSaved := False;
+    key := 0;
+  end
+  else
   if ((key = 38) and (Shift = [ssMeta])) then
   begin
-    sgTable.Row := 1;
+    if ((sgTable.Row > 1) and (sgTable.Col = 1)) then
+    begin
+      for i := sgTable.Row - 1 downto 1 do
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        sgTable.Row := i;
+        Break;
+      end;
+    end
+    else
+    begin
+      sgTable.Row := 1;
+    end;
+    key := 0;
+  end
+  else
+  if ((key = 38) and (Shift = [ssMeta, ssCtrl])) then
+  begin
+    if sgTable.Row = 1 then
+    begin
+      key := 0;
+      Exit;
+    end;
+    iTop := -1;
+    iBottom := -1;
+    iNextTable := -1;
+    for i := sgTable.Row downto 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        iTop := i;
+        Break;
+      end;
+    end;
+    if i > 1 then
+    begin
+      for i := i - 1 downto 1 do
+      begin
+        if sgTable.Cells[1, i] <> '' then
+        begin
+          iNextTable := i;
+          Break;
+        end;
+      end;
+    end;
+    for i := sgTable.RowCount - 1 downto 1 do
+    begin
+      for x := 1 to sgTable.ColCount - 1 do
+      begin
+        if sgTable.Cells[x, i] <> '' then
+        begin
+          iBottom := i;
+          Break;
+        end;
+      end;
+      if iBottom > - 1 then
+      begin
+        Break;
+      end;
+    end;
+    for i := sgTable.Row + 1 to iBottom do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end;
+    end;
+    if sgTable.Cells[1, i] <> '' then
+    begin
+      iBottom := i - 2;
+    end
+    else
+    begin
+      iBottom := i;
+    end;
+    if ((iTop > -1) and (iBottom > -1) and (iNextTable > -1)) then
+    begin
+      for i := 1 to iBottom - iTop + 2 do
+      begin
+        sgTable.MoveColRow(False, iBottom + 1, iNextTable);
+      end;
+      sgTable.Row := iNextTable;
+      sgTable.TopRow := iNextTable;
+    end;
+    blTableMod := True;
+    blTableSaved := False;
     key := 0;
   end
   else
@@ -1501,6 +1679,8 @@ begin
     if sgTable.Row > 1 then
     begin
       sgTable.MoveColRow(False, sgTable.Row, sgTable.Row - 1);
+      blTableMod := True;
+      blTableSaved := False;
       key := 0;
     end;
   end
@@ -1511,17 +1691,146 @@ begin
     key := 0;
   end
   else
+  if ((key = 39) and (Shift = [ssAlt, ssMeta])) then
+  begin
+    if ((sgTable.Col = sgTable.ColCount - 1) or (sgTable.Col = 1) or
+      (sgTable.Row = sgTable.RowCount - 1))then
+    begin
+      key := 0;
+      Exit;
+    end;
+    iTop := -1;
+    iBottom := -1;
+    for i := sgTable.Row downto 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        iTop := i;
+        Break;
+      end;
+    end;
+    for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end;
+      iBottom := i - 1;
+    end;
+    if ((iTop > -1) and (iBottom > -1)) then
+    begin
+      for i := iTop to iBottom do
+      begin
+        stField := sgTable.Cells[sgTable.Col, i];
+        sgTable.Cells[sgTable.Col, i] := sgTable.Cells[sgTable.Col + 1, i];
+        sgTable.Cells[sgTable.Col + 1, i] := stField;
+      end;
+      sgTable.Col := sgTable.Col + 1;
+    end;
+    blTableMod := True;
+    blTableSaved := False;
+    key := 0;
+  end
+  else
   if ((key = 40) and (Shift = [ssMeta])) then
   begin
-    for i := sgTable.RowCount - 1 downto 2 do
+    if ((sgTable.Row < sgTable.RowCount - 1) and (sgTable.Col = 1)) then
     begin
-      if ((sgTable.Cells[2, i] <> '') or (sgTable.Cells[3, i] <> '') or
-        (sgTable.Cells[4, i] <> '')) then
+      for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+      if sgTable.Cells[1, i] <> '' then
       begin
         sgTable.Row := i;
         Break;
       end;
+    end
+    else
+    begin
+      for i := sgTable.RowCount - 1 downto 1 do
+      begin
+        if ((sgTable.Cells[1, i] <> '') or (sgTable.Cells[2, i] <> '') or
+          (sgTable.Cells[3, i] <> '') or (sgTable.Cells[4, i] <> '')) then
+        begin
+          sgTable.Row := i;
+          Break;
+        end;
+      end;
     end;
+    blTableMod := True;
+    blTableSaved := False;
+    key := 0;
+  end
+  else
+  if ((key = 40) and (Shift = [ssMeta, ssCtrl])) then
+  begin
+    if sgTable.Row = sgTable.RowCount -1 then
+    begin
+      key := 0;
+      Exit;
+    end;
+    iTop := -1;
+    iBottom := -1;
+    iNextTable := -1;
+    for i := sgTable.Row downto 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        iTop := i;
+        Break;
+      end;
+    end;
+    for i := sgTable.RowCount - 1 downto 1 do
+    begin
+      for x := 1 to sgTable.ColCount - 1 do
+      begin
+        if sgTable.Cells[x, i] <> '' then
+        begin
+          iBottom := i;
+          iNextTable := i + 1;
+          Break;
+        end;
+      end;
+      if iBottom > - 1 then
+      begin
+        Break;
+      end;
+    end;
+    for i := sgTable.Row + 1 to iBottom do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end;
+    end;
+    if sgTable.Cells[1, i] <> '' then
+    begin
+      iBottom := i - 2;
+    end
+    else
+    begin
+      iBottom := i;
+    end;
+    if i < sgTable.RowCount - 1 then
+    begin
+      for i := i + 1 to sgTable.RowCount - 1 do
+      begin
+        if sgTable.Cells[1, i] <> '' then
+        begin
+          iNextTable := i - 1;
+          Break;
+        end;
+      end;
+    end;
+    if ((iTop > -1) and (iBottom > -1) and (iNextTable > -1)) then
+    begin
+      for i := 1 to iBottom - iTop + 2 do
+      begin
+        sgTable.MoveColRow(False, iTop, iNextTable);
+      end;
+      sgTable.Row := iNextTable - i + 1;
+      sgTable.TopRow := iNextTable - i + 1;
+    end;
+    blTableMod := True;
+    blTableSaved := False;
     key := 0;
   end
   else
@@ -1530,6 +1839,8 @@ begin
     if sgTable.Row < sgTable.RowCount - 1 then
     begin
       sgTable.MoveColRow(False, sgTable.Row, sgTable.Row + 1);
+      blTableMod := True;
+      blTableSaved := False;
       key := 0;
     end;
   end;
@@ -3395,6 +3706,11 @@ begin
   begin
     for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
     begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end
+      else
       if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
         UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
       begin

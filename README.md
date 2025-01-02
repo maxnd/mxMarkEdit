@@ -1,6 +1,6 @@
 # mxMarkEdit
 
-Version 1.1.1, published on 31 December 2024.
+Version 1.1.2, published on 2 January 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -26,7 +26,7 @@ The software looks like this, with one possible color setting:
 
 When the tables grid is shown, the software looks like this:
 
-![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot2.png)
+3![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot2.png)
 
 The form that summarises the todo items typed in the document looks like this:
 
@@ -69,13 +69,13 @@ In the todo items, it’s possibile to add a deadline. The format of the date sh
 
 ## Tables
 
-At the bottom of the text there’s an Excel-like grid of 105 columns and 2000 rows which may contain simple tables. It’s hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the titles, it’s possibile to insert any kind of data. It’s possibile to add more tables in the grid, adding other titles under the `Table names` column, like in the second screenshot above.
+At the bottom of the text there’s an Excel-like grid of 105 columns and 2000 rows which may contain simple tables, which are portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the titles, it’s possibile to insert any kind of data. It’s possibile to add more tables in the grid, adding other titles under the `Table names` column, like in the second screenshot above.
 
 The content of the table is saved in a separate file with the same name of the one in use, but with the extension `.csv`. In this file the items are separated by tabs, and it may be easily imported in a spreadsheet. When the current document is exported to Pandoc, if there are some data in the tables grid, the software creates a new file with the extension `.export` which contains both the document and the tables properly formatted in Markdown format. In the converted document in Word or Writer format, the tables are located at the end of the text.
 
 In the tables grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document.
 
-At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` to select the following cell after the current one in just the current column that contains that text. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
+At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` to select the following cell after the current one in just the current column of the current table that contains that text. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
 
 See below for some useful shortcuts available in this grid.
 
@@ -142,11 +142,6 @@ There are also some shortcuts beyond the ones related to the menu items.
   * within a footnote (e.g. `[^1]: This is the text of the footnote.`), move the cursor to the corresponding footnote reference in the document; 
   * in other positions, create a new footnote reference and a new footnote, both properly numbered.
 
-### In the todo form
-
-* `Meta` + `Opt` + `H`: hide the todo items already done.
-* `Meta` + `T`: toggle the state of the selected todo item from to be done to done, and vice versa.
-
 ### In the tables grid
 
 * `Meta` + `Shift` + `I`: insert a new row.
@@ -155,12 +150,23 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `G`: search the text in the `Find` field starting from the current position and just in the current column.
 * `Meta` + `Opt` + `Arrow up`: move up the current row.
 * `Meta` + `Opt` + `Arrow down`: move down the current row.
-* `Meta` + `Arrow up`: move to the top of the grid.
-* `Meta` + `Arrow down`: move down to the last edited row.
+* `Meta` + `Opt` + `Arrow left`: move left the current field just of the current table with its content (not the entire column of the grid).
+* `Meta` + `Opt` + `Arrow right`: move right the current field just of the current table with its content (not the entire column of the grid).
+* `Meta` + `Ctrl` + `Arrow up`: move the current table, with all its field, before the previous one.
+* `Meta` + `Ctrl` + `Arrow down`: move the current table, with all its field, after the previous one.
+* `Meta` + `Arrow up`: in the tables names column, select the previous table title, while in the other columns move to the top of the grid.
+* `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move to the last edited row of the grid.
 * `Meta` + `Arrow left`: move to the left end of the grid.
 * `Meta` + `Arrow right`: move to the right end of the grid.
+* `Meta` + `Ctrl` + `S`: sort alphabetically the content of the current column in the current table.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
 * `Meta` + `V`: paste the content of the clipboard in the current and following cells or in a document.
+* `Esc`: undo the last changes.
+
+### In the todo form
+
+* `Meta` + `Opt` + `H`: hide the todo items already done.
+* `Meta` + `T`: toggle the state of the selected todo item from to be done to done, and vice versa.
 
 ## Backup
 

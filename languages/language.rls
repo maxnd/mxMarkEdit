@@ -11,7 +11,7 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'wn."'#10#10'#: tfmcopyright.lbcopyrightname.caption'#10'msgctxt "tfmcopyrig'
   +'ht.lbcopyrightname.caption"'#10'msgid "mxMarkEdit"'#10'msgstr ""'#10#10'#: '
   +'tfmcopyright.lbcopyrightvers.caption'#10'msgid "Version"'#10'msgstr "Versio'
-  +'ne"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.1.0"'#10'm'
+  +'ne"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.1.2"'#10'm'
   +'sgstr ""'#10#10'#: tfmcopyright.lbok.caption'#10'msgctxt "tfmcopyright.lbok'
   +'.caption"'#10'msgid "OK"'#10'msgstr ""'#10#10'#: tfmmain.caption'#10'msgctx'
   +'t "tfmmain.caption"'#10'msgid "mxMarkEdit"'#10'msgstr ""'#10#10'#: tfmmain.'
@@ -165,10 +165,16 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'sg011'#10'msgid "It''s not possible to create a footnote reference at the b'
   +'eginning of a paragraph."'#10'msgstr "Non '#195#168' possibile creare un ri'
   +'mando ad una nota a pi'#195#168' pagina all''inizio di un paragrafo."'#10#10
-  +'#: unit2.msgfnd001'#10'msgid "Text not found."'#10'msgstr "Testo non trovat'
-  +'o."'#10#10'#: unit2.msgfnd002'#10'msgid "Replace all the recurrences of"'#10
-  +'msgstr "Sostituire tutte le occorrenze di"'#10#10'#: unit2.msgfnd003'#10'ms'
-  +'gid "with"'#10'msgstr "con"'#10#10'#: unit4.tsk001'#10'msgid "day"'#10'msgs'
-  +'tr "giorno"'#10#10'#: unit4.tsk002'#10'msgid "days"'#10'msgstr "giorni"'#10
-  +#10
+  +'#: unit1.msg012'#10'msgid "It''s not possible to insert a new row since the'
+  +' last one contains some data."'#10'msgstr "Non '#195#168' possibile inserir'
+  +'e una nuova riga in quanto l''ultima contiene dei dati."'#10#10'#: unit1.ms'
+  +'g013'#10'msgid "Delete the current row?"'#10'msgstr "Eliminare la riga corr'
+  +'ente?"'#10#10'#: unit1.msg014'#10'msgid "Sort the content of current column'
+  +' of the current table?"'#10'msgstr "Ordinare il contenuto della colonna cor'
+  +'rente della tabella corrente?"'#10#10'#: unit2.msgfnd001'#10'msgid "Text no'
+  +'t found."'#10'msgstr "Testo non trovato."'#10#10'#: unit2.msgfnd002'#10'msg'
+  +'id "Replace all the recurrences of"'#10'msgstr "Sostituire tutte le occorre'
+  +'nze di"'#10#10'#: unit2.msgfnd003'#10'msgid "with"'#10'msgstr "con"'#10#10
+  +'#: unit4.tsk001'#10'msgid "day"'#10'msgstr "giorno"'#10#10'#: unit4.tsk002'
+  +#10'msgid "days"'#10'msgstr "giorni"'#10#10
 ]);

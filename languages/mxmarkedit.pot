@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.1"
+msgid "1.1.2"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -517,6 +517,18 @@ msgstr ""
 
 #: unit1.msg011
 msgid "It's not possible to create a footnote reference at the beginning of a paragraph."
+msgstr ""
+
+#: unit1.msg012
+msgid "It's not possible to insert a new row since the last one contains some data."
+msgstr ""
+
+#: unit1.msg013
+msgid "Delete the current row?"
+msgstr ""
+
+#: unit1.msg014
+msgid "Sort the content of current column of the current table?"
 msgstr ""
 
 #: unit2.msgfnd001

@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.1"
+msgid "1.1.2"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -59,8 +59,6 @@ msgid " "
 msgstr " "
 
 #: tfmmain.lbfindgrid.caption
-#, fuzzy
-#| msgid "Find"
 msgctxt "tfmmain.lbfindgrid.caption"
 msgid "Find"
 msgstr "Trova"
@@ -519,6 +517,18 @@ msgstr "Trovare le parole ripetute in tutto il documento corrente?"
 #: unit1.msg011
 msgid "It's not possible to create a footnote reference at the beginning of a paragraph."
 msgstr "Non è possibile creare un rimando ad una nota a piè pagina all'inizio di un paragrafo."
+
+#: unit1.msg012
+msgid "It's not possible to insert a new row since the last one contains some data."
+msgstr "Non è possibile inserire una nuova riga in quanto l'ultima contiene dei dati."
+
+#: unit1.msg013
+msgid "Delete the current row?"
+msgstr "Eliminare la riga corrente?"
+
+#: unit1.msg014
+msgid "Sort the content of current column of the current table?"
+msgstr "Ordinare il contenuto della colonna corrente della tabella corrente?"
 
 #: unit2.msgfnd001
 msgid "Text not found."
