@@ -1,6 +1,6 @@
-<img align="left" src="https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png">
-
 # mxMarkEdit
+
+<img align="left" src="https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png">
 
 Version 1.1.2, published on 2 January 2025.
 
