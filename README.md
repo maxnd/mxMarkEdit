@@ -8,15 +8,11 @@ mxMarkEdit is a free software for Mac for writing texts and todo items in [Markd
 
 ## Download and install
 
-In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the `Application` directory and run. The app is signed by the author, but it’s not notarized.
+In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the `Application` directory and run. 
+
+From version 1.1.2, **the app is notarized by Apple** (checked against harmful code), so it can run without any trouble also on recent macOS versions.
 
 To download the app, click on this link: https://github.com/maxnd/mxMarkEdit/raw/main/app/mxMarkEdit.zip.
-
-To run the app on macOS Sequoia, follow the Apple guidelines in https://support.apple.com/en-us/102445. Basically, after you’ve tried to open the app, follow these steps:
-
-1. Open `System Settings`.
-2. Click `Privacy & Security`, scroll down, and click the `Open Anyway` button to confirm your intent to open the app.
-3. The warning prompt reappears and you can click `Open`.
 
 ## Look of the app
 
