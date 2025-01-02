@@ -1,3 +1,5 @@
+<img align="left" src="https://github.com/maxnd/pgNotex/blob/main/icons/icon128.png">
+
 # mxMarkEdit
 
 Version 1.1.2, published on 2 January 2025.
