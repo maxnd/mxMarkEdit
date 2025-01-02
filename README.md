@@ -1,4 +1,4 @@
-<img align="left" src="https://github.com/maxnd/pgNotex/blob/main/icon128.png">
+<img align="left" src="https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png">
 
 # mxMarkEdit
 
