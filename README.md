@@ -177,8 +177,8 @@ The software creates these two configuration files that can be deleted to reset 
 - `/Users/[username]/Library/Preferences/mxmarkedit`
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
 
-# Revision history
+## Revision history
 
-## Version 1.1.3
+### Version 1.1.3
 
 - Bugs fixing: when a new Markdown file was created, a grid file was created as well even if there were no data inside it.
