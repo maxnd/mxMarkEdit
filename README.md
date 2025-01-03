@@ -2,7 +2,7 @@
 
 <img align=“left” src=“https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png”>
 
-Version 1.1.3, published on 3 January 2025.
+Version 1.1.4, published on 3 January 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -69,11 +69,13 @@ In the todo items, it’s possibile to add a deadline. The format of the date sh
 
 At the bottom of the text there’s an Excel-like grid of 105 columns and 2000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the titles, it’s possibile to insert any kind of data. It’s possibile to add more tables in the grid, adding other titles under the `Table names` column, like in the second screenshot above.
 
-The content of the table is saved in a separate file with the same name of the one in use, but with the extension `.csv`. In this file the items are separated by tabs, and it may be easily imported in a spreadsheet. When the current document is exported to Pandoc, if there are some data in the tables grid, the software creates a new file with the extension `.export` which contains both the document and the tables properly formatted in Markdown format. In the converted document in Word or Writer format, the tables are located at the end of the text.
+The content of the table is saved in a separate file with the same name of the one in use, but with the `.csv` extension. In this file the items are separated by tabs, and it may be easily imported in a spreadsheet. When the current document is exported to Pandoc, if there are some data in the tables grid, the software creates a new file with the extension `.export` which contains both the document and the tables properly formatted in Markdown format. In the converted document in Word or Writer format, the tables are located at the end of the text.
 
 In the tables grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document.
 
-At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` to select the following cell after the current one in just the current column of the current table that contains that text. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
+At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` to select the following cell after the current one in just the current column of the current table that contains that text. Anyway, if the selected column is the first, with the table names, the search will look for the following table names. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
+
+To delete the content of the grid, delete the related file with the `.csv` extension when it's not loaded.
 
 See below for some useful shortcuts available in this grid.
 
@@ -159,7 +161,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `S`: sort alphabetically the content of the current column in the current table.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
 * `Meta` + `V`: paste the content of the clipboard in the current and following cells or in a document.
-* `Esc`: undo the last changes.
+* `Esc`: undo the last changes while the editor of a cell in the grid is still active.
 
 ### In the todo form
 
@@ -178,6 +180,11 @@ The software creates these two configuration files that can be deleted to reset 
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
 
 ## Revision history
+
+### Version 1.1.4
+
+- Bugs fixing: it was not possible to search for a table name in the grid.
+- Bugs fixing: in some circumstances, the last line of the text was not properly updated.
 
 ### Version 1.1.3
 

@@ -1333,6 +1333,7 @@ begin
         RenumberList;
       end;
     end;
+    Application.ProcessMessages;
   end;
 end;
 
@@ -3683,6 +3684,7 @@ begin
   end;
   dbText.SelStart := iPos;
   blTextOnChange := False;
+  Application.ProcessMessages;
   FormatListTitleTodo;
 end;
 
@@ -3710,6 +3712,20 @@ begin
   if ((pnGrid.Height > 1) and (edFindGrid.Text <> '') and
     (sgTable.Row < sgTable.RowCount - 1)) then
   begin
+    if sgTable.Col = 1 then
+    begin
+      for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+      begin
+        if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
+          UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
+        begin
+          sgTable.Row := i;
+          sgTable.SetFocus;
+          Break;
+        end;
+      end;
+    end
+    else
     for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
     begin
       if sgTable.Cells[1, i] <> '' then
