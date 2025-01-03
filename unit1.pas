@@ -1984,6 +1984,7 @@ end;
 procedure TfmMain.miFileSaveAsClick(Sender: TObject);
 var
   myList: TStringList;
+  stOldFile: String;
 begin
   if ((UTF8Length(dbText.Lines[1]) > 8) and
     (UTF8Copy(dbText.Lines[1], 1, 7) = 'title: ')) then
@@ -1992,6 +1993,7 @@ begin
   end;
   if sdSave.Execute then
   try
+    stOldFile := stFileName;
     stFileName := sdSave.FileName;
     try
       myList := TStringList.Create;
@@ -1999,13 +2001,17 @@ begin
       myList.SaveToFile(stFileName);
       blFileSaved := True;
       UpdateLastFile;
+      LabelFileNameChars;
     finally
       myList.Free;
     end;
-    sgTable.SaveToCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
-      #9, False);
-    LabelFileNameChars;
-    blTableSaved := True;
+    if ((FileExistsUTF8(ExtractFileNameWithoutExt(stOldFile) + '.csv')) or
+      (blTableSaved = False))then
+    begin
+      sgTable.SaveToCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        #9, False);
+      blTableSaved := True;
+    end;
   except
     MessageDlg(msg003, mtWarning, [mbOK], 0);
   end;

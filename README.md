@@ -1,8 +1,8 @@
 # mxMarkEdit
 
-<img align="left" src="https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png">
+<img align=“left” src=“https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png”>
 
-Version 1.1.2, published on 2 January 2025.
+Version 1.1.3, published on 3 January 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -176,3 +176,9 @@ The software creates these two configuration files that can be deleted to reset 
 
 - `/Users/[username]/Library/Preferences/mxmarkedit`
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
+
+# Revision history
+
+## Version 1.1.3
+
+- Bugs fixing: when a new Markdown file was created, a grid file was created as well even if there were no data inside it.
