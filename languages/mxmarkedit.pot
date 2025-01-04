@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.4"
+msgid "1.1.5"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -159,7 +159,7 @@ msgstr ""
 
 #: tfmmain.mitoolsoptions.caption
 msgctxt "tfmmain.mitoolsoptions.caption"
-msgid "Options"
+msgid "Settings"
 msgstr ""
 
 #: tfmmain.mitoolspandoc.caption
@@ -473,6 +473,10 @@ msgstr ""
 
 #: unit1.lb008
 msgid "Tables"
+msgstr ""
+
+#: unit1.lb009
+msgid "Total:"
 msgstr ""
 
 #: unit1.msg001

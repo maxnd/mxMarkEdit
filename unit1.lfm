@@ -1256,6 +1256,7 @@ object fmMain: TfmMain
         ShowHint = True
         TabOrder = 0
         OnDrawCell = sgTableDrawCell
+        OnEditingDone = sgTableEditingDone
         OnKeyDown = sgTableKeyDown
         OnPrepareCanvas = sgTablePrepareCanvas
         OnSetEditText = sgTableSetEditText
@@ -1461,7 +1462,7 @@ object fmMain: TfmMain
         Caption = '-'
       end
       object miToolsOptions: TMenuItem
-        Caption = 'Options'
+        Caption = 'Settings'
         ShortCut = 4284
         OnClick = miToolsOptionsClick
       end

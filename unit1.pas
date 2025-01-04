@@ -137,6 +137,7 @@ type
     procedure miToolsTrans3Click(Sender: TObject);
     procedure sgTableDrawCell(Sender: TObject; aCol, aRow: integer;
       aRect: TRect; aState: TGridDrawState);
+    procedure sgTableEditingDone(Sender: TObject);
     procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
@@ -205,6 +206,7 @@ var
   blTableMod: boolean = False;
   blDisableFormatting: boolean = False;
   blTextOnChange: boolean = False;
+  stGridLoaded: String = '';
   pandocPath: string = '/usr/local/bin/';
   pandocOptions: string = '+footnotes+inline_notes';
   pandocTemplate: string = 'word-template.docx';
@@ -239,6 +241,7 @@ resourcestring
   lb006 = 'Headings 1';
   lb007 = 'Tables names';
   lb008 = 'Tables';
+  lb009 = 'Total:';
   dateformat = 'en';
 
 implementation
@@ -488,14 +491,11 @@ begin
       begin
         sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
           #9, False);
-        if pnGrid.Height = 1 then
-        begin
-          pnGrid.Height := 400;
-        end;
+        stGridLoaded := '  ︎❖';
       end
       else
       begin
-        pnGrid.Height := 1;
+        stGridLoaded := '';
       end;
       iBookmarkPos := 0;
       MoveToPos;
@@ -523,14 +523,11 @@ begin
       begin
         sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
           #9, False);
-        if pnGrid.Height = 1 then
-        begin
-          pnGrid.Height := 400;
-        end;
+        stGridLoaded := '  ︎❖';
       end
       else
       begin
-        pnGrid.Height := 1;
+        stGridLoaded := '';
       end;
       iBookmarkPos := 0;
       MoveToPos;
@@ -564,14 +561,11 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      if pnGrid.Height = 1 then
-      begin
-        pnGrid.Height := 400;
-      end;
+      stGridLoaded := '  ︎❖';
     end
     else
     begin
-      pnGrid.Height := 1;
+      stGridLoaded := '';
     end;
     iBookmarkPos := 0;
     MoveToPos;
@@ -603,6 +597,15 @@ begin
     else
     begin
       pnGrid.Height := 1;
+    end;
+    key := 0;
+  end
+  else
+  if ((key = Ord('F')) and (Shift = [ssCtrl, ssMeta])) then
+  begin
+    if ((pnGrid.Height > 1) and (edFindGrid.Visible = True)) then
+    begin
+      edFindGrid.SetFocus;
     end;
     key := 0;
   end
@@ -1451,6 +1454,48 @@ begin
     sgTable.Cells[aCol, aRow]);
 end;
 
+procedure TfmMain.sgTableEditingDone(Sender: TObject);
+var
+  dbNum, dbTot: Double;
+  iTop, i: Integer;
+begin
+  if ((sgTable.Row > 1) and (sgTable.Col > 1)) then
+  begin
+    dbNum := 0;
+    iTop := -1;
+    for i := sgTable.Row - 1 downto 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        iTop := i + 1;
+        Break;
+      end;
+    end;
+    if iTop > - 1 then
+    begin
+      for i := iTop to sgTable.RowCount - 1 do
+      begin
+        if sgTable.Cells[1, i] <> '' then
+        begin
+          Exit;
+        end
+        else
+        if ((sgTable.Cells[sgTable.Col, i] = '------') and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          sgTable.Cells[sgTable.Col, i + 1] := lb009 + ' ' +
+            FormatFloat('0.##', dbTot);
+        end
+        else
+        if TryStrToFloat(sgTable.Cells[sgTable.Col, i], dbNum) = True then
+        begin
+          dbTot := dbTot + dbNum;
+        end;
+      end;
+    end;
+  end;
+end;
+
 procedure TfmMain.edFindGridKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
   if ((key = 13) or (((key = Ord('G')) and (Shift = [ssMeta])))) then
@@ -1928,14 +1973,11 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      if pnGrid.Height = 1 then
-      begin
-        pnGrid.Height := 400;
-      end;
+      stGridLoaded := '  ︎❖';
     end
     else
     begin
-      pnGrid.Height := 1;
+      stGridLoaded := '';
     end;
     iBookmarkPos := 0;
     MoveToPos;
@@ -2035,14 +2077,11 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      if pnGrid.Height = 1 then
-      begin
-        pnGrid.Height := 400;
-      end;
+      stGridLoaded := '  ︎❖';
     end
     else
     begin
-      pnGrid.Height := 1;
+      stGridLoaded := '';
     end;
     iBookmarkPos := 0;
     MoveToPos;
@@ -2081,14 +2120,11 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      if pnGrid.Height = 1 then
-      begin
-        pnGrid.Height := 400;
-      end;
+      stGridLoaded := '  ︎❖';
     end
     else
     begin
-      pnGrid.Height := 1;
+      stGridLoaded := '';
     end;
     iBookmarkPos := 0;
     MoveToPos;
@@ -2126,14 +2162,11 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      if pnGrid.Height = 1 then
-      begin
-        pnGrid.Height := 400;
-      end;
+      stGridLoaded := '  ︎❖';
     end
     else
     begin
-      pnGrid.Height := 1;
+      stGridLoaded := '';
     end;
     iBookmarkPos := 0;
     MoveToPos;
@@ -2171,14 +2204,11 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      if pnGrid.Height = 1 then
-      begin
-        pnGrid.Height := 400;
-      end;
+      stGridLoaded := '  ︎❖';
     end
     else
     begin
-      pnGrid.Height := 1;
+      stGridLoaded := '';
     end;
     iBookmarkPos := 0;
     MoveToPos;
@@ -3425,7 +3455,7 @@ begin
     if stFileName <> '' then
     begin
       lbChars.Caption := ExtractFileDir(stFileName) + '/  •  ' +
-        ExtractFileName(stFileName) + '  •  ' + msg001 + ' ' +
+        ExtractFileName(stFileName) + stGridLoaded + '  •  ' + msg001 + ' ' +
         FormatFloat('#,##0', iLength) + ' (' +
         FormatFloat('#0', iPos / iLength * 100) + '%)';
     end
@@ -3500,14 +3530,24 @@ var
   myList: TStringList;
 begin
   Result := True;
-  if ((dbText.Text <> '') and (blFileSaved = False)) then
+  if ((blFileSaved = False) or (blTableSaved = False)) then
   begin
     if stFileName <> '' then
     try
       try
-        myList := TStringList.Create;
-        myList.Text := dbText.Text;
-        myList.SaveToFile(stFileName);
+        if blFileSaved = False then
+        begin
+          myList := TStringList.Create;
+          myList.Text := dbText.Text;
+          myList.SaveToFile(stFileName);
+          blFileSaved := True;
+        end;
+        if blTableSaved = False then
+        begin
+          sgTable.SaveToCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+            #9, False);
+          blTableSaved := True;
+        end;
         if stFileName = LastDatabase1 then
         begin
           LastPosDatabase1 := dbText.SelStart;
@@ -3534,7 +3574,6 @@ begin
       finally
         myList.Free;
       end;
-      blFileSaved := True;
     except
       MessageDlg(msg003, mtWarning, [mbOK], 0);
       Result := False;
@@ -3546,12 +3585,6 @@ begin
         Result := False;
       end;
     end;
-  end;
-  if ((blTableSaved = False) and (stFileName <> '')) then
-  begin
-    sgTable.SaveToCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
-      #9, False);
-    blTableSaved := True;
   end;
 end;
 

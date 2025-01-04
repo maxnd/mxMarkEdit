@@ -11,7 +11,7 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'wn."'#10#10'#: tfmcopyright.lbcopyrightname.caption'#10'msgctxt "tfmcopyrig'
   +'ht.lbcopyrightname.caption"'#10'msgid "mxMarkEdit"'#10'msgstr ""'#10#10'#: '
   +'tfmcopyright.lbcopyrightvers.caption'#10'msgid "Version"'#10'msgstr "Versio'
-  +'ne"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.1.2"'#10'm'
+  +'ne"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.1.4"'#10'm'
   +'sgstr ""'#10#10'#: tfmcopyright.lbok.caption'#10'msgctxt "tfmcopyright.lbok'
   +'.caption"'#10'msgid "OK"'#10'msgstr ""'#10#10'#: tfmmain.caption'#10'msgctx'
   +'t "tfmmain.caption"'#10'msgid "mxMarkEdit"'#10'msgstr ""'#10#10'#: tfmmain.'
@@ -50,7 +50,7 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'in.mitools.caption'#10'msgid "Tools"'#10'msgstr "Strumenti"'#10#10'#: tfmma'
   +'in.mitoolsopenwin.caption'#10'msgid "Open another window"'#10'msgstr "Apri '
   +'un''altra finestra"'#10#10'#: tfmmain.mitoolsoptions.caption'#10'msgctxt "t'
-  +'fmmain.mitoolsoptions.caption"'#10'msgid "Options"'#10'msgstr "Opzioni"'#10
+  +'fmmain.mitoolsoptions.caption"'#10'msgid "Settings"'#10'msgstr "Opzioni"'#10
   +#10'#: tfmmain.mitoolspandoc.caption'#10'msgid "Convert with Pandoc"'#10'msg'
   +'str "Converti con Pandoc"'#10#10'#: tfmmain.mitoolstrans1.caption'#10'msgid'
   +' "None"'#10'msgstr "Nessuna"'#10#10'#: tfmmain.mitoolstrans2.caption'#10'ms'
@@ -144,37 +144,38 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'"Headings 1 - 2"'#10'msgstr "Intestazioni 1 - 2"'#10#10'#: unit1.lb006'#10
   +'msgctxt "unit1.lb006"'#10'msgid "Headings 1"'#10'msgstr "Intestazioni 1"'#10
   +#10'#: unit1.lb007'#10'msgid "Tables names"'#10'msgstr "Nomi tabelle"'#10#10
-  +'#: unit1.lb008'#10'msgid "Tables"'#10'msgstr "Tabelle"'#10#10'#: unit1.msg0'
-  +'01'#10'msgid "Characters:"'#10'msgstr "Caratteri:"'#10#10'#: unit1.msg002'
-  +#10'msgid "Discard text changes?"'#10'msgstr "Scartare le modifiche al testo'
-  +'?"'#10#10'#: unit1.msg003'#10'msgid "It was not possible to save the curren'
-  +'t file."'#10'msgstr "Non '#195#168' stato possibile salvare il file corrent'
-  +'e."'#10#10'#: unit1.msg004'#10'msgid "It was not possible to load the selec'
-  +'ted file."'#10'msgstr "Non '#195#168' stato possibile aprire il file selezi'
-  +'onato."'#10#10'#: unit1.msg005'#10'msgid "Create a new document?"'#10'msgst'
-  +'r "Creare un nuovo documento?"'#10#10'#: unit1.msg006'#10'msgid "It was not'
-  +' possible to load the last used file."'#10'msgstr "Non '#195#168' stato pos'
-  +'sibile aprire l''ultimo file utilizzato."'#10#10'#: unit1.msg007'#10'msgid '
-  +'"The file is not available."'#10'msgstr "Il file non '#195#168' disponibile'
-  +'."'#10#10'#: unit1.msg008'#10'msgid "The current document has no name."'#10
-  +'msgstr "Il documento corrente non ha un nome."'#10#10'#: unit1.msg009'#10'm'
-  +'sgid "It was not possible to create the backup file."'#10'msgstr "Non '#195
-  +#168' stato possibile creare il file di backup."'#10#10'#: unit1.msg010'#10
-  +'msgid "Find the repeated words in all the current document?"'#10'msgstr "Tr'
-  +'ovare le parole ripetute in tutto il documento corrente?"'#10#10'#: unit1.m'
-  +'sg011'#10'msgid "It''s not possible to create a footnote reference at the b'
-  +'eginning of a paragraph."'#10'msgstr "Non '#195#168' possibile creare un ri'
-  +'mando ad una nota a pi'#195#168' pagina all''inizio di un paragrafo."'#10#10
-  +'#: unit1.msg012'#10'msgid "It''s not possible to insert a new row since the'
-  +' last one contains some data."'#10'msgstr "Non '#195#168' possibile inserir'
-  +'e una nuova riga in quanto l''ultima contiene dei dati."'#10#10'#: unit1.ms'
-  +'g013'#10'msgid "Delete the current row?"'#10'msgstr "Eliminare la riga corr'
-  +'ente?"'#10#10'#: unit1.msg014'#10'msgid "Sort the content of current column'
-  +' of the current table?"'#10'msgstr "Ordinare il contenuto della colonna cor'
-  +'rente della tabella corrente?"'#10#10'#: unit2.msgfnd001'#10'msgid "Text no'
-  +'t found."'#10'msgstr "Testo non trovato."'#10#10'#: unit2.msgfnd002'#10'msg'
-  +'id "Replace all the recurrences of"'#10'msgstr "Sostituire tutte le occorre'
-  +'nze di"'#10#10'#: unit2.msgfnd003'#10'msgid "with"'#10'msgstr "con"'#10#10
-  +'#: unit4.tsk001'#10'msgid "day"'#10'msgstr "giorno"'#10#10'#: unit4.tsk002'
-  +#10'msgid "days"'#10'msgstr "giorni"'#10#10
+  +'#: unit1.lb008'#10'msgid "Tables"'#10'msgstr "Tabelle"'#10#10'#: unit1.lb00'
+  +'9'#10'msgid "Total:"'#10'msgstr "Totale:"'#10#10'#: unit1.msg001'#10'msgid '
+  +'"Characters:"'#10'msgstr "Caratteri:"'#10#10'#: unit1.msg002'#10'msgid "Dis'
+  +'card text changes?"'#10'msgstr "Scartare le modifiche al testo?"'#10#10'#: '
+  +'unit1.msg003'#10'msgid "It was not possible to save the current file."'#10
+  +'msgstr "Non '#195#168' stato possibile salvare il file corrente."'#10#10'#:'
+  +' unit1.msg004'#10'msgid "It was not possible to load the selected file."'#10
+  +'msgstr "Non '#195#168' stato possibile aprire il file selezionato."'#10#10
+  +'#: unit1.msg005'#10'msgid "Create a new document?"'#10'msgstr "Creare un nu'
+  +'ovo documento?"'#10#10'#: unit1.msg006'#10'msgid "It was not possible to lo'
+  +'ad the last used file."'#10'msgstr "Non '#195#168' stato possibile aprire l'
+  +'''ultimo file utilizzato."'#10#10'#: unit1.msg007'#10'msgid "The file is no'
+  +'t available."'#10'msgstr "Il file non '#195#168' disponibile."'#10#10'#: un'
+  +'it1.msg008'#10'msgid "The current document has no name."'#10'msgstr "Il doc'
+  +'umento corrente non ha un nome."'#10#10'#: unit1.msg009'#10'msgid "It was n'
+  +'ot possible to create the backup file."'#10'msgstr "Non '#195#168' stato po'
+  +'ssibile creare il file di backup."'#10#10'#: unit1.msg010'#10'msgid "Find t'
+  +'he repeated words in all the current document?"'#10'msgstr "Trovare le paro'
+  +'le ripetute in tutto il documento corrente?"'#10#10'#: unit1.msg011'#10'msg'
+  +'id "It''s not possible to create a footnote reference at the beginning of a'
+  +' paragraph."'#10'msgstr "Non '#195#168' possibile creare un rimando ad una '
+  +'nota a pi'#195#168' pagina all''inizio di un paragrafo."'#10#10'#: unit1.ms'
+  +'g012'#10'msgid "It''s not possible to insert a new row since the last one c'
+  +'ontains some data."'#10'msgstr "Non '#195#168' possibile inserire una nuova'
+  +' riga in quanto l''ultima contiene dei dati."'#10#10'#: unit1.msg013'#10'ms'
+  +'gid "Delete the current row?"'#10'msgstr "Eliminare la riga corrente?"'#10
+  +#10'#: unit1.msg014'#10'msgid "Sort the content of current column of the cur'
+  +'rent table?"'#10'msgstr "Ordinare il contenuto della colonna corrente della'
+  +' tabella corrente?"'#10#10'#: unit2.msgfnd001'#10'msgid "Text not found."'
+  +#10'msgstr "Testo non trovato."'#10#10'#: unit2.msgfnd002'#10'msgid "Replace'
+  +' all the recurrences of"'#10'msgstr "Sostituire tutte le occorrenze di"'#10
+  +#10'#: unit2.msgfnd003'#10'msgid "with"'#10'msgstr "con"'#10#10'#: unit4.tsk'
+  +'001'#10'msgid "day"'#10'msgstr "giorno"'#10#10'#: unit4.tsk002'#10'msgid "d'
+  +'ays"'#10'msgstr "giorni"'#10#10
 ]);

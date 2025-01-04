@@ -2,7 +2,7 @@
 
 <img align=“left” src=“https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png”>
 
-Version 1.1.4, published on 3 January 2025.
+Version 1.1.5, published on 4 January 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -10,9 +10,9 @@ mxMarkEdit is a free software for Mac for writing texts and todo items in [Markd
 
 ## Download and install
 
-In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1-M4) ready to be copied in the `Application` directory and run. 
+In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1 or following) ready to be copied in the `Application` directory and run. 
 
-From version 1.1.2, **the app is notarized by Apple** (checked against harmful code), so it can run without any trouble also on recent macOS versions.
+*The app is notarized by Apple* (checked against harmful code), so it can run without any trouble also on recent macOS versions.
 
 To download the app, click on this link: https://github.com/maxnd/mxMarkEdit/raw/main/app/mxMarkEdit.zip.
 
@@ -71,11 +71,15 @@ At the bottom of the text there’s an Excel-like grid of 105 columns and 2000 r
 
 The content of the table is saved in a separate file with the same name of the one in use, but with the `.csv` extension. In this file the items are separated by tabs, and it may be easily imported in a spreadsheet. When the current document is exported to Pandoc, if there are some data in the tables grid, the software creates a new file with the extension `.export` which contains both the document and the tables properly formatted in Markdown format. In the converted document in Word or Writer format, the tables are located at the end of the text.
 
+When a `.cvs` file is loaded, the grid is not automatically shown, but in the status bar at the bottom, after the name of the `.md` file, a sign of a diamond is shown to alert the user that there are some data inside the grid.
+
 In the tables grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document.
 
 At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` to select the following cell after the current one in just the current column of the current table that contains that text. Anyway, if the selected column is the first, with the table names, the search will look for the following table names. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
 
-To delete the content of the grid, delete the related file with the `.csv` extension when it's not loaded.
+If a cell contains just 6 dashes (`------`), in the cell below will be reported the sum of all the numbers contained in the previous cells of the same column and of the same table. The sum will be updated when a value in those cells will be changed. Textual contents and improperly formatted numbers will not be considered. The names of the table and of the column must be specified, otherwise no result will be shown.
+
+To delete the content of the grid, delete the related file with the `.csv` extension when it’s not loaded.
 
 See below for some useful shortcuts available in this grid.
 
@@ -159,6 +163,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Arrow left`: move to the left end of the grid.
 * `Meta` + `Arrow right`: move to the right end of the grid.
 * `Meta` + `Ctrl` + `S`: sort alphabetically the content of the current column in the current table.
+* `Meta` + `Ctrl` + `F`: move the cursor in the search field, if visible.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
 * `Meta` + `V`: paste the content of the clipboard in the current and following cells or in a document.
 * `Esc`: undo the last changes while the editor of a cell in the grid is still active.
@@ -180,6 +185,12 @@ The software creates these two configuration files that can be deleted to reset 
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
 
 ## Revision history
+
+### Version 1.1.5
+
+- When a `.cvs` file is loaded, the grid is not shown automatically, but in the status bar at the bottom, after the name of the file, a sign of a diamond is shown to alert the user that there are some data inside it.
+- Added the possibility to show the sum of a column of numbers in the grid.
+- Bugs fixing: when the grid was modified in a new file without a name, it was possible to exit the app without being asked to save the file.
 
 ### Version 1.1.4
 
