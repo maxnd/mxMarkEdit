@@ -2,7 +2,7 @@
 
 <img align=“left” src=“https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png”>
 
-Version 1.1.5, published on 4 January 2025.
+Version 1.1.6, published on 5 January 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -91,7 +91,7 @@ The `Edit - Find` menu item allows to find the first occurrence – with the but
 
 The `Edit - Insert link to file` allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link.
 
-The `Edit - Find duplicate words` shows in red all the words of each paragraph, separated by `.`, `?` or `!` followed by `space` or `Return`, that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym; if there’s no selected text, all the document is checked after a confirmation. This may take some time.
+The `Edit - Find duplicate words` shows in red all the words of each paragraph that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym.
 
 The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the columns of a spreadsheet. See below for the shortcuts active on this form.
 
@@ -149,8 +149,8 @@ There are also some shortcuts beyond the ones related to the menu items.
 ### In the tables grid
 
 * `Meta` + `Shift` + `I`: insert a new row.
-* `Backspace`: delete the content of the current cell.
-* `Meta` + `Shift` + `Backspace`: delete the current row.
+* `Backspace`: delete the content of the selected cell or cells, after confirmation.
+* `Meta` + `Shift` + `Backspace`: delete the current row, after confirmation.
 * `Meta` + `G`: search the text in the `Find` field starting from the current position and just in the current column.
 * `Meta` + `Opt` + `Arrow up`: move up the current row.
 * `Meta` + `Opt` + `Arrow down`: move down the current row.
@@ -186,17 +186,23 @@ The software creates these two configuration files that can be deleted to reset 
 
 ## Revision history
 
-### Version 1.1.5
+#### Version 1.1.6
+
+- `Backspace` deletes the content of the selected cells after confirmation.
+- The procedure to check possible repeated words in the current and previous paragraphs is now much faster.
+- Bugs fixing: the procedure to to check possible repeated words in the current and previous paragraphs didn’t work always as expected.
+
+#### Version 1.1.5
 
 - When a `.cvs` file is loaded, the grid is not shown automatically, but in the status bar at the bottom, after the name of the file, a sign of a diamond is shown to alert the user that there are some data inside it.
 - Added the possibility to show the sum of a column of numbers in the grid.
 - Bugs fixing: when the grid was modified in a new file without a name, it was possible to exit the app without being asked to save the file.
 
-### Version 1.1.4
+#### Version 1.1.4
 
 - Bugs fixing: it was not possible to search for a table name in the grid.
 - Bugs fixing: in some circumstances, the last line of the text was not properly updated.
 
-### Version 1.1.3
+#### Version 1.1.3
 
 - Bugs fixing: when a new Markdown file was created, a grid file was created as well even if there were no data inside it.

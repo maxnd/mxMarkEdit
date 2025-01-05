@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.5"
+msgid "1.1.6"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -515,8 +515,8 @@ msgid "It was not possible to create the backup file."
 msgstr "Non è stato possibile creare il file di backup."
 
 #: unit1.msg010
-msgid "Find the repeated words in all the current document?"
-msgstr "Trovare le parole ripetute in tutto il documento corrente?"
+msgid "Find the repeated words in the current document?"
+msgstr "Trovare le parole ripetute nel documento corrente?"
 
 #: unit1.msg011
 msgid "It's not possible to create a footnote reference at the beginning of a paragraph."
@@ -533,6 +533,10 @@ msgstr "Eliminare la riga corrente?"
 #: unit1.msg014
 msgid "Sort the content of current column of the current table?"
 msgstr "Ordinare il contenuto della colonna corrente della tabella corrente?"
+
+#: unit1.msg015
+msgid "Delete the content of the selected cells?"
+msgstr "Eliminare il contenuto delle celle selezionate?"
 
 #: unit2.msgfnd001
 msgid "Text not found."

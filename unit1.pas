@@ -223,11 +223,12 @@ resourcestring
   msg007 = 'The file is not available.';
   msg008 = 'The current document has no name.';
   msg009 = 'It was not possible to create the backup file.';
-  msg010 = 'Find the repeated words in all the current document?';
+  msg010 = 'Find the repeated words in the current document?';
   msg011 = 'It''s not possible to create a footnote reference at the beginning of a paragraph.';
   msg012 = 'It''s not possible to insert a new row since the last one contains some data.';
   msg013 = 'Delete the current row?';
   msg014 = 'Sort the content of current column of the current table?';
+  msg015 = 'Delete the content of the selected cells?';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -1509,7 +1510,21 @@ procedure TfmMain.sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftSt
 var
   i, x, iTop, iBottom, iNextTable: Integer;
   stField: String;
+  grRect: TGridRect;
 begin
+  if ((key = 8) and (Shift = [])) then
+  begin
+    if MessageDlg(msg015, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
+    begin
+      for i := 0 to sgTable.SelectedRangeCount-1 do
+        begin
+          grRect := sgTable.SelectedRange[i];
+          sgTable.Clean(grRect, [gzNormal]);
+        end;
+    end;
+    key := 0;
+  end
+  else
   if ((key = 8) and (Shift = [ssMeta, ssShift])) then
   begin
     if MessageDlg(msg013, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
@@ -2291,8 +2306,9 @@ var
   rng: NSRange;
   iLen, i, iSelStart: integer;
   slList1, slList2: TStringList;
-  stWord: NSAttributedString;
-  blPeriod: boolean = False;
+  stText: WideString;
+  stItem: String;
+  stSeparators: String = '.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ';
 begin
   if dbText.SelLength = 0 then
   begin
@@ -2305,93 +2321,39 @@ begin
     Screen.Cursor := crHourGlass;
     slList1 := TStringList.Create;
     slList2 := TStringList.Create;
-    i := 0;
-    iSelStart := -1;
-    if dbText.SelLength = 0 then
+    stText := WideString(dbText.Text);
+    iLen := Length(stText);
+    i := 1;
+    iSelStart := 1;
+    while i <= iLen do
     begin
-      rng.location := 0;
-      rng.length := 1;
-      iLen := Length(WideString(dbText.Text));
-    end
-    else
-    begin
-      rng.location := dbText.SelStart;
-      rng.length := 1;
-      iLen := dbText.SelStart + dbText.SelLength;
-      iSelStart := dbText.SelStart;
-    end;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      setSelectedRange(rng);
-    if iSelStart = -1 then
-    begin
-      dbText.SelStart := 0;
-      // To clear the selection of the title
-      FormatListTitleTodo;
-    end;
-    while rng.location + rng.length < iLen - 1 do
-    begin
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        moveWordForward(nil);
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        selectWord(nil);
-      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-        documentView).selectedRange;
-      if ((UTF8Copy(dbText.Text, rng.location + 1, 2) = '. ') or
-        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '.' + LineEnding) or
-        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '! ') or
-        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '!' + LineEnding) or
-        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '? ') or
-        (UTF8Copy(dbText.Text, rng.location + 1, 2) = '?' + LineEnding) or
-        // Sometimes the rng.location + 1 must be rng.location
-        (UTF8Copy(dbText.Text, rng.location, 2) = '. ') or
-        (UTF8Copy(dbText.Text, rng.location, 2) = '.' + LineEnding) or
-        (UTF8Copy(dbText.Text, rng.location, 2) = '! ') or
-        (UTF8Copy(dbText.Text, rng.location, 2) = '!' + LineEnding) or
-        (UTF8Copy(dbText.Text, rng.location, 2) = '? ') or
-        (UTF8Copy(dbText.Text, rng.location, 2) = '?' + LineEnding)) then
-      begin
-        blPeriod := True;
-      end;
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        moveBackward(nil);
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        moveBackward(nil);
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        selectWord(nil);
-      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-        documentView).selectedRange;
-      stWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        attributedSubstringFromRange(rng);
-      if ((slList1.IndexOf(NSStringToString(stWord.string_)) > -1) or
-        (slList2.IndexOf(NSStringToString(stWord.string_)) > -1)) then
-      begin
-        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-          setTextColor_range(ColorToNSColor(clRepetition), rng);
-      end;
-      slList2.Add(NSStringToString(stWord.string_));
-      if blPeriod = True then
+      if (((stText[i] = '.') and ((stText[i + 1] = ' ') or (i = iLen))) or
+        (stText[i] = '?') or (stText[i] = '!') or
+        (stText[i] = LineEnding)) then
       begin
         slList1.Text := slList2.Text;
         slList2.Clear;
-        blPeriod := False;
+      end;
+      if Pos(stText[i], stSeparators) > 0 then
+      begin
+        if ((slList1.IndexOf(UTF8UpperCase(stItem)) > -1) or
+          (slList2.IndexOf(UTF8UpperCase(stItem)) > -1)) then
+        begin
+          rng.location := iSelStart - 1;
+          rng.length := i - iSelStart;
+          TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            setTextColor_range(ColorToNSColor(clRepetition), rng);
+        end;
+        slList2.Add(UTF8UpperCase(stItem));
+        stItem := '';
+        iSelStart := i + 1;
+      end
+      else
+      begin
+        stItem := stItem + stText[i];
       end;
       Inc(i);
-      if i > 3000 then
-      begin
-        dbText.SelLength := 0;
-        Application.ProcessMessages;
-        i := 0;
-      end;
     end;
-    if iSelStart = -1 then
-    begin
-      dbText.SelStart := 0;
-    end
-    else
-    begin
-      dbText.SelStart := iSelStart;
-    end;
-    dbText.SelLength := 0;
   finally
     Screen.Cursor := crDefault;
     slList1.Free;

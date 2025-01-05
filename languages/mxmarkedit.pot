@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.5"
+msgid "1.1.6"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -516,7 +516,7 @@ msgid "It was not possible to create the backup file."
 msgstr ""
 
 #: unit1.msg010
-msgid "Find the repeated words in all the current document?"
+msgid "Find the repeated words in the current document?"
 msgstr ""
 
 #: unit1.msg011
@@ -533,6 +533,10 @@ msgstr ""
 
 #: unit1.msg014
 msgid "Sort the content of current column of the current table?"
+msgstr ""
+
+#: unit1.msg015
+msgid "Delete the content of the selected cells?"
 msgstr ""
 
 #: unit2.msgfnd001
