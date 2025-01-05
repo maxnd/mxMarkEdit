@@ -190,7 +190,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 - `Backspace` deletes the content of the selected cells after confirmation.
 - The procedure to check possible repeated words in the current and previous paragraphs is now much faster.
-- Bugs fixing: the procedure to to check possible repeated words in the current and previous paragraphs didn’t work always as expected.
+- Bugs fixing: the procedure to check possible repeated words in the current and previous paragraphs didn’t work always as expected.
 
 #### Version 1.1.5
 
