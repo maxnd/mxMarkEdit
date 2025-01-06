@@ -19,8 +19,8 @@ msgid "Author and copyright:"
 msgstr "Autore e copyright:"
 
 #: tfmcopyright.lbcopyrightdesc.caption
-msgid "A free software to manage Markdown documents."
-msgstr "Un software libero per gestire documenti in Markdown."
+msgid "A free software to manage Markdown documents"
+msgstr "Un software libero per gestire documenti in Markdown"
 
 #: tfmcopyright.lbcopyrightname.caption
 msgctxt "tfmcopyright.lbcopyrightname.caption"
@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.6"
+msgid "1.1.7"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -96,8 +96,8 @@ msgid "Find"
 msgstr "Trova"
 
 #: tfmmain.mieditfindduplicate.caption
-msgid "Find duplicate words"
-msgstr "Trova parole ripetute"
+msgid "Show duplicate words"
+msgstr "Mostra parole ripetute"
 
 #: tfmmain.miedithidelist.caption
 msgid "Hide titles and todo list"
@@ -118,11 +118,11 @@ msgstr "Seleziona tutto"
 
 #: tfmmain.mieditshowcurrent.caption
 msgid "Show current title or todo"
-msgstr "Mostra il titolo o l'attività corrente"
+msgstr "Mostra titolo o attività corrente"
 
 #: tfmmain.miedittasks.caption
 msgid "Show todo form"
-msgstr "Mostra la maschera attività"
+msgstr "Mostra maschera attività"
 
 #: tfmmain.mifile.caption
 msgid "File"
@@ -389,8 +389,8 @@ msgid "Toggle state"
 msgstr "Cambia stato"
 
 #: tfmtasks.caption
-msgid "Todo form"
-msgstr "Maschera attività"
+msgid "Todo"
+msgstr "Attività"
 
 #: tfmtasks.cbhide.caption
 msgid "Hide done items"
@@ -513,10 +513,6 @@ msgstr "Il documento corrente non ha un nome."
 #: unit1.msg009
 msgid "It was not possible to create the backup file."
 msgstr "Non è stato possibile creare il file di backup."
-
-#: unit1.msg010
-msgid "Find the repeated words in the current document?"
-msgstr "Trovare le parole ripetute nel documento corrente?"
 
 #: unit1.msg011
 msgid "It's not possible to create a footnote reference at the beginning of a paragraph."

@@ -1,5 +1,5 @@
 {"version":1,"strings":[
-{"hash":186035677,"name":"tfmtasks.caption","sourcebytes":[84,111,100,111,32,102,111,114,109],"value":"Todo form"},
+{"hash":374191,"name":"tfmtasks.caption","sourcebytes":[84,111,100,111],"value":"Todo"},
 {"hash":22887,"name":"tfmtasks.sgtasks.columns[0].title.caption","sourcebytes":[82,111,119],"value":"Row"},
 {"hash":308805,"name":"tfmtasks.sgtasks.columns[1].title.caption","sourcebytes":[68,111,110,101],"value":"Done"},
 {"hash":192621797,"name":"tfmtasks.sgtasks.columns[2].title.caption","sourcebytes":[68,101,97,100,108,105,110,101],"value":"Deadline"},

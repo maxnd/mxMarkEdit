@@ -19,7 +19,7 @@ msgid "Author and copyright:"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightdesc.caption
-msgid "A free software to manage Markdown documents."
+msgid "A free software to manage Markdown documents"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightname.caption
@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.6"
+msgid "1.1.7"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -96,7 +96,7 @@ msgid "Find"
 msgstr ""
 
 #: tfmmain.mieditfindduplicate.caption
-msgid "Find duplicate words"
+msgid "Show duplicate words"
 msgstr ""
 
 #: tfmmain.miedithidelist.caption
@@ -390,7 +390,7 @@ msgid "Toggle state"
 msgstr ""
 
 #: tfmtasks.caption
-msgid "Todo form"
+msgid "Todo"
 msgstr ""
 
 #: tfmtasks.cbhide.caption
@@ -513,10 +513,6 @@ msgstr ""
 
 #: unit1.msg009
 msgid "It was not possible to create the backup file."
-msgstr ""
-
-#: unit1.msg010
-msgid "Find the repeated words in the current document?"
 msgstr ""
 
 #: unit1.msg011

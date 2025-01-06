@@ -37,7 +37,6 @@ type
   { TfmMain }
 
   TfmMain = class(TForm)
-    bvList: TBevel;
     cbFilter: TComboBox;
     dbText: TMemo;
     lbDateTime: TLabel;
@@ -92,6 +91,7 @@ type
     Sep2: TMenuItem;
     sgTitles: TStringGrid;
     sgTable: TStringGrid;
+    shList: TShape;
     spTable: TSplitter;
     spTitles: TSplitter;
     tmDateTime: TTimer;
@@ -223,7 +223,7 @@ resourcestring
   msg007 = 'The file is not available.';
   msg008 = 'The current document has no name.';
   msg009 = 'It was not possible to create the backup file.';
-  msg010 = 'Find the repeated words in the current document?';
+  // msg010
   msg011 = 'It''s not possible to create a footnote reference at the beginning of a paragraph.';
   msg012 = 'It''s not possible to insert a new row since the last one contains some data.';
   msg013 = 'Delete the current row?';
@@ -270,6 +270,7 @@ begin
   begin
     dbText.Font.Color := clWhite;
     sgTitles.Font.Color := clWhite;
+    shList.Pen.Color := $005E5E5E;
     sgTable.FixedGridLineColor := $005E5E5E;
     sgTable.GridLineColor := $005E5E5E;
     sgTable.Color := $00282A2B;
@@ -298,6 +299,7 @@ begin
     sgTitles.Font.Color := clBlack;
     dbText.Color := clWhite;
     sgTitles.Color := clWhite;
+    shList.Pen.Color := clSilver;
     sgTable.FixedGridLineColor := clSilver;
     sgTable.GridLineColor := clSilver;
     sgTable.Color := clWhite;
@@ -373,11 +375,11 @@ begin
           fmMain.Height := 600;
       end;
       dbText.Font.Name := MyIni.ReadString('mxmarkedit', 'fontname', 'Avenir Next');
-      dbText.Font.Size := MyIni.ReadInteger('mxmarkedit', 'fontsize', 22);
+      dbText.Font.Size := MyIni.ReadInteger('mxmarkedit', 'fontsize', 16);
       dbText.Font.Color := StringToColor(MyIni.ReadString('mxmarkedit',
         'fontcolor', ColorToString(dbText.Font.Color)));
       stFontMono := MyIni.ReadString('mxmarkedit', 'fontmononame', 'Menlo');
-      iFontMonoSize := MyIni.ReadInteger('mxmarkedit', 'fontmonosize', 20);
+      iFontMonoSize := MyIni.ReadInteger('mxmarkedit', 'fontmonosize', 18);
       clTitle1 := StringToColor(MyIni.ReadString('mxmarkedit', 'title1',
         'clTitle1'));
       clTitle2 := StringToColor(MyIni.ReadString('mxmarkedit', 'title2', 'clTitle2'));
@@ -2310,12 +2312,9 @@ var
   stItem: String;
   stSeparators: String = '.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ';
 begin
-  if dbText.SelLength = 0 then
+  if miEditDisableForm.Checked = True then
   begin
-    if MessageDlg(msg010, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
-    begin
-      Exit;
-    end;
+    miEditDisableFormClick(nil);
   end;
   try
     Screen.Cursor := crHourGlass;

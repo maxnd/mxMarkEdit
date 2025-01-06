@@ -1448,8 +1448,8 @@ object fmCopyright: TfmCopyright
     Left = 172
     Height = 16
     Top = 59
-    Width = 321
-    Caption = 'A free software to manage Markdown documents.'
+    Width = 317
+    Caption = 'A free software to manage Markdown documents'
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1476,8 +1476,8 @@ object fmCopyright: TfmCopyright
     Left = 230
     Height = 16
     Top = 118
-    Width = 26
-    Caption = '1.1.6'
+    Width = 25
+    Caption = '1.1.7'
     ParentColor = False
     ParentFont = False
   end

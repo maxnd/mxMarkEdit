@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.1.6, published on 5 January 2025.
+Version 1.1.7, published on 6 January 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -93,7 +93,7 @@ The `Edit - Find` menu item allows to find the first occurrence – with the but
 
 The `Edit - Insert link to file` menu item allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It's not possible to insert relative links.
 
-The `Edit - Find duplicate words` menu item shows in red all the words of each paragraph that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym.
+The `Edit - Show duplicate words` menu item shows in red all the words of each paragraph that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym.
 
 The `Edit - Show todo form` menu item opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
 
@@ -191,6 +191,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.1.7
+
+- The procedure of the menu item `Edit` - `Show duplicate words` now requires no confirmation.
+- Minor bugs fixing and graphic improvements.
 
 #### Version 1.1.6
 

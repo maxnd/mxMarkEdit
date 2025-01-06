@@ -1,7 +1,7 @@
 object fmMain: TfmMain
-  Left = 204
+  Left = 299
   Height = 610
-  Top = 142
+  Top = 206
   Width = 1053
   AlphaBlend = True
   Caption = 'mxMarkEdit'
@@ -1165,7 +1165,7 @@ object fmMain: TfmMain
       OnGetCellHint = sgTitlesGetCellHint
       OnPrepareCanvas = sgTitlesPrepareCanvas
     end
-    object bvList: TBevel
+    object shList: TShape
       Left = 10
       Height = 1
       Top = 40
@@ -1173,7 +1173,8 @@ object fmMain: TfmMain
       Align = alTop
       BorderSpacing.Left = 10
       BorderSpacing.Right = 10
-      Shape = bsTopLine
+      Brush.Style = bsClear
+      Pen.Color = clDefault
     end
   end
   object pnBackground: TPanel
@@ -1193,7 +1194,7 @@ object fmMain: TfmMain
     TabOrder = 3
     object dbText: TMemo
       Left = 0
-      Height = 419
+      Height = 421
       Top = 10
       Width = 877
       Align = alClient
@@ -1215,8 +1216,8 @@ object fmMain: TfmMain
     object spTable: TSplitter
       Cursor = crVSplit
       Left = 0
-      Height = 5
-      Top = 429
+      Height = 3
+      Top = 431
       Width = 877
       Align = alBottom
       Color = clForm
@@ -1384,7 +1385,7 @@ object fmMain: TfmMain
         OnClick = miEditLinkClick
       end
       object miEditFindDuplicate: TMenuItem
-        Caption = 'Find duplicate words'
+        Caption = 'Show duplicate words'
         ShortCut = 4185
         OnClick = miEditFindDuplicateClick
       end
