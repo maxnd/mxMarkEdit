@@ -1,5 +1,3 @@
-<img align=“left” src=“https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png”>
-
 # mxMarkEdit
 
 Version 1.1.6, published on 5 January 2025.
@@ -188,7 +186,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 ## Mentions
 
-- Mentioned in [Indie Apps Catalog][https://indieappcatalog.com/app/991483088552/mxmarkedit).
+- Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
 
