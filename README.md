@@ -18,6 +18,8 @@ To download the app, click on this link: https://github.com/maxnd/mxMarkEdit/raw
 
 To install Pandoc, not necessary to use the app but necessary to export the Markdown files in other formats, click on this link: https://pandoc.org/installing.html.
 
+To open automatically Markdown files with mxMarkEdit, follow the [Apple Guidelines](https://	support.apple.com/en-sa/guide/mac-help/mh35597/mac).
+
 ## Look of the app
 
 The software looks like this, with one possible color setting:
