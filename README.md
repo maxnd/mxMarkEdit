@@ -6,8 +6,6 @@ Version 1.1.6, published on 5 January 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
----
-
 mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it's installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data. The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
 
 ## Download and install
