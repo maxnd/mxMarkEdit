@@ -1,3 +1,5 @@
+<img align="left" src="https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png"   width="64">
+
 # mxMarkEdit
 
 Version 1.1.6, published on 5 January 2025.
@@ -89,15 +91,15 @@ The last four opened files are available in the `File` menu. When they are opene
 
 The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`.
 
-The `Edit - Insert link to file` allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It's not possible to insert relative links.
+The `Edit - Insert link to file` menu item allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It's not possible to insert relative links.
 
-The `Edit - Find duplicate words` shows in red all the words of each paragraph that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym.
+The `Edit - Find duplicate words` menu item shows in red all the words of each paragraph that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym.
 
-The menu item `Edit - Show todo form` opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
+The `Edit - Show todo form` menu item opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
 
-The `Edit - Show current title or toto` shows at the top of the left list the title or todo item the cursor is under to.
+The `Edit - Show current title or toto` menu item shows at the top of the left list the title or todo item the cursor is under to.
 
-The `Edit - Disable formatting` menu item prevents the formatting of the text, greatly improving the performance of the app with very large documents.
+The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, color and size and the line spacing, greatly improving the performance of the app with very large documents.
 
 The `Convert with Pandoc` menu item converts the current document and its possible tables into another format specified in the options of the software. The converted file is created in the same folder of the current document.
 
