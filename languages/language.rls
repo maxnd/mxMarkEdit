@@ -11,7 +11,7 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'n"'#10#10'#: tfmcopyright.lbcopyrightname.caption'#10'msgctxt "tfmcopyright'
   +'.lbcopyrightname.caption"'#10'msgid "mxMarkEdit"'#10'msgstr ""'#10#10'#: tf'
   +'mcopyright.lbcopyrightvers.caption'#10'msgid "Version"'#10'msgstr "Versione'
-  +'"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.1.7"'#10'msg'
+  +'"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.1.8"'#10'msg'
   +'str ""'#10#10'#: tfmcopyright.lbok.caption'#10'msgctxt "tfmcopyright.lbok.c'
   +'aption"'#10'msgid "OK"'#10'msgstr ""'#10#10'#: tfmmain.caption'#10'msgctxt '
   +'"tfmmain.caption"'#10'msgid "mxMarkEdit"'#10'msgstr ""'#10#10'#: tfmmain.cb'
@@ -160,7 +160,9 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +' current document has no name."'#10'msgstr "Il documento corrente non ha un'
   +' nome."'#10#10'#: unit1.msg009'#10'msgid "It was not possible to create the'
   +' backup file."'#10'msgstr "Non '#195#168' stato possibile creare il file di'
-  +' backup."'#10#10'#: unit1.msg011'#10'msgid "It''s not possible to create a '
+  +' backup."'#10#10'#: unit1.msg010'#10'msgid "Delete the current column of th'
+  +'e current table?"'#10'msgstr "Eliminare la colonna corrente della tabella c'
+  +'orrente?"'#10#10'#: unit1.msg011'#10'msgid "It''s not possible to create a '
   +'footnote reference at the beginning of a paragraph."'#10'msgstr "Non '#195
   +#168' possibile creare un rimando ad una nota a pi'#195#168' pagina all''ini'
   +'zio di un paragrafo."'#10#10'#: unit1.msg012'#10'msgid "It''s not possible '
@@ -171,10 +173,12 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'the content of current column of the current table?"'#10'msgstr "Ordinare i'
   +'l contenuto della colonna corrente della tabella corrente?"'#10#10'#: unit1'
   +'.msg015'#10'msgid "Delete the content of the selected cells?"'#10'msgstr "E'
-  +'liminare il contenuto delle celle selezionate?"'#10#10'#: unit2.msgfnd001'
-  +#10'msgid "Text not found."'#10'msgstr "Testo non trovato."'#10#10'#: unit2.'
-  +'msgfnd002'#10'msgid "Replace all the recurrences of"'#10'msgstr "Sostituire'
-  +' tutte le occorrenze di"'#10#10'#: unit2.msgfnd003'#10'msgid "with"'#10'msg'
-  +'str "con"'#10#10'#: unit4.tsk001'#10'msgid "day"'#10'msgstr "giorno"'#10#10
-  +'#: unit4.tsk002'#10'msgid "days"'#10'msgstr "giorni"'#10#10
+  +'liminare il contenuto delle celle selezionate?"'#10#10'#: unit1.msg016'#10
+  +'msgid "Insert a new column in the current table?"'#10'msgstr "Inserire una '
+  +'nuova colonna nella tabella corrente?"'#10#10'#: unit2.msgfnd001'#10'msgid '
+  +'"Text not found."'#10'msgstr "Testo non trovato."'#10#10'#: unit2.msgfnd002'
+  +#10'msgid "Replace all the recurrences of"'#10'msgstr "Sostituire tutte le o'
+  +'ccorrenze di"'#10#10'#: unit2.msgfnd003'#10'msgid "with"'#10'msgstr "con"'
+  +#10#10'#: unit4.tsk001'#10'msgid "day"'#10'msgstr "giorno"'#10#10'#: unit4.t'
+  +'sk002'#10'msgid "days"'#10'msgstr "giorni"'#10#10
 ]);

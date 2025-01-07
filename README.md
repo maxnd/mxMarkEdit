@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.1.7, published on January 6 2025.
+Version 1.1.8, published on January 7 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -75,7 +75,7 @@ At the bottom of the text there’s an Excel-like grid of 105 columns and 2000 r
 
 The content of the grid is saved in a separate file with the same name of the one in use, but with the `.csv` extension. In this file the items are separated by tabs, and it may be easily imported in a spreadsheet. When the current document is exported to Pandoc, if there are some data in the grid, the software creates a new file with the extension `.export` which contains both the document and the tables properly formatted in Markdown format. In the converted document in Word or Writer format, the tables are located at the end of the text.
 
-When a `.cvs` file is loaded, the grid is not automatically shown, but in the status bar at the bottom, after the name of the `.md` file, it's shown an icon of a diamond, to alert the user that there are some data inside the grid.
+When a `.cvs` file is loaded, the grid is not automatically shown, but in the status bar at the bottom, after the name of the `.md` file, it's shown the label `& .csv`, to alert the user that there are some data inside the grid.
 
 In the grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document, or deleted. See below for the shortcuts useful to to that.
 
@@ -158,14 +158,16 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `G`: search the text typed in the `Find` field starting from the current position and just in the current column (field) of the current table.
 * `Meta` + `Opt` + `Arrow up`: move up the current row.
 * `Meta` + `Opt` + `Arrow down`: move down the current row.
+* `Meta` + `Opt` + `Shift` + `I`: add a new column in the current table, after confirmation.
+* `Meta` + `Opt` + `Shift` + `Backspace`: delete the current column in the current table, after confirmation, if it's not the first one, containing the tables names.
 * `Meta` + `Opt` + `Arrow left`: move left the current Column (field) just of the current table (not the entire column of the grid) with its content.
 * `Meta` + `Opt` + `Arrow right`: move right the current column (field) just of the current table (not the entire column of the grid) with its content.
 * `Meta` + `Ctrl` + `Arrow up`: move the current table, with all its field, before the previous one.
 * `Meta` + `Ctrl` + `Arrow down`: move the current table, with all its field, after the previous one.
 * `Meta` + `Arrow up`: in the tables names column, select the previous table title, while in the other columns move to the top of the grid.
-* `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move to the last edited row of the grid.
-* `Meta` + `Arrow left`: move to the left end of the grid.
-* `Meta` + `Arrow right`: move to the right end of the grid.
+* `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move to the last edited row of the current column.
+* `Meta` + `Arrow left`: move to the first column of the grid.
+* `Meta` + `Arrow right`: move to the last right edited column of the current row.
 * `Meta` + `Ctrl` + `S`: sort alphabetically the content of the current column (field) in the current table, after confirmation.
 * `Meta` + `Ctrl` + `F`: move the cursor in the search field, if it's visible.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
@@ -193,6 +195,15 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.1.8
+
+- New shortcut in the grid `Meta` + `Opt` + `Shift` + `I` to add a new column in the current table.
+- New shortcut in the grid `Meta` + `Opt` + `Shift` + `Backspace` to delete the current column in the current table.
+- The shortcut in the grid `Meta` + `Arrow right` now moves to the last edited column of the current row.
+- The shortcut in the grid `Meta` + `Arrow down` now moves to the last edited row of the current column, if the selection is not in the first column.
+- Bugs fixing: `Backspace` erased the whole content of the current cell even when the editor was active.
+- Minor graphic improvements.
 
 #### Version 1.1.7
 

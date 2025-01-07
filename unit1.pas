@@ -204,6 +204,7 @@ var
   blFileMod: boolean = False;
   blTableSaved: boolean = True;
   blTableMod: boolean = False;
+  stTableLoaded: String = ' && .csv ';
   blDisableFormatting: boolean = False;
   blTextOnChange: boolean = False;
   stGridLoaded: String = '';
@@ -223,12 +224,13 @@ resourcestring
   msg007 = 'The file is not available.';
   msg008 = 'The current document has no name.';
   msg009 = 'It was not possible to create the backup file.';
-  // msg010
+  msg010 = 'Delete the current column of the current table?';
   msg011 = 'It''s not possible to create a footnote reference at the beginning of a paragraph.';
   msg012 = 'It''s not possible to insert a new row since the last one contains some data.';
   msg013 = 'Delete the current row?';
   msg014 = 'Sort the content of current column of the current table?';
   msg015 = 'Delete the content of the selected cells?';
+  msg016 = 'Insert a new column in the current table?';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -494,7 +496,7 @@ begin
       begin
         sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
           #9, False);
-        stGridLoaded := '  ︎❖';
+        stGridLoaded := stTableLoaded;
       end
       else
       begin
@@ -526,7 +528,7 @@ begin
       begin
         sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
           #9, False);
-        stGridLoaded := '  ︎❖';
+        stGridLoaded := stTableLoaded;
       end
       else
       begin
@@ -564,7 +566,7 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      stGridLoaded := '  ︎❖';
+      stGridLoaded := stTableLoaded;
     end
     else
     begin
@@ -600,6 +602,7 @@ begin
     else
     begin
       pnGrid.Height := 1;
+      dbText.SetFocus;
     end;
     key := 0;
   end
@@ -1478,6 +1481,7 @@ begin
     begin
       for i := iTop to sgTable.RowCount - 1 do
       begin
+        dbTot := 0;
         if sgTable.Cells[1, i] <> '' then
         begin
           Exit;
@@ -1510,21 +1514,24 @@ end;
 
 procedure TfmMain.sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
-  i, x, iTop, iBottom, iNextTable: Integer;
+  i, x, iTop, iBottom, iRight, iNextTable: Integer;
   stField: String;
   grRect: TGridRect;
 begin
   if ((key = 8) and (Shift = [])) then
   begin
-    if MessageDlg(msg015, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
+    if sgTable.EditorMode = False then
     begin
-      for i := 0 to sgTable.SelectedRangeCount-1 do
+      if MessageDlg(msg015, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
+      begin
+        for i := 0 to sgTable.SelectedRangeCount-1 do
         begin
           grRect := sgTable.SelectedRange[i];
           sgTable.Clean(grRect, [gzNormal]);
         end;
+      end;
+      key := 0;
     end;
-    key := 0;
   end
   else
   if ((key = 8) and (Shift = [ssMeta, ssShift])) then
@@ -1534,7 +1541,67 @@ begin
       sgTable.DeleteColRow(False, sgTable.Row);
       sgTable.RowCount := 2000;
       blTableMod := True;
+      stGridLoaded := stTableLoaded;
+      LabelFileNameChars;
       blTableSaved := False;
+    end;
+    key := 0;
+  end
+  else
+  if ((key = 8) and (Shift = [ssMeta, ssShift, ssAlt])) then
+  begin
+    if sgTable.Col = 1 then
+    begin
+      key := 0;
+      Exit;
+    end;
+    if MessageDlg(msg010, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+    begin
+      key := 0;
+      Exit;
+    end;
+    iTop := -1;
+    iBottom := -1;
+    iRight := -1;
+    for i := sgTable.Row downto 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        iTop := i;
+        Break;
+      end;
+    end;
+    for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end;
+      iBottom := i;
+    end;
+    if ((iTop > -1) and (iBottom > -1)) then
+    begin
+      for i := sgTable.Col to sgTable.ColCount - 1 do
+      begin
+        if sgTable.Cells[i, iTop] <> '' then
+        begin
+          iRight := i + 1;
+        end;
+      end;
+      if ((iRight > sgTable.Col) and (iRight < sgTable.ColCount - 1)) then
+      begin
+        for i := sgTable.Col to iRight do
+        begin
+          for x := iTop to iBottom do
+          begin
+            sgTable.Cells[i, x] := sgTable.Cells[i + 1, x];
+          end;
+        end;
+        blTableMod := True;
+        stGridLoaded := stTableLoaded;
+        LabelFileNameChars;
+        blTableSaved := False;
+      end;
     end;
     key := 0;
   end
@@ -1542,6 +1609,63 @@ begin
   if ((key = Ord('G')) and (Shift = [ssMeta])) then
   begin
     FindInGrid;
+    key := 0;
+  end
+  else
+  if ((key = Ord('I')) and (Shift = [ssMeta, ssShift, ssAlt])) then
+  begin
+    if MessageDlg(msg016, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+    begin
+      key := 0;
+      Exit;
+    end;
+    iTop := -1;
+    iBottom := -1;
+    iRight := -1;
+    for i := sgTable.Row downto 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        iTop := i;
+        Break;
+      end;
+    end;
+    for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end;
+      iBottom := i;
+    end;
+    if ((iTop > -1) and (iBottom > -1)) then
+    begin
+      for i := sgTable.Col to sgTable.ColCount - 1 do
+      begin
+        if sgTable.Cells[i, iTop] <> '' then
+        begin
+          iRight := i + 1;
+        end;
+      end;
+      if ((iRight > sgTable.Col) and (iRight < sgTable.ColCount - 1)) then
+      begin
+        for i := iRight downto sgTable.Col do
+        begin
+          for x := iTop to iBottom do
+          begin
+            sgTable.Cells[i + 1, x] := sgTable.Cells[i, x];
+          end;
+        end;
+        for x := iTop to iBottom do
+        begin
+          sgTable.Cells[sgTable.Col, x] := '';
+        end;
+        blTableMod := True;
+        stGridLoaded := stTableLoaded;
+        LabelFileNameChars;
+        blTableSaved := False;
+      end;
+    end;
     key := 0;
   end
   else
@@ -1562,6 +1686,8 @@ begin
       sgTable.Row := sgTable.Row - 1;
       sgTable.RowCount := 2000;
       blTableMod := True;
+      stGridLoaded := stTableLoaded;
+      LabelFileNameChars;
       blTableSaved := False;
     end;
     key := 0;
@@ -1595,6 +1721,8 @@ begin
       end;
     end;
     blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
     blTableSaved := False;
     key := 0;
   end
@@ -1642,6 +1770,8 @@ begin
       sgTable.Col := sgTable.Col - 1;
     end;
     blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
     blTableSaved := False;
     key := 0;
   end
@@ -1733,6 +1863,8 @@ begin
       sgTable.TopRow := iNextTable;
     end;
     blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
     blTableSaved := False;
     key := 0;
   end
@@ -1743,6 +1875,8 @@ begin
     begin
       sgTable.MoveColRow(False, sgTable.Row, sgTable.Row - 1);
       blTableMod := True;
+      stGridLoaded := stTableLoaded;
+      LabelFileNameChars;
       blTableSaved := False;
       key := 0;
     end;
@@ -1750,7 +1884,14 @@ begin
   else
   if ((key = 39) and (Shift = [ssMeta])) then
   begin
-    sgTable.Col := sgTable.ColCount - 1;
+    for i := sgTable.ColCount - 1 downto 1 do
+    begin
+      if sgTable.Cells[i, sgTable.Row] <> '' then
+      begin
+        Break;
+      end;
+    end;
+    sgTable.Col := i;
     key := 0;
   end
   else
@@ -1791,6 +1932,8 @@ begin
       sgTable.Col := sgTable.Col + 1;
     end;
     blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
     blTableSaved := False;
     key := 0;
   end
@@ -1810,16 +1953,13 @@ begin
     begin
       for i := sgTable.RowCount - 1 downto 1 do
       begin
-        if ((sgTable.Cells[1, i] <> '') or (sgTable.Cells[2, i] <> '') or
-          (sgTable.Cells[3, i] <> '') or (sgTable.Cells[4, i] <> '')) then
+        if sgTable.Cells[sgTable.Col, i] <> '' then
         begin
-          sgTable.Row := i;
           Break;
         end;
       end;
+      sgTable.Row := i;
     end;
-    blTableMod := True;
-    blTableSaved := False;
     key := 0;
   end
   else
@@ -1893,6 +2033,8 @@ begin
       sgTable.TopRow := iNextTable - i + 1;
     end;
     blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
     blTableSaved := False;
     key := 0;
   end
@@ -1903,6 +2045,8 @@ begin
     begin
       sgTable.MoveColRow(False, sgTable.Row, sgTable.Row + 1);
       blTableMod := True;
+      stGridLoaded := stTableLoaded;
+      LabelFileNameChars;
       blTableSaved := False;
       key := 0;
     end;
@@ -1940,6 +2084,8 @@ procedure TfmMain.sgTableSetEditText(Sender: TObject; ACol, ARow: Integer;
   const Value: string);
 begin
   blTableMod := True;
+  stGridLoaded := stTableLoaded;
+  LabelFileNameChars;
   blTableSaved := False;
 end;
 
@@ -1990,7 +2136,7 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      stGridLoaded := '  ︎❖';
+      stGridLoaded := stTableLoaded;
     end
     else
     begin
@@ -2094,7 +2240,7 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      stGridLoaded := '  ︎❖';
+      stGridLoaded := stTableLoaded;
     end
     else
     begin
@@ -2137,7 +2283,7 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      stGridLoaded := '  ︎❖';
+      stGridLoaded := stTableLoaded;
     end
     else
     begin
@@ -2179,7 +2325,7 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      stGridLoaded := '  ︎❖';
+      stGridLoaded := stTableLoaded;
     end
     else
     begin
@@ -2221,7 +2367,7 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
-      stGridLoaded := '  ︎❖';
+      stGridLoaded := stTableLoaded;
     end
     else
     begin

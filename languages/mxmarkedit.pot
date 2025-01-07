@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.7"
+msgid "1.1.8"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -515,6 +515,10 @@ msgstr ""
 msgid "It was not possible to create the backup file."
 msgstr ""
 
+#: unit1.msg010
+msgid "Delete the current column of the current table?"
+msgstr ""
+
 #: unit1.msg011
 msgid "It's not possible to create a footnote reference at the beginning of a paragraph."
 msgstr ""
@@ -533,6 +537,10 @@ msgstr ""
 
 #: unit1.msg015
 msgid "Delete the content of the selected cells?"
+msgstr ""
+
+#: unit1.msg016
+msgid "Insert a new column in the current table?"
 msgstr ""
 
 #: unit2.msgfnd001
