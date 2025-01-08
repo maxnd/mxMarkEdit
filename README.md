@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.1.8, published on January 7 2025.
+Version 1.1.9, published on January 8 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -49,7 +49,7 @@ Some Markdown markers are hidden, as the text that follows them or is contained 
 * headers (beginning with `#`, `##`, `###`, `####`, `#####` and `######`);
 * italics (`*` or `_`), bold (`**` or `__`) and bold italics (`***` or `___`);
 * code, shown in monospace font (`);
-* citations, which start with the character `>` followed by a space, that are shown with a smaller font size.
+* citations, which start with the character `>` followed by a space, that are shown with a lighter or darker background, according to the mode in use.
 
 Other Markdown markers are not hidden, but are shown in a different color defined by the user:
 
@@ -197,6 +197,12 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.1.9
+
+- Citations now have a lighter or darker background, while having the same font size.
+- Bugs fixing: the formatting within the citations was not effective.
+- Minor bugs fixing.
 
 #### Version 1.1.8
 

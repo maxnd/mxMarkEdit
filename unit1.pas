@@ -190,6 +190,7 @@ var
   clCode: TColor = clSilver;
   clHighlightList: TColor = clDkGray;
   clHighlightText: TColor = clGreen;
+  clQuote: TColor = clSilver;
   clTodo: TColor = clBlack;
   stFontMono: string = 'Menlo';
   iFontMonoSize: smallint = 18;
@@ -290,6 +291,7 @@ begin
     clFootnote := clSilver;
     clLink := clSilver;
     clCode := clSilver;
+    clQuote := $00404040;
     clHighlightList := $005E5E5E;
     clRepetition := $005766EA;
     clHighlightText := $00445D31;
@@ -323,6 +325,7 @@ begin
     clFootnote := clSilver;
     clLink := clSilver;
     clCode := clSilver;
+    clQuote := $00EFEFEF;
     clHighlightList := $00EBEBEB;
     clRepetition := clRed;
     clHighlightText := $0079FBD4;
@@ -488,6 +491,13 @@ begin
   // Open file from paramater on console
   if ParamStrUTF8(1) <> '' then
   begin
+    if ParamStrUTF8(1) = '-' then
+    begin
+      stFileName := '';
+      CreateYAML;
+      LabelFileNameChars;
+    end
+    else
     if FileExistsUTF8(ParamStrUTF8(1)) = True then
     try
       stFileName := ParamStrUTF8(1);
@@ -2689,7 +2699,7 @@ end;
 procedure TfmMain.miToolsOpenWinClick(Sender: TObject);
 begin
   // FileExist doesn't work on app directory
-  Unix.fpSystem('open -n /Applications/mxMarkEdit.app');
+  Unix.fpSystem('open -n /Applications/mxMarkEdit.app --args -');
 end;
 
 procedure TfmMain.miToolsTrans1Click(Sender: TObject);
@@ -2736,7 +2746,7 @@ var
   stTitle: WideString = '';
   stSpaces: string = '';
   fd: NSFontDescriptor;
-  myFont, quoteFont, monoFont, miniFont: NSFont;
+  myFont, monoFont, miniFont: NSFont;
   rng: NSRange;
   par: NSMutableParagraphStyle;
   tabs: NSMutableArray;
@@ -2806,7 +2816,6 @@ begin
       addAttribute_value_range(NSFontAttributeName, myFont, rng);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
       removeAttribute_range(NSBackgroundColorAttributeName, rng);
-    quoteFont := NSFont.fontWithDescriptor_size(fd, -dbText.font.Height - 4);
     miniFont := NSFont.fontWithDescriptor_size(fd, 1);
     fd := FindFont(stFontMono, 0);
     monoFont := NSFont.fontWithDescriptor_size(fd, iFontMonoSize);
@@ -3091,8 +3100,10 @@ begin
           blQuote := False;
           rng.location := iStartQuote - 1;
           rng.length := i - iStartQuote + 1;
+
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-            addAttribute_value_range(NSFontAttributeName, quoteFont, rng);
+            addAttribute_value_range(NSBackgroundColorAttributeName,
+            ColorToNSColor(clQuote), rng);
           rng.location := iStartQuote - 1;
           rng.length := 1;
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
