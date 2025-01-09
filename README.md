@@ -61,6 +61,8 @@ Other Markdown markers are not hidden, but are shown in a different color define
 
 The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned. Pandoc should instead manage them properly.
 
+To have a Markdown document properly exported in other formats with Pandoc, the paragraphs must be separated by an empty line, except in the lists, numbered or not.
+
 When a paragraph starts with a list heading (`*`, `+`, `-` or a number followed by a dot and a space), the `Return` key creates a new paragraph with the same heading. The numbered lists are properly renumbered if necessary.
 
 ## Titles and todo list
