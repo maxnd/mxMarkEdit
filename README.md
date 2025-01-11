@@ -91,7 +91,18 @@ To delete the content of the grid so that it's not loaded any more, delete the r
 
 See below for some useful shortcuts available in this grid.
 
-## Menu items 
+## Presentations
+
+it's possible to use the app for presentations:
+
+1. load a document, possibly with some tables, containing the sequential text of the slides in Markdown format, with many paragraphs under titles and subtitles, like a normal text;
+2. enlarge possibly the font size of the document so that it can be seen easily by the participants;
+3. share the interface of mxMarkEdit with a video projector or on a video call with apps like Webex, FaceTime or Zoom;
+4. begin the presentation, and use the shortcut `Meta` + `E` to highlight the paragraph following the current one with a green background, skipping the empty lines and the titles;
+5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the while structure of the document in the left bar;
+6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
+
+## Menu items
 
 The last four opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing.
 
@@ -113,7 +124,7 @@ The `Convert with Pandoc` menu item converts the current document and its possib
 
 The `Open another window` menu item opens another instance of the software if the app is located in the `Applications` directory.
 
-The `Transparency` menu item activate or deactivate two levels of transparency of the interface of the software.
+The `Transparency` menu item activate or deactivate two levels of transparency of the interface of the software, giving the impression to watch or type on a dark glass. This functionality is just for aesthetic reasons.
 
 The `Tools - Options` menu item opens the options of the app, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the line spacing value (1.0 is the default), the delay in days for the new deadlines (7 is the default), the size of the normal font and of the code font, the Pandoc options, the path of the Pandoc executable, the possible template (a file of Word, PowerPoint, Writer, etc.) to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the file are present or not. See the Pandoc manual for more information.
 
@@ -146,7 +157,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `Arrow down`: select the next heading.
 * `Meta` + `Shift` + `J`: set the current position of the cursor in the bookmark.
 * `Meta` + `J`: move the cursor to the position already set in the bookmark.
-* `Meta` + `E`: show the following paragraph with a green background, skipping the empty lines and the headings; this is useful to use mxMarkEdit for presentations.
+* `Meta` + `E`: show the following paragraph with a green background, skipping the empty lines and the headings; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalise the current word.
