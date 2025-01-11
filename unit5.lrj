@@ -1,0 +1,11 @@
+{"version":1,"strings":[
+{"hash":130738613,"name":"tfmwords.caption","sourcebytes":[87,111,114,100,115,32,114,101,99,117,114,114,101,110,99,101],"value":"Words recurrence"},
+{"hash":6187187,"name":"tfmwords.sgwords.columns[0].title.caption","sourcebytes":[87,111,114,100,115],"value":"Words"},
+{"hash":211636021,"name":"tfmwords.sgwords.columns[1].title.caption","sourcebytes":[82,101,99,117,114,114,101,110,99,101],"value":"Recurrence"},
+{"hash":4863637,"name":"tfmwords.bnok.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":304761,"name":"tfmwords.bncopy.caption","sourcebytes":[67,111,112,121],"value":"Copy"},
+{"hash":113817353,"name":"tfmwords.lbskip.caption","sourcebytes":[87,111,114,100,115,32,116,111,32,115,107,105,112,32,40,115,101,112,97,114,97,116,101,100,32,98,121,32,99,111,109,109,97,41],"value":"Words to skip (separated by comma)"},
+{"hash":49531152,"name":"tfmwords.lbresults.caption","sourcebytes":[87,111,114,100,115,32,117,115,101,100,58,32,48],"value":"Words used: 0"},
+{"hash":146640072,"name":"tfmwords.bnrefresh.caption","sourcebytes":[82,101,102,114,101,115,104],"value":"Refresh"},
+{"hash":369152,"name":"tfmwords.bnremove.caption","sourcebytes":[83,107,105,112],"value":"Skip"}
+]}

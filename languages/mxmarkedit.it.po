@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.9"
+msgid "1.1.10"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -123,6 +123,10 @@ msgstr "Mostra titolo o attività corrente"
 #: tfmmain.miedittasks.caption
 msgid "Show todo form"
 msgstr "Mostra maschera attività"
+
+#: tfmmain.mieditwords.caption
+msgid "Show words recurrence form"
+msgstr "Mostra maschera ricorrenza parole"
 
 #: tfmmain.mifile.caption
 msgid "File"
@@ -412,6 +416,44 @@ msgstr "Scadenza"
 msgid "Title"
 msgstr "Titolo"
 
+#: tfmwords.bncopy.caption
+msgctxt "tfmwords.bncopy.caption"
+msgid "Copy"
+msgstr "Copia"
+
+#: tfmwords.bnok.caption
+msgctxt "tfmwords.bnok.caption"
+msgid "Close"
+msgstr "Chiudi"
+
+#: tfmwords.bnrefresh.caption
+msgid "Refresh"
+msgstr "Aggiorna"
+
+#: tfmwords.bnremove.caption
+msgid "Skip"
+msgstr "Non considerare"
+
+#: tfmwords.caption
+msgid "Words recurrence"
+msgstr "Ricorrenza delle parole"
+
+#: tfmwords.lbresults.caption
+msgid "Words used: 0"
+msgstr "Parole usate: 0"
+
+#: tfmwords.lbskip.caption
+msgid "Words to skip (separated by comma)"
+msgstr "Parole da non considerare (separate da virgola)"
+
+#: tfmwords.sgwords.columns[0].title.caption
+msgid "Words"
+msgstr "Parole"
+
+#: tfmwords.sgwords.columns[1].title.caption
+msgid "Recurrence"
+msgstr "Ricorrenza"
+
 #: unit1.dateformat
 msgid "en"
 msgstr "it"
@@ -561,4 +603,9 @@ msgstr "giorno"
 #: unit4.tsk002
 msgid "days"
 msgstr "giorni"
+
+#: unit5.msgsk001
+msgctxt "unit5.msgsk001"
+msgid "Words used:"
+msgstr "Parole usate:"
 

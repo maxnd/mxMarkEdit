@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.1.9, published on January 8 2025.
+Version 1.1.10, published on January 11 2025.
 
 Copyright Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -103,6 +103,8 @@ The `Edit - Show duplicate words` menu item shows in red all the words of each p
 
 The `Edit - Show todo form` menu item opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
 
+The `Show words recurrence form` menu item opens a form with the list of all the words used in the current document, excluded the possible YAML headings (`title:`, `author:` etc.), and their recurrence, that is how many times they appear in the document. By default, the list is sorted by recurrence, but it's possibile to click on the first heading of the grid to sort the list by name. Below the grid there is a field in which it's possibile to type the words that should not be considered, like articles, separated by commas. These words are automatically sorted. Below this field, there are some buttons to include the word selected in the grid within the words to skip, to update the results after having changed the words to skip, to copy in the clipboard the content of the grid and to close the form.
+
 The `Edit - Show current title or toto` menu item shows at the top of the left list the title or todo item the cursor is under to.
 
 The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, color and size and the line spacing, greatly improving the performance of the app with very large documents.
@@ -199,6 +201,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.1.10
+
+- Added the `Show words recurrence form` menu item and functionality (see above for information).
+- In the grid, the `Return` key pressed in a cell at the left end of a table doesn't select the following cell at its right but the first cell of the following row, in the second column.
 
 #### Version 1.1.9
 

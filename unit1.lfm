@@ -1259,6 +1259,7 @@ object fmMain: TfmMain
         OnDrawCell = sgTableDrawCell
         OnEditingDone = sgTableEditingDone
         OnKeyDown = sgTableKeyDown
+        OnKeyPress = sgTableKeyPress
         OnPrepareCanvas = sgTablePrepareCanvas
         OnSetEditText = sgTableSetEditText
       end
@@ -1398,6 +1399,11 @@ object fmMain: TfmMain
         Caption = 'Show todo form'
         ShortCut = 36940
         OnClick = miEditTasksClick
+      end
+      object miEditWords: TMenuItem
+        Caption = 'Show words recurrence form'
+        ShortCut = 20569
+        OnClick = miEditWordsClick
       end
       object Sep3: TMenuItem
         Caption = '-'

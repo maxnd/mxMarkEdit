@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.9"
+msgid "1.1.10"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -123,6 +123,10 @@ msgstr ""
 
 #: tfmmain.miedittasks.caption
 msgid "Show todo form"
+msgstr ""
+
+#: tfmmain.mieditwords.caption
+msgid "Show words recurrence form"
 msgstr ""
 
 #: tfmmain.mifile.caption
@@ -413,6 +417,44 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+#: tfmwords.bncopy.caption
+msgctxt "tfmwords.bncopy.caption"
+msgid "Copy"
+msgstr ""
+
+#: tfmwords.bnok.caption
+msgctxt "tfmwords.bnok.caption"
+msgid "Close"
+msgstr ""
+
+#: tfmwords.bnrefresh.caption
+msgid "Refresh"
+msgstr ""
+
+#: tfmwords.bnremove.caption
+msgid "Skip"
+msgstr ""
+
+#: tfmwords.caption
+msgid "Words recurrence"
+msgstr ""
+
+#: tfmwords.lbresults.caption
+msgid "Words used: 0"
+msgstr ""
+
+#: tfmwords.lbskip.caption
+msgid "Words to skip (separated by comma)"
+msgstr ""
+
+#: tfmwords.sgwords.columns[0].title.caption
+msgid "Words"
+msgstr ""
+
+#: tfmwords.sgwords.columns[1].title.caption
+msgid "Recurrence"
+msgstr ""
+
 #: unit1.dateformat
 msgid "en"
 msgstr ""
@@ -561,5 +603,10 @@ msgstr ""
 
 #: unit4.tsk002
 msgid "days"
+msgstr ""
+
+#: unit5.msgsk001
+msgctxt "unit5.msgsk001"
+msgid "Words used:"
 msgstr ""
 

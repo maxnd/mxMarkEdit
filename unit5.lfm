@@ -1,0 +1,139 @@
+object fmWords: TfmWords
+  Left = 326
+  Height = 591
+  Top = 175
+  Width = 641
+  BorderIcons = []
+  BorderStyle = bsDialog
+  Caption = 'Words recurrence'
+  ClientHeight = 591
+  ClientWidth = 641
+  KeyPreview = True
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  Position = poDesktopCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '3.7.0.0'
+  object sgWords: TStringGrid
+    Left = 15
+    Height = 422
+    Top = 10
+    Width = 611
+    Align = alClient
+    AutoEdit = False
+    BorderSpacing.Left = 5
+    BorderSpacing.Right = 5
+    BorderSpacing.Around = 10
+    Color = clForm
+    ColCount = 2
+    ColumnClickSorts = True
+    Columns = <    
+      item
+        Title.Caption = 'Words'
+        Width = 400
+      end    
+      item
+        Title.Caption = 'Recurrence'
+        Width = 200
+      end>
+    ExtendedSelect = False
+    FixedColor = clForm
+    FixedCols = 0
+    Flat = True
+    GridLineColor = clBackground
+    HeaderHotZones = []
+    MouseWheelOption = mwGrid
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goColSizing, goRowSelect, goSmoothScroll]
+    RowCount = 2
+    TabOrder = 0
+    ColWidths = (
+      400
+      200
+    )
+  end
+  object pnWords: TPanel
+    Left = 0
+    Height = 149
+    Top = 442
+    Width = 641
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 149
+    ClientWidth = 641
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 1
+    object bnOK: TButton
+      Left = 549
+      Height = 32
+      Top = 109
+      Width = 75
+      Anchors = [akRight, akBottom]
+      Caption = 'Close'
+      TabOrder = 3
+      TabStop = False
+      OnClick = bnOKClick
+    end
+    object bnCopy: TButton
+      Left = 459
+      Height = 32
+      Top = 109
+      Width = 75
+      Anchors = [akRight, akBottom]
+      Caption = 'Copy'
+      TabOrder = 4
+      TabStop = False
+      OnClick = bnCopyClick
+    end
+    object lbSkip: TLabel
+      Left = 16
+      Height = 16
+      Top = 6
+      Width = 223
+      Caption = 'Words to skip (separated by comma)'
+    end
+    object lbResults: TLabel
+      Left = 16
+      Height = 16
+      Top = 118
+      Width = 87
+      Anchors = [akLeft, akBottom]
+      Caption = 'Words used: 0'
+    end
+    object meSkip: TMemo
+      Left = 16
+      Height = 80
+      Top = 26
+      Width = 608
+      Anchors = [akTop, akLeft, akRight]
+      ScrollBars = ssAutoVertical
+      TabOrder = 0
+      WantReturns = False
+      OnExit = meSkipExit
+    end
+    object bnRefresh: TButton
+      Left = 368
+      Height = 32
+      Top = 109
+      Width = 75
+      Anchors = [akRight, akBottom]
+      Caption = 'Refresh'
+      TabOrder = 2
+      TabStop = False
+      OnClick = bnRefreshClick
+    end
+    object bnRemove: TButton
+      Left = 224
+      Height = 32
+      Top = 109
+      Width = 127
+      Anchors = [akRight, akBottom]
+      Caption = 'Skip'
+      TabOrder = 1
+      TabStop = False
+      OnClick = bnRemoveClick
+    end
+  end
+end

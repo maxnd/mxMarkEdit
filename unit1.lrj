@@ -21,6 +21,7 @@
 {"hash":222076483,"name":"tfmmain.mieditfindduplicate.caption","sourcebytes":[83,104,111,119,32,100,117,112,108,105,99,97,116,101,32,119,111,114,100,115],"value":"Show duplicate words"},
 {"hash":195939327,"name":"tfmmain.mieditshowcurrent.caption","sourcebytes":[83,104,111,119,32,99,117,114,114,101,110,116,32,116,105,116,108,101,32,111,114,32,116,111,100,111],"value":"Show current title or todo"},
 {"hash":109008461,"name":"tfmmain.miedittasks.caption","sourcebytes":[83,104,111,119,32,116,111,100,111,32,102,111,114,109],"value":"Show todo form"},
+{"hash":73620877,"name":"tfmmain.mieditwords.caption","sourcebytes":[83,104,111,119,32,119,111,114,100,115,32,114,101,99,117,114,114,101,110,99,101,32,102,111,114,109],"value":"Show words recurrence form"},
 {"hash":20576612,"name":"tfmmain.miedithidelist.caption","sourcebytes":[72,105,100,101,32,116,105,116,108,101,115,32,97,110,100,32,116,111,100,111,32,108,105,115,116],"value":"Hide titles and todo list"},
 {"hash":88985447,"name":"tfmmain.mieditdisableform.caption","sourcebytes":[68,105,115,97,98,108,101,32,102,111,114,109,97,116,116,105,110,103],"value":"Disable formatting"},
 {"hash":260980711,"name":"tfmmain.mieditdisspell.caption","sourcebytes":[68,105,115,97,98,108,101,32,115,112,101,108,108,32,99,104,101,99,107,105,110,103],"value":"Disable spell checking"},

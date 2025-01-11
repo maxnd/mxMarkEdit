@@ -42,6 +42,7 @@ type
     lbDateTime: TLabel;
     lbChars: TLabel;
     lbFindGrid: TLabel;
+    miEditWords: TMenuItem;
     miEditTasks: TMenuItem;
     miEditShowCurrent: TMenuItem;
     miEditFindDuplicate: TMenuItem;
@@ -57,6 +58,7 @@ type
     miToolsOpenWin: TMenuItem;
     odLink: TOpenDialog;
     pnBackground: TPanel;
+    pnFindGrid: TPanel;
     pnGrid: TPanel;
     pnTitTodo: TPanel;
     Sep3: TMenuItem;
@@ -121,6 +123,7 @@ type
     procedure miEditSelectAllClick(Sender: TObject);
     procedure miEditShowCurrentClick(Sender: TObject);
     procedure miEditTasksClick(Sender: TObject);
+    procedure miEditWordsClick(Sender: TObject);
     procedure miFileNewClick(Sender: TObject);
     procedure miFileOpenClick(Sender: TObject);
     procedure miFileOpenLast1Click(Sender: TObject);
@@ -139,6 +142,7 @@ type
       aRect: TRect; aState: TGridDrawState);
     procedure sgTableEditingDone(Sender: TObject);
     procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure sgTableKeyPress(Sender: TObject; var Key: char);
     procedure sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
     procedure sgTableSetEditText(Sender: TObject; ACol, ARow: Integer;
@@ -250,7 +254,7 @@ resourcestring
 
 implementation
 
-uses copyright, unit2, unit3, unit4;
+uses copyright, unit2, unit3, unit4, unit5;
 
   {$R *.lfm}
 
@@ -2063,6 +2067,38 @@ begin
   end;
 end;
 
+procedure TfmMain.sgTableKeyPress(Sender: TObject; var Key: char);
+var
+  iTop, i: Integer;
+begin
+  if key = #13 then
+  begin
+    if ((sgTable.Cells[1, sgTable.Row] = '') and
+      (sgTable.Col < sgTable.ColCount - 1) and
+      (sgTable.Row < sgTable.RowCount - 1)) then
+    begin
+      iTop := -1;
+      for i := sgTable.Row downto 1 do
+      begin
+        if ((sgTable.Cells[1, i] <> '') and
+          (sgTable.Cells[sgTable.Col, i] <> '')) then
+        begin
+          iTop := i;
+          Break;
+        end;
+      end;
+      if iTop > -1 then
+      begin
+        if sgTable.Cells[sgTable.Col + 1, iTop] = '' then
+        begin
+          sgTable.Col := 2;
+          sgTable.Row := sgTable.Row + 1;
+          key := #0;
+        end;
+      end;
+    end;
+  end;
+end;
 procedure TfmMain.sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
   aState: TGridDrawState);
 begin
@@ -2524,6 +2560,11 @@ end;
 procedure TfmMain.miEditTasksClick(Sender: TObject);
 begin
   fmTasks.ShowModal;
+end;
+
+procedure TfmMain.miEditWordsClick(Sender: TObject);
+begin
+  fmWords.ShowModal;
 end;
 
 procedure TfmMain.miEditHideListClick(Sender: TObject);
