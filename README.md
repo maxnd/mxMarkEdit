@@ -99,7 +99,7 @@ it's possible to use the app for presentations:
 2. enlarge possibly the font size of the document so that it can be seen easily by the participants;
 3. share the interface of mxMarkEdit with a video projector or on a video call with apps like Webex, FaceTime or Zoom;
 4. begin the presentation, and use the shortcut `Meta` + `E` to highlight the paragraph following the current one with a green background, skipping the empty lines and the titles;
-5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the while structure of the document in the left bar;
+5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the structure of the document in the left bar;
 6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
 
 ## Menu items
