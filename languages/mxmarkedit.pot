@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.10"
+msgid "1.1.11"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -452,7 +452,7 @@ msgid "Words"
 msgstr ""
 
 #: tfmwords.sgwords.columns[1].title.caption
-msgid "Recurrence"
+msgid "Recurrences"
 msgstr ""
 
 #: unit1.dateformat
@@ -518,7 +518,23 @@ msgid "Tables"
 msgstr ""
 
 #: unit1.lb009
-msgid "Total:"
+msgid "Sum:"
+msgstr ""
+
+#: unit1.lb010
+msgid "Maximum value:"
+msgstr ""
+
+#: unit1.lb011
+msgid "Minimum value:"
+msgstr ""
+
+#: unit1.lb012
+msgid "Average:"
+msgstr ""
+
+#: unit1.lb013
+msgid "Count:"
 msgstr ""
 
 #: unit1.msg001
@@ -585,6 +601,14 @@ msgstr ""
 msgid "Insert a new column in the current table?"
 msgstr ""
 
+#: unit1.msg017
+msgid "This functionality must be called within a heading and not at the end of the text."
+msgstr ""
+
+#: unit1.msg018
+msgid "Cut in the clipboard all the text under the current heading?"
+msgstr ""
+
 #: unit2.msgfnd001
 msgid "Text not found."
 msgstr ""
@@ -608,5 +632,13 @@ msgstr ""
 #: unit5.msgsk001
 msgctxt "unit5.msgsk001"
 msgid "Words used:"
+msgstr ""
+
+#: unit5.msgsk002
+msgid "Sort by words"
+msgstr ""
+
+#: unit5.msgsk003
+msgid "Sort by recurrences"
 msgstr ""
 

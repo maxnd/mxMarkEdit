@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.1.10, published on January 11 2025.
+Version 1.1.11, published on January 12 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -71,6 +71,8 @@ To have a Markdown document properly exported in other formats with Pandoc, the 
 
 When a paragraph starts with a list heading (`*`, `+`, `-` or a number followed by a dot and a space), the `Return` key creates a new paragraph with the same heading. The numbered lists are properly renumbered if necessary.
 
+To move a heading and all its relative content, included possible headings of lower level (that is, having more `#` at the beginning), in another position of the text, move the cursor within this heading without doing any selection and cut all in the clipboard with the shortcut `Meta` + `Shift` + `X`. The text in the clipboard can then be pasted elsewhere.
+
 ## Titles and todo list
 
 At the left of the text, there’s a list of the titles (starting with `#`) and todo items (starting with `– [ ]`  or `– [X]`). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. While moving the cursor in the text, the corresponding title or todo item is highlighted.
@@ -83,6 +85,8 @@ In the todo items, it’s possibile to add a deadline. The format of the date sh
 
 At the bottom of the text there’s an Excel-like grid of 105 columns and 2000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possibile to insert any kind of data. It’s possibile to add more tables in the grid, adding other titles under the `Table names` column followed by some fields, like in the second screenshot above.
 
+If it's necessary to insert dates in a field, use the format `year-month-day`, where month and day are always of two digits (e.g. `2025-01-05`), so that the sorting on this field will produce a correct result.
+
 The content of the grid is saved in a separate file with the same name of the one in use, but with the `.csv` extension. In this file the items are separated by tabs, and it may be easily imported in a spreadsheet. When the current document is exported to Pandoc, if there are some data in the grid, the software creates a new file with the extension `.export` which contains both the document and the tables properly formatted in Markdown format. In the converted document in Word or Writer format, the tables are located at the end of the text.
 
 When a `.cvs` file is loaded, the grid is not automatically shown, but in the status bar at the bottom, after the name of the `.md` file, it's shown the label `& .csv`, to alert the user that there are some data inside the grid.
@@ -91,7 +95,17 @@ In the grid, it’s possible to select more cells dragging the mouse or holding 
 
 At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` or the shortcut `Meta + G` to select the following cell after the current one in just the current field (column) of the current table that contains that text. Anyway, if the selected column is the first, containing the table names, the search will look for the following table names. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
 
-If a cell contains just 6 dashes (`------`), in the cell below it will be reported the sum of all the numbers contained in the previous cells of the same field (column) and of the same table. The sum will be updated when a value in those cells will be changed. Textual contents and improperly formatted numbers will not be considered. The name of the table and of the field (column) must be specified, otherwise no result will be shown.
+If a cell contains a formula, in the cell below it will be reported the result of the calculation of all the numbers contained in the previous cells of the same field (column) and of the same table. The result will be updated when a value in those cells will be changed. Textual contents and improperly formatted numbers will not be considered. The name of the table and of the field (column) must be specified, otherwise no result will be shown.
+
+The formulas are the followings:
+
+- `------` or `---sum`: reports the sum of the numbers;
+- `---max`: reports the bigger number;
+- `---min`: reports the smaller number;
+- `---avg`: reports the average of the numbers;
+- `---count`: reports the total number of the numbers;
+
+The formulas are shown in the color set by the user for the code (see below the option of the app for more information).
 
 To delete the content of the grid so that it's not loaded any more, delete the related file with the `.csv` extension when it’s not loaded.
 
@@ -116,11 +130,11 @@ The `Edit - Find` menu item allows to find the first occurrence – with the but
 
 The `Edit - Insert link to file` menu item allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It's not possible to insert relative links.
 
-The `Edit - Show duplicate words` menu item shows in red all the words of each paragraph that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym.
+The `Edit - Show duplicate words` menu item shows in red all the words of each paragraph that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym. Moving the cursor or clicking somewhere in the text remove the red color.
 
 The `Edit - Show todo form` menu item opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
 
-The `Show words recurrence form` menu item opens a form with the list of all the words used in the current document, excluded the possible YAML headings (`title:`, `author:` etc.), and their recurrence, that is how many times they appear in the document. By default, the list is sorted by recurrence, but it's possibile to click on the first heading of the grid to sort the list by name. Below the grid there is a field in which it's possibile to type the words that should not be considered, like articles, separated by commas. These words are automatically sorted. Below this field, there are some buttons to include the word selected in the grid within the words to skip, to update the results after having changed the words to skip, to copy in the clipboard the content of the grid and to close the form.
+The `Show words recurrence form` menu item opens a form with the list of all the words used in the current document, excluded the possible YAML headings (`title:`, `author:` etc.), and their recurrence, that is how many times they appear in the document. By default, the list is sorted by recurrence, but it's possibile to click on the radio item `Sort by words`, at the right bottom, to sort the list by name. Below the grid there is a field in which it's possibile to type the words that should not be considered, like articles, separated by commas. These words are automatically sorted. Below this field, there are some buttons to include the word selected in the grid within the words to skip, to update the results after having changed the words to skip, to copy in the clipboard the content of the grid and to close the form.
 
 The `Edit - Show current title or toto` menu item shows at the top of the left list the title or todo item the cursor is under to.
 
@@ -168,6 +182,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalise the current word.
 * `Meta` + `Shift` + `T`: show the tables grid.
+* `Meta` + `Shift` + `X`: if the cursor is within a heading, cut in the clipboard the same heading and all the text that is under it, included possible headings of lower levels; this text may be pasted elsewhere;
 * `Meta` + `Shift` + `F`:
   * within a footnote reference in the document (e.g. `[^1]`), move the cursor to the corresponding footnote;
   * within a footnote (e.g. `[^1]: This is the text of the footnote.`), move the cursor to the corresponding footnote reference in the document; 
@@ -218,6 +233,13 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.1.11
+
+- Added new functions in the tables grid beyond `sum`: `max`, `min`, `avg`, `count`. Now they are shown in the color set by the user for the code.
+- Added a sorting radio item in the `Words recurrence form`.
+- Bugs fixing in the `Words recurrence form`.
+- Bugs fixing in the tables grid.
 
 #### Version 1.1.10
 

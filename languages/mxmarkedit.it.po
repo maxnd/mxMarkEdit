@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.10"
+msgid "1.1.11"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -451,8 +451,8 @@ msgid "Words"
 msgstr "Parole"
 
 #: tfmwords.sgwords.columns[1].title.caption
-msgid "Recurrence"
-msgstr "Ricorrenza"
+msgid "Recurrences"
+msgstr "Ricorrenze"
 
 #: unit1.dateformat
 msgid "en"
@@ -517,8 +517,24 @@ msgid "Tables"
 msgstr "Tabelle"
 
 #: unit1.lb009
-msgid "Total:"
-msgstr "Totale:"
+msgid "Sum:"
+msgstr "Somma:"
+
+#: unit1.lb010
+msgid "Maximum value:"
+msgstr "Valore massimo:"
+
+#: unit1.lb011
+msgid "Minimum value:"
+msgstr "Valore minimo:"
+
+#: unit1.lb012
+msgid "Average:"
+msgstr "Media:"
+
+#: unit1.lb013
+msgid "Count:"
+msgstr "Conteggio:"
 
 #: unit1.msg001
 msgid "Characters:"
@@ -584,6 +600,14 @@ msgstr "Eliminare il contenuto delle celle selezionate?"
 msgid "Insert a new column in the current table?"
 msgstr "Inserire una nuova colonna nella tabella corrente?"
 
+#: unit1.msg017
+msgid "This functionality must be called within a heading and not at the end of the text."
+msgstr "Questa funzionalità deve essere attivata all'interno di un'intestazione e non alla fine del testo."
+
+#: unit1.msg018
+msgid "Cut in the clipboard all the text under the current heading?"
+msgstr "Tagliare in ritaglio tutto il testo sotto la corrente intestazione?"
+
 #: unit2.msgfnd001
 msgid "Text not found."
 msgstr "Testo non trovato."
@@ -608,4 +632,12 @@ msgstr "giorni"
 msgctxt "unit5.msgsk001"
 msgid "Words used:"
 msgstr "Parole usate:"
+
+#: unit5.msgsk002
+msgid "Sort by words"
+msgstr "Ordina per parole"
+
+#: unit5.msgsk003
+msgid "Sort by recurrences"
+msgstr "Ordina per ricorrenze"
 

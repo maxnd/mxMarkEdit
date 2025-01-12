@@ -18,7 +18,7 @@ object fmWords: TfmWords
   LCLVersion = '3.7.0.0'
   object sgWords: TStringGrid
     Left = 15
-    Height = 422
+    Height = 408
     Top = 10
     Width = 611
     Align = alClient
@@ -28,14 +28,13 @@ object fmWords: TfmWords
     BorderSpacing.Around = 10
     Color = clForm
     ColCount = 2
-    ColumnClickSorts = True
     Columns = <    
       item
         Title.Caption = 'Words'
         Width = 400
       end    
       item
-        Title.Caption = 'Recurrence'
+        Title.Caption = 'Recurrences'
         Width = 200
       end>
     ExtendedSelect = False
@@ -44,10 +43,11 @@ object fmWords: TfmWords
     Flat = True
     GridLineColor = clBackground
     HeaderHotZones = []
+    HeaderPushZones = []
     MouseWheelOption = mwGrid
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goColSizing, goRowSelect, goSmoothScroll]
     RowCount = 2
-    TabOrder = 0
+    TabOrder = 1
     ColWidths = (
       400
       200
@@ -55,20 +55,20 @@ object fmWords: TfmWords
   end
   object pnWords: TPanel
     Left = 0
-    Height = 149
-    Top = 442
+    Height = 163
+    Top = 428
     Width = 641
     Align = alBottom
     BevelOuter = bvNone
-    ClientHeight = 149
+    ClientHeight = 163
     ClientWidth = 641
     ParentBackground = False
     ParentColor = False
-    TabOrder = 1
+    TabOrder = 0
     object bnOK: TButton
       Left = 549
       Height = 32
-      Top = 109
+      Top = 123
       Width = 75
       Anchors = [akRight, akBottom]
       Caption = 'Close'
@@ -77,9 +77,9 @@ object fmWords: TfmWords
       OnClick = bnOKClick
     end
     object bnCopy: TButton
-      Left = 459
+      Left = 437
       Height = 32
-      Top = 109
+      Top = 123
       Width = 75
       Anchors = [akRight, akBottom]
       Caption = 'Copy'
@@ -90,23 +90,23 @@ object fmWords: TfmWords
     object lbSkip: TLabel
       Left = 16
       Height = 16
-      Top = 6
+      Top = 12
       Width = 223
       Caption = 'Words to skip (separated by comma)'
     end
     object lbResults: TLabel
       Left = 16
       Height = 16
-      Top = 118
+      Top = 132
       Width = 87
       Anchors = [akLeft, akBottom]
       Caption = 'Words used: 0'
     end
     object meSkip: TMemo
       Left = 16
-      Height = 80
-      Top = 26
-      Width = 608
+      Height = 83
+      Top = 36
+      Width = 402
       Anchors = [akTop, akLeft, akRight]
       ScrollBars = ssAutoVertical
       TabOrder = 0
@@ -114,9 +114,9 @@ object fmWords: TfmWords
       OnExit = meSkipExit
     end
     object bnRefresh: TButton
-      Left = 368
+      Left = 343
       Height = 32
-      Top = 109
+      Top = 123
       Width = 75
       Anchors = [akRight, akBottom]
       Caption = 'Refresh'
@@ -125,15 +125,38 @@ object fmWords: TfmWords
       OnClick = bnRefreshClick
     end
     object bnRemove: TButton
-      Left = 224
+      Left = 197
       Height = 32
-      Top = 109
+      Top = 123
       Width = 127
       Anchors = [akRight, akBottom]
       Caption = 'Skip'
       TabOrder = 1
       TabStop = False
       OnClick = bnRemoveClick
+    end
+    object rgSkip: TRadioGroup
+      Left = 437
+      Height = 100
+      Top = 19
+      Width = 187
+      AutoFill = True
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 73
+      ClientWidth = 177
+      ItemIndex = 1
+      Items.Strings = (
+        'Sort by words'
+        'Sort by recurrences'
+      )
+      OnClick = rgSkipClick
+      TabOrder = 5
     end
   end
 end

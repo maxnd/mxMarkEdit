@@ -41,6 +41,7 @@ type
     lbResults: TLabel;
     lbSkip: TLabel;
     pnWords: TPanel;
+    rgSkip: TRadioGroup;
     sgWords: TStringGrid;
     bnOK: TButton;
     meSkip: TMemo;
@@ -53,6 +54,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure meSkipExit(Sender: TObject);
+    procedure rgSkipClick(Sender: TObject);
   private
     procedure CreateWordsList;
     procedure SortSkipWords;
@@ -67,6 +69,8 @@ var
 resourcestring
 
   msgsk001 = 'Words used:';
+  msgsk002 = 'Sort by words';
+  msgsk003 = 'Sort by recurrences';
 
 implementation
 
@@ -96,6 +100,9 @@ begin
     end;
   end;
   sgWords.FocusRectVisible := False;
+  rgSkip.Items[0] := msgsk002;
+  rgSkip.Items[1] := msgsk003;
+  rgSkip.ItemIndex := 1;
   if IsAppDark = True then
   begin
     sgWords.SelectedColor := $005E5E5E;
@@ -136,6 +143,7 @@ end;
 
 procedure TfmWords.FormActivate(Sender: TObject);
 begin
+  rgSkip.ItemIndex := 1;
   CreateWordsList;
 end;
 
@@ -182,13 +190,41 @@ begin
   SortSkipWords
 end;
 
+procedure TfmWords.rgSkipClick(Sender: TObject);
+var
+  i: Integer;
+begin
+  if rgSkip.ItemIndex = 0 then
+  begin
+    sgWords.SortOrder := soAscending;
+    sgWords.SortColRow(True, 0);
+    sgWords.Row := 1;
+  end
+  else
+  if rgSkip.ItemIndex = 1 then
+  begin
+    for i := 1 to sgWords.RowCount - 1 do
+    begin
+      sgWords.Cells[1, i] := FormatFloat('0000000',
+        StrToInt(sgWords.Cells[1, i]));
+    end;
+    sgWords.SortOrder := soDescending;
+    sgWords.SortColRow(True, 1);
+    for i := 1 to sgWords.RowCount - 1 do
+    begin
+      sgWords.Cells[1, i] := FormatFloat('0',
+      StrToInt(sgWords.Cells[1, i]));
+    end;
+  end;
+end;
+
 procedure TfmWords.CreateWordsList;
 var
   iPosWord, i, n, iLen: integer;
   slListWords, slListRec, slListSkip: TStringList;
-  stText: WideString;
-  stItem, stSkip, stWord: String;
-  stSeparators: String = '.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ' + LineEnding;
+  stItem, stText: WideString;
+  stSkip, stWord: String;
+  stSeparators: String = '.,;:+=&^-–(){}[]/\''"’‘”“«»?¿!¡ ' + #13 + #9 + LineEnding;
   stNumbers: String = '1234567890';
 begin
   try

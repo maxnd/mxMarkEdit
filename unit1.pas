@@ -160,6 +160,7 @@ type
     procedure CreateYAML;
     procedure FindInGrid;
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
+    function GetHeaderLevel(stHeader: String): Integer;
     function GetPara(txt: NSTextStorage; textOffset: integer;
       isReadOnly, useDefault: boolean): NSParagraphStyle;
     function GetWritePara(txt: NSTextStorage;
@@ -170,6 +171,7 @@ type
     procedure RenumberList;
     function SaveFile: boolean;
     procedure SelectInsertFootnote;
+    procedure CutZone;
     procedure SetTable;
     procedure UpdateLastFile;
   public
@@ -236,6 +238,8 @@ resourcestring
   msg014 = 'Sort the content of current column of the current table?';
   msg015 = 'Delete the content of the selected cells?';
   msg016 = 'Insert a new column in the current table?';
+  msg017 = 'This functionality must be called within a heading and not at the end of the text.';
+  msg018 = 'Cut in the clipboard all the text under the current heading?';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -249,7 +253,11 @@ resourcestring
   lb006 = 'Headings 1';
   lb007 = 'Tables names';
   lb008 = 'Tables';
-  lb009 = 'Total:';
+  lb009 = 'Sum:';
+  lb010 = 'Maximum value:';
+  lb011 = 'Minimum value:';
+  lb012 = 'Average:';
+  lb013 = 'Count:';
   dateformat = 'en';
 
 implementation
@@ -876,6 +884,12 @@ begin
     key := 0;
   end
   else
+  if ((key = Ord('X')) and (Shift = [ssMeta, ssShift])) then
+  begin
+    CutZone;
+    key := 0;
+  end
+  else
   if ((key = 38) and (Shift = [ssAlt, ssMeta])) then
   begin
     if dbText.CaretPos.y > 0 then
@@ -1476,8 +1490,9 @@ end;
 
 procedure TfmMain.sgTableEditingDone(Sender: TObject);
 var
-  dbNum, dbTot: Double;
-  iTop, i: Integer;
+  dbNum, dbSum, dbMax, dbMin: Double;
+  flNum: boolean;
+  dbCount, iTop, i: Integer;
 begin
   if ((sgTable.Row > 1) and (sgTable.Col > 1)) then
   begin
@@ -1491,26 +1506,89 @@ begin
         Break;
       end;
     end;
+    dbSum := 0;
+    dbMin := 0;
+    dbMax := 0;
+    dbCount := 0;
+    flNum := False;
     if iTop > - 1 then
     begin
       for i := iTop to sgTable.RowCount - 1 do
       begin
-        dbTot := 0;
         if sgTable.Cells[1, i] <> '' then
         begin
           Exit;
         end
         else
-        if ((sgTable.Cells[sgTable.Col, i] = '------') and
+        if (((sgTable.Cells[sgTable.Col, i] = '------') or
+           (sgTable.Cells[sgTable.Col, i] = '---sum')) and
           (i < sgTable.RowCount - 2)) then
         begin
-          sgTable.Cells[sgTable.Col, i + 1] := lb009 + ' ' +
-            FormatFloat('0.##', dbTot);
+          if flNum = True then
+          begin
+            sgTable.Cells[sgTable.Col, i + 1] := lb009 + ' ' +
+              FormatFloat('0.##', dbSum);
+          end;
+        end
+        else
+        if ((sgTable.Cells[sgTable.Col, i] = '---max') and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          if flNum = True then
+          begin
+            sgTable.Cells[sgTable.Col, i + 1] := lb010 + ' ' +
+              FormatFloat('0.##', dbMax);
+          end;
+        end
+        else
+        if ((sgTable.Cells[sgTable.Col, i] = '---min') and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          if flNum = True then
+          begin
+            sgTable.Cells[sgTable.Col, i + 1] := lb011 + ' ' +
+              FormatFloat('0.##', dbMin);
+          end;
+        end
+        else
+        if ((sgTable.Cells[sgTable.Col, i] = '---avg') and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          if flNum = True then
+          begin
+            sgTable.Cells[sgTable.Col, i + 1] := lb012 + ' ' +
+              FormatFloat('0.##', dbSum / dbCount);
+          end;
+        end
+        else
+        if ((sgTable.Cells[sgTable.Col, i] = '---count') and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          if flNum = True then
+          begin
+            sgTable.Cells[sgTable.Col, i + 1] := lb013 + ' ' +
+              FormatFloat('0.##', dbCount);
+          end;
         end
         else
         if TryStrToFloat(sgTable.Cells[sgTable.Col, i], dbNum) = True then
         begin
-          dbTot := dbTot + dbNum;
+          if flNum = False then
+          begin
+            dbMin := dbNum;
+            dbMax := dbNum;
+            flNum := True;
+          end;
+          dbSum := dbSum + dbNum;
+          if dbMax < dbNum then
+          begin
+            dbMax := dbNum;
+          end;
+          if dbMin > dbNum then
+          begin
+            dbMin := dbNum;
+          end;
+          Inc(dbCount);
         end;
       end;
     end;
@@ -2069,13 +2147,14 @@ end;
 
 procedure TfmMain.sgTableKeyPress(Sender: TObject; var Key: char);
 var
-  iTop, i: Integer;
+  i, iTop: Integer;
 begin
   if key = #13 then
   begin
     if ((sgTable.Cells[1, sgTable.Row] = '') and
       (sgTable.Col < sgTable.ColCount - 1) and
-      (sgTable.Row < sgTable.RowCount - 1)) then
+      (sgTable.Row < sgTable.RowCount - 1) and
+      (sgTable.EditorMode = True)) then
     begin
       iTop := -1;
       for i := sgTable.Row downto 1 do
@@ -2099,6 +2178,7 @@ begin
     end;
   end;
 end;
+
 procedure TfmMain.sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
   aState: TGridDrawState);
 begin
@@ -2118,6 +2198,17 @@ begin
   begin
     sgTable.Canvas.Font.Style := [fsBold];
     sgTable.Canvas.Font.Color := clTitle3;
+  end
+  else
+  if ((sgTable.Cells[aCol, aRow] = '------') or
+    (sgTable.Cells[aCol, aRow] = '---sum') or
+    (sgTable.Cells[aCol, aRow] = '---avg') or
+    (sgTable.Cells[aCol, aRow] = '---min') or
+    (sgTable.Cells[aCol, aRow] = '---max') or
+    (sgTable.Cells[aCol, aRow] = '---count')) then
+  begin
+    sgTable.Canvas.Font.Style := [];
+    sgTable.Canvas.Font.Color := clCode;
   end
   else
   begin
@@ -3895,6 +3986,66 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TfmMain.CutZone;
+var
+  stText: String;
+  iTop, iBottom, iPos, iLevel: Integer;
+begin
+  iLevel := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
+  if iLevel = 7 then
+  begin
+    MessageDlg(msg017, mtInformation, [mbOK], 0);
+  end
+  else
+  begin
+    if dbText.CaretPos.Y > dbText.Lines.Count - 2 then
+    begin
+      Exit;
+    end;
+    if MessageDlg(msg018, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+    begin
+      Exit;
+    end;
+    iPos := dbText.SelStart;
+    stText := dbText.Lines[dbText.CaretPos.Y] + LineEnding;
+    iTop := dbText.CaretPos.Y;
+    for iBottom := dbText.CaretPos.Y + 1 to dbText.Lines.Count - 1 do
+    begin
+      if GetHeaderLevel(dbText.Lines[iBottom]) > iLevel then
+      begin
+        stText := stText + dbText.Lines[iBottom] + LineEnding;
+      end
+      else
+      begin
+        Break;
+      end;
+    end;
+    while iTop < iBottom do
+    begin
+      dbText.Lines.Delete(iTop);
+      Dec(iBottom);
+    end;
+    Clipboard.AsText := stText;
+    dbText.SelStart := iPos;
+  end;
+end;
+
+function TfmMain.GetHeaderLevel(stHeader: String): Integer;
+begin
+  Result := 7;
+  if Copy(stHeader, 1, 2) = '# ' then Result := 1
+  else
+  if Copy(stHeader, 1, 3) = '## ' then result := 2
+  else
+  if Copy(stHeader, 1, 4) = '### ' then Result := 3
+  else
+  if Copy(stHeader, 1, 5) = '#### ' then result := 4
+  else
+  if Copy(stHeader, 1, 6) = '##### ' then Result := 5
+  else
+  if Copy(stHeader, 1, 7) = '###### ' then result := 6;
 end;
 
 procedure TfmMain.FindInGrid;
