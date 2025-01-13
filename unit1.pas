@@ -1032,11 +1032,6 @@ begin
   else
   if ((key = Ord('B')) and (Shift = [ssMeta])) then
   begin
-    if UTF8Copy(dbText.Text, dbText.SelStart, 1) = LineEnding then
-    begin
-      key := 0;
-      Exit;
-    end;
     if dbText.SelLength = 0 then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1060,11 +1055,6 @@ begin
   else
   if ((key = Ord('I')) and (Shift = [ssMeta])) then
   begin
-    if UTF8Copy(dbText.Text, dbText.SelStart, 1) = LineEnding then
-    begin
-      key := 0;
-      Exit;
-    end;
     if dbText.SelLength = 0 then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -3232,7 +3222,6 @@ begin
           blQuote := False;
           rng.location := iStartQuote - 1;
           rng.length := i - iStartQuote + 1;
-
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
             addAttribute_value_range(NSBackgroundColorAttributeName,
             ColorToNSColor(clQuote), rng);
@@ -3428,13 +3417,28 @@ begin
         end;
       end;
     end
-    else if ((stText[i] = ']') and (stText[i + 1] = '(') and (blLink = True)) then
+    else if stText[i] = ']' then
+    begin
+      if ((stText[i + 1] = '(') and (blLink = True)) then
+      begin
+        rng.location := iStartLink - 1;
+        rng.length := i - iStartLink + 1;
+        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+          setTextColor_range(ColorToNSColor(clLink), rng);
+        iStartLink := rng.location + rng.length + 2;
+      end
+      else
+      begin
+        blLink := False;
+      end;
+    end
+    else if ((stText[i] = ')') and (blLink = True)) then
     begin
       blLink := False;
       rng.location := iStartLink - 1;
       rng.length := i - iStartLink + 1;
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-        setTextColor_range(ColorToNSColor(clLink), rng);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+        addAttribute_value_range(NSFontAttributeName, myFont, rng);
     end;
     Inc(i);
   end;

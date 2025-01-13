@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.1.11, published on January 12 2025.
+Version 1.1.12, published on January 13 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -77,9 +77,7 @@ When a paragraph starts with a list heading (`*`, `+`, `-` or a number followed 
 
 To move a heading and all its relative content, included possible headings of lower level (that is, having more `#` at the beginning), in another position of the text, move the cursor within this heading without doing any selection and cut all in the clipboard with the shortcut `Meta` + `Shift` + `X`. The text in the clipboard can then be pasted elsewhere.
 
-Links are properly recognised and formatted. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``.
-
-Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, it's not possible to add the `` ` `` character before and after the link, like ``[my web site](`www.mywebsite.com`)``, because when exported in a word processor through Pandoc those characters would made the link wrong and ineffective.
+Links are properly recognised and formatted. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``. Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, the possible Markdown markers are properly shown.
 
 ## Titles and todo list
 
@@ -241,6 +239,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.1.12
+
+- Bugs fixing: it was not possible to format in bold or italics the selected text if starting at the beginning of a new paragraph.
+- Bugs fixing: the possible Markdown markers within Markdown links was not properly shown.
 
 #### Version 1.1.11
 
