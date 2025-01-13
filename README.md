@@ -79,7 +79,7 @@ To move a heading and all its relative content, included possible headings of lo
 
 Links are properly recognised and formatted. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``.
 
-Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, it's not possible to add the `` ` `` character before and after the link, like `[my web site](`` ` ``www.mywebsite.com`` ` ``)`, because when exported in a word processor through Pandoc those characters would made the link wrong and ineffective.
+Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, it's not possible to add the `` ` `` character before and after the link, like ``[my web site](`www.mywebsite.com`)``, because when exported in a word processor through Pandoc those characters would made the link wrong and ineffective.
 
 ## Titles and todo list
 
