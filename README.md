@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.1.12, published on January 13 2025.
+Version 1.1.13, published on January 14 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -89,7 +89,7 @@ In the todo items, it’s possibile to add a deadline. The format of the date sh
 
 ## Tables
 
-At the bottom of the text there’s an Excel-like grid of 105 columns and 2000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possibile to insert any kind of data. It’s possibile to add more tables in the grid, adding other titles under the `Table names` column followed by some fields, like in the second screenshot above.
+At the bottom of the text there’s an Excel-like grid of 105 columns and 10000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possibile to insert any kind of data. It’s possibile to add more tables in the grid, adding other titles under the `Table names` column followed by some fields, like in the second screenshot above.
 
 If it's necessary to insert dates in a field, use the format `year-month-day`, where month and day are always of two digits (e.g. `2025-01-05`), so that the sorting on this field will produce a correct result.
 
@@ -134,7 +134,7 @@ The last four opened files are available in the `File` menu. When they are opene
 
 The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or to replace all occurrences with another text. Search and replacement are not case sensitive. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`.
 
-The `Edit - Insert link to file` menu item allows to select a file and to insert its path and name in the text preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It's not possible to insert relative links.
+The `Edit - Insert link to file` menu item allows to select one or more files and to insert their path and name in the text within the Markdown markers and preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It's not possible to insert relative links due to macOS restrictions.
 
 The `Edit - Show duplicate words` menu item shows in red all the words of each paragraph that are present twice in the same paragraph or in the previous one, to alert the user to use possibly a synonym. Moving the cursor or clicking somewhere in the text remove the red color.
 
@@ -181,6 +181,8 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Opt` + `Arrow down`: move down the current paragraph.
 * `Meta` + `Ctrl` + `Arrow up`: select the previous heading.
 * `Meta` + `Ctrl` + `Arrow down`: select the next heading.
+* `Meta` + `Opt` + `.`: transform a list with dashes (`-`) into a numbered list.
+* `Meta` + `Ctrl` + `.`: transform a numbered list into a with dashes (`-`).
 * `Meta` + `Shift` + `J`: set the current position of the cursor in the bookmark.
 * `Meta` + `J`: move the cursor to the position already set in the bookmark.
 * `Meta` + `E`: show the following paragraph with a green background, skipping the empty lines and the headings; this is useful to use mxMarkEdit for presentations. See above for details.
@@ -239,6 +241,15 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.1.13
+
+- The grid has now 10000 rows and 105 columns.
+- The `Insert link to file` menu item now allows to select and insert more files, and to include them in the text within the proper Markdown markers.
+- Added shortcut `Meta` + `Opt` + `.` to transform a list with dashes (`-`) into a numbered list.
+- Added shortcut `Meta` + `Ctrl` + `.` to transform a numbered list into a with dashes (`-`).
+- Bugs fixing: pressing `Return` in an empty item of a list delete this item only if it's followed by an empty paragraph.
+- Bugs fixing: on opening one of the last four files, the last position of the cursor was not always properly recovered.
 
 #### Version 1.1.12
 

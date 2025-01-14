@@ -1505,6 +1505,7 @@ object fmMain: TfmMain
     Title = 'Open file'
     DefaultExt = '.*'
     Filter = 'All files|*'
+    Options = [ofAllowMultiSelect, ofEnableSizing, ofViewDetail]
     Left = 440
     Top = 168
   end

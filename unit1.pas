@@ -212,6 +212,7 @@ var
   blTableSaved: boolean = True;
   blTableMod: boolean = False;
   stTableLoaded: String = ' && .csv ';
+  csTableRowCount: Integer = 10000;
   blDisableFormatting: boolean = False;
   blTextOnChange: boolean = False;
   stGridLoaded: String = '';
@@ -518,6 +519,7 @@ begin
       begin
         sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
           #9, False);
+        sgTable.RowCount := csTableRowCount;
         stGridLoaded := stTableLoaded;
       end
       else
@@ -550,6 +552,7 @@ begin
       begin
         sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
           #9, False);
+        sgTable.RowCount := csTableRowCount;
         stGridLoaded := stTableLoaded;
       end
       else
@@ -588,6 +591,7 @@ begin
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
+      sgTable.RowCount := csTableRowCount;
       stGridLoaded := stTableLoaded;
     end
     else
@@ -827,7 +831,7 @@ end;
 procedure TfmMain.dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
   stClip: string;
-  i, iPos: integer;
+  i, iPos, iNum: integer;
   rngStart, rngEnd: NSRange;
   blCode: boolean;
   stText: WideString;
@@ -888,6 +892,67 @@ begin
   begin
     CutZone;
     key := 0;
+  end
+  else
+  if ((key = 190) and (Shift = [ssAlt, ssMeta])) then
+  begin
+    i := dbText.CaretPos.Y;
+    if UTF8Copy(dbText.Lines[i], 1, 2) = '- ' then
+    iNum := 1;
+    while i > -1 do
+    begin
+      if UTF8Copy(dbText.Lines[i], 1, 2) <> '- ' then
+      begin
+        Break;
+      end;
+      Dec(i);
+    end;
+    Inc(i);
+    while i < dbText.Lines.Count do
+    begin
+      if UTF8Copy(dbText.Lines[i], 1, 2) = '- ' then
+      begin
+        dbText.Lines[i] := IntToStr(iNum) +'. ' +
+          UTF8Copy(dbText.Lines[i], 3, UTF8Length(dbText.Lines[i]));
+        Inc(iNum);
+        Inc(i);
+      end
+      else
+      begin
+        Break;
+      end;
+    end;
+  end
+  else
+  if ((key = 190) and (Shift = [ssCtrl, ssMeta])) then
+  begin
+    i := dbText.CaretPos.Y;
+    if TryStrToInt(UTF8Copy(dbText.Lines[i], 1,
+      UTF8Pos('. ', dbText.Lines[i]) - 1), iNum) = True then
+    while i > -1 do
+    begin
+      if TryStrToInt(UTF8Copy(dbText.Lines[i], 1,
+        UTF8Pos('. ', dbText.Lines[i]) - 1), iNum) = False then
+      begin
+        Break;
+      end;
+      Dec(i);
+    end;
+    Inc(i);
+    while i < dbText.Lines.Count do
+    begin
+      if TryStrToInt(UTF8Copy(dbText.Lines[i], 1,
+        UTF8Pos('. ', dbText.Lines[i]) - 1), iNum) = True then
+      begin
+        dbText.Lines[i] := '- ' + UTF8Copy(dbText.Lines[i], UTF8Pos('. ',
+          dbText.Lines[i]) + 2, UTF8Length(dbText.Lines[i]));
+        Inc(i);
+      end
+      else
+      begin
+        Break;
+      end;
+    end;
   end
   else
   if ((key = 38) and (Shift = [ssAlt, ssMeta])) then
@@ -1262,7 +1327,7 @@ var
 begin
   if key = #13 then
   begin
-    if ((dbText.Lines[dbText.CaretPos.Y - 1] = '- [ ] ') or
+    if (((dbText.Lines[dbText.CaretPos.Y - 1] = '- [ ] ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- [X] ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- [x] ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '+ ') or
@@ -1273,7 +1338,9 @@ begin
       1, UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) - 1), i) = True) and
       (UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) > 1) and
       (UTF8Length(dbText.Lines[dbText.CaretPos.Y - 1]) =
-      UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) + 1))) then
+      UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) + 1))) and
+      ((dbText.Lines[dbText.CaretPos.Y] ='') or
+      (dbText.CaretPos.Y = dbText.Lines.Count))) then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         deleteBackward(nil);
@@ -1621,7 +1688,7 @@ begin
     if MessageDlg(msg013, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
     begin
       sgTable.DeleteColRow(False, sgTable.Row);
-      sgTable.RowCount := 2000;
+      sgTable.RowCount := csTableRowCount;
       blTableMod := True;
       stGridLoaded := stTableLoaded;
       LabelFileNameChars;
@@ -1766,7 +1833,7 @@ begin
       end;
       sgTable.InsertColRow(False, sgTable.Row);
       sgTable.Row := sgTable.Row - 1;
-      sgTable.RowCount := 2000;
+      sgTable.RowCount := csTableRowCount;
       blTableMod := True;
       stGridLoaded := stTableLoaded;
       LabelFileNameChars;
@@ -2242,7 +2309,7 @@ begin
   stFileName := '';
   CreateYAML;
   sgTable.RowCount := 1;
-  sgTable.RowCount := 2000;
+  sgTable.RowCount := csTableRowCount;
   pnGrid.Height := 1;
 end;
 
@@ -2256,13 +2323,14 @@ begin
   if odOpen.Execute then
   try
     sgTable.RowCount := 1;
-    sgTable.RowCount := 2000;
+    sgTable.RowCount := csTableRowCount;
     stFileName := odOpen.FileName;
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
+      sgTable.RowCount := csTableRowCount;
       stGridLoaded := stTableLoaded;
     end
     else
@@ -2296,6 +2364,7 @@ begin
       myList.Text := dbText.Text;
       myList.SaveToFile(stFileName);
       blFileSaved := True;
+      UpdateLastFile;
     finally
       myList.Free;
     end;
@@ -2360,13 +2429,14 @@ begin
   if FileExistsUTF8(LastDatabase1) then
   try
     sgTable.RowCount := 1;
-    sgTable.RowCount := 2000;
+    sgTable.RowCount := csTableRowCount;
     stFileName := LastDatabase1;
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
+      sgTable.RowCount := csTableRowCount;
       stGridLoaded := stTableLoaded;
     end
     else
@@ -2403,13 +2473,14 @@ begin
   if FileExistsUTF8(LastDatabase2) then
   try
     sgTable.RowCount := 1;
-    sgTable.RowCount := 2000;
+    sgTable.RowCount := csTableRowCount;
     stFileName := LastDatabase2;
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
+      sgTable.RowCount := csTableRowCount;
       stGridLoaded := stTableLoaded;
     end
     else
@@ -2445,13 +2516,14 @@ begin
   if FileExistsUTF8(LastDatabase3) then
   try
     sgTable.RowCount := 1;
-    sgTable.RowCount := 2000;
+    sgTable.RowCount := csTableRowCount;
     stFileName := LastDatabase3;
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
+      sgTable.RowCount := csTableRowCount;
       stGridLoaded := stTableLoaded;
     end
     else
@@ -2487,13 +2559,14 @@ begin
   if FileExistsUTF8(LastDatabase4) then
   try
     sgTable.RowCount := 1;
-    sgTable.RowCount := 2000;
+    sgTable.RowCount := csTableRowCount;
     stFileName := LastDatabase4;
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
+      sgTable.RowCount := csTableRowCount;
       stGridLoaded := stTableLoaded;
     end
     else
@@ -2564,13 +2637,27 @@ end;
 procedure TfmMain.miEditLinkClick(Sender: TObject);
 var
   stLink: string;
+  i: Integer;
 begin
   if odLink.Execute then
   begin
-    stLink := odLink.FileName;
-    stLink := 'file://' + StringReplace(stLink, ' ', '%20', [rfReplaceAll]);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      insertText(NSStringUtf8(stLink));
+    for i := 0 to odLink.Files.Count - 1 do
+    begin
+      stLink := odLink.Files[i];
+      stLink := '[](file://' + StringReplace(stLink, ' ', '%20',
+        [rfReplaceAll]) + ')';
+      if odLink.Files.Count = 1 then
+      begin
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          insertText(NSStringUtf8(stLink));
+        dbText.SelStart := dbText.SelStart - UTF8Length(stLink) + 1;
+      end
+      else
+      begin
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          insertText(NSStringUtf8(stLink + LineEnding));
+      end;
+    end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
   end;
@@ -2944,7 +3031,7 @@ begin
   end;
   sgTitles.Clear;
 
-  // Markdown headings
+  // Markdown YAML
   if blDisableFormatting = False then
   begin
     if dbText.Lines[0] = '---' then
