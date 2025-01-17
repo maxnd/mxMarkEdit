@@ -242,6 +242,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 - In presentation mode, the cursor is now hidden, and the selected paragraph is shown at the middle of the screen.
 - In light mode, the default font color of code, links, etc. is now more readable. 
+- Bugs fixing: sometimes, the look of the document was not updated properly.
 - Bugs fixing: on opening one of the last four files, the last position of the cursor was not always properly recovered.
 
 #### Version 1.1.13
