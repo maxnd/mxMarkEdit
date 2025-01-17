@@ -198,6 +198,7 @@ var
   clHighlightText: TColor = clGreen;
   clQuote: TColor = clSilver;
   clTodo: TColor = clBlack;
+  clInsertionPoint: TColor;
   stFontMono: string = 'Menlo';
   iFontMonoSize: smallint = 18;
   stFileName: string = '';
@@ -335,15 +336,17 @@ begin
     clTitle1 := clBlack;
     clTitle2 := clBlack;
     clTitle3 := clBlack;
-    clFootnote := clSilver;
-    clLink := clSilver;
-    clCode := clSilver;
+    clFootnote := clDkGray;
+    clLink := clDkGray;
+    clCode := clDkGray;
     clQuote := $00EFEFEF;
     clHighlightList := $00EBEBEB;
     clRepetition := clRed;
     clHighlightText := $0079FBD4;
     clTodo := clBlack;
   end;
+  clInsertionPoint := NSColorToColorRef(TCocoaTextView(NSScrollView(dbText.Handle).
+    documentView).insertionPointColor);
   sgTitles.FocusRectVisible := False;
   sgTable.FocusRectVisible := False;
   sgTable.TitleFont.Style := [fsBold];
@@ -1270,9 +1273,20 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
       addAttribute_value_range(NSBackgroundColorAttributeName,
       ColorToNSColor(clHighlightText), rngStart);
+    // To have the selected paragraph vertically centered
+    rngEnd.location := 1;
+    rngEnd.length := 1;
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rngEnd);
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       scrollRangeToVisible(rngStart);
     ShowCurrentTitleTodo;
+    if rngStart.length > 1 then
+    begin
+      dbText.SelStart := dbText.SelStart + 1;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setInsertionPointColor(ColorToNSColor(clHighlightText));
+    end;
     key := 0;
   end
   else
@@ -2961,6 +2975,8 @@ var
   tabs: NSMutableArray;
   tab: NSTextTab;
 begin
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    setInsertionPointColor(ColorToNSColor(clInsertionPoint));
   if ((blTextOnChange = True) or ((blDisableFormatting = True) and
     (pnTitTodo.Visible = False))) then
   begin
@@ -3871,6 +3887,11 @@ var
   myList: TStringList;
 begin
   Result := True;
+  if ((stFileName <> '') and (stFileName = LastDatabase1)) then
+  begin
+    LastPosDatabase1 := dbText.SelStart;
+    TopIndexDatabase1 := sgTitles.TopRow;
+  end;
   if ((blFileSaved = False) or (blTableSaved = False)) then
   begin
     if stFileName <> '' then
@@ -3888,29 +3909,6 @@ begin
           sgTable.SaveToCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
             #9, False);
           blTableSaved := True;
-        end;
-        if stFileName = LastDatabase1 then
-        begin
-          LastPosDatabase1 := dbText.SelStart;
-          TopIndexDatabase1 := sgTitles.TopRow;
-        end
-        else
-        if stFileName = LastDatabase2 then
-        begin
-          LastPosDatabase2 := dbText.SelStart;
-          TopIndexDatabase2 := sgTitles.TopRow;
-        end
-        else
-        if stFileName = LastDatabase3 then
-        begin
-          LastPosDatabase3 := dbText.SelStart;
-          TopIndexDatabase3 := sgTitles.TopRow;
-        end
-        else
-        if stFileName = LastDatabase4 then
-        begin
-          LastPosDatabase4 := dbText.SelStart;
-          TopIndexDatabase4 := sgTitles.TopRow;
         end;
       finally
         myList.Free;
@@ -3933,6 +3931,7 @@ procedure TfmMain.MoveToPos;
 var
   rng: NSRange;
 begin
+  Application.processMessages;
   if ((stFileName = LastDatabase1) and (LastPosDatabase1 > -1) and
     (LastPosDatabase1 < Length(dbText.Text))) then
   begin
