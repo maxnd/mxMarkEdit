@@ -216,7 +216,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move to the last edited row of the current column.
 * `Meta` + `Arrow left`: move to the first column of the grid.
 * `Meta` + `Arrow right`: move to the last right edited column of the current row.
-* `Meta` + `Ctrl` + `S`: sort alphabetically the content of the current column (field) in the current table, after confirmation.
+* `Meta` + `Ctrl` + `S`: sort alphabetically the content of the current column (field) in the current table, after confirmation; if the current table is not followed by another table, with a name in the tables names columns, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its title.
 * `Meta` + `Ctrl` + `F`: move the cursor in the search field, if it’s visible.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
 * `Meta` + `V`: paste the content of the clipboard in the current (and following) cells.
