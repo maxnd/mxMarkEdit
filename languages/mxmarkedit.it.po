@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.0"
+msgid "1.2.1"
 msgstr ""
 
 #: tfmcopyright.lbok.caption

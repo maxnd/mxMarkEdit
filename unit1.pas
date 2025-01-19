@@ -111,6 +111,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure miEditFindDuplicateClick(Sender: TObject);
     procedure miEditHideListClick(Sender: TObject);
     procedure miEditLinkClick(Sender: TObject);
@@ -709,6 +710,14 @@ begin
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       scrollRangeToVisible(rng);
     key := 0;
+  end;
+end;
+
+procedure TfmMain.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if ((key = Ord('V')) and (Shift = [ssMeta])) then
+  begin
+    sgTableEditingDone(nil);
   end;
 end;
 
@@ -1777,6 +1786,14 @@ begin
     key := 0;
   end
   else
+  if ((key = Ord('V')) and (Shift = [ssMeta])) then
+  begin
+    blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
+    blTableSaved := False;
+  end
+  else
   if ((key = Ord('I')) and (Shift = [ssMeta, ssShift, ssAlt])) then
   begin
     if MessageDlg(msg016, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
@@ -2652,7 +2669,7 @@ end;
 
 procedure TfmMain.miEditFindClick(Sender: TObject);
 begin
-  fmSearch.Show;
+  fmSearch.Show
 end;
 
 procedure TfmMain.miEditLinkClick(Sender: TObject);

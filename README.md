@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.0, published on January 19 2025.
+Version 1.2.1, published on January 19 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -253,6 +253,12 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.1
+
+- Bugs fixing: the `Meta` + `V` shortcut in the grid didn't set it as modified.
+- Bugs fixing: a value pasted with the `Meta` + `V` shortcut in the grid was not considered by a possible function.
+- Bugs fixing: the shortcuts `Meta` + `C`, `Meta` + `X`, `Meta` + `V` and `Meta` + `A` in the fields of the search form didn't work as expected.
 
 #### Version 1.2.0
 

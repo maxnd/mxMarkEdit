@@ -49,6 +49,8 @@ type
     procedure bnOKClick(Sender: TObject);
     procedure bnReplaceClick(Sender: TObject);
     procedure edFindKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure edReplaceKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
   private
@@ -175,6 +177,31 @@ end;
 
 procedure TfmSearch.edFindKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
+  // These functions must be set
+  if ((key = Ord('C')) and (Shift = [ssMeta])) then
+  begin
+    edFind.CopytoClipboard;
+    key := 0;
+  end
+  else
+  if ((key = Ord('X')) and (Shift = [ssMeta])) then
+  begin
+    edFind.CutToClipboard;
+    key := 0;
+  end
+  else
+  if ((key = Ord('V')) and (Shift = [ssMeta])) then
+  begin
+    edFind.PasteFromClipboard;
+    key := 0;
+  end
+  else
+  if ((key = Ord('A')) and (Shift = [ssMeta])) then
+  begin
+    edFind.SelectAll;
+    key := 0;
+  end
+  else
   if ((key = 13) and (Shift = [ssMeta])) then
   begin
     key := 0;
@@ -185,6 +212,35 @@ begin
   begin
     key := 0;
     bnFirstClick(nil);
+  end;
+end;
+
+procedure TfmSearch.edReplaceKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  // These functions must be set
+  if ((key = Ord('C')) and (Shift = [ssMeta])) then
+  begin
+    edReplace.CopytoClipboard;
+    key := 0;
+  end
+  else
+  if ((key = Ord('X')) and (Shift = [ssMeta])) then
+  begin
+    edReplace.CutToClipboard;
+    key := 0;
+  end
+  else
+  if ((key = Ord('V')) and (Shift = [ssMeta])) then
+  begin
+    edReplace.PasteFromClipboard;
+    key := 0;
+  end
+  else
+  if ((key = Ord('A')) and (Shift = [ssMeta])) then
+  begin
+    edReplace.SelectAll;
+    key := 0;
   end;
 end;
 

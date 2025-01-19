@@ -1043,6 +1043,7 @@ object fmMain: TfmMain
   OnCreate = FormCreate
   OnDropFiles = FormDropFiles
   OnKeyDown = FormKeyDown
+  OnKeyUp = FormKeyUp
   SnapOptions.SnapToMonitor = True
   LCLVersion = '3.7.0.0'
   object spTitles: TSplitter
