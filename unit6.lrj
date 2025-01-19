@@ -1,0 +1,13 @@
+{"version":1,"strings":[
+{"hash":149233043,"name":"tfmfiles.caption","sourcebytes":[83,101,97,114,99,104,32,105,110,32,102,105,108,101,115],"value":"Search in files"},
+{"hash":452451,"name":"tfmfiles.sgfiles.columns[0].title.caption","sourcebytes":[105,80,111,115],"value":"iPos"},
+{"hash":354472,"name":"tfmfiles.sgfiles.columns[1].title.caption","sourcebytes":[80,97,116,104],"value":"Path"},
+{"hash":41356085,"name":"tfmfiles.sgfiles.columns[2].title.caption","sourcebytes":[70,105,108,101,32,110,97,109,101],"value":"File name"},
+{"hash":174435508,"name":"tfmfiles.sgfiles.columns[3].title.caption","sourcebytes":[67,111,110,116,101,120,116],"value":"Context"},
+{"hash":4863637,"name":"tfmfiles.bnok.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":315460,"name":"tfmfiles.bnfind.caption","sourcebytes":[70,105,110,100],"value":"Find"},
+{"hash":81144514,"name":"tfmfiles.lbfolder.caption","sourcebytes":[70,111,108,100,101,114],"value":"Folder"},
+{"hash":114407074,"name":"tfmfiles.bnfolder.caption","sourcebytes":[83,101,116,32,102,111,108,100,101,114],"value":"Set folder"},
+{"hash":315460,"name":"tfmfiles.lbfind.caption","sourcebytes":[70,105,110,100],"value":"Find"},
+{"hash":76551474,"name":"tfmfiles.sddiropen.title","sourcebytes":[83,101,108,101,99,116,32,97,32,102,111,108,100,101,114],"value":"Select a folder"}
+]}

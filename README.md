@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.1.14, published on January 17 2025.
+Version 1.2.0, published on January 19 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -81,11 +81,11 @@ At the left of the text, there’s a list of the titles (starting with `#`) and 
 
 Above this list there is combo box in which it’s possible to select the level of the headings to be shown. The todo items and the heading under which the cursor is located are always shown.
 
-In the todo items, it’s possibile to add a deadline. The format of the date should be `year-month-day`, where month and day are always of two digits. The date must be followed by 3 separator characters before the title of the todo item. For instance: `- [X] 2024-12-05 • Buy some food`. The shortcut `Meta + T` mentioned also below insert automatically the todo marker and the deadline in the proper format with a delay in days that is specified by the user in the options of the app (the default is 7 days).
+In the todo items, it’s possible to add a deadline. The format of the date should be `year-month-day`, where month and day are always of two digits. The date must be followed by 3 separator characters before the title of the todo item. For instance: `- [X] 2024-12-05 • Buy some food`. The shortcut `Meta + T` mentioned also below insert automatically the todo marker and the deadline in the proper format with a delay in days that is specified by the user in the options of the app (the default is 7 days).
 
 ## Tables
 
-At the bottom of the text there’s an Excel-like grid of 105 columns and 10000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possibile to insert any kind of data. It’s possibile to add more tables in the grid, adding other titles under the `Table names` column followed by some fields, like in the second screenshot above.
+At the bottom of the text there’s an Excel-like grid of 105 columns and 10000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possible to insert any kind of data. It’s possible to add more tables in the grid, adding other titles under the `Table names` column followed by some fields, like in the second screenshot above.
 
 If it’s necessary to insert dates in a field, use the format `year-month-day`, where month and day are always of two digits (e.g. `2025-01-05`), so that the sorting on this field will produce a correct result.
 
@@ -93,7 +93,7 @@ The content of the grid is saved in a separate file with the same name of the on
 
 When a `.cvs` file is loaded, the grid is not automatically shown, but in the status bar at the bottom, after the name of the `.md` file, it’s shown the label `& .csv`, to alert the user that there are some data inside the grid.
 
-In the grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document, or deleted. It’s possibile also to paste some data copied from a spreadsheet like Excel or Numbers. See below for the shortcuts useful to do that.
+In the grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document, or deleted. It’s possible also to paste some data copied from a spreadsheet like Excel or Numbers. See below for the shortcuts useful to do that.
 
 At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` or the shortcut `Meta + G` to select the following cell after the current one in just the current field (column) of the current table that contains that text. Anyway, if the selected column is the first, containing the table names, the search will look for the following table names. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
 
@@ -124,6 +124,12 @@ it’s possible to use the app for presentations:
 5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the structure of the document in the left bar;
 6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
 
+## Files management
+
+The `File - Search in files...` menu item open a form to search a word or a sentence within all the `.md` (document) and `.csv` (tables) files contained in a folder specified by the user, including its possible subfolders. Specify the folder to search in with the button `Set folder`, whose value will be remembered by the app, and then type the text to search for in the field `Find`. Then press `Return` or click on the button `Find`. In the grid above the buttons it will be shown a row for each occurrence of the text to be found both in the documents and in the tables files, along with the context in which it appears (some words before and after it). The columns of the grid - path, file name and context - can be sorted with a click on their headers. Pressing `Return` on a row of the grid, or double clicking on it, make the app open the corresponding file, and move the cursor to the position of the text to be found, or, if the file is a `.csv` one, to the cell that contains it.
+
+Moving the mouse over the label of the file path and name, at the bottom left of the main interface of the app, a hint appears with the complete content, even if in the label it's truncated due to its length.
+
 ## Menu items
 
 The last four opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing.
@@ -136,7 +142,7 @@ The `Edit - Show duplicate words` menu item shows in red all the words of each s
 
 The `Edit - Show todo form` menu item opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
 
-The `Show words recurrence form` menu item opens a form with the list of all the words used in the current document, excluded the possible YAML headings (`title:`, `author:` etc.), and their recurrence, that is how many times they appear in the document. By default, the list is sorted by recurrence, but it’s possibile to click on the radio item `Sort by words`, at the right bottom, to sort the list by name. Below the grid there is a field in which it’s possibile to type the words that should not be considered, like articles, separated by commas. These words are automatically sorted. Below this field, there are some buttons to include the word selected in the grid within the words to skip, to update the results after having changed the words to skip, to copy in the clipboard the content of the grid and to close the form.
+The `Show words recurrence form` menu item opens a form with the list of all the words used in the current document, excluded the possible YAML headings (`title:`, `author:` etc.), and their recurrence, that is how many times they appear in the document. By default, the list is sorted by recurrence, but it’s possible to click on the radio item `Sort by words`, at the right bottom, to sort the list by name. Below the grid there is a field in which it’s possible to type the words that should not be considered, like articles, separated by commas. These words are automatically sorted. Below this field, there are some buttons to include the word selected in the grid within the words to skip, to update the results after having changed the words to skip, to copy in the clipboard the content of the grid and to close the form.
 
 The `Edit - Show current title or toto` menu item shows at the top of the left list the title or todo item the cursor is under to.
 
@@ -220,6 +226,16 @@ There are also some shortcuts beyond the ones related to the menu items.
 
 * `Meta` + `Opt` + `H`: hide the todo items already done.
 * `Meta` + `T`: toggle the state of the selected todo item from to be done to done, and vice versa.
+* `Esc`: close the form.
+
+### In the search files form
+
+* `Meta` + `Shift` + `F`: move the cursor in the `Find` field.
+* `Esc`: close the form.
+
+### In the words recurrence form
+
+* `Esc`: close the form.
 
 ## Backup
 
@@ -237,6 +253,13 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.0
+
+- Added files search. See above the `Files management` title for information.
+- Moving the mouse over the label of the file path and name, at the bottom left, now shows a hint with the complete content, even if in the label it's truncated due to its length.
+- Minor graphic improvements.
+- Bugs fixing: when the path of the file was very long, the date and time label on the right was overwritten.
 
 #### Version 1.1.14
 

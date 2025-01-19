@@ -26,8 +26,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
-      <MinorVersionNr Value="1"/>
-      <RevisionNr Value="14"/>
+      <MinorVersionNr Value="2"/>
       <StringTable Comments="A free Markdown editor for macOS" LegalCopyright="Massimo Nardello, Modena 2024 - 2025" LegalTrademarks="Massimo Nardello, Modena 2024 - 2025" OriginalFilename="mxMarkEdit" ProductName="mxMarkEdit"/>
     </VersionInfo>
     <BuildModes>
@@ -96,6 +95,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unit6.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fmFiles"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit6"/>
       </Unit>
     </Units>
   </ProjectOptions>

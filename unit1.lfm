@@ -1072,16 +1072,23 @@ object fmMain: TfmMain
       Left = 20
       Height = 18
       Top = 4
-      Width = 61
+      Width = 739
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
       Caption = 'Chars: 0'
+      Font.Height = 16
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
     end
     object lbDateTime: TLabel
-      Left = 1027
+      Left = 790
       Height = 18
       Top = 4
-      Width = 4
+      Width = 250
       Alignment = taRightJustify
       Anchors = [akTop, akRight]
+      AutoSize = False
       Caption = ' '
     end
   end
@@ -1310,6 +1317,11 @@ object fmMain: TfmMain
         Caption = 'Open...'
         ShortCut = 4175
         OnClick = miFileOpenClick
+      end
+      object miFilesSearch: TMenuItem
+        Caption = 'Search in files...'
+        ShortCut = 12367
+        OnClick = miFilesSearchClick
       end
       object miFileSave: TMenuItem
         Caption = 'Save'

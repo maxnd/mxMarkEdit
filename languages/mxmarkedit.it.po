@@ -32,13 +32,64 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.1.14"
+msgid "1.2.0"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
 msgctxt "tfmcopyright.lbok.caption"
 msgid "OK"
 msgstr ""
+
+#: tfmfiles.bnfind.caption
+msgctxt "tfmfiles.bnfind.caption"
+msgid "Find"
+msgstr "Trova"
+
+#: tfmfiles.bnfolder.caption
+msgid "Set folder"
+msgstr "Scegli cartella"
+
+#: tfmfiles.bnok.caption
+msgctxt "tfmfiles.bnok.caption"
+msgid "Close"
+msgstr "Chiudi"
+
+#: tfmfiles.caption
+msgid "Search in files"
+msgstr "Ricerca nei file"
+
+#: tfmfiles.lbfind.caption
+msgctxt "tfmfiles.lbfind.caption"
+msgid "Find"
+msgstr "Trova"
+
+#: tfmfiles.lbfolder.caption
+msgid "Folder"
+msgstr "Cartella"
+
+#: tfmfiles.sddiropen.title
+msgid "Select a folder"
+msgstr "Scegli una cartella"
+
+#: tfmfiles.sgfiles.columns[0].title.caption
+msgctxt "tfmfiles.sgfiles.columns[0].title.caption"
+msgid "iPos"
+msgstr ""
+
+#: tfmfiles.sgfiles.columns[1].title.caption
+msgctxt "tfmfiles.sgfiles.columns[1].title.caption"
+msgid "Path"
+msgstr "Percorso"
+
+#: tfmfiles.sgfiles.columns[2].title.caption
+msgctxt "tfmfiles.sgfiles.columns[2].title.caption"
+msgid "File name"
+msgstr "Nome del file"
+
+#: tfmfiles.sgfiles.columns[3].title.caption
+msgctxt "tfmfiles.sgfiles.columns[3].title.caption"
+msgid "Context"
+msgstr "Contesto"
 
 #: tfmmain.caption
 msgctxt "tfmmain.caption"
@@ -147,6 +198,10 @@ msgstr "Salva"
 #: tfmmain.mifilesaveas.caption
 msgid "Save as..."
 msgstr "Salva come..."
+
+#: tfmmain.mifilessearch.caption
+msgid "Search in files..."
+msgstr "Cerca nei file..."
 
 #: tfmmain.mihelp.caption
 msgid "?"
@@ -401,18 +456,22 @@ msgid "Hide done items"
 msgstr "Nascondi attività svolte"
 
 #: tfmtasks.sgtasks.columns[0].title.caption
+msgctxt "tfmtasks.sgtasks.columns[0].title.caption"
 msgid "Row"
 msgstr ""
 
 #: tfmtasks.sgtasks.columns[1].title.caption
+msgctxt "tfmtasks.sgtasks.columns[1].title.caption"
 msgid "Done"
 msgstr "Svolta"
 
 #: tfmtasks.sgtasks.columns[2].title.caption
+msgctxt "tfmtasks.sgtasks.columns[2].title.caption"
 msgid "Deadline"
 msgstr "Scadenza"
 
 #: tfmtasks.sgtasks.columns[3].title.caption
+msgctxt "tfmtasks.sgtasks.columns[3].title.caption"
 msgid "Title"
 msgstr "Titolo"
 
@@ -640,4 +699,12 @@ msgstr "Ordina per parole"
 #: unit5.msgsk003
 msgid "Sort by recurrences"
 msgstr "Ordina per ricorrenze"
+
+#: unit6.msgfl001
+msgid "Error in searching in the files."
+msgstr "Errore nella ricerca nei file."
+
+#: unit6.msgfl002
+msgid "More than 10000 files have been found! Try to refine the search."
+msgstr "Sono stati reperiti più di 10000 file! Provare a rifinire la ricerca."
 

@@ -1476,8 +1476,8 @@ object fmCopyright: TfmCopyright
     Left = 230
     Height = 16
     Top = 118
-    Width = 32
-    Caption = '1.1.14'
+    Width = 28
+    Caption = '1.2.0'
     ParentColor = False
     ParentFont = False
   end

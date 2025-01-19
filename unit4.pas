@@ -274,7 +274,7 @@ begin
       begin
         sgTasks.Canvas.Font.Color := clDefault;
       end;
-      sgTasks.Canvas.TextOut(aRect.Left + 3, aRect.Top + 5,
+      sgTasks.Canvas.TextOut(aRect.Left + 3, aRect.Top + 3,
         sgTasks.Cells[aCol, aRow]);
     end;
   end;

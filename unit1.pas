@@ -42,6 +42,7 @@ type
     lbDateTime: TLabel;
     lbChars: TLabel;
     lbFindGrid: TLabel;
+    miFilesSearch: TMenuItem;
     miEditWords: TMenuItem;
     miEditTasks: TMenuItem;
     miEditShowCurrent: TMenuItem;
@@ -132,6 +133,7 @@ type
     procedure miFileOpenLast4Click(Sender: TObject);
     procedure miFileSaveAsClick(Sender: TObject);
     procedure miFileSaveClick(Sender: TObject);
+    procedure miFilesSearchClick(Sender: TObject);
     procedure miToolsOpenWinClick(Sender: TObject);
     procedure miToolsOptionsClick(Sender: TObject);
     procedure miToolsPandocClick(Sender: TObject);
@@ -165,16 +167,16 @@ type
       isReadOnly, useDefault: boolean): NSParagraphStyle;
     function GetWritePara(txt: NSTextStorage;
       textOffset: integer): NSMutableParagraphStyle;
-    procedure LabelFileNameChars;
-    procedure MoveToPos;
     procedure RenumberFootnotes;
     procedure RenumberList;
     function SaveFile: boolean;
     procedure SelectInsertFootnote;
     procedure CutZone;
     procedure SetTable;
-    procedure UpdateLastFile;
   public
+    procedure UpdateLastFile;
+    procedure LabelFileNameChars;
+    procedure MoveToPos;
     procedure ShowCurrentTitleTodo;
     procedure FormatListTitleTodo;
     function UTF8CocoaPos(const SearchForText, SearchInText: string;
@@ -264,7 +266,7 @@ resourcestring
 
 implementation
 
-uses copyright, unit2, unit3, unit4, unit5;
+uses copyright, unit2, unit3, unit4, unit5, unit6;
 
   {$R *.lfm}
 
@@ -2367,6 +2369,11 @@ begin
   end;
 end;
 
+procedure TfmMain.miFilesSearchClick(Sender: TObject);
+begin
+  fmFiles.ShowModal;
+end;
+
 procedure TfmMain.miFileSaveClick(Sender: TObject);
 var
   myList: TStringList;
@@ -3802,6 +3809,7 @@ end;
 procedure TfmMain.LabelFileNameChars;
 var
   iLength, iPos: integer;
+  stFilePath: String;
 begin
   iLength := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
     textStorage.characters.Count;
@@ -3811,7 +3819,15 @@ begin
   begin
     if stFileName <> '' then
     begin
-      lbChars.Caption := ExtractFileDir(stFileName) + '/  •  ' +
+      lbChars.Hint := ExtractFileDir(stFileName) + '/  •  ' +
+        ExtractFileName(stFileName);
+      stFilePath :=  ExtractFileDir(stFileName);
+      if Length(stFilePath) > 30 then
+      begin
+        stFilePath := '...' + Copy(stFilePath, Length(stFilePath) - 30,
+          Length(stFilePath));
+      end;
+      lbChars.Caption := stFilePath + '/  •  ' +
         ExtractFileName(stFileName) + stGridLoaded + '  •  ' + msg001 + ' ' +
         FormatFloat('#,##0', iLength) + ' (' +
         FormatFloat('#0', iPos / iLength * 100) + '%)';
@@ -3931,7 +3947,10 @@ procedure TfmMain.MoveToPos;
 var
   rng: NSRange;
 begin
-  Application.processMessages;
+  if blDisableFormatting = False then
+  begin
+    Application.processMessages;
+  end;
   if ((stFileName = LastDatabase1) and (LastPosDatabase1 > -1) and
     (LastPosDatabase1 < Length(dbText.Text))) then
   begin
