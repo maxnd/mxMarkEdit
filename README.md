@@ -124,6 +124,58 @@ it’s possible to use the app for presentations:
 5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the structure of the document in the left bar;
 6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
 
+### Tip: how to format a presentation to look nice on mxMarkEdit
+
+A Markdown presentation formatted to be properly exported in PowerPoint looks like this:
+
+```
+---
+title: Title of the presentation
+author: Name of the author
+email: author@mail.com
+date: academic year 2024-2025
+---
+
+# 1. Title of a section of the presentation
+
+## Title of the first slide
+
+- First level item:
+  - second level item (indented by two spaces);
+  - second level item (indented by two spaces);
+  - second level item (indented by two spaces);
+
+## Title of the second slide
+
+- First level item:
+  - second level item (indented by two spaces);
+  - second level item (indented by two spaces);
+  - second level item (indented by two spaces);
+```
+
+Now, while in mxMarkEdit the headings are properly formatted and so do not need any kind of change, the items preceded by a dash don't look very nice when shown to an audience. So, it's possible to change the dashes with proper emojis using the `Edit` - `Find` menu item. For instance (remember that the `\n` represents a new paragraph):
+
+1. search for `\n- ` and replace it with `\n🔸 `;
+2. search for `\n  - ` and replace it with `\n  🔹 `;
+3. search for `\n` and replace it with `\n\n`;
+4. if necessary, to replace many contiguous empty lines with just one, search for `\n\n\n` and replace it with `\n\n`.
+
+The result will be like this:
+
+```
+🔸 First level item:
+
+  🔹 second level item (indented by two spaces);
+
+  🔹 second level item (indented by two spaces);
+
+  🔹 second level item (indented by two spaces);
+```
+
+Note that the items beginning with the emoji are not recognised as list items in Markdown, and will not be exported by Pandoc as such. So, being simple paragraphs, the items must be separated by an empty line to be exported as many paragraphs and not as one single paragraph.
+
+It's possible to switch the search content with the replace one in the search and replace function to restore the original formatting of the document.
+
 ## Files management
 
 The `File - Search in files...` menu item open a form to search a word or a sentence within all the `.md` (document) and `.csv` (tables) files contained in a folder specified by the user, including its possible subfolders. Specify the folder to search in with the button `Set folder`, whose value will be remembered by the app, and then type the text to search for in the field `Find`. Then press `Return` or click on the button `Find`. In the grid above the buttons it will be shown a row for each occurrence of the text to be found both in the documents and in the tables files, along with the context in which it appears (some words before and after it). The columns of the grid - path, file name and context - can be sorted with a click on their headers. Pressing `Return` on a row of the grid, or double clicking on it, make the app open the corresponding file, and move the cursor to the position of the text to be found, or, if the file is a `.csv` one, to the cell that contains it.
