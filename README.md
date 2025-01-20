@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.1, published on January 19 2025.
+Version 1.2.2, published on January 20 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -118,9 +118,9 @@ See below for some useful shortcuts available in this grid.
 it’s possible to use the app for presentations:
 
 1. load a document, possibly with some tables, containing the sequential text of the slides in Markdown format, with many paragraphs under titles and subtitles, like a normal text;
-2. enlarge possibly the font size of the document so that it can be seen easily by the participants;
+2. enlarge possibly the font size of the document so that it can be seen easily by the participants, and disable the spellcheck;
 3. share the interface of mxMarkEdit with a video projector or on a video call with apps like Webex, FaceTime or Zoom;
-4. begin the presentation, and use the shortcut `Meta` + `E` to highlight the paragraph following the current one with a green background, skipping the empty lines and the titles;
+4. begin the presentation, and use the shortcut `Meta` + `E` to highlight the paragraph following the current one with a green background, skipping the empty lines;
 5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the structure of the document in the left bar;
 6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
 
@@ -305,6 +305,13 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.2
+
+- Opening one the last four files used, now it's restored also the last selected cell.
+- In presentation mode, the headings are now highlighted like the other paragraphs.
+- Minor graphics improvements in presentation mode.
+- Bugs fixing: in some circumstances, the content of the grid could not be saved.
 
 #### Version 1.2.1
 

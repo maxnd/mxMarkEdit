@@ -211,6 +211,8 @@ var
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
   LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: integer;
   TopIndexDatabase1, TopIndexDatabase2, TopIndexDatabase3, TopIndexDatabase4: integer;
+  ColDatabase1, ColDatabase2, ColDatabase3, ColDatabase4: integer;
+  RowDatabase1, RowDatabase2, RowDatabase3, RowDatabase4: integer;
   blFileSaved: boolean = True;
   blFileMod: boolean = False;
   blTableSaved: boolean = True;
@@ -481,6 +483,14 @@ begin
       TopIndexDatabase2 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase2', 0);
       TopIndexDatabase3 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase3', 0);
       TopIndexDatabase4 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase4', 0);
+      ColDatabase1 := MyIni.ReadInteger('mxmarkedit', 'coldatabase1', 1);
+      ColDatabase2 := MyIni.ReadInteger('mxmarkedit', 'coldatabase2', 1);
+      ColDatabase3 := MyIni.ReadInteger('mxmarkedit', 'coldatabase3', 1);
+      ColDatabase4 := MyIni.ReadInteger('mxmarkedit', 'coldatabase4', 1);
+      RowDatabase1 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase1', 1);
+      RowDatabase2 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase2', 1);
+      RowDatabase3 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase3', 1);
+      RowDatabase4 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase4', 1);
     finally
       MyIni.Free;
     end;
@@ -816,6 +826,14 @@ begin
     MyIni.WriteInteger('mxmarkedit', 'topindexdatabase2', TopIndexDatabase2);
     MyIni.WriteInteger('mxmarkedit', 'topindexdatabase3', TopIndexDatabase3);
     MyIni.WriteInteger('mxmarkedit', 'topindexdatabase4', TopIndexDatabase4);
+    MyIni.WriteInteger('mxmarkedit', 'coldatabase1', ColDatabase1);
+    MyIni.WriteInteger('mxmarkedit', 'coldatabase2', ColDatabase2);
+    MyIni.WriteInteger('mxmarkedit', 'coldatabase3', ColDatabase3);
+    MyIni.WriteInteger('mxmarkedit', 'coldatabase4', ColDatabase4);
+    MyIni.WriteInteger('mxmarkedit', 'rowdatabase1', RowDatabase1);
+    MyIni.WriteInteger('mxmarkedit', 'rowdatabase2', RowDatabase2);
+    MyIni.WriteInteger('mxmarkedit', 'rowdatabase3', RowDatabase3);
+    MyIni.WriteInteger('mxmarkedit', 'rowdatabase4', RowDatabase4);
   finally
     MyIni.Free;
   end;
@@ -1260,18 +1278,13 @@ begin
     begin
       miEditDisableFormClick(nil);
     end;
+    sgTitles.ScrollBars := ssNone;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToEndOfParagraph(nil);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveForward(nil);
     while (((dbText.Lines[dbText.CaretPos.Y] = '') or
-        (dbText.Lines[dbText.CaretPos.Y] = '---') or
-        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '# ') or
-        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 3) = '## ') or
-        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 4) = '### ') or
-        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) = '#### ') or
-        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = '##### ') or
-        (Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) = '###### ')) and
+        (dbText.Lines[dbText.CaretPos.Y] = '---')) and
         (dbText.CaretPos.Y < dbText.Lines.Count)) do
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1298,6 +1311,7 @@ begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         setInsertionPointColor(ColorToNSColor(clHighlightText));
     end;
+    sgTitles.ScrollBars := ssAutoVertical;
     key := 0;
   end
   else
@@ -2341,6 +2355,8 @@ begin
   CreateBackup;
   stFileName := '';
   CreateYAML;
+  dbText.SelStart := 11;
+  dbText.SetFocus;
   sgTable.RowCount := 1;
   sgTable.RowCount := csTableRowCount;
   pnGrid.Height := 1;
@@ -3864,6 +3880,8 @@ begin
     LastDatabase2 := LastDatabase1;
     LastPosDatabase2 := LastPosDatabase1;
     TopIndexDatabase2 := TopIndexDatabase1;
+    ColDatabase2 := ColDatabase1;
+    RowDatabase2 := RowDatabase1;
     LastDatabase1 := stFileName;
   end
   else if stFileName = LastDatabase3 then
@@ -3874,6 +3892,10 @@ begin
     LastPosDatabase2 := LastPosDatabase1;
     TopIndexDatabase3 := TopIndexDatabase2;
     TopIndexDatabase2 := TopIndexDatabase1;
+    ColDatabase3 := ColDatabase2;
+    ColDatabase2 := ColDatabase1;
+    RowDatabase3 := RowDatabase2;
+    RowDatabase2 := RowDatabase1;
     LastDatabase1 := stFileName;
   end
   else if stFileName <> LastDatabase1 then
@@ -3887,6 +3909,12 @@ begin
     TopIndexDatabase4 := TopIndexDatabase3;
     TopIndexDatabase3 := TopIndexDatabase2;
     TopIndexDatabase2 := TopIndexDatabase1;
+    ColDatabase4 := ColDatabase3;
+    ColDatabase3 := ColDatabase2;
+    ColDatabase2 := ColDatabase1;
+    RowDatabase4 := RowDatabase3;
+    RowDatabase3 := RowDatabase2;
+    RowDatabase2 := RowDatabase1;
     LastDatabase1 := stFileName;
   end;
   if LastDatabase1 <> '' then
@@ -3924,15 +3952,31 @@ begin
   begin
     LastPosDatabase1 := dbText.SelStart;
     TopIndexDatabase1 := sgTitles.TopRow;
+    if sgTable.Col > 0 then
+    begin
+      ColDatabase1 := sgTable.Col;
+    end
+    else
+    begin
+      ColDatabase1 := 1;
+    end;
+    if sgTable.Row > 0 then
+    begin
+      RowDatabase1 := sgTable.Row;
+    end
+    else
+    begin
+      RowDatabase1 := 1;
+    end;
   end;
   if ((blFileSaved = False) or (blTableSaved = False)) then
   begin
     if stFileName <> '' then
     try
       try
+        myList := TStringList.Create;
         if blFileSaved = False then
         begin
-          myList := TStringList.Create;
           myList.Text := dbText.Text;
           myList.SaveToFile(stFileName);
           blFileSaved := True;
@@ -3973,6 +4017,8 @@ begin
   begin
     dbText.SelStart := LastPosDatabase1;
     sgTitles.TopRow := TopIndexDatabase1;
+    sgTable.Col := ColDatabase1;
+    sgTable.Row := RowDatabase1;
   end
   else
   if ((stFileName = LastDatabase2) and (LastPosDatabase2 > -1) and
@@ -3980,6 +4026,8 @@ begin
   begin
     dbText.SelStart := LastPosDatabase2;
     sgTitles.TopRow := TopIndexDatabase2;
+    sgTable.Col := ColDatabase2;
+    sgTable.Row := RowDatabase2;
   end
   else
   if ((stFileName = LastDatabase3) and (LastPosDatabase3 > -1) and
@@ -3987,6 +4035,8 @@ begin
   begin
     dbText.SelStart := LastPosDatabase3;
     sgTitles.TopRow := TopIndexDatabase3;
+    sgTable.Col := ColDatabase3;
+    sgTable.Row := RowDatabase3;
   end
   else
   if ((stFileName = LastDatabase4) and (LastPosDatabase4 > -1) and
@@ -3994,6 +4044,8 @@ begin
   begin
     dbText.SelStart := LastPosDatabase4;
     sgTitles.TopRow := TopIndexDatabase4;
+    sgTable.Col := ColDatabase4;
+    sgTable.Row := RowDatabase4;
   end
   else
   begin
