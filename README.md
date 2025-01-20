@@ -118,7 +118,7 @@ See below for some useful shortcuts available in this grid.
 it’s possible to use the app for presentations:
 
 1. load a document, possibly with some tables, containing the sequential text of the slides in Markdown format, with many paragraphs under titles and subtitles, like a normal text;
-2. enlarge possibly the font size of the document so that it can be seen easily by the participants, and disable the spellcheck;
+2. enlarge possibly the font size of the document so that it can be seen easily by the participants, and disable the spell check;
 3. share the interface of mxMarkEdit with a video projector or on a video call with apps like Webex, FaceTime or Zoom;
 4. begin the presentation, and use the shortcut `Meta` + `E` to highlight the paragraph following the current one with a green background, skipping the empty lines;
 5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the structure of the document in the left bar;
