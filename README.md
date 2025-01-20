@@ -239,7 +239,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `.`: transform a numbered list into a with dashes (`-`).
 * `Meta` + `Shift` + `J`: set the current position of the cursor in the bookmark.
 * `Meta` + `J`: move the cursor to the position already set in the bookmark.
-* `Meta` + `E`: show the following paragraph with a green background, skipping the empty lines and the headings; this is useful to use mxMarkEdit for presentations. See above for details.
+* `Meta` + `E`: show the following paragraph with a green background, skipping the empty lines; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalise the current word.
