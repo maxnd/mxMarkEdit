@@ -124,7 +124,7 @@ it’s possible to use the app for presentations:
 5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the structure of the document in the left bar;
 6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
 
-### Tip: how to format a presentation to look nice on mxMarkEdit
+#### Tip: how to format a presentation to look nice on mxMarkEdit
 
 A Markdown presentation formatted to be properly exported in PowerPoint looks like this:
 
