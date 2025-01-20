@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.2, published on January 20 2025.
+Version 1.2.3, published on January 20 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -229,6 +229,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `R`: if the cursor is inside a numbered list, renumber the list.
 * `Meta` + `Shift` + `R`: renumber all the possible footnotes references if they have been manually changed.
 * `Meta` + `G`: find in the document the next recurrence of the text specified in the search form, even if it’s closed.
+* `Meta` + `Shift` + `G`: find in the document the previous recurrence of the text specified in the search form, even if it’s closed.
 * `Meta` + `T`: create a todo item with a deadline whose delay in days is specified in the options (default is 7), or set it as done or to be done.
 * `Meta` + `Opt` + `T`: create a todo item without a deadline, or set it as done or to be done.
 * `Meta` + `Opt` + `Arrow up`: move up the current paragraph.
@@ -305,6 +306,14 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.3
+
+- Added the button in the search form to find the previous recurrence in the document.
+- Added the shortcut `Meta` + `Shift` + `G` to find the previous recurrence in the document in the search form.
+- Improved the speed of the todo items compilation in the todo form.
+- Bugs fixing: the use of the search function could crash the app.
+- Bugs fixing: when the status of a todo item in the todo form is changed, now the possible red color is set properly.
 
 #### Version 1.2.2
 

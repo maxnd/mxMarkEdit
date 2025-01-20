@@ -2,12 +2,12 @@ object fmSearch: TfmSearch
   Left = 535
   Height = 211
   Top = 253
-  Width = 440
+  Width = 545
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Search'
   ClientHeight = 211
-  ClientWidth = 440
+  ClientWidth = 545
   Color = clForm
   Icon.Data = {
     5C8000000000010001000000000001002000468000001600000089504E470D0A
@@ -1049,7 +1049,7 @@ object fmSearch: TfmSearch
     Left = 27
     Height = 22
     Top = 40
-    Width = 386
+    Width = 497
     Anchors = [akTop, akLeft, akRight]
     ParentColor = True
     TabOrder = 0
@@ -1067,7 +1067,7 @@ object fmSearch: TfmSearch
     Left = 27
     Height = 32
     Top = 163
-    Width = 75
+    Width = 84
     Anchors = [akLeft, akBottom]
     Caption = 'First'
     TabOrder = 2
@@ -1075,10 +1075,10 @@ object fmSearch: TfmSearch
     OnClick = bnFirstClick
   end
   object bnNext: TButton
-    Left = 112
+    Left = 120
     Height = 32
     Top = 163
-    Width = 75
+    Width = 84
     Anchors = [akLeft, akBottom]
     Caption = 'Next'
     TabOrder = 3
@@ -1086,13 +1086,13 @@ object fmSearch: TfmSearch
     OnClick = bnNextClick
   end
   object bnOK: TButton
-    Left = 338
+    Left = 449
     Height = 32
     Top = 163
     Width = 75
     Anchors = [akLeft, akBottom]
     Caption = 'Close'
-    TabOrder = 5
+    TabOrder = 6
     TabStop = False
     OnClick = bnOKClick
   end
@@ -1108,25 +1108,36 @@ object fmSearch: TfmSearch
     Left = 27
     Height = 22
     Top = 112
-    Width = 386
+    Width = 497
     Anchors = [akTop, akLeft, akRight]
     ParentColor = True
     TabOrder = 1
     OnKeyDown = edReplaceKeyDown
   end
   object bnReplace: TButton
-    Left = 197
+    Left = 304
     Height = 32
     Top = 163
     Width = 130
     Caption = 'Replace all'
     ParentBidiMode = False
-    TabOrder = 4
+    TabOrder = 5
     TabStop = False
     OnClick = bnReplaceClick
   end
+  object bnPrevious: TButton
+    Left = 213
+    Height = 32
+    Top = 163
+    Width = 84
+    Anchors = [akLeft, akBottom]
+    Caption = 'Previous'
+    TabOrder = 4
+    TabStop = False
+    OnClick = bnPreviousClick
+  end
   object mmMenuModal: TMainMenu
-    Left = 96
-    Top = 136
+    Left = 160
+    Top = 64
   end
 end

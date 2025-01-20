@@ -37,6 +37,7 @@ type
   TfmSearch = class(TForm)
     bnFirst: TButton;
     bnNext: TButton;
+    bnPrevious: TButton;
     bnOK: TButton;
     bnReplace: TButton;
     edFind: TEdit;
@@ -47,6 +48,7 @@ type
     procedure bnFirstClick(Sender: TObject);
     procedure bnNextClick(Sender: TObject);
     procedure bnOKClick(Sender: TObject);
+    procedure bnPreviousClick(Sender: TObject);
     procedure bnReplaceClick(Sender: TObject);
     procedure edFindKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure edReplaceKeyDown(Sender: TObject; var Key: Word;
@@ -126,21 +128,82 @@ end;
 
 procedure TfmSearch.bnNextClick(Sender: TObject);
 var
-  iPos: integer;
+  iPos: integer = 0;
   rng: NSRange;
 begin
   if ((edFind.Text = '') or (fmMain.dbText.Text = '')) then
   begin
     Exit;
   end;
+  if fmMain.dbText.SelStart = StrToNSString(fmMain.dbText.Text, True).length then
+  begin
+    MessageDlg(msgFnd001, mtInformation, [mbOK], 0);
+    if fmSearch.Visible = True then
+    begin
+      fmSearch.SetFocus;
+    end;
+    Exit;
+  end;
   iPos := fmMain.UTF8CocoaPos(UTF8UpperCase(edFind.Text),
-    UTF8UpperCase(fmMain.dbText.Text), fmMain.dbText.SelStart +
-    StrToNSString(edFind.Text, True).length + 1);
+    UTF8UpperCase(fmMain.dbText.Text), fmMain.dbText.SelStart + 2);
   if iPos > 0 then
   begin
     fmMain.dbText.SelStart := iPos - 1;
     Application.ProcessMessages;
     rng.location := iPos - 1;
+    rng.length := StrToNSString(edFind.Text, True).length;
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      showFindIndicatorForRange(rng);
+  end
+  else
+  begin
+    MessageDlg(msgFnd001, mtInformation, [mbOK], 0);
+    if fmSearch.Visible = True then
+    begin
+        fmSearch.SetFocus;
+    end;
+  end;
+end;
+
+procedure TfmSearch.bnPreviousClick(Sender: TObject);
+var
+  iPos, iOldPos: integer;
+  rng: NSRange;
+begin
+  if ((edFind.Text = '') or (fmMain.dbText.Text = '')) then
+  begin
+    Exit;
+  end;
+  if fmMain.dbText.SelStart = 0 then
+  begin
+    MessageDlg(msgFnd001, mtInformation, [mbOK], 0);
+    if fmSearch.Visible = True then
+    begin
+      fmSearch.SetFocus;
+    end;
+    Exit;
+  end;
+  iPos := 0;
+  iOldPos := -1;
+  while iPos < fmMain.dbText.SelStart do
+  begin
+    iPos := fmMain.UTF8CocoaPos(UTF8UpperCase(edFind.Text),
+      UTF8UpperCase(fmMain.dbText.Text), iPos + 1);
+    if iPos = 0 then
+    begin
+      Break;
+    end
+    else
+    if iPos < fmMain.dbText.SelStart then
+    begin
+      iOldPos := iPos;
+    end;
+  end;
+  if iOldPos > -1 then
+  begin
+    fmMain.dbText.SelStart := iOldPos - 1;
+    Application.ProcessMessages;
+    rng.location := iOldPos - 1;
     rng.length := StrToNSString(edFind.Text, True).length;
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       showFindIndicatorForRange(rng);

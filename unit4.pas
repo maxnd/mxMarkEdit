@@ -48,13 +48,12 @@ type
     procedure cbHideClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTasksDblClick(Sender: TObject);
-    procedure sgTasksDrawCell(Sender: TObject; aCol, aRow: Integer;
+    procedure sgTasksDrawCell(Sender: TObject; aCol, aRow: integer;
       aRect: TRect; aState: TGridDrawState);
   private
     procedure CreateList;
-
   public
 
   end;
@@ -73,9 +72,9 @@ implementation
 
 uses Unit1;
 
-{$R *.lfm}
+  {$R *.lfm}
 
-{ TfmTasks }
+  { TfmTasks }
 
 procedure TfmTasks.FormCreate(Sender: TObject);
 begin
@@ -137,16 +136,17 @@ begin
       rng.location := rng.location + 3;
       rng.length := 1;
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      insertText_replacementRange(NSStringUtf8(' '), rng);
+        insertText_replacementRange(NSStringUtf8(' '), rng);
       fmMain.FormatListTitleTodo;
     end;
+    sgTasks.Refresh;
   end;
 end;
 
 procedure TfmTasks.bnCopyClick(Sender: TObject);
 var
-  stClip: String = '';
-  i: Integer;
+  stClip: string = '';
+  i: integer;
 begin
   if sgTasks.RowCount > 1 then
   begin
@@ -176,10 +176,9 @@ begin
   CreateList;
 end;
 
-procedure TfmTasks.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfmTasks.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
-  i: Integer;
+  i: integer;
   rng: NSRange;
 begin
   if key = 13 then
@@ -202,7 +201,7 @@ begin
   else
   if key = 27 then
   begin
-    Close
+    Close;
   end
   else
   if ((key = Ord('T')) and (Shift = [ssMeta])) then
@@ -214,7 +213,7 @@ begin
   if ((key = Ord('H')) and (Shift = [ssMeta, ssAlt])) then
   begin
     cbHide.Checked := not cbHide.Checked;
-    if cbHide.Checked = true then
+    if cbHide.Checked = True then
     begin
       CreateList;
     end;
@@ -224,7 +223,7 @@ end;
 
 procedure TfmTasks.sgTasksDblClick(Sender: TObject);
 var
-  i: Integer;
+  i: integer;
   rng: NSRange;
 begin
   if sgTasks.RowCount > 1 then
@@ -243,7 +242,7 @@ begin
   end;
 end;
 
-procedure TfmTasks.sgTasksDrawCell(Sender: TObject; aCol, aRow: Integer;
+procedure TfmTasks.sgTasksDrawCell(Sender: TObject; aCol, aRow: integer;
   aRect: TRect; aState: TGridDrawState);
 var
   myDate: TDate;
@@ -282,78 +281,80 @@ end;
 
 procedure TfmTasks.CreateList;
 var
-  i, iLength: Integer;
+  i, iLength: integer;
   dtDeadline: TDate;
-  stDays: String;
+  stDays: string;
+  slTodo: TStringList;
 begin
   sgTasks.RowCount := 1;
   iLength := 0;
-  for i := 0 to fmMain.dbText.Lines.Count - 1 do
-  begin
-    if UTF8Copy(fmMain.dbText.Lines[i], 1, 6) = '- [ ] ' then
+  try
+    Cursor := crHourGlass;
+    slTodo := TStringList.Create;
+    slTodo.AddStrings(fmMain.dbText.Lines);
+    for i := 0 to slTodo.Count - 1 do
     begin
-      sgTasks.RowCount := sgTasks.RowCount + 1;
-      sgTasks.Cells[0, sgTasks.RowCount - 1] := IntToStr(iLength);
-      if TryStrToDate(UTF8Copy(fmMain.dbText.Lines[i], 7, 10),
-        dtDeadline, fs) = True then
+      if UTF8Copy(slTodo[i], 1, 6) = '- [ ] ' then
       begin
-        stDays := FloatToStr(dtDeadline - Date);
-        if ((stDays = '1') or (stDays = '-1')) then
+        sgTasks.RowCount := sgTasks.RowCount + 1;
+        sgTasks.Cells[0, sgTasks.RowCount - 1] := IntToStr(iLength);
+        if TryStrToDate(UTF8Copy(slTodo[i], 7, 10), dtDeadline, fs) = True then
         begin
-          stDays := stDays + ' ' + tsk001;
+          stDays := FloatToStr(dtDeadline - Date);
+          if ((stDays = '1') or (stDays = '-1')) then
+          begin
+            stDays := stDays + ' ' + tsk001;
+          end
+          else
+          begin
+            stDays := stDays + ' ' + tsk002;
+          end;
+          sgTasks.Cells[2, sgTasks.RowCount - 1] :=
+            UTF8Copy(slTodo[i], 7, 10) + ' (' + stDays + ')';
+          sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+            UTF8Copy(slTodo[i], 20, UTF8Length(slTodo[i]));
         end
         else
         begin
-          stDays := stDays + ' ' + tsk002;
+          sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+            UTF8Copy(slTodo[i], 7, UTF8Length(slTodo[i]));
         end;
-        sgTasks.Cells[2, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 7, 10) +
-          ' (' + stDays + ')';
-        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 20,
-          UTF8Length(fmMain.dbText.Lines[i]));
+        sgTasks.Cells[1, sgTasks.RowCount - 1] := '0';
       end
       else
+      if (((UTF8Copy(slTodo[i], 1, 6) = '- [X] ') or
+        (UTF8Copy(slTodo[i], 1, 6) = '- [x] ')) and (cbHide.Checked = False)) then
       begin
-        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 7, UTF8Length(fmMain.dbText.Lines[i]));
-      end;
-      sgTasks.Cells[1, sgTasks.RowCount - 1] := '0';
-    end
-    else
-    if (((UTF8Copy(fmMain.dbText.Lines[i], 1, 6) = '- [X] ') or
-      (UTF8Copy(fmMain.dbText.Lines[i], 1, 6) = '- [x] ')) and
-      (cbHide.Checked = False)) then
-    begin
-      sgTasks.RowCount := sgTasks.RowCount + 1;
-      sgTasks.Cells[0, sgTasks.RowCount - 1] := IntToStr(iLength);
-      if TryStrToDate(UTF8Copy(fmMain.dbText.Lines[i], 7, 10),
-        dtDeadline, fs) = True then
-      begin
-        stDays := FloatToStr(dtDeadline - Date);
-        if ((stDays = '1') or (stDays = '-1')) then
+        sgTasks.RowCount := sgTasks.RowCount + 1;
+        sgTasks.Cells[0, sgTasks.RowCount - 1] := IntToStr(iLength);
+        if TryStrToDate(UTF8Copy(slTodo[i], 7, 10), dtDeadline, fs) = True then
         begin
-          stDays := stDays + ' ' + tsk001;
+          stDays := FloatToStr(dtDeadline - Date);
+          if ((stDays = '1') or (stDays = '-1')) then
+          begin
+            stDays := stDays + ' ' + tsk001;
+          end
+          else
+          begin
+            stDays := stDays + ' ' + tsk002;
+          end;
+          sgTasks.Cells[2, sgTasks.RowCount - 1] :=
+            UTF8Copy(fmMain.dbText.Lines[i], 7, 10) + ' (' + stDays + ')';
+          sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+            UTF8Copy(slTodo[i], 20, UTF8Length(slTodo[i]));
         end
         else
         begin
-          stDays := stDays + ' ' + tsk002;
+          sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+            UTF8Copy(slTodo[i], 7, UTF8Length(slTodo[i]));
         end;
-        sgTasks.Cells[2, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 7, 10) +
-          ' (' + stDays + ')';
-        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 20,
-          UTF8Length(fmMain.dbText.Lines[i]));
-      end
-      else
-      begin
-        sgTasks.Cells[3, sgTasks.RowCount - 1] :=
-          UTF8Copy(fmMain.dbText.Lines[i], 7, UTF8Length(fmMain.dbText.Lines[i]));
+        sgTasks.Cells[1, sgTasks.RowCount - 1] := '1';
       end;
-      sgTasks.Cells[1, sgTasks.RowCount - 1] := '1';
+      iLength := iLength + StrToNSString(slTodo[i], True).length + 1;
     end;
-    iLength := iLength + StrToNSString(fmMain.dbText.Lines[i], True).length + 1;
+  finally
+    slTodo.Free;
+    Cursor := crDefault;
   end;
   if sgTasks.RowCount > 1 then
   begin
@@ -363,4 +364,3 @@ begin
 end;
 
 end.
-

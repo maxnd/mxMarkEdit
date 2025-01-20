@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.2"
+msgid "1.2.3"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -417,6 +417,10 @@ msgctxt "tfmsearch.bnok.caption"
 msgid "Close"
 msgstr "Chiudi"
 
+#: tfmsearch.bnprevious.caption
+msgid "Previous"
+msgstr "Precedente"
+
 #: tfmsearch.bnreplace.caption
 msgid "Replace all"
 msgstr "Sostituisci tutto"
@@ -702,7 +706,7 @@ msgstr "Ordina per ricorrenze"
 
 #: unit6.msgfl001
 msgid "Error in searching in the files."
-msgstr "Errore nella ricerca nei file."
+msgstr "Errore nella ricerca all'interno dei file."
 
 #: unit6.msgfl002
 msgid "More than 10000 files have been found! Try to refine the search."

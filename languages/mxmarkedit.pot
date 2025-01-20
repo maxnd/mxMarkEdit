@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.2"
+msgid "1.2.3"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -416,6 +416,10 @@ msgstr ""
 #: tfmsearch.bnok.caption
 msgctxt "tfmsearch.bnok.caption"
 msgid "Close"
+msgstr ""
+
+#: tfmsearch.bnprevious.caption
+msgid "Previous"
 msgstr ""
 
 #: tfmsearch.bnreplace.caption

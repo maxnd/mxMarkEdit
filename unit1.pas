@@ -914,6 +914,12 @@ begin
     key := 0;
   end
   else
+  if ((key = Ord('G')) and (Shift = [ssMeta, ssShift])) then
+  begin
+    fmSearch.bnPreviousClick(nil);
+    key := 0;
+  end
+  else
   if ((key = Ord('F')) and (Shift = [ssMeta, ssShift])) then
   begin
     SelectInsertFootnote;
@@ -4340,10 +4346,6 @@ begin
   sgTable.ColWidths[0] := 50;
 end;
 
-// *******************************************************
-// ************ Procedures of font management ************
-// *******************************************************
-
 function TfmMain.UTF8CocoaPos(const SearchForText, SearchInText: string;
   StartPos: SizeInt = 1): PtrInt;
 var
@@ -4364,6 +4366,10 @@ begin
     Result := iPos + StartPos;
   end;
 end;
+
+// *******************************************************
+// ************ Procedures of font management ************
+// *******************************************************
 
 function TfmMain.GetPara(txt: NSTextStorage; textOffset: integer;
   isReadOnly, useDefault: boolean): NSParagraphStyle;
