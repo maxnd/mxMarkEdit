@@ -35,6 +35,7 @@
 {"hash":323544,"name":"tfmmain.mitoolstrans3.caption","sourcebytes":[72,105,103,104],"value":"High"},
 {"hash":213582195,"name":"tfmmain.mitoolsoptions.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
 {"hash":63,"name":"tfmmain.mihelp.caption","sourcebytes":[63],"value":"?"},
+{"hash":71344116,"name":"tfmmain.shortcuts.caption","sourcebytes":[83,104,111,114,116,99,117,116,115,32,108,105,115,116],"value":"Shortcuts list"},
 {"hash":134789012,"name":"tfmmain.micopyright.caption","sourcebytes":[67,111,112,121,114,105,103,104,116],"value":"Copyright"},
 {"hash":216601877,"name":"tfmmain.odopen.title","sourcebytes":[79,112,101,110,32,77,97,114,107,100,111,119,110,32,102,105,108,101],"value":"Open Markdown file"},
 {"hash":202838549,"name":"tfmmain.sdsave.title","sourcebytes":[83,97,118,101,32,77,97,114,107,100,111,119,110,32,102,105,108,101],"value":"Save Markdown file"},

@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.3, published on January 20 2025.
+Version 1.2.4, published on January 21 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -12,9 +12,11 @@ To watch an English video about the functionalities of mxMarkEdit, see https://y
 
 ---
 
-mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data. The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
+mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data, and also a file manager to search for a sentence in all the documents or spreadsheets contained in a folder.
 
-mxMarkEdit has been deeply influenced by [Org-mode](https://orgmode.org). Although it has far less functionalities and customisations than the latter, it’s a standard Mac app which benefits of the Apple spell checking and shortcuts.
+The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
+
+mxMarkEdit has been deeply influenced by [Org-mode](https://orgmode.org). Although it has far less functionalities and customisations than the latter, it’s a standard Mac app which benefits of the Apple spell checking and standard shortcuts.
 
 ## Download and install
 
@@ -184,7 +186,7 @@ Moving the mouse over the label of the file path and name, at the bottom left of
 
 ## Menu items
 
-The last four opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing.
+The last four opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is remembered as well by the app.
 
 The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or the previous ones with the button `Previous`, or to replace all occurrences with another text. Search and replacement are not case sensitive. See below for some useful shortcuts to use these functionalities. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`.
 
@@ -207,6 +209,8 @@ The `Open another window` menu item opens another instance of the software if th
 The `Transparency` menu item activate or deactivate two levels of transparency of the interface of the software, giving the impression to watch or type on a dark glass. This functionality is just for aesthetic reasons.
 
 The `Tools - Options` menu item opens the options of the app, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the line spacing value (1.0 is the default), the delay in days for the new deadlines (7 is the default), the size of the normal font and of the code font, the Pandoc options, the path of the Pandoc executable, the possible template (a file of Word, PowerPoint, Writer, etc.) to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the file are present or not. See the Pandoc manual for more information.
+
+The `?` - `Shortcuts list` menu item show a list of all the shortcuts available that are not related to menu items.
 
 The other menu items are self-explaining.
 
@@ -243,7 +247,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `E`: show the following paragraph with a green background, skipping the empty lines; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
-* `Meta` + `Opt` + `U`: capitalise the current word.
+* `Meta` + `Opt` + `U`: capitalize the current word.
 * `Meta` + `Shift` + `T`: show the tables grid.
 * `Meta` + `Shift` + `X`: if the cursor is within a heading, cut in the clipboard the same heading and all the text that is under it, included possible headings of lower levels; this text may be pasted elsewhere;
 * `Meta` + `Shift` + `F`:
@@ -264,7 +268,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Opt` + `Arrow left`: move left the current Column (field) just of the current table (not the entire column of the grid) with its content.
 * `Meta` + `Opt` + `Arrow right`: move right the current column (field) just of the current table (not the entire column of the grid) with its content.
 * `Meta` + `Ctrl` + `Arrow up`: move the current table, with all its field, before the previous one.
-* `Meta` + `Ctrl` + `Arrow down`: move the current table, with all its field, after the previous one.
+* `Meta` + `Ctrl` + `Arrow down`: move the current table, with all its field, after the following one.
 * `Meta` + `Arrow up`: in the tables names column, select the previous table title, while in the other columns move to the top of the grid.
 * `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move to the last edited row of the current column.
 * `Meta` + `Arrow left`: move to the first column of the grid.
@@ -306,6 +310,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.4
+
+- Added a list of all the available shortcuts that are not related to menu items (see The `?` - `Shortcuts list` menu item).
+- Now the width of the columns of the grid of the last four files is remembered by the app.
 
 #### Version 1.2.3
 

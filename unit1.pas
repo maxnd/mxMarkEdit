@@ -92,9 +92,11 @@ type
     miFile: TMenuItem;
     pnBottom: TPanel;
     Sep2: TMenuItem;
+    Sep7: TMenuItem;
     sgTitles: TStringGrid;
     sgTable: TStringGrid;
     shList: TShape;
+    Shortcuts: TMenuItem;
     spTable: TSplitter;
     spTitles: TSplitter;
     tmDateTime: TTimer;
@@ -157,6 +159,7 @@ type
       var HintText: string);
     procedure sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
+    procedure ShortcutsClick(Sender: TObject);
     procedure tmDateTimeTimer(Sender: TObject);
   private
     procedure CreateBackup;
@@ -213,6 +216,7 @@ var
   TopIndexDatabase1, TopIndexDatabase2, TopIndexDatabase3, TopIndexDatabase4: integer;
   ColDatabase1, ColDatabase2, ColDatabase3, ColDatabase4: integer;
   RowDatabase1, RowDatabase2, RowDatabase3, RowDatabase4: integer;
+  ColWidthDatabase1, ColWidthDatabase2, ColWidthDatabase3, ColWidthDatabase4: String;
   blFileSaved: boolean = True;
   blFileMod: boolean = False;
   blTableSaved: boolean = True;
@@ -269,7 +273,7 @@ resourcestring
 
 implementation
 
-uses copyright, unit2, unit3, unit4, unit5, unit6;
+uses copyright, unit2, unit3, unit4, unit5, unit6, unit7;
 
   {$R *.lfm}
 
@@ -491,6 +495,10 @@ begin
       RowDatabase2 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase2', 1);
       RowDatabase3 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase3', 1);
       RowDatabase4 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase4', 1);
+      ColWidthDatabase1 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase1', '');
+      ColWidthDatabase2 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase2', '');
+      ColWidthDatabase3 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase3', '');
+      ColWidthDatabase4 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase4', '');
     finally
       MyIni.Free;
     end;
@@ -542,8 +550,8 @@ begin
       begin
         stGridLoaded := '';
       end;
-      iBookmarkPos := 0;
       MoveToPos;
+      iBookmarkPos := 0;
       LabelFileNameChars;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         checkTextInDocument(nil);
@@ -575,8 +583,8 @@ begin
       begin
         stGridLoaded := '';
       end;
-      iBookmarkPos := 0;
       MoveToPos;
+      iBookmarkPos := 0;
       LabelFileNameChars;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         checkTextInDocument(nil);
@@ -614,8 +622,8 @@ begin
     begin
       stGridLoaded := '';
     end;
-    iBookmarkPos := 0;
     MoveToPos;
+    iBookmarkPos := 0;
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
@@ -834,6 +842,10 @@ begin
     MyIni.WriteInteger('mxmarkedit', 'rowdatabase2', RowDatabase2);
     MyIni.WriteInteger('mxmarkedit', 'rowdatabase3', RowDatabase3);
     MyIni.WriteInteger('mxmarkedit', 'rowdatabase4', RowDatabase4);
+    MyIni.WriteString('mxmarkedit', 'colwidthdatabase1', ColWidthDatabase1);
+    MyIni.WriteString('mxmarkedit', 'colwidthdatabase2', ColWidthDatabase2);
+    MyIni.WriteString('mxmarkedit', 'colwidthdatabase3', ColWidthDatabase3);
+    MyIni.WriteString('mxmarkedit', 'colwidthdatabase4', ColWidthDatabase4);
   finally
     MyIni.Free;
   end;
@@ -2353,6 +2365,8 @@ end;
 // *******************************************************
 
 procedure TfmMain.miFileNewClick(Sender: TObject);
+var
+  i: Integer;
 begin
   if SaveFile = False then
   begin
@@ -2365,6 +2379,10 @@ begin
   dbText.SetFocus;
   sgTable.RowCount := 1;
   sgTable.RowCount := csTableRowCount;
+  for i := 1 to sgTable.ColCount - 1 do
+  begin
+    sgTable.ColWidths[i] := 280;
+  end;
   pnGrid.Height := 1;
 end;
 
@@ -2392,8 +2410,8 @@ begin
     begin
       stGridLoaded := '';
     end;
-    iBookmarkPos := 0;
     MoveToPos;
+    iBookmarkPos := 0;
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
@@ -2448,7 +2466,7 @@ var
   myList: TStringList;
   stOldFile: String;
 begin
-  if ((UTF8Length(dbText.Lines[1]) > 8) and
+  if ((UTF8Length(dbText.Lines[1]) > 7) and
     (UTF8Copy(dbText.Lines[1], 1, 7) = 'title: ')) then
   begin
     sdSave.FileName := UTF8Copy(dbText.Lines[1], 8, 100) + '.md';
@@ -2503,8 +2521,8 @@ begin
     begin
       stGridLoaded := '';
     end;
-    iBookmarkPos := 0;
     MoveToPos;
+    iBookmarkPos := 0;
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
@@ -2547,8 +2565,8 @@ begin
     begin
       stGridLoaded := '';
     end;
-    iBookmarkPos := 0;
     MoveToPos;
+    iBookmarkPos := 0;
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
@@ -2590,8 +2608,8 @@ begin
     begin
       stGridLoaded := '';
     end;
-    iBookmarkPos := 0;
     MoveToPos;
+    iBookmarkPos := 0;
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
@@ -2633,8 +2651,8 @@ begin
     begin
       stGridLoaded := '';
     end;
-    iBookmarkPos := 0;
     MoveToPos;
+    iBookmarkPos := 0;
     LabelFileNameChars;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       checkTextInDocument(nil);
@@ -2992,6 +3010,11 @@ end;
 procedure TfmMain.miToolsOptionsClick(Sender: TObject);
 begin
   fmOptions.ShowModal;
+end;
+
+procedure TfmMain.ShortcutsClick(Sender: TObject);
+begin
+  fmShortcuts.ShowModal;
 end;
 
 procedure TfmMain.miCopyrightClick(Sender: TObject);
@@ -3888,6 +3911,7 @@ begin
     TopIndexDatabase2 := TopIndexDatabase1;
     ColDatabase2 := ColDatabase1;
     RowDatabase2 := RowDatabase1;
+    ColWidthDatabase2 := ColWidthDatabase1;
     LastDatabase1 := stFileName;
   end
   else if stFileName = LastDatabase3 then
@@ -3902,6 +3926,8 @@ begin
     ColDatabase2 := ColDatabase1;
     RowDatabase3 := RowDatabase2;
     RowDatabase2 := RowDatabase1;
+    ColWidthDatabase3 := ColWidthDatabase2;
+    ColWidthDatabase2 := ColWidthDatabase1;
     LastDatabase1 := stFileName;
   end
   else if stFileName <> LastDatabase1 then
@@ -3921,6 +3947,9 @@ begin
     RowDatabase4 := RowDatabase3;
     RowDatabase3 := RowDatabase2;
     RowDatabase2 := RowDatabase1;
+    ColWidthDatabase4 := ColWidthDatabase3;
+    ColWidthDatabase3 := ColWidthDatabase2;
+    ColWidthDatabase2 := ColWidthDatabase1;
     LastDatabase1 := stFileName;
   end;
   if LastDatabase1 <> '' then
@@ -3952,6 +3981,7 @@ end;
 function TfmMain.SaveFile: boolean;
 var
   myList: TStringList;
+  i: Integer;
 begin
   Result := True;
   if ((stFileName <> '') and (stFileName = LastDatabase1)) then
@@ -3973,6 +4003,12 @@ begin
     else
     begin
       RowDatabase1 := 1;
+    end;
+    ColWidthDatabase1 := '';
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      ColWidthDatabase1 := ColWidthDatabase1 +
+        IntToStr(sgTable.ColWidths[i]) + ',';
     end;
   end;
   if ((blFileSaved = False) or (blTableSaved = False)) then
@@ -4013,6 +4049,8 @@ end;
 procedure TfmMain.MoveToPos;
 var
   rng: NSRange;
+  i: Integer;
+  slColWidth: TStringList;
 begin
   if blDisableFormatting = False then
   begin
@@ -4025,6 +4063,25 @@ begin
     sgTitles.TopRow := TopIndexDatabase1;
     sgTable.Col := ColDatabase1;
     sgTable.Row := RowDatabase1;
+    if ColWidthDatabase1 <> '' then
+    try
+      try
+        slColWidth := TStringList.Create;
+        slColWidth.CommaText := ColWidthDatabase1;
+        for i := 1 to sgTable.ColCount - 1 do
+        begin
+          sgTable.ColWidths[i] := StrToInt(slColWidth[i - 1]);
+        end;
+      finally
+        slColWidth.Free;
+      end;
+    except
+    end
+    else
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      sgTable.ColWidths[i] := 280;
+    end;
   end
   else
   if ((stFileName = LastDatabase2) and (LastPosDatabase2 > -1) and
@@ -4034,6 +4091,25 @@ begin
     sgTitles.TopRow := TopIndexDatabase2;
     sgTable.Col := ColDatabase2;
     sgTable.Row := RowDatabase2;
+    if ColWidthDatabase2 <> '' then
+    try
+      try
+        slColWidth := TStringList.Create;
+        slColWidth.CommaText := ColWidthDatabase2;
+        for i := 1 to sgTable.ColCount - 1 do
+        begin
+          sgTable.ColWidths[i] := StrToInt(slColWidth[i - 1]);
+        end;
+      finally
+        slColWidth.Free;
+      end
+    except
+    end
+    else
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      sgTable.ColWidths[i] := 280;
+    end;
   end
   else
   if ((stFileName = LastDatabase3) and (LastPosDatabase3 > -1) and
@@ -4043,6 +4119,25 @@ begin
     sgTitles.TopRow := TopIndexDatabase3;
     sgTable.Col := ColDatabase3;
     sgTable.Row := RowDatabase3;
+    if ColWidthDatabase3 <> '' then
+    try
+      try
+        slColWidth := TStringList.Create;
+        slColWidth.CommaText := ColWidthDatabase3;
+        for i := 1 to sgTable.ColCount - 1 do
+        begin
+          sgTable.ColWidths[i] := StrToInt(slColWidth[i - 1]);
+        end;
+      finally
+        slColWidth.Free;
+      end;
+    except
+    end
+    else
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      sgTable.ColWidths[i] := 280;
+    end;
   end
   else
   if ((stFileName = LastDatabase4) and (LastPosDatabase4 > -1) and
@@ -4052,10 +4147,33 @@ begin
     sgTitles.TopRow := TopIndexDatabase4;
     sgTable.Col := ColDatabase4;
     sgTable.Row := RowDatabase4;
+    if ColWidthDatabase4 <> '' then
+    try
+      try
+        slColWidth := TStringList.Create;
+        slColWidth.CommaText := ColWidthDatabase4;
+        for i := 1 to sgTable.ColCount - 1 do
+        begin
+          sgTable.ColWidths[i] := StrToInt(slColWidth[i - 1]);
+        end;
+      finally
+        slColWidth.Free;
+      end;
+    except
+    end
+    else
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      sgTable.ColWidths[i] := 280;
+    end;
   end
   else
   begin
     dbText.SelStart := 0;
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      sgTable.ColWidths[i] := 280;
+    end;
   end;
   rng.location := dbText.SelStart;
   rng.length := 1;

@@ -1489,6 +1489,14 @@ object fmMain: TfmMain
     end
     object miHelp: TMenuItem
       Caption = '?'
+      object Shortcuts: TMenuItem
+        Caption = 'Shortcuts list'
+        ShortCut = 12360
+        OnClick = ShortcutsClick
+      end
+      object Sep7: TMenuItem
+        Caption = '-'
+      end
       object miCopyright: TMenuItem
         Caption = 'Copyright'
         OnClick = miCopyrightClick

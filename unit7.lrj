@@ -1,0 +1,6 @@
+{"version":1,"strings":[
+{"hash":110818627,"name":"tfmshortcuts.caption","sourcebytes":[83,104,111,114,116,99,117,116,115],"value":"Shortcuts"},
+{"hash":4863637,"name":"tfmshortcuts.bnok.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":258584404,"name":"tfmshortcuts.sgshortcuts.columns[0].title.caption","sourcebytes":[83,104,111,114,116,99,117,116],"value":"Shortcut"},
+{"hash":75149406,"name":"tfmshortcuts.sgshortcuts.columns[1].title.caption","sourcebytes":[65,99,116,105,111,110],"value":"Action"}
+]}

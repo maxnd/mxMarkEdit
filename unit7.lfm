@@ -1,0 +1,84 @@
+object fmShortcuts: TfmShortcuts
+  Left = 122
+  Height = 684
+  Top = 118
+  Width = 1195
+  BorderIcons = []
+  BorderStyle = bsDialog
+  Caption = 'Shortcuts'
+  ClientHeight = 684
+  ClientWidth = 1195
+  KeyPreview = True
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  Position = poDesktopCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '3.7.0.0'
+  object pnBottom: TPanel
+    Left = 0
+    Height = 37
+    Top = 647
+    Width = 1195
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 37
+    ClientWidth = 1195
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 0
+    object bnOK: TButton
+      Left = 1106
+      Height = 32
+      Top = -5
+      Width = 75
+      Anchors = [akRight, akBottom]
+      Caption = 'Close'
+      TabOrder = 0
+      TabStop = False
+      OnClick = bnOKClick
+    end
+  end
+  object sgShortcuts: TStringGrid
+    Left = 15
+    Height = 627
+    Top = 10
+    Width = 1165
+    Align = alClient
+    AutoEdit = False
+    BorderSpacing.Left = 5
+    BorderSpacing.Right = 5
+    BorderSpacing.Around = 10
+    Color = clForm
+    ColCount = 2
+    ColumnClickSorts = True
+    Columns = <    
+      item
+        Title.Caption = 'Shortcut'
+        Width = 220
+      end    
+      item
+        Title.Caption = 'Action'
+        Width = 930
+      end>
+    ExtendedSelect = False
+    FixedColor = clForm
+    FixedCols = 0
+    FixedRows = 0
+    Flat = True
+    Font.Height = 13
+    GridLineColor = clBackground
+    HeaderHotZones = []
+    MouseWheelOption = mwGrid
+    Options = [goRowSelect, goSmoothScroll]
+    ParentFont = False
+    ParentShowHint = False
+    RowCount = 2
+    ShowHint = True
+    TabOrder = 1
+    OnPrepareCanvas = sgShortcutsPrepareCanvas
+    ColWidths = (
+      220
+      930
+    )
+  end
+end
