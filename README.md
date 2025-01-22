@@ -77,6 +77,8 @@ To move a heading and all its relative content, included possible headings of lo
 
 Links are properly recognised and formatted. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``. Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, the possible Markdown markers are properly shown.
 
+The formatting should work instantly, without delaying the typing, at least up to about 250K characters (test made in a Mac Pro with M1 chip and 8 GB of RAM). To work speedily with bigger documents, disable the formatting and, if necessary, also the titles and toto list (see the `Edit` menu). In this way, even a text of few million of characters may be modified without any delay in typing.
+
 ## Titles and todo list
 
 At the left of the text, there’s a list of the titles (starting with `#`) and todo items (starting with `– [ ]`  or `– [X]`). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. While moving the cursor in the text, the corresponding title or todo item is highlighted.
