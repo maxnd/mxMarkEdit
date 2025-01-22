@@ -266,7 +266,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Opt` + `Arrow up`: move up the current row.
 * `Meta` + `Opt` + `Arrow down`: move down the current row.
 * `Meta` + `Opt` + `Shift` + `I`: add a new column in the current table, after confirmation.
-* `Meta` + `Opt` + `Shift` + `Backspace`: delete the current column in the current table, after confirmation, if it’s not the first one, containing the tables names.
+* `Meta` + `Opt` + `Shift` + `Backspace`: delete the current column in the current table, after confirmation, if it has a title and if it’s not the first one, containing the tables names.
 * `Meta` + `Opt` + `Arrow left`: move left the current Column (field) just of the current table (not the entire column of the grid) with its content.
 * `Meta` + `Opt` + `Arrow right`: move right the current column (field) just of the current table (not the entire column of the grid) with its content.
 * `Meta` + `Ctrl` + `Arrow up`: move the current table, with all its field, before the previous one.
