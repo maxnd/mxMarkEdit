@@ -49,6 +49,7 @@ begin
   Application.CreateForm(TfmShortcuts, fmShortcuts);
   Application.CreateForm(TfmWords, fmWords);
   Application.CreateForm(TfmTasks, fmTasks);
+  Application.CreateForm(TfmFiles, fmFiles);
   Application.CreateForm(TfmCopyright, fmCopyright);
   Application.Run;
 end.

@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.4"
+msgid "1.2.5"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -57,6 +57,10 @@ msgstr "Chiudi"
 #: tfmfiles.caption
 msgid "Search in files"
 msgstr "Ricerca nei file"
+
+#: tfmfiles.lbcount.caption
+msgid "0"
+msgstr ""
 
 #: tfmfiles.lbfind.caption
 msgctxt "tfmfiles.lbfind.caption"
@@ -442,6 +446,7 @@ msgid "Replace with"
 msgstr "Sostituisci con"
 
 #: tfmshortcuts.bnok.caption
+msgctxt "tfmshortcuts.bnok.caption"
 msgid "Close"
 msgstr "Chiudi"
 
@@ -691,6 +696,10 @@ msgstr "Questa funzionalità deve essere attivata all'interno di un'intestazione
 msgid "Cut in the clipboard all the text under the current heading?"
 msgstr "Tagliare in ritaglio tutto il testo sotto la corrente intestazione?"
 
+#: unit1.msg019
+msgid "The table is not delimited at the bottom; add a fictional title after its last row in the first left column."
+msgstr "La tabella non è delimitata in basso; aggiungere un titolo fittizio dopo la sua ultima riga nella prima colonna a sinistra."
+
 #: unit2.msgfnd001
 msgid "Text not found."
 msgstr "Testo non trovato."
@@ -729,8 +738,8 @@ msgid "Error in searching in the files."
 msgstr "Errore nella ricerca all'interno dei file."
 
 #: unit6.msgfl002
-msgid "More than 10000 files have been found! Try to refine the search."
-msgstr "Sono stati reperiti più di 10000 file! Provare a rifinire la ricerca."
+msgid "The search has stopped to 2,000 occurrences; try to refine it."
+msgstr "La ricerca si è interrotta a 2.000 ricorrenze; provare a rifinirla."
 
 #: unit7.srcut001
 msgid " In the main form"
@@ -937,12 +946,8 @@ msgid "Move to the last right edited column of the current row."
 msgstr "Sposta il cursore all'ultima colonna modificata a destra della riga corrente."
 
 #: unit7.srcut052
-msgid "Sort alphabetically - and not numerically - the content of the current column in the current table, after confirmation;"
-msgstr "Ordina alfabeticamente, e non numericamente, il contenuto della colonna corrente nella tabella corrente, dopo la conferma;"
-
-#: unit7.srcut052b
-msgid "if the current table is not followed by another table, mark its bottom row creating a fictional table after it, even writing just its title."
-msgstr "se la tabella corrente non è seguita da un'altra tabella, contrassegnare la sua riga inferiore creando una tabella fittizia dopo di essa, anche il solo titolo."
+msgid "Sort the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
+msgstr "Ordina il contenuto della colonna corrente nella tabella corrente, dopo la conferma, fermandosi prima della formula se presente in qualsiasi colonna."
 
 #: unit7.srcut053
 msgid "Move the cursor in the search field, if it’s visible."
@@ -973,6 +978,7 @@ msgid "Toggle the state of the selected todo item from to be done to done, and v
 msgstr "Alterna lo stato dell'elemento attività selezionato da incompleto a fatto e viceversa."
 
 #: unit7.srcut060
+msgctxt "unit7.srcut060"
 msgid "Close the form."
 msgstr "Chiudi la maschera."
 
@@ -985,6 +991,7 @@ msgid "Move the cursor in the Find field."
 msgstr "Sposta il cursore nel campo Trova."
 
 #: unit7.srcut063
+msgctxt "unit7.srcut063"
 msgid "Close the form."
 msgstr "Chiudi la maschera."
 

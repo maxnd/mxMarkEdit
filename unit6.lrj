@@ -9,5 +9,6 @@
 {"hash":81144514,"name":"tfmfiles.lbfolder.caption","sourcebytes":[70,111,108,100,101,114],"value":"Folder"},
 {"hash":114407074,"name":"tfmfiles.bnfolder.caption","sourcebytes":[83,101,116,32,102,111,108,100,101,114],"value":"Set folder"},
 {"hash":315460,"name":"tfmfiles.lbfind.caption","sourcebytes":[70,105,110,100],"value":"Find"},
+{"hash":48,"name":"tfmfiles.lbcount.caption","sourcebytes":[48],"value":"0"},
 {"hash":76551474,"name":"tfmfiles.sddiropen.title","sourcebytes":[83,101,108,101,99,116,32,97,32,102,111,108,100,101,114],"value":"Select a folder"}
 ]}

@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.4"
+msgid "1.2.5"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -56,6 +56,10 @@ msgstr ""
 
 #: tfmfiles.caption
 msgid "Search in files"
+msgstr ""
+
+#: tfmfiles.lbcount.caption
+msgid "0"
 msgstr ""
 
 #: tfmfiles.lbfind.caption
@@ -693,6 +697,10 @@ msgstr ""
 msgid "Cut in the clipboard all the text under the current heading?"
 msgstr ""
 
+#: unit1.msg019
+msgid "The table is not delimited at the bottom; add a fictional title after its last row in the first left column."
+msgstr ""
+
 #: unit2.msgfnd001
 msgid "Text not found."
 msgstr ""
@@ -731,7 +739,7 @@ msgid "Error in searching in the files."
 msgstr ""
 
 #: unit6.msgfl002
-msgid "More than 10000 files have been found! Try to refine the search."
+msgid "The search has stopped to 2,000 occurrences; try to refine it."
 msgstr ""
 
 #: unit7.srcut001
@@ -939,11 +947,7 @@ msgid "Move to the last right edited column of the current row."
 msgstr ""
 
 #: unit7.srcut052
-msgid "Sort alphabetically - and not numerically - the content of the current column in the current table, after confirmation;"
-msgstr ""
-
-#: unit7.srcut052b
-msgid "if the current table is not followed by another table, mark its bottom row creating a fictional table after it, even writing just its title."
+msgid "Sort the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
 msgstr ""
 
 #: unit7.srcut053

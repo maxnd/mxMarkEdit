@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.4, published on January 21 2025.
+Version 1.2.5, published on January 22 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -111,6 +111,8 @@ The formulas are the followings:
 
 The formulas are shown in the color set by the user for the code (see below the option of the app for more information).
 
+It's possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S`. Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its title.
+
 To delete the content of the grid so that it’s not loaded any more, delete the related file with the `.csv` extension when it’s not loaded.
 
 See below for some useful shortcuts available in this grid.
@@ -180,7 +182,7 @@ It's possible to switch the search content with the replace one in the search an
 
 ## Files management
 
-The `File - Search in files...` menu item open a form to search a word or a sentence within all the `.md` (document) and `.csv` (tables) files contained in a folder specified by the user, including its possible subfolders. Specify the folder to search in with the button `Set folder`, whose value will be remembered by the app, and then type the text to search for in the field `Find`. Then press `Return` or click on the button `Find`. In the grid above the buttons it will be shown a row for each occurrence of the text to be found both in the documents and in the tables files, along with the context in which it appears (some words before and after it). The columns of the grid - path, file name and context - can be sorted with a click on their headers. Pressing `Return` on a row of the grid, or double clicking on it, make the app open the corresponding file, and move the cursor to the position of the text to be found, or, if the file is a `.csv` one, to the cell that contains it.
+The `File - Search in files...` menu item open a form to search a word or a sentence within all the `.md` (document) and `.csv` (tables) files contained in a folder specified by the user, including its possible subfolders. Specify the folder to search in with the button `Set folder`, whose value will be remembered by the app, and then type the text to search for in the field `Find`. Then press `Return` or click on the button `Find`. In the grid above the buttons it will be shown a row for each occurrence of the text to be found both in the documents and in the tables files, along with the context in which it appears (some words before and after it). The columns of the grid - path, file name and context - can be sorted with a click on their headers. Pressing `Return` on a row of the grid, or double clicking on it, make the app open the corresponding file, and move the cursor to the position of the text to be found, or, if the file is a `.csv` one, to the cell that contains it. The search stops to 2,000 recurrences, asking the user to refine it.
 
 Moving the mouse over the label of the file path and name, at the bottom left of the main interface of the app, a hint appears with the complete content, even if in the label it's truncated due to its length.
 
@@ -273,7 +275,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move to the last edited row of the current column.
 * `Meta` + `Arrow left`: move to the first column of the grid.
 * `Meta` + `Arrow right`: move to the last right edited column of the current row.
-* `Meta` + `Ctrl` + `S`: sort alphabetically - and not numerically - the content of the current column (field) in the current table, after confirmation; if the current table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its title.
+* `Meta` + `Ctrl` + `S`: sort the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
 * `Meta` + `Ctrl` + `F`: move the cursor in the search field, if it’s visible.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
 * `Meta` + `V`: paste the content of the clipboard in the current (and following) cells.
@@ -310,6 +312,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.5
+
+- The sorting functionality in the tables now sorts the numbers as such and not as letters, and the sorting stops before a possible formula in all the columns. If numeric and textual contents are both present, the numbers are shown first.
+- Bugs fixing: the file search form was not working as expecting.
 
 #### Version 1.2.4
 

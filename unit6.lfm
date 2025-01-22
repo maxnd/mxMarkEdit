@@ -129,7 +129,7 @@ object fmFiles: TfmFiles
       OnClick = bnFolderClick
     end
     object lbFind: TLabel
-      Left = 523
+      Left = 497
       Height = 16
       Top = 5
       Width = 26
@@ -137,12 +137,20 @@ object fmFiles: TfmFiles
       Caption = 'Find'
     end
     object edFind: TEdit
-      Left = 564
+      Left = 538
       Height = 22
       Top = 3
-      Width = 240
+      Width = 188
       TabOrder = 2
       OnKeyUp = edFindKeyUp
+    end
+    object lbCount: TLabel
+      Left = 737
+      Height = 16
+      Top = 5
+      Width = 8
+      Alignment = taRightJustify
+      Caption = '0'
     end
   end
   object sdDirOpen: TSelectDirectoryDialog

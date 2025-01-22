@@ -40,6 +40,7 @@ type
     bnFolder: TButton;
     edFolder: TEdit;
     edFind: TEdit;
+    lbCount: TLabel;
     lbFolder: TLabel;
     lbFind: TLabel;
     pnTasks: TPanel;
@@ -71,7 +72,7 @@ var
 resourcestring
 
   msgfl001 = 'Error in searching in the files.';
-  msgfl002 = 'More than 10000 files have been found! Try to refine the search.';
+  msgfl002 = 'The search has stopped to 2,000 occurrences; try to refine it.';
 
 implementation
 
@@ -205,17 +206,13 @@ var
   rng: NSRange;
 begin
   sgFiles.RowCount := 1;
+  lbCount.Caption := '0';
   if ((edFolder.Text <> '') and (edFind.Text <> '')) then
   begin
     //No need to create slMarkdownFiles; the function does that
     try
       slContent := TStringList.Create;
       slMarkdownFiles := FindAllFiles(edFolder.Text, '*.md;*.csv', True);
-      if slMarkdownFiles.Count > 10000 then
-      begin
-        MessageDlg(msgfl002, mtWarning, [mbOK], 0);
-      end
-      else
       if slMarkdownFiles.Count > 0 then
       try
         Screen.Cursor := crHourGlass;
@@ -262,6 +259,13 @@ begin
               stRow := StringReplace(stRow, #9, ' ', [rfReplaceAll]);
               sgFiles.Cells[3, sgFiles.RowCount - 1] := stRow;
               iStart := iPos + 1;
+              lbCount.Caption := FormatFloat('#,0', sgFiles.RowCount - 1);
+              Application.ProcessMessages;
+              if sgFiles.RowCount > 2000 then
+              begin
+                MessageDlg(msgfl002, mtWarning, [mbOK], 0);
+                Exit;
+              end;
             end;
           end;
           Application.ProcessMessages;

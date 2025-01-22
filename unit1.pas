@@ -251,6 +251,8 @@ resourcestring
   msg016 = 'Insert a new column in the current table?';
   msg017 = 'This functionality must be called within a heading and not at the end of the text.';
   msg018 = 'Cut in the clipboard all the text under the current heading?';
+  msg019 = 'The table is not delimited at the bottom; add a fictional title ' +
+    'after its last row in the first left column.';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -1721,6 +1723,7 @@ end;
 procedure TfmMain.sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
   i, x, iTop, iBottom, iRight, iNextTable: Integer;
+  iNum: Double;
   stField: String;
   grRect: TGridRect;
 begin
@@ -1927,11 +1930,50 @@ begin
         begin
           iBottom := i - 1;
           Break;
+        end
+        else
+        begin
+          for x := 2 to sgTable.ColCount - 1 do
+          begin
+            if ((sgTable.Cells[x, i] = '------') or
+              (sgTable.Cells[x, i] = '---sum') or
+              (sgTable.Cells[x, i] = '---avg') or
+              (sgTable.Cells[x, i] = '---min') or
+              (sgTable.Cells[x, i] = '---max') or
+              (sgTable.Cells[x, i] = '---count')) then
+              begin
+                iBottom := i - 1;
+                Break;
+              end;
+          end;
         end;
+        if iBottom > -1 then
+        begin
+          Break;
+        end;
+      end;
+      if iBottom = -1 then
+      begin
+        MessageDlg(msg019, mtWarning, [mbOK], 0);
+        Exit;
       end;
       if ((iTop > -1) and (iBottom > -1)) then
       begin
+        for i := iTop to iBottom do
+        begin
+          if TryStrToFloat(sgTable.Cells[sgTable.Col, i], iNum) = True then
+          begin
+            sgTable.Cells[sgTable.Col, i] := FormatFloat('000000000000.####', iNum);
+          end;
+        end;
         sgTable.SortColRow(True, sgTable.Col, iTop, iBottom);
+        for i := iTop to iBottom do
+        begin
+          if TryStrToFloat(sgTable.Cells[sgTable.Col, i], iNum) = True then
+          begin
+            sgTable.Cells[sgTable.Col, i] := FormatFloat('0.####', iNum);
+          end;
+        end;
       end;
     end;
     blTableMod := True;
