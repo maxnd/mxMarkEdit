@@ -345,7 +345,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 #### Version 1.2.7
 
-- Added the shortcut * `Meta` + `Ctrl` + `Shift` + `S` to sort descending the content of the current column in the current table.
+- Added the shortcut `Meta` + `Ctrl` + `Shift` + `S` to sort descending the content of the current column in the current table.
 
 #### Version 1.2.6
 
