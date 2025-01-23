@@ -18,6 +18,11 @@ The software has been written in [Lazarus](https://www.lazarus-ide.org) and is r
 
 mxMarkEdit has been deeply influenced by [Org-mode](https://orgmode.org). Although it has far less functionalities and customisations than the latter, it’s a standard Mac app which benefits of the Apple spell checking and standard shortcuts.
 
+### Privacy
+
+mxMarkEdit does not collect any user data and does not access to his or her pictures, files or any other personal data. The data created with the app are stored only on the computer of the user and possibly on his or her cloud.
+
+
 ## Download and install
 
 In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1 or following) ready to be copied in the `Application` directory and run. 
