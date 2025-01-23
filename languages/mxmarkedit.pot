@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.5"
+msgid "1.2.6"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -335,6 +335,20 @@ msgstr ""
 msgid "word-template.docx"
 msgstr ""
 
+#: tfmoptions.edstmaxsize.text
+msgid "250000"
+msgstr ""
+
+#: tfmoptions.edstmaxsizeless.caption
+msgctxt "tfmoptions.edstmaxsizeless.caption"
+msgid "-"
+msgstr ""
+
+#: tfmoptions.edstmaxsizeplus.caption
+msgctxt "tfmoptions.edstmaxsizeplus.caption"
+msgid "+"
+msgstr ""
+
 #: tfmoptions.edstsize.text
 msgid "12"
 msgstr ""
@@ -389,6 +403,10 @@ msgstr ""
 msgid "Template"
 msgstr ""
 
+#: tfmoptions.lbstmaxsize.caption
+msgid "No formatting beyond length"
+msgstr ""
+
 #: tfmoptions.lbstsize.caption
 msgid "Size of normal font"
 msgstr ""
@@ -398,7 +416,7 @@ msgid "Size of code font"
 msgstr ""
 
 #: tfmoptions.lnstdelay.caption
-msgid "Delay in days for the deadlines"
+msgid "Delay in days for deadlines"
 msgstr ""
 
 #: tfmoptions.lnstfonts.caption

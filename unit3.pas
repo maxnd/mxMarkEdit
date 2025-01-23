@@ -53,8 +53,11 @@ type
     edPanPath: TEdit;
     cbStFonts: TComboBox;
     cdColorDialog: TColorDialog;
+    edStMaxSize: TEdit;
     edStSize: TEdit;
     edStSizeLess: TButton;
+    edStMaxSizeLess: TButton;
+    edStMaxSizePlus: TButton;
     edStSizePlus: TButton;
     edStSizeMono: TEdit;
     edStSizeMonoLess: TButton;
@@ -65,6 +68,7 @@ type
     lbPanTemplate: TLabel;
     lbPanOutput: TLabel;
     lbPanPath: TLabel;
+    lbStMaxSize: TLabel;
     lbStSize: TLabel;
     lbStSizeMono: TLabel;
     lnStLineSpace: TLabel;
@@ -86,6 +90,8 @@ type
     procedure cbStFontsMonoChange(Sender: TObject);
     procedure edPanPathChange(Sender: TObject);
     procedure edPanTemplateChange(Sender: TObject);
+    procedure edStMaxSizeLessClick(Sender: TObject);
+    procedure edStMaxSizePlusClick(Sender: TObject);
     procedure edStSizeLessClick(Sender: TObject);
     procedure edStSizeMonoLessClick(Sender: TObject);
     procedure edStSizeMonoPlusClick(Sender: TObject);
@@ -160,6 +166,7 @@ begin
   cbStFontsMono.ItemIndex := cbStFontsMono.Items.IndexOf(stFontMono);
   edStSize.Text := IntToStr(fmMain.dbText.Font.Size);
   edStSizeMono.text := IntToStr(iFontMonoSize);
+  edStMaxSize.Text := IntToStr(iMaxSize);
   stLineSpacing := FormatFloat('0.0', iLineSpacing);
   stLineSpacing := stLineSpacing[1] + '.' + stLineSpacing[3];
   cbLineSpacing.ItemIndex := cbLineSpacing.Items.
@@ -184,6 +191,11 @@ begin
   begin
     lbExistModel.Font.Color := clRed;
   end;
+end;
+
+procedure TfmOptions.FormActivate(Sender: TObject);
+begin
+  bnClose.SetFocus;
 end;
 
 procedure TfmOptions.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -270,9 +282,22 @@ begin
   end;
 end;
 
-procedure TfmOptions.FormActivate(Sender: TObject);
+procedure TfmOptions.edStMaxSizePlusClick(Sender: TObject);
 begin
-  bnClose.SetFocus;
+  if iMaxSize < 4000000 then
+  begin
+    edStMaxSize.Text := IntToStr(StrToInt(edStMaxSize.Text) + 50000);
+    iMaxSize := StrToInt(edStMaxSize.Text);
+  end;
+end;
+
+procedure TfmOptions.edStMaxSizeLessClick(Sender: TObject);
+begin
+  if iMaxSize > 100000 then
+  begin
+    edStMaxSize.Text := IntToStr(StrToInt(edStMaxSize.Text) - 50000);
+    iMaxSize := StrToInt(edStMaxSize.Text);
+  end;
 end;
 
 procedure TfmOptions.bnStFontLinkColorClick(Sender: TObject);

@@ -164,6 +164,7 @@ type
   private
     procedure CreateBackup;
     procedure CreateYAML;
+    procedure DeactForm(stFileName: String);
     procedure FindInGrid;
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
     function GetHeaderLevel(stHeader: String): Integer;
@@ -221,9 +222,11 @@ var
   blFileMod: boolean = False;
   blTableSaved: boolean = True;
   blTableMod: boolean = False;
+  blHideTitleTodo: boolean = False;
+  blDisableFormatting: boolean = False;
+  iMaxSize: Integer = 250000;
   stTableLoaded: String = ' && .csv ';
   csTableRowCount: Integer = 10000;
-  blDisableFormatting: boolean = False;
   blTextOnChange: boolean = False;
   stGridLoaded: String = '';
   pandocPath: string = '/usr/local/bin/';
@@ -501,9 +504,19 @@ begin
       ColWidthDatabase2 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase2', '');
       ColWidthDatabase3 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase3', '');
       ColWidthDatabase4 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase4', '');
+      blHideTitleTodo := MyIni.ReadBool('mxmarkedit', 'blhidetodo', False);
+      iMaxSize := MyIni.ReadInteger('mxmarkedit', 'maxsize', 250000);
     finally
       MyIni.Free;
     end;
+  end;
+  if blDisableFormatting = True then
+  begin
+    miEditDisableFormClick(nil);
+  end;
+  if blHideTitleTodo = True then
+  begin
+    miEditHideListClick(nil);
   end;
   sgTable.Font.Color := dbText.Font.Color;
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -540,6 +553,7 @@ begin
     if FileExistsUTF8(ParamStrUTF8(1)) = True then
     try
       stFileName := ParamStrUTF8(1);
+      DeactForm(stFileName);
       dbText.Lines.LoadFromFile(stFileName);
       if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
       begin
@@ -573,6 +587,7 @@ begin
     if FileExistsUTF8(stFileName) then
     try
       odOpen.FileName := stFileName;
+      DeactForm(stFileName);
       dbText.Lines.LoadFromFile(stFileName);
       if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
       begin
@@ -612,6 +627,7 @@ begin
   if FileExistsUTF8(FileNames[0]) = True then
   try
     stFileName := FileNames[0];
+    DeactForm(stFileName);
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
@@ -848,6 +864,8 @@ begin
     MyIni.WriteString('mxmarkedit', 'colwidthdatabase2', ColWidthDatabase2);
     MyIni.WriteString('mxmarkedit', 'colwidthdatabase3', ColWidthDatabase3);
     MyIni.WriteString('mxmarkedit', 'colwidthdatabase4', ColWidthDatabase4);
+    MyIni.WriteBool('mxmarkedit', 'blhidetodo', blHideTitleTodo);
+    MyIni.WriteInteger('mxmarkedit', 'maxsize', iMaxSize);
   finally
     MyIni.Free;
   end;
@@ -2440,6 +2458,7 @@ begin
     sgTable.RowCount := 1;
     sgTable.RowCount := csTableRowCount;
     stFileName := odOpen.FileName;
+    DeactForm(stFileName);
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
@@ -2551,6 +2570,7 @@ begin
     sgTable.RowCount := 1;
     sgTable.RowCount := csTableRowCount;
     stFileName := LastDatabase1;
+    DeactForm(stFileName);
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
@@ -2595,6 +2615,7 @@ begin
     sgTable.RowCount := 1;
     sgTable.RowCount := csTableRowCount;
     stFileName := LastDatabase2;
+    DeactForm(stFileName);
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
@@ -2638,6 +2659,7 @@ begin
     sgTable.RowCount := 1;
     sgTable.RowCount := csTableRowCount;
     stFileName := LastDatabase3;
+    DeactForm(stFileName);
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
@@ -2681,6 +2703,7 @@ begin
     sgTable.RowCount := 1;
     sgTable.RowCount := csTableRowCount;
     stFileName := LastDatabase4;
+    DeactForm(stFileName);
     dbText.Lines.LoadFromFile(stFileName);
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
@@ -2862,6 +2885,7 @@ begin
     pnTitTodo.Visible := False;
     spTitles.Visible := False;
     miEditHideList.Checked := True;
+    blHideTitleTodo := True;
     FormatListTitleTodo;
   end
   else
@@ -2869,6 +2893,7 @@ begin
     pnTitTodo.Visible := True;
     spTitles.Visible := True;
     miEditHideList.Checked := False;
+    blHideTitleTodo := False;
     FormatListTitleTodo;
     ShowCurrentTitleTodo;
   end;
@@ -2907,7 +2932,6 @@ begin
     blDisableFormatting := False;
     FormatListTitleTodo;
   end;
-  Application.ProcessMessages;
   dbText.SelStart := iPos;
 end;
 
@@ -4452,6 +4476,24 @@ begin
   dbText.SelStart := 11;
   blTextOnChange := False;
   FormatListTitleTodo;
+end;
+
+procedure TfmMain.DeactForm(stFileName: String);
+begin
+  if FileSizeUtf8(stFileName) > iMaxSize then
+  begin
+    if miEditDisableForm.Checked = False then
+    begin
+      miEditDisableFormClick(nil);
+    end;
+  end
+  else
+  begin
+    if miEditDisableForm.Checked = True then
+    begin
+      miEditDisableFormClick(nil);
+    end;
+  end;
 end;
 
 procedure TfmMain.CreateBackup;

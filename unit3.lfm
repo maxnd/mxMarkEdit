@@ -1073,7 +1073,7 @@ object fmOptions: TfmOptions
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
-    TabOrder = 22
+    TabOrder = 25
     TabStop = False
     OnClick = bnCloseClick
   end
@@ -1109,7 +1109,7 @@ object fmOptions: TfmOptions
     Top = 409
     Width = 289
     ParentColor = True
-    TabOrder = 18
+    TabOrder = 21
     Text = '+footnotes+inline_notes'
   end
   object edPanOutput: TEdit
@@ -1118,7 +1118,7 @@ object fmOptions: TfmOptions
     Top = 469
     Width = 168
     ParentColor = True
-    TabOrder = 21
+    TabOrder = 24
     Text = '.docx'
   end
   object lbPanOutput: TLabel
@@ -1143,7 +1143,7 @@ object fmOptions: TfmOptions
     Top = 469
     Width = 267
     ParentColor = True
-    TabOrder = 20
+    TabOrder = 23
     Text = 'word-template.docx'
     OnChange = edPanTemplateChange
   end
@@ -1161,7 +1161,7 @@ object fmOptions: TfmOptions
     Top = 409
     Width = 149
     ParentColor = True
-    TabOrder = 19
+    TabOrder = 22
     Text = '/usr/local/bin/'
     OnChange = edPanPathChange
   end
@@ -1256,10 +1256,10 @@ object fmOptions: TfmOptions
     ParentFont = False
   end
   object cbDelay: TComboBox
-    Left = 296
+    Left = 161
     Height = 20
     Top = 347
-    Width = 120
+    Width = 171
     ItemHeight = 26
     ItemIndex = 7
     Items.Strings = (
@@ -1282,16 +1282,16 @@ object fmOptions: TfmOptions
       '180'
     )
     Style = csDropDownList
-    TabOrder = 17
+    TabOrder = 20
     Text = '7'
     OnChange = cbDelayChange
   end
   object lnStDelay: TLabel
-    Left = 298
+    Left = 161
     Height = 16
     Top = 323
-    Width = 185
-    Caption = 'Delay in days for the deadlines'
+    Width = 162
+    Caption = 'Delay in days for deadlines'
     ParentColor = False
   end
   object lnStLineSpace: TLabel
@@ -1306,7 +1306,7 @@ object fmOptions: TfmOptions
     Left = 45
     Height = 20
     Top = 347
-    Width = 120
+    Width = 102
     ItemHeight = 26
     ItemIndex = 2
     Items.Strings = (
@@ -1325,7 +1325,7 @@ object fmOptions: TfmOptions
       '2.0'
     )
     Style = csDropDownList
-    TabOrder = 16
+    TabOrder = 19
     Text = '1.0'
     OnChange = cbLineSpacingChange
   end
@@ -1406,6 +1406,45 @@ object fmOptions: TfmOptions
     TabOrder = 15
     TabStop = False
     OnClick = edStSizeMonoLessClick
+  end
+  object lbStMaxSize: TLabel
+    Left = 344
+    Height = 16
+    Top = 323
+    Width = 174
+    Caption = 'No formatting beyond length'
+    ParentColor = False
+  end
+  object edStMaxSize: TEdit
+    Left = 344
+    Height = 22
+    Top = 345
+    Width = 102
+    NumbersOnly = True
+    ParentColor = True
+    ReadOnly = True
+    TabOrder = 16
+    Text = '250000'
+  end
+  object edStMaxSizePlus: TButton
+    Left = 460
+    Height = 21
+    Top = 346
+    Width = 24
+    Caption = '+'
+    TabOrder = 17
+    TabStop = False
+    OnClick = edStMaxSizePlusClick
+  end
+  object edStMaxSizeLess: TButton
+    Left = 488
+    Height = 21
+    Top = 346
+    Width = 24
+    Caption = '-'
+    TabOrder = 18
+    TabStop = False
+    OnClick = edStMaxSizeLessClick
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'

@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.5, published on January 22 2025.
+Version 1.2.6, published on January 23 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -77,7 +77,9 @@ To move a heading and all its relative content, included possible headings of lo
 
 Links are properly recognised and formatted. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``. Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, the possible Markdown markers are properly shown.
 
-The formatting should work instantly, without delaying the typing, at least up to about 250K characters (test made in a Mac Pro with M1 chip and 8 GB of RAM). To work speedily with bigger documents, disable the formatting and, if necessary, also the titles and toto list (see the `Edit` menu). In this way, even a text of few million of characters may be modified without any delay in typing.
+The formatting should work instantly, without delaying the typing, at least up to about 250,000 characters (test made in a Mac Pro with M1 chip and 8 GB of RAM). To work speedily with bigger documents, disable the formatting and, if necessary, also the titles and toto list (see below the `Edit` menu notes). In this way, even a text of few million of characters may be modified without any delay in typing.
+
+By default, the app deactivate text formatting for documents bigger than 250,000 characters. This value can be modified in the options of the app (see below) to fit the performance of one's own Mac. The size of the document is calculated by the size of the file, not counting the characters, so it could be a bit inaccurate.
 
 ## Titles and todo list
 
@@ -204,7 +206,7 @@ The `Show words recurrence form` menu item opens a form with the list of all the
 
 The `Edit - Show current title or toto` menu item shows at the top of the left list the title or todo item the cursor is under to.
 
-The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, color and size and the line spacing, greatly improving the performance of the app with very large documents.
+The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, color and size and the line spacing, greatly improving the performance of the app with very large documents. In the options, it's possible to set the number of characters of a document beyond which it's loaded without formatting, just activating automatically this functionality.
 
 The `Convert with Pandoc` menu item converts the current document and its possible tables into another format specified in the options of the software. The converted file is created in the same folder of the current document.
 
@@ -212,7 +214,27 @@ The `Open another window` menu item opens another instance of the software if th
 
 The `Transparency` menu item activate or deactivate two levels of transparency of the interface of the software, giving the impression to watch or type on a dark glass. This functionality is just for aesthetic reasons.
 
-The `Tools - Options` menu item opens the options of the app, where are specified the name and the color of the font of the text, the name and the color of the font for code, the color of the links, of the footnotes, of the todo items, of the first level, second level and other level titles, the line spacing value (1.0 is the default), the delay in days for the new deadlines (7 is the default), the size of the normal font and of the code font, the Pandoc options, the path of the Pandoc executable, the possible template (a file of Word, PowerPoint, Writer, etc.) to use as a reference and the format of the file the note should be converted to (`.docx`, `.odt`, etc.). A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the file are present or not. See the Pandoc manual for more information.
+The `Tools - Options` menu item opens the options of the app, where are specified 
+
+- the name and the color of the font of the text;
+- the name and the color of the font for code;
+- the color of the links;
+- the color of the footnotes;
+- the color of the todo items;
+- the color of the first level titles; 
+- the color of the second level titles;
+- the color of the other levels titles;
+- the size of the normal font;
+- the size of the code font;
+- the line spacing value (1.0 is the default);
+- the delay in days for the new deadlines (7 is the default);
+- the number of characters of a document beyond which it's loaded without formatting; it's calculated by the size of the file, not counting the characters, so it could be a bit inaccurate;
+- the Pandoc options;
+- the path of the Pandoc executable;
+- the possible template (a file of Word, PowerPoint, Writer, etc.) to use as a reference;
+- the format of the file the note should be converted to (`.docx`, `.odt`, etc.). 
+
+A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the file are present or not. See the Pandoc manual for more information.
 
 The `?` - `Shortcuts list` menu item show a list of all the shortcuts available that are not related to menu items.
 
@@ -314,6 +336,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.6
+
+- In the options, has been added the specification of the number of characters of a document beyond which it's loaded without formatting. It's calculated by the size of the file, not counting the characters, so it could be a bit inaccurate. Formatting can be activated afterward.
+- The possible hiding of the title and todo list is now restored when the app is run again.
 
 #### Version 1.2.5
 
