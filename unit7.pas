@@ -120,7 +120,9 @@ resourcestring
     'the  other columns move to the last edited row of the current column.';
   srcut050 = 'Move to the first column of the grid.';
   srcut051 = 'Move to the last right edited column of the current row.';
-  srcut052 = 'Sort the content of the current column in the current table, ' +
+  srcut052 = 'Sort ascending the content of the current column in the current table, ' +
+    'after confirmation, stopping before the formula if it''s present in any column.';
+  srcut052b = 'Sort descending the content of the current column in the current table, ' +
     'after confirmation, stopping before the formula if it''s present in any column.';
   srcut053 = 'Move the cursor in the search field, if it’s visible.';
   srcut054 = 'Copy the content of the selected cells in the clipboard.';
@@ -340,6 +342,9 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Ctrl + S';
   sgShortcuts.Cells[1, i] := srcut052;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + Shift + S';
+  sgShortcuts.Cells[1, i] := srcut052b;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Ctrl + F';
   sgShortcuts.Cells[1, i] := srcut053;

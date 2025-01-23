@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.6, published on January 23 2025.
+Version 1.2.7, published on January 23 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -120,7 +120,7 @@ The formulas are the followings:
 
 The formulas are shown in the color set by the user for the code (see below the option of the app for more information).
 
-It's possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S`. Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its title.
+It's possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its title.
 
 To delete the content of the grid so that it’s not loaded any more, delete the related file with the `.csv` extension when it’s not loaded.
 
@@ -304,7 +304,8 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move to the last edited row of the current column.
 * `Meta` + `Arrow left`: move to the first column of the grid.
 * `Meta` + `Arrow right`: move to the last right edited column of the current row.
-* `Meta` + `Ctrl` + `S`: sort the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
+* `Meta` + `Ctrl` + `S`: sort ascending the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
+* `Meta` + `Ctrl` + `Shift` + `S`: sort descending the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
 * `Meta` + `Ctrl` + `F`: move the cursor in the search field, if it’s visible.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
 * `Meta` + `V`: paste the content of the clipboard in the current (and following) cells.
@@ -341,6 +342,10 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.7
+
+- Added the shortcut * `Meta` + `Ctrl` + `Shift` + `S` to sort descending the content of the current column in the current table.
 
 #### Version 1.2.6
 

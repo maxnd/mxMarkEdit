@@ -1928,7 +1928,8 @@ begin
     key := 0;
   end
   else
-  if ((key = Ord('S')) and (Shift = [ssMeta, ssCtrl])) then
+  if ((key = Ord('S')) and ((Shift = [ssMeta, ssCtrl]) or
+    (Shift = [ssMeta, ssCtrl, ssShift]))) then
   begin
     if MessageDlg(msg014, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
     begin
@@ -1983,6 +1984,14 @@ begin
           begin
             sgTable.Cells[sgTable.Col, i] := FormatFloat('000000000000.####', iNum);
           end;
+        end;
+        if Shift = [ssMeta, ssCtrl] then
+        begin
+          sgTable.SortOrder := soAscending;
+        end
+        else
+        begin
+          sgTable.SortOrder := soDescending;
         end;
         sgTable.SortColRow(True, sgTable.Col, iTop, iBottom);
         for i := iTop to iBottom do

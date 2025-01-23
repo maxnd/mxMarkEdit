@@ -761,7 +761,7 @@ msgstr "La ricerca si è interrotta a 2.000 ricorrenze; provare a rifinirla."
 
 #: unit7.srcut001
 msgid " In the main form"
-msgstr " Nella maschera principale"
+msgstr " Maschera principale"
 
 #: unit7.srcut002
 msgid "Undo the last action in the document (not in the grid)."
@@ -964,8 +964,12 @@ msgid "Move to the last right edited column of the current row."
 msgstr "Sposta il cursore all'ultima colonna modificata a destra della riga corrente."
 
 #: unit7.srcut052
-msgid "Sort the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
-msgstr "Ordina il contenuto della colonna corrente nella tabella corrente, dopo la conferma, fermandosi prima della formula se presente in qualsiasi colonna."
+msgid "Sort ascending the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
+msgstr "Ordina in modo ascendente il contenuto della colonna corrente nella tabella corrente, fermandosi prima della formula se presente in qualsiasi colonna."
+
+#: unit7.srcut052b
+msgid "Sort descending the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
+msgstr "Ordina in modo discendente il contenuto della colonna corrente nella tabella corrente, fermandosi prima della formula se presente in qualsiasi colonna."
 
 #: unit7.srcut053
 msgid "Move the cursor in the search field, if it’s visible."
@@ -985,7 +989,7 @@ msgstr "Annulla le ultime modifiche mentre l'editor di una cella nella griglia �
 
 #: unit7.srcut057
 msgid " In the todo form"
-msgstr "Nel modulo delle cose da fare"
+msgstr " Maschera delle cose da fare"
 
 #: unit7.srcut058
 msgid "Hide the todo items already done."
@@ -1002,7 +1006,7 @@ msgstr "Chiudi la maschera."
 
 #: unit7.srcut061
 msgid " In the search files form"
-msgstr " Nella maschera di ricerca file"
+msgstr " Maschera di ricerca file"
 
 #: unit7.srcut062
 msgid "Move the cursor in the Find field."
@@ -1015,7 +1019,7 @@ msgstr "Chiudi la maschera."
 
 #: unit7.srcut064
 msgid " In the words recurrence form"
-msgstr " Nella maschera di ricorrenza delle parole"
+msgstr " Maschera di ricorrenza parole"
 
 #: unit7.srcut065
 msgctxt "unit7.srcut065"

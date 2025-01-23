@@ -965,7 +965,11 @@ msgid "Move to the last right edited column of the current row."
 msgstr ""
 
 #: unit7.srcut052
-msgid "Sort the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
+msgid "Sort ascending the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
+msgstr ""
+
+#: unit7.srcut052b
+msgid "Sort descending the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
 msgstr ""
 
 #: unit7.srcut053
