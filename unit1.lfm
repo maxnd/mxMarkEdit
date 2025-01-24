@@ -1398,11 +1398,6 @@ object fmMain: TfmMain
         ShortCut = 4172
         OnClick = miEditLinkClick
       end
-      object miEditFindDuplicate: TMenuItem
-        Caption = 'Show duplicate words'
-        ShortCut = 4185
-        OnClick = miEditFindDuplicateClick
-      end
       object miEditShowCurrent: TMenuItem
         Caption = 'Show current title or todo'
         ShortCut = 20556
@@ -1412,6 +1407,14 @@ object fmMain: TfmMain
         Caption = 'Show todo form'
         ShortCut = 36940
         OnClick = miEditTasksClick
+      end
+      object Sep2a: TMenuItem
+        Caption = '-'
+      end
+      object miEditFindDuplicate: TMenuItem
+        Caption = 'Show duplicate words'
+        ShortCut = 4185
+        OnClick = miEditFindDuplicateClick
       end
       object miEditWords: TMenuItem
         Caption = 'Show words recurrence form'

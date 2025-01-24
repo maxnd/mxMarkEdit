@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.7"
+msgid "1.2.8"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -757,7 +757,7 @@ msgid "Error in searching in the files."
 msgstr ""
 
 #: unit6.msgfl002
-msgid "The search has stopped to 2,000 occurrences; try to refine it."
+msgid "The search has stopped to 5,000 occurrences; try to refine it."
 msgstr ""
 
 #: unit7.srcut001
@@ -794,6 +794,26 @@ msgstr ""
 
 #: unit7.srcut009
 msgid "Insert the current date and time."
+msgstr ""
+
+#: unit7.srcut00a
+msgid "Arrow up"
+msgstr ""
+
+#: unit7.srcut00b
+msgid "Arrow down"
+msgstr ""
+
+#: unit7.srcut00c
+msgid "Arrow left"
+msgstr ""
+
+#: unit7.srcut00d
+msgid "Arrow right"
+msgstr ""
+
+#: unit7.srcut00e
+msgid "Backspace"
 msgstr ""
 
 #: unit7.srcut010

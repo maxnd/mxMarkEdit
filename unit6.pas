@@ -72,7 +72,7 @@ var
 resourcestring
 
   msgfl001 = 'Error in searching in the files.';
-  msgfl002 = 'The search has stopped to 2,000 occurrences; try to refine it.';
+  msgfl002 = 'The search has stopped to 5,000 occurrences; try to refine it.';
 
 implementation
 
@@ -171,8 +171,8 @@ procedure TfmFiles.FormKeyDown(Sender: TObject; var Key: Word;
 begin
   if key = 27 then
   begin
-    key := 0;
     Close;
+    key := 0;
   end
   else
   if ((Key = Ord('F')) and (Shift = [ssMeta])) then
@@ -200,7 +200,7 @@ end;
 procedure TfmFiles.CreateFilesList;
 var
   slMarkdownFiles, slContent: TStringList;
-  i, iPos, iStart: Integer;
+  i, iPos, iStart, iRec: Integer;
   stContent, stContentLower, stRow: WideString;
   stDotIni, stDotEnd: String;
   rng: NSRange;
@@ -223,12 +223,14 @@ begin
           stContentLower := WideLowerCase(slContent.Text);
           iPos := 1;
           iStart := 1;
+          iRec := 0;
           while iPos > 0 do
           begin
             iPos := fmMain.UTF8CocoaPos(UTF8LowerCase(edFind.Text),
               stContentLower, iStart);
             if iPos > 0 then
             begin
+              Inc(iRec);
               sgFiles.RowCount := sgFiles.RowCount + 1;
               sgFiles.Cells[0, sgFiles.RowCount - 1] :=
                 IntToStr(iPos);
@@ -261,7 +263,11 @@ begin
               iStart := iPos + 1;
               lbCount.Caption := FormatFloat('#,0', sgFiles.RowCount - 1);
               Application.ProcessMessages;
-              if sgFiles.RowCount > 2000 then
+              if iRec > 100 then
+              begin
+                Break;
+              end;
+              if sgFiles.RowCount > 5000 then
               begin
                 MessageDlg(msgfl002, mtWarning, [mbOK], 0);
                 Exit;

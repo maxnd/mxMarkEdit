@@ -28,7 +28,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Grids, ExtCtrls,
-  StdCtrls, LazUTF8, translate, Types, CocoaAll, CocoaTextEdits, CocoaUtils;
+  StdCtrls, LazUTF8, translate;
 
 type
 
@@ -138,6 +138,11 @@ resourcestring
   srcut064 = ' In the words recurrence form';
   srcut065 = 'Close the form.';
 
+  srcut00a = 'Arrow up';
+  srcut00b = 'Arrow down';
+  srcut00c = 'Arrow left';
+  srcut00d = 'Arrow right';
+  srcut00e = 'Backspace';
 
 implementation
 
@@ -205,7 +210,7 @@ begin
   sgShortcuts.Cells[0, i] := 'Meta + Ctrl + + or -';
   sgShortcuts.Cells[1, i] := srcut006;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Shift + Backspace';
+  sgShortcuts.Cells[0, i] := 'Meta + Shift + ';
   sgShortcuts.Cells[1, i] := srcut007;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + D';
@@ -238,16 +243,16 @@ begin
   sgShortcuts.Cells[0, i] := 'Meta + Opt + T';
   sgShortcuts.Cells[1, i] := srcut017;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Opt + Arrow up';
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00a;
   sgShortcuts.Cells[1, i] := srcut018;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Opt + Arrow down';
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00b;
   sgShortcuts.Cells[1, i] := srcut019;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + Arrow up';
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + ' + srcut00a;
   sgShortcuts.Cells[1, i] := srcut020;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + Arrow down';
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + ' + srcut00b;
   sgShortcuts.Cells[1, i] := srcut021;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Opt + .';
@@ -295,49 +300,49 @@ begin
   sgShortcuts.Cells[0, i] := 'Meta + Shift + I';
   sgShortcuts.Cells[1, i] := srcut036;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Backspace';
+  sgShortcuts.Cells[0, i] := srcut00e;
   sgShortcuts.Cells[1, i] := srcut037;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Shift + Backspace';
+  sgShortcuts.Cells[0, i] := 'Meta + Shift + ' + srcut00e;
   sgShortcuts.Cells[1, i] := srcut038;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + G';
   sgShortcuts.Cells[1, i] := srcut039;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Opt + Arrow up';
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00a;
   sgShortcuts.Cells[1, i] := srcut040;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Opt + Arrow down';
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00b;
   sgShortcuts.Cells[1, i] := srcut041;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Opt + Shift + I';
   sgShortcuts.Cells[1, i] := srcut042;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Opt + Shift + Backspace';
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + Shift + ' + srcut00e;
   sgShortcuts.Cells[1, i] := srcut043;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Opt + Arrow left';
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00c;
   sgShortcuts.Cells[1, i] := srcut044;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Opt + Arrow right';
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00d;
   sgShortcuts.Cells[1, i] := srcut045;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + Arrow up';
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + ' + srcut00a;
   sgShortcuts.Cells[1, i] := srcut046;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + Arrow down';
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + ' + srcut00b;
   sgShortcuts.Cells[1, i] := srcut047;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Arrow up';
+  sgShortcuts.Cells[0, i] := 'Meta + ' + srcut00a;
   sgShortcuts.Cells[1, i] := srcut048;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Arrow down';
+  sgShortcuts.Cells[0, i] := 'Meta + ' + srcut00b;
   sgShortcuts.Cells[1, i] := srcut049;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Arrow left';
+  sgShortcuts.Cells[0, i] := 'Meta + ' + srcut00c;
   sgShortcuts.Cells[1, i] := srcut050;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Arrow right';
+  sgShortcuts.Cells[0, i] := 'Meta + ' + srcut00d;
   sgShortcuts.Cells[1, i] := srcut051;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Ctrl + S';

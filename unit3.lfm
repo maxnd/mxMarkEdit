@@ -1259,7 +1259,7 @@ object fmOptions: TfmOptions
     Left = 161
     Height = 20
     Top = 347
-    Width = 171
+    Width = 162
     ItemHeight = 26
     ItemIndex = 7
     Items.Strings = (
@@ -1306,7 +1306,7 @@ object fmOptions: TfmOptions
     Left = 45
     Height = 20
     Top = 347
-    Width = 102
+    Width = 93
     ItemHeight = 26
     ItemIndex = 2
     Items.Strings = (
@@ -1351,7 +1351,7 @@ object fmOptions: TfmOptions
   object edStSizePlus: TButton
     Left = 103
     Height = 21
-    Top = 285
+    Top = 284
     Width = 24
     Caption = '+'
     TabOrder = 11
@@ -1361,7 +1361,7 @@ object fmOptions: TfmOptions
   object edStSizeLess: TButton
     Left = 131
     Height = 21
-    Top = 285
+    Top = 284
     Width = 24
     Caption = '-'
     TabOrder = 12
@@ -1390,7 +1390,7 @@ object fmOptions: TfmOptions
   object edStSizeMonoPlus: TButton
     Left = 356
     Height = 21
-    Top = 285
+    Top = 284
     Width = 24
     Caption = '+'
     TabOrder = 14
@@ -1400,7 +1400,7 @@ object fmOptions: TfmOptions
   object edStSizeMonoLess: TButton
     Left = 384
     Height = 21
-    Top = 285
+    Top = 284
     Width = 24
     Caption = '-'
     TabOrder = 15
@@ -1429,7 +1429,7 @@ object fmOptions: TfmOptions
   object edStMaxSizePlus: TButton
     Left = 460
     Height = 21
-    Top = 346
+    Top = 345
     Width = 24
     Caption = '+'
     TabOrder = 17
@@ -1439,7 +1439,7 @@ object fmOptions: TfmOptions
   object edStMaxSizeLess: TButton
     Left = 488
     Height = 21
-    Top = 346
+    Top = 345
     Width = 24
     Caption = '-'
     TabOrder = 18

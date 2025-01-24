@@ -62,6 +62,7 @@ type
     pnFindGrid: TPanel;
     pnGrid: TPanel;
     pnTitTodo: TPanel;
+    Sep2a: TMenuItem;
     Sep3: TMenuItem;
     Sep5: TMenuItem;
     Sep6: TMenuItem;
