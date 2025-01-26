@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.8, published on January 24 2025.
+Version 1.2.9, published on January 26 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -141,6 +141,8 @@ it’s possible to use the app for presentations:
 5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the structure of the document in the left bar;
 6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
 
+In the presentation mode, the status bar is hidden.
+
 #### Tip: how to format a presentation to look nice on mxMarkEdit
 
 A Markdown presentation formatted to be properly exported in PowerPoint looks like this:
@@ -207,11 +209,11 @@ Moving the mouse over the label of the file path and name, at the bottom left of
 
 The last four opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is remembered as well by the app.
 
-The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or the previous ones with the button `Previous`, or to replace all occurrences with another text. Search and replacement are not case sensitive. See below for some useful shortcuts to use these functionalities. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`.
+The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or the previous ones with the button `Previous`, or to replace all occurrences with another text. Search and replacement are not case sensitive. See below for some useful shortcuts to use these functionalities. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`. Finally, when looking for the next recurrence of an emoji, it might be necessary to move the cursor after the previous finding to find the next one.
 
 The `Edit - Insert link to file` menu item allows to select one or more files and to insert their path and name in the text within the Markdown markers and preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It’s not possible to insert relative links due to macOS restrictions.
 
-The `Edit - Show current title or toto` menu item shows at the top of the left list the title or todo item the cursor is under to.
+The `Edit - Show current title or toto` menu item shows at the top of the left list, after five other items if existing, the title or todo item the cursor is under to.
 
 The `Edit - Show todo form` menu item opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
 
@@ -350,6 +352,12 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.9
+
+- The `Edit - Show current title or toto` menu item shows the title or todo item the cursor is under to at the top of the left list, after five other items if existing.
+- In the presentation mode, the status bar is hidden.
+- Bugs fixing: the find next function could crash the app.
 
 #### Version 1.2.8
 

@@ -144,16 +144,27 @@ begin
     end;
     Exit;
   end;
-  iPos := fmMain.UTF8CocoaPos(UTF8UpperCase(edFind.Text),
-    UTF8UpperCase(fmMain.dbText.Text), fmMain.dbText.SelStart + 2);
-  if iPos > 0 then
+  if fmMain.dbText.SelStart < StrToNSString(fmMain.dbText.Text, True).length then
   begin
-    fmMain.dbText.SelStart := iPos - 1;
-    Application.ProcessMessages;
-    rng.location := iPos - 1;
-    rng.length := StrToNSString(edFind.Text, True).length;
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      showFindIndicatorForRange(rng);
+    iPos := fmMain.UTF8CocoaPos(UTF8UpperCase(edFind.Text),
+      UTF8UpperCase(fmMain.dbText.Text), fmMain.dbText.SelStart + 2);
+    if iPos > 0 then
+    begin
+      fmMain.dbText.SelStart := iPos - 1;
+      Application.ProcessMessages;
+      rng.location := iPos - 1;
+      rng.length := StrToNSString(edFind.Text, True).length;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        showFindIndicatorForRange(rng);
+    end
+    else
+    begin
+      MessageDlg(msgFnd001, mtInformation, [mbOK], 0);
+      if fmSearch.Visible = True then
+      begin
+          fmSearch.SetFocus;
+      end;
+    end;
   end
   else
   begin

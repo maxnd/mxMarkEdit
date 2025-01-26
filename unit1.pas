@@ -1330,6 +1330,7 @@ begin
         moveForward(nil);
     end;
     FormatListTitleTodo;
+    pnBottom.Height := 0;
     rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       textStorage.string_.paragraphRangeForRange(TCocoaTextView(
       NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
@@ -3132,6 +3133,7 @@ begin
     sgTitles.Clear;
     Exit;
   end;
+  pnBottom.Height := 28;
   iTopRow := sgTitles.TopRow;
   blHeading := False;
   blBoldItalics := False;
@@ -4359,7 +4361,14 @@ begin
     begin
       if sgTitles.Cells[1, i] = ' ' then
       begin
-        sgTitles.TopRow := i;
+        if i > 5 then
+        begin
+          sgTitles.TopRow := i - 5;
+        end
+        else
+        begin
+          sgTitles.TopRow := 0;
+        end;
         Break;
       end;
     end;
