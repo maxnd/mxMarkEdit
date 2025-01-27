@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.10, published on January 27 2025.
+Version 1.2.11, published on January 27 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -191,9 +191,11 @@ The result will be like this:
   ◆ second level item (indented by two spaces);
 ```
 
-Note that the items beginning with the synbols are not recognised as list items in Markdown, and will not be exported by Pandoc as such. So, being simple paragraphs, the items must be separated by an empty line to be exported as many paragraphs and not as one single paragraph.
+Note that the items beginning with the symbols are not recognised as list items in Markdown, and will not be exported by Pandoc as such. So, being simple paragraphs, the items must be separated by an empty line to be exported as many paragraphs and not as one single paragraph.
 
 It's possible to switch the search content with the replace one in the search and replace function to restore the original formatting of the document.
+
+To simplify the process, keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimised for mxMarkEdit with the menu item `Tools` - `Optimise presentation...` if it has to be presented with mxMarkEdit.
 
 ## Files management
 
@@ -223,7 +225,9 @@ The `Show words recurrence form` menu item opens a form with the list of all the
 
 The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, color and size and the line spacing, greatly improving the performance of the app with very large documents. In the options, it's possible to set the number of characters of a document beyond which it's loaded without formatting, just activating automatically this functionality.
 
-The `Tools - Convert with Pandoc` menu item converts the current document and its possible tables into another format specified in the options of the software. The converted file is created in the same folder of the current document.
+The `Tools - Optimise presentation...` menu item creates a copy of the current presentation optimised to be shown with mxMarkEdit, and saves it with the name of the file in use plus ` - mxMarkEdit` addition. Basically, the various items of first level are separated by an empty paragraph, and the repeated titles of the slides are removed.
+
+The `Tools - Convert with Pandoc` menu item
 
 The `Tools - Open another window` menu item opens another instance of the software if the app is located in the `Applications` directory.
 
@@ -233,7 +237,7 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 
 - the name and the color of the font of the text;
 - the name and the color of the font for code;
-- the color of the links;
+- the color of the links (just the name, the linked file has the code font color);
 - the color of the footnotes;
 - the color of the todo items;
 - the color of the first level titles; 
@@ -355,6 +359,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.11
+
+- Added the menu item `Tools` - `Optimise presentation` (see above).
+- Improved the color of the links: now the linked file has the color of the code font.
 
 #### Version 1.2.10
 

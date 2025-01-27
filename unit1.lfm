@@ -1447,6 +1447,10 @@ object fmMain: TfmMain
         ShortCut = 4176
         OnClick = miToolsPandocClick
       end
+      object miToolsOptmize: TMenuItem
+        Caption = 'Optimise presentation...'
+        OnClick = miToolsOptmizeClick
+      end
       object Sep4: TMenuItem
         Caption = '-'
       end

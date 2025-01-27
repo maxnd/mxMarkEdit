@@ -4,7 +4,7 @@
 {"hash":206413715,"name":"tfmcopyright.lbcopyrightdesc.caption","sourcebytes":[65,32,102,114,101,101,32,115,111,102,116,119,97,114,101,32,116,111,32,109,97,110,97,103,101,32,77,97,114,107,100,111,119,110,32,100,111,99,117,109,101,110,116,115],"value":"A free software to manage Markdown documents"},
 {"hash":236943290,"name":"tfmcopyright.lbcopyrightauthor3.caption","sourcebytes":[65,117,116,104,111,114,32,97,110,100,32,99,111,112,121,114,105,103,104,116,58],"value":"Author and copyright:"},
 {"hash":62196789,"name":"tfmcopyright.lbcopyrightauthor2.caption","sourcebytes":[77,97,115,115,105,109,111,32,78,97,114,100,101,108,108,111,44,32,77,111,100,101,110,97,32,40,73,116,97,108,121,41,32,50,48,50,52,32,45,32,50,48,50,53],"value":"Massimo Nardello, Modena (Italy) 2024 - 2025"},
-{"hash":54612288,"name":"tfmcopyright.lbcopyrightvers1.caption","sourcebytes":[49,46,50,46,49,48],"value":"1.2.10"},
+{"hash":54612289,"name":"tfmcopyright.lbcopyrightvers1.caption","sourcebytes":[49,46,50,46,49,49],"value":"1.2.11"},
 {"hash":214540302,"name":"tfmcopyright.lbcopyrightvers.caption","sourcebytes":[86,101,114,115,105,111,110],"value":"Version"},
 {"hash":78122708,"name":"tfmcopyright.lbapp.caption","sourcebytes":[87,101,98,115,105,116,101,32,111,102,32,109,120,77,97,114,107,69,100,105,116],"value":"Website of mxMarkEdit"},
 {"hash":1339,"name":"tfmcopyright.lbok.caption","sourcebytes":[79,75],"value":"OK"}

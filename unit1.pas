@@ -42,6 +42,7 @@ type
     lbDateTime: TLabel;
     lbChars: TLabel;
     lbFindGrid: TLabel;
+    miToolsOptmize: TMenuItem;
     miFilesSearch: TMenuItem;
     miEditWords: TMenuItem;
     miEditTasks: TMenuItem;
@@ -140,6 +141,7 @@ type
     procedure miFilesSearchClick(Sender: TObject);
     procedure miToolsOpenWinClick(Sender: TObject);
     procedure miToolsOptionsClick(Sender: TObject);
+    procedure miToolsOptmizeClick(Sender: TObject);
     procedure miToolsPandocClick(Sender: TObject);
     procedure miToolsTrans1Click(Sender: TObject);
     procedure miToolsTrans2Click(Sender: TObject);
@@ -259,6 +261,9 @@ resourcestring
   msg018 = 'Cut in the clipboard all the text under the current heading?';
   msg019 = 'The table is not delimited at the bottom; add a fictional title ' +
     'after its last row in the first left column.';
+  msg020 = 'Create in a new file a version of the current presentation ' +
+    'optimised for mxMarkEdit?';
+  msg021 = 'It was not possible to save the optimised file.';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -3140,6 +3145,97 @@ begin
   end;
 end;
 
+procedure TfmMain.miToolsOptmizeClick(Sender: TObject);
+var
+  slOrig, slDest: TStringList;
+  i: Integer;
+  blYAML: boolean = False;
+  stHeading2: String = '';
+begin
+  if dbText.Text = '' then
+  begin
+    Exit;
+  end;
+  if MessageDlg(msg020, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+  begin
+    Exit;
+  end;
+  if SaveFile = False then
+  begin
+    Exit;
+  end;
+  try
+    try
+      slOrig := TStringList.Create;
+      slDest := TStringList.Create;
+      slOrig.AddStrings(dbText.Lines);
+      if slOrig[0] = '---' then
+      begin
+        blYAML := True;
+      end;
+      for i := 0 to slOrig.Count - 1 do
+      begin
+        if UTF8Copy(slOrig[i], 1, 2) = '- ' then
+        begin
+          slDest.Add('⦿ ' + UTF8Copy(slOrig[i], 3, UTF8Length(slOrig[i])));
+          if i < slOrig.Count - 1 then
+          begin
+            if UTF8Copy(slOrig[i + 1], 1, 4) <> '  - ' then
+            begin
+              slDest.Add('');
+            end;
+          end;
+        end
+        else
+        if UTF8Copy(slOrig[i], 1, 4) = '  - ' then
+        begin
+          slDest.Add('  ◆ ' + UTF8Copy(slOrig[i], 5, UTF8Length(slOrig[i])));
+        end
+        else
+        if UTF8Copy(slOrig[i], 1, 3) = '## ' then
+        begin
+          if slOrig[i] <> stHeading2 then
+          begin
+            slDest.Add(slOrig[i]);
+            stHeading2 := slOrig[i];
+          end
+          else
+          begin
+            slDest.Add('');
+          end
+        end
+        else
+        if ((slOrig[i] = '---') and (i > 0)) then
+        begin
+          slDest.Add(slOrig[i]);
+          blYAML := False;
+        end
+        else
+        begin
+          slDest.Add(slOrig[i]);
+          if blYAML = False then
+          begin
+            slDest.Add('');
+          end;
+        end;
+        Application.ProcessMessages;
+      end;
+      while UTF8Pos(LineEnding + LineEnding + LineEnding, slDest.Text) > 0 do
+      begin
+        slDest.Text := StringReplace(slDest.Text, LineEnding + LineEnding +
+          LineEnding, LineEnding + LineEnding, [rfReplaceAll]);
+      end;
+      slDest.SaveToFile(ExtractFileNameWithoutExt(stFileName) + ' - mxMarkEdit.md');
+    except
+      MessageDlg(msg021, mtWarning, [mbOK], 0);
+    end;
+  finally
+    slOrig.Free;
+    slDest.Free;
+  end;
+end;
+
+
 procedure TfmMain.miToolsOpenWinClick(Sender: TObject);
 begin
   // FileExist doesn't work on app directory
@@ -3765,10 +3861,18 @@ begin
     else if ((stText[i] = ')') and (blLink = True)) then
     begin
       blLink := False;
+      rng.location := iStartLink - 2;
+      rng.length := 1;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setTextColor_range(ColorToNSColor(clLink), rng);
       rng.location := iStartLink - 1;
-      rng.length := i - iStartLink + 1;
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-        addAttribute_value_range(NSFontAttributeName, myFont, rng);
+      rng.length := i - iStartLink;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setTextColor_range(ColorToNSColor(clCode), rng);
+      rng.location := i - 1;
+      rng.length := 1;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setTextColor_range(ColorToNSColor(clLink), rng);
     end;
     Inc(i);
   end;

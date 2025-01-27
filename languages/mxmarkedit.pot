@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.10"
+msgid "1.2.11"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -223,6 +223,10 @@ msgstr ""
 #: tfmmain.mitoolsoptions.caption
 msgctxt "tfmmain.mitoolsoptions.caption"
 msgid "Settings"
+msgstr ""
+
+#: tfmmain.mitoolsoptmize.caption
+msgid "Optimise presentation..."
 msgstr ""
 
 #: tfmmain.mitoolspandoc.caption
@@ -717,6 +721,14 @@ msgstr ""
 
 #: unit1.msg019
 msgid "The table is not delimited at the bottom; add a fictional title after its last row in the first left column."
+msgstr ""
+
+#: unit1.msg020
+msgid "Create in a new file a version of the current presentation optimised for mxMarkEdit?"
+msgstr ""
+
+#: unit1.msg021
+msgid "It was not possible to save the optimised file."
 msgstr ""
 
 #: unit2.msgfnd001

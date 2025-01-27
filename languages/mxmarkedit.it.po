@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.10"
+msgid "1.2.11"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -223,6 +223,10 @@ msgstr "Apri un'altra finestra"
 msgctxt "tfmmain.mitoolsoptions.caption"
 msgid "Settings"
 msgstr "Opzioni"
+
+#: tfmmain.mitoolsoptmize.caption
+msgid "Optimise presentation..."
+msgstr "Ottimizza presentazione..."
 
 #: tfmmain.mitoolspandoc.caption
 msgid "Convert with Pandoc"
@@ -717,6 +721,14 @@ msgstr "Tagliare in ritaglio tutto il testo sotto la corrente intestazione?"
 #: unit1.msg019
 msgid "The table is not delimited at the bottom; add a fictional title after its last row in the first left column."
 msgstr "La tabella non è delimitata in basso; aggiungere un titolo fittizio dopo la sua ultima riga nella prima colonna a sinistra."
+
+#: unit1.msg020
+msgid "Create in a new file a version of the current presentation optimised for mxMarkEdit?"
+msgstr "Creare in un nuovo file una versione della corrente presentazione ottimizzata per mxMarkEdit?"
+
+#: unit1.msg021
+msgid "It was not possible to save the optimised file."
+msgstr "Non è stato possibile salvare il file ottimizzato."
 
 #: unit2.msgfnd001
 msgid "Text not found."
