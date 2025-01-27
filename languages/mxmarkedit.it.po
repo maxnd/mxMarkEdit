@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.9"
+msgid "1.2.10"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -880,8 +880,20 @@ msgid "Move the cursor to the position already set in the bookmark."
 msgstr "Sposta il cursore nella posizione già impostata nel segnalibro."
 
 #: unit7.srcut026
-msgid "Show the following paragraph with a green background, skipping the empty lines; this is useful for presentations."
-msgstr "Mostra il paragrafo seguente con uno sfondo verde, saltando le righe vuote; utile per le presentazioni."
+msgid "Activate the presentation mode and highlight the following paragraph, skipping the empty lines."
+msgstr "Attiva la modalità presentazione ed evidenzia il paragrafo seguente, saltando le righe vuote."
+
+#: unit7.srcut026b
+msgid "Activate the presentation mode and highlight the previous paragraph, skipping the empty lines."
+msgstr "Attiva la modalità presentazione ed evidenzia il paragrafo precedente, saltando le righe vuote."
+
+#: unit7.srcut026c
+msgid "If the presentation mode is activated, highlight the following paragraph, skipping the empty lines."
+msgstr "Se la modalità presentazione è attiva, evidenzia il paragrafo seguente, saltando le righe vuote."
+
+#: unit7.srcut026d
+msgid "If the presentation mode is activated, highlight the previous paragraph, skipping the empty lines."
+msgstr "Se la modalità presentazione è attiva, evidenzia il paragrafo precedente, saltando le righe vuote."
 
 #: unit7.srcut027
 msgid "Make uppercase the current word."

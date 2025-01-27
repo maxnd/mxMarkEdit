@@ -203,10 +203,11 @@ var
   clLink: TColor = clSilver;
   clCode: TColor = clSilver;
   clHighlightList: TColor = clDkGray;
-  clHighlightText: TColor = clGreen;
   clQuote: TColor = clSilver;
   clTodo: TColor = clBlack;
   clInsertionPoint: TColor;
+  clFontContrast: TColor;
+  clFontFade: Tcolor;
   stFontMono: string = 'Menlo';
   iFontMonoSize: smallint = 18;
   stFileName: string = '';
@@ -225,6 +226,7 @@ var
   blTableMod: boolean = False;
   blHideTitleTodo: boolean = False;
   blDisableFormatting: boolean = False;
+  blIsPresenting: boolean = False;
   iMaxSize: Integer = 250000;
   stTableLoaded: String = ' && .csv ';
   csTableRowCount: Integer = 10000;
@@ -323,8 +325,9 @@ begin
     clQuote := $00404040;
     clHighlightList := $005E5E5E;
     clRepetition := $005766EA;
-    clHighlightText := $00445D31;
     clTodo := clWhite;
+    clFontContrast := clWhite;
+    clFontFade := $00797979;
   end
   else
   begin
@@ -357,8 +360,9 @@ begin
     clQuote := $00EFEFEF;
     clHighlightList := $00EBEBEB;
     clRepetition := clRed;
-    clHighlightText := $0079FBD4;
     clTodo := clBlack;
+    clFontContrast := clBlack;
+    clFontFade := clSilver;
   end;
   clInsertionPoint := NSColorToColorRef(TCocoaTextView(NSScrollView(dbText.Handle).
     documentView).insertionPointColor);
@@ -875,6 +879,7 @@ end;
 
 procedure TfmMain.dbTextChange(Sender: TObject);
 begin
+  blIsPresenting := False;
   FormatListTitleTodo;
   LabelFileNameChars;
   blFileSaved := False;
@@ -889,6 +894,7 @@ end;
 
 procedure TfmMain.dbTextClick(Sender: TObject);
 begin
+  blIsPresenting := False;
   FormatListTitleTodo;
   LabelFileNameChars;
 end;
@@ -1311,12 +1317,15 @@ begin
     key := 0;
   end
   else
-  if ((key = Ord('E')) and (Shift = [ssMeta])) then
+  if (((key = Ord('E')) and (Shift = [ssMeta]) or
+  ((key = 40) and (Shift = [ssMeta]) and (blIsPresenting = True)))) then
   begin
     if miEditDisableForm.Checked = True then
     begin
       miEditDisableFormClick(nil);
     end;
+    key := 0;
+    blIsPresenting := True;
     sgTitles.ScrollBars := ssNone;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToEndOfParagraph(nil);
@@ -1331,12 +1340,16 @@ begin
     end;
     FormatListTitleTodo;
     pnBottom.Height := 0;
+    stText := WideString(dbText.Text);
+    rngStart.location := 0;
+    rngStart.length := Length(stText);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setTextColor_range(ColorToNSColor(clFontFade), rngStart);
     rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       textStorage.string_.paragraphRangeForRange(TCocoaTextView(
       NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-      addAttribute_value_range(NSBackgroundColorAttributeName,
-      ColorToNSColor(clHighlightText), rngStart);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
     // To have the selected paragraph vertically centered
     rngEnd.location := 1;
     rngEnd.length := 1;
@@ -1349,10 +1362,65 @@ begin
     begin
       dbText.SelStart := dbText.SelStart + 1;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        setInsertionPointColor(ColorToNSColor(clHighlightText));
+        setInsertionPointColor(ColorToNSColor(dbText.Color));
     end;
     sgTitles.ScrollBars := ssAutoVertical;
+  end
+  else
+  if (((key = Ord('E')) and (Shift = [ssMeta, ssShift]) or
+    ((key = 38) and (Shift = [ssMeta]) and (blIsPresenting = True)))) then
+  begin
+    if miEditDisableForm.Checked = True then
+    begin
+      miEditDisableFormClick(nil);
+    end;
     key := 0;
+    blIsPresenting := True;
+    sgTitles.ScrollBars := ssNone;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveBackward(nil);
+    while (((dbText.Lines[dbText.CaretPos.Y] = '') or
+        (dbText.Lines[dbText.CaretPos.Y] = '---')) and
+        (dbText.CaretPos.Y > 0)) do
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveBackward(nil);
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    if dbText.Lines[dbText.CaretPos.Y] = '---' then
+    begin
+      Exit;
+    end;
+    FormatListTitleTodo;
+    pnBottom.Height := 0;
+    stText := WideString(dbText.Text);
+    rngStart.location := 0;
+    rngStart.length := Length(stText);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+    // To have the selected paragraph vertically centered
+    rngEnd.location := 1;
+    rngEnd.length := 1;
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rngEnd);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rngStart);
+    ShowCurrentTitleTodo;
+    if rngStart.length > 1 then
+    begin
+      dbText.SelStart := dbText.SelStart + 1;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setInsertionPointColor(ColorToNSColor(dbText.Color));
+    end;
+    sgTitles.ScrollBars := ssAutoVertical;
   end
   else
   if ((key = Ord('1')) and (Shift = [ssAlt, ssMeta])) then
@@ -1395,7 +1463,19 @@ begin
     cbFilter.ItemIndex := 5;
     FormatListTitleTodo;
     dbText.SetFocus;
+  end
+  else
+  if key = 27 then
+  begin
+    blIsPresenting := False;
+    FormatListTitleTodo;
+  end
+  else
+  if (((key = 38) or (key = 40)) and (blIsPresenting = True)) then
+  begin
+    key := 0;
   end;
+
 end;
 
 procedure TfmMain.dbTextKeyPress(Sender: TObject; var Key: char);
@@ -1512,7 +1592,7 @@ end;
 
 procedure TfmMain.dbTextKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if ((key > 36) and (key < 41)) then
+  if ((key > 36) and (key < 41) and (blIsPresenting = False)) then
   begin
     FormatListTitleTodo;
     LabelFileNameChars;

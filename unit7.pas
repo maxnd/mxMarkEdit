@@ -83,8 +83,14 @@ resourcestring
   srcut023 = 'Transform a numbered list into a with dashes (-).';
   srcut024 = 'Set the current position of the cursor in the bookmark.';
   srcut025 = 'Move the cursor to the position already set in the bookmark.';
-  srcut026 = 'Show the following paragraph with a green background, skipping the ' +
-    'empty lines; this is useful for presentations.';
+  srcut026 = 'Activate the presentation mode and highlight the following paragraph, ' +
+    'skipping the empty lines.';
+  srcut026b = 'Activate the presentation mode and highlight the previous paragraph, ' +
+    'skipping the empty lines.';
+  srcut026c = 'If the presentation mode is activated, highlight the following paragraph, ' +
+    'skipping the empty lines.';
+  srcut026d = 'If the presentation mode is activated, highlight the previous paragraph, ' +
+    'skipping the empty lines.';
   srcut027 = 'Make uppercase the current word.';
   srcut028 = 'Make lowercase the current word.';
   srcut029 = 'Capitalize the current word.';
@@ -188,7 +194,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 77;
+  sgShortcuts.RowCount := 80;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -269,6 +275,15 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + E';
   sgShortcuts.Cells[1, i] := srcut026;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Shift + E';
+  sgShortcuts.Cells[1, i] := srcut026b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Arrow down';
+  sgShortcuts.Cells[1, i] := srcut026c;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Arrow up';
+  sgShortcuts.Cells[1, i] := srcut026d;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + U';
   sgShortcuts.Cells[1, i] := srcut027;

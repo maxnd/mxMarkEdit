@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.9, published on January 26 2025.
+Version 1.2.10, published on January 27 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -137,11 +137,11 @@ it’s possible to use the app for presentations:
 1. load a document, possibly with some tables, containing the sequential text of the slides in Markdown format, with many paragraphs under titles and subtitles, like a normal text;
 2. enlarge possibly the font size of the document so that it can be seen easily by the participants, and disable the spell check;
 3. share the interface of mxMarkEdit with a video projector or on a video call with apps like Webex, FaceTime or Zoom;
-4. begin the presentation, and use the shortcut `Meta` + `E` to highlight the paragraph following the current one with a green background, skipping the empty lines;
-5. while a paragraph is highlighted, comment its content; the participants see the text that is currently focused, and its position in the structure of the document in the left bar;
+4. begin the presentation and use the shortcut `Meta` + `E` to show the paragraph following the current one, or `Meta` + `Shift` + `E` to show the paragraph previous the current one, both in black or white, according to the theme in use, skipping the empty lines, and to fade the other text; when the presentation mode is enabled with one of these two shortcuts, the following or previous paragraphs may be selected also with the shortcuts `Meta` + `Arrow down` and `Meta` + `Arrow up`;
+5. comment the content of the paragraph in black or white; the participants see the text that is currently focused, and its position in the structure of the document in the left bar, which anyway can be hidden;
 6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
 
-In the presentation mode, the status bar is hidden.
+In presentation mode, the status bar is hidden. To quit the presentation mode, press `Esc` or click anywhere in the text.
 
 #### Tip: how to format a presentation to look nice on mxMarkEdit
 
@@ -172,26 +172,26 @@ date: academic year 2024-2025
   - second level item (indented by two spaces);
 ```
 
-Now, while in mxMarkEdit the headings are properly formatted and so do not need any kind of change, the items preceded by a dash don't look very nice when shown to an audience. So, it's possible to change the dashes with proper emojis using the `Edit` - `Find` menu item. For instance (remember that the `\n` represents a new paragraph):
+Now, while in mxMarkEdit the headings are properly formatted and so do not need any kind of change, the items preceded by a dash don't look very nice when shown to an audience. So, it's possible to change the dashes with proper symbols using the `Edit` - `Find` menu item. For instance (remember that the `\n` represents a new paragraph):
 
-1. search for `\n- ` and replace it with `\n🔸 `;
-2. search for `\n  - ` and replace it with `\n  🔹 `;
+1. search for `\n- ` and replace it with `\n⦿ `;
+2. search for `\n  - ` and replace it with `\n  ◆ `;
 3. search for `\n` and replace it with `\n\n`;
 4. if necessary, to replace many contiguous empty lines with just one, search for `\n\n\n` and replace it with `\n\n`.
 
 The result will be like this:
 
 ```
-🔸 First level item:
+⦿ First level item:
 
-  🔹 second level item (indented by two spaces);
+  ◆ second level item (indented by two spaces);
 
-  🔹 second level item (indented by two spaces);
+  ◆ second level item (indented by two spaces);
 
-  🔹 second level item (indented by two spaces);
+  ◆ second level item (indented by two spaces);
 ```
 
-Note that the items beginning with the emoji are not recognised as list items in Markdown, and will not be exported by Pandoc as such. So, being simple paragraphs, the items must be separated by an empty line to be exported as many paragraphs and not as one single paragraph.
+Note that the items beginning with the synbols are not recognised as list items in Markdown, and will not be exported by Pandoc as such. So, being simple paragraphs, the items must be separated by an empty line to be exported as many paragraphs and not as one single paragraph.
 
 It's possible to switch the search content with the replace one in the search and replace function to restore the original formatting of the document.
 
@@ -285,7 +285,10 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `.`: transform a numbered list into a with dashes (`-`).
 * `Meta` + `Shift` + `J`: set the current position of the cursor in the bookmark.
 * `Meta` + `J`: move the cursor to the position already set in the bookmark.
-* `Meta` + `E`: show the following paragraph with a green background, skipping the empty lines; this is useful to use mxMarkEdit for presentations. See above for details.
+* `Meta` + `E`: show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
+* `Meta` + `Shift` + `E`: show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
+* `Meta` + `Arrow down`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
+* `Meta` + `Arrow up`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalize the current word.
@@ -352,6 +355,12 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.10
+
+- In the presentation mode, the text is faded and the selected paragraph is white or black, according to the theme in use, without any highlighting.
+- Added new shortcut: `Meta` + `Shift` + `E` or `Meta` + `Arrow up` to select the previous paragraph during presentation.
+- Added new shortcut: `Meta` + `Arrow down` to select the next paragraph during presentation.
 
 #### Version 1.2.9
 
