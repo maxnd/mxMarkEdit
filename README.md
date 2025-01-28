@@ -316,7 +316,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 #### Version 1.2.13
 
-- In presentation mode, also the list of titles and todos is faded.
+- In presentation mode, also the list of titles and todos is faded, and spell checking is automatically disabled.
 - Minor graphic improvements.
 - Small bugs fixing.
 
