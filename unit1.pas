@@ -97,7 +97,6 @@ type
     Sep7: TMenuItem;
     sgTitles: TStringGrid;
     sgTable: TStringGrid;
-    shList: TShape;
     Shortcuts: TMenuItem;
     spTable: TSplitter;
     spTitles: TSplitter;
@@ -309,7 +308,6 @@ begin
   begin
     dbText.Font.Color := clWhite;
     sgTitles.Font.Color := clWhite;
-    shList.Pen.Color := $005E5E5E;
     sgTable.FixedGridLineColor := $005E5E5E;
     sgTable.GridLineColor := $005E5E5E;
     sgTable.Color := $00282A2B;
@@ -340,7 +338,6 @@ begin
     sgTitles.Font.Color := clBlack;
     dbText.Color := clWhite;
     sgTitles.Color := clWhite;
-    shList.Pen.Color := clSilver;
     sgTable.FixedGridLineColor := clSilver;
     sgTable.GridLineColor := clSilver;
     sgTable.Color := clWhite;
@@ -893,7 +890,6 @@ end;
 
 procedure TfmMain.dbTextChange(Sender: TObject);
 begin
-  blIsPresenting := False;
   FormatListTitleTodo;
   LabelFileNameChars;
   blFileSaved := False;
@@ -909,6 +905,7 @@ end;
 procedure TfmMain.dbTextClick(Sender: TObject);
 begin
   blIsPresenting := False;
+  cbFilter.Visible := True;
   FormatListTitleTodo;
   LabelFileNameChars;
 end;
@@ -922,6 +919,134 @@ var
   stText: WideString;
   myDate: TDate;
 begin
+  if ((key = 27) and (blIsPresenting = True)) then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end
+  else
+  if (((key = Ord('E')) and (Shift = [ssMeta]) or
+  ((key = 40) and (Shift = [ssMeta]) and (blIsPresenting = True)))) then
+  begin
+    if miEditDisableForm.Checked = True then
+    begin
+      miEditDisableFormClick(nil);
+    end;
+    if miEditDisSpell.Checked = False then
+    begin
+      miEditDisSpellClick(nil);
+    end;
+    key := 0;
+    blIsPresenting := True;
+    cbFilter.Visible := False;
+    sgTitles.ScrollBars := ssNone;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToEndOfParagraph(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveForward(nil);
+    while (((dbText.Lines[dbText.CaretPos.Y] = '') or
+        (dbText.Lines[dbText.CaretPos.Y] = '---')) and
+        (dbText.CaretPos.Y < dbText.Lines.Count)) do
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveForward(nil);
+    end;
+    FormatListTitleTodo;
+    pnBottom.Height := 0;
+    stText := WideString(dbText.Text);
+    rngStart.location := 0;
+    rngStart.length := Length(stText);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+    // To have the selected paragraph vertically centered
+    rngEnd.location := 1;
+    rngEnd.length := 1;
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rngEnd);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rngStart);
+    ShowCurrentTitleTodo;
+    if rngStart.length > 1 then
+    begin
+      dbText.SelStart := dbText.SelStart + 1;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setInsertionPointColor(ColorToNSColor(dbText.Color));
+    end;
+    sgTitles.ScrollBars := ssAutoVertical;
+  end
+  else
+  if (((key = Ord('E')) and (Shift = [ssMeta, ssShift]) or
+    ((key = 38) and (Shift = [ssMeta]) and (blIsPresenting = True)))) then
+  begin
+    if miEditDisableForm.Checked = True then
+    begin
+      miEditDisableFormClick(nil);
+    end;
+    if miEditDisSpell.Checked = False then
+    begin
+      miEditDisSpellClick(nil);
+    end;
+    key := 0;
+    blIsPresenting := True;
+    cbFilter.Visible := False;
+    sgTitles.ScrollBars := ssNone;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveBackward(nil);
+    while (((dbText.Lines[dbText.CaretPos.Y] = '') or
+        (dbText.Lines[dbText.CaretPos.Y] = '---')) and
+        (dbText.CaretPos.Y > 0)) do
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveBackward(nil);
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    if dbText.Lines[dbText.CaretPos.Y] = '---' then
+    begin
+      Exit;
+    end;
+    FormatListTitleTodo;
+    pnBottom.Height := 0;
+    stText := WideString(dbText.Text);
+    rngStart.location := 0;
+    rngStart.length := Length(stText);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+    // To have the selected paragraph vertically centered
+    rngEnd.location := 1;
+    rngEnd.length := 1;
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rngEnd);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rngStart);
+    ShowCurrentTitleTodo;
+    if rngStart.length > 1 then
+    begin
+      dbText.SelStart := dbText.SelStart + 1;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setInsertionPointColor(ColorToNSColor(dbText.Color));
+    end;
+    sgTitles.ScrollBars := ssAutoVertical;
+  end
+  else
+  if blIsPresenting = True then
+  begin
+    key := 0;
+  end
+  else
   if ((key = 8) and (Shift = [ssMeta, ssShift])) then
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1337,112 +1462,6 @@ begin
     key := 0;
   end
   else
-  if (((key = Ord('E')) and (Shift = [ssMeta]) or
-  ((key = 40) and (Shift = [ssMeta]) and (blIsPresenting = True)))) then
-  begin
-    if miEditDisableForm.Checked = True then
-    begin
-      miEditDisableFormClick(nil);
-    end;
-    key := 0;
-    blIsPresenting := True;
-    sgTitles.ScrollBars := ssNone;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      moveToEndOfParagraph(nil);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      moveForward(nil);
-    while (((dbText.Lines[dbText.CaretPos.Y] = '') or
-        (dbText.Lines[dbText.CaretPos.Y] = '---')) and
-        (dbText.CaretPos.Y < dbText.Lines.Count)) do
-    begin
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        moveForward(nil);
-    end;
-    FormatListTitleTodo;
-    pnBottom.Height := 0;
-    stText := WideString(dbText.Text);
-    rngStart.location := 0;
-    rngStart.length := Length(stText);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      setTextColor_range(ColorToNSColor(clFontFade), rngStart);
-    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
-    // To have the selected paragraph vertically centered
-    rngEnd.location := 1;
-    rngEnd.length := 1;
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      scrollRangeToVisible(rngEnd);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      scrollRangeToVisible(rngStart);
-    ShowCurrentTitleTodo;
-    if rngStart.length > 1 then
-    begin
-      dbText.SelStart := dbText.SelStart + 1;
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        setInsertionPointColor(ColorToNSColor(dbText.Color));
-    end;
-    sgTitles.ScrollBars := ssAutoVertical;
-  end
-  else
-  if (((key = Ord('E')) and (Shift = [ssMeta, ssShift]) or
-    ((key = 38) and (Shift = [ssMeta]) and (blIsPresenting = True)))) then
-  begin
-    if miEditDisableForm.Checked = True then
-    begin
-      miEditDisableFormClick(nil);
-    end;
-    key := 0;
-    blIsPresenting := True;
-    sgTitles.ScrollBars := ssNone;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      moveToBeginningOfParagraph(nil);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      moveBackward(nil);
-    while (((dbText.Lines[dbText.CaretPos.Y] = '') or
-        (dbText.Lines[dbText.CaretPos.Y] = '---')) and
-        (dbText.CaretPos.Y > 0)) do
-    begin
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        moveBackward(nil);
-    end;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      moveToBeginningOfParagraph(nil);
-    if dbText.Lines[dbText.CaretPos.Y] = '---' then
-    begin
-      Exit;
-    end;
-    FormatListTitleTodo;
-    pnBottom.Height := 0;
-    stText := WideString(dbText.Text);
-    rngStart.location := 0;
-    rngStart.length := Length(stText);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      setTextColor_range(ColorToNSColor(clFontFade), rngStart);
-    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
-    // To have the selected paragraph vertically centered
-    rngEnd.location := 1;
-    rngEnd.length := 1;
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      scrollRangeToVisible(rngEnd);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      scrollRangeToVisible(rngStart);
-    ShowCurrentTitleTodo;
-    if rngStart.length > 1 then
-    begin
-      dbText.SelStart := dbText.SelStart + 1;
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        setInsertionPointColor(ColorToNSColor(dbText.Color));
-    end;
-    sgTitles.ScrollBars := ssAutoVertical;
-  end
-  else
   if ((key = Ord('1')) and (Shift = [ssAlt, ssMeta])) then
   begin
     cbFilter.ItemIndex := 0;
@@ -1485,17 +1504,13 @@ begin
     dbText.SetFocus;
   end
   else
-  if key = 27 then
+  if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    FormatListTitleTodo;
+    if ((key = 38) or (key = 40)) then
+    begin
+      key := 0;
+    end
   end
-  else
-  if (((key = 38) or (key = 40)) and (blIsPresenting = True)) then
-  begin
-    key := 0;
-  end;
-
 end;
 
 procedure TfmMain.dbTextKeyPress(Sender: TObject; var Key: char);
@@ -1626,6 +1641,11 @@ var
   rng: NSRange;
   blCode: boolean = False;
 begin
+  if blIsPresenting = True then
+  begin
+    dbText.SetFocus;
+    Exit;
+  end;
   stText := WideString(dbText.Text);
   iLen := Length(stText);
   i := 1;
@@ -1675,28 +1695,37 @@ end;
 procedure TfmMain.sgTitlesDrawCell(Sender: TObject; aCol, aRow: integer;
   aRect: TRect; aState: TGridDrawState);
 begin
-  if ((Pos('  ☑ ', sgTitles.Cells[aCol, aRow]) > 0) or
-    (Pos('  □ ', sgTitles.Cells[aCol, aRow]) > 0)) then
+  if blIsPresenting = True then
   begin
-    sgTitles.canvas.Font.Color := clTodo;
+    sgTitles.canvas.Font.Color := clFontFade;
+    sgTitles.Canvas.TextOut(aRect.Left + 3, aRect.Top + 5,
+      sgTitles.Cells[aCol, aRow]);
   end
   else
-  if Copy(sgTitles.Cells[aCol, aRow], 1, 9) = '         ' then
   begin
-    sgTitles.canvas.Font.Color := clTitle3;
-  end
-  else
-  if Copy(sgTitles.Cells[aCol, aRow], 1, 6) = '      ' then
-  begin
-    sgTitles.canvas.Font.Color := clTitle2;
-  end
-  else
-  if Copy(sgTitles.Cells[aCol, aRow], 1, 3) = '   ' then
-  begin
-    sgTitles.canvas.Font.Color := clTitle1;
+    if ((Pos('  ☑ ', sgTitles.Cells[aCol, aRow]) > 0) or
+      (Pos('  □ ', sgTitles.Cells[aCol, aRow]) > 0)) then
+    begin
+      sgTitles.canvas.Font.Color := clTodo;
+    end
+    else
+    if Copy(sgTitles.Cells[aCol, aRow], 1, 9) = '         ' then
+    begin
+      sgTitles.canvas.Font.Color := clTitle3;
+    end
+    else
+    if Copy(sgTitles.Cells[aCol, aRow], 1, 6) = '      ' then
+    begin
+      sgTitles.canvas.Font.Color := clTitle2;
+    end
+    else
+    if Copy(sgTitles.Cells[aCol, aRow], 1, 3) = '   ' then
+    begin
+      sgTitles.canvas.Font.Color := clTitle1;
+    end;
+    sgTitles.Canvas.TextOut(aRect.Left + 3, aRect.Top + 5,
+      sgTitles.Cells[aCol, aRow]);
   end;
-  sgTitles.Canvas.TextOut(aRect.Left + 3, aRect.Top + 5,
-    sgTitles.Cells[aCol, aRow]);
 end;
 
 procedure TfmMain.sgTitlesGetCellHint(Sender: TObject; ACol, ARow: integer;
@@ -2539,6 +2568,8 @@ procedure TfmMain.miFileNewClick(Sender: TObject);
 var
   i: Integer;
 begin
+  blIsPresenting := False;
+  cbFilter.Visible := True;
   if SaveFile = False then
   begin
     Exit;
@@ -2559,6 +2590,8 @@ end;
 
 procedure TfmMain.miFileOpenClick(Sender: TObject);
 begin
+  blIsPresenting := False;
+  cbFilter.Visible := True;
   if SaveFile = False then
   begin
     Exit;
@@ -2641,6 +2674,8 @@ var
   myList: TStringList;
   stOldFile: String;
 begin
+  blIsPresenting := False;
+  cbFilter.Visible := True;
   if ((UTF8Length(dbText.Lines[1]) > 7) and
     (UTF8Copy(dbText.Lines[1], 1, 7) = 'title: ')) then
   begin
@@ -2674,6 +2709,8 @@ end;
 
 procedure TfmMain.miFileOpenLast1Click(Sender: TObject);
 begin
+  blIsPresenting := False;
+  cbFilter.Visible := True;
   if SaveFile = False then
   begin
     Exit;
@@ -2722,6 +2759,8 @@ end;
 
 procedure TfmMain.miFileOpenLast2Click(Sender: TObject);
 begin
+  blIsPresenting := False;
+  cbFilter.Visible := True;
   if SaveFile = False then
   begin
     Exit;
@@ -2769,6 +2808,8 @@ end;
 
 procedure TfmMain.miFileOpenLast3Click(Sender: TObject);
 begin
+  blIsPresenting := False;
+  cbFilter.Visible := True;
   if SaveFile = False then
   begin
     Exit;
@@ -2816,6 +2857,8 @@ end;
 
 procedure TfmMain.miFileOpenLast4Click(Sender: TObject);
 begin
+  blIsPresenting := False;
+  cbFilter.Visible := True;
   if SaveFile = False then
   begin
     Exit;
@@ -2863,7 +2906,7 @@ end;
 
 procedure TfmMain.miEditCopyClick(Sender: TObject);
 begin
-  if sgTable.Focused = False then
+  if ((sgTable.Focused = False) and (blIsPresenting = False)) then
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       copy_(nil);
@@ -2872,7 +2915,7 @@ end;
 
 procedure TfmMain.miEditCutClick(Sender: TObject);
 begin
-  if sgTable.Focused = False then
+  if ((sgTable.Focused = False) and (blIsPresenting = False)) then
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       cut(nil);
@@ -2881,7 +2924,7 @@ end;
 
 procedure TfmMain.miEditPasteClick(Sender: TObject);
 begin
-  if sgTable.Focused = False then
+  if ((sgTable.Focused = False) and (blIsPresenting = False)) then
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       pasteAsPlainText(nil);
@@ -2895,7 +2938,7 @@ end;
 
 procedure TfmMain.miEditSelectAllClick(Sender: TObject);
 begin
-  if sgTable.Focused = False then
+  if ((sgTable.Focused = False) and (blIsPresenting = False)) then
   begin
     dbText.SelectAll;
   end;
@@ -2903,6 +2946,12 @@ end;
 
 procedure TfmMain.miEditFindClick(Sender: TObject);
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end;
   fmSearch.Show
 end;
 
@@ -2911,6 +2960,12 @@ var
   stLink: string;
   i: Integer;
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end;
   if odLink.Execute then
   begin
     for i := 0 to odLink.Files.Count - 1 do
@@ -2947,6 +3002,12 @@ var
   stItem: String;
   stSeparators: String = '.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ';
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end;
   if miEditDisableForm.Checked = True then
   begin
     miEditDisableFormClick(nil);
@@ -3002,11 +3063,23 @@ end;
 
 procedure TfmMain.miEditTasksClick(Sender: TObject);
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end;
   fmTasks.ShowModal;
 end;
 
 procedure TfmMain.miEditWordsClick(Sender: TObject);
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end;
   fmWords.ShowModal;
 end;
 
@@ -3014,6 +3087,11 @@ procedure TfmMain.miEditHideListClick(Sender: TObject);
 var
   iPos: Integer;
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+  end;
   iPos := dbText.SelStart;
   if pnTitTodo.Visible = True then
   begin
@@ -3043,6 +3121,12 @@ var
   fd: NSFontDescriptor;
   rng: NSRange;
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end;
   miEditDisableForm.Checked := not miEditDisableForm.Checked;
   iPos := dbText.SelStart;
   if miEditDisableForm.Checked = True then
@@ -3079,6 +3163,12 @@ var
   slDocTable: TStringList;
   x, y, n, iLastRow: integer;
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end;
   if stFileName = '' then
   begin
     MessageDlg(msg008, mtWarning, [mbOK], 0);
@@ -3194,6 +3284,12 @@ var
   blYAML: boolean = False;
   stHeading2: String = '';
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end;
   if dbText.Text = '' then
   begin
     Exit;
@@ -3304,16 +3400,32 @@ end;
 
 procedure TfmMain.miToolsOptionsClick(Sender: TObject);
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+    FormatListTitleTodo;
+  end;
   fmOptions.ShowModal;
 end;
 
 procedure TfmMain.ShortcutsClick(Sender: TObject);
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+  end;
   fmShortcuts.ShowModal;
 end;
 
 procedure TfmMain.miCopyrightClick(Sender: TObject);
 begin
+  if blIsPresenting = True then
+  begin
+    blIsPresenting := False;
+    cbFilter.Visible := True;
+  end;
   fmCopyright.ShowModal;
 end;
 

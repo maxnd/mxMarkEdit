@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.12, published on January 28 2025.
+Version 1.2.13, published on January 28 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -92,7 +92,7 @@ To move a heading and all its relative content, included possible headings of lo
 
 Links are properly recognised and formatted if the formatting is not disabled. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``. Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, the possible Markdown markers are properly shown.
 
-The formatting should work instantly, without delaying the typing, at least up to about 250,000 characters (test made in a Mac Pro with M1 chip and 8 GB of RAM). To work speedily with bigger documents, disable the formatting and, if necessary, also the titles and toto list (see below the `Edit` menu notes). In this way, even a text of few million of characters may be modified without any delay in typing.
+The formatting should work instantly, without delaying the typing, at least up to about 250,000 characters (test made in a Mac Pro with M1 chip and 8 GB of RAM). To work speedily with bigger documents, disable the formatting and, if necessary, also the titles and toto list (see below the `Edit` menu notes). In this way, even a text of few millions of characters may be modified without any delay in typing.
 
 By default, the app deactivate text formatting for documents bigger than 250,000 characters. This value can be modified in the options of the app (see below) to fit the performance of one's own Mac. The size of the document is calculated by the size of the file, not counting the characters, so it could be a bit inaccurate.
 
@@ -141,13 +141,13 @@ See below for some useful shortcuts available in this grid.
 it’s possible to use the app for presentations:
 
 1. load a document, possibly with some tables, containing the sequential text of the slides in Markdown format, with many paragraphs under titles and subtitles, like a normal text;
-2. enlarge possibly the font size of the document so that it can be seen easily by the participants, and disable the spell check;
+2. enlarge possibly the font size of the document so that it can be seen easily by the participants;
 3. share the interface of mxMarkEdit with a video projector or on a video call with apps like Webex, FaceTime or Zoom;
 4. begin the presentation and use the shortcut `Meta` + `E` to show the paragraph following the current one, or `Meta` + `Shift` + `E` to show the paragraph previous the current one, both in black or white, according to the theme in use, skipping the empty lines, and to fade the other text; when the presentation mode is enabled with one of these two shortcuts, the following or previous paragraphs may be selected also with the shortcuts `Meta` + `Arrow down` and `Meta` + `Arrow up`;
 5. comment the content of the paragraph in black or white; the participants see the text that is currently focused, and its position in the structure of the document in the left bar, which anyway can be hidden;
 6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
 
-In presentation mode, the status bar is hidden. To quit the presentation mode, press `Esc` or click anywhere in the text.
+In presentation mode, the status bar is hidden, and the spell checking is automatically disabled. To quit the presentation mode, press `Esc` or click anywhere in the text. Possibly, reenable the spell checking.
 
 Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimised for mxMarkEdit with the menu item `Tools` - `Optimise presentation...` if it has to be presented with mxMarkEdit.
 
@@ -313,6 +313,12 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.13
+
+- In presentation mode, also the list of titles and todos is faded.
+- Minor graphic improvements.
+- Small bugs fixing.
 
 #### Version 1.2.12
 

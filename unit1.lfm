@@ -1130,8 +1130,8 @@ object fmMain: TfmMain
     object sgTitles: TStringGrid
       Cursor = crHandPoint
       Left = 10
-      Height = 531
-      Top = 51
+      Height = 542
+      Top = 40
       Width = 200
       Align = alClient
       AutoEdit = False
@@ -1172,17 +1172,6 @@ object fmMain: TfmMain
       OnDrawCell = sgTitlesDrawCell
       OnGetCellHint = sgTitlesGetCellHint
       OnPrepareCanvas = sgTitlesPrepareCanvas
-    end
-    object shList: TShape
-      Left = 10
-      Height = 1
-      Top = 40
-      Width = 150
-      Align = alTop
-      BorderSpacing.Left = 10
-      BorderSpacing.Right = 10
-      Brush.Style = bsClear
-      Pen.Color = clDefault
     end
   end
   object pnBackground: TPanel
