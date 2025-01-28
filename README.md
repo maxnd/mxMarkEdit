@@ -49,6 +49,14 @@ When the tables grid is shown, the software looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot2.png)
 
+A normal presentation in Markdown format looks like this:
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot5.png)
+
+The same presentation optimised with `Tools - Optimise presentation...` and shown in presentation mode looks like this:
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot6.png)
+
 The form that summarises the todo items typed in the document looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot3.png)
@@ -56,8 +64,6 @@ The form that summarises the todo items typed in the document looks like this:
 The form of the options of the app looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot4.png)
-
-The main features of mxMarkEdit are the followings.
 
 ## Formatting
 
@@ -143,59 +149,7 @@ it’s possible to use the app for presentations:
 
 In presentation mode, the status bar is hidden. To quit the presentation mode, press `Esc` or click anywhere in the text.
 
-#### Tip: how to format a presentation to look nice on mxMarkEdit
-
-A Markdown presentation formatted to be properly exported in PowerPoint looks like this:
-
-```
----
-title: Title of the presentation
-author: Name of the author
-email: author@mail.com
-date: academic year 2024-2025
----
-
-# 1. Title of a section of the presentation
-
-## Title of the first slide
-
-- First level item:
-  - second level item (indented by two spaces);
-  - second level item (indented by two spaces);
-  - second level item (indented by two spaces);
-
-## Title of the second slide
-
-- First level item:
-  - second level item (indented by two spaces);
-  - second level item (indented by two spaces);
-  - second level item (indented by two spaces);
-```
-
-Now, while in mxMarkEdit the headings are properly formatted and so do not need any kind of change, the items preceded by a dash don't look very nice when shown to an audience. So, it's possible to change the dashes with proper symbols using the `Edit` - `Find` menu item. For instance (remember that the `\n` represents a new paragraph):
-
-1. search for `\n- ` and replace it with `\n⦿ `;
-2. search for `\n  - ` and replace it with `\n  ◆ `;
-3. search for `\n` and replace it with `\n\n`;
-4. if necessary, to replace many contiguous empty lines with just one, search for `\n\n\n` and replace it with `\n\n`.
-
-The result will be like this:
-
-```
-⦿ First level item:
-
-  ◆ second level item (indented by two spaces);
-
-  ◆ second level item (indented by two spaces);
-
-  ◆ second level item (indented by two spaces);
-```
-
-Note that the items beginning with the symbols are not recognised as list items in Markdown, and will not be exported by Pandoc as such. So, being simple paragraphs, the items must be separated by an empty line to be exported as many paragraphs and not as one single paragraph.
-
-It's possible to switch the search content with the replace one in the search and replace function to restore the original formatting of the document.
-
-To simplify the process, keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimised for mxMarkEdit with the menu item `Tools` - `Optimise presentation...` if it has to be presented with mxMarkEdit.
+Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimised for mxMarkEdit with the menu item `Tools` - `Optimise presentation...` if it has to be presented with mxMarkEdit.
 
 ## Files management
 
