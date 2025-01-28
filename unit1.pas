@@ -579,8 +579,11 @@ begin
       MoveToPos;
       iBookmarkPos := 0;
       LabelFileNameChars;
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        checkTextInDocument(nil);
+      if blDisableFormatting = False then
+      begin
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          checkTextInDocument(nil);
+      end;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         undoManager.removeAllActions;
       UpdateLastFile;
@@ -613,8 +616,11 @@ begin
       MoveToPos;
       iBookmarkPos := 0;
       LabelFileNameChars;
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        checkTextInDocument(nil);
+      if blDisableFormatting = False then
+      begin
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          checkTextInDocument(nil);
+      end;
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         undoManager.removeAllActions;
       UpdateLastFile;
@@ -653,8 +659,11 @@ begin
     MoveToPos;
     iBookmarkPos := 0;
     LabelFileNameChars;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      checkTextInDocument(nil);
+    if blDisableFormatting = False then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        checkTextInDocument(nil);
+    end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       undoManager.removeAllActions;
     UpdateLastFile;
@@ -1301,6 +1310,8 @@ begin
       uppercaseWord(nil);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveForward(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveForward(nil);
     key := 0;
   end
   else
@@ -1310,6 +1321,8 @@ begin
       lowercaseWord(nil);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveForward(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveForward(nil);
     key := 0;
   end
   else
@@ -1317,6 +1330,8 @@ begin
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       capitalizeWord(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveForward(nil);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveForward(nil);
     key := 0;
@@ -2570,8 +2585,11 @@ begin
     MoveToPos;
     iBookmarkPos := 0;
     LabelFileNameChars;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      checkTextInDocument(nil);
+    if blDisableFormatting = False then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        checkTextInDocument(nil);
+    end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       undoManager.removeAllActions;
     UpdateLastFile;
@@ -2682,8 +2700,11 @@ begin
     MoveToPos;
     iBookmarkPos := 0;
     LabelFileNameChars;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      checkTextInDocument(nil);
+    if blDisableFormatting = False then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        checkTextInDocument(nil);
+    end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       undoManager.removeAllActions;
     UpdateLastFile;
@@ -2727,8 +2748,11 @@ begin
     MoveToPos;
     iBookmarkPos := 0;
     LabelFileNameChars;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      checkTextInDocument(nil);
+    if blDisableFormatting = False then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        checkTextInDocument(nil);
+    end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       undoManager.removeAllActions;
     UpdateLastFile;
@@ -2771,8 +2795,11 @@ begin
     MoveToPos;
     iBookmarkPos := 0;
     LabelFileNameChars;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      checkTextInDocument(nil);
+    if blDisableFormatting = False then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        checkTextInDocument(nil);
+    end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       undoManager.removeAllActions;
     UpdateLastFile;
@@ -2815,8 +2842,11 @@ begin
     MoveToPos;
     iBookmarkPos := 0;
     LabelFileNameChars;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      checkTextInDocument(nil);
+    if blDisableFormatting = False then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        checkTextInDocument(nil);
+    end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       undoManager.removeAllActions;
     UpdateLastFile;
@@ -2855,8 +2885,11 @@ begin
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       pasteAsPlainText(nil);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      checkTextInDocument(nil);
+    if blDisableFormatting = False then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        checkTextInDocument(nil);
+    end;
   end;
 end;
 
@@ -2897,8 +2930,11 @@ begin
           insertText(NSStringUtf8(stLink + LineEnding));
       end;
     end;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      checkTextInDocument(nil);
+    if blDisableFormatting = False then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        checkTextInDocument(nil);
+    end;
   end;
 end;
 
@@ -2975,7 +3011,10 @@ begin
 end;
 
 procedure TfmMain.miEditHideListClick(Sender: TObject);
+var
+  iPos: Integer;
 begin
+  iPos := dbText.SelStart;
   if pnTitTodo.Visible = True then
   begin
     pnTitTodo.Visible := False;
@@ -2993,6 +3032,7 @@ begin
     FormatListTitleTodo;
     ShowCurrentTitleTodo;
   end;
+  dbText.SelStart := iPos;
 end;
 
 procedure TfmMain.miEditDisableFormClick(Sender: TObject);
@@ -3022,6 +3062,8 @@ begin
     myFont := NSFont.fontWithDescriptor_size(fd, -dbText.font.Height);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
       addAttribute_value_range(NSFontAttributeName, myFont, rng);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+      removeAttribute_range(NSBackgroundColorAttributeName, rng);
   end
   else
   begin

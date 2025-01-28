@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.11, published on January 27 2025.
+Version 1.2.12, published on January 28 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -90,7 +90,7 @@ When a paragraph starts with a list heading (`*`, `+`, `-` or a number followed 
 
 To move a heading and all its relative content, included possible headings of lower level (that is, having more `#` at the beginning), in another position of the text, move the cursor within this heading without doing any selection and cut all in the clipboard with the shortcut `Meta` + `Shift` + `X`. The text in the clipboard can then be pasted elsewhere.
 
-Links are properly recognised and formatted. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``. Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, the possible Markdown markers are properly shown.
+Links are properly recognised and formatted if the formatting is not disabled. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``. Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, the possible Markdown markers are properly shown.
 
 The formatting should work instantly, without delaying the typing, at least up to about 250,000 characters (test made in a Mac Pro with M1 chip and 8 GB of RAM). To work speedily with bigger documents, disable the formatting and, if necessary, also the titles and toto list (see below the `Edit` menu notes). In this way, even a text of few million of characters may be modified without any delay in typing.
 
@@ -313,6 +313,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.12
+
+- The links recognition is now suspended when the formatting is disabled, greatly improving the performance of the app with very large files.
+- Small bugs fixing.
 
 #### Version 1.2.11
 
