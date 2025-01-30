@@ -148,8 +148,6 @@ type
     procedure miToolsTrans1Click(Sender: TObject);
     procedure miToolsTrans2Click(Sender: TObject);
     procedure miToolsTrans3Click(Sender: TObject);
-    procedure sgTableDrawCell(Sender: TObject; aCol, aRow: integer;
-      aRect: TRect; aState: TGridDrawState);
     procedure sgTableEditingDone(Sender: TObject);
     procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTableKeyPress(Sender: TObject; var Key: char);
@@ -1752,13 +1750,6 @@ begin
   begin
     sgTitles.Canvas.Brush.Color := clHighlightList;
   end;
-end;
-
-procedure TfmMain.sgTableDrawCell(Sender: TObject; aCol, aRow: integer;
-  aRect: TRect; aState: TGridDrawState);
-begin
-  sgTable.Canvas.TextOut(aRect.Left + 4, aRect.Top,
-    sgTable.Cells[aCol, aRow]);
 end;
 
 procedure TfmMain.sgTableEditingDone(Sender: TObject);

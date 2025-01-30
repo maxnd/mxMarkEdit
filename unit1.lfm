@@ -1253,7 +1253,6 @@ object fmMain: TfmMain
         RowCount = 2000
         ShowHint = True
         TabOrder = 0
-        OnDrawCell = sgTableDrawCell
         OnEditingDone = sgTableEditingDone
         OnKeyDown = sgTableKeyDown
         OnKeyPress = sgTableKeyPress
