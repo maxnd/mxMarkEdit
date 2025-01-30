@@ -322,7 +322,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 #### Version 1.2.16
 
-- Within links, some Markdown markers were hidden and active in formatting the text.
+- Bugs fixing: within links, some Markdown markers were hidden and still active in formatting the text.
 
 #### Version 1.2.15
 
