@@ -4034,6 +4034,8 @@ begin
         setTextColor_range(ColorToNSColor(clLink), rng);
       rng.location := iStartLink - 1;
       rng.length := i - iStartLink;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+        addAttribute_value_range(NSFontAttributeName, myFont, rng);
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         setTextColor_range(ColorToNSColor(clCode), rng);
       rng.location := i - 1;

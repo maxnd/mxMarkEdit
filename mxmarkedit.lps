@@ -19,8 +19,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <IsVisibleTab Value="True"/>
-        <CursorPos X="29" Y="11"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="1755" ID="1"/>
@@ -34,10 +32,11 @@
         <ComponentName Value="fmCopyright"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="13"/>
-        <CursorPos X="70" Y="23"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unit2.pas"/>
@@ -219,7 +218,7 @@
     <Debugger>
       <Backend Value="{E8C4B71E-475A-0A82-CF90-BF2720A75D71}"/>
     </Debugger>
-    <JumpHistory HistoryIndex="25">
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="unit1.pas"/>
         <Caret Line="987" Column="39" TopLine="978"/>
@@ -323,6 +322,22 @@
       <Position>
         <Filename Value="unit1.pas"/>
         <Caret Column="57"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="11" Column="29"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="1344" Column="30" TopLine="1330"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="4039" TopLine="4025"/>
+      </Position>
+      <Position>
+        <Filename Value="copyright.pas"/>
+        <Caret Line="21" Column="67" TopLine="13"/>
       </Position>
     </JumpHistory>
     <RunParams>
