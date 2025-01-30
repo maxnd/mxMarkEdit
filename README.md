@@ -2,13 +2,15 @@
 
 # mxMarkEdit
 
-Version 1.2.13, published on January 28 2025.
+Version 1.2.14, published on January 30 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
 [Read this manual in PDF](https://github.com/maxnd/mxMarkEdit/raw/main/manuals/mxmarkedit-user-manual-en.pdf).
 
 [Read the Italian translation of this manual in PDF](https://github.com/maxnd/mxMarkEdit/raw/main/manuals/mxmarkedit-user-manual-it.pdf).
+
+The PDF manual may be downloaded also within the app, with the `Help - Download manual` menu item.
 
 ---
 
@@ -209,7 +211,7 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 
 A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the file are present or not. See the Pandoc manual for more information.
 
-The `?` - `Shortcuts list` menu item show a list of all the shortcuts available that are not related to menu items.
+The `Help` - `Shortcuts list` menu item show a list of all the shortcuts available that are not related to menu items.
 
 The other menu items are self-explaining.
 
@@ -314,6 +316,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 ## Revision history
 
+#### Version 1.2.14
+
+- The menu `?` has been renamed as `Help`.
+- Added the possibility to download the manual (see menu item `Help - Download manual`).
+- Small bugs fixing.
+
 #### Version 1.2.13
 
 - In presentation mode, also the list of titles and todos is faded, and spell checking is automatically disabled.
@@ -364,7 +372,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 #### Version 1.2.4
 
-- Added a list of all the available shortcuts that are not related to menu items (see The `?` - `Shortcuts list` menu item).
+- Added a list of all the available shortcuts that are not related to menu items (see The `Help` - `Shortcuts list` menu item).
 - Now the width of the columns of the grid of the last four files is remembered by the app.
 
 #### Version 1.2.3

@@ -1484,13 +1484,20 @@ object fmMain: TfmMain
       end
     end
     object miHelp: TMenuItem
-      Caption = '?'
-      object Shortcuts: TMenuItem
+      Caption = 'Help'
+      object miToolsShortcuts: TMenuItem
         Caption = 'Shortcuts list'
         ShortCut = 12360
-        OnClick = ShortcutsClick
+        OnClick = miToolsShortcutsClick
       end
       object Sep7: TMenuItem
+        Caption = '-'
+      end
+      object miToolsManual: TMenuItem
+        Caption = 'Download manual'
+        OnClick = miToolsManualClick
+      end
+      object Sep8: TMenuItem
         Caption = '-'
       end
       object miCopyright: TMenuItem

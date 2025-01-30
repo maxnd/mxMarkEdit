@@ -27,7 +27,7 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="2"/>
-      <RevisionNr Value="13"/>
+      <RevisionNr Value="14"/>
       <StringTable Comments="A free Markdown editor for macOS" LegalCopyright="Massimo Nardello, Modena 2024 - 2025" LegalTrademarks="Massimo Nardello, Modena 2024 - 2025" OriginalFilename="mxMarkEdit" ProductName="mxMarkEdit"/>
     </VersionInfo>
     <BuildModes>

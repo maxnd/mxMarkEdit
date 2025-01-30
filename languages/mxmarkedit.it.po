@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.13"
+msgid "1.2.14"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -208,12 +208,16 @@ msgid "Search in files..."
 msgstr "Cerca nei file..."
 
 #: tfmmain.mihelp.caption
-msgid "?"
-msgstr ""
+msgid "Help"
+msgstr "Aiuto"
 
 #: tfmmain.mitools.caption
 msgid "Tools"
 msgstr "Strumenti"
+
+#: tfmmain.mitoolsmanual.caption
+msgid "Download manual"
+msgstr "Scarica manuale"
 
 #: tfmmain.mitoolsopenwin.caption
 msgid "Open another window"
@@ -231,6 +235,10 @@ msgstr "Ottimizza presentazione..."
 #: tfmmain.mitoolspandoc.caption
 msgid "Convert with Pandoc"
 msgstr "Converti con Pandoc"
+
+#: tfmmain.mitoolsshortcuts.caption
+msgid "Shortcuts list"
+msgstr "Lista scorciatoie"
 
 #: tfmmain.mitoolstrans1.caption
 msgid "None"
@@ -262,10 +270,6 @@ msgstr "Apri file Markdown"
 msgctxt "tfmmain.sdsave.title"
 msgid "Save Markdown file"
 msgstr "Salva file Markdown"
-
-#: tfmmain.shortcuts.caption
-msgid "Shortcuts list"
-msgstr "Lista scorciatoie"
 
 #: tfmoptions.bnclose.caption
 msgctxt "tfmoptions.bnclose.caption"

@@ -30,7 +30,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, CocoaAll,
   CocoaTextEdits, CocoaUtils, Clipbrd, Menus, StdCtrls, Grids, ExtCtrls,
   DefaultTranslator, translate, IniFiles, LazUTF8, FileUtil,
-  LazFileUtils, Unix, Types, DateUtils, LCLType;
+  LazFileUtils, Unix, Types, DateUtils, LCLType, LCLIntf;
 
 type
 
@@ -42,6 +42,7 @@ type
     lbDateTime: TLabel;
     lbChars: TLabel;
     lbFindGrid: TLabel;
+    miToolsManual: TMenuItem;
     miToolsOptmize: TMenuItem;
     miFilesSearch: TMenuItem;
     miEditWords: TMenuItem;
@@ -95,9 +96,10 @@ type
     pnBottom: TPanel;
     Sep2: TMenuItem;
     Sep7: TMenuItem;
+    Sep8: TMenuItem;
     sgTitles: TStringGrid;
     sgTable: TStringGrid;
-    Shortcuts: TMenuItem;
+    miToolsShortcuts: TMenuItem;
     spTable: TSplitter;
     spTitles: TSplitter;
     tmDateTime: TTimer;
@@ -138,6 +140,7 @@ type
     procedure miFileSaveAsClick(Sender: TObject);
     procedure miFileSaveClick(Sender: TObject);
     procedure miFilesSearchClick(Sender: TObject);
+    procedure miToolsManualClick(Sender: TObject);
     procedure miToolsOpenWinClick(Sender: TObject);
     procedure miToolsOptionsClick(Sender: TObject);
     procedure miToolsOptmizeClick(Sender: TObject);
@@ -161,7 +164,7 @@ type
       var HintText: string);
     procedure sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
-    procedure ShortcutsClick(Sender: TObject);
+    procedure miToolsShortcutsClick(Sender: TObject);
     procedure tmDateTimeTimer(Sender: TObject);
   private
     procedure CreateBackup;
@@ -924,6 +927,7 @@ begin
     blIsPresenting := False;
     cbFilter.Visible := True;
     FormatListTitleTodo;
+    key := 0;
   end
   else
   if (((key = Ord('E')) and (Shift = [ssMeta]) or
@@ -941,6 +945,10 @@ begin
     blIsPresenting := True;
     cbFilter.Visible := False;
     sgTitles.ScrollBars := ssNone;
+    if ((dbText.Lines[0] = '---') and (dbText.SelStart < 3)) then
+    begin
+      dbText.SelStart := 4;
+    end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToEndOfParagraph(nil);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1778,9 +1786,9 @@ begin
     flNum := False;
     if iTop > - 1 then
     begin
-      for i := iTop to sgTable.RowCount - 1 do
+      for i := iTop to sgTable.RowCount - 2 do
       begin
-        if sgTable.Cells[1, i] <> '' then
+        if ((sgTable.Cells[1, i] <> '') or (sgTable.Cells[1, i + 1] <> '')) then
         begin
           Exit;
         end
@@ -2999,7 +3007,7 @@ var
   iLen, i, iSelStart: integer;
   slList1, slList2: TStringList;
   stText: WideString;
-  stItem: String;
+  stItem: String = '';
   stSeparators: String = '.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ';
 begin
   if blIsPresenting = True then
@@ -3409,7 +3417,7 @@ begin
   fmOptions.ShowModal;
 end;
 
-procedure TfmMain.ShortcutsClick(Sender: TObject);
+procedure TfmMain.miToolsShortcutsClick(Sender: TObject);
 begin
   if blIsPresenting = True then
   begin
@@ -3417,6 +3425,20 @@ begin
     cbFilter.Visible := True;
   end;
   fmShortcuts.ShowModal;
+end;
+
+procedure TfmMain.miToolsManualClick(Sender: TObject);
+begin
+  if LowerCase(UTF8Copy(NSStringToString(
+    NSLocale.preferredLanguages.objectAtIndex(0)), 1, 2)) = 'it' then
+  begin
+    OpenURL('https://github.com/maxnd/mxMarkEdit/raw/main/manuals/' +
+      'mxmarkedit-user-manual-it.pdf');  end
+  else
+  begin
+    OpenURL('https://github.com/maxnd/mxMarkEdit/raw/main/manuals/' +
+      'mxmarkedit-user-manual-en.pdf');
+  end;
 end;
 
 procedure TfmMain.miCopyrightClick(Sender: TObject);
