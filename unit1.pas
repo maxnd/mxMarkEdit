@@ -117,7 +117,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
-    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure miEditFindDuplicateClick(Sender: TObject);
     procedure miEditHideListClick(Sender: TObject);
     procedure miEditLinkClick(Sender: TObject);
@@ -153,6 +152,7 @@ type
     procedure sgTableEditingDone(Sender: TObject);
     procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTableKeyPress(Sender: TObject; var Key: char);
+    procedure sgTableKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
     procedure sgTableSetEditText(Sender: TObject; ACol, ARow: Integer;
@@ -765,14 +765,6 @@ begin
         scrollRangeToVisible(rng);
     end;
     key := 0;
-  end;
-end;
-
-procedure TfmMain.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-  if ((key = Ord('V')) and (Shift = [ssMeta])) then
-  begin
-    sgTableEditingDone(nil);
   end;
 end;
 
@@ -2518,6 +2510,15 @@ begin
         end;
       end;
     end;
+  end;
+end;
+
+procedure TfmMain.sgTableKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if ((key = Ord('V')) and (Shift = [ssMeta])) then
+  begin
+    sgTableEditingDone(nil);
   end;
 end;
 
