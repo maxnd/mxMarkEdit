@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.16, published on January 30 2025.
+Version 1.2.17, published on February 1 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -267,7 +267,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 
 * `Meta` + `Shift` + `I`: insert a new row.
 * `Backspace`: delete the content of the selected cell or cells, after confirmation.
-* `Meta` + `Shift` + `Backspace`: delete the current row, after confirmation.
+* `Meta` + `Shift` + `Backspace`: delete the current row, after confirmation if it’s not empty.
 * `Meta` + `G`: search the text typed in the `Find` field starting from the current position and just in the current column (field) of the current table.
 * `Meta` + `Opt` + `Arrow up`: move up the current row.
 * `Meta` + `Opt` + `Arrow down`: move down the current row.
@@ -319,6 +319,13 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.17
+
+- Added menu item `File - Insert...`, to insert the content of a Markdown file in the current one at the cursor position.
+- Deleting an empty row in the grid now doesn't require confirmation.
+- Minor graphic improvements in presentation mode.
+- Small bugs fixing.
 
 #### Version 1.2.16
 

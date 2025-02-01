@@ -101,12 +101,12 @@ resourcestring
     'cursor to the corresponding footnote.';
   srcut033 = 'Within a footnote, move the cursor to the corresponding footnote ' +
     'reference in the document.';
-  srcut034 = 'In other positions, create a new footnote reference and a new' +
+  srcut034 = 'In other positions, create a new footnote reference and a new ' +
     'footnote, both properly automatically numbered.';
   srcut035 = ' In the tables grid';
   srcut036 = 'Insert a new row.';
   srcut037 = 'Delete the content of the selected cell or cells, after confirmation.';
-  srcut038 = 'Delete the current row, after confirmation.';
+  srcut038 = 'Delete the current row, after confirmation if it''s not empty.';
   srcut039 = 'Search the text typed in the Find field starting from the current position ' +
       'and just in the current column of the current table.';
   srcut040 = 'Move up the current row.';
@@ -116,7 +116,7 @@ resourcestring
     'if it’s not the first one, containing the tables names.';
   srcut044 = 'Move left the current column just of the current table ' +
     'with its content.';
-  srcut045 = 'Move right the current column just of the current table' +
+  srcut045 = 'Move right the current column just of the current table ' +
     'with its content.';
   srcut046 = 'Move the current table, with all its field, before the previous one.';
   srcut047 = 'Move the current table, with all its field, after the next one.';

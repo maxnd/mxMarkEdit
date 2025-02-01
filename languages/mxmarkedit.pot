@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.16"
+msgid "1.2.17"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -186,6 +186,10 @@ msgstr ""
 
 #: tfmmain.mifile.caption
 msgid "File"
+msgstr ""
+
+#: tfmmain.mifileinsert.caption
+msgid "Insert..."
 msgstr ""
 
 #: tfmmain.mifilenew.caption
@@ -942,7 +946,7 @@ msgid "Within a footnote, move the cursor to the corresponding footnote referenc
 msgstr ""
 
 #: unit7.srcut034
-msgid "In other positions, create a new footnote reference and a newfootnote, both properly automatically numbered."
+msgid "In other positions, create a new footnote reference and a new footnote, both properly automatically numbered."
 msgstr ""
 
 #: unit7.srcut035
@@ -958,7 +962,7 @@ msgid "Delete the content of the selected cell or cells, after confirmation."
 msgstr ""
 
 #: unit7.srcut038
-msgid "Delete the current row, after confirmation."
+msgid "Delete the current row, after confirmation if it's not empty."
 msgstr ""
 
 #: unit7.srcut039
@@ -986,7 +990,7 @@ msgid "Move left the current column just of the current table with its content."
 msgstr ""
 
 #: unit7.srcut045
-msgid "Move right the current column just of the current tablewith its content."
+msgid "Move right the current column just of the current table with its content."
 msgstr ""
 
 #: unit7.srcut046

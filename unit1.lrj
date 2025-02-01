@@ -9,6 +9,7 @@
 {"hash":315429,"name":"tfmmain.mifile.caption","sourcebytes":[70,105,108,101],"value":"File"},
 {"hash":21703,"name":"tfmmain.mifilenew.caption","sourcebytes":[78,101,119],"value":"New"},
 {"hash":107745630,"name":"tfmmain.mifileopen.caption","sourcebytes":[79,112,101,110,46,46,46],"value":"Open..."},
+{"hash":164184414,"name":"tfmmain.mifileinsert.caption","sourcebytes":[73,110,115,101,114,116,46,46,46],"value":"Insert..."},
 {"hash":31059806,"name":"tfmmain.mifilessearch.caption","sourcebytes":[83,101,97,114,99,104,32,105,110,32,102,105,108,101,115,46,46,46],"value":"Search in files..."},
 {"hash":366789,"name":"tfmmain.mifilesave.caption","sourcebytes":[83,97,118,101],"value":"Save"},
 {"hash":124639694,"name":"tfmmain.mifilesaveas.caption","sourcebytes":[83,97,118,101,32,97,115,46,46,46],"value":"Save as..."},

@@ -1307,6 +1307,11 @@ object fmMain: TfmMain
         ShortCut = 4175
         OnClick = miFileOpenClick
       end
+      object miFileInsert: TMenuItem
+        Caption = 'Insert...'
+        ShortCut = 20559
+        OnClick = miFileInsertClick
+      end
       object miFilesSearch: TMenuItem
         Caption = 'Search in files...'
         ShortCut = 12367

@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.16"
+msgid "1.2.17"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -186,6 +186,10 @@ msgstr "Mostra maschera ricorrenza parole"
 #: tfmmain.mifile.caption
 msgid "File"
 msgstr ""
+
+#: tfmmain.mifileinsert.caption
+msgid "Insert..."
+msgstr "Inserisci..."
 
 #: tfmmain.mifilenew.caption
 msgid "New"
@@ -940,7 +944,7 @@ msgid "Within a footnote, move the cursor to the corresponding footnote referenc
 msgstr "All'interno di una nota a piè di pagina, sposta il cursore sul riferimento di nota a piè di pagina corrispondente nel documento."
 
 #: unit7.srcut034
-msgid "In other positions, create a new footnote reference and a newfootnote, both properly automatically numbered."
+msgid "In other positions, create a new footnote reference and a new footnote, both properly automatically numbered."
 msgstr "In altre posizioni, crea un nuovo riferimento di nota e una nuova nota, entrambi numerati automaticamente in modo appropriato."
 
 #: unit7.srcut035
@@ -953,11 +957,11 @@ msgstr "Inserisci una nuova riga."
 
 #: unit7.srcut037
 msgid "Delete the content of the selected cell or cells, after confirmation."
-msgstr "Elimina il contenuto della cella o delle celle selezionate, dopo la conferma."
+msgstr "Elimina il contenuto della cella o delle celle selezionate, dopo una conferma."
 
 #: unit7.srcut038
-msgid "Delete the current row, after confirmation."
-msgstr "Elimina la riga corrente, dopo la conferma."
+msgid "Delete the current row, after confirmation if it's not empty."
+msgstr "Elimina la riga corrente, dopo una conferma se non è vuota."
 
 #: unit7.srcut039
 msgid "Search the text typed in the Find field starting from the current position and just in the current column of the current table."
@@ -973,18 +977,18 @@ msgstr "Sposta verso il basso la riga corrente."
 
 #: unit7.srcut042
 msgid "Add a new column in the current table, after confirmation."
-msgstr "Aggiungi una nuova colonna nella tabella corrente, dopo la conferma."
+msgstr "Aggiungi una nuova colonna nella tabella corrente, dopo una conferma."
 
 #: unit7.srcut043
 msgid "Delete the current column in the current table, after confirmation, if it’s not the first one, containing the tables names."
-msgstr "Elimina la colonna corrente nella tabella corrente, dopo la conferma, se non è la prima, contenente i nomi delle tabelle."
+msgstr "Elimina la colonna corrente nella tabella corrente, dopo una conferma, se non è la prima, contenente i nomi delle tabelle."
 
 #: unit7.srcut044
 msgid "Move left the current column just of the current table with its content."
 msgstr "Sposta a sinistra la colonna corrente solo della tabella corrente con il suo contenuto."
 
 #: unit7.srcut045
-msgid "Move right the current column just of the current tablewith its content."
+msgid "Move right the current column just of the current table with its content."
 msgstr "Sposta a destra la colonna corrente solo della tabella corrente con il suo contenuto."
 
 #: unit7.srcut046

@@ -42,6 +42,7 @@ type
     lbDateTime: TLabel;
     lbChars: TLabel;
     lbFindGrid: TLabel;
+    miFileInsert: TMenuItem;
     miToolsManual: TMenuItem;
     miToolsOptmize: TMenuItem;
     miFilesSearch: TMenuItem;
@@ -131,6 +132,7 @@ type
     procedure miEditShowCurrentClick(Sender: TObject);
     procedure miEditTasksClick(Sender: TObject);
     procedure miEditWordsClick(Sender: TObject);
+    procedure miFileInsertClick(Sender: TObject);
     procedure miFileNewClick(Sender: TObject);
     procedure miFileOpenClick(Sender: TObject);
     procedure miFileOpenLast1Click(Sender: TObject);
@@ -703,7 +705,7 @@ begin
   else
   if ((key = 187) and (Shift = [ssMeta])) then
   begin
-    if dbText.Font.Size < 128 then
+    if ((dbText.Font.Size < 128) and (blIsPresenting = False)) then
     begin
       dbText.Font.Size := dbText.Font.Size + 1;
       FormatListTitleTodo;
@@ -719,7 +721,7 @@ begin
   else
   if ((key = 189) and (Shift = [ssMeta])) then
   begin
-    if dbText.Font.Size > 6 then
+    if ((dbText.Font.Size > 6) and (blIsPresenting = False)) then
     begin
       dbText.Font.Size := dbText.Font.Size - 1;
       FormatListTitleTodo;
@@ -735,33 +737,33 @@ begin
   else
   if ((key = 187) and (Shift = [ssMeta, ssCtrl])) then
   begin
-    if iFontMonoSize < 128 then
+    if ((iFontMonoSize < 128) and (blIsPresenting = False)) then
     begin
       iFontMonoSize := iFontMonoSize + 1;
+      FormatListTitleTodo;
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+      Application.ProcessMessages;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        scrollRangeToVisible(rng);
     end;
-    FormatListTitleTodo;
-    rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-    Application.ProcessMessages;
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      scrollRangeToVisible(rng);
     key := 0;
   end
   else
   if ((key = 189) and (Shift = [ssMeta, ssCtrl])) then
   begin
-    if iFontMonoSize > 6 then
+    if ((iFontMonoSize > 6) and (blIsPresenting = False)) then
     begin
       iFontMonoSize := iFontMonoSize - 1;
+      FormatListTitleTodo;
+      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+      Application.ProcessMessages;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        scrollRangeToVisible(rng);
     end;
-    FormatListTitleTodo;
-    rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-    Application.ProcessMessages;
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      scrollRangeToVisible(rng);
     key := 0;
   end;
 end;
@@ -940,13 +942,14 @@ begin
       miEditDisSpellClick(nil);
     end;
     key := 0;
-    blIsPresenting := True;
-    cbFilter.Visible := False;
-    sgTitles.ScrollBars := ssNone;
-    if ((dbText.Lines[0] = '---') and (dbText.SelStart < 3)) then
+    if ((dbText.Lines[0] = '---') and (dbText.SelStart < 3) and
+      (blIsPresenting = True)) then
     begin
       dbText.SelStart := 4;
     end;
+    blIsPresenting := True;
+    cbFilter.Visible := False;
+    sgTitles.ScrollBars := ssNone;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToEndOfParagraph(nil);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1703,7 +1706,14 @@ procedure TfmMain.sgTitlesDrawCell(Sender: TObject; aCol, aRow: integer;
 begin
   if blIsPresenting = True then
   begin
-    sgTitles.canvas.Font.Color := clFontFade;
+    if sgTitles.Cells[1, aRow] = ' ' then
+    begin
+      sgTitles.canvas.Font.Color := clFontContrast;
+    end
+    else
+    begin
+      sgTitles.canvas.Font.Color := clFontFade;
+    end;
     sgTitles.Canvas.TextOut(aRect.Left + 3, aRect.Top + 5,
       sgTitles.Cells[aCol, aRow]);
   end
@@ -1746,7 +1756,7 @@ end;
 procedure TfmMain.sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: integer;
   aState: TGridDrawState);
 begin
-  if sgTitles.Cells[1, aRow] = ' ' then
+  if ((sgTitles.Cells[1, aRow] = ' ') and (blIsPresenting = False)) then
   begin
     sgTitles.Canvas.Brush.Color := clHighlightList;
   end;
@@ -1893,16 +1903,27 @@ begin
   else
   if ((key = 8) and (Shift = [ssMeta, ssShift])) then
   begin
-    if MessageDlg(msg013, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
-    begin
-      sgTable.DeleteColRow(False, sgTable.Row);
-      sgTable.RowCount := csTableRowCount;
-      blTableMod := True;
-      stGridLoaded := stTableLoaded;
-      LabelFileNameChars;
-      blTableSaved := False;
-    end;
     key := 0;
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      if sgTable.Cells[i, sgTable.Row] <> '' then
+      begin
+        Break;
+      end;
+    end;
+    if i < sgTable.ColCount - 1 then
+    begin
+      if MessageDlg(msg013, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+      begin
+        Exit;
+      end;
+    end;
+    sgTable.DeleteColRow(False, sgTable.Row);
+    sgTable.RowCount := csTableRowCount;
+    blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
+    blTableSaved := False;
   end
   else
   if ((key = 8) and (Shift = [ssMeta, ssShift, ssAlt])) then
@@ -2628,6 +2649,35 @@ begin
     ShowCurrentTitleTodo;
     blFileMod := False;
     blTableMod := False;
+  except
+    MessageDlg(msg004, mtWarning, [mbOK], 0);
+  end;
+end;
+
+procedure TfmMain.miFileInsertClick(Sender: TObject);
+var
+  slText: TStringList;
+begin
+  blIsPresenting := False;
+  cbFilter.Visible := True;
+  if odOpen.Execute then
+  try
+    try
+      slText := TStringList.Create;
+      slText.LoadFromFile(odOpen.FileName);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText(NSStringUtf8(slText.Text));
+      LabelFileNameChars;
+      if blDisableFormatting = False then
+      begin
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          checkTextInDocument(nil);
+      end;
+      ShowCurrentTitleTodo;
+      blFileMod := True;
+    finally
+      slText.Free;
+    end;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
