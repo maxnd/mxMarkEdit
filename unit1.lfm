@@ -1101,6 +1101,8 @@ object fmMain: TfmMain
     BevelOuter = bvNone
     ClientHeight = 582
     ClientWidth = 170
+    ParentBackground = False
+    ParentColor = False
     TabOrder = 2
     object cbFilter: TComboBox
       Left = 15
@@ -1229,6 +1231,8 @@ object fmMain: TfmMain
       BevelOuter = bvNone
       ClientHeight = 148
       ClientWidth = 877
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 2
       object sgTable: TStringGrid
         Left = 0
@@ -1266,9 +1270,9 @@ object fmMain: TfmMain
         Width = 877
         Align = alBottom
         BevelOuter = bvNone
-        BorderStyle = bsSingle
         ClientHeight = 40
         ClientWidth = 875
+        ParentBackground = False
         ParentFont = False
         TabOrder = 1
         object edFindGrid: TEdit
@@ -1288,6 +1292,15 @@ object fmMain: TfmMain
           Caption = 'Find'
           Font.Color = clBlack
           ParentFont = False
+        end
+        object shFind: TShape
+          Left = 0
+          Height = 1
+          Top = 0
+          Width = 875
+          Align = alTop
+          Brush.Style = bsClear
+          Pen.Color = clForm
         end
       end
     end

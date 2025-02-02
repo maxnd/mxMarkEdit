@@ -1073,7 +1073,7 @@ object fmOptions: TfmOptions
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
-    TabOrder = 25
+    TabOrder = 27
     TabStop = False
     OnClick = bnCloseClick
   end
@@ -1445,6 +1445,28 @@ object fmOptions: TfmOptions
     TabOrder = 18
     TabStop = False
     OnClick = edStMaxSizeLessClick
+  end
+  object bnSetColors: TButton
+    Left = 45
+    Height = 30
+    Top = 502
+    Width = 150
+    Anchors = [akRight, akBottom]
+    Caption = 'Set standard colors'
+    TabOrder = 25
+    TabStop = False
+    OnClick = bnSetColorsClick
+  end
+  object bnRemoveColors: TButton
+    Left = 216
+    Height = 30
+    Top = 502
+    Width = 150
+    Anchors = [akRight, akBottom]
+    Caption = 'Remove colors'
+    TabOrder = 26
+    TabStop = False
+    OnClick = bnRemoveColorsClick
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'

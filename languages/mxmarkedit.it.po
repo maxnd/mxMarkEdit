@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.18"
+msgid "1.2.19"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -279,6 +279,14 @@ msgstr "Salva file Markdown"
 msgctxt "tfmoptions.bnclose.caption"
 msgid "OK"
 msgstr ""
+
+#: tfmoptions.bnremovecolors.caption
+msgid "Remove colors"
+msgstr "Rimuovi colori"
+
+#: tfmoptions.bnsetcolors.caption
+msgid "Set standard colors"
+msgstr "Colori standard"
 
 #: tfmoptions.bnstfontcodecolormod.caption
 msgid "Code color"

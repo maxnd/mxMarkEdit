@@ -36,6 +36,8 @@ type
 
   TfmOptions = class(TForm)
     bnClose: TButton;
+    bnSetColors: TButton;
+    bnRemoveColors: TButton;
     bnStFontCodeColorMod: TButton;
     bnStFontFootColor: TButton;
     bnStFontLinkColor: TButton;
@@ -75,6 +77,8 @@ type
     lnStFonts: TLabel;
     lnStDelay: TLabel;
     lnStFontsMono: TLabel;
+    procedure bnSetColorsClick(Sender: TObject);
+    procedure bnRemoveColorsClick(Sender: TObject);
     procedure bnCloseClick(Sender: TObject);
     procedure bnStFontCodeColorModClick(Sender: TObject);
     procedure bnStFontFootColorClick(Sender: TObject);
@@ -408,6 +412,60 @@ end;
 procedure TfmOptions.bnCloseClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfmOptions.bnSetColorsClick(Sender: TObject);
+begin
+  if IsAppDark = True then
+  begin
+    fmMain.dbText.Font.Color := $00D6D6D6;
+    clLink := $00F89442;
+    clFootnote := $00FDA69E;
+    clCode := $00D6AC77;
+    clTodo := $00D88AFF;
+    clTitle1 := $005EB2FB;
+    clTitle2 := $0099F692;
+    clTitle3 := $005EF3FF;
+  end
+  else
+  begin
+    fmMain.dbText.Font.Color := $00424242;
+    clLink := $00DA6800;
+    clFootnote := $00FF3794;
+    clCode := $00932194;
+    clTodo := $00E539E3;
+    clTitle1 := $00511794;
+    clTitle2 := $00519000;
+    clTitle3 := $00009092
+  end;
+  fmMain.FormatListTitleTodo;
+end;
+
+procedure TfmOptions.bnRemoveColorsClick(Sender: TObject);
+begin
+  if IsAppDark = True then
+  begin
+    fmMain.dbText.Font.Color := clWhite;
+    clLink := clSilver;
+    clFootnote := clSilver;
+    clCode := clSilver;
+    clTodo := clWhite;
+    clTitle1 := clWhite;
+    clTitle2 := clWhite;
+    clTitle3 := clWhite;
+  end
+  else
+  begin
+    fmMain.dbText.Font.Color := clBlack;
+    clLink := clDkGray;
+    clFootnote := clDkGray;
+    clCode := clDkGray;
+    clTodo := clBlack;
+    clTitle1 := clBlack;
+    clTitle2 := clBlack;
+    clTitle3 := clBlack;
+  end;
+  fmMain.FormatListTitleTodo;
 end;
 
 

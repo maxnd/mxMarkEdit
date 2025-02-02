@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.18, published on February 1 2025.
+Version 1.2.19, published on February 2 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -219,9 +219,11 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 - the Pandoc options;
 - the path of the Pandoc executable;
 - the possible template (a file of Word, PowerPoint, Writer, etc.) to use as a reference;
-- the format of the file the note should be converted to (`.docx`, `.odt`, etc.). 
+- the format of the file the note should be converted to (`.docx`, `.odt`, etc.);
+- two buttons to reset the colours of the text in black and white or in various colours; these colours are different for dark and light mode.
 
-A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the file are present or not. See the Pandoc manual for more information.
+
+A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the files are present or not. See the Pandoc manual for more information.
 
 The `Help` - `Shortcuts list` menu item show a list of all the shortcuts available that are not related to menu items.
 
@@ -327,6 +329,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.19
+
+- In the options, two buttons have been added to reset the colours of the text in black and white or in various colours; these colours are different for dark and light mode.
+- Minor graphic improvements in presentation mode.
 
 #### Version 1.2.18
 

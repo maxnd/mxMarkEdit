@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.18"
+msgid "1.2.19"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -280,6 +280,14 @@ msgstr ""
 #: tfmoptions.bnclose.caption
 msgctxt "tfmoptions.bnclose.caption"
 msgid "OK"
+msgstr ""
+
+#: tfmoptions.bnremovecolors.caption
+msgid "Remove colors"
+msgstr ""
+
+#: tfmoptions.bnsetcolors.caption
+msgid "Set standard colors"
 msgstr ""
 
 #: tfmoptions.bnstfontcodecolormod.caption
