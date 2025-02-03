@@ -202,7 +202,7 @@ var
   slMarkdownFiles, slContent: TStringList;
   i, iPos, iStart, iRec: Integer;
   stContent, stContentLower, stRow: WideString;
-  stDotIni, stDotEnd: String;
+  stFind, stDotIni, stDotEnd: String;
   rng: NSRange;
 begin
   sgFiles.RowCount := 1;
@@ -211,6 +211,9 @@ begin
   begin
     //No need to create slMarkdownFiles; the function does that
     try
+      stFind := UTF8StringReplace(edFind.Text, '\n', LineEnding, [rfReplaceAll]);
+      stFind := UTF8StringReplace(stFind, '\t', #9, [rfReplaceAll]);
+      stFind := UTF8StringReplace(stFind, '\r', #13, [rfReplaceAll]);
       slContent := TStringList.Create;
       slMarkdownFiles := FindAllFiles(edFolder.Text, '*.md;*.csv', True);
       if slMarkdownFiles.Count > 0 then
@@ -226,7 +229,7 @@ begin
           iRec := 0;
           while iPos > 0 do
           begin
-            iPos := fmMain.UTF8CocoaPos(UTF8LowerCase(edFind.Text),
+            iPos := fmMain.UTF8CocoaPos(UTF8LowerCase(stFind),
               stContentLower, iStart);
             if iPos > 0 then
             begin
@@ -248,7 +251,7 @@ begin
                 rng.location := 0;
                 stDotIni := ''
               end;
-              rng.length := UTF8Length(edFind.Text) + 40;
+              rng.length := UTF8Length(stFind) + 40;
               stDotEnd := '...';
               if Length(stContent) < rng.location + rng.length then
               begin
@@ -290,7 +293,7 @@ end;
 
 procedure TfmFiles.OpenFile;
 var
-  stOpenFileName: String;
+  stFind, stOpenFileName: String;
   blTable: boolean = False;
   x, y, iPos, iLoc: Integer;
 begin
@@ -331,7 +334,10 @@ begin
     if blTable = False then
     begin
       fmMain.dbText.SelStart := StrToInt(sgFiles.Cells[0, sgFiles.Row]) - 1;
-      fmMain.dbText.SelLength := UTF8Length(edFind.Text);
+      stFind := UTF8StringReplace(edFind.Text, '\n', LineEnding, [rfReplaceAll]);
+      stFind := UTF8StringReplace(stFind, '\t', #9, [rfReplaceAll]);
+      stFind := UTF8StringReplace(stFind, '\r', #13, [rfReplaceAll]);
+      fmMain.dbText.SelLength := UTF8Length(stFind);
       if fmMain.pnGrid.Height > 1 then
       begin
         fmMain.pnGrid.Height := 1;

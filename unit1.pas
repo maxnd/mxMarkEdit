@@ -171,6 +171,7 @@ type
     procedure CreateBackup;
     procedure CreateYAML;
     procedure DeactForm(stFileName: String);
+    procedure DisablePresenting;
     procedure FindInGrid;
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
     function GetHeaderLevel(stHeader: String): Integer;
@@ -906,9 +907,7 @@ end;
 
 procedure TfmMain.dbTextClick(Sender: TObject);
 begin
-  blIsPresenting := False;
-  cbFilter.Visible := True;
-  spTable.Color := clForm;
+  DisablePresenting;
   FormatListTitleTodo;
   LabelFileNameChars;
 end;
@@ -924,9 +923,7 @@ var
 begin
   if ((key = 27) and (blIsPresenting = True)) then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
     key := 0;
   end
@@ -952,6 +949,7 @@ begin
     cbFilter.Visible := False;
     spTable.Color := dbText.Color;
     sgTitles.ScrollBars := ssNone;
+    dbText.ScrollBars := ssNone;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToEndOfParagraph(nil);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -989,7 +987,6 @@ begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         setInsertionPointColor(ColorToNSColor(dbText.Color));
     end;
-    sgTitles.ScrollBars := ssAutoVertical;
   end
   else
   if (((key = Ord('E')) and (Shift = [ssMeta, ssShift]) or
@@ -1008,6 +1005,7 @@ begin
     cbFilter.Visible := False;
     spTable.Color := dbText.Color;
     sgTitles.ScrollBars := ssNone;
+    dbText.ScrollBars := ssNone;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1051,7 +1049,6 @@ begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         setInsertionPointColor(ColorToNSColor(dbText.Color));
     end;
-    sgTitles.ScrollBars := ssAutoVertical;
   end
   else
   if blIsPresenting = True then
@@ -2600,9 +2597,7 @@ procedure TfmMain.miFileNewClick(Sender: TObject);
 var
   i: Integer;
 begin
-  blIsPresenting := False;
-  cbFilter.Visible := True;
-  spTable.Color := clForm;
+  DisablePresenting;
   if SaveFile = False then
   begin
     Exit;
@@ -2623,9 +2618,7 @@ end;
 
 procedure TfmMain.miFileOpenClick(Sender: TObject);
 begin
-  blIsPresenting := False;
-  cbFilter.Visible := True;
-  spTable.Color := clForm;
+  DisablePresenting;
   if SaveFile = False then
   begin
     Exit;
@@ -2672,9 +2665,7 @@ procedure TfmMain.miFileInsertClick(Sender: TObject);
 var
   slText: TStringList;
 begin
-  blIsPresenting := False;
-  cbFilter.Visible := True;
-  spTable.Color := clForm;
+  DisablePresenting;
   if odOpen.Execute then
   try
     try
@@ -2738,9 +2729,7 @@ var
   myList: TStringList;
   stOldFile: String;
 begin
-  blIsPresenting := False;
-  cbFilter.Visible := True;
-  spTable.Color := clForm;
+  DisablePresenting;
   if ((UTF8Length(dbText.Lines[1]) > 7) and
     (UTF8Copy(dbText.Lines[1], 1, 7) = 'title: ')) then
   begin
@@ -2774,9 +2763,7 @@ end;
 
 procedure TfmMain.miFileOpenLast1Click(Sender: TObject);
 begin
-  blIsPresenting := False;
-  cbFilter.Visible := True;
-  spTable.Color := clForm;
+  DisablePresenting;
   if SaveFile = False then
   begin
     Exit;
@@ -2825,9 +2812,7 @@ end;
 
 procedure TfmMain.miFileOpenLast2Click(Sender: TObject);
 begin
-  blIsPresenting := False;
-  cbFilter.Visible := True;
-  spTable.Color := clForm;
+  DisablePresenting;
   if SaveFile = False then
   begin
     Exit;
@@ -2875,9 +2860,7 @@ end;
 
 procedure TfmMain.miFileOpenLast3Click(Sender: TObject);
 begin
-  blIsPresenting := False;
-  cbFilter.Visible := True;
-  spTable.Color := clForm;
+  DisablePresenting;
   if SaveFile = False then
   begin
     Exit;
@@ -2925,9 +2908,7 @@ end;
 
 procedure TfmMain.miFileOpenLast4Click(Sender: TObject);
 begin
-  blIsPresenting := False;
-  cbFilter.Visible := True;
-  spTable.Color := clForm;
+  DisablePresenting;
   if SaveFile = False then
   begin
     Exit;
@@ -3017,9 +2998,7 @@ procedure TfmMain.miEditFindClick(Sender: TObject);
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
   end;
   fmSearch.Show
@@ -3032,9 +3011,7 @@ var
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
   end;
   if odLink.Execute then
@@ -3075,9 +3052,7 @@ var
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
   end;
   if miEditDisableForm.Checked = True then
@@ -3137,9 +3112,7 @@ procedure TfmMain.miEditTasksClick(Sender: TObject);
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
   end;
   fmTasks.ShowModal;
@@ -3149,9 +3122,7 @@ procedure TfmMain.miEditWordsClick(Sender: TObject);
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
   end;
   fmWords.ShowModal;
@@ -3163,9 +3134,7 @@ var
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
   end;
   iPos := dbText.SelStart;
   if pnTitTodo.Visible = True then
@@ -3198,9 +3167,7 @@ var
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
   end;
   miEditDisableForm.Checked := not miEditDisableForm.Checked;
@@ -3241,9 +3208,7 @@ var
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
   end;
   if stFileName = '' then
@@ -3363,9 +3328,7 @@ var
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
   end;
   if dbText.Text = '' then
@@ -3480,9 +3443,7 @@ procedure TfmMain.miToolsOptionsClick(Sender: TObject);
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
     FormatListTitleTodo;
   end;
   fmOptions.ShowModal;
@@ -3492,9 +3453,7 @@ procedure TfmMain.miToolsShortcutsClick(Sender: TObject);
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
   end;
   fmShortcuts.ShowModal;
 end;
@@ -3517,9 +3476,7 @@ procedure TfmMain.miCopyrightClick(Sender: TObject);
 begin
   if blIsPresenting = True then
   begin
-    blIsPresenting := False;
-    cbFilter.Visible := True;
-    spTable.Color := clForm;
+    DisablePresenting;
   end;
   fmCopyright.ShowModal;
 end;
@@ -4948,6 +4905,15 @@ begin
       miEditDisableFormClick(nil);
     end;
   end;
+end;
+
+procedure TfmMain.DisablePresenting;
+begin
+  blIsPresenting := False;
+  cbFilter.Visible := True;
+  spTable.Color := clForm;
+  sgTitles.ScrollBars := ssAutoVertical;
+  dbText.ScrollBars := ssAutoVertical;
 end;
 
 procedure TfmMain.CreateBackup;

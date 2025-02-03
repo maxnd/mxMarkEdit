@@ -1072,7 +1072,7 @@ object fmMain: TfmMain
       Left = 20
       Height = 18
       Top = 4
-      Width = 739
+      Width = 716
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
       Caption = 'Chars: 0'
@@ -1082,10 +1082,10 @@ object fmMain: TfmMain
       ShowHint = True
     end
     object lbDateTime: TLabel
-      Left = 790
+      Left = 758
       Height = 18
       Top = 4
-      Width = 250
+      Width = 282
       Alignment = taRightJustify
       Anchors = [akTop, akRight]
       AutoSize = False
@@ -1270,8 +1270,8 @@ object fmMain: TfmMain
         Width = 877
         Align = alBottom
         BevelOuter = bvNone
-        ClientHeight = 40
-        ClientWidth = 875
+        ClientHeight = 42
+        ClientWidth = 877
         ParentBackground = False
         ParentFont = False
         TabOrder = 1
@@ -1297,7 +1297,7 @@ object fmMain: TfmMain
           Left = 0
           Height = 1
           Top = 0
-          Width = 875
+          Width = 877
           Align = alTop
           Brush.Style = bsClear
           Pen.Color = clForm

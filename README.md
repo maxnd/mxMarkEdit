@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.19, published on February 2 2025.
+Version 1.2.20, published on February 3 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -167,7 +167,9 @@ To export an mxMarkEdit presentation in PDF so that it can be shown on any compu
 
 ## Files management
 
-The `File - Search in files...` menu item open a form to search a word or a sentence within all the `.md` (document) and `.csv` (tables) files contained in a folder specified by the user, including its possible subfolders. Specify the folder to search in with the button `Set folder`, whose value will be remembered by the app, and then type the text to search for in the field `Find`. Then press `Return` or click on the button `Find`. 
+The `File - Search in files...` menu item open a form to search a word or a sentence within all the `.md` (document) and `.csv` (tables) files contained in a folder specified by the user, including its possible subfolders. Specify the folder to search in with the button `Set folder`, whose value will be remembered by the app, and then type the text to search for in the field `Find`. Then press `Return` or click on the button `Find`.
+
+The `\n` code finds the `Line feed`, which in macOS or Linux are the paragraph breaks, the `\r` code finds the `Enter` while the `\t` code finds the tabs. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`.
 
 In the grid above the buttons it will be shown a row for each occurrence of the text to be found both in the documents and in the tables files, along with the context in which it appears (some words before and after it). The columns of the grid - path, file name and context - can be sorted with a click on their headers. Pressing `Return` on a row of the grid, or double clicking on it, make the app open the corresponding file, and move the cursor to the position of the text to be found, or, if the file is a `.csv` one, to the cell that contains it. 
 
@@ -329,6 +331,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.20
+
+- In the file search open by `File - Search in files...` menu item, it's now possibile to use `\n`, `\r` and `\t` to look for line feeds, returns and tabs.
+- Minor graphic improvements in presentation mode.
 
 #### Version 1.2.19
 
