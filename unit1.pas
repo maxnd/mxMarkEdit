@@ -4064,6 +4064,11 @@ begin
         blLink := False;
       end;
     end
+    else if ((stText[i] = '(') and (stText[i - 1] <> ']') and
+      (blLink = True)) then
+    begin
+      blLink := False;
+    end
     else if ((stText[i] = ')') and (blLink = True)) then
     begin
       blLink := False;

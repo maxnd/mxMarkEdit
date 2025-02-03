@@ -31,7 +31,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="70" Y="9"/>
+        <CursorPos X="71" Y="12"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -53,7 +53,7 @@
         <UnitName Value="Unit3"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="427"/>
-        <CursorPos X="39" Y="433"/>
+        <CursorPos X="6" Y="436"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 X="3" Y="442" ID="1"/>
@@ -219,7 +219,7 @@
     <Debugger>
       <Backend Value="{E8C4B71E-475A-0A82-CF90-BF2720A75D71}"/>
     </Debugger>
-    <JumpHistory HistoryIndex="5">
+    <JumpHistory HistoryIndex="7">
       <Position>
         <Filename Value="unit1.pas"/>
         <Caret Line="3456" TopLine="3436"/>
@@ -243,6 +243,13 @@
       <Position>
         <Filename Value="unit1.pas"/>
         <Caret Line="4906" Column="28" TopLine="4901"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="4065" Column="32" TopLine="4058"/>
       </Position>
     </JumpHistory>
     <RunParams>
