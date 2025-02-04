@@ -59,6 +59,10 @@ type
     miFileOpenLast2: TMenuItem;
     miFileOpenLast3: TMenuItem;
     miFileOpenLast4: TMenuItem;
+    miFileOpenLast5: TMenuItem;
+    miFileOpenLast6: TMenuItem;
+    miFileOpenLast7: TMenuItem;
+    miFileOpenLast8: TMenuItem;
     miToolsOpenWin: TMenuItem;
     odLink: TOpenDialog;
     pnBackground: TPanel;
@@ -139,6 +143,10 @@ type
     procedure miFileOpenLast2Click(Sender: TObject);
     procedure miFileOpenLast3Click(Sender: TObject);
     procedure miFileOpenLast4Click(Sender: TObject);
+    procedure miFileOpenLast5Click(Sender: TObject);
+    procedure miFileOpenLast6Click(Sender: TObject);
+    procedure miFileOpenLast7Click(Sender: TObject);
+    procedure miFileOpenLast8Click(Sender: TObject);
     procedure miFileSaveAsClick(Sender: TObject);
     procedure miFileSaveClick(Sender: TObject);
     procedure miFilesSearchClick(Sender: TObject);
@@ -179,6 +187,7 @@ type
       isReadOnly, useDefault: boolean): NSParagraphStyle;
     function GetWritePara(txt: NSTextStorage;
       textOffset: integer): NSMutableParagraphStyle;
+    procedure OpenLastFile(stLastFileName: String);
     procedure RenumberFootnotes;
     procedure RenumberList;
     function SaveFile: boolean;
@@ -221,11 +230,17 @@ var
   iDelay: integer = 7;
   iLineSpacing: double = 1.0;
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
+  LastDatabase5, LastDatabase6, LastDatabase7, LastDatabase8: string;
   LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: integer;
+  LastPosDatabase5, LastPosDatabase6, LastPosDatabase7, LastPosDatabase8: integer;
   TopIndexDatabase1, TopIndexDatabase2, TopIndexDatabase3, TopIndexDatabase4: integer;
+  TopIndexDatabase5, TopIndexDatabase6, TopIndexDatabase7, TopIndexDatabase8: integer;
   ColDatabase1, ColDatabase2, ColDatabase3, ColDatabase4: integer;
+  ColDatabase5, ColDatabase6, ColDatabase7, ColDatabase8: integer;
   RowDatabase1, RowDatabase2, RowDatabase3, RowDatabase4: integer;
+  RowDatabase5, RowDatabase6, RowDatabase7, RowDatabase8: integer;
   ColWidthDatabase1, ColWidthDatabase2, ColWidthDatabase3, ColWidthDatabase4: String;
+  ColWidthDatabase5, ColWidthDatabase6, ColWidthDatabase7, ColWidthDatabase8: String;
   blFileSaved: boolean = True;
   blFileMod: boolean = False;
   blTableSaved: boolean = True;
@@ -486,9 +501,54 @@ begin
       begin
         miFileOpenLast4.Visible := False;
       end;
+      if MyIni.ReadString('mxmarkedit', 'lastfile5', '') <> '' then
+      begin
+        LastDatabase5 := MyIni.ReadString('mxmarkedit', 'lastfile5', '');
+        miFileOpenLast5.Caption := ExtractFileNameOnly(LastDatabase5);
+        miFileOpenLast5.Visible := True;
+      end
+      else
+      begin
+        miFileOpenLast5.Visible := False;
+      end;
+      if MyIni.ReadString('mxmarkedit', 'lastfile6', '') <> '' then
+      begin
+        LastDatabase6 := MyIni.ReadString('mxmarkedit', 'lastfile6', '');
+        miFileOpenLast6.Caption := ExtractFileNameOnly(LastDatabase6);
+        miFileOpenLast6.Visible := True;
+      end
+      else
+      begin
+        miFileOpenLast6.Visible := False;
+      end;
+      if MyIni.ReadString('mxmarkedit', 'lastfile7', '') <> '' then
+      begin
+        LastDatabase7 := MyIni.ReadString('mxmarkedit', 'lastfile7', '');
+        miFileOpenLast7.Caption := ExtractFileNameOnly(LastDatabase7);
+        miFileOpenLast7.Visible := True;
+      end
+      else
+      begin
+        miFileOpenLast7.Visible := False;
+      end;
+      if MyIni.ReadString('mxmarkedit', 'lastfile8', '') <> '' then
+      begin
+        LastDatabase8 := MyIni.ReadString('mxmarkedit', 'lastfile8', '');
+        miFileOpenLast8.Caption := ExtractFileNameOnly(LastDatabase8);
+        miFileOpenLast8.Visible := True;
+      end
+      else
+      begin
+        miFileOpenLast8.Visible := False;
+      end;
       if ((miFileOpenLast1.Visible = False) and
-        (miFileOpenLast2.Visible = False) and (miFileOpenLast3.Visible = False) and
-        (miFileOpenLast4.Visible = False)) then
+        (miFileOpenLast2.Visible = False) and
+        (miFileOpenLast3.Visible = False) and
+        (miFileOpenLast4.Visible = False) and
+        (miFileOpenLast5.Visible = False) and
+        (miFileOpenLast6.Visible = False) and
+        (miFileOpenLast7.Visible = False) and
+        (miFileOpenLast8.Visible = False)) then
       begin
         miSepLastFiles.Visible := False;
       end
@@ -500,22 +560,42 @@ begin
       LastPosDatabase2 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase2', 0);
       LastPosDatabase3 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase3', 0);
       LastPosDatabase4 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase4', 0);
+      LastPosDatabase5 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase5', 0);
+      LastPosDatabase6 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase6', 0);
+      LastPosDatabase7 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase7', 0);
+      LastPosDatabase8 := MyIni.ReadInteger('mxmarkedit', 'lastposdatabase8', 0);
       TopIndexDatabase1 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase1', 0);
       TopIndexDatabase2 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase2', 0);
       TopIndexDatabase3 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase3', 0);
       TopIndexDatabase4 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase4', 0);
+      TopIndexDatabase5 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase5', 0);
+      TopIndexDatabase6 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase6', 0);
+      TopIndexDatabase7 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase7', 0);
+      TopIndexDatabase8 := MyIni.ReadInteger('mxmarkedit', 'topindexdatabase8', 0);
       ColDatabase1 := MyIni.ReadInteger('mxmarkedit', 'coldatabase1', 1);
       ColDatabase2 := MyIni.ReadInteger('mxmarkedit', 'coldatabase2', 1);
       ColDatabase3 := MyIni.ReadInteger('mxmarkedit', 'coldatabase3', 1);
       ColDatabase4 := MyIni.ReadInteger('mxmarkedit', 'coldatabase4', 1);
+      ColDatabase5 := MyIni.ReadInteger('mxmarkedit', 'coldatabase5', 1);
+      ColDatabase6 := MyIni.ReadInteger('mxmarkedit', 'coldatabase6', 1);
+      ColDatabase7 := MyIni.ReadInteger('mxmarkedit', 'coldatabase7', 1);
+      ColDatabase8 := MyIni.ReadInteger('mxmarkedit', 'coldatabase8', 1);
       RowDatabase1 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase1', 1);
       RowDatabase2 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase2', 1);
       RowDatabase3 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase3', 1);
       RowDatabase4 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase4', 1);
+      RowDatabase5 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase5', 1);
+      RowDatabase6 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase6', 1);
+      RowDatabase7 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase7', 1);
+      RowDatabase8 := MyIni.ReadInteger('mxmarkedit', 'rowdatabase8', 1);
       ColWidthDatabase1 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase1', '');
       ColWidthDatabase2 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase2', '');
       ColWidthDatabase3 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase3', '');
       ColWidthDatabase4 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase4', '');
+      ColWidthDatabase5 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase5', '');
+      ColWidthDatabase6 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase6', '');
+      ColWidthDatabase7 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase7', '');
+      ColWidthDatabase8 := MyIni.ReadString('mxmarkedit', 'colwidthdatabase8', '');
       blHideTitleTodo := MyIni.ReadBool('mxmarkedit', 'blhidetodo', False);
       iMaxSize := MyIni.ReadInteger('mxmarkedit', 'maxsize', 250000);
     finally
@@ -863,26 +943,62 @@ begin
     begin
       MyIni.WriteString('mxmarkedit', 'lastfile4', LastDatabase4);
     end;
+    if LastDatabase5 <> '' then
+    begin
+      MyIni.WriteString('mxmarkedit', 'lastfile5', LastDatabase5);
+    end;
+    if LastDatabase6 <> '' then
+    begin
+      MyIni.WriteString('mxmarkedit', 'lastfile6', LastDatabase6);
+    end;
+    if LastDatabase7 <> '' then
+    begin
+      MyIni.WriteString('mxmarkedit', 'lastfile7', LastDatabase7);
+    end;
+    if LastDatabase8 <> '' then
+    begin
+      MyIni.WriteString('mxmarkedit', 'lastfile8', LastDatabase8);
+    end;
     MyIni.WriteInteger('mxmarkedit', 'lastposdatabase1', LastPosDatabase1);
     MyIni.WriteInteger('mxmarkedit', 'lastposdatabase2', LastPosDatabase2);
     MyIni.WriteInteger('mxmarkedit', 'lastposdatabase3', LastPosDatabase3);
     MyIni.WriteInteger('mxmarkedit', 'lastposdatabase4', LastPosDatabase4);
+    MyIni.WriteInteger('mxmarkedit', 'lastposdatabase5', LastPosDatabase5);
+    MyIni.WriteInteger('mxmarkedit', 'lastposdatabase6', LastPosDatabase6);
+    MyIni.WriteInteger('mxmarkedit', 'lastposdatabase7', LastPosDatabase7);
+    MyIni.WriteInteger('mxmarkedit', 'lastposdatabase8', LastPosDatabase8);
     MyIni.WriteInteger('mxmarkedit', 'topindexdatabase1', TopIndexDatabase1);
     MyIni.WriteInteger('mxmarkedit', 'topindexdatabase2', TopIndexDatabase2);
     MyIni.WriteInteger('mxmarkedit', 'topindexdatabase3', TopIndexDatabase3);
     MyIni.WriteInteger('mxmarkedit', 'topindexdatabase4', TopIndexDatabase4);
+    MyIni.WriteInteger('mxmarkedit', 'topindexdatabase5', TopIndexDatabase5);
+    MyIni.WriteInteger('mxmarkedit', 'topindexdatabase6', TopIndexDatabase6);
+    MyIni.WriteInteger('mxmarkedit', 'topindexdatabase7', TopIndexDatabase7);
+    MyIni.WriteInteger('mxmarkedit', 'topindexdatabase8', TopIndexDatabase8);
     MyIni.WriteInteger('mxmarkedit', 'coldatabase1', ColDatabase1);
     MyIni.WriteInteger('mxmarkedit', 'coldatabase2', ColDatabase2);
     MyIni.WriteInteger('mxmarkedit', 'coldatabase3', ColDatabase3);
     MyIni.WriteInteger('mxmarkedit', 'coldatabase4', ColDatabase4);
+    MyIni.WriteInteger('mxmarkedit', 'coldatabase5', ColDatabase5);
+    MyIni.WriteInteger('mxmarkedit', 'coldatabase6', ColDatabase6);
+    MyIni.WriteInteger('mxmarkedit', 'coldatabase7', ColDatabase7);
+    MyIni.WriteInteger('mxmarkedit', 'coldatabase8', ColDatabase8);
     MyIni.WriteInteger('mxmarkedit', 'rowdatabase1', RowDatabase1);
     MyIni.WriteInteger('mxmarkedit', 'rowdatabase2', RowDatabase2);
     MyIni.WriteInteger('mxmarkedit', 'rowdatabase3', RowDatabase3);
     MyIni.WriteInteger('mxmarkedit', 'rowdatabase4', RowDatabase4);
+    MyIni.WriteInteger('mxmarkedit', 'rowdatabase5', RowDatabase5);
+    MyIni.WriteInteger('mxmarkedit', 'rowdatabase6', RowDatabase6);
+    MyIni.WriteInteger('mxmarkedit', 'rowdatabase7', RowDatabase7);
+    MyIni.WriteInteger('mxmarkedit', 'rowdatabase8', RowDatabase8);
     MyIni.WriteString('mxmarkedit', 'colwidthdatabase1', ColWidthDatabase1);
     MyIni.WriteString('mxmarkedit', 'colwidthdatabase2', ColWidthDatabase2);
     MyIni.WriteString('mxmarkedit', 'colwidthdatabase3', ColWidthDatabase3);
     MyIni.WriteString('mxmarkedit', 'colwidthdatabase4', ColWidthDatabase4);
+    MyIni.WriteString('mxmarkedit', 'colwidthdatabase5', ColWidthDatabase5);
+    MyIni.WriteString('mxmarkedit', 'colwidthdatabase6', ColWidthDatabase6);
+    MyIni.WriteString('mxmarkedit', 'colwidthdatabase7', ColWidthDatabase7);
+    MyIni.WriteString('mxmarkedit', 'colwidthdatabase8', ColWidthDatabase8);
     MyIni.WriteBool('mxmarkedit', 'blhidetodo', blHideTitleTodo);
     MyIni.WriteInteger('mxmarkedit', 'maxsize', iMaxSize);
   finally
@@ -1884,6 +2000,8 @@ var
   iNum: Double;
   stField: String;
   grRect: TGridRect;
+  myDate: TDate;
+  fs: TFormatSettings;
 begin
   if ((key = 8) and (Shift = [])) then
   begin
@@ -2158,6 +2276,46 @@ begin
     stGridLoaded := stTableLoaded;
     LabelFileNameChars;
     blTableSaved := False;
+    key := 0;
+  end
+  else
+  if ((key = Ord('D')) and (Shift = [ssCtrl]) and (sgTable.Col > 1) and
+    (sgTable.Cells[1, sgTable.Row] = '')) then
+  begin
+    sgTable.Cells[sgTable.Col, sgTable.Row] :=
+      FormatDateTime('yyyy-mm-dd', Date());
+    blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
+    blTableSaved := False;
+    key := 0;
+  end
+  else
+  if ((key = 37) and (Shift = [ssCtrl])) then
+  begin
+    fs := DefaultFormatSettings;
+    fs.DateSeparator := '-';
+    fs.ShortDateFormat := 'yyyy/mm/dd';
+    if TryStrToDate(sgTable.Cells[sgTable.Col, sgTable.Row],
+      myDate, fs) = True then
+    begin
+      sgTable.Cells[sgTable.Col, sgTable.Row] := FormatDateTime('yyyy-mm-dd',
+        IncDay(myDate, -1));
+    end;
+    key := 0;
+  end
+  else
+  if ((key = 39) and (Shift = [ssCtrl])) then
+  begin
+    fs := DefaultFormatSettings;
+    fs.DateSeparator := '-';
+    fs.ShortDateFormat := 'yyyy/mm/dd';
+    if TryStrToDate(sgTable.Cells[sgTable.Col, sgTable.Row],
+      myDate, fs) = True then
+    begin
+      sgTable.Cells[sgTable.Col, sgTable.Row] := FormatDateTime('yyyy-mm-dd',
+        IncDay(myDate, 1));
+    end;
     key := 0;
   end
   else
@@ -2763,195 +2921,42 @@ end;
 
 procedure TfmMain.miFileOpenLast1Click(Sender: TObject);
 begin
-  DisablePresenting;
-  if SaveFile = False then
-  begin
-    Exit;
-  end;
-  CreateBackup;
-  if FileExistsUTF8(LastDatabase1) then
-  try
-    sgTable.RowCount := 1;
-    sgTable.RowCount := csTableRowCount;
-    stFileName := LastDatabase1;
-    DeactForm(stFileName);
-    dbText.Lines.LoadFromFile(stFileName);
-    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
-    begin
-      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
-        #9, False);
-      sgTable.RowCount := csTableRowCount;
-      stGridLoaded := stTableLoaded;
-    end
-    else
-    begin
-      stGridLoaded := '';
-    end;
-    MoveToPos;
-    iBookmarkPos := 0;
-    LabelFileNameChars;
-    if blDisableFormatting = False then
-    begin
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        checkTextInDocument(nil);
-    end;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      undoManager.removeAllActions;
-    UpdateLastFile;
-    ShowCurrentTitleTodo;
-    blFileMod := False;
-    blTableMod := False;
-  except
-    MessageDlg(msg004, mtWarning, [mbOK], 0);
-  end
-  else
-  begin
-    MessageDlg(msg007, mtWarning, [mbOK], 0);
-  end;
+  OpenLastFile(LastDatabase1);
 end;
 
 procedure TfmMain.miFileOpenLast2Click(Sender: TObject);
 begin
-  DisablePresenting;
-  if SaveFile = False then
-  begin
-    Exit;
-  end;
-  CreateBackup;
-  if FileExistsUTF8(LastDatabase2) then
-  try
-    sgTable.RowCount := 1;
-    sgTable.RowCount := csTableRowCount;
-    stFileName := LastDatabase2;
-    DeactForm(stFileName);
-    dbText.Lines.LoadFromFile(stFileName);
-    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
-    begin
-      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
-        #9, False);
-      sgTable.RowCount := csTableRowCount;
-      stGridLoaded := stTableLoaded;
-    end
-    else
-    begin
-      stGridLoaded := '';
-    end;
-    MoveToPos;
-    iBookmarkPos := 0;
-    LabelFileNameChars;
-    if blDisableFormatting = False then
-    begin
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        checkTextInDocument(nil);
-    end;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      undoManager.removeAllActions;
-    UpdateLastFile;
-    blFileMod := False;
-    blTableMod := False;
-  except
-    MessageDlg(msg004, mtWarning, [mbOK], 0);
-  end
-  else
-  begin
-    MessageDlg(msg007, mtWarning, [mbOK], 0);
-  end;
+  OpenLastFile(LastDatabase2);
 end;
 
 procedure TfmMain.miFileOpenLast3Click(Sender: TObject);
 begin
-  DisablePresenting;
-  if SaveFile = False then
-  begin
-    Exit;
-  end;
-  CreateBackup;
-  if FileExistsUTF8(LastDatabase3) then
-  try
-    sgTable.RowCount := 1;
-    sgTable.RowCount := csTableRowCount;
-    stFileName := LastDatabase3;
-    DeactForm(stFileName);
-    dbText.Lines.LoadFromFile(stFileName);
-    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
-    begin
-      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
-        #9, False);
-      sgTable.RowCount := csTableRowCount;
-      stGridLoaded := stTableLoaded;
-    end
-    else
-    begin
-      stGridLoaded := '';
-    end;
-    MoveToPos;
-    iBookmarkPos := 0;
-    LabelFileNameChars;
-    if blDisableFormatting = False then
-    begin
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        checkTextInDocument(nil);
-    end;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      undoManager.removeAllActions;
-    UpdateLastFile;
-    blFileMod := False;
-    blTableMod := False;
-  except
-    MessageDlg(msg004, mtWarning, [mbOK], 0);
-  end
-  else
-  begin
-    MessageDlg(msg007, mtWarning, [mbOK], 0);
-  end;
+  OpenLastFile(LastDatabase3);
 end;
 
 procedure TfmMain.miFileOpenLast4Click(Sender: TObject);
 begin
-  DisablePresenting;
-  if SaveFile = False then
-  begin
-    Exit;
-  end;
-  CreateBackup;
-  if FileExistsUTF8(LastDatabase4) then
-  try
-    sgTable.RowCount := 1;
-    sgTable.RowCount := csTableRowCount;
-    stFileName := LastDatabase4;
-    DeactForm(stFileName);
-    dbText.Lines.LoadFromFile(stFileName);
-    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
-    begin
-      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
-        #9, False);
-      sgTable.RowCount := csTableRowCount;
-      stGridLoaded := stTableLoaded;
-    end
-    else
-    begin
-      stGridLoaded := '';
-    end;
-    MoveToPos;
-    iBookmarkPos := 0;
-    LabelFileNameChars;
-    if blDisableFormatting = False then
-    begin
-      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        checkTextInDocument(nil);
-    end;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      undoManager.removeAllActions;
-    UpdateLastFile;
-    blFileMod := False;
-    blTableMod := False;
-  except
-    MessageDlg(msg004, mtWarning, [mbOK], 0);
-  end
-  else
-  begin
-    MessageDlg(msg007, mtWarning, [mbOK], 0);
-  end;
+  OpenLastFile(LastDatabase4);
+end;
+
+procedure TfmMain.miFileOpenLast5Click(Sender: TObject);
+begin
+  OpenLastFile(LastDatabase5);
+end;
+
+procedure TfmMain.miFileOpenLast6Click(Sender: TObject);
+begin
+  OpenLastFile(LastDatabase6);
+end;
+
+procedure TfmMain.miFileOpenLast7Click(Sender: TObject);
+begin
+  OpenLastFile(LastDatabase7);
+end;
+
+procedure TfmMain.miFileOpenLast8Click(Sender: TObject);
+begin
+  OpenLastFile(LastDatabase8);
 end;
 
 procedure TfmMain.miEditCopyClick(Sender: TObject);
@@ -4405,7 +4410,7 @@ begin
     ColWidthDatabase2 := ColWidthDatabase1;
     LastDatabase1 := stFileName;
   end
-  else if stFileName <> LastDatabase1 then
+  else if stFileName = LastDatabase4 then
   begin
     LastDatabase4 := LastDatabase3;
     LastDatabase3 := LastDatabase2;
@@ -4422,6 +4427,200 @@ begin
     RowDatabase4 := RowDatabase3;
     RowDatabase3 := RowDatabase2;
     RowDatabase2 := RowDatabase1;
+    ColWidthDatabase4 := ColWidthDatabase3;
+    ColWidthDatabase3 := ColWidthDatabase2;
+    ColWidthDatabase2 := ColWidthDatabase1;
+    LastDatabase1 := stFileName;
+  end
+  else if stFileName = LastDatabase5 then
+  begin
+    LastDatabase5 := LastDatabase4;
+    LastDatabase4 := LastDatabase3;
+    LastDatabase3 := LastDatabase2;
+    LastDatabase2 := LastDatabase1;
+    LastPosDatabase5 := LastPosDatabase4;
+    LastPosDatabase4 := LastPosDatabase3;
+    LastPosDatabase3 := LastPosDatabase2;
+    LastPosDatabase2 := LastPosDatabase1;
+    TopIndexDatabase5 := TopIndexDatabase4;
+    TopIndexDatabase4 := TopIndexDatabase3;
+    TopIndexDatabase3 := TopIndexDatabase2;
+    TopIndexDatabase2 := TopIndexDatabase1;
+    ColDatabase5 := ColDatabase4;
+    ColDatabase4 := ColDatabase3;
+    ColDatabase3 := ColDatabase2;
+    ColDatabase2 := ColDatabase1;
+    RowDatabase5 := RowDatabase4;
+    RowDatabase4 := RowDatabase3;
+    RowDatabase3 := RowDatabase2;
+    RowDatabase2 := RowDatabase1;
+    ColWidthDatabase5 := ColWidthDatabase4;
+    ColWidthDatabase4 := ColWidthDatabase3;
+    ColWidthDatabase3 := ColWidthDatabase2;
+    ColWidthDatabase2 := ColWidthDatabase1;
+    LastDatabase1 := stFileName;
+  end
+  else if stFileName = LastDatabase6 then
+  begin
+    LastDatabase6 := LastDatabase5;
+    LastDatabase5 := LastDatabase4;
+    LastDatabase4 := LastDatabase3;
+    LastDatabase3 := LastDatabase2;
+    LastDatabase2 := LastDatabase1;
+    LastPosDatabase6 := LastPosDatabase5;
+    LastPosDatabase5 := LastPosDatabase4;
+    LastPosDatabase4 := LastPosDatabase3;
+    LastPosDatabase3 := LastPosDatabase2;
+    LastPosDatabase2 := LastPosDatabase1;
+    TopIndexDatabase6 := TopIndexDatabase5;
+    TopIndexDatabase5 := TopIndexDatabase4;
+    TopIndexDatabase4 := TopIndexDatabase3;
+    TopIndexDatabase3 := TopIndexDatabase2;
+    TopIndexDatabase2 := TopIndexDatabase1;
+    ColDatabase6 := ColDatabase5;
+    ColDatabase5 := ColDatabase4;
+    ColDatabase4 := ColDatabase3;
+    ColDatabase3 := ColDatabase2;
+    ColDatabase2 := ColDatabase1;
+    RowDatabase6 := RowDatabase5;
+    RowDatabase5 := RowDatabase4;
+    RowDatabase4 := RowDatabase3;
+    RowDatabase3 := RowDatabase2;
+    RowDatabase2 := RowDatabase1;
+    ColWidthDatabase6 := ColWidthDatabase5;
+    ColWidthDatabase5 := ColWidthDatabase4;
+    ColWidthDatabase4 := ColWidthDatabase3;
+    ColWidthDatabase3 := ColWidthDatabase2;
+    ColWidthDatabase2 := ColWidthDatabase1;
+    LastDatabase1 := stFileName;
+  end
+  else if stFileName = LastDatabase7 then
+  begin
+    LastDatabase7 := LastDatabase6;
+    LastDatabase6 := LastDatabase5;
+    LastDatabase5 := LastDatabase4;
+    LastDatabase4 := LastDatabase3;
+    LastDatabase3 := LastDatabase2;
+    LastDatabase2 := LastDatabase1;
+    LastPosDatabase7 := LastPosDatabase6;
+    LastPosDatabase6 := LastPosDatabase5;
+    LastPosDatabase5 := LastPosDatabase4;
+    LastPosDatabase4 := LastPosDatabase3;
+    LastPosDatabase3 := LastPosDatabase2;
+    LastPosDatabase2 := LastPosDatabase1;
+    TopIndexDatabase7 := TopIndexDatabase6;
+    TopIndexDatabase6 := TopIndexDatabase5;
+    TopIndexDatabase5 := TopIndexDatabase4;
+    TopIndexDatabase4 := TopIndexDatabase3;
+    TopIndexDatabase3 := TopIndexDatabase2;
+    TopIndexDatabase2 := TopIndexDatabase1;
+    ColDatabase7 := ColDatabase6;
+    ColDatabase6 := ColDatabase5;
+    ColDatabase5 := ColDatabase4;
+    ColDatabase4 := ColDatabase3;
+    ColDatabase3 := ColDatabase2;
+    ColDatabase2 := ColDatabase1;
+    RowDatabase7 := RowDatabase6;
+    RowDatabase6 := RowDatabase5;
+    RowDatabase5 := RowDatabase4;
+    RowDatabase4 := RowDatabase3;
+    RowDatabase3 := RowDatabase2;
+    RowDatabase2 := RowDatabase1;
+    ColWidthDatabase7 := ColWidthDatabase6;
+    ColWidthDatabase6 := ColWidthDatabase5;
+    ColWidthDatabase5 := ColWidthDatabase4;
+    ColWidthDatabase4 := ColWidthDatabase3;
+    ColWidthDatabase3 := ColWidthDatabase2;
+    ColWidthDatabase2 := ColWidthDatabase1;
+    LastDatabase1 := stFileName;
+  end
+  else if stFileName = LastDatabase8 then
+  begin
+    LastDatabase8 := LastDatabase7;
+    LastDatabase7 := LastDatabase6;
+    LastDatabase6 := LastDatabase5;
+    LastDatabase5 := LastDatabase4;
+    LastDatabase4 := LastDatabase3;
+    LastDatabase3 := LastDatabase2;
+    LastDatabase2 := LastDatabase1;
+    LastPosDatabase8 := LastPosDatabase7;
+    LastPosDatabase7 := LastPosDatabase6;
+    LastPosDatabase6 := LastPosDatabase5;
+    LastPosDatabase5 := LastPosDatabase4;
+    LastPosDatabase4 := LastPosDatabase3;
+    LastPosDatabase3 := LastPosDatabase2;
+    LastPosDatabase2 := LastPosDatabase1;
+    TopIndexDatabase8 := TopIndexDatabase7;
+    TopIndexDatabase7 := TopIndexDatabase6;
+    TopIndexDatabase6 := TopIndexDatabase5;
+    TopIndexDatabase5 := TopIndexDatabase4;
+    TopIndexDatabase4 := TopIndexDatabase3;
+    TopIndexDatabase3 := TopIndexDatabase2;
+    TopIndexDatabase2 := TopIndexDatabase1;
+    ColDatabase8 := ColDatabase7;
+    ColDatabase7 := ColDatabase6;
+    ColDatabase6 := ColDatabase5;
+    ColDatabase5 := ColDatabase4;
+    ColDatabase4 := ColDatabase3;
+    ColDatabase3 := ColDatabase2;
+    ColDatabase2 := ColDatabase1;
+    RowDatabase8 := RowDatabase7;
+    RowDatabase7 := RowDatabase6;
+    RowDatabase6 := RowDatabase5;
+    RowDatabase5 := RowDatabase4;
+    RowDatabase4 := RowDatabase3;
+    RowDatabase3 := RowDatabase2;
+    RowDatabase2 := RowDatabase1;
+    ColWidthDatabase8 := ColWidthDatabase7;
+    ColWidthDatabase7 := ColWidthDatabase6;
+    ColWidthDatabase6 := ColWidthDatabase5;
+    ColWidthDatabase5 := ColWidthDatabase4;
+    ColWidthDatabase4 := ColWidthDatabase3;
+    ColWidthDatabase3 := ColWidthDatabase2;
+    ColWidthDatabase2 := ColWidthDatabase1;
+    LastDatabase1 := stFileName;
+  end
+  else if stFileName <> LastDatabase1 then
+  begin
+    LastDatabase8 := LastDatabase7;
+    LastDatabase7 := LastDatabase6;
+    LastDatabase6 := LastDatabase5;
+    LastDatabase5 := LastDatabase4;
+    LastDatabase4 := LastDatabase3;
+    LastDatabase3 := LastDatabase2;
+    LastDatabase2 := LastDatabase1;
+    LastPosDatabase8 := LastPosDatabase7;
+    LastPosDatabase7 := LastPosDatabase6;
+    LastPosDatabase6 := LastPosDatabase5;
+    LastPosDatabase5 := LastPosDatabase4;
+    LastPosDatabase4 := LastPosDatabase3;
+    LastPosDatabase3 := LastPosDatabase2;
+    LastPosDatabase2 := LastPosDatabase1;
+    TopIndexDatabase8 := TopIndexDatabase7;
+    TopIndexDatabase7 := TopIndexDatabase6;
+    TopIndexDatabase6 := TopIndexDatabase5;
+    TopIndexDatabase5 := TopIndexDatabase4;
+    TopIndexDatabase4 := TopIndexDatabase3;
+    TopIndexDatabase3 := TopIndexDatabase2;
+    TopIndexDatabase2 := TopIndexDatabase1;
+    ColDatabase8 := ColDatabase7;
+    ColDatabase7 := ColDatabase6;
+    ColDatabase6 := ColDatabase5;
+    ColDatabase5 := ColDatabase4;
+    ColDatabase4 := ColDatabase3;
+    ColDatabase3 := ColDatabase2;
+    ColDatabase2 := ColDatabase1;
+    RowDatabase8 := RowDatabase7;
+    RowDatabase7 := RowDatabase6;
+    RowDatabase6 := RowDatabase5;
+    RowDatabase5 := RowDatabase4;
+    RowDatabase4 := RowDatabase3;
+    RowDatabase3 := RowDatabase2;
+    RowDatabase2 := RowDatabase1;
+    ColWidthDatabase8 := ColWidthDatabase7;
+    ColWidthDatabase7 := ColWidthDatabase6;
+    ColWidthDatabase6 := ColWidthDatabase5;
+    ColWidthDatabase5 := ColWidthDatabase4;
     ColWidthDatabase4 := ColWidthDatabase3;
     ColWidthDatabase3 := ColWidthDatabase2;
     ColWidthDatabase2 := ColWidthDatabase1;
@@ -4449,6 +4648,30 @@ begin
   begin
     miFileOpenLast4.Caption := ExtractFileName(LastDatabase4);
     miFileOpenLast4.Visible := True;
+    miSepLastFiles.Visible := True;
+  end;
+  if LastDatabase5 <> '' then
+  begin
+    miFileOpenLast5.Caption := ExtractFileName(LastDatabase5);
+    miFileOpenLast5.Visible := True;
+    miSepLastFiles.Visible := True;
+  end;
+  if LastDatabase6 <> '' then
+  begin
+    miFileOpenLast6.Caption := ExtractFileName(LastDatabase6);
+    miFileOpenLast6.Visible := True;
+    miSepLastFiles.Visible := True;
+  end;
+  if LastDatabase7 <> '' then
+  begin
+    miFileOpenLast7.Caption := ExtractFileName(LastDatabase7);
+    miFileOpenLast7.Visible := True;
+    miSepLastFiles.Visible := True;
+  end;
+  if LastDatabase8 <> '' then
+  begin
+    miFileOpenLast8.Caption := ExtractFileName(LastDatabase8);
+    miFileOpenLast8.Visible := True;
     miSepLastFiles.Visible := True;
   end;
 end;
@@ -4627,6 +4850,119 @@ begin
       try
         slColWidth := TStringList.Create;
         slColWidth.CommaText := ColWidthDatabase4;
+        for i := 1 to sgTable.ColCount - 1 do
+        begin
+          sgTable.ColWidths[i] := StrToInt(slColWidth[i - 1]);
+        end;
+      finally
+        slColWidth.Free;
+      end;
+    except
+    end
+    else
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      sgTable.ColWidths[i] := 280;
+    end;
+  end
+
+  else
+  if ((stFileName = LastDatabase5) and (LastPosDatabase5 > -1) and
+    (LastPosDatabase5 < Length(dbText.Text))) then
+  begin
+    dbText.SelStart := LastPosDatabase5;
+    sgTitles.TopRow := TopIndexDatabase5;
+    sgTable.Col := ColDatabase5;
+    sgTable.Row := RowDatabase5;
+    if ColWidthDatabase5 <> '' then
+    try
+      try
+        slColWidth := TStringList.Create;
+        slColWidth.CommaText := ColWidthDatabase5;
+        for i := 1 to sgTable.ColCount - 1 do
+        begin
+          sgTable.ColWidths[i] := StrToInt(slColWidth[i - 1]);
+        end;
+      finally
+        slColWidth.Free;
+      end;
+    except
+    end
+    else
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      sgTable.ColWidths[i] := 280;
+    end;
+  end
+  else
+  if ((stFileName = LastDatabase6) and (LastPosDatabase6 > -1) and
+    (LastPosDatabase6 < Length(dbText.Text))) then
+  begin
+    dbText.SelStart := LastPosDatabase6;
+    sgTitles.TopRow := TopIndexDatabase6;
+    sgTable.Col := ColDatabase6;
+    sgTable.Row := RowDatabase6;
+    if ColWidthDatabase6 <> '' then
+    try
+      try
+        slColWidth := TStringList.Create;
+        slColWidth.CommaText := ColWidthDatabase6;
+        for i := 1 to sgTable.ColCount - 1 do
+        begin
+          sgTable.ColWidths[i] := StrToInt(slColWidth[i - 1]);
+        end;
+      finally
+        slColWidth.Free;
+      end;
+    except
+    end
+    else
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      sgTable.ColWidths[i] := 280;
+    end;
+  end
+  else
+  if ((stFileName = LastDatabase7) and (LastPosDatabase7 > -1) and
+    (LastPosDatabase7 < Length(dbText.Text))) then
+  begin
+    dbText.SelStart := LastPosDatabase7;
+    sgTitles.TopRow := TopIndexDatabase7;
+    sgTable.Col := ColDatabase7;
+    sgTable.Row := RowDatabase7;
+    if ColWidthDatabase7 <> '' then
+    try
+      try
+        slColWidth := TStringList.Create;
+        slColWidth.CommaText := ColWidthDatabase7;
+        for i := 1 to sgTable.ColCount - 1 do
+        begin
+          sgTable.ColWidths[i] := StrToInt(slColWidth[i - 1]);
+        end;
+      finally
+        slColWidth.Free;
+      end;
+    except
+    end
+    else
+    for i := 1 to sgTable.ColCount - 1 do
+    begin
+      sgTable.ColWidths[i] := 280;
+    end;
+  end
+  else
+  if ((stFileName = LastDatabase8) and (LastPosDatabase8 > -1) and
+    (LastPosDatabase8 < Length(dbText.Text))) then
+  begin
+    dbText.SelStart := LastPosDatabase8;
+    sgTitles.TopRow := TopIndexDatabase8;
+    sgTable.Col := ColDatabase8;
+    sgTable.Row := RowDatabase8;
+    if ColWidthDatabase8 <> '' then
+    try
+      try
+        slColWidth := TStringList.Create;
+        slColWidth.CommaText := ColWidthDatabase8;
         for i := 1 to sgTable.ColCount - 1 do
         begin
           sgTable.ColWidths[i] := StrToInt(slColWidth[i - 1]);
@@ -4892,6 +5228,55 @@ begin
   dbText.SelStart := 11;
   blTextOnChange := False;
   FormatListTitleTodo;
+end;
+
+procedure TfmMain.OpenLastFile(stLastFileName: String);
+begin
+  DisablePresenting;
+  if SaveFile = False then
+  begin
+    Exit;
+  end;
+  CreateBackup;
+  if FileExistsUTF8(stLastFileName) then
+  try
+    sgTable.RowCount := 1;
+    sgTable.RowCount := csTableRowCount;
+    stFileName := stLastFileName;
+    DeactForm(stFileName);
+    dbText.Lines.LoadFromFile(stFileName);
+    if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+    begin
+      sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+        #9, False);
+      sgTable.RowCount := csTableRowCount;
+      stGridLoaded := stTableLoaded;
+    end
+    else
+    begin
+      stGridLoaded := '';
+    end;
+    MoveToPos;
+    iBookmarkPos := 0;
+    LabelFileNameChars;
+    if blDisableFormatting = False then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        checkTextInDocument(nil);
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      undoManager.removeAllActions;
+    UpdateLastFile;
+    ShowCurrentTitleTodo;
+    blFileMod := False;
+    blTableMod := False;
+  except
+    MessageDlg(msg004, mtWarning, [mbOK], 0);
+  end
+  else
+  begin
+    MessageDlg(msg007, mtWarning, [mbOK], 0);
+  end;
 end;
 
 procedure TfmMain.DeactForm(stFileName: String);

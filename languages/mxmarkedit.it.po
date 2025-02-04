@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.21"
+msgid "1.2.22"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -198,6 +198,10 @@ msgstr "Nuovo"
 #: tfmmain.mifileopen.caption
 msgid "Open..."
 msgstr "Apri..."
+
+#: tfmmain.mifileopenlast8.caption
+msgid "miFileOpenLast8"
+msgstr ""
 
 #: tfmmain.mifilesave.caption
 msgid "Save"
@@ -801,7 +805,7 @@ msgstr "Ripristina l'ultima azione nel documento (non nella griglia)."
 
 #: unit7.srcut004
 msgid "Select one of the six filter options above the title and todo list."
-msgstr "Seleziona una delle sei opzioni di filtro sopra il titolo e l'elenco delle cose da fare."
+msgstr "Seleziona una delle sei opzioni di filtro sopra il titolo e l'elenco delle attività."
 
 #: unit7.srcut005
 msgid "Change the size of the normal font."
@@ -1019,9 +1023,21 @@ msgstr "Nella colonna dei nomi delle tabelle, seleziona il titolo della tabella 
 msgid "Move to the first column of the grid."
 msgstr "Sposta il cursore alla prima colonna della griglia."
 
-#: unit7.srcut051
+#: unit7.srcut050b
 msgid "Move to the last right edited column of the current row."
 msgstr "Sposta il cursore all'ultima colonna modificata a destra della riga corrente."
+
+#: unit7.srcut051
+msgid "Insert the current date except in the tables names column and in the headings."
+msgstr "Inserisci la data corrente eccetto che nella colonna dei nomi delle tabelle e nelle intestazioni."
+
+#: unit7.srcut051b
+msgid "If the current cell contains a date, increase it of one day."
+msgstr "Se la cella corrente contiene una data, la incrementa di un giorno."
+
+#: unit7.srcut051c
+msgid "If the current cell contains a date, decrease it of one day."
+msgstr "Se la cella corrente contiene una data, la decrementa di un giorno."
 
 #: unit7.srcut052
 msgid "Sort ascending the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
@@ -1049,15 +1065,19 @@ msgstr "Annulla le ultime modifiche mentre l'editor di una cella nella griglia �
 
 #: unit7.srcut057
 msgid " In the todo form"
-msgstr " Maschera delle cose da fare"
+msgstr " Maschera delle attività"
 
 #: unit7.srcut058
 msgid "Hide the todo items already done."
-msgstr "Nascondi le cose da fare già eseguite."
+msgstr "Nascondi le attività già eseguite."
 
 #: unit7.srcut059
 msgid "Toggle the state of the selected todo item from to be done to done, and vice versa."
 msgstr "Alterna lo stato dell'elemento attività selezionato da incompleto a fatto e viceversa."
+
+#: unit7.srcut059b
+msgid "Copy in the clipboard the todo items."
+msgstr "Copia in ritaglio le attività."
 
 #: unit7.srcut060
 msgctxt "unit7.srcut060"

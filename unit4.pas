@@ -150,6 +150,9 @@ var
 begin
   if sgTasks.RowCount > 1 then
   begin
+    stClip := sgTasks.Columns[1].Title.Caption + #9 +
+      sgTasks.Columns[2].Title.Caption + #9 +
+      sgTasks.Columns[3].Title.Caption + LineEnding;
     for i := 1 to sgTasks.RowCount - 1 do
     begin
       if sgTasks.Cells[1, i] = '1' then
@@ -162,8 +165,7 @@ begin
       end;
       if sgTasks.Cells[2, i] <> '' then
       begin
-        stClip := stClip + UTF8Copy(sgTasks.Cells[2, i], 1, 10) + #9 +
-          UTF8Copy(sgTasks.Cells[2, i], 12, UTF8Length(sgTasks.Cells[2, i])) + #9;
+        stClip := stClip + UTF8Copy(sgTasks.Cells[2, i], 1, 10) + #9;
       end;
       stClip := stClip + sgTasks.Cells[3, i] + LineEnding;
     end;
@@ -207,6 +209,12 @@ begin
   if ((key = Ord('T')) and (Shift = [ssMeta])) then
   begin
     bnToggleClick(nil);
+    key := 0;
+  end
+  else
+  if ((key = Ord('C')) and (Shift = [ssMeta])) then
+  begin
+    bnCopyClick(nil);
     key := 0;
   end
   else

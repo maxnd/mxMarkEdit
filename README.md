@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.21, published on February 3 2025.
+Version 1.2.22, published on February 4 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -114,13 +114,13 @@ In the todo items, it’s possible to add a deadline. The format of the date sho
 
 At the bottom of the text there’s an Excel-like grid of 105 columns and 10000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possible to insert any kind of data. It’s possible to add more tables in the grid, adding other titles under the `Table names` column followed by some fields, like in the second screenshot above.
 
-If it’s necessary to insert dates in a field, use the format `year-month-day`, where month and day are always of two digits (e.g. `2025-01-05`), so that the sorting on this field will produce a correct result.
+If it’s necessary to insert dates in a field, use the format `year-month-day`, where month and day are always of two digits (e.g. `2025-01-05`), so that the sorting on this field will produce a correct result. See below for some shortcuts useful to insert and change the dates.
 
 The content of the grid is saved in a separate file with the same name of the one in use, but with the `.csv` extension. In this file the items are separated by tabs, and it may be easily imported in a spreadsheet. When the current document is exported to Pandoc, if there are some data in the grid, the software creates a new file with the extension `.export` which contains both the document and the tables properly formatted in Markdown format. In the converted document in Word or Writer format, the tables are located at the end of the text.
 
 When a `.cvs` file is loaded, the grid is not automatically shown, but in the status bar at the bottom, after the name of the `.md` file, it’s shown the label `& .csv`, to alert the user that there are some data inside the grid.
 
-In the grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document, or deleted. It’s possible also to paste some data copied from a spreadsheet like Excel or Numbers. See below for the shortcuts useful to do that.
+In the grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document, or deleted. It’s possible also to paste some data copied from a spreadsheet like Excel or Numbers. See below for the shortcuts useful to do that. It's also possible to auto resize the width of the columns with a double click at the right of their headings.
 
 At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` or the shortcut `Meta + G` to select the following cell after the current one in just the current field (column) of the current table that contains that text. Anyway, if the selected column is the first, containing the table names, the search will look for the following table names. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
 
@@ -179,7 +179,7 @@ Moving the mouse over the label of the file path and name, at the bottom left of
 
 ## Menu items
 
-The last four opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is remembered as well by the app.
+The last eight opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is remembered as well by the app.
 
 The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or the previous ones with the button `Previous`, or to replace all occurrences with another text. Search and replacement are not case sensitive. See below for some useful shortcuts to use these functionalities. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`. Finally, when looking for the next recurrence of an emoji, it might be necessary to move the cursor after the previous finding to find the next one.
 
@@ -293,6 +293,9 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move to the last edited row of the current column.
 * `Meta` + `Arrow left`: move to the first column of the grid.
 * `Meta` + `Arrow right`: move to the last right edited column of the current row.
+* `Ctrl` + `D`: insert the current date except in the tables names column and in the headings.
+* `Ctrl` + `Arrow right`: if the current cell contains a date, increase it of one day.
+* `Ctrl` + `Arrow left`: if the current cell contains a date, decrease it of one day.
 * `Meta` + `Ctrl` + `S`: sort ascending the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
 * `Meta` + `Ctrl` + `Shift` + `S`: sort descending the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
 * `Meta` + `Ctrl` + `F`: move the cursor in the search field, if it’s visible.
@@ -304,6 +307,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 
 * `Meta` + `Opt` + `H`: hide the todo items already done.
 * `Meta` + `T`: toggle the state of the selected todo item from to be done to done, and vice versa.
+* `Meta` + `C`: 'Copy in the clipboard the todo items.
 * `Esc`: close the form.
 
 ### In the search files form
@@ -331,6 +335,15 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.22
+
+- Added the shortcut `Ctrl + D` to insert the current date in the grid.
+- Added the shortcut `Ctrl + Right arrow` to increase the date contained in a cell of one day.
+- Added the shortcut `Ctrl + Left arrow` to decrease the date contained in a cell of one day.
+- Added the shortcut `Meta + C` in the todo form, to copy in the clipboard the todo items.
+
+- The last edited files are now eight.
 
 #### Version 1.2.21
 

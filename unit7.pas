@@ -125,7 +125,11 @@ resourcestring
   srcut049 = 'In the tables names column, select the following table title, while in ' +
     'the  other columns move to the last edited row of the current column.';
   srcut050 = 'Move to the first column of the grid.';
-  srcut051 = 'Move to the last right edited column of the current row.';
+  srcut050b = 'Move to the last right edited column of the current row.';
+  srcut051 = 'Insert the current date except in the tables names column and ' +
+  'in the headings.';
+  srcut051b = 'If the current cell contains a date, increase it of one day.';
+  srcut051c = 'If the current cell contains a date, decrease it of one day.';
   srcut052 = 'Sort ascending the content of the current column in the current table, ' +
     'after confirmation, stopping before the formula if it''s present in any column.';
   srcut052b = 'Sort descending the content of the current column in the current table, ' +
@@ -137,6 +141,7 @@ resourcestring
   srcut057 = ' In the todo form';
   srcut058 = 'Hide the todo items already done.';
   srcut059 = 'Toggle the state of the selected todo item from to be done to done, and vice versa.';
+  srcut059b = 'Copy in the clipboard the todo items.';
   srcut060 = 'Close the form.';
   srcut061 = ' In the search files form';
   srcut062 = 'Move the cursor in the Find field.';
@@ -194,7 +199,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 80;
+  sgShortcuts.RowCount := 84;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -358,7 +363,16 @@ begin
   sgShortcuts.Cells[1, i] := srcut050;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + ' + srcut00d;
+  sgShortcuts.Cells[1, i] := srcut050b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Ctrl + D';
   sgShortcuts.Cells[1, i] := srcut051;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Ctrl + ' + srcut00d;
+  sgShortcuts.Cells[1, i] := srcut051b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Ctrl + ' + srcut00c;
+  sgShortcuts.Cells[1, i] := srcut051c;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Ctrl + S';
   sgShortcuts.Cells[1, i] := srcut052;
@@ -387,6 +401,9 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + T';
   sgShortcuts.Cells[1, i] := srcut059;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + C';
+  sgShortcuts.Cells[1, i] := srcut059b;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Esc';
   sgShortcuts.Cells[1, i] := srcut060;

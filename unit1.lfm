@@ -1365,6 +1365,27 @@ object fmMain: TfmMain
         Visible = False
         OnClick = miFileOpenLast4Click
       end
+      object miFileOpenLast5: TMenuItem
+        ShortCut = 4149
+        Visible = False
+        OnClick = miFileOpenLast5Click
+      end
+      object miFileOpenLast6: TMenuItem
+        ShortCut = 4150
+        Visible = False
+        OnClick = miFileOpenLast6Click
+      end
+      object miFileOpenLast7: TMenuItem
+        ShortCut = 4151
+        Visible = False
+        OnClick = miFileOpenLast7Click
+      end
+      object miFileOpenLast8: TMenuItem
+        Caption = 'miFileOpenLast8'
+        ShortCut = 4152
+        Visible = False
+        OnClick = miFileOpenLast8Click
+      end
     end
     object miEdit: TMenuItem
       Caption = 'Edit'
@@ -1475,19 +1496,19 @@ object fmMain: TfmMain
           Checked = True
           Default = True
           RadioItem = True
-          ShortCut = 4144
+          ShortCut = 12336
           OnClick = miToolsTrans1Click
         end
         object miToolsTrans2: TMenuItem
           Caption = 'Middle'
           RadioItem = True
-          ShortCut = 4153
+          ShortCut = 12345
           OnClick = miToolsTrans2Click
         end
         object miToolsTrans3: TMenuItem
           Caption = 'High'
           RadioItem = True
-          ShortCut = 4152
+          ShortCut = 12344
           OnClick = miToolsTrans3Click
         end
       end

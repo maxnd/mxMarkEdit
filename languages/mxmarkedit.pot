@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.21"
+msgid "1.2.22"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -198,6 +198,10 @@ msgstr ""
 
 #: tfmmain.mifileopen.caption
 msgid "Open..."
+msgstr ""
+
+#: tfmmain.mifileopenlast8.caption
+msgid "miFileOpenLast8"
 msgstr ""
 
 #: tfmmain.mifilesave.caption
@@ -1021,8 +1025,22 @@ msgstr ""
 msgid "Move to the first column of the grid."
 msgstr ""
 
-#: unit7.srcut051
+#: unit7.srcut050b
+msgctxt "unit7.srcut050b"
 msgid "Move to the last right edited column of the current row."
+msgstr ""
+
+#: unit7.srcut051
+msgctxt "unit7.srcut051"
+msgid "Insert the current date except in the tables names column and in the headings."
+msgstr ""
+
+#: unit7.srcut051b
+msgid "If the current cell contains a date, increase it of one day."
+msgstr ""
+
+#: unit7.srcut051c
+msgid "If the current cell contains a date, decrease it of one day."
 msgstr ""
 
 #: unit7.srcut052
@@ -1059,6 +1077,10 @@ msgstr ""
 
 #: unit7.srcut059
 msgid "Toggle the state of the selected todo item from to be done to done, and vice versa."
+msgstr ""
+
+#: unit7.srcut059b
+msgid "Copy in the clipboard the todo items."
 msgstr ""
 
 #: unit7.srcut060
