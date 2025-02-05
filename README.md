@@ -259,7 +259,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Shift` + `E`: show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Arrow down`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Arrow up`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
-* `Meta` + `Ctrl` + `E`: show the following paragraph in black or white, according to the theme in use, skipping the empty lines, fades the other text, and save in the `Download` directory the screenshot of the screen.
+* `Meta` + `Ctrl` + `E`: save all the presentation screenshots from the current position to the end of the document in the `Download` directory.
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalize the current word.
