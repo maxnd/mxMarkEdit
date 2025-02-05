@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.22, published on February 4 2025.
+Version 1.2.23, published on February 5 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -157,13 +157,7 @@ In presentation mode, the status bar is hidden, and the spell checking is automa
 
 Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimised for mxMarkEdit with the menu item `Tools` - `Optimise presentation...` if it has to be presented with mxMarkEdit.
 
-To export an mxMarkEdit presentation in PDF so that it can be shown on any computer, proceed as follows.
-
-1. Open the Mac `Screenshot` utility, in the related options deactivate `Show floating thumbnail` and note the directory where the obtained files are saved (e.g. `Downloads`).
-2. Open the file to be presented with mxMarkEdit, enlarge the app to full screen and also enlarge the text font appropriately.
-3. If the font in the title bar, on the left, is too small, reduce the Mac screen resolution in `System Settings - Displays`.
-4. Start the presentation, alternately typing `Meta + E` and `Meta + Shift + 3` (Mac shortcut to capture the screen and save it as a file).
-5. When the presentation is complete, select all the obtained files, containing the various screenshots, `Ctrl + click` on them and choose the `Quick Options - Create PDF`.
+To export an mxMarkEdit presentation in PDF so that it can be shown on any computer, save all the screenshots from the current position to the end of the document with `Meta + Ctrl + E`; this takes 2 seconds for every item; press `ESC` to interrupt the process. Then select all the screenshots in the `Download` directory, `Ctrl + click` on them and choose the `Quick Options - Create PDF`. The screenshots are numbered progressively. To restart their number, restart the app. 
 
 ## Files management
 
@@ -265,6 +259,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Shift` + `E`: show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Arrow down`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Arrow up`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
+* `Meta` + `Ctrl` + `E`: show the following paragraph in black or white, according to the theme in use, skipping the empty lines, fades the other text, and save in the `Download` directory the screenshot of the screen.
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalize the current word.
@@ -336,13 +331,16 @@ The software creates these two configuration files that can be deleted to reset 
 
 ## Revision history
 
+#### Version 1.2.23
+
+- Added the shortcut `Meta + Ctrl + E` to save all the screenshots of the presentation of the current document in the `Download` directory.
+
 #### Version 1.2.22
 
 - Added the shortcut `Ctrl + D` to insert the current date in the grid.
 - Added the shortcut `Ctrl + Right arrow` to increase the date contained in a cell of one day.
 - Added the shortcut `Ctrl + Left arrow` to decrease the date contained in a cell of one day.
 - Added the shortcut `Meta + C` in the todo form, to copy in the clipboard the todo items.
-
 - The last edited files are now eight.
 
 #### Version 1.2.21

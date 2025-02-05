@@ -91,6 +91,8 @@ resourcestring
     'skipping the empty lines.';
   srcut026d = 'If the presentation mode is activated, highlight the previous paragraph, ' +
     'skipping the empty lines.';
+  srcut026e = 'Activate the presentation mode and save ' +
+    'all the screenshots in the Downloads folder.';
   srcut027 = 'Make uppercase the current word.';
   srcut028 = 'Make lowercase the current word.';
   srcut029 = 'Capitalize the current word.';
@@ -199,7 +201,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 84;
+  sgShortcuts.RowCount := 85;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -289,6 +291,9 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Arrow up';
   sgShortcuts.Cells[1, i] := srcut026d;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + E';
+  sgShortcuts.Cells[1, i] := srcut026e;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + U';
   sgShortcuts.Cells[1, i] := srcut027;

@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.22"
+msgid "1.2.23"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -750,6 +750,10 @@ msgstr "Creare in un nuovo file una versione della corrente presentazione ottimi
 msgid "It was not possible to save the optimised file."
 msgstr "Non è stato possibile salvare il file ottimizzato."
 
+#: unit1.msg022
+msgid "Save in the Downloads directory the screenshots of the presentation (press ESC to stop)?"
+msgstr "Salvare nella cartella Downloads le schermate della presentazione (ESC per interrompere)?"
+
 #: unit2.msgfnd001
 msgid "Text not found."
 msgstr "Testo non trovato."
@@ -926,6 +930,10 @@ msgstr "Se la modalità presentazione è attiva, evidenzia il paragrafo seguente
 #: unit7.srcut026d
 msgid "If the presentation mode is activated, highlight the previous paragraph, skipping the empty lines."
 msgstr "Se la modalità presentazione è attiva, evidenzia il paragrafo precedente, saltando le righe vuote."
+
+#: unit7.srcut026e
+msgid "Activate the presentation mode and save all the screenshots in the Downloads folder."
+msgstr "Attiva la modalità presentazione e salva tutte le schermate nella cartella Downloads."
 
 #: unit7.srcut027
 msgid "Make uppercase the current word."

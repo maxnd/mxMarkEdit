@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.22"
+msgid "1.2.23"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -752,6 +752,10 @@ msgstr ""
 msgid "It was not possible to save the optimised file."
 msgstr ""
 
+#: unit1.msg022
+msgid "Save in the Downloads directory the screenshots of the presentation (press ESC to stop)?"
+msgstr ""
+
 #: unit2.msgfnd001
 msgid "Text not found."
 msgstr ""
@@ -927,6 +931,10 @@ msgstr ""
 
 #: unit7.srcut026d
 msgid "If the presentation mode is activated, highlight the previous paragraph, skipping the empty lines."
+msgstr ""
+
+#: unit7.srcut026e
+msgid "Activate the presentation mode and save all the screenshots in the Downloads folder."
 msgstr ""
 
 #: unit7.srcut027

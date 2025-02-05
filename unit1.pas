@@ -191,6 +191,7 @@ type
     procedure RenumberFootnotes;
     procedure RenumberList;
     function SaveFile: boolean;
+    procedure SaveScreenShot;
     procedure SelectInsertFootnote;
     procedure CutZone;
     procedure SetTable;
@@ -248,7 +249,9 @@ var
   blHideTitleTodo: boolean = False;
   blDisableFormatting: boolean = False;
   blIsPresenting: boolean = False;
+  blIsSavingScreen: boolean = False;
   iMaxSize: Integer = 250000;
+  iNumScreenshot: Integer = 1;
   stTableLoaded: String = ' && .csv ';
   csTableRowCount: Integer = 10000;
   blTextOnChange: boolean = False;
@@ -283,6 +286,8 @@ resourcestring
   msg020 = 'Create in a new file a version of the current presentation ' +
     'optimised for mxMarkEdit?';
   msg021 = 'It was not possible to save the optimised file.';
+  msg022 = 'Save in the Downloads directory the screenshots of the presentation ' +
+    '(press ESC to stop)?';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -761,12 +766,6 @@ procedure TfmMain.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState
 var
   rng: NSRange;
 begin
-  if ((key = Ord('6')) and (Shift = [ssMeta]) and (blIsPresenting = True)) then
-  begin
-    key := Ord('3');
-    Shift := [ssMeta, ssShift];
-  end
-  else
   if ((key = Ord('T')) and (Shift = [ssShift, ssMeta])) then
   begin
     if pnGrid.Height = 1 then
@@ -1040,8 +1039,94 @@ begin
   if ((key = 27) and (blIsPresenting = True)) then
   begin
     DisablePresenting;
+    blIsSavingScreen := False;
     FormatListTitleTodo;
     key := 0;
+  end
+  else
+  if ((key = Ord('E')) and (Shift = [ssMeta, ssCtrl])) then
+  begin
+    if MessageDlg(msg022, mtconfirmation, [mbOK, mbCancel], 0) = mrCancel then
+    begin
+      Exit;
+    end;
+    if miEditDisableForm.Checked = True then
+    begin
+      miEditDisableFormClick(nil);
+    end;
+    if miEditDisSpell.Checked = False then
+    begin
+      miEditDisSpellClick(nil);
+    end;
+    key := 0;
+    if ((dbText.Lines[0] = '---') and (dbText.SelStart < 3) and
+      (blIsPresenting = True)) then
+    begin
+      dbText.SelStart := 4;
+    end;
+    blIsPresenting := True;
+    cbFilter.Visible := False;
+    spTable.Color := dbText.Color;
+    sgTitles.ScrollBars := ssNone;
+    dbText.ScrollBars := ssNone;
+    blIsSavingScreen := True;
+    while dbText.CaretPos.Y < dbText.Lines.Count do
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveToEndOfParagraph(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveForward(nil);
+      if dbText.CaretPos.Y = dbText.Lines.Count - 1 then
+      begin
+        Exit;
+      end;
+      while ((dbText.Lines[dbText.CaretPos.Y] = '') or
+          (dbText.Lines[dbText.CaretPos.Y] = '---')) do
+      begin
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          moveForward(nil);
+        if dbText.CaretPos.Y = dbText.Lines.Count - 1 then
+        begin
+          Exit;
+        end;
+      end;
+      FormatListTitleTodo;
+      pnBottom.Height := 0;
+      stText := WideString(dbText.Text);
+      rngStart.location := 0;
+      rngStart.length := Length(stText);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+      // To have the selected paragraph vertically centered
+      rngEnd.location := 1;
+      rngEnd.length := 1;
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        scrollRangeToVisible(rngEnd);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        scrollRangeToVisible(rngStart);
+      ShowCurrentTitleTodo;
+      if rngStart.length > 1 then
+      begin
+        dbText.SelStart := dbText.SelStart + 1;
+        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          setInsertionPointColor(ColorToNSColor(dbText.Color));
+      end;
+      Application.ProcessMessages;
+      Sleep(1000);
+      SaveScreenshot;
+      Application.ProcessMessages;
+      Sleep(1000);
+      if blIsSavingScreen = False then
+      begin
+        Exit;
+      end;
+
+    end;
   end
   else
   if (((key = Ord('E')) and (Shift = [ssMeta]) or
@@ -5217,11 +5302,11 @@ begin
   dbText.Lines.Add('author: ');
   if dateformat = 'en' then
   begin
-    dbText.Lines.Add('date: ' + FormatDateTime('mmmm dd yyyy', Date()));
+    dbText.Lines.Add('date: ' + FormatDateTime('mmmm d yyyy', Date()));
   end
   else
   begin
-    dbText.Lines.Add('date: ' + FormatDateTime('dd mmmm yyyy', Date()));
+    dbText.Lines.Add('date: ' + FormatDateTime('d mmmm yyyy', Date()));
   end;
   dbText.Lines.Add('abstract: ');
   dbText.Lines.Add('---');
@@ -5376,6 +5461,30 @@ begin
   else
   begin
     Result := iPos + StartPos;
+  end;
+end;
+
+procedure TfmMain.SaveScreenShot;
+var
+  ScreenDC: HDC;
+  bmpPicture: TBitmap;
+  jpgPicture : TJPEGImage;
+begin
+  try
+    bmpPicture := TBitmap.Create;
+    bmpPicture.SetSize(Screen.Width, Screen.Height);
+    ScreenDC := GetDC(0);
+    bmpPicture.LoadFromDevice(ScreenDC);
+    jpgPicture := TJPEGImage.Create;
+    jpgPicture.CompressionQuality := 100;
+    jpgPicture.Assign(bmpPicture);
+    jpgPicture.SaveToFile(GetUserDir + 'Downloads/' +
+      FormatFloat('0000000', iNumScreenshot) + '.jpg');
+    Inc(iNumScreenshot);
+  finally
+    ReleaseDC(0, ScreenDC);
+    bmpPicture.Free;
+    jpgPicture.Free;
   end;
 end;
 
