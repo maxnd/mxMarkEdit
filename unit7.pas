@@ -156,6 +156,7 @@ resourcestring
   srcut00c = 'Arrow left';
   srcut00d = 'Arrow right';
   srcut00e = 'Backspace';
+  srcut00f = 'or';
 
 implementation
 
@@ -217,13 +218,13 @@ begin
   sgShortcuts.Cells[0, i] := 'Meta + Opt + 1-6';
   sgShortcuts.Cells[1, i] := srcut004;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + + or -';
+  sgShortcuts.Cells[0, i] := 'Meta + ''+'' ' + srcut00f + ' ''-''';
   sgShortcuts.Cells[1, i] := srcut005;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + + or -';
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + ''+'' ' + srcut00f + ' ''-''';
   sgShortcuts.Cells[1, i] := srcut006;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Shift + ';
+  sgShortcuts.Cells[0, i] := 'Meta + Shift + ' + srcut00e;
   sgShortcuts.Cells[1, i] := srcut007;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + D';
@@ -268,10 +269,10 @@ begin
   sgShortcuts.Cells[0, i] := 'Meta + Ctrl + ' + srcut00b;
   sgShortcuts.Cells[1, i] := srcut021;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Opt + .';
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ''.''';
   sgShortcuts.Cells[1, i] := srcut022;
   Inc(i);
-  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + .';
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + ''.''';
   sgShortcuts.Cells[1, i] := srcut023;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Shift + J';

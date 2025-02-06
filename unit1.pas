@@ -1271,12 +1271,12 @@ begin
     if dateformat = 'en' then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText(NSStringUtf8(FormatDateTime('dddd mmmm dd yyyy', Date())));
+        insertText(NSStringUtf8(FormatDateTime('dddd mmmm d yyyy', Date())));
     end
     else
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText(NSStringUtf8(FormatDateTime('dddd dd mmmm yyyy', Date())));
+        insertText(NSStringUtf8(FormatDateTime('dddd d mmmm yyyy', Date())));
     end;
     key := 0;
   end
@@ -1286,12 +1286,12 @@ begin
     if dateformat = 'en' then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText(NSStringUtf8(FormatDateTime('dddd mmmm dd yyyy, hh.mm', Now())));
+        insertText(NSStringUtf8(FormatDateTime('dddd mmmm d yyyy, hh.mm', Now())));
     end
     else
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText(NSStringUtf8(FormatDateTime('dddd dd mmmm yyyy, hh.mm', Now())));
+        insertText(NSStringUtf8(FormatDateTime('dddd d mmmm yyyy, hh.mm', Now())));
     end;
     key := 0;
   end
@@ -2824,11 +2824,11 @@ procedure TfmMain.tmDateTimeTimer(Sender: TObject);
 begin
   if dateformat = 'en' then
   begin
-    lbDateTime.Caption := FormatDateTime('dddd mmmm dd yyyy • hh.mm', Now());
+    lbDateTime.Caption := FormatDateTime('dddd mmmm d yyyy • hh.mm', Now());
   end
   else
   begin
-    lbDateTime.Caption := FormatDateTime('dddd dd mmmm yyyy • hh.mm', Now());
+    lbDateTime.Caption := FormatDateTime('dddd d mmmm yyyy • hh.mm', Now());
   end;
 end;
 
@@ -5216,7 +5216,7 @@ begin
     iPos := dbText.SelStart;
     stText := dbText.Lines[dbText.CaretPos.Y] + LineEnding;
     iTop := dbText.CaretPos.Y;
-    for iBottom := dbText.CaretPos.Y + 1 to dbText.Lines.Count - 1 do
+    for iBottom := dbText.CaretPos.Y + 1 to dbText.Lines.Count do // not Count - 1
     begin
       if GetHeaderLevel(dbText.Lines[iBottom]) > iLevel then
       begin

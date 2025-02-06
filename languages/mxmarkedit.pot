@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.23"
+msgid "1.2.24"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -851,6 +851,10 @@ msgstr ""
 
 #: unit7.srcut00e
 msgid "Backspace"
+msgstr ""
+
+#: unit7.srcut00f
+msgid "or"
 msgstr ""
 
 #: unit7.srcut010

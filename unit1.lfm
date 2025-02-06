@@ -1272,7 +1272,9 @@ object fmMain: TfmMain
         BevelOuter = bvNone
         ClientHeight = 42
         ClientWidth = 877
+        Color = clForm
         ParentBackground = False
+        ParentColor = False
         ParentFont = False
         TabOrder = 1
         object edFindGrid: TEdit
