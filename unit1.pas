@@ -249,7 +249,6 @@ var
   blHideTitleTodo: boolean = False;
   blDisableFormatting: boolean = False;
   blIsPresenting: boolean = False;
-  blIsSavingScreen: boolean = False;
   iMaxSize: Integer = 250000;
   iNumScreenshot: Integer = 1;
   stTableLoaded: String = ' && .csv ';
@@ -355,7 +354,7 @@ begin
     clRepetition := $005766EA;
     clTodo := clWhite;
     clFontContrast := clWhite;
-    clFontFade := $00797979;
+    clFontFade := $005E5E5E;
   end
   else
   begin
@@ -389,7 +388,7 @@ begin
     clRepetition := clRed;
     clTodo := clBlack;
     clFontContrast := clBlack;
-    clFontFade := clSilver;
+    clFontFade := $00D6D6D6;
   end;
   clInsertionPoint := NSColorToColorRef(TCocoaTextView(NSScrollView(dbText.Handle).
     documentView).insertionPointColor);
@@ -766,6 +765,13 @@ procedure TfmMain.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState
 var
   rng: NSRange;
 begin
+  if ((key = 27) and (blIsPresenting = True)) then
+  begin
+    DisablePresenting;
+    FormatListTitleTodo;
+    key := 0;
+  end
+  else
   if ((key = Ord('T')) and (Shift = [ssShift, ssMeta])) then
   begin
     if pnGrid.Height = 1 then
@@ -1036,14 +1042,6 @@ var
   stText: WideString;
   myDate: TDate;
 begin
-  if ((key = 27) and (blIsPresenting = True)) then
-  begin
-    DisablePresenting;
-    blIsSavingScreen := False;
-    FormatListTitleTodo;
-    key := 0;
-  end
-  else
   if ((key = Ord('E')) and (Shift = [ssMeta, ssCtrl])) then
   begin
     if MessageDlg(msg022, mtconfirmation, [mbOK, mbCancel], 0) = mrCancel then
@@ -1065,11 +1063,11 @@ begin
       dbText.SelStart := 4;
     end;
     blIsPresenting := True;
-    cbFilter.Visible := False;
     spTable.Color := dbText.Color;
     sgTitles.ScrollBars := ssNone;
+    // Must be after ScrollBars to avoid the scroll bar to appear
+    cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
-    blIsSavingScreen := True;
     while dbText.CaretPos.Y < dbText.Lines.Count do
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1121,11 +1119,10 @@ begin
       SaveScreenshot;
       Application.ProcessMessages;
       Sleep(1000);
-      if blIsSavingScreen = False then
+      if blIsPresenting = False then
       begin
         Exit;
       end;
-
     end;
   end
   else
@@ -1147,9 +1144,10 @@ begin
       dbText.SelStart := 4;
     end;
     blIsPresenting := True;
-    cbFilter.Visible := False;
     spTable.Color := dbText.Color;
     sgTitles.ScrollBars := ssNone;
+    // Must be after ScrollBars to avoid the scroll bar to appear
+    cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToEndOfParagraph(nil);
@@ -1203,9 +1201,10 @@ begin
     end;
     key := 0;
     blIsPresenting := True;
-    cbFilter.Visible := False;
     spTable.Color := dbText.Color;
     sgTitles.ScrollBars := ssNone;
+    // Must be after ScrollBars to avoid the scroll bar to appear
+    cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);

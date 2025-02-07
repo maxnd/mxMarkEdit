@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.24, published on February 6 2025.
+Version 1.2.25, published on February 7 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -330,6 +330,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.25
+
+- Bugs fixing in presentation mode.
+- Minor graphic improvements in presentation mode.
 
 #### Version 1.2.24
 
