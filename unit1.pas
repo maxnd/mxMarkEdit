@@ -1100,6 +1100,64 @@ begin
         NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+      i := 0;
+      if dbText.Lines[0] = '---' then
+      begin
+        if dbText.CaretPos.Y < 8 then
+        begin
+          for i := dbText.CaretPos.Y downto 0 do
+          begin
+            if dbText.Lines[i] = '---' then
+            begin
+              Break;
+            end;
+          end;
+          if i = 0 then
+          begin
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='title:' then
+            begin
+              rngStart.length := 6;
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+            end
+            else
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='subtitle:' then
+            begin
+              rngStart.length := 9;
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+            end
+            else
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) ='author:' then
+            begin
+              rngStart.length := 7;
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+            end
+            else
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='email:' then
+            begin
+              rngStart.length := 6;
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+            end
+            else
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) ='date:' then
+            begin
+              rngStart.length := 5;
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+            end
+            else
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='abstract:' then
+            begin
+              rngStart.length := 9;
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+            end;
+          end;
+        end;
+      end;
       // To have the selected paragraph vertically centered
       rngEnd.location := 1;
       rngEnd.length := 1;
@@ -1172,6 +1230,63 @@ begin
       NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+    if dbText.Lines[0] = '---' then
+    begin
+      if dbText.CaretPos.Y < 8 then
+      begin
+        for i := dbText.CaretPos.Y downto 0 do
+        begin
+          if dbText.Lines[i] = '---' then
+          begin
+            Break;
+          end;
+        end;
+        if i = 0 then
+        begin
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='title:' then
+          begin
+            rngStart.length := 6;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='subtitle:' then
+          begin
+            rngStart.length := 9;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) ='author:' then
+          begin
+            rngStart.length := 7;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='email:' then
+          begin
+            rngStart.length := 6;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) ='date:' then
+          begin
+            rngStart.length := 5;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='abstract:' then
+          begin
+            rngStart.length := 9;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end;
+        end;
+      end;
+    end;
     // To have the selected paragraph vertically centered
     rngEnd.location := 1;
     rngEnd.length := 1;
@@ -1235,6 +1350,63 @@ begin
       NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+    if dbText.Lines[0] = '---' then
+    begin
+      if dbText.CaretPos.Y < 8 then
+      begin
+        for i := dbText.CaretPos.Y downto 0 do
+        begin
+          if dbText.Lines[i] = '---' then
+          begin
+            Break;
+          end;
+        end;
+        if i = 0 then
+        begin
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='title:' then
+          begin
+            rngStart.length := 6;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='subtitle:' then
+          begin
+            rngStart.length := 9;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) ='author:' then
+          begin
+            rngStart.length := 7;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='email:' then
+          begin
+            rngStart.length := 6;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) ='date:' then
+          begin
+            rngStart.length := 5;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end
+          else
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='abstract:' then
+          begin
+            rngStart.length := 9;
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clFontFade), rngStart);
+          end;
+        end;
+      end;
+    end;
     // To have the selected paragraph vertically centered
     rngEnd.location := 1;
     rngEnd.length := 1;
