@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.26"
+msgid "1.2.27"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -526,6 +526,12 @@ msgstr "Attività"
 msgid "Hide done items"
 msgstr "Nascondi attività svolte"
 
+#: tfmtasks.lbtot.caption
+#, fuzzy
+#| msgid "Todo items: 0"
+msgid "Todo items: 4"
+msgstr "Attività: 0"
+
 #: tfmtasks.sgtasks.columns[0].title.caption
 msgctxt "tfmtasks.sgtasks.columns[0].title.caption"
 msgid "Row"
@@ -543,6 +549,11 @@ msgstr "Scadenza"
 
 #: tfmtasks.sgtasks.columns[3].title.caption
 msgctxt "tfmtasks.sgtasks.columns[3].title.caption"
+msgid "Heading"
+msgstr "Intestazione"
+
+#: tfmtasks.sgtasks.columns[4].title.caption
+msgctxt "tfmtasks.sgtasks.columns[4].title.caption"
 msgid "Title"
 msgstr "Titolo"
 
@@ -773,6 +784,10 @@ msgstr "giorno"
 #: unit4.tsk002
 msgid "days"
 msgstr "giorni"
+
+#: unit4.tsk003
+msgid "Todo items:"
+msgstr "Attività:"
 
 #: unit5.msgsk001
 msgctxt "unit5.msgsk001"

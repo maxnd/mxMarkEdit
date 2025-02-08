@@ -39,6 +39,7 @@ type
     bnCopy: TButton;
     bnToggle: TButton;
     cbHide: TCheckBox;
+    lbTot: TLabel;
     pnTasks: TPanel;
     sgTasks: TStringGrid;
     bnOK: TButton;
@@ -67,6 +68,7 @@ resourcestring
 
   tsk001 = 'day';
   tsk002 = 'days';
+  tsk003 = 'Todo items:';
 
 implementation
 
@@ -152,7 +154,8 @@ begin
   begin
     stClip := sgTasks.Columns[1].Title.Caption + #9 +
       sgTasks.Columns[2].Title.Caption + #9 +
-      sgTasks.Columns[3].Title.Caption + LineEnding;
+      sgTasks.Columns[3].Title.Caption + #9 +
+      sgTasks.Columns[4].Title.Caption + LineEnding;
     for i := 1 to sgTasks.RowCount - 1 do
     begin
       if sgTasks.Cells[1, i] = '1' then
@@ -167,7 +170,8 @@ begin
       begin
         stClip := stClip + UTF8Copy(sgTasks.Cells[2, i], 1, 10) + #9;
       end;
-      stClip := stClip + sgTasks.Cells[3, i] + LineEnding;
+      stClip := stClip + sgTasks.Cells[3, i] + #9 +
+        sgTasks.Cells[4, i] + LineEnding;
     end;
   end;
   Clipboard.AsText := stClip;
@@ -291,7 +295,7 @@ procedure TfmTasks.CreateList;
 var
   i, iLength: integer;
   dtDeadline: TDate;
-  stDays: string;
+  stDays, stHeading: string;
   slTodo: TStringList;
 begin
   sgTasks.RowCount := 1;
@@ -302,6 +306,15 @@ begin
     slTodo.AddStrings(fmMain.dbText.Lines);
     for i := 0 to slTodo.Count - 1 do
     begin
+      if UTF8Copy(slTodo[i], 1, 1) = '#' then
+      begin
+        if fmMain.GetHeaderLevel(slTodo[i]) < 7 then
+        begin
+          stHeading := UTF8Copy(slTodo[i], UTF8Pos(' ', slTodo[i]) + 1,
+            UTF8Length(slTodo[i]));
+        end;
+      end
+      else
       if UTF8Copy(slTodo[i], 1, 6) = '- [ ] ' then
       begin
         sgTasks.RowCount := sgTasks.RowCount + 1;
@@ -319,12 +332,13 @@ begin
           end;
           sgTasks.Cells[2, sgTasks.RowCount - 1] :=
             UTF8Copy(slTodo[i], 7, 10) + ' (' + stDays + ')';
-          sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+          sgTasks.Cells[3, sgTasks.RowCount - 1] := stHeading;
+          sgTasks.Cells[4, sgTasks.RowCount - 1] :=
             UTF8Copy(slTodo[i], 20, UTF8Length(slTodo[i]));
         end
         else
         begin
-          sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+          sgTasks.Cells[4, sgTasks.RowCount - 1] :=
             UTF8Copy(slTodo[i], 7, UTF8Length(slTodo[i]));
         end;
         sgTasks.Cells[1, sgTasks.RowCount - 1] := '0';
@@ -348,12 +362,13 @@ begin
           end;
           sgTasks.Cells[2, sgTasks.RowCount - 1] :=
             UTF8Copy(fmMain.dbText.Lines[i], 7, 10) + ' (' + stDays + ')';
-          sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+          sgTasks.Cells[3, sgTasks.RowCount - 1] := stHeading;
+          sgTasks.Cells[4, sgTasks.RowCount - 1] :=
             UTF8Copy(slTodo[i], 20, UTF8Length(slTodo[i]));
         end
         else
         begin
-          sgTasks.Cells[3, sgTasks.RowCount - 1] :=
+          sgTasks.Cells[4, sgTasks.RowCount - 1] :=
             UTF8Copy(slTodo[i], 7, UTF8Length(slTodo[i]));
         end;
         sgTasks.Cells[1, sgTasks.RowCount - 1] := '1';
@@ -369,6 +384,7 @@ begin
     sgTasks.SortColRow(True, 2);
     sgTasks.Row := 1;
   end;
+  lbTot.Caption := tsk003 + ' ' + FormatFloat('#,0', sgTasks.RowCount - 1);
 end;
 
 end.

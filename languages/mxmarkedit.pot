@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.26"
+msgid "1.2.27"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -528,6 +528,10 @@ msgstr ""
 msgid "Hide done items"
 msgstr ""
 
+#: tfmtasks.lbtot.caption
+msgid "Todo items: 4"
+msgstr ""
+
 #: tfmtasks.sgtasks.columns[0].title.caption
 msgctxt "tfmtasks.sgtasks.columns[0].title.caption"
 msgid "Row"
@@ -545,6 +549,11 @@ msgstr ""
 
 #: tfmtasks.sgtasks.columns[3].title.caption
 msgctxt "tfmtasks.sgtasks.columns[3].title.caption"
+msgid "Heading"
+msgstr ""
+
+#: tfmtasks.sgtasks.columns[4].title.caption
+msgctxt "tfmtasks.sgtasks.columns[4].title.caption"
 msgid "Title"
 msgstr ""
 
@@ -774,6 +783,10 @@ msgstr ""
 
 #: unit4.tsk002
 msgid "days"
+msgstr ""
+
+#: unit4.tsk003
+msgid "Todo items:"
 msgstr ""
 
 #: unit5.msgsk001

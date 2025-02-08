@@ -1,7 +1,7 @@
 object fmTasks: TfmTasks
-  Left = 316
+  Left = 275
   Height = 549
-  Top = 234
+  Top = 202
   Width = 1004
   BorderIcons = []
   BorderStyle = bsDialog
@@ -26,7 +26,6 @@ object fmTasks: TfmTasks
     BorderSpacing.Right = 5
     BorderSpacing.Around = 10
     Color = clForm
-    ColCount = 4
     ColumnClickSorts = True
     Columns = <    
       item
@@ -42,8 +41,12 @@ object fmTasks: TfmTasks
         Width = 180
       end    
       item
+        Title.Caption = 'Heading'
+        Width = 310
+      end    
+      item
         Title.Caption = 'Title'
-        Width = 710
+        Width = 400
       end>
     ExtendedSelect = False
     FixedColor = clForm
@@ -63,7 +66,8 @@ object fmTasks: TfmTasks
       0
       70
       180
-      710
+      310
+      400
     )
   end
   object pnTasks: TPanel
@@ -119,6 +123,13 @@ object fmTasks: TfmTasks
       TabOrder = 1
       TabStop = False
       OnClick = bnToggleClick
+    end
+    object lbTot: TLabel
+      Left = 268
+      Height = 16
+      Top = 4
+      Width = 82
+      Caption = 'Todo items: 4'
     end
   end
 end

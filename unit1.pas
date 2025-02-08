@@ -182,7 +182,6 @@ type
     procedure DisablePresenting;
     procedure FindInGrid;
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
-    function GetHeaderLevel(stHeader: String): Integer;
     function GetPara(txt: NSTextStorage; textOffset: integer;
       isReadOnly, useDefault: boolean): NSParagraphStyle;
     function GetWritePara(txt: NSTextStorage;
@@ -196,6 +195,7 @@ type
     procedure CutZone;
     procedure SetTable;
   public
+    function GetHeaderLevel(stHeader: String): Integer;
     procedure UpdateLastFile;
     procedure LabelFileNameChars;
     procedure MoveToPos;
