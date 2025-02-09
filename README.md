@@ -59,7 +59,7 @@ A normal presentation in Markdown format looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot5.png)
 
-The same presentation optimised with `Tools - Optimise presentation...` and shown in presentation mode looks like this:
+The same presentation optimized with `Tools - Optimize presentation...` and shown in presentation mode looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot6.png)
 
@@ -155,7 +155,7 @@ it’s possible to use the app for presentations:
 
 In presentation mode, the status bar is hidden, and the spell checking is automatically disabled. To quit the presentation mode, press `Esc` or click anywhere in the text. Possibly, reenable the spell checking.
 
-Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimised for mxMarkEdit with the menu item `Tools` - `Optimise presentation...` if it has to be presented with mxMarkEdit.
+Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimized for mxMarkEdit with the menu item `Tools` - `Optimize presentation...` if it has to be presented with mxMarkEdit.
 
 To export an mxMarkEdit presentation in PDF so that it can be shown on any computer, save all the screenshots from the current position to the end of the document with `Meta + Ctrl + E`; this takes 2 seconds for every item; press `ESC` to interrupt the process. Then select all the screenshots in the `Download` directory, `Ctrl + click` on them and choose the `Quick Options - Create PDF`. The screenshots are numbered progressively. To restart their number, restart the app. 
 
@@ -189,7 +189,7 @@ The `Show words recurrence form` menu item opens a form with the list of all the
 
 The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, color and size and the line spacing, greatly improving the performance of the app with very large documents. In the options, it's possible to set the number of characters of a document beyond which it's loaded without formatting, just activating automatically this functionality.
 
-The `Tools - Optimise presentation...` menu item creates a copy of the current presentation optimised to be shown with mxMarkEdit, and saves it with the name of the file in use plus ` - mxMarkEdit` addition. Basically, the various items of first level are separated by an empty paragraph, and the repeated titles of the slides are removed.
+The `Tools - Optimize presentation...` menu item creates a copy of the current presentation optimized to be shown with mxMarkEdit, and saves it with the name of the file in use plus ` - mxMarkEdit` addition. Basically, the various items of first level are separated by an empty paragraph, and the repeated titles of the slides are removed.
 
 The `Tools - Convert with Pandoc` menu item
 
@@ -216,7 +216,7 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 - the path of the Pandoc executable;
 - the possible template (a file of Word, PowerPoint, Writer, etc.) to use as a reference;
 - the format of the file the note should be converted to (`.docx`, `.odt`, etc.);
-- two buttons to reset the colours of the text in black and white or in various colours; these colours are different for dark and light mode.
+- two buttons to reset the colors of the text in black and white or in various colors; these colors are different for dark and light mode.
 
 
 A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the files are present or not. See the Pandoc manual for more information.
@@ -320,7 +320,7 @@ When a `.md` file that has been modified is closed, a backup copy is created wit
 
 ## Configuration files
 
-The software creates these two configuration files that can be deleted to reset the configuration of the app, included the colours:
+The software creates these two configuration files that can be deleted to reset the configuration of the app, included the colors:
 
 - `/Users/[username]/Library/Preferences/mxmarkedit`
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
@@ -372,7 +372,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 #### Version 1.2.19
 
-- In the options, two buttons have been added to reset the colours of the text in black and white or in various colours; these colours are different for dark and light mode.
+- In the options, two buttons have been added to reset the colors of the text in black and white or in various colors; these colors are different for dark and light mode.
 - Minor graphic improvements in presentation mode.
 
 #### Version 1.2.18
@@ -414,7 +414,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 #### Version 1.2.11
 
-- Added the menu item `Tools` - `Optimise presentation` (see above).
+- Added the menu item `Tools` - `Optimize presentation` (see above).
 - Improved the color of the links: now the linked file has the color of the code font.
 
 #### Version 1.2.10
