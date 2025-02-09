@@ -166,6 +166,8 @@ var
 begin
   if sgWords.RowCount > 1 then
   begin
+    stClip := sgWords.Columns[0].Title.Caption + #9 +
+      sgWords.Columns[1].Title.Caption + LineEnding;
     for i := 1 to sgWords.RowCount - 1 do
     begin
       stClip := stClip + sgWords.Cells[0, i] + #9 +

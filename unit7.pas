@@ -80,7 +80,7 @@ resourcestring
   srcut020 = 'Select the previous heading.';
   srcut021 = 'Select the next heading.';
   srcut022 = 'Transform a list with dashes (-) into a numbered list.';
-  srcut023 = 'Transform a numbered list into a with dashes (-).';
+  srcut023 = 'Transform a numbered list into a list with dashes (-).';
   srcut024 = 'Set the current position of the cursor in the bookmark.';
   srcut025 = 'Move the cursor to the position already set in the bookmark.';
   srcut026 = 'Activate the presentation mode and highlight the following paragraph, ' +
@@ -123,11 +123,11 @@ resourcestring
   srcut046 = 'Move the current table, with all its field, before the previous one.';
   srcut047 = 'Move the current table, with all its field, after the next one.';
   srcut048 = 'In the tables names column, select the previous table title, ' +
-    'while in the other columns move to the top of the grid.';
+    'while in the other columns move the cursor to the top of the grid.';
   srcut049 = 'In the tables names column, select the following table title, while in ' +
-    'the  other columns move to the last edited row of the current column.';
-  srcut050 = 'Move to the first column of the grid.';
-  srcut050b = 'Move to the last right edited column of the current row.';
+    'the  other columns move the cursor to the last edited row of the current column.';
+  srcut050 = 'Move the cursor to the first column of the grid.';
+  srcut050b = 'Move the cursor to the last right edited column of the current row.';
   srcut051 = 'Insert the current date except in the tables names column and ' +
   'in the headings.';
   srcut051b = 'If the current cell contains a date, increase it of one day.';

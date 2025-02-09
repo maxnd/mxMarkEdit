@@ -129,7 +129,7 @@ object fmTasks: TfmTasks
       Height = 16
       Top = 4
       Width = 82
-      Caption = 'Todo items: 4'
+      Caption = 'Todo items: 0'
     end
   end
 end

@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.27"
+msgid "1.2.28"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -238,7 +238,7 @@ msgid "Settings"
 msgstr ""
 
 #: tfmmain.mitoolsoptmize.caption
-msgid "Optimise presentation..."
+msgid "Optimize presentation..."
 msgstr ""
 
 #: tfmmain.mitoolspandoc.caption
@@ -529,7 +529,7 @@ msgid "Hide done items"
 msgstr ""
 
 #: tfmtasks.lbtot.caption
-msgid "Todo items: 4"
+msgid "Todo items: 0"
 msgstr ""
 
 #: tfmtasks.sgtasks.columns[0].title.caption
@@ -754,11 +754,11 @@ msgid "The table is not delimited at the bottom; add a fictional title after its
 msgstr ""
 
 #: unit1.msg020
-msgid "Create in a new file a version of the current presentation optimised for mxMarkEdit?"
+msgid "Create in a new file a version of the current presentation optimized for mxMarkEdit?"
 msgstr ""
 
 #: unit1.msg021
-msgid "It was not possible to save the optimised file."
+msgid "It was not possible to save the optimized file."
 msgstr ""
 
 #: unit1.msg022
@@ -923,7 +923,7 @@ msgid "Transform a list with dashes (-) into a numbered list."
 msgstr ""
 
 #: unit7.srcut023
-msgid "Transform a numbered list into a with dashes (-)."
+msgid "Transform a numbered list into a list with dashes (-)."
 msgstr ""
 
 #: unit7.srcut024
@@ -1039,20 +1039,20 @@ msgid "Move the current table, with all its field, after the next one."
 msgstr ""
 
 #: unit7.srcut048
-msgid "In the tables names column, select the previous table title, while in the other columns move to the top of the grid."
+msgid "In the tables names column, select the previous table title, while in the other columns move the cursor to the top of the grid."
 msgstr ""
 
 #: unit7.srcut049
-msgid "In the tables names column, select the following table title, while in the  other columns move to the last edited row of the current column."
+msgid "In the tables names column, select the following table title, while in the  other columns move the cursor to the last edited row of the current column."
 msgstr ""
 
 #: unit7.srcut050
-msgid "Move to the first column of the grid."
+msgid "Move the cursor to the first column of the grid."
 msgstr ""
 
 #: unit7.srcut050b
 msgctxt "unit7.srcut050b"
-msgid "Move to the last right edited column of the current row."
+msgid "Move the cursor to the last right edited column of the current row."
 msgstr ""
 
 #: unit7.srcut051

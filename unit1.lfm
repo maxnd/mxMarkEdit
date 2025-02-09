@@ -1477,7 +1477,7 @@ object fmMain: TfmMain
         OnClick = miToolsPandocClick
       end
       object miToolsOptmize: TMenuItem
-        Caption = 'Optimise presentation...'
+        Caption = 'Optimize presentation...'
         OnClick = miToolsOptmizeClick
       end
       object Sep4: TMenuItem

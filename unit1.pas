@@ -283,8 +283,8 @@ resourcestring
   msg019 = 'The table is not delimited at the bottom; add a fictional title ' +
     'after its last row in the first left column.';
   msg020 = 'Create in a new file a version of the current presentation ' +
-    'optimised for mxMarkEdit?';
-  msg021 = 'It was not possible to save the optimised file.';
+    'optimized for mxMarkEdit?';
+  msg021 = 'It was not possible to save the optimized file.';
   msg022 = 'Save in the Downloads directory the screenshots of the presentation ' +
     '(press ESC to stop)?';
   dlg001 = 'Markdown files|*.md|All files|*';

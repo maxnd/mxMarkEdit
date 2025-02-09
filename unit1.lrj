@@ -30,7 +30,7 @@
 {"hash":260980711,"name":"tfmmain.mieditdisspell.caption","sourcebytes":[68,105,115,97,98,108,101,32,115,112,101,108,108,32,99,104,101,99,107,105,110,103],"value":"Disable spell checking"},
 {"hash":5989939,"name":"tfmmain.mitools.caption","sourcebytes":[84,111,111,108,115],"value":"Tools"},
 {"hash":159354147,"name":"tfmmain.mitoolspandoc.caption","sourcebytes":[67,111,110,118,101,114,116,32,119,105,116,104,32,80,97,110,100,111,99],"value":"Convert with Pandoc"},
-{"hash":61517390,"name":"tfmmain.mitoolsoptmize.caption","sourcebytes":[79,112,116,105,109,105,115,101,32,112,114,101,115,101,110,116,97,116,105,111,110,46,46,46],"value":"Optimise presentation..."},
+{"hash":1748558,"name":"tfmmain.mitoolsoptmize.caption","sourcebytes":[79,112,116,105,109,105,122,101,32,112,114,101,115,101,110,116,97,116,105,111,110,46,46,46],"value":"Optimize presentation..."},
 {"hash":81436951,"name":"tfmmain.mitoolsopenwin.caption","sourcebytes":[79,112,101,110,32,97,110,111,116,104,101,114,32,119,105,110,100,111,119],"value":"Open another window"},
 {"hash":53494025,"name":"tfmmain.mitoolstransparency.caption","sourcebytes":[84,114,97,110,115,112,97,114,101,110,99,121],"value":"Transparency"},
 {"hash":349765,"name":"tfmmain.mitoolstrans1.caption","sourcebytes":[78,111,110,101],"value":"None"},

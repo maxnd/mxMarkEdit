@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.27, published on February 8 2025.
+Version 1.2.28, published on February 9 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -30,7 +30,7 @@ mxMarkEdit has been deeply influenced by [Org-mode](https://orgmode.org). Althou
 
 ### Privacy
 
-mxMarkEdit does not collect any user data and does not access to his or her pictures, files or any other personal data. The data created with the app are stored only on the computer of the user and possibly on his or her cloud.
+mxMarkEdit does not collect any user data and does not access autonomously to his or her pictures, files or any other personal data. The data created with the app are stored only on the computer of the user and possibly on his or her cloud.
 
 
 ## Download and install
@@ -82,7 +82,7 @@ Some Markdown markers are hidden, as the text that follows them or is contained 
 
 Other Markdown markers are not hidden, but are shown in a different color defined by the user:
 
-* lines of code, shown in monospace font, among the markers `` ``` `` at the beginning of a paragraph;
+* lines of code, shown in monospace font, among two markers `` ``` `` at the beginning of a paragraph;
 * footnotes, like `[^1]` and `[^1]: Text of the footnote`;
 * inline footnotes, like `^[Text of the footnote.]`;
 * links to websites or files, like `[my web site](www.mywebsite.com)`;
@@ -96,9 +96,9 @@ When a paragraph starts with a list heading (`*`, `+`, `-` or a number followed 
 
 To move a heading and all its relative content, included possible headings of lower level (that is, having more `#` at the beginning), in another position of the text, move the cursor within this heading without doing any selection and cut all in the clipboard with the shortcut `Meta` + `Shift` + `X`. The text in the clipboard can then be pasted elsewhere.
 
-Links are properly recognised and formatted if the formatting is not disabled. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``. Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, the possible Markdown markers are properly shown.
+Links are properly recognized and formatted if the formatting is not disabled. Anyway, if they contain some Markdown markers, like `*` or `_`, these markers are hidden, although they are still present and the link works normally when clicked upon. To show the link with all its characters, even possible markers, format it as a line of code including it among two `` ` ``. Anyway, when the link is formatted as a proper Markdown link, like `[my web site](www.mywebsite.com)`, the possible Markdown markers are properly shown.
 
-The formatting should work instantly, without delaying the typing, at least up to about 250,000 characters (test made in a Mac Pro with M1 chip and 8 GB of RAM). To work speedily with bigger documents, disable the formatting and, if necessary, also the titles and toto list (see below the `Edit` menu notes). In this way, even a text of few millions of characters may be modified without any delay in typing.
+The formatting should work instantly, without delaying the typing, at least up to about 250,000 characters (test made in a Mac Pro with M1 chip and 8 GB of RAM). To work speedily with bigger documents, disable the formatting and, if necessary, also the titles and todo list (see below the `Edit` menu notes). In this way, even a text of few millions of characters may be modified without any delay in typing.
 
 By default, the app deactivate text formatting for documents bigger than 250,000 characters. This value can be modified in the options of the app (see below) to fit the performance of one's own Mac. The size of the document is calculated by the size of the file, not counting the characters, so it could be a bit inaccurate.
 
@@ -112,7 +112,7 @@ In the todo items, it’s possible to add a deadline. The format of the date sho
 
 ## Tables
 
-At the bottom of the text there’s an Excel-like grid of 105 columns and 10000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the title of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The title is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possible to insert any kind of data. It’s possible to add more tables in the grid, adding other titles under the `Table names` column followed by some fields, like in the second screenshot above.
+At the bottom of the text there’s an Excel-like grid of 105 columns and 10,000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the name of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The name is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possible to insert any kind of data. It’s possible to add more tables in the grid, adding other names under the `Table names` column followed by some fields, like in the second screenshot above.
 
 If it’s necessary to insert dates in a field, use the format `year-month-day`, where month and day are always of two digits (e.g. `2025-01-05`), so that the sorting on this field will produce a correct result. See below for some shortcuts useful to insert and change the dates.
 
@@ -136,7 +136,7 @@ The formulas are the followings:
 
 The formulas are shown in the color set by the user for the code (see below the option of the app for more information).
 
-It's possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its title.
+It's possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its name.
 
 To delete the content of the grid so that it’s not loaded any more, delete the related file with the `.csv` extension when it’s not loaded.
 
@@ -147,7 +147,7 @@ See below for some useful shortcuts available in this grid.
 it’s possible to use the app for presentations:
 
 1. load a document, possibly with some tables, containing the sequential text of the slides in Markdown format, with many paragraphs under titles and subtitles, like a normal text;
-2. enlarge possibly the font size of the document so that it can be seen easily by the participants;
+2. make mxMarkEdit window full screen and enlarge possibly the font size of the document so that it can be seen easily by the participants;
 3. share the interface of mxMarkEdit with a video projector or on a video call with apps like Webex, FaceTime or Zoom;
 4. begin the presentation and use the shortcut `Meta` + `E` to show the paragraph following the current one, or `Meta` + `Shift` + `E` to show the paragraph previous the current one, both in black or white, according to the theme in use, skipping the empty lines, and to fade the other text; when the presentation mode is enabled with one of these two shortcuts, the following or previous paragraphs may be selected also with the shortcuts `Meta` + `Arrow down` and `Meta` + `Arrow up`;
 5. comment the content of the paragraph in black or white; the participants see the text that is currently focused, and its position in the structure of the document in the left bar, which anyway can be hidden;
@@ -157,7 +157,7 @@ In presentation mode, the status bar is hidden, and the spell checking is automa
 
 Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimized for mxMarkEdit with the menu item `Tools` - `Optimize presentation...` if it has to be presented with mxMarkEdit.
 
-To export an mxMarkEdit presentation in PDF so that it can be shown on any computer, save all the screenshots from the current position to the end of the document with `Meta + Ctrl + E`; this takes 2 seconds for every item; press `ESC` to interrupt the process. Then select all the screenshots in the `Download` directory, `Ctrl + click` on them and choose the `Quick Options - Create PDF`. The screenshots are numbered progressively. To restart their number, restart the app. 
+To export an mxMarkEdit presentation in PDF so that it can be shown on any computer, save all the screenshots from the current position to the end of the document with `Meta + Ctrl + E`; this takes 2 seconds for each item; press `ESC` to interrupt the process. Then select all the screenshots in the `Download` directory, `Ctrl + click` on them and choose the `Quick Options - Create PDF`. The screenshots are numbered progressively. To restart the number of the ones to be created, restart the app.
 
 ## Files management
 
@@ -173,13 +173,13 @@ Moving the mouse over the label of the file path and name, at the bottom left of
 
 ## Menu items
 
-The last eight opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is remembered as well by the app.
+The last eight opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is restored.
 
-The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Command + Return` – of a sentence, or the previous ones with the button `Previous`, or to replace all occurrences with another text. Search and replacement are not case sensitive. See below for some useful shortcuts to use these functionalities. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`. Finally, when looking for the next recurrence of an emoji, it might be necessary to move the cursor after the previous finding to find the next one.
+The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Meta + Return` – of a sentence, or the previous ones with the button `Previous`, or to replace all occurrences with another text. Search and replacement are not case sensitive. See below for some useful shortcuts to use these functionalities. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`. Finally, when looking for the next recurrence of an emoji, it might be necessary to move the cursor after the previous finding to find the next one.
 
-The `Edit - Insert link to file` menu item allows to select one or more files and to insert their path and name in the text within the Markdown markers and preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It’s not possible to insert relative links due to macOS restrictions.
+The `Edit - Insert link to file` menu item allows to select one or more files and to insert their paths and names in the text within the Markdown markers and preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It’s not possible to insert relative links due to macOS restrictions.
 
-The `Edit - Show current title or toto` menu item shows at the top of the left list, after five other items if existing, the title or todo item the cursor is under to.
+The `Edit - Show current title or todo` menu item shows at the top of the left list, after five other items if existing, the title or todo item the cursor is under to.
 
 The `Edit - Show todo form` menu item opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
 
@@ -187,15 +187,15 @@ The `Edit - Show duplicate words` menu item shows in red all the words of each s
 
 The `Show words recurrence form` menu item opens a form with the list of all the words used in the current document, excluded the possible YAML headings (`title:`, `author:` etc.), and their recurrence, that is how many times they appear in the document. By default, the list is sorted by recurrence, but it’s possible to click on the radio item `Sort by words`, at the right bottom, to sort the list by name. Below the grid there is a field in which it’s possible to type the words that should not be considered, like articles, separated by commas. These words are automatically sorted. Below this field, there are some buttons to include the word selected in the grid within the words to skip, to update the results after having changed the words to skip, to copy in the clipboard the content of the grid and to close the form.
 
-The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, color and size and the line spacing, greatly improving the performance of the app with very large documents. In the options, it's possible to set the number of characters of a document beyond which it's loaded without formatting, just activating automatically this functionality.
+The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, its color, size and line spacing, greatly improving the performance of the app with very large documents. In the options, it's possible to set the number of characters of a document beyond which it's loaded without formatting, that is just activating automatically this functionality.
 
 The `Tools - Optimize presentation...` menu item creates a copy of the current presentation optimized to be shown with mxMarkEdit, and saves it with the name of the file in use plus ` - mxMarkEdit` addition. Basically, the various items of first level are separated by an empty paragraph, and the repeated titles of the slides are removed.
 
-The `Tools - Convert with Pandoc` menu item
+The `Tools - Convert with Pandoc` menu item converts the current document and its possible tables into another format specified in the options of the software. The converted file is created in the same folder of the current document.
 
 The `Tools - Open another window` menu item opens another instance of the software if the app is located in the `Applications` directory.
 
-The `Tools - Transparency` menu item activate or deactivate two levels of transparency of the interface of the software, giving the impression to watch or type on a dark glass. This functionality is just for aesthetic reasons.
+The `Tools - Transparency` menu item activate or deactivate two levels of transparency of the interface of the software, giving the impression to watch or type on a dark or clear glass, according to the mode in use. This functionality is just for aesthetic reasons.
 
 The `Tools - Options` menu item opens the options of the app, where are specified 
 
@@ -252,14 +252,14 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `Arrow up`: select the previous heading.
 * `Meta` + `Ctrl` + `Arrow down`: select the next heading.
 * `Meta` + `Opt` + `.`: transform a list with dashes (`-`) into a numbered list.
-* `Meta` + `Ctrl` + `.`: transform a numbered list into a with dashes (`-`).
+* `Meta` + `Ctrl` + `.`: transform a numbered list into a list with dashes (`-`).
 * `Meta` + `Shift` + `J`: set the current position of the cursor in the bookmark.
 * `Meta` + `J`: move the cursor to the position already set in the bookmark.
 * `Meta` + `E`: show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Shift` + `E`: show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Arrow down`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Arrow up`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
-* `Meta` + `Ctrl` + `E`: save all the presentation screenshots from the current position to the end of the document in the `Download` directory.
+* `Meta` + `Ctrl` + `E`: save all the presentation screenshots from the current position to the end of the document in the `Downloads` directory.
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalize the current word.
@@ -280,14 +280,14 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Opt` + `Arrow down`: move down the current row.
 * `Meta` + `Opt` + `Shift` + `I`: add a new column in the current table, after confirmation.
 * `Meta` + `Opt` + `Shift` + `Backspace`: delete the current column in the current table, after confirmation, if it has a title and if it’s not the first one, containing the tables names.
-* `Meta` + `Opt` + `Arrow left`: move left the current Column (field) just of the current table (not the entire column of the grid) with its content.
+* `Meta` + `Opt` + `Arrow left`: move left the current column (field) just of the current table (not the entire column of the grid) with its content.
 * `Meta` + `Opt` + `Arrow right`: move right the current column (field) just of the current table (not the entire column of the grid) with its content.
 * `Meta` + `Ctrl` + `Arrow up`: move the current table, with all its field, before the previous one.
 * `Meta` + `Ctrl` + `Arrow down`: move the current table, with all its field, after the following one.
-* `Meta` + `Arrow up`: in the tables names column, select the previous table title, while in the other columns move to the top of the grid.
-* `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move to the last edited row of the current column.
-* `Meta` + `Arrow left`: move to the first column of the grid.
-* `Meta` + `Arrow right`: move to the last right edited column of the current row.
+* `Meta` + `Arrow up`: in the tables names column, select the previous table title, while in the other columns move the cursor to the top of the grid.
+* `Meta` + `Arrow down`: in the tables names column, select the following table title, while in the other columns move the cursor to the last edited row of the current column.
+* `Meta` + `Arrow left`: move the cursor to the first column of the grid.
+* `Meta` + `Arrow right`: move the cursor to the last right edited column of the current row.
 * `Ctrl` + `D`: insert the current date except in the tables names column and in the headings.
 * `Ctrl` + `Arrow right`: if the current cell contains a date, increase it of one day.
 * `Ctrl` + `Arrow left`: if the current cell contains a date, decrease it of one day.
@@ -295,14 +295,14 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `Shift` + `S`: sort descending the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
 * `Meta` + `Ctrl` + `F`: move the cursor in the search field, if it’s visible.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
-* `Meta` + `V`: paste the content of the clipboard in the current (and following) cells.
+* `Meta` + `V`: paste the content of the clipboard in the current (and possibly following) cells.
 * `Esc`: undo the last changes while the editor of a cell in the grid is still active.
 
 ### In the todo form
 
 * `Meta` + `Opt` + `H`: hide the todo items already done.
 * `Meta` + `T`: toggle the state of the selected todo item from to be done to done, and vice versa.
-* `Meta` + `C`: 'Copy in the clipboard the todo items.
+* `Meta` + `C`: Copy in the clipboard the todo items.
 * `Esc`: close the form.
 
 ### In the search files form
@@ -320,7 +320,7 @@ When a `.md` file that has been modified is closed, a backup copy is created wit
 
 ## Configuration files
 
-The software creates these two configuration files that can be deleted to reset the configuration of the app, included the colors:
+The software creates these two configuration files that can be deleted to reset the configuration of the app, included the user defined colors:
 
 - `/Users/[username]/Library/Preferences/mxmarkedit`
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
@@ -330,6 +330,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.2.28
+
+- Small bugs fixing.
+- Corrected and improved the documentation.
 
 #### Version 1.2.27
 
@@ -425,7 +430,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 #### Version 1.2.9
 
-- The `Edit - Show current title or toto` menu item shows the title or todo item the cursor is under to at the top of the left list, after five other items if existing.
+- The `Edit - Show current title or todo` menu item shows the title or todo item the cursor is under to at the top of the left list, after five other items if existing.
 - In the presentation mode, the status bar is hidden.
 - Bugs fixing: the find next function could crash the app.
 

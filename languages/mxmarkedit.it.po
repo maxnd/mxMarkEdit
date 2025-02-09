@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.27"
+msgid "1.2.28"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -237,7 +237,7 @@ msgid "Settings"
 msgstr "Opzioni"
 
 #: tfmmain.mitoolsoptmize.caption
-msgid "Optimise presentation..."
+msgid "Optimize presentation..."
 msgstr "Ottimizza presentazione..."
 
 #: tfmmain.mitoolspandoc.caption
@@ -527,9 +527,7 @@ msgid "Hide done items"
 msgstr "Nascondi attività svolte"
 
 #: tfmtasks.lbtot.caption
-#, fuzzy
-#| msgid "Todo items: 0"
-msgid "Todo items: 4"
+msgid "Todo items: 0"
 msgstr "Attività: 0"
 
 #: tfmtasks.sgtasks.columns[0].title.caption
@@ -754,11 +752,11 @@ msgid "The table is not delimited at the bottom; add a fictional title after its
 msgstr "La tabella non è delimitata in basso; aggiungere un titolo fittizio dopo la sua ultima riga nella prima colonna a sinistra."
 
 #: unit1.msg020
-msgid "Create in a new file a version of the current presentation optimised for mxMarkEdit?"
+msgid "Create in a new file a version of the current presentation optimized for mxMarkEdit?"
 msgstr "Creare in un nuovo file una versione della corrente presentazione ottimizzata per mxMarkEdit?"
 
 #: unit1.msg021
-msgid "It was not possible to save the optimised file."
+msgid "It was not possible to save the optimized file."
 msgstr "Non è stato possibile salvare il file ottimizzato."
 
 #: unit1.msg022
@@ -923,8 +921,8 @@ msgid "Transform a list with dashes (-) into a numbered list."
 msgstr "Trasforma un elenco con trattini (-) in un elenco numerato."
 
 #: unit7.srcut023
-msgid "Transform a numbered list into a with dashes (-)."
-msgstr "Trasforma un elenco numerato in uno con trattini (-)."
+msgid "Transform a numbered list into a list with dashes (-)."
+msgstr "Trasforma un elenco numerato in un elenco con trattini (-)."
 
 #: unit7.srcut024
 msgid "Set the current position of the cursor in the bookmark."
@@ -1039,19 +1037,19 @@ msgid "Move the current table, with all its field, after the next one."
 msgstr "Sposta la tabella corrente, con tutti i suoi campi, dopo quella seguente."
 
 #: unit7.srcut048
-msgid "In the tables names column, select the previous table title, while in the other columns move to the top of the grid."
+msgid "In the tables names column, select the previous table title, while in the other columns move the cursor to the top of the grid."
 msgstr "Nella colonna dei nomi delle tabelle, seleziona il titolo della tabella precedente, mentre nelle altre colonne sposta il cursore in cima alla griglia."
 
 #: unit7.srcut049
-msgid "In the tables names column, select the following table title, while in the  other columns move to the last edited row of the current column."
+msgid "In the tables names column, select the following table title, while in the  other columns move the cursor to the last edited row of the current column."
 msgstr "Nella colonna dei nomi delle tabelle, seleziona il titolo della tabella seguente, mentre nelle altre colonne sposta il cursore all'ultima riga della colonna."
 
 #: unit7.srcut050
-msgid "Move to the first column of the grid."
+msgid "Move the cursor to the first column of the grid."
 msgstr "Sposta il cursore alla prima colonna della griglia."
 
 #: unit7.srcut050b
-msgid "Move to the last right edited column of the current row."
+msgid "Move the cursor to the last right edited column of the current row."
 msgstr "Sposta il cursore all'ultima colonna modificata a destra della riga corrente."
 
 #: unit7.srcut051
@@ -1109,7 +1107,7 @@ msgstr "Copia in ritaglio le attività."
 #: unit7.srcut060
 msgctxt "unit7.srcut060"
 msgid "Close the form."
-msgstr "Chiudi la maschera."
+msgstr "Chiude la maschera."
 
 #: unit7.srcut061
 msgid " In the search files form"
@@ -1122,7 +1120,7 @@ msgstr "Sposta il cursore nel campo Trova."
 #: unit7.srcut063
 msgctxt "unit7.srcut063"
 msgid "Close the form."
-msgstr "Chiudi la maschera."
+msgstr "Chiude la maschera."
 
 #: unit7.srcut064
 msgid " In the words recurrence form"
@@ -1131,5 +1129,5 @@ msgstr " Maschera di ricorrenza parole"
 #: unit7.srcut065
 msgctxt "unit7.srcut065"
 msgid "Close the form."
-msgstr "Chiudi la maschera."
+msgstr "Chiude la maschera."
 
