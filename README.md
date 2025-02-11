@@ -71,6 +71,20 @@ The form of the options of the app looks like this:
 
 ![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/screenshot4.png)
 
+Screenshots of the app used as meeting manager with fancy data
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/meeting_manager_1.png)
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/meeting_manager_2.png)
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/meeting_manager_3.png)
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/meeting_manager_4.png)
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/meeting_manager_5.png)
+
+![](https://github.com/maxnd/mxMarkEdit/blob/main/screenshots/meeting_manager_6.png)
+
 ## Formatting
 
 Some Markdown markers are hidden, as the text that follows them or is contained within them is properly formatted. These markers are:
