@@ -199,6 +199,14 @@ In case the citations need to be formatted differently to correspond to other me
 
 While in mxMarkEdit it's not possible to format the authors in small caps, it's easy to do this in a Word or Writer document exported with Pandoc. In the bibliography table, format the authors like this: `[Taylor, Bill]{.smallcaps}`. When exported with Pandoc, the final document will have the authors in small caps.
 
+### The approach of mxMarkEdit and the one the stylesheet-based app
+
+As is apparent from these notes, the bibliographic manager of mxMarkEdit, while not having the functionality of more specialized software such as Zotero and Mendeley, is a much simpler and more usable tool, both for those who plan to dedicate themselves to research only temporarily, to simply write a dissertation, and for those who find the system of composing citations based on style sheets too complex and dangerous.
+
+This approach allows to reformat all the citations of a document simply by changing the style sheet used, but it becomes problematic when there's no style that perfectly matches the methodological needs of one's institution or publisher. Furthermore, there is always the risk that in particular cases the style sheet does not give the desired results. The approach used by mxMarkEdit is much more solid, as the citation, even the part that follows the title, is composed by the user in its final form, and therefore is certainly correct. Even if this involves the need to rewrite it if it's necessary to adapt to other methodological requests, the user never runs into dangerous malfunctions.
+
+Finally, the mxMarkEdit bibliographic database, being contained in a `.csv` file, can always be read and modified, maybe by writing some code, so that it can be imported into other software.
+
 ## Presentations
 
 it’s possible to use the app for presentations:
