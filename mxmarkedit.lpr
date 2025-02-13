@@ -31,7 +31,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, unit1, unit2, unit3, unit4,unit5, unit6, unit7, copyright
+  Forms, unit1, unit2, unit3, unit4,unit5, unit6, unit7, unit8, copyright
   {$IFDEF Darwin}
     , clocale, iosxlocale, translate
   {$ENDIF}
@@ -49,7 +49,7 @@ begin
   Application.CreateForm(TfmShortcuts, fmShortcuts);
   Application.CreateForm(TfmWords, fmWords);
   Application.CreateForm(TfmTasks, fmTasks);
-  Application.CreateForm(TfmFiles, fmFiles);
+  Application.CreateForm(TfmEditor, fmEditor);
   Application.CreateForm(TfmCopyright, fmCopyright);
   Application.Run;
 end.

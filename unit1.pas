@@ -43,6 +43,7 @@ type
     lbChars: TLabel;
     lbFindGrid: TLabel;
     miFileInsert: TMenuItem;
+    miToolsBiblio: TMenuItem;
     miToolsManual: TMenuItem;
     miToolsOptmize: TMenuItem;
     miFilesSearch: TMenuItem;
@@ -150,6 +151,7 @@ type
     procedure miFileSaveAsClick(Sender: TObject);
     procedure miFileSaveClick(Sender: TObject);
     procedure miFilesSearchClick(Sender: TObject);
+    procedure miToolsBiblioClick(Sender: TObject);
     procedure miToolsManualClick(Sender: TObject);
     procedure miToolsOpenWinClick(Sender: TObject);
     procedure miToolsOptionsClick(Sender: TObject);
@@ -287,11 +289,16 @@ resourcestring
   msg021 = 'It was not possible to save the optimized file.';
   msg022 = 'Save in the Downloads directory the screenshots of the presentation ' +
     '(press ESC to stop)?';
+  msg023 = 'Create in a new file a version of the current document ' +
+    'with the bibliography?';
+  msg024 = 'It was not possible to save the file with bibliography.';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
   dlg004 = 'All files|*';
   dlg005 = 'Open file';
+  lb000 = 'with bibliography';
+  lb000b = '# Bibliography';
   lb001 = 'All the headings';
   lb002 = 'Headings 1 - 5';
   lb003 = 'Headings 1 - 4';
@@ -309,7 +316,7 @@ resourcestring
 
 implementation
 
-uses copyright, unit2, unit3, unit4, unit5, unit6, unit7;
+uses copyright, unit2, unit3, unit4, unit5, unit6, unit7, unit8;
 
   {$R *.lfm}
 
@@ -888,7 +895,14 @@ begin
   rng.length := 1;
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     scrollRangeToVisible(rng);
-  dbText.SetFocus;
+  if pnGrid.Height = 1 then
+  begin
+    dbText.SetFocus;
+  end
+  else
+  begin
+    sgTable.SetFocus;
+  end;
 end;
 
 procedure TfmMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -2358,6 +2372,12 @@ begin
     key := 0;
   end
   else
+  if ((key = Ord(' ')) and (Shift = [ssCtrl])) then
+  begin
+    fmEditor.ShowModal;
+    key := 0;
+  end
+  else
   if ((key = Ord('G')) and (Shift = [ssMeta])) then
   begin
     FindInGrid;
@@ -3580,6 +3600,144 @@ begin
   end;
 end;
 
+procedure TfmMain.miToolsBiblioClick(Sender: TObject);
+var
+  slText, slBiblio: TStringList;
+  stText, stNewText: WideString;
+  stOldKey, stNewKey: String;
+  i, iRow, iLen, iPos: Integer;
+  blBracket: Bool = False;
+begin
+  if blIsPresenting = True then
+  begin
+    DisablePresenting;
+    FormatListTitleTodo;
+  end;
+  if dbText.Text = '' then
+  begin
+    Exit;
+  end;
+  if MessageDlg(msg023, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+  begin
+    Exit;
+  end;
+  if SaveFile = False then
+  begin
+    Exit;
+  end;
+  try
+    try
+      Screen.Cursor := crHourGlass;
+      Application.ProcessMessages;
+      stNewText := '';
+      stText := WideString(dbText.Text);
+      iLen := Length(stText);
+      stOldKey := '';
+      stNewKey := '';
+      i := 1;
+      while i <= iLen do
+      begin
+        if stText[i] = '{' then
+        begin
+          blBracket := True;
+        end
+        else
+        if stText[i] = '}' then
+        begin
+          blBracket := False;
+          iRow := 0;
+          if stNewKey = stOldKey then
+          begin
+            for iRow := sgTable.RowCount - 1 downto 0 do
+            begin
+              if sgTable.Cells[2, iRow] = stNewKey then
+              begin
+                stNewText := stNewText + '*Ibidem*';
+                stOldKey := stNewKey;
+                stNewKey := '';
+                Break;
+              end;
+            end;
+          end;
+          if iRow = 0 then
+          begin
+            stNewText := stNewText + '{' + stNewKey + '}';
+            stOldKey := stNewKey;
+            stNewKey := '';
+          end;
+        end
+        else
+        if blBracket = True then
+        begin
+          stNewKey := stNewKey + stText[i];
+        end
+        else
+        begin
+          stNewText := stNewText + stText[i];
+        end;
+        Inc(i);
+      end;
+      slText := TStringList.Create;
+      slBiblio := TStringList.Create;
+      slText.Text := stNewText;
+      for i := 1 to sgTable.RowCount - 1 do
+      begin
+        if sgTable.Cells[2, i] = '' then
+        begin
+          Continue;
+        end
+        else
+        if UTF8Pos('{' + sgTable.Cells[2, i] + '}', slText.Text) > 0 then
+        begin
+          slText.Text := UTF8StringReplace(slText.Text,
+            '{' + sgTable.Cells[2, i] + '}',
+            sgTable.Cells[4, i] + ', *' + sgTable.Cells[5, i] + '*, ' +
+            sgTable.Cells[7, i], [rfIgnoreCase]);
+          slText.Text := UTF8StringReplace(slText.Text,
+            '{' + sgTable.Cells[2, i] + '}',
+            sgTable.Cells[4, i] + ', *' + sgTable.Cells[6, i] + '*',
+            [rfReplaceAll, rfIgnoreCase]);
+          slBiblio.Add(sgTable.Cells[3, i] + ', *' + sgTable.Cells[5, i] + '*, ' +
+            sgTable.Cells[7, i] + '.');
+        end;
+        Application.ProcessMessages;
+      end;
+      for i := 0 to slText.Count - 1 do
+      begin
+        if Copy(slText[i], 1, 5) = '[^1]:' then
+        begin
+          iPos := i - 1;
+          Break;
+        end;
+      end;
+      slText.Insert(iPos, '');
+      slText.Insert(iPos, lb000b);
+      slText.Insert(iPos, '');
+      slText.Insert(iPos, '');
+      iPos := iPos + 4;
+      slBiblio.Sort;
+      for i := 0 to slBiblio.Count - 1 do
+      begin
+        slText.Insert(iPos, slBiblio[i]);
+        Inc(iPos);
+        slText.Insert(iPos, '');
+        Inc(iPos);
+      end;
+      slText.Insert(iPos, '');
+      slText.Insert(iPos, '');
+      slText.SaveToFile(ExtractFileNameWithoutExt(stFileName) +
+        ' - ' + lb000 + '.md');
+    except
+      MessageDlg(msg024, mtWarning, [mbOK], 0);
+    end;
+  finally
+    slText.Free;
+    slBiblio.Free;
+    Screen.Cursor := crDefault;
+  end;
+end;
+
+
 procedure TfmMain.miToolsOptmizeClick(Sender: TObject);
 var
   slOrig, slDest: TStringList;
@@ -4362,7 +4520,7 @@ end;
 
 procedure TfmMain.SelectInsertFootnote;
 var
-  iPos, iOrigPos, iNew: integer;
+  iPos, iOrigPos, iNew, i: integer;
   rng: NSRange;
   stAttWord: NSAttributedString;
   stWord: string;
@@ -4454,7 +4612,14 @@ begin
       begin
         TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
           insertText(NSStringUtf8('[^0]'));
-        dbText.Lines.Add('[^0]: ' + #1);
+        for i := dbText.Lines.Count - 1 downto 0 do
+        begin
+          if dbText.Lines[i] <> '' then
+          begin
+            Break;
+          end;
+        end;
+        dbText.Lines.Insert(i + 1, '[^0]: ' + #1);
         RenumberFootnotes;
         dbText.SelStart := UTF8CocoaPos(#1, dbText.Text) - 1;
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).

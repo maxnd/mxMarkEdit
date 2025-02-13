@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.2.28, published on February 9 2025.
+Version 1.3.0, published on February 13 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -20,7 +20,7 @@ To watch some English video about the functionalities of mxMarkEdit, see https:/
 
 ---
 
-mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data, and also a file manager to search for a sentence in all the documents or spreadsheets contained in a folder. It's also possible to use the app as a presentation manager.
+mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data, and also a file manager to search for a sentence in all the documents or spreadsheets contained in a folder. It's also possible to use the app as a presentation manager. Finally, mxMarkEdit has a built-in bibliographic manager which may use the bibliography stored in the grid to compile the citations within a document in a way that resembles the one used by BibLaTex.
 
 The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
 
@@ -136,6 +136,8 @@ When a `.cvs` file is loaded, the grid is not automatically shown, but in the st
 
 In the grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document, or deleted. It’s possible also to paste some data copied from a spreadsheet like Excel or Numbers. See below for the shortcuts useful to do that. It's also possible to auto resize the width of the columns with a double click at the right of their headings.
 
+To edit easily a cell in the grid, it's available an extended editor activated with the shortcut `Ctrl + Space`. In this editor no formatting is available, but the links are properly recognized. To quit the editor, use the `Close` button or press `ESC`.
+
 At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` or the shortcut `Meta + G` to select the following cell after the current one in just the current field (column) of the current table that contains that text. Anyway, if the selected column is the first, containing the table names, the search will look for the following table names. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
 
 If a cell contains a formula, in the cell below it will be reported the result of the calculation of all the numbers contained in the previous cells of the same field (column) and of the same table. The result will be updated when a value in those cells will be changed. Textual contents and improperly formatted numbers will not be considered. The name of the table and of the field (column) must be specified, otherwise no result will be shown.
@@ -155,6 +157,47 @@ It's possible to sort the content of the current column of the current table wit
 To delete the content of the grid so that it’s not loaded any more, delete the related file with the `.csv` extension when it’s not loaded.
 
 See below for some useful shortcuts available in this grid.
+
+## Bibliographic management
+
+mxMarkEdit may be used to manage a bibliography and to insert citations of the books and articles into a document appropriately formatted, in a way similar to LaTex. To use this feature of the app, proceed as follows.
+
+### Creating one or more bibliographic tables
+
+In mxMarkEdit, the tables containing a bibliography must be structured as follows.
+
+The first column on the left must contain the name of the table, as usual. Several bibliographic tables may be inserted in sequence with different names to structure the bibliographic material in various areas.
+
+The second column (A1) must contain the key of the work, that is, some words or numbers that identify it uniquely within all the tables contained in the grid. It is suggested to use the surname of the first author followed by a space and the year of publication. If there are multiple works by the same author published in the same year, a progressive lowercase letter may be added after the year. For example, to report the bibliographic data of a book written by R. Taylor in 2024, the key could be `Taylor 2024`. If there were multiple works published by the same author in 2024, the subsequent works would have the key `Taylor 2024a`, `Taylor 2024b`, etc. It is the user's responsibility to verify that the key assigned to a work is unique, that is, it has not already been assigned to another work. To do this, simply sort the bibliographic tables alphabetically on the key field, so as to easily detect any duplicates. If the key is composed as `surname + year`, sorting the works by key will sort them by author and then by year.
+
+The third column (A2) must contain the author or authors of the work with the formatting required for the bibliography that will be inserted at the end of the document. In order for the authors to be ordered alphabetically, their surname must be inserted before their name.
+
+The fourth column (A3) must contain the author or authors of the work with the formatting required for footnotes. Normally, the name is bulleted and precedes the surname.
+
+The fifth column (A4) must contain the full title of the work, without inserting the italics markers since they will be added automatically later.
+
+The sixth column (A5) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first.
+
+The seventh column (A6) must contain the details of the citation, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies.
+
+In the following columns can be freely insert the data considered useful, also using the extended editor that is activated with `Ctrl + Space`. For example, it may be needed a field in which to insert comments on the work, even of a certain length, or the name of the relative PDF file, a link to the publisher's website, and so on. The columns after A6 will be ignored by the app for the purposes of compiling citations.
+
+### Inserting citations in the text
+
+To insert a citation of a work in the document, normally in the footnotes, just insert its identification key between two curly brackets, followed by all the detailed elements necessary for the single citation. For example, `Cf. {Taylor 2024}, pp. 23-46.`. It's necessary to be careful in typing correctly the key of the work to be quoted, respecting uppercase and lowercase. To do this, just display the bibliographic table, identify the key to be reported, copy it in clipboard and paste it into the text.
+
+### Producing a document with bibliography
+
+Once the document has been completed and the keys of the various works have been inserted, the menu item `Tools - Compile bibliography` can be used. In this way, mxMarkEdit creates another file in the same folder as the one in use, with the same name and the extension ` - with bibliography`. In this file, the various keys are replaced by the actual citations of the works, in the following way.
+
+- The first citation of a work is composed by associating the contents of columns A3, A4 and A6 separated by a comma; the title is automatically made in italics.
+- The second citation of a work is composed by associating the contents of columns A3, A5 (abbreviated title) and A6 separated by a comma.
+- If a citation is about the same work as the immediately preceding citation, the word `Ibidem` is inserted in italics in place of its bibliographic data.
+- At the end of the text, the bibliography is inserted, containing only the works actually cited in the document, associating the content of columns A2, A4 and A6 separated by a comma. The bibliography is ordered alphabetically.
+
+In case the citations need to be formatted differently to correspond to other methodological requests, it is enough to correct only the content of column A6, containing the details of the works, in all the tables, and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
+
+While in mxMarkEdit it's not possible to format the authors in small caps, it's easy to do this in a Word or Writer document exported with Pandoc. In the bibliography table, format the authors like this: `[Taylor, Bill]{.smallcaps}`. When exported with Pandoc, the final document will have the authors in small caps.
 
 ## Presentations
 
@@ -286,6 +329,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 
 ### In the tables grid
 
+* `Ctrl` + `Space`: open the extended editor.
 * `Meta` + `Shift` + `I`: insert a new row.
 * `Backspace`: delete the content of the selected cell or cells, after confirmation.
 * `Meta` + `Shift` + `Backspace`: delete the current row, after confirmation if it’s not empty.
@@ -344,6 +388,12 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.3.0
+
+- Added bibliographic management (see above form information).
+- Added the extended edito in the grid, activated by `Ctrl + Space`.
+- Bugs fixing: creating a new footnote when there were some lines after the footnotes block messed the text.
 
 #### Version 1.2.28
 

@@ -32,12 +32,21 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.2.28"
+msgid "1.3.0"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
 msgctxt "tfmcopyright.lbok.caption"
 msgid "OK"
+msgstr ""
+
+#: tfmeditor.bnok.caption
+msgctxt "tfmeditor.bnok.caption"
+msgid "Close"
+msgstr "Chiudi"
+
+#: tfmeditor.caption
+msgid "Editor"
 msgstr ""
 
 #: tfmfiles.bnfind.caption
@@ -222,6 +231,10 @@ msgstr "Aiuto"
 #: tfmmain.mitools.caption
 msgid "Tools"
 msgstr "Strumenti"
+
+#: tfmmain.mitoolsbiblio.caption
+msgid "Compile bibliography"
+msgstr "Compila bibliografia"
 
 #: tfmmain.mitoolsmanual.caption
 msgid "Download manual"
@@ -620,6 +633,14 @@ msgctxt "unit1.dlg005"
 msgid "Open file"
 msgstr "Apri file"
 
+#: unit1.lb000
+msgid "with bibliography"
+msgstr "con bibliografia"
+
+#: unit1.lb000b
+msgid "# Bibliography"
+msgstr "# Bibliografia"
+
 #: unit1.lb001
 msgctxt "unit1.lb001"
 msgid "All the headings"
@@ -763,6 +784,14 @@ msgstr "Non è stato possibile salvare il file ottimizzato."
 msgid "Save in the Downloads directory the screenshots of the presentation (press ESC to stop)?"
 msgstr "Salvare nella cartella Downloads le schermate della presentazione (ESC per interrompere)?"
 
+#: unit1.msg023
+msgid "Create in a new file a version of the current document with the bibliography?"
+msgstr "Creare in un nuovo file una versione del documento corrente con la bibliografia?"
+
+#: unit1.msg024
+msgid "It was not possible to save the file with bibliography."
+msgstr "Non è stato possibile salvare il file con bibliografia."
+
 #: unit2.msgfnd001
 msgid "Text not found."
 msgstr "Testo non trovato."
@@ -867,6 +896,10 @@ msgstr "Backspace"
 #: unit7.srcut00f
 msgid "or"
 msgstr "o"
+
+#: unit7.srcut00g
+msgid "Space"
+msgstr "Spazio"
 
 #: unit7.srcut010
 msgid "Format the selected text in bold, or the current word if no text is selected."
@@ -987,6 +1020,10 @@ msgstr "In altre posizioni, crea un nuovo riferimento di nota e una nuova nota, 
 #: unit7.srcut035
 msgid " In the tables grid"
 msgstr " Griglia delle tabelle"
+
+#: unit7.srcut035b
+msgid "Open the extended editor."
+msgstr "Apri l'editor esteso."
 
 #: unit7.srcut036
 msgid "Insert a new row."

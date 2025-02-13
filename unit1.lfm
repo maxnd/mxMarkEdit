@@ -1476,6 +1476,10 @@ object fmMain: TfmMain
         ShortCut = 4176
         OnClick = miToolsPandocClick
       end
+      object miToolsBiblio: TMenuItem
+        Caption = 'Compile bibliography'
+        OnClick = miToolsBiblioClick
+      end
       object miToolsOptmize: TMenuItem
         Caption = 'Optimize presentation...'
         OnClick = miToolsOptmizeClick
