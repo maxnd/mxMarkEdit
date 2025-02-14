@@ -42,6 +42,7 @@ type
     lbDateTime: TLabel;
     lbChars: TLabel;
     lbFindGrid: TLabel;
+    miFileImpTables: TMenuItem;
     miFileInsert: TMenuItem;
     miToolsBiblio: TMenuItem;
     miToolsManual: TMenuItem;
@@ -66,10 +67,12 @@ type
     miFileOpenLast8: TMenuItem;
     miToolsOpenWin: TMenuItem;
     odLink: TOpenDialog;
+    odTables: TOpenDialog;
     pnBackground: TPanel;
     pnFindGrid: TPanel;
     pnGrid: TPanel;
     pnTitTodo: TPanel;
+    Sep0a: TMenuItem;
     Sep2a: TMenuItem;
     Sep3: TMenuItem;
     Sep5: TMenuItem;
@@ -103,6 +106,7 @@ type
     Sep2: TMenuItem;
     Sep7: TMenuItem;
     Sep8: TMenuItem;
+    Sep0b: TMenuItem;
     sgTitles: TStringGrid;
     sgTable: TStringGrid;
     miToolsShortcuts: TMenuItem;
@@ -137,6 +141,7 @@ type
     procedure miEditShowCurrentClick(Sender: TObject);
     procedure miEditTasksClick(Sender: TObject);
     procedure miEditWordsClick(Sender: TObject);
+    procedure miFileImpTablesClick(Sender: TObject);
     procedure miFileInsertClick(Sender: TObject);
     procedure miFileNewClick(Sender: TObject);
     procedure miFileOpenClick(Sender: TObject);
@@ -292,11 +297,14 @@ resourcestring
   msg023 = 'Create in a new file a version of the current document ' +
     'with the bibliography?';
   msg024 = 'It was not possible to save the file with bibliography.';
+  msg025 = 'Replace the content of the grid with the tables of the selected file?';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
   dlg004 = 'All files|*';
   dlg005 = 'Open file';
+  dlg006 = 'Tables|*.csv';
+  dlg007 = 'Open tables';
   lb000 = 'with bibliography';
   lb000b = '# Bibliography';
   lb001 = 'All the headings';
@@ -411,6 +419,8 @@ begin
   odOpen.Title := dlg003;
   odLink.Filter := dlg004;
   odLink.Title := dlg005;
+  odTables.Filter := dlg006;
+  odTables.Title := dlg007;
   cbFilter.Items.Clear;
   cbFilter.Items.Add(lb006);
   cbFilter.Items.Add(lb005);
@@ -3043,6 +3053,7 @@ begin
   dbText.SetFocus;
   sgTable.RowCount := 1;
   sgTable.RowCount := csTableRowCount;
+  stGridLoaded := '';
   for i := 1 to sgTable.ColCount - 1 do
   begin
     sgTable.ColWidths[i] := 280;
@@ -3120,6 +3131,39 @@ begin
     end;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
+  end;
+end;
+
+procedure TfmMain.miFileImpTablesClick(Sender: TObject);
+begin
+  if blIsPresenting = True then
+  begin
+    DisablePresenting;
+    FormatListTitleTodo;
+  end;
+  if odTables.Execute then
+  begin
+    if FileExistsUTF8(odTables.FileName) then
+    begin
+      if MessageDlg(msg025, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+      begin
+        Exit;
+      end;
+      try
+        CopyFile(odTables.FileName, ExtractFileNameWithoutExt(stFileName) +
+          '.csv', [cffOverwriteFile]);
+        if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+        begin
+          sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
+            #9, False);
+          sgTable.RowCount := csTableRowCount;
+          stGridLoaded := stTableLoaded;
+          LabelFileNameChars;
+        end;
+      except
+        MessageDlg(msg004, mtWarning, [mbOK], 0);
+      end;
+    end;
   end;
 end;
 

@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.3.0"
+msgid "1.3.1"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -196,6 +196,10 @@ msgstr "Mostra maschera ricorrenza parole"
 msgid "File"
 msgstr ""
 
+#: tfmmain.mifileimptables.caption
+msgid "Import tables..."
+msgstr "Importa tabelle..."
+
 #: tfmmain.mifileinsert.caption
 msgid "Insert..."
 msgstr "Inserisci..."
@@ -286,6 +290,10 @@ msgstr "Apri file"
 msgctxt "tfmmain.odopen.title"
 msgid "Open Markdown file"
 msgstr "Apri file Markdown"
+
+#: tfmmain.odtables.title
+msgid "Open tables file"
+msgstr "Apri file tabelle"
 
 #: tfmmain.sdsave.title
 msgctxt "tfmmain.sdsave.title"
@@ -633,6 +641,14 @@ msgctxt "unit1.dlg005"
 msgid "Open file"
 msgstr "Apri file"
 
+#: unit1.dlg006
+msgid "Tables|*.csv"
+msgstr "Tabelle|*.csv"
+
+#: unit1.dlg007
+msgid "Open tables"
+msgstr "Apri tabelle"
+
 #: unit1.lb000
 msgid "with bibliography"
 msgstr "con bibliografia"
@@ -791,6 +807,10 @@ msgstr "Creare in un nuovo file una versione del documento corrente con la bibli
 #: unit1.msg024
 msgid "It was not possible to save the file with bibliography."
 msgstr "Non è stato possibile salvare il file con bibliografia."
+
+#: unit1.msg025
+msgid "Replace the content of the grid with the tables of the selected file?"
+msgstr "Sostituire il contenuto della griglia con le tabelle del file selezionato?"
 
 #: unit2.msgfnd001
 msgid "Text not found."

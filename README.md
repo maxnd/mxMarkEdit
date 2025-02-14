@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.0, published on February 13 2025.
+Version 1.3.1, published on February 14 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -154,13 +154,13 @@ The formulas are shown in the color set by the user for the code (see below the 
 
 It's possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its name.
 
-To delete the content of the grid so that it’s not loaded any more, delete the related file with the `.csv` extension when it’s not loaded.
+To replace the content of the grid with the tables contained in a `.csv` file created with mxMarkEdit, use the menu item `File - Import tables...`. To delete the content of the grid so that it’s not loaded any more, delete the related file with the `.csv` extension when it’s not loaded.
 
 See below for some useful shortcuts available in this grid.
 
 ## Bibliographic management
 
-mxMarkEdit may be used to manage a bibliography and to insert citations of the books and articles into a document appropriately formatted, in a way similar to LaTex. To use this feature of the app, proceed as follows.
+mxMarkEdit may be used to manage a bibliography and to insert citations of the books and articles into a document appropriately formatted, in a way similar to BibLaTex. To use this feature of the app, proceed as follows.
 
 ### Creating one or more bibliographic tables
 
@@ -170,17 +170,28 @@ The first column on the left must contain the name of the table, as usual. Sever
 
 The second column (A1) must contain the key of the work, that is, some words or numbers that identify it uniquely within all the tables contained in the grid. It is suggested to use the surname of the first author followed by a space and the year of publication. If there are multiple works by the same author published in the same year, a progressive lowercase letter may be added after the year. For example, to report the bibliographic data of a book written by R. Taylor in 2024, the key could be `Taylor 2024`. If there were multiple works published by the same author in 2024, the subsequent works would have the key `Taylor 2024a`, `Taylor 2024b`, etc. It is the user's responsibility to verify that the key assigned to a work is unique, that is, it has not already been assigned to another work. To do this, simply sort the bibliographic tables alphabetically on the key field, so as to easily detect any duplicates. If the key is composed as `surname + year`, sorting the works by key will sort them by author and then by year.
 
-The third column (A2) must contain the author or authors of the work with the formatting required for the bibliography that will be inserted at the end of the document. In order for the authors to be ordered alphabetically, their surname must be inserted before their name.
+The third column (B1) must contain the author or authors of the work with the formatting required for the bibliography that will be inserted at the end of the document. In order for the authors to be ordered alphabetically, their surname must be inserted before their name.
 
-The fourth column (A3) must contain the author or authors of the work with the formatting required for footnotes. Normally, the name is bulleted and precedes the surname.
+The fourth column (C1) must contain the author or authors of the work with the formatting required for footnotes. Normally, the name is bulleted and precedes the surname.
 
-The fifth column (A4) must contain the full title of the work, without inserting the italics markers since they will be added automatically later.
+The fifth column (D1) must contain the full title of the work, without inserting the italics markers since they will be added automatically later.
 
-The sixth column (A5) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first.
+The sixth column (E1) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first.
 
-The seventh column (A6) must contain the details of the citation, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies.
+The seventh column (F1) must contain the details of the citation, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies.
 
-In the following columns can be freely insert the data considered useful, also using the extended editor that is activated with `Ctrl + Space`. For example, it may be needed a field in which to insert comments on the work, even of a certain length, or the name of the relative PDF file, a link to the publisher's website, and so on. The columns after A6 will be ignored by the app for the purposes of compiling citations.
+In the following columns can be freely insert the data considered useful, also using the extended editor that is activated with `Ctrl + Space`. For example, it may be needed a field in which to insert comments on the work, even of a certain length, or the name of the relative PDF file, a link to the publisher's website, and so on. The columns after F1 will be ignored by the app for the purposes of compiling citations.
+
+It's possible to copy and paste in the grid any kind of citation taken from reference managers like Zotero and Mendeley as well as from websites or library catalogs. Follow these simple steps.
+
+- Copy in the clipboard the citation from a website or a reference manager; in Zotero, use the shortcut `Meta + Shift + A`.
+- Paste the content of the clipboard temporarily in a new paragraph in the current document.
+- Replace the comma and space that divide the author(s) from the title with a tab.
+- Replace the comma and space that divide the title from the remaining part of the citation with two tabs.
+- Select the paragraph of the modified citation, cut it in the clipboard and paste it in a new row, in the C1 column of the grid; all the data fill properly the following cells.
+- Compile the name of the author(s) for bibliography in the B1 column and the short title in the E1 column.
+
+Finally, it's possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it's easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
 
 ### Inserting citations in the text
 
@@ -190,20 +201,20 @@ To insert a citation of a work in the document, normally in the footnotes, just 
 
 Once the document has been completed and the keys of the various works have been inserted, the menu item `Tools - Compile bibliography` can be used. In this way, mxMarkEdit creates another file in the same folder as the one in use, with the same name and the extension ` - with bibliography`. In this file, the various keys are replaced by the actual citations of the works, in the following way.
 
-- The first citation of a work is composed by associating the contents of columns A3, A4 and A6 separated by a comma; the title is automatically made in italics.
-- The second citation of a work is composed by associating the contents of columns A3, A5 (abbreviated title) and A6 separated by a comma.
+- The first citation of a work is composed by associating the contents of columns C1, D1 and F1 separated by a comma; the title is automatically made in italics.
+- The second citation of a work is composed by associating the contents of columns C1, E1 (abbreviated title) and F1 separated by a comma.
 - If a citation is about the same work as the immediately preceding citation, the word `Ibidem` is inserted in italics in place of its bibliographic data.
-- At the end of the text, the bibliography is inserted, containing only the works actually cited in the document, associating the content of columns A2, A4 and A6 separated by a comma. The bibliography is ordered alphabetically.
+- At the end of the text, the bibliography is inserted, containing only the works actually cited in the document, associating the content of columns B1, D1 and F1 separated by a comma. The bibliography is ordered alphabetically.
 
-In case the citations need to be formatted differently to correspond to other methodological requests, it is enough to correct only the content of column A6, containing the details of the works, in all the tables, and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
+In case the citations need to be formatted differently to correspond to other methodological requests, it is enough to correct only the content of column F1, containing the details of the works, in all the tables, and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
 
 While in mxMarkEdit it's not possible to format the authors in small caps, it's easy to do this in a Word or Writer document exported with Pandoc. In the bibliography table, format the authors like this: `[Taylor, Bill]{.smallcaps}`. When exported with Pandoc, the final document will have the authors in small caps.
 
-### The approach of mxMarkEdit and the one the stylesheet-based app
+### mxMarkEdit and other reference managers
 
 As is apparent from these notes, the bibliographic manager of mxMarkEdit, while not having the functionality of more specialized software such as Zotero and Mendeley, is a much simpler and more usable tool, both for those who plan to dedicate themselves to research only temporarily, to simply write a dissertation, and for those who find the system of composing citations based on style sheets too complex and dangerous.
 
-This approach allows to reformat all the citations of a document simply by changing the style sheet used, but it becomes problematic when there's no style that perfectly matches the methodological needs of one's institution or publisher. Furthermore, there is always the risk that in particular cases the style sheet does not give the desired results. The approach used by mxMarkEdit is much more solid, as the citation, even the part that follows the title, is composed by the user in its final form, and therefore is certainly correct. Even if this involves the need to rewrite it if it's necessary to adapt to other methodological requests, the user never runs into dangerous malfunctions.
+This approach allows to reformat all the citations of a document simply by changing the style sheet in use, but it becomes tricky when there's no style that perfectly matches the methodological needs of one's institution or publisher. Furthermore, there is always the risk that in particular cases the style sheet does not give the desired results. The approach used by mxMarkEdit is much more solid, as the citation, even the part that follows the title, is composed by the user in its final form, and therefore is certainly correct. Even if this involves the need to rewrite it if it's necessary to adapt to other methodological requests, the user never runs into dangerous malfunctions.
 
 Finally, the mxMarkEdit bibliographic database, being contained in a `.csv` file, can always be read and modified, maybe by writing some code, so that it can be imported into other software.
 
@@ -396,6 +407,12 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.3.1
+
+- Added the menu item `File - Import tables...`.
+- Small bugs fixing.
+- Corrected and improved the documentation.
 
 #### Version 1.3.0
 

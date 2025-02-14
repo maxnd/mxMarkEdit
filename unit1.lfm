@@ -1317,6 +1317,9 @@ object fmMain: TfmMain
         ShortCut = 4174
         OnClick = miFileNewClick
       end
+      object Sep0a: TMenuItem
+        Caption = '-'
+      end
       object miFileOpen: TMenuItem
         Caption = 'Open...'
         ShortCut = 4175
@@ -1327,10 +1330,18 @@ object fmMain: TfmMain
         ShortCut = 20559
         OnClick = miFileInsertClick
       end
+      object miFileImpTables: TMenuItem
+        Caption = 'Import tables...'
+        ShortCut = 45135
+        OnClick = miFileImpTablesClick
+      end
       object miFilesSearch: TMenuItem
         Caption = 'Search in files...'
         ShortCut = 12367
         OnClick = miFilesSearchClick
+      end
+      object Sep0b: TMenuItem
+        Caption = '-'
       end
       object miFileSave: TMenuItem
         Caption = 'Save'
@@ -1576,5 +1587,12 @@ object fmMain: TfmMain
     Options = [ofAllowMultiSelect, ofEnableSizing, ofViewDetail]
     Left = 440
     Top = 168
+  end
+  object odTables: TOpenDialog
+    Title = 'Open tables file'
+    DefaultExt = '.csv'
+    Filter = 'Tables files|.csv'
+    Left = 468
+    Top = 196
   end
 end
