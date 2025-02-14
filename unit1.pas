@@ -2402,6 +2402,15 @@ begin
     blTableSaved := False;
   end
   else
+  if ((key = Ord('C')) and (Shift = [ssMeta, ssAlt])) then
+  begin
+    if sgTable.Col = 2 then
+    begin
+      Clipboard.AsText := '{' + sgTable.Cells[2, sgTable.Row] + '}';
+    end;
+    key := 0;
+  end
+  else
   if ((key = Ord('I')) and (Shift = [ssMeta, ssShift, ssAlt])) then
   begin
     if MessageDlg(msg016, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
@@ -3746,6 +3755,7 @@ begin
         end;
         Application.ProcessMessages;
       end;
+      iPos := slText.Count - 1;
       for i := 0 to slText.Count - 1 do
       begin
         if Copy(slText[i], 1, 5) = '[^1]:' then
@@ -3754,21 +3764,24 @@ begin
           Break;
         end;
       end;
-      slText.Insert(iPos, '');
-      slText.Insert(iPos, lb000b);
-      slText.Insert(iPos, '');
-      slText.Insert(iPos, '');
-      iPos := iPos + 4;
-      slBiblio.Sort;
-      for i := 0 to slBiblio.Count - 1 do
+      if slBiblio.Count > 0 then
       begin
-        slText.Insert(iPos, slBiblio[i]);
-        Inc(iPos);
         slText.Insert(iPos, '');
-        Inc(iPos);
+        slText.Insert(iPos, lb000b);
+        slText.Insert(iPos, '');
+        slText.Insert(iPos, '');
+        iPos := iPos + 4;
+        slBiblio.Sort;
+        for i := 0 to slBiblio.Count - 1 do
+        begin
+          slText.Insert(iPos, slBiblio[i]);
+          Inc(iPos);
+          slText.Insert(iPos, '');
+          Inc(iPos);
+        end;
+        slText.Insert(iPos, '');
+        slText.Insert(iPos, '');
       end;
-      slText.Insert(iPos, '');
-      slText.Insert(iPos, '');
       slText.SaveToFile(ExtractFileNameWithoutExt(stFileName) +
         ' - ' + lb000 + '.md');
     except

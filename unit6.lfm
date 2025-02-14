@@ -40,11 +40,11 @@ object fmFiles: TfmFiles
       end    
       item
         Title.Caption = 'File name'
-        Width = 300
+        Width = 250
       end    
       item
         Title.Caption = 'Context'
-        Width = 360
+        Width = 415
       end>
     ExtendedSelect = False
     FixedColor = clForm
@@ -63,8 +63,8 @@ object fmFiles: TfmFiles
     ColWidths = (
       0
       300
-      300
-      360
+      250
+      415
     )
   end
   object pnTasks: TPanel

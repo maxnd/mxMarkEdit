@@ -107,6 +107,7 @@ resourcestring
     'footnote, both properly automatically numbered.';
   srcut035 = ' In the tables grid';
   srcut035b = 'Open the extended editor.';
+  srcut035c = 'Copy the bibliographic key in the second column among curly brackets.';
   srcut036 = 'Insert a new row.';
   srcut037 = 'Delete the content of the selected cell or cells, after confirmation.';
   srcut038 = 'Delete the current row, after confirmation if it''s not empty.';
@@ -204,7 +205,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 86;
+  sgShortcuts.RowCount := 87;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -327,6 +328,9 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Ctrl + ' + srcut00g;
   sgShortcuts.Cells[1, i] := srcut035b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + C';
+  sgShortcuts.Cells[1, i] := srcut035c;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Shift + I';
   sgShortcuts.Cells[1, i] := srcut036;

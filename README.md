@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.1, published on February 14 2025.
+Version 1.3.2, published on February 14 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -195,7 +195,7 @@ Finally, it's possible to keep and update all the bibliography in just one `.cvs
 
 ### Inserting citations in the text
 
-To insert a citation of a work in the document, normally in the footnotes, just insert its identification key between two curly brackets, followed by all the detailed elements necessary for the single citation. For example, `Cf. {Taylor 2024}, pp. 23-46.`. It's necessary to be careful in typing correctly the key of the work to be quoted, respecting uppercase and lowercase. To do this, just display the bibliographic table, identify the key to be reported, copy it in clipboard and paste it into the text.
+To insert a citation of a work in the document, normally in the footnotes, just insert its identification key between two curly brackets, followed by all the detailed elements necessary for the single citation. For example, `Cf. {Taylor 2024}, pp. 23-46.`. It's necessary to be careful in typing correctly the key of the work to be quoted, respecting uppercase and lowercase. To do this, just display the bibliographic table, identify the key to be reported, copy it in clipboard with the shortcut `Meta + Opt + C` and paste it into the text.
 
 ### Producing a document with bibliography
 
@@ -349,6 +349,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 ### In the tables grid
 
 * `Ctrl` + `Space`: open the extended editor.
+* `Meta` + `Opt`: copy the bibliographic key in the second column among curly brackets.
 * `Meta` + `Shift` + `I`: insert a new row.
 * `Backspace`: delete the content of the selected cell or cells, after confirmation.
 * `Meta` + `Shift` + `Backspace`: delete the current row, after confirmation if it’s not empty.
@@ -407,6 +408,12 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.3.2
+
+- Added the shortcut `Meta + Opt + C` to copy the bibliographic key in the clipboard among curly brackets.
+- Bugs fixing: the bibliography manager didn't work as expected.
+- Bugs fixing: the file search form was not available.
 
 #### Version 1.3.1
 
