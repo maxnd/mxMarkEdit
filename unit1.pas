@@ -1515,6 +1515,24 @@ begin
     key := 0;
   end
   else
+  if ((key = Ord('C')) and (Shift = [ssMeta, ssAlt])) then
+  begin
+    if ((sgTable.Focused = False) and (blIsPresenting = False)) then
+    begin
+      stClip := dbText.SelText;
+      stClip := UTF8Copy(stClip, 1, UTF8CocoaPos(', ', stClip, 1) - 1) + #9 +
+        UTF8Copy(stClip, 1, UTF8Pos(', ', stClip) - 1) + #9 +
+        UTF8Copy(stClip, UTF8Pos(', ', stClip) + 2, UTF8Pos(', ',
+        stClip, UTF8Pos(', ', stClip) + 1) - UTF8Pos(', ', stClip) - 2) + #9 +
+        UTF8Copy(stClip, UTF8Pos(', ', stClip) + 2, UTF8Pos(', ',
+        stClip, UTF8Pos(', ', stClip) + 1) - UTF8Pos(', ', stClip) - 2) + #9 +
+        UTF8Copy(stClip, UTF8Pos(', ', stClip, UTF8Pos(', ', stClip) + 1) + 2,
+        UTF8Length(stClip));
+      Clipboard.AsText := stClip;
+    end;
+    key := 0;
+  end
+  else
   if ((key = 190) and (Shift = [ssAlt, ssMeta])) then
   begin
     i := dbText.CaretPos.Y;
@@ -2567,6 +2585,36 @@ begin
         end;
       end;
     end;
+    blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
+    blTableSaved := False;
+    key := 0;
+  end
+  else
+  if ((key = Ord('K')) and (Shift = [ssMeta, ssCtrl])) then
+  begin
+    if sgTable.Col <> 2 then
+    begin
+      Exit;
+    end;
+    stField := sgTable.Cells[sgTable.Col, sgTable.Row];
+    i := 1;
+    x := 96;
+    while i <= sgTable.RowCount - 1 do
+    begin
+      if ((i <> sgTable.Row) and (sgTable.Cells[sgTable.Col, i] = stField)) then
+      begin
+        Inc(x);
+        stField := sgTable.Cells[sgTable.Col, sgTable.Row] + Chr(x);
+        i := 1;
+      end
+      else
+      begin
+        Inc(i);
+      end;
+    end;
+    sgTable.Cells[sgTable.Col, sgTable.Row] := stField;
     blTableMod := True;
     stGridLoaded := stTableLoaded;
     LabelFileNameChars;

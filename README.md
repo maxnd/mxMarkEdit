@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.2, published on February 14 2025.
+Version 1.3.3, published on February 15 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -168,7 +168,7 @@ In mxMarkEdit, the tables containing a bibliography must be structured as follow
 
 The first column on the left must contain the name of the table, as usual. Several bibliographic tables may be inserted in sequence with different names to structure the bibliographic material in various areas.
 
-The second column (A1) must contain the key of the work, that is, some words or numbers that identify it uniquely within all the tables contained in the grid. It is suggested to use the surname of the first author followed by a space and the year of publication. If there are multiple works by the same author published in the same year, a progressive lowercase letter may be added after the year. For example, to report the bibliographic data of a book written by R. Taylor in 2024, the key could be `Taylor 2024`. If there were multiple works published by the same author in 2024, the subsequent works would have the key `Taylor 2024a`, `Taylor 2024b`, etc. It is the user's responsibility to verify that the key assigned to a work is unique, that is, it has not already been assigned to another work. To do this, simply sort the bibliographic tables alphabetically on the key field, so as to easily detect any duplicates. If the key is composed as `surname + year`, sorting the works by key will sort them by author and then by year.
+The second column (A1) must contain the key of the work, that is, some words or numbers that identify it uniquely within all the tables contained in the grid. It is suggested to use the surname of the first author followed by a space and the year of publication. If there are multiple works by the same author published in the same year, a progressive lowercase letter may be added after the year. For example, to report the bibliographic data of a book written by R. Taylor in 2024, the key could be `Taylor 2024`. If there were multiple works published by the same author in 2024, the subsequent works would have the key `Taylor 2024a`, `Taylor 2024b`, etc. It is the user's responsibility to verify that the key assigned to a work is unique, that is, it has not already been assigned to another work. To do this, use the shortcut `Meta` + `Ctrl` + `K`, active just in this column, to make it unique. If the key is composed as `surname + year`, sorting the works by key will sort them by author and then by year.
 
 The third column (B1) must contain the author or authors of the work with the formatting required for the bibliography that will be inserted at the end of the document. In order for the authors to be ordered alphabetically, their surname must be inserted before their name.
 
@@ -184,12 +184,12 @@ In the following columns can be freely insert the data considered useful, also u
 
 It's possible to copy and paste in the grid any kind of citation taken from reference managers like Zotero and Mendeley as well as from websites or library catalogs. Follow these simple steps.
 
-- Copy in the clipboard the citation from a website or a reference manager; in Zotero, use the shortcut `Meta + Shift + A`.
+- Copy in the clipboard the citation from a website or a reference manager; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`. The author(s), the title and the details must be separated by comma and space.
 - Paste the content of the clipboard temporarily in a new paragraph in the current document.
-- Replace the comma and space that divide the author(s) from the title with a tab.
-- Replace the comma and space that divide the title from the remaining part of the citation with two tabs.
-- Select the paragraph of the modified citation, cut it in the clipboard and paste it in a new row, in the C1 column of the grid; all the data fill properly the following cells.
-- Compile the name of the author(s) for bibliography in the B1 column and the short title in the E1 column.
+- Select the citation and copy it the clipboard with the shortcut `Meta + Opt + C`.
+- Paste the citation in the B1 column of a new row in the grid; all the data fill properly the following cells.
+- Check the name of the author(s) for bibliography and footnotes, and in the B1 and C1 columns and the short title in the E1 column.
+- Add the key in the A1 column and use the shortcut `Meta + Ctrl + K` to make it unique.
 
 Finally, it's possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it's easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
 
@@ -294,7 +294,6 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 - the format of the file the note should be converted to (`.docx`, `.odt`, etc.);
 - two buttons to reset the colors of the text in black and white or in various colors; these colors are different for dark and light mode.
 
-
 A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the files are present or not. See the Pandoc manual for more information.
 
 The `Help` - `Shortcuts list` menu item show a list of all the shortcuts available that are not related to menu items.
@@ -340,6 +339,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalize the current word.
 * `Meta` + `Shift` + `T`: show the tables grid.
+* `Meta + Opt + C`: copy a selected citation so that it can be properly pasted in the bibliographic table.
 * `Meta` + `Shift` + `X`: if the cursor is within a heading, cut in the clipboard the same heading and all the text that is under it, included possible headings of lower levels; this text may be pasted elsewhere;
 * `Meta` + `Shift` + `F`:
   * within a footnote reference in the document (e.g. `[^1]`), move the cursor to the corresponding footnote;
@@ -349,7 +349,8 @@ There are also some shortcuts beyond the ones related to the menu items.
 ### In the tables grid
 
 * `Ctrl` + `Space`: open the extended editor.
-* `Meta` + `Opt`: copy the bibliographic key in the second column among curly brackets.
+* `Meta` + `Opt` + `C`: copy the bibliographic key in the second column among curly brackets.
+* `Meta` + `Ctrl` + `K`: make unique the current key in the second column.
 * `Meta` + `Shift` + `I`: insert a new row.
 * `Backspace`: delete the content of the selected cell or cells, after confirmation.
 * `Meta` + `Shift` + `Backspace`: delete the current row, after confirmation if it’s not empty.
@@ -409,9 +410,14 @@ The software creates these two configuration files that can be deleted to reset 
 
 ## Revision history
 
+#### Version 1.3.3
+
+- In the document, added the shortcut `Meta + Opt + C` to copy a selected citation so that it can be properly pasted in the bibliographic table.
+- In the grid, added the `Meta` + `Ctrl` + `K` to make unique the current key in the second column.
+
 #### Version 1.3.2
 
-- Added the shortcut `Meta + Opt + C` to copy the bibliographic key in the clipboard among curly brackets.
+- In the grid, added the shortcut `Meta + Opt + C` to copy the bibliographic key in the clipboard among curly brackets.
 - Bugs fixing: the bibliography manager didn't work as expected.
 - Bugs fixing: the file search form was not available.
 

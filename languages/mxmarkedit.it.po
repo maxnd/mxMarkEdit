@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.3.2"
+msgid "1.3.3"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1021,6 +1021,10 @@ msgstr "Rendi maiuscola l'iniziale della parola corrente."
 msgid "Show the tables grid."
 msgstr "Mostra la griglia delle tabelle."
 
+#: unit7.srcut030b
+msgid "Copy a selected citation in the document so that it can be properly pasted in the bibliographic table."
+msgstr "Copia una citazione selezionata nel documento in modo che possa essere incollata nella tabella bibliografica."
+
 #: unit7.srcut031
 msgid "If the cursor is within a heading, cut this heading and all the text that is under it, included possible headings of lower levels."
 msgstr "Se il cursore si trova all'interno di un'intestazione, la taglia con il testo sottostante, incluse le possibili intestazioni di livello inferiore."
@@ -1048,6 +1052,10 @@ msgstr "Apri l'editor esteso."
 #: unit7.srcut035c
 msgid "Copy the bibliographic key in the second column among curly brackets."
 msgstr "Copia la chiave bibliografica nella seconda colonna tra parentesi graffe."
+
+#: unit7.srcut035d
+msgid "Make unique the current key in the second column."
+msgstr "Rendi univoca la chiave corrente nella seconda colonna."
 
 #: unit7.srcut036
 msgid "Insert a new row."

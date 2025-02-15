@@ -97,6 +97,8 @@ resourcestring
   srcut028 = 'Make lowercase the current word.';
   srcut029 = 'Capitalize the current word.';
   srcut030 = 'Show the tables grid.';
+  srcut030b = 'Copy a selected citation in the document so that it can be properly ' +
+    'pasted in the bibliographic table.';
   srcut031 = 'If the cursor is within a heading, cut this heading and all the ' +
     'text that is under it, included possible headings of lower levels.';
   srcut032 = 'Within a footnote reference in the document, move the ' +
@@ -108,6 +110,7 @@ resourcestring
   srcut035 = ' In the tables grid';
   srcut035b = 'Open the extended editor.';
   srcut035c = 'Copy the bibliographic key in the second column among curly brackets.';
+  srcut035d = 'Make unique the current key in the second column.';
   srcut036 = 'Insert a new row.';
   srcut037 = 'Delete the content of the selected cell or cells, after confirmation.';
   srcut038 = 'Delete the current row, after confirmation if it''s not empty.';
@@ -205,7 +208,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 87;
+  sgShortcuts.RowCount := 89;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -311,6 +314,9 @@ begin
   sgShortcuts.Cells[0, i] := 'Meta + Shift + T';
   sgShortcuts.Cells[1, i] := srcut030;
   Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + C';
+  sgShortcuts.Cells[1, i] := srcut030b;
+  Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Shift + X';
   sgShortcuts.Cells[1, i] := srcut031;
   Inc(i);
@@ -331,6 +337,9 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Opt + C';
   sgShortcuts.Cells[1, i] := srcut035c;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + K';
+  sgShortcuts.Cells[1, i] := srcut035d;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Shift + I';
   sgShortcuts.Cells[1, i] := srcut036;
