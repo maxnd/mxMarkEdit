@@ -233,7 +233,7 @@ it’s possible to use the app for presentations:
 
 In presentation mode, the status bar is hidden, and the spell checking is automatically disabled. To quit the presentation mode, press `Esc` or click anywhere in the text. Possibly, reenable the spell checking.
 
-If the in the document there is a link to a picture properly formatted (e.g. `![Data on sales](file:///Users/massimo/Downloads/sales-data.jpg`), it will be shown during presentation. 
+If the in the document there is a link to a picture at the beginning of a paragraph and properly formatted (e.g. `![Data on sales](file:///Users/massimo/Downloads/sales-data.jpg`), it will be shown during presentation. 
 
 Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimized for mxMarkEdit with the menu item `Tools` - `Optimize presentation...` if it has to be presented with mxMarkEdit.
 
