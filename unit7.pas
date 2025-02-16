@@ -97,7 +97,7 @@ resourcestring
   srcut028 = 'Make lowercase the current word.';
   srcut029 = 'Capitalize the current word.';
   srcut030 = 'Show the tables grid.';
-  srcut030b = 'Copy a selected citation in the document so that it can be properly ' +
+  srcut030b = 'Copy the selected citations in the document so that they can be properly ' +
     'pasted in the bibliographic table.';
   srcut031 = 'If the cursor is within a heading, cut this heading and all the ' +
     'text that is under it, included possible headings of lower levels.';

@@ -1,0 +1,34 @@
+object fmPicture: TfmPicture
+  Left = 387
+  Height = 408
+  Top = 144
+  Width = 676
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'Picture'
+  ClientHeight = 408
+  ClientWidth = 676
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
+  Position = poMainFormCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '3.7.0.0'
+  object bvPicture: TBevel
+    Left = 0
+    Height = 408
+    Top = 0
+    Width = 676
+    Align = alClient
+  end
+  object imPicture: TImage
+    Left = 2
+    Height = 404
+    Top = 2
+    Width = 672
+    AntialiasingMode = amOn
+    Align = alClient
+    BorderSpacing.Around = 2
+    Center = True
+    OnClick = imPictureClick
+  end
+end

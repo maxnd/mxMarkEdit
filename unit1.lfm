@@ -1563,8 +1563,8 @@ object fmMain: TfmMain
   end
   object odOpen: TOpenDialog
     Title = 'Open Markdown file'
-    DefaultExt = '.*.md'
-    Filter = 'Markdown files|*.md|All files|*'
+    DefaultExt = '.md'
+    Filter = 'Markdown files|*.md'
     Left = 109
     Top = 94
   end
@@ -1592,7 +1592,7 @@ object fmMain: TfmMain
     Title = 'Open tables file'
     DefaultExt = '.csv'
     Filter = 'Tables files|.csv'
-    Left = 468
-    Top = 196
+    Left = 520
+    Top = 192
   end
 end

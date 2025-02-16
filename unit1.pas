@@ -324,7 +324,7 @@ resourcestring
 
 implementation
 
-uses copyright, unit2, unit3, unit4, unit5, unit6, unit7, unit8;
+uses copyright, unit2, unit3, unit4, unit5, unit6, unit7, unit8, unit9;
 
   {$R *.lfm}
 
@@ -899,7 +899,10 @@ var
   rng: NSRange;
 begin
   LabelFileNameChars;
-  FormatListTitleTodo;
+  if blIsPresenting = False then
+  begin
+    FormatListTitleTodo;
+  end;
   // scrollRangeToVisible in MoveToPos doesn't work OnCreate
   rng.location := dbText.SelStart;
   rng.length := 1;
@@ -1059,7 +1062,8 @@ end;
 
 procedure TfmMain.dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
-  stClip: string;
+  stClip, stFile: string;
+  slCitations: TStringList;
   i, iPos, iNum: integer;
   rngStart, rngEnd: NSRange;
   blCode: boolean;
@@ -1249,11 +1253,30 @@ begin
     rngStart.length := Length(stText);
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       setTextColor_range(ColorToNSColor(clFontFade), rngStart);
-    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+    if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '![' then
+    begin
+      stFile := UTF8Copy(dbText.Lines[dbText.CaretPos.Y],
+        UTF8CocoaPos('](', dbText.Lines[dbText.CaretPos.Y]) + 9,
+        UTF8CocoaPos(')', dbText.Lines[dbText.CaretPos.Y]) -
+        UTF8CocoaPos('](', dbText.Lines[dbText.CaretPos.Y]) - 9);
+      stFile := UTF8StringReplace(stFile, '%20', ' ', [rfReplaceAll]);
+    end;
+    if FileExistsUTF8(stFile) then
+    try
+      fmPicture.Width := fmMain.Width * 2 div 3;
+      fmPicture.Height := fmMain.Height * 2 div 3;
+      fmPicture.imPicture.Picture.LoadFromFile(stFile);
+      fmPicture.ShowModal;
+    except
+    end
+    else
+    begin
+      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+    end;
     if dbText.Lines[0] = '---' then
     begin
       if dbText.CaretPos.Y < 8 then
@@ -1369,11 +1392,30 @@ begin
     rngStart.length := Length(stText);
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       setTextColor_range(ColorToNSColor(clFontFade), rngStart);
-    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
-      setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+    if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '![' then
+    begin
+      stFile := UTF8Copy(dbText.Lines[dbText.CaretPos.Y],
+        UTF8CocoaPos('](', dbText.Lines[dbText.CaretPos.Y]) + 9,
+        UTF8CocoaPos(')', dbText.Lines[dbText.CaretPos.Y]) -
+        UTF8CocoaPos('](', dbText.Lines[dbText.CaretPos.Y]) - 9);
+      stFile := UTF8StringReplace(stFile, '%20', ' ', [rfReplaceAll]);
+    end;
+    if FileExistsUTF8(stFile) then
+    try
+      fmPicture.Width := fmMain.Width * 2 div 3;
+      fmPicture.Height := fmMain.Height * 2 div 3;
+      fmPicture.imPicture.Picture.LoadFromFile(stFile);
+      fmPicture.ShowModal;
+    except
+    end
+    else
+    begin
+      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        textStorage.string_.paragraphRangeForRange(TCocoaTextView(
+        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
+    end;
     if dbText.Lines[0] = '---' then
     begin
       if dbText.CaretPos.Y < 8 then
@@ -1518,17 +1560,48 @@ begin
   if ((key = Ord('C')) and (Shift = [ssMeta, ssAlt])) then
   begin
     if ((sgTable.Focused = False) and (blIsPresenting = False)) then
-    begin
-      stClip := dbText.SelText;
-      stClip := UTF8Copy(stClip, 1, UTF8CocoaPos(', ', stClip, 1) - 1) + #9 +
-        UTF8Copy(stClip, 1, UTF8Pos(', ', stClip) - 1) + #9 +
-        UTF8Copy(stClip, UTF8Pos(', ', stClip) + 2, UTF8Pos(', ',
-        stClip, UTF8Pos(', ', stClip) + 1) - UTF8Pos(', ', stClip) - 2) + #9 +
-        UTF8Copy(stClip, UTF8Pos(', ', stClip) + 2, UTF8Pos(', ',
-        stClip, UTF8Pos(', ', stClip) + 1) - UTF8Pos(', ', stClip) - 2) + #9 +
-        UTF8Copy(stClip, UTF8Pos(', ', stClip, UTF8Pos(', ', stClip) + 1) + 2,
-        UTF8Length(stClip));
-      Clipboard.AsText := stClip;
+    try
+      slCitations := TStringList.Create;
+      slCitations.AddDelimitedText(dbText.SelText, LineEnding, True);
+      if slCitations.Count > 0 then
+      begin
+        i := 0;
+        while i <= slCitations.Count - 1 do
+        begin
+          if slCitations[i] = '' then
+          begin
+            slCitations.Delete(i);
+          end
+          else
+          begin
+            Inc(i);
+          end;
+        end;
+      end;
+      if slCitations.Count > 0 then
+      begin
+        for i := 0 to slCitations.Count - 1 do
+        begin
+          stClip := slCitations[i];
+          stClip := UTF8Copy(stClip, 1, UTF8CocoaPos(', ', stClip, 1) - 1) + #9 +
+            UTF8Copy(stClip, 1, UTF8Pos(', ', stClip) - 1) + #9 + '*' +
+            UTF8Copy(stClip, UTF8Pos(', ', stClip) + 2, UTF8Pos(', ',
+            stClip, UTF8Pos(', ', stClip) + 1) - UTF8Pos(', ', stClip) - 2) +
+            '*' + #9 + '*' + UTF8Copy(stClip, UTF8Pos(', ', stClip) + 2,
+            UTF8Pos(', ', stClip, UTF8Pos(', ', stClip) + 1) - UTF8Pos(', ',
+            stClip) - 2) + '*' + #9 + UTF8Copy(stClip, UTF8Pos(', ',
+            stClip, UTF8Pos(', ', stClip) + 1) + 2, UTF8Length(stClip));
+          stClip := StringReplace(stClip, '*«', '«', [rfReplaceAll]);
+          stClip := StringReplace(stClip, '»*', '»', [rfReplaceAll]);
+          stClip := StringReplace(stClip, '*"', '"', [rfReplaceAll]);
+          stClip := StringReplace(stClip, '*“', '“', [rfReplaceAll]);
+          stClip := StringReplace(stClip, '”*', '”', [rfReplaceAll]);
+          slCitations[i] := stClip;
+        end;
+      end;
+      Clipboard.AsText := slCitations.Text;
+    finally
+      slCitations.Free;
     end;
     key := 0;
   end
@@ -2598,23 +2671,30 @@ begin
     begin
       Exit;
     end;
-    stField := sgTable.Cells[sgTable.Col, sgTable.Row];
-    i := 1;
-    x := 96;
-    while i <= sgTable.RowCount - 1 do
+    if sgTable.Cells[sgTable.Col, sgTable.Row] <> '' then
     begin
-      if ((i <> sgTable.Row) and (sgTable.Cells[sgTable.Col, i] = stField)) then
+      stField := sgTable.Cells[sgTable.Col, sgTable.Row];
+      i := 1;
+      x := 96;
+      while i <= sgTable.RowCount - 1 do
       begin
-        Inc(x);
-        stField := sgTable.Cells[sgTable.Col, sgTable.Row] + Chr(x);
-        i := 1;
-      end
-      else
-      begin
-        Inc(i);
+        if ((i <> sgTable.Row) and (sgTable.Cells[sgTable.Col, i] = stField)) then
+        begin
+          Inc(x);
+          stField := sgTable.Cells[sgTable.Col, sgTable.Row] + Chr(x);
+          i := 1;
+        end
+        else
+        begin
+          Inc(i);
+        end;
       end;
+      sgTable.Cells[sgTable.Col, sgTable.Row] := stField;
     end;
-    sgTable.Cells[sgTable.Col, sgTable.Row] := stField;
+    if sgTable.Row < sgTable.RowCount then
+    begin
+      sgTable.Row := sgTable.Row + 1;
+    end;
     blTableMod := True;
     stGridLoaded := stTableLoaded;
     LabelFileNameChars;
@@ -3705,7 +3785,7 @@ procedure TfmMain.miToolsBiblioClick(Sender: TObject);
 var
   slText, slBiblio: TStringList;
   stText, stNewText: WideString;
-  stOldKey, stNewKey: String;
+  stOldKey, stNewKey, stAuthor: String;
   i, iRow, iLen, iPos: Integer;
   blBracket: Bool = False;
 begin
@@ -3788,17 +3868,17 @@ begin
           Continue;
         end
         else
-        if UTF8Pos('{' + sgTable.Cells[2, i] + '}', slText.Text) > 0 then
+        if UTF8CocoaPos('{' + sgTable.Cells[2, i] + '}', slText.Text) > 0 then
         begin
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
-            sgTable.Cells[4, i] + ', *' + sgTable.Cells[5, i] + '*, ' +
+            sgTable.Cells[4, i] + ', ' + sgTable.Cells[5, i] + ', ' +
             sgTable.Cells[7, i], [rfIgnoreCase]);
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
-            sgTable.Cells[4, i] + ', *' + sgTable.Cells[6, i] + '*',
+            sgTable.Cells[4, i] + ', ' + sgTable.Cells[6, i],
             [rfReplaceAll, rfIgnoreCase]);
-          slBiblio.Add(sgTable.Cells[3, i] + ', *' + sgTable.Cells[5, i] + '*, ' +
+          slBiblio.Add(sgTable.Cells[3, i] + ', ' + sgTable.Cells[5, i] + ', ' +
             sgTable.Cells[7, i] + '.');
         end;
         Application.ProcessMessages;
@@ -3822,7 +3902,17 @@ begin
         slBiblio.Sort;
         for i := 0 to slBiblio.Count - 1 do
         begin
-          slText.Insert(iPos, slBiblio[i]);
+          if stAuthor = UTF8Copy(slBiblio[i], 1, UTF8Pos(',',
+            slBiblio[i]) - 1) then
+          begin
+            slText.Insert(iPos, '———.' + UTF8Copy(slBiblio[i], UTF8Pos(',',
+            slBiblio[i]), UTF8Length(slBiblio[i])));
+          end
+          else
+          begin
+            slText.Insert(iPos, slBiblio[i]);
+          end;
+          stAuthor := UTF8Copy(slBiblio[i], 1, UTF8Pos(',', slBiblio[i]) - 1);
           Inc(iPos);
           slText.Insert(iPos, '');
           Inc(iPos);
@@ -4629,6 +4719,7 @@ var
   rng: NSRange;
   stAttWord: NSAttributedString;
   stWord: string;
+  stText: WideString;
 begin
   if dbText.Text = '' then
   begin
@@ -4726,9 +4817,11 @@ begin
         end;
         dbText.Lines.Insert(i + 1, '[^0]: ' + #1);
         RenumberFootnotes;
-        dbText.SelStart := UTF8CocoaPos(#1, dbText.Text) - 1;
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-          deleteForward(nil);
+        iPos := UTF8CocoaPos(#1, dbText.Text) - 1;
+        stText := WideString(dbText.Text);
+        stText := UTF8StringReplace(stText, #1, '', [rfReplaceAll]);
+        dbText.Text := stText;
+        dbText.SelStart := iPos;
       end;
     end;
   end;

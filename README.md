@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.3, published on February 15 2025.
+Version 1.3.4, published on February 16 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -174,9 +174,9 @@ The third column (B1) must contain the author or authors of the work with the fo
 
 The fourth column (C1) must contain the author or authors of the work with the formatting required for footnotes. Normally, the name is bulleted and precedes the surname.
 
-The fifth column (D1) must contain the full title of the work, without inserting the italics markers since they will be added automatically later.
+The fifth column (D1) must contain the full title of the work; it's necessary to insert the italics markers (asterisks) if needed.
 
-The sixth column (E1) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first.
+The sixth column (E1) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first; it's necessary to insert the italics markers (asterisks) if needed.
 
 The seventh column (F1) must contain the details of the citation, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies.
 
@@ -187,7 +187,7 @@ It's possible to copy and paste in the grid any kind of citation taken from refe
 - Copy in the clipboard the citation from a website or a reference manager; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`. The author(s), the title and the details must be separated by comma and space.
 - Paste the content of the clipboard temporarily in a new paragraph in the current document.
 - Select the citation and copy it the clipboard with the shortcut `Meta + Opt + C`.
-- Paste the citation in the B1 column of a new row in the grid; all the data fill properly the following cells.
+- Paste the citation in the B1 column of a new row in the grid; all the data fill properly the following cells; the titles will be included among the italics markers if they do not begin and end with quotation marks.
 - Check the name of the author(s) for bibliography and footnotes, and in the B1 and C1 columns and the short title in the E1 column.
 - Add the key in the A1 column and use the shortcut `Meta + Ctrl + K` to make it unique.
 
@@ -196,6 +196,8 @@ Finally, it's possible to keep and update all the bibliography in just one `.cvs
 ### Inserting citations in the text
 
 To insert a citation of a work in the document, normally in the footnotes, just insert its identification key between two curly brackets, followed by all the detailed elements necessary for the single citation. For example, `Cf. {Taylor 2024}, pp. 23-46.`. It's necessary to be careful in typing correctly the key of the work to be quoted, respecting uppercase and lowercase. To do this, just display the bibliographic table, identify the key to be reported, copy it in clipboard with the shortcut `Meta + Opt + C` and paste it into the text.
+
+If it's necessary to quote an ancient text contained in a modern edition and to mention a number or chapter of its passage after the original title, use the key just for the modern work, and quote manually the first. For instance: `S. Augustine, *De Civitate Dei* I, 1-36, in {Augustine 2020}, 50.`. Of course, only the modern edition will appear in the bibliography.
 
 ### Producing a document with bibliography
 
@@ -231,9 +233,11 @@ it’s possible to use the app for presentations:
 
 In presentation mode, the status bar is hidden, and the spell checking is automatically disabled. To quit the presentation mode, press `Esc` or click anywhere in the text. Possibly, reenable the spell checking.
 
+If the in the document there is a link to a picture properly formatted (e.g. `![Data on sales](file:///Users/massimo/Downloads/sales-data.jpg`), it will be shown during presentation. 
+
 Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimized for mxMarkEdit with the menu item `Tools` - `Optimize presentation...` if it has to be presented with mxMarkEdit.
 
-To export an mxMarkEdit presentation in PDF so that it can be shown on any computer, save all the screenshots from the current position to the end of the document with `Meta + Ctrl + E`; this takes 2 seconds for each item; press `ESC` to interrupt the process. Then select all the screenshots in the `Download` directory, `Ctrl + click` on them and choose the `Quick Options - Create PDF`. The screenshots are numbered progressively. To restart the number of the ones to be created, restart the app.
+To export an mxMarkEdit presentation in PDF so that it can be shown on any computer, save all the screenshots from the current position to the end of the document with `Meta + Ctrl + E`; this takes 2 seconds for each item; press `ESC` to interrupt the process. Then select all the screenshots in the `Download` directory, `Ctrl + click` on them and choose the `Quick Options - Create PDF`. The screenshots are numbered progressively. To restart the number of the ones to be created, restart the app. The pictures will not be shown nor exported.
 
 ## Files management
 
@@ -339,7 +343,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalize the current word.
 * `Meta` + `Shift` + `T`: show the tables grid.
-* `Meta + Opt + C`: copy a selected citation so that it can be properly pasted in the bibliographic table.
+* `Meta + Opt + C`: copy the selected citations so that they can be properly pasted in the bibliographic table.
 * `Meta` + `Shift` + `X`: if the cursor is within a heading, cut in the clipboard the same heading and all the text that is under it, included possible headings of lower levels; this text may be pasted elsewhere;
 * `Meta` + `Shift` + `F`:
   * within a footnote reference in the document (e.g. `[^1]`), move the cursor to the corresponding footnote;
@@ -409,6 +413,14 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.3.4
+
+- During presentations, the links to pictures shows them.
+- The shortcut `Meta + Opt + C` now allows to copies more citations divided in different paragraphs.
+- The title of the citations is not italicized by default any more (citations of article don't require that), but the shortcut `Meta + Opt + C` adds the italics markers to the titles if they don't begin and and with quotation marks.
+- Improved the bibliography compilation.
+- Bugs fixing: the footnote numbering could not work as expected.
 
 #### Version 1.3.3
 
