@@ -218,6 +218,8 @@ As is apparent from these notes, the bibliographic manager of mxMarkEdit, while 
 
 This approach allows to reformat all the citations of a document simply by changing the style sheet in use, but it becomes tricky when there's no style that perfectly matches the methodological needs of one's institution or publisher. Furthermore, there is always the risk that in particular cases the style sheet does not give the desired results. The approach used by mxMarkEdit is much more solid, as the citation, even the part that follows the title, is composed by the user in its final form, and therefore is certainly correct. Even if this involves the need to rewrite it if it's necessary to adapt to other methodological requests, the user never runs into dangerous malfunctions.
 
+Anyway, it's also possible to use Zotero or Mendeley as main bibliographic manager and import from its data all the items that are relevant for a specific article or book inserting them in a bibliographic table with the shortcuts shown above. In this way, one sticks with a solid and fully featured bibliographic manager but may use at the same time the simpler and secure bibliographic system of mxMarkEdit to compile the citations.
+
 Finally, the mxMarkEdit bibliographic database, being contained in a `.csv` file, can always be read and modified, maybe by writing some code, so that it can be imported into other software.
 
 ## Presentations
@@ -416,11 +418,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 #### Version 1.3.4
 
-- During presentations, the links to pictures shows them.
-- The shortcut `Meta + Opt + C` now allows to copies more citations divided in different paragraphs.
-- The title of the citations is not italicized by default any more (citations of article don't require that), but the shortcut `Meta + Opt + C` adds the italics markers to the titles if they don't begin and and with quotation marks.
+- During presentations, if it's highlighted a link to a picture, this picture is shown.
+- The shortcut `Meta + Opt + C` now allows to copy more citations divided in different paragraphs.
+- The title of the citations is not italicized by default any more (citations of article don't require that), but the shortcut `Meta + Opt + C` adds the italics markers to the titles if they don't begin and end with quotation marks.
 - Improved the bibliography compilation.
 - Bugs fixing: the footnote numbering could not work as expected.
+- Minor improvements.
 
 #### Version 1.3.3
 
