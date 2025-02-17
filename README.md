@@ -414,6 +414,10 @@ The software creates these two configuration files that can be deleted to reset 
 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
+## Troubleshooting
+
+- When creating a footnote reference, the cursor gets lost in the text? Be sure to use the version 1.3.4 of following of the app, create a new footnote reference and then possibly delete it. This should fix the problem.
+
 ## Revision history
 
 #### Version 1.3.4
