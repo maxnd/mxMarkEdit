@@ -387,7 +387,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 
 * `Meta` + `Opt` + `H`: hide the todo items already done.
 * `Meta` + `T`: toggle the state of the selected todo item from to be done to done, and vice versa.
-* `Meta` + `C`: Copy in the clipboard the todo items.
+* `Meta` + `C`: copy in the clipboard the todo items.
 * `Esc`: close the form.
 
 ### In the search files form
@@ -410,19 +410,19 @@ The software creates these two configuration files that can be deleted to reset 
 - `/Users/[username]/Library/Preferences/mxmarkedit`
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
 
-## Mentions
-
-- Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
-
 ## Troubleshooting
 
 - When creating a footnote reference, the cursor gets lost in the text? Be sure to use the version 1.3.4 of following of the app, create a new footnote reference and then possibly delete it. This should fix the problem.
+
+## Mentions
+
+- Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
 
 #### Version 1.3.4
 
-- During presentations, if it's highlighted a link to a picture, this picture is shown.
+- During presentations, if it's highlighted a link to a picture at the beginning of a paragraph, this picture is shown.
 - The shortcut `Meta + Opt + C` now allows to copy more citations divided in different paragraphs.
 - The title of the citations is not italicized by default any more (citations of article don't require that), but the shortcut `Meta + Opt + C` adds the italics markers to the titles if they don't begin and end with quotation marks.
 - Improved the bibliography compilation.
