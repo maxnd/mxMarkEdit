@@ -126,7 +126,7 @@ In the todo items, it’s possible to add a deadline. The format of the date sho
 
 ## Tables
 
-At the bottom of the text there’s an Excel-like grid of 105 columns and 10,000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the name of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The name is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possible to insert any kind of data. It’s possible to add more tables in the grid, adding other names under the `Table names` column followed by some fields, like in the second screenshot above.
+At the bottom of the text there’s an Excel-like grid of 105 columns and 10,000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the name of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The name in the first column is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possible to insert any kind of data. It’s possible to add more tables in the grid, adding other names under the `Table names` column followed by some fields, like in the second screenshot above.
 
 If it’s necessary to insert dates in a field, use the format `year-month-day`, where month and day are always of two digits (e.g. `2025-01-05`), so that the sorting on this field will produce a correct result. See below for some shortcuts useful to insert and change the dates.
 
@@ -188,7 +188,7 @@ It's possible to copy and paste in the grid any kind of citation taken from refe
 - Paste the content of the clipboard temporarily in a new paragraph in the current document.
 - Select the citation and copy it the clipboard with the shortcut `Meta + Opt + C`.
 - Paste the citation in the B1 column of a new row in the grid; all the data fill properly the following cells; the titles will be included among the italics markers if they do not begin and end with quotation marks.
-- Check the name of the author(s) for bibliography and footnotes, and in the B1 and C1 columns and the short title in the E1 column.
+- Check the name of the author(s) for bibliography and footnotes in the B1 and C1 columns, and the short title in the E1 column.
 - Add the key in the A1 column and use the shortcut `Meta + Ctrl + K` to make it unique.
 
 Finally, it's possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it's easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
@@ -203,10 +203,10 @@ If it's necessary to quote an ancient text contained in a modern edition and to 
 
 Once the document has been completed and the keys of the various works have been inserted, the menu item `Tools - Compile bibliography` can be used. In this way, mxMarkEdit creates another file in the same folder as the one in use, with the same name and the extension ` - with bibliography`. In this file, the various keys are replaced by the actual citations of the works, in the following way.
 
-- The first citation of a work is composed by associating the contents of columns C1, D1 and F1 separated by a comma; the title is automatically made in italics.
+- The first citation of a work is composed by associating the contents of columns C1, D1 and F1 separated by a comma.
 - The second citation of a work is composed by associating the contents of columns C1, E1 (abbreviated title) and F1 separated by a comma.
 - If a citation is about the same work as the immediately preceding citation, the word `Ibidem` is inserted in italics in place of its bibliographic data.
-- At the end of the text, the bibliography is inserted, containing only the works actually cited in the document, associating the content of columns B1, D1 and F1 separated by a comma. The bibliography is ordered alphabetically.
+- The bibliography is inserted at the end of the text. It contains all and only the works actually cited in the document, and is created associating the content of columns B1, D1 and F1 separated by a comma. The bibliography is ordered alphabetically.
 
 In case the citations need to be formatted differently to correspond to other methodological requests, it is enough to correct only the content of column F1, containing the details of the works, in all the tables, and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
 
@@ -218,7 +218,7 @@ As is apparent from these notes, the bibliographic manager of mxMarkEdit, while 
 
 This approach allows to reformat all the citations of a document simply by changing the style sheet in use, but it becomes tricky when there's no style that perfectly matches the methodological needs of one's institution or publisher. Furthermore, there is always the risk that in particular cases the style sheet does not give the desired results. The approach used by mxMarkEdit is much more solid, as the citation, even the part that follows the title, is composed by the user in its final form, and therefore is certainly correct. Even if this involves the need to rewrite it if it's necessary to adapt to other methodological requests, the user never runs into dangerous malfunctions.
 
-Anyway, it's also possible to use Zotero or Mendeley as main bibliographic manager and import from its data all the items that are relevant for a specific article or book inserting them in a bibliographic table with the shortcuts shown above. In this way, one sticks with a solid and fully featured bibliographic manager but may use at the same time the simpler and secure bibliographic system of mxMarkEdit to compile the citations.
+Anyway, it's also possible to use Zotero or Mendeley as main bibliographic manager and import from their data all the items that are relevant for a specific article or book inserting them in a bibliographic table with the shortcuts shown above. In this way, one sticks with a solid and fully featured bibliographic manager but may use at the same time the simpler and secure bibliographic system of mxMarkEdit to compile the citations.
 
 Finally, the mxMarkEdit bibliographic database, being contained in a `.csv` file, can always be read and modified, maybe by writing some code, so that it can be imported into other software.
 
@@ -235,11 +235,11 @@ it’s possible to use the app for presentations:
 
 In presentation mode, the status bar is hidden, and the spell checking is automatically disabled. To quit the presentation mode, press `Esc` or click anywhere in the text. Possibly, reenable the spell checking.
 
-If the in the document there is a link to a picture at the beginning of a paragraph and properly formatted (e.g. `![Data on sales](file:///Users/massimo/Downloads/sales-data.jpg`), it will be shown during presentation. 
+If in the document there is a link to a picture at the beginning of a paragraph and properly formatted (e.g. `![Data on sales](file:///Users/massimo/Downloads/sales-data.jpg`), that picture will be shown during the presentation.
 
 Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimized for mxMarkEdit with the menu item `Tools` - `Optimize presentation...` if it has to be presented with mxMarkEdit.
 
-To export an mxMarkEdit presentation in PDF so that it can be shown on any computer, save all the screenshots from the current position to the end of the document with `Meta + Ctrl + E`; this takes 2 seconds for each item; press `ESC` to interrupt the process. Then select all the screenshots in the `Download` directory, `Ctrl + click` on them and choose the `Quick Options - Create PDF`. The screenshots are numbered progressively. To restart the number of the ones to be created, restart the app. The pictures will not be shown nor exported.
+To export an mxMarkEdit presentation in PDF so that it can be shown on any computer, save all the screenshots from the current position to the end of the document with `Meta + Ctrl + E`; the text will be scrolled automatically, and it will take 2 seconds to get each screenshot; press `ESC` to interrupt the process. Then select all the screenshots in the `Download` directory, `Ctrl + click` on them and choose the `Quick Options - Create PDF`. The screenshots are numbered progressively. To restart the number of the ones to be created, restart the app. The pictures will not be shown nor exported.
 
 ## Files management
 
@@ -247,9 +247,9 @@ The `File - Search in files...` menu item open a form to search a word or a sent
 
 The `\n` code finds the `Line feed`, which in macOS or Linux are the paragraph breaks, the `\r` code finds the `Enter` while the `\t` code finds the tabs. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`.
 
-In the grid above the buttons it will be shown a row for each occurrence of the text to be found both in the documents and in the tables files, along with the context in which it appears (some words before and after it). The columns of the grid - path, file name and context - can be sorted with a click on their headers. Pressing `Return` on a row of the grid, or double clicking on it, make the app open the corresponding file, and move the cursor to the position of the text to be found, or, if the file is a `.csv` one, to the cell that contains it. 
+In the grid above the buttons it will be shown a row for each occurrence of the text to be found both in the documents and in the tables files, along with the context in which it appears (some words before and after it). The columns of the grid – path, file name and context – can be sorted with a click on their headers. Press `Return` on a row of the grid, or double click on it to open the corresponding file and to move the cursor to the position of the text to be found, or, if the file is a `.csv` one, to the cell that contains it.
 
-The search in files returns maximum 100 recurrences for each document or spreadsheet analysed, and stops at 5,000 global recurrences, asking the user to possibly refine it. Also emojis can be searched for.
+The search in files returns maximum 100 recurrences for each document or spreadsheet analysed, and stops at 5,000 global recurrences, asking the user to possibly specify more words to find. Emojis too can be searched for.
 
 Moving the mouse over the label of the file path and name, at the bottom left of the main interface of the app, a hint appears with the complete content, even if in the label it's truncated due to its length.
 
