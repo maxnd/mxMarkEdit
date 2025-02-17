@@ -184,10 +184,10 @@ In the following columns can be freely insert the data considered useful, also u
 
 It's possible to copy and paste in the grid any kind of citation taken from reference managers like Zotero and Mendeley as well as from websites or library catalogs. Follow these simple steps.
 
-- Copy in the clipboard the citation from a website or a reference manager; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`. The author(s), the title and the details must be separated by comma and space.
-- Paste the content of the clipboard temporarily in a new paragraph in the current document.
-- Select the citation and copy it the clipboard with the shortcut `Meta + Opt + C`.
-- Paste the citation in the B1 column of a new row in the grid; all the data fill properly the following cells; the titles will be included among the italics markers if they do not begin and end with quotation marks.
+- Copy in the clipboard the citation from a website or a reference manager; if they are more than one, each of them must be a different paragraph; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`; the author(s), the title and the details must be separated by comma and space.
+- Paste the content of the clipboard temporarily in the current document.
+- Select the citation(s) and copy them in the clipboard with the shortcut `Meta + Opt + C`.
+- Paste the citation(s) in the B1 column of a new row in the grid; all the data will fill properly the following cells; the titles will be included among the italics markers if they do not begin and end with quotation marks.
 - Check the name of the author(s) for bibliography and footnotes in the B1 and C1 columns, and the short title in the E1 column.
 - Add the key in the A1 column and use the shortcut `Meta + Ctrl + K` to make it unique.
 
@@ -229,7 +229,7 @@ it’s possible to use the app for presentations:
 1. load a document, possibly with some tables, containing the sequential text of the slides in Markdown format, with many paragraphs under titles and subtitles, like a normal text;
 2. make mxMarkEdit window full screen and enlarge possibly the font size of the document so that it can be seen easily by the participants;
 3. share the interface of mxMarkEdit with a video projector or on a video call with apps like Webex, FaceTime or Zoom;
-4. begin the presentation and use the shortcut `Meta` + `E` to show the paragraph following the current one, or `Meta` + `Shift` + `E` to show the paragraph previous the current one, both in black or white, according to the theme in use, skipping the empty lines, and to fade the other text; when the presentation mode is enabled with one of these two shortcuts, the following or previous paragraphs may be selected also with the shortcuts `Meta` + `Arrow down` and `Meta` + `Arrow up`;
+4. use the shortcut `Meta` + `E` to begin the presentation showing the paragraph following the current one, or `Meta` + `Shift` + `E` to do that showing the paragraph previous the current one, both in black or white, according to the theme in use, skipping the empty lines, and fading the other text; when the presentation mode is enabled with one of these two shortcuts, the following or previous paragraphs may be selected also with the shortcuts `Meta` + `Arrow down` and `Meta` + `Arrow up`;
 5. comment the content of the paragraph in black or white; the participants see the text that is currently focused, and its position in the structure of the document in the left bar, which anyway can be hidden;
 6. if the reference to some tables is needed, show the grid, locate the table and comment its data with the participants using possibly the zoom functionalities of Mac to make visible the small numbers.
 
@@ -355,8 +355,8 @@ There are also some shortcuts beyond the ones related to the menu items.
 ### In the tables grid
 
 * `Ctrl` + `Space`: open the extended editor.
-* `Meta` + `Opt` + `C`: copy the bibliographic key in the second column among curly brackets.
-* `Meta` + `Ctrl` + `K`: make unique the current key in the second column.
+* `Meta` + `Opt` + `C`: copy the bibliographic key contained in the second column among curly brackets.
+* `Meta` + `Ctrl` + `K`: make unique the current key contained in the second column.
 * `Meta` + `Shift` + `I`: insert a new row.
 * `Backspace`: delete the content of the selected cell or cells, after confirmation.
 * `Meta` + `Shift` + `Backspace`: delete the current row, after confirmation if it’s not empty.
