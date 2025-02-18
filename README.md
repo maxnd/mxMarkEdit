@@ -421,12 +421,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 ## Revision history
 
-#### Version 1.3.5
+**Version 1.3.5**
 
 - The `Meta + Opt + C` shortcut now requires that the author(s), the title and the details of a citations are separated by a tab.
 - When a link to a picture is created, it's now properly formatted.
 
-#### Version 1.3.4
+**Version 1.3.4**
 
 - During presentations, if it's highlighted a link to a picture at the beginning of a paragraph, this picture is shown.
 - The shortcut `Meta + Opt + C` now allows to copy more citations divided in different paragraphs.
@@ -435,57 +435,57 @@ The software creates these two configuration files that can be deleted to reset 
 - Bugs fixing: the footnote numbering could not work as expected.
 - Minor improvements.
 
-#### Version 1.3.3
+**Version 1.3.3**
 
 - In the document, added the shortcut `Meta + Opt + C` to copy a selected citation so that it can be properly pasted in the bibliographic table.
 - In the grid, added the `Meta` + `Ctrl` + `K` to make unique the current key in the second column.
 
-#### Version 1.3.2
+**Version 1.3.2**
 
 - In the grid, added the shortcut `Meta + Opt + C` to copy the bibliographic key in the clipboard among curly brackets.
 - Bugs fixing: the bibliography manager didn't work as expected.
 - Bugs fixing: the file search form was not available.
 
-#### Version 1.3.1
+**Version 1.3.1**
 
 - Added the menu item `File - Import tables...`.
 - Small bugs fixing.
 - Corrected and improved the documentation.
 
-#### Version 1.3.0
+**Version 1.3.0**
 
 - Added bibliographic management (see above form information).
 - Added the extended edito in the grid, activated by `Ctrl + Space`.
 - Bugs fixing: creating a new footnote when there were some lines after the footnotes block messed the text.
 
-#### Version 1.2.28
+**Version 1.2.28**
 
 - Small bugs fixing.
 - Corrected and improved the documentation.
 
-#### Version 1.2.27
+**Version 1.2.27**
 
 - In the todo form, the headings of the todo items are now visible in a column.
 
-#### Version 1.2.26
+**Version 1.2.26**
 
 - Minor graphic improvements in presentation mode.
 
-#### Version 1.2.25
+**Version 1.2.25**
 
 - Bugs fixing in presentation mode.
 - Minor graphic improvements in presentation mode.
 
-#### Version 1.2.24
+**Version 1.2.24**
 
 - Bugs fixing: sometimes cutting a header in the clipboard didn't work as expected.
 - Small bugs fixing.
 
-#### Version 1.2.23
+**Version 1.2.23**
 
 - Added the shortcut `Meta + Ctrl + E` to save all the screenshots of the presentation of the current document in the `Download` directory.
 
-#### Version 1.2.22
+**Version 1.2.22**
 
 - Added the shortcut `Ctrl + D` to insert the current date in the grid.
 - Added the shortcut `Ctrl + Right arrow` to increase the date contained in a cell of one day.
@@ -493,100 +493,100 @@ The software creates these two configuration files that can be deleted to reset 
 - Added the shortcut `Meta + C` in the todo form, to copy in the clipboard the todo items.
 - The last edited files are now eight.
 
-#### Version 1.2.21
+**Version 1.2.21**
 
 - Bugs fixing in text formatting.
 
-#### Version 1.2.20
+**Version 1.2.20**
 
 - In the file search open by `File - Search in files...` menu item, it's now possibile to use `\n`, `\r` and `\t` to look for line feeds, returns and tabs.
 - Minor graphic improvements in presentation mode.
 
-#### Version 1.2.19
+**Version 1.2.19**
 
 - In the options, two buttons have been added to reset the colors of the text in black and white or in various colors; these colors are different for dark and light mode.
 - Minor graphic improvements in presentation mode.
 
-#### Version 1.2.18
+**Version 1.2.18**
 
 - Added some information in the documentation on how to export a mxMarkDown presentation in PDF format and to search for todo items in the `Search in files` form.
 - Small bugs fixing.
 
-#### Version 1.2.17
+**Version 1.2.17**
 
 - Added menu item `File - Insert...`, to insert the content of a Markdown file in the current one at the cursor position.
 - Deleting an empty row in the grid now doesn't require confirmation.
 - Minor graphic improvements in presentation mode.
 - Small bugs fixing.
 
-#### Version 1.2.16
+**Version 1.2.16**
 
 - Bugs fixing: within links, some Markdown markers were hidden and still active in formatting the text.
 
-#### Version 1.2.15
+**Version 1.2.15**
 
 - Bugs fixing: in the grid below the editor, the text could appear shadowed.
 
-#### Version 1.2.14
+**Version 1.2.14**
 
 - The menu `?` has been renamed as `Help`.
 - Added the possibility to download the manual (see menu item `Help - Download manual`).
 - Small bugs fixing.
 
-#### Version 1.2.13
+**Version 1.2.13**
 
 - In presentation mode, also the list of titles and todos is faded, and spell checking is automatically disabled.
 - Minor graphic improvements.
 - Small bugs fixing.
 
-#### Version 1.2.12
+**Version 1.2.12**
 
 - The links recognition is now suspended when the formatting is disabled, greatly improving the performance of the app with very large files.
 - Small bugs fixing.
 
-#### Version 1.2.11
+**Version 1.2.11**
 
 - Added the menu item `Tools` - `Optimize presentation` (see above).
 - Improved the color of the links: now the linked file has the color of the code font.
 
-#### Version 1.2.10
+**Version 1.2.10**
 
 - In the presentation mode, the text is faded and the selected paragraph is white or black, according to the theme in use, without any highlighting.
 - Added new shortcut: `Meta` + `Shift` + `E` or `Meta` + `Arrow up` to select the previous paragraph during presentation.
 - Added new shortcut: `Meta` + `Arrow down` to select the next paragraph during presentation.
 
-#### Version 1.2.9
+**Version 1.2.9**
 
 - The `Edit - Show current title or todo` menu item shows the title or todo item the cursor is under to at the top of the left list, after five other items if existing.
 - In the presentation mode, the status bar is hidden.
 - Bugs fixing: the find next function could crash the app.
 
-#### Version 1.2.8
+**Version 1.2.8**
 
 - The search in files now returns maximum 100 recurrences for each document or spreadsheet analysed, and stops at 5,000 global recurrences.
 - Better arrangement of some menu items.
 - Minor graphics improvements.
 
-#### Version 1.2.7
+**Version 1.2.7**
 
 - Added the shortcut `Meta` + `Ctrl` + `Shift` + `S` to sort descending the content of the current column in the current table.
 
-#### Version 1.2.6
+**Version 1.2.6**
 
 - In the options, has been added the specification of the number of characters of a document beyond which it's loaded without formatting. It's calculated by the size of the file, not counting the characters, so it could be a bit inaccurate. Formatting can be activated afterward.
 - The possible hiding of the title and todo list is now restored when the app is run again.
 
-#### Version 1.2.5
+**Version 1.2.5**
 
 - The sorting functionality in the tables now sorts the numbers as such and not as letters, and the sorting stops before a possible formula in all the columns. If numeric and textual contents are both present, the numbers are shown first.
 - Bugs fixing: the file search form was not working as expecting.
 
-#### Version 1.2.4
+**Version 1.2.4**
 
 - Added a list of all the available shortcuts that are not related to menu items (see The `Help` - `Shortcuts list` menu item).
 - Now the width of the columns of the grid of the last four files is remembered by the app.
 
-#### Version 1.2.3
+**Version 1.2.3**
 
 - Added the button in the search form to find the previous recurrence in the document.
 - Added the shortcut `Meta` + `Shift` + `G` to find the previous recurrence in the document in the search form.
@@ -594,34 +594,34 @@ The software creates these two configuration files that can be deleted to reset 
 - Bugs fixing: the use of the search function could crash the app.
 - Bugs fixing: when the status of a todo item in the todo form is changed, now the possible red color is set properly.
 
-#### Version 1.2.2
+**Version 1.2.2**
 
 - Opening one the last four files used, now it's restored also the last selected cell.
 - In presentation mode, the headings are now highlighted like the other paragraphs.
 - Minor graphics improvements in presentation mode.
 - Bugs fixing: in some circumstances, the content of the grid could not be saved.
 
-#### Version 1.2.1
+**Version 1.2.1**
 
 - Bugs fixing: the `Meta` + `V` shortcut in the grid didn't set it as modified.
 - Bugs fixing: a value pasted with the `Meta` + `V` shortcut in the grid was not considered by a possible function.
 - Bugs fixing: the shortcuts `Meta` + `C`, `Meta` + `X`, `Meta` + `V` and `Meta` + `A` in the fields of the search form didn't work as expected.
 
-#### Version 1.2.0
+**Version 1.2.0**
 
 - Added files search. See above the `Files management` title for information.
 - Moving the mouse over the label of the file path and name, at the bottom left, now shows a hint with the complete content, even if in the label it's truncated due to its length.
 - Minor graphic improvements.
 - Bugs fixing: when the path of the file was very long, the date and time label on the right was overwritten.
 
-#### Version 1.1.14
+**Version 1.1.14**
 
 - In presentation mode, the cursor is now hidden, and the selected paragraph is shown at the middle of the screen.
 - In light mode, the default font color of code, links, etc. is now more readable. 
 - Bugs fixing: sometimes, the look of the document was not updated properly.
 - Bugs fixing: on opening one of the last four files, the last position of the cursor was not always properly recovered.
 
-#### Version 1.1.13
+**Version 1.1.13**
 
 - The grid has now 10000 rows and 105 columns.
 - The `Insert link to file` menu item now allows to select and insert more files, and to include them in the text within the proper Markdown markers.
@@ -630,30 +630,30 @@ The software creates these two configuration files that can be deleted to reset 
 - Bugs fixing: pressing `Return` in an empty item of a list delete this item only if it’s followed by an empty paragraph.
 - Bugs fixing: on opening one of the last four files, the last position of the cursor was not always properly recovered.
 
-#### Version 1.1.12
+**Version 1.1.12**
 
 - Bugs fixing: it was not possible to format in bold or italics the selected text if starting at the beginning of a new paragraph.
 - Bugs fixing: the possible Markdown markers within Markdown links was not properly shown.
 
-#### Version 1.1.11
+**Version 1.1.11**
 
 - Added new functions in the tables grid beyond `sum`: `max`, `min`, `avg`, `count`. Now they are shown in the color set by the user for the code.
 - Added a sorting radio item in the `Words recurrence form`.
 - Bugs fixing in the `Words recurrence form`.
 - Bugs fixing in the tables grid.
 
-#### Version 1.1.10
+**Version 1.1.10**
 
 - Added the `Show words recurrence form` menu item and functionality (see above for information).
 - In the grid, the `Return` key pressed in a cell at the left end of a table doesn’t select the following cell at its right but the first cell of the following row, in the second column.
 
-#### Version 1.1.9
+**Version 1.1.9**
 
 - Citations now have a lighter or darker background, while having the same font size.
 - Bugs fixing: the formatting within the citations was not effective.
 - Minor bugs fixing.
 
-#### Version 1.1.8
+**Version 1.1.8**
 
 - New shortcut in the grid `Meta` + `Opt` + `Shift` + `I` to add a new column in the current table.
 - New shortcut in the grid `Meta` + `Opt` + `Shift` + `Backspace` to delete the current column in the current table.
@@ -662,28 +662,28 @@ The software creates these two configuration files that can be deleted to reset 
 - Bugs fixing: `Backspace` erased the whole content of the current cell even when the editor was active.
 - Minor graphic improvements.
 
-#### Version 1.1.7
+**Version 1.1.7**
 
 - The procedure of the menu item `Edit` - `Show duplicate words` now requires no confirmation.
 - Minor bugs fixing and graphic improvements.
 
-#### Version 1.1.6
+**Version 1.1.6**
 
 - `Backspace` deletes the content of the selected cells after confirmation.
 - The procedure to check possible repeated words in the current paragraph and the previous one is now much faster.
 - Bugs fixing: the procedure to check possible repeated words in the current paragraph and the previous one didn’t work always as expected.
 
-#### Version 1.1.5
+**Version 1.1.5**
 
 - When a `.cvs` file is loaded, the grid is not shown automatically, but in the status bar at the bottom, after the name of the file, a sign of a diamond is shown to alert the user that there are some data inside it.
 - Added the possibility to show the sum of a column of numbers in the grid.
 - Bugs fixing: when the grid was modified in a new file without a name, it was possible to exit the app without being asked to save the file.
 
-#### Version 1.1.4
+**Version 1.1.4**
 
 - Bugs fixing: it was not possible to search for a table name in the grid.
 - Bugs fixing: in some circumstances, the last line of the text was not properly updated.
 
-#### Version 1.1.3
+**Version 1.1.3**
 
 - Bugs fixing: when a new Markdown file was created, a grid file was created as well even if there were no data inside it.
