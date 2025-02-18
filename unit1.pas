@@ -1583,14 +1583,14 @@ begin
         for i := 0 to slCitations.Count - 1 do
         begin
           stClip := slCitations[i];
-          stClip := UTF8Copy(stClip, 1, UTF8CocoaPos(', ', stClip, 1) - 1) + #9 +
-            UTF8Copy(stClip, 1, UTF8Pos(', ', stClip) - 1) + #9 + '*' +
-            UTF8Copy(stClip, UTF8Pos(', ', stClip) + 2, UTF8Pos(', ',
-            stClip, UTF8Pos(', ', stClip) + 1) - UTF8Pos(', ', stClip) - 2) +
-            '*' + #9 + '*' + UTF8Copy(stClip, UTF8Pos(', ', stClip) + 2,
-            UTF8Pos(', ', stClip, UTF8Pos(', ', stClip) + 1) - UTF8Pos(', ',
-            stClip) - 2) + '*' + #9 + UTF8Copy(stClip, UTF8Pos(', ',
-            stClip, UTF8Pos(', ', stClip) + 1) + 2, UTF8Length(stClip));
+          stClip := UTF8Copy(stClip, 1, UTF8CocoaPos(#9, stClip, 1) - 1) + #9 +
+            UTF8Copy(stClip, 1, UTF8Pos(#9, stClip) - 1) + #9 + '*' +
+            UTF8Copy(stClip, UTF8Pos(#9, stClip) + 1, UTF8Pos(#9,
+            stClip, UTF8Pos(#9, stClip) + 1) - UTF8Pos(#9, stClip) - 1) +
+            '*' + #9 + '*' + UTF8Copy(stClip, UTF8Pos(#9, stClip) + 1, UTF8Pos(#9,
+            stClip, UTF8Pos(#9, stClip) + 1) - UTF8Pos(#9, stClip) - 1) +
+            '*' + #9 + UTF8Copy(stClip, UTF8Pos(#9,
+            stClip, UTF8Pos(#9, stClip) + 1) + 1, UTF8Length(stClip));
           stClip := StringReplace(stClip, '*«', '«', [rfReplaceAll]);
           stClip := StringReplace(stClip, '»*', '»', [rfReplaceAll]);
           stClip := StringReplace(stClip, '*"', '"', [rfReplaceAll]);
@@ -3481,13 +3481,30 @@ begin
     for i := 0 to odLink.Files.Count - 1 do
     begin
       stLink := odLink.Files[i];
-      stLink := '[](file://' + StringReplace(stLink, ' ', '%20',
-        [rfReplaceAll]) + ')';
+      if FilenameExtIn(stLink, ['.jpg', '.jpeg', '.pgn', '.bmp', '.heic'],
+        False) = True then
+      begin
+        stLink := '![](file://' + StringReplace(stLink, ' ', '%20',
+          [rfReplaceAll]) + ')';
+      end
+      else
+      begin
+        stLink := '[](file://' + StringReplace(stLink, ' ', '%20',
+          [rfReplaceAll]) + ')';
+      end;
       if odLink.Files.Count = 1 then
       begin
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).
           insertText(NSStringUtf8(stLink));
-        dbText.SelStart := dbText.SelStart - UTF8Length(stLink) + 1;
+        if FilenameExtIn(odLink.Files[i], ['.jpg', '.jpeg', '.pgn', '.bmp', '.heic'],
+          False) = True then
+        begin
+          dbText.SelStart := dbText.SelStart - UTF8Length(stLink) + 2;
+        end
+        else
+        begin
+          dbText.SelStart := dbText.SelStart - UTF8Length(stLink) + 1;
+        end;
       end
       else
       begin

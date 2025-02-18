@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.4, published on February 16 2025.
+Version 1.3.5, published on February 18 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -184,8 +184,9 @@ In the following columns can be freely insert the data considered useful, also u
 
 It's possible to copy and paste in the grid any kind of citation taken from reference managers like Zotero and Mendeley as well as from websites or library catalogs. Follow these simple steps.
 
-- Copy in the clipboard the citation from a website or a reference manager; if they are more than one, each of them must be a different paragraph; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`; the author(s), the title and the details must be separated by comma and space.
+- Copy in the clipboard the citation from a website or a reference manager; if they are more than one, each of them must be a different paragraph; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`.
 - Paste the content of the clipboard temporarily in the current document.
+- In each item, separate the author(s) from the title and the title from the following details with a tab, replacing the comma and space or the dot and space that usually separate these elements.
 - Select the citation(s) and copy them in the clipboard with the shortcut `Meta + Opt + C`.
 - Paste the citation(s) in the B1 column of a new row in the grid; all the data will fill properly the following cells; the titles will be included among the italics markers if they do not begin and end with quotation marks.
 - Check the name of the author(s) for bibliography and footnotes in the B1 and C1 columns, and the short title in the E1 column.
@@ -419,6 +420,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+#### Version 1.3.5
+
+- The `Meta + Opt + C` shortcut now requires that the author(s), the title and the details of a citations are separated by a tab.
+- When a link to a picture is created, it's now properly formatted.
 
 #### Version 1.3.4
 
