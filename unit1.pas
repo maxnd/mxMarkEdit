@@ -819,11 +819,11 @@ begin
     begin
       dbText.Font.Size := dbText.Font.Size + 1;
       FormatListTitleTodo;
-      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      rng := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+        NSScrollView(dbText.Handle).documentView).selectedRange);
       Application.ProcessMessages;
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         scrollRangeToVisible(rng);
     end;
     key := 0;
@@ -835,11 +835,11 @@ begin
     begin
       dbText.Font.Size := dbText.Font.Size - 1;
       FormatListTitleTodo;
-      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      rng := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+        NSScrollView(dbText.Handle).documentView).selectedRange);
       Application.ProcessMessages;
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         scrollRangeToVisible(rng);
     end;
     key := 0;
@@ -851,11 +851,11 @@ begin
     begin
       iFontMonoSize := iFontMonoSize + 1;
       FormatListTitleTodo;
-      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      rng := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+        NSScrollView(dbText.Handle).documentView).selectedRange);
       Application.ProcessMessages;
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         scrollRangeToVisible(rng);
     end;
     key := 0;
@@ -867,11 +867,11 @@ begin
     begin
       iFontMonoSize := iFontMonoSize - 1;
       FormatListTitleTodo;
-      rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      rng := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
+        NSScrollView(dbText.Handle).documentView).selectedRange);
       Application.ProcessMessages;
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         scrollRangeToVisible(rng);
     end;
     key := 0;
@@ -1121,12 +1121,12 @@ begin
       stText := WideString(dbText.Text);
       rngStart.location := 0;
       rngStart.length := Length(stText);
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         setTextColor_range(ColorToNSColor(clFontFade), rngStart);
-      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      rngStart := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        NSScrollView(dbText.Handle).documentView).selectedRange);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
       i := 0;
       if dbText.Lines[0] = '---' then
@@ -1145,42 +1145,42 @@ begin
             if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='title:' then
             begin
               rngStart.length := 6;
-              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
             if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='subtitle:' then
             begin
               rngStart.length := 9;
-              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
             if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) ='author:' then
             begin
               rngStart.length := 7;
-              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
             if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='email:' then
             begin
               rngStart.length := 6;
-              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
             if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) ='date:' then
             begin
               rngStart.length := 5;
-              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
             if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='abstract:' then
             begin
               rngStart.length := 9;
-              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end;
           end;
@@ -1189,9 +1189,9 @@ begin
       // To have the selected paragraph vertically centered
       rngEnd.location := 1;
       rngEnd.length := 1;
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         scrollRangeToVisible(rngEnd);
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         scrollRangeToVisible(rngStart);
       ShowCurrentTitleTodo;
       if rngStart.length > 1 then
@@ -1251,7 +1251,7 @@ begin
     stText := WideString(dbText.Text);
     rngStart.location := 0;
     rngStart.length := Length(stText);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setTextColor_range(ColorToNSColor(clFontFade), rngStart);
     if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '![' then
     begin
@@ -1271,10 +1271,10 @@ begin
     end
     else
     begin
-      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      rngStart := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        NSScrollView(dbText.Handle).documentView).selectedRange);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
     end;
     if dbText.Lines[0] = '---' then
@@ -1293,42 +1293,42 @@ begin
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='title:' then
           begin
             rngStart.length := 6;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='subtitle:' then
           begin
             rngStart.length := 9;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) ='author:' then
           begin
             rngStart.length := 7;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='email:' then
           begin
             rngStart.length := 6;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) ='date:' then
           begin
             rngStart.length := 5;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='abstract:' then
           begin
             rngStart.length := 9;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end;
         end;
@@ -1337,9 +1337,9 @@ begin
     // To have the selected paragraph vertically centered
     rngEnd.location := 1;
     rngEnd.length := 1;
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       scrollRangeToVisible(rngEnd);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       scrollRangeToVisible(rngStart);
     ShowCurrentTitleTodo;
     if rngStart.length > 1 then
@@ -1390,7 +1390,7 @@ begin
     stText := WideString(dbText.Text);
     rngStart.location := 0;
     rngStart.length := Length(stText);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setTextColor_range(ColorToNSColor(clFontFade), rngStart);
     if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '![' then
     begin
@@ -1410,10 +1410,10 @@ begin
     end
     else
     begin
-      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      rngStart := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         textStorage.string_.paragraphRangeForRange(TCocoaTextView(
-        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange);
-      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        NSScrollView(dbText.Handle).documentView).selectedRange);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         setTextColor_range(ColorToNSColor(clFontContrast), rngStart);
     end;
     if dbText.Lines[0] = '---' then
@@ -1432,42 +1432,42 @@ begin
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='title:' then
           begin
             rngStart.length := 6;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='subtitle:' then
           begin
             rngStart.length := 9;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) ='author:' then
           begin
             rngStart.length := 7;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='email:' then
           begin
             rngStart.length := 6;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) ='date:' then
           begin
             rngStart.length := 5;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
           if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='abstract:' then
           begin
             rngStart.length := 9;
-            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end;
         end;
@@ -1476,9 +1476,9 @@ begin
     // To have the selected paragraph vertically centered
     rngEnd.location := 1;
     rngEnd.length := 1;
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       scrollRangeToVisible(rngEnd);
-    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       scrollRangeToVisible(rngStart);
     ShowCurrentTitleTodo;
     if rngStart.length > 1 then

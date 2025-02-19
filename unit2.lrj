@@ -5,6 +5,7 @@
 {"hash":347380,"name":"tfmsearch.bnnext.caption","sourcebytes":[78,101,120,116],"value":"Next"},
 {"hash":4863637,"name":"tfmsearch.bnok.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
 {"hash":217821912,"name":"tfmsearch.lbreplace.caption","sourcebytes":[82,101,112,108,97,99,101,32,119,105,116,104],"value":"Replace with"},
-{"hash":131047692,"name":"tfmsearch.bnreplace.caption","sourcebytes":[82,101,112,108,97,99,101,32,97,108,108],"value":"Replace all"},
-{"hash":147653555,"name":"tfmsearch.bnprevious.caption","sourcebytes":[80,114,101,118,105,111,117,115],"value":"Previous"}
+{"hash":131047692,"name":"tfmsearch.bnrepall.caption","sourcebytes":[82,101,112,108,97,99,101,32,97,108,108],"value":"Replace all"},
+{"hash":147653555,"name":"tfmsearch.bnprevious.caption","sourcebytes":[80,114,101,118,105,111,117,115],"value":"Previous"},
+{"hash":102381140,"name":"tfmsearch.bnrepone.caption","sourcebytes":[82,101,112,108,97,99,101,32,97,110,100,32,102,105,110,100],"value":"Replace and find"}
 ]}

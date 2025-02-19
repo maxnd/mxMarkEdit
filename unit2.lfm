@@ -1,13 +1,13 @@
 object fmSearch: TfmSearch
   Left = 535
-  Height = 211
+  Height = 232
   Top = 253
-  Width = 545
+  Width = 439
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Search'
-  ClientHeight = 211
-  ClientWidth = 545
+  ClientHeight = 232
+  ClientWidth = 439
   Color = clForm
   Icon.Data = {
     5C8000000000010001000000000001002000468000001600000089504E470D0A
@@ -1049,7 +1049,7 @@ object fmSearch: TfmSearch
     Left = 27
     Height = 22
     Top = 40
-    Width = 497
+    Width = 391
     Anchors = [akTop, akLeft, akRight]
     ParentColor = True
     TabOrder = 0
@@ -1066,7 +1066,7 @@ object fmSearch: TfmSearch
   object bnFirst: TButton
     Left = 27
     Height = 32
-    Top = 163
+    Top = 155
     Width = 84
     Anchors = [akLeft, akBottom]
     Caption = 'First'
@@ -1077,7 +1077,7 @@ object fmSearch: TfmSearch
   object bnNext: TButton
     Left = 120
     Height = 32
-    Top = 163
+    Top = 155
     Width = 84
     Anchors = [akLeft, akBottom]
     Caption = 'Next'
@@ -1086,13 +1086,13 @@ object fmSearch: TfmSearch
     OnClick = bnNextClick
   end
   object bnOK: TButton
-    Left = 449
+    Left = 343
     Height = 32
-    Top = 163
+    Top = 189
     Width = 75
-    Anchors = [akLeft, akBottom]
+    Anchors = [akRight, akBottom]
     Caption = 'Close'
-    TabOrder = 6
+    TabOrder = 7
     TabStop = False
     OnClick = bnOKClick
   end
@@ -1108,33 +1108,46 @@ object fmSearch: TfmSearch
     Left = 27
     Height = 22
     Top = 112
-    Width = 497
+    Width = 391
     Anchors = [akTop, akLeft, akRight]
     ParentColor = True
     TabOrder = 1
     OnKeyDown = edReplaceKeyDown
   end
-  object bnReplace: TButton
-    Left = 304
+  object bnRepAll: TButton
+    Left = 167
     Height = 32
-    Top = 163
+    Top = 189
     Width = 130
+    Anchors = [akLeft, akBottom]
     Caption = 'Replace all'
     ParentBidiMode = False
-    TabOrder = 5
+    TabOrder = 6
     TabStop = False
-    OnClick = bnReplaceClick
+    OnClick = bnRepAllClick
   end
   object bnPrevious: TButton
     Left = 213
     Height = 32
-    Top = 163
+    Top = 155
     Width = 84
     Anchors = [akLeft, akBottom]
     Caption = 'Previous'
     TabOrder = 4
     TabStop = False
     OnClick = bnPreviousClick
+  end
+  object bnRepOne: TButton
+    Left = 27
+    Height = 32
+    Top = 189
+    Width = 130
+    Anchors = [akLeft, akBottom]
+    Caption = 'Replace and find'
+    ParentBidiMode = False
+    TabOrder = 5
+    TabStop = False
+    OnClick = bnRepOneClick
   end
   object mmMenuModal: TMainMenu
     Left = 160

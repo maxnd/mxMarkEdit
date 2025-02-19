@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.5, published on February 18 2025.
+Version 1.3.6, published on February 19 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -184,12 +184,12 @@ In the following columns can be freely insert the data considered useful, also u
 
 It's possible to copy and paste in the grid any kind of citation taken from reference managers like Zotero and Mendeley as well as from websites or library catalogs. Follow these simple steps.
 
-- Copy in the clipboard the citation from a website or a reference manager; if they are more than one, each of them must be a different paragraph; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`.
-- Paste the content of the clipboard temporarily in the current document.
-- In each item, separate the author(s) from the title and the title from the following details with a tab, replacing the comma and space or the dot and space that usually separate these elements.
+- Copy in the clipboard the citation from a website or a reference manager; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`.
+- Paste the content of the clipboard temporarily in the current document; if there are more citations, each of them must be in a different paragraph.
+- In each item, separate the author(s) from the title and the title from the following details with a tab, replacing the comma and space or the dot and space that usually separate these elements; remove also the possible semicolon or period at the end of each citation.
 - Select the citation(s) and copy them in the clipboard with the shortcut `Meta + Opt + C`.
 - Paste the citation(s) in the B1 column of a new row in the grid; all the data will fill properly the following cells; the titles will be included among the italics markers if they do not begin and end with quotation marks.
-- Check the name of the author(s) for bibliography and footnotes in the B1 and C1 columns, and the short title in the E1 column.
+- Check and possibly change the name of the author(s) for bibliography and footnotes in the B1 and C1 columns, and the short title in the E1 column.
 - Add the key in the A1 column and use the shortcut `Meta + Ctrl + K` to make it unique.
 
 Finally, it's possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it's easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
@@ -258,7 +258,9 @@ Moving the mouse over the label of the file path and name, at the bottom left of
 
 The last eight opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is restored.
 
-The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Meta + Return` – of a sentence, or the previous ones with the button `Previous`, or to replace all occurrences with another text. Search and replacement are not case sensitive. See below for some useful shortcuts to use these functionalities. When using the replacement function, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`. Finally, when looking for the next recurrence of an emoji, it might be necessary to move the cursor after the previous finding to find the next one.
+The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Meta + Return` – of a sentence, or the previous ones with the button `Previous`, or to replace the text selected with the previous buttons and search for another recurrence with the button `Replace and find`, or to replace all the occurrences with the button `Replace all`. Search and replacement are not case sensitive. See below for some useful shortcuts to use these functionalities. 
+
+When using the `Replace all` button, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`. Finally, when looking for the next recurrence of an emoji, it might be necessary to move the cursor after the previous finding to find the next one.
 
 The `Edit - Insert link to file` menu item allows to select one or more files and to insert their paths and names in the text within the Markdown markers and preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It’s not possible to insert relative links due to macOS restrictions.
 
@@ -420,6 +422,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+**Version 1.3.6**
+
+- Added the button `Replace and find` in the search form.
+- Corrected and improved the documentation on bibliography manager.
 
 **Version 1.3.5**
 

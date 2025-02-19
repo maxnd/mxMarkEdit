@@ -39,7 +39,8 @@ type
     bnNext: TButton;
     bnPrevious: TButton;
     bnOK: TButton;
-    bnReplace: TButton;
+    bnRepAll: TButton;
+    bnRepOne: TButton;
     edFind: TEdit;
     edReplace: TEdit;
     lbReplace: TLabel;
@@ -49,7 +50,8 @@ type
     procedure bnNextClick(Sender: TObject);
     procedure bnOKClick(Sender: TObject);
     procedure bnPreviousClick(Sender: TObject);
-    procedure bnReplaceClick(Sender: TObject);
+    procedure bnRepAllClick(Sender: TObject);
+    procedure bnRepOneClick(Sender: TObject);
     procedure edFindKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure edReplaceKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -115,6 +117,8 @@ begin
     rng.length := StrToNSString(edFind.Text, True).length;
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       showFindIndicatorForRange(rng);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setSelectedRange(rng);
   end
   else
   begin
@@ -156,6 +160,8 @@ begin
       rng.length := StrToNSString(edFind.Text, True).length;
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         showFindIndicatorForRange(rng);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        setSelectedRange(rng);
     end
     else
     begin
@@ -218,6 +224,8 @@ begin
     rng.length := StrToNSString(edFind.Text, True).length;
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       showFindIndicatorForRange(rng);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setSelectedRange(rng);
   end
   else
   begin
@@ -229,7 +237,7 @@ begin
   end;
 end;
 
-procedure TfmSearch.bnReplaceClick(Sender: TObject);
+procedure TfmSearch.bnRepAllClick(Sender: TObject);
 var
   stFind, stReplace: string;
 begin
@@ -246,6 +254,24 @@ begin
       stReplace, [rfIgnoreCase, rfReplaceAll]);
     fmMain.dbText.SelStart := 0;
     fmMain.Show;
+  end;
+end;
+
+procedure TfmSearch.bnRepOneClick(Sender: TObject);
+var
+  rng: NSRange;
+begin
+  if fmMain.dbText.Text = '' then
+  begin
+    Exit;
+  end;
+  if fmMain.dbText.SelLength > 0 then
+  begin
+    rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      selectedRange;
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      insertText_replacementRange(NSStringUtf8(edReplace.Text), rng);
+    bnNextClick(nil);
   end;
 end;
 
