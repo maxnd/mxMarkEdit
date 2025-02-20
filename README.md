@@ -45,6 +45,8 @@ To install Pandoc, not necessary to use the app but necessary to export the Mark
 
 To open automatically Markdown files with mxMarkEdit, follow the [Apple Guidelines](https://support.apple.com/en-sa/guide/mac-help/mh35597/mac).
 
+In the `untested` folder of the source code there's a version of the app compiled for Mac with Intel chip. It's neither tested nor notarized.
+
 ## Look of the app
 
 The software looks like this, with one possible color setting:
