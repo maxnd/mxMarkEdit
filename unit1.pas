@@ -187,7 +187,7 @@ type
     procedure CreateYAML;
     procedure DeactForm(stFileName: String);
     procedure DisablePresenting;
-    procedure FindInGrid;
+    procedure FindInGrid(blDown: Boolean);
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
     function GetPara(txt: NSTextStorage; textOffset: integer;
       isReadOnly, useDefault: boolean): NSParagraphStyle;
@@ -2358,9 +2358,16 @@ end;
 
 procedure TfmMain.edFindGridKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
+  if (((key = 13) and (Shift = [ssMeta])) or
+   ((key = Ord('G')) and (Shift = [ssMeta, ssShift]))) then
+  begin
+    FindInGrid(False);
+    key := 0;
+  end
+  else
   if ((key = 13) or (((key = Ord('G')) and (Shift = [ssMeta])))) then
   begin
-    FindInGrid;
+    FindInGrid(True);
     key := 0;
   end;
 end;
@@ -2479,9 +2486,15 @@ begin
     key := 0;
   end
   else
+  if ((key = Ord('G')) and (Shift = [ssMeta, ssShift])) then
+  begin
+    FindInGrid(False);
+    key := 0;
+  end
+  else
   if ((key = Ord('G')) and (Shift = [ssMeta])) then
   begin
-    FindInGrid;
+    FindInGrid(True);
     key := 0;
   end
   else
@@ -3527,7 +3540,7 @@ var
   slList1, slList2: TStringList;
   stText: WideString;
   stItem: String = '';
-  stSeparators: String = '*_.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ';
+  stSeparators: String = '*_.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ' + LineEnding;
 begin
   if blIsPresenting = True then
   begin
@@ -3548,14 +3561,19 @@ begin
     iSelStart := 1;
     while i <= iLen do
     begin
+      if ((stText[i] = LineEnding) and (stText[i + 1] = LineEnding)) then
+      begin
+        Inc(i);
+        Continue;
+      end
+      else
       if (((stText[i] = '.') and ((stText[i + 1] = ' ') or (i = iLen))) or
         (stText[i] = '?') or (stText[i] = '!') or
         (stText[i] = LineEnding)) then
       begin
         slList1.Text := slList2.Text;
         slList2.Clear;
-      end
-      else
+      end;
       if Pos(stText[i], stSeparators) > 0 then
       begin
         if ((slList1.IndexOf(UTF8UpperCase(stItem)) > -1) or
@@ -5805,17 +5823,36 @@ begin
   if Copy(stHeader, 1, 7) = '###### ' then result := 6;
 end;
 
-procedure TfmMain.FindInGrid;
+procedure TfmMain.FindInGrid(blDown: Boolean);
 var
-  i: integer;
+  i: Integer;
 begin
-  if ((pnGrid.Height > 1) and (edFindGrid.Text <> '') and
-    (sgTable.Row < sgTable.RowCount - 1)) then
+  if blDown = True then
   begin
-    if sgTable.Col = 1 then
+    if ((pnGrid.Height > 1) and (edFindGrid.Text <> '') and
+      (sgTable.Row < sgTable.RowCount - 1)) then
     begin
+      if sgTable.Col = 1 then
+      begin
+        for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+        begin
+          if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
+            UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
+          begin
+            sgTable.Row := i;
+            sgTable.SetFocus;
+            Break;
+          end;
+        end;
+      end
+      else
       for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
       begin
+        if sgTable.Cells[1, i] <> '' then
+        begin
+          Break;
+        end
+        else
         if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
           UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
         begin
@@ -5824,21 +5861,40 @@ begin
           Break;
         end;
       end;
-    end
-    else
-    for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+    end;
+  end
+  else
+  begin
+    if ((pnGrid.Height > 1) and (edFindGrid.Text <> '')) then
     begin
-      if sgTable.Cells[1, i] <> '' then
+      if sgTable.Col = 1 then
       begin
-        Break;
+        for i := sgTable.Row - 1 downto 1 do
+        begin
+          if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
+            UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
+          begin
+            sgTable.Row := i;
+            sgTable.SetFocus;
+            Break;
+          end;
+        end;
       end
       else
-      if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
-        UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
+      for i := sgTable.Row - 1 downto 1 do
       begin
-        sgTable.Row := i;
-        sgTable.SetFocus;
-        Break;
+        if sgTable.Cells[1, i] <> '' then
+        begin
+          Break;
+        end
+        else
+        if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
+          UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
+        begin
+          sgTable.Row := i;
+          sgTable.SetFocus;
+          Break;
+        end;
       end;
     end;
   end;

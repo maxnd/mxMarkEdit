@@ -13,7 +13,7 @@ object fmShortcuts: TfmShortcuts
   OnKeyDown = FormKeyDown
   Position = poDesktopCenter
   ShowInTaskBar = stNever
-  LCLVersion = '3.7.0.0'
+  LCLVersion = '3.8.0.0'
   object pnBottom: TPanel
     Left = 0
     Height = 37

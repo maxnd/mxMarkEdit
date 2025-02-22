@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.7, published on February 22 2025.
+Version 1.3.8, published on February 22 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -142,7 +142,7 @@ In the grid, it’s possible to select more cells dragging the mouse or holding 
 
 To edit easily a cell in the grid, it's available an extended editor activated with the shortcut `Ctrl + Space`. In this editor no formatting is available, but the links are properly recognized. To quit the editor, use the `Close` button or press `ESC`.
 
-At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` or the shortcut `Meta + G` to select the following cell after the current one in just the current field (column) of the current table that contains that text. Anyway, if the selected column is the first, containing the table names, the search will look for the following table names. The search is case insensitive. To continue the search, select again the field and press `Return`, or use the shortcut `Meta + G` when the grid is focused.
+At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` or the shortcut `Meta + G` to select the following cell after the current one in just the current field (column) of the current table that contains that text, or `Shift + Return` or the shortcut `Meta + Shift G` to select the previous cell before the current one in just the current field (column) of the current table that contains that text. Anyway, if the selected column is the first, containing the table names, the search will look for the following or previous table name. The search is case insensitive. To continue the search, select again the field and press `Return` or `Shift + Return`, or use the shortcut `Meta + G` or `Meta + Shift + G` when the grid is focused.
 
 If a cell contains a formula, in the cell below it will be reported the result of the calculation of all the numbers contained in the previous cells of the same field (column) and of the same table. The result will be updated when a value in those cells will be changed. Textual contents and improperly formatted numbers will not be considered. The name of the table and of the field (column) must be specified, otherwise no result will be shown.
 
@@ -369,7 +369,8 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Shift` + `I`: insert a new row.
 * `Backspace`: delete the content of the selected cell or cells, after confirmation.
 * `Meta` + `Shift` + `Backspace`: delete the current row, after confirmation if it’s not empty.
-* `Meta` + `G`: search the text typed in the `Find` field starting from the current position and just in the current column (field) of the current table.
+* `Meta` + `G`: search downward the text typed in the `Find` field starting from the current position and just in the current column (field) of the current table.
+* `Meta` + `Shift` + `G`: search upward the text typed in the `Find` field starting from the current position and just in the current column (field) of the current table.
 * `Meta` + `Opt` + `Arrow up`: move up the current row.
 * `Meta` + `Opt` + `Arrow down`: move down the current row.
 * `Meta` + `Opt` + `Shift` + `I`: add a new column in the current table, after confirmation.
@@ -428,6 +429,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+**Version 1.3.8**
+
+- Bugs fixing: the checking of duplicate words didn't always work as expected.
+- Added the shortcut `Meta + Shift + G` in the grid to search upward.
 
 **Version 1.3.7**
 
