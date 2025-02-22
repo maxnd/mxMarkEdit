@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.6, published on February 19 2025.
+Version 1.3.7, published on February 22 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -126,6 +126,8 @@ Above this list there is combo box in which it’s possible to select the level 
 
 In the todo items, it’s possible to add a deadline. The format of the date should be `year-month-day`, where month and day are always of two digits. The date must be followed by 3 separator characters before the title of the todo item. For instance: `- [X] 2024-12-05 • Buy some food`. The shortcut `Meta + T` mentioned also below insert automatically the todo marker and the deadline in the proper format with a delay in days that is specified by the user in the options of the app (the default is 7 days).
 
+To assign a todo item to one or more resources (persons), insert their names everywhere in the title of the item preceded by `@`; each resource name must end with a space, a period, a comma, a colon or a semicolon. For instance: `- [X] 2024-12-05 • @Mark, @John - Buy some food`, or `- [X] 2024-12-05 • @Mark; @John. - Buy some food`. It will be possible to filter the todo items by resource in the todo form.
+
 ## Tables
 
 At the bottom of the text there’s an Excel-like grid of 105 columns and 10,000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the name of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The name in the first column is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possible to insert any kind of data. It’s possible to add more tables in the grid, adding other names under the `Table names` column followed by some fields, like in the second screenshot above.
@@ -211,6 +213,8 @@ Once the document has been completed and the keys of the various works have been
 - If a citation is about the same work as the immediately preceding citation, the word `Ibidem` is inserted in italics in place of its bibliographic data.
 - The bibliography is inserted at the end of the text. It contains all and only the works actually cited in the document, and is created associating the content of columns B1, D1 and F1 separated by a comma. The bibliography is ordered alphabetically.
 
+If a `Ibidem` is followed by the same page numbers of the previous citations, they may be removed manually if this is required by the editorial rules.
+
 In case the citations need to be formatted differently to correspond to other methodological requests, it is enough to correct only the content of column F1, containing the details of the works, in all the tables, and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
 
 While in mxMarkEdit it's not possible to format the authors in small caps, it's easy to do this in a Word or Writer document exported with Pandoc. In the bibliography table, format the authors like this: `[Taylor, Bill]{.smallcaps}`. When exported with Pandoc, the final document will have the authors in small caps.
@@ -268,7 +272,7 @@ The `Edit - Insert link to file` menu item allows to select one or more files an
 
 The `Edit - Show current title or todo` menu item shows at the top of the left list, after five other items if existing, the title or todo item the cursor is under to.
 
-The `Edit - Show todo form` menu item opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the content of the form; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
+The `Edit - Show todo form` menu item opens a form with the list of all the todo items. Pressing `Return` or double clicking on one of them selects the corresponding item in the document. Click on the headers of the columns of the form sorts the data, initially sorted by deadline. The date of the expired items is shown in red. The combo list at the bottom allows to show only the todo items assigned to a resource. The check box at the bottom allows to hide the todo items already done. The button `Toggle state` changes the state of the selected todo item from to be done to done, and vice versa. The button `Copy` copies into the clipboard the visible todo items; the values are separated by tab, so that they may be pasted in the grid or in a spreadsheet. See below for the shortcuts active on this form.
 
 The `Edit - Show duplicate words` menu item shows in red all the words of each sentence that are present twice in the same sentence or in the previous one, to alert the user to use possibly a synonym. Moving the cursor or clicking somewhere in the text remove the red color.
 
@@ -424,6 +428,14 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+**Version 1.3.7**
+
+- Added the possibility to assign a todo item to one or more resources and to filter the items assigned to a resource in the todo form.
+- Bugs fixing: in the todo form, the heading of the items without a deadline was not reported.
+- Bugs fixing: the find and replace functions could be activated also if the search field was empty.
+- Bugs fixing: the checking of duplicate words didn't always work as expected.
+- Minor bugs fixing.
 
 **Version 1.3.6**
 

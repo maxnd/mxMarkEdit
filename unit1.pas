@@ -3527,7 +3527,7 @@ var
   slList1, slList2: TStringList;
   stText: WideString;
   stItem: String = '';
-  stSeparators: String = '.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ';
+  stSeparators: String = '*_.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ';
 begin
   if blIsPresenting = True then
   begin
@@ -3554,7 +3554,8 @@ begin
       begin
         slList1.Text := slList2.Text;
         slList2.Clear;
-      end;
+      end
+      else
       if Pos(stText[i], stSeparators) > 0 then
       begin
         if ((slList1.IndexOf(UTF8UpperCase(stItem)) > -1) or

@@ -39,6 +39,7 @@ type
     bnCopy: TButton;
     bnToggle: TButton;
     cbHide: TCheckBox;
+    cbResources: TComboBox;
     lbTot: TLabel;
     pnTasks: TPanel;
     sgTasks: TStringGrid;
@@ -47,6 +48,7 @@ type
     procedure bnOKClick(Sender: TObject);
     procedure bnToggleClick(Sender: TObject);
     procedure cbHideClick(Sender: TObject);
+    procedure cbResourcesChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -69,6 +71,7 @@ resourcestring
   tsk001 = 'day';
   tsk002 = 'days';
   tsk003 = 'Todo items:';
+  tsk004 = 'All the resources';
 
 implementation
 
@@ -158,20 +161,23 @@ begin
       sgTasks.Columns[4].Title.Caption + LineEnding;
     for i := 1 to sgTasks.RowCount - 1 do
     begin
-      if sgTasks.Cells[1, i] = '1' then
-      begin
-        stClip := stClip + '●'#9;
-      end
-      else
-      begin
-        stClip := stClip + '○'#9;
+      if sgTasks.RowHeights[i] > 0 then
+      begin;
+        if sgTasks.Cells[1, i] = '1' then
+        begin
+          stClip := stClip + '●'#9;
+        end
+        else
+        begin
+          stClip := stClip + '○'#9;
+        end;
+        if sgTasks.Cells[2, i] <> '' then
+        begin
+          stClip := stClip + UTF8Copy(sgTasks.Cells[2, i], 1, 10) + #9;
+        end;
+        stClip := stClip + sgTasks.Cells[3, i] + #9 +
+          sgTasks.Cells[4, i] + LineEnding;
       end;
-      if sgTasks.Cells[2, i] <> '' then
-      begin
-        stClip := stClip + UTF8Copy(sgTasks.Cells[2, i], 1, 10) + #9;
-      end;
-      stClip := stClip + sgTasks.Cells[3, i] + #9 +
-        sgTasks.Cells[4, i] + LineEnding;
     end;
   end;
   Clipboard.AsText := stClip;
@@ -180,6 +186,36 @@ end;
 procedure TfmTasks.cbHideClick(Sender: TObject);
 begin
   CreateList;
+end;
+
+procedure TfmTasks.cbResourcesChange(Sender: TObject);
+var
+  i: Integer;
+begin
+  for i := 1 to sgTasks.RowCount - 1 do
+  begin
+    if ((UTF8Pos('@' + cbResources.Text + ' ', sgTasks.Cells[4, i]) > 0) or
+      (UTF8Pos('@' + cbResources.Text + ',', sgTasks.Cells[4, i]) > 0) or
+      (UTF8Pos('@' + cbResources.Text + ';', sgTasks.Cells[4, i]) > 0) or
+      (UTF8Pos('@' + cbResources.Text + '.', sgTasks.Cells[4, i]) > 0) or
+      (UTF8Pos('@' + cbResources.Text + ':', sgTasks.Cells[4, i]) > 0) or
+      (cbResources.ItemIndex = 0)) then
+    begin
+      sgTasks.RowHeights[i] := sgTasks.DefaultRowHeight;
+    end
+    else
+    begin
+      sgTasks.RowHeights[i] := 0;
+    end;
+  end;
+  for i := 1 to sgTasks.RowCount - 1 do
+  begin
+    if sgTasks.RowHeights[i] = sgTasks.DefaultRowHeight then
+    begin
+      sgTasks.Row := i;
+      Break;
+    end;
+  end;
 end;
 
 procedure TfmTasks.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -293,9 +329,10 @@ end;
 
 procedure TfmTasks.CreateList;
 var
-  i, iLength: integer;
+  i, n, iLength: integer;
   dtDeadline: TDate;
-  stDays, stHeading: string;
+  stDays, stHeading, stTitle, stResource: string;
+  blResource: Boolean = False;
   slTodo: TStringList;
 begin
   sgTasks.RowCount := 1;
@@ -338,6 +375,7 @@ begin
         end
         else
         begin
+          sgTasks.Cells[3, sgTasks.RowCount - 1] := stHeading;
           sgTasks.Cells[4, sgTasks.RowCount - 1] :=
             UTF8Copy(slTodo[i], 7, UTF8Length(slTodo[i]));
         end;
@@ -368,6 +406,7 @@ begin
         end
         else
         begin
+          sgTasks.Cells[3, sgTasks.RowCount - 1] := stHeading;
           sgTasks.Cells[4, sgTasks.RowCount - 1] :=
             UTF8Copy(slTodo[i], 7, UTF8Length(slTodo[i]));
         end;
@@ -383,6 +422,45 @@ begin
   begin
     sgTasks.SortColRow(True, 2);
     sgTasks.Row := 1;
+    cbResources.Items.Clear;
+    for i := 1 to sgTasks.RowCount - 1 do
+    begin
+      if UTF8Pos('@', sgTasks.Cells[4, i]) > 0 then begin
+        stTitle := sgTasks.Cells[4, i];
+        stResource := '';
+        for n := 0 to UTF8Length(stTitle) do
+        begin
+          if stTitle[n] = '@' then
+          begin
+            blResource := True;
+          end
+          else
+          if ((stTitle[n] = ' ') or (stTitle[n] = ',') or (stTitle[n] = ';') or
+            (stTitle[n] = '.') or (stTitle[n] = ':')) then
+          begin
+            if stResource <> '' then
+            begin
+              cbResources.Items.Add(stResource);
+              stResource := '';
+            end;
+            blResource := False;
+          end
+          else
+          if blResource = True then
+          begin
+            stResource := stResource + stTitle[n];
+          end;
+        end;
+      end;
+    end;
+    cbResources.Items.Add(' ' + tsk004);
+    cbResources.ItemIndex := 0;
+  end
+  else
+  begin
+    cbResources.Items.Clear;
+    cbResources.Items.Add(' ' + tsk004);
+    cbResources.ItemIndex := 0;
   end;
   lbTot.Caption := tsk003 + ' ' + FormatFloat('#,0', sgTasks.RowCount - 1);
 end;

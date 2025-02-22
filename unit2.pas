@@ -241,6 +241,10 @@ procedure TfmSearch.bnRepAllClick(Sender: TObject);
 var
   stFind, stReplace: string;
 begin
+  if ((fmMain.dbText.Text = '') or (edFind.Text = '')) then
+  begin
+    Exit;
+  end;
   if MessageDlg(msgFnd002 + ' “' + edFind.Text + '” ' + LineEnding + msgFnd003 +
     ' “' + edReplace.Text + '”?', mtConfirmation, [mbOK, mbCancel], 0) = mrOk then
   begin
@@ -261,7 +265,7 @@ procedure TfmSearch.bnRepOneClick(Sender: TObject);
 var
   rng: NSRange;
 begin
-  if fmMain.dbText.Text = '' then
+  if ((fmMain.dbText.Text = '') or (edFind.Text = '')) then
   begin
     Exit;
   end;
@@ -271,6 +275,7 @@ begin
       selectedRange;
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       insertText_replacementRange(NSStringUtf8(edReplace.Text), rng);
+    fmMain.dbText.SelStart := rng.length + rng.location;
     bnNextClick(nil);
   end;
 end;

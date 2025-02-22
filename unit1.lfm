@@ -1044,7 +1044,7 @@ object fmMain: TfmMain
   OnDropFiles = FormDropFiles
   OnKeyDown = FormKeyDown
   SnapOptions.SnapToMonitor = True
-  LCLVersion = '3.7.0.0'
+  LCLVersion = '3.8.0.0'
   object spTitles: TSplitter
     Left = 170
     Height = 582
@@ -1279,7 +1279,7 @@ object fmMain: TfmMain
         TabOrder = 1
         object edFindGrid: TEdit
           Left = 103
-          Height = 22
+          Height = 21
           Top = 9
           Width = 227
           TabOrder = 0

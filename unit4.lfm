@@ -14,7 +14,7 @@ object fmTasks: TfmTasks
   OnKeyDown = FormKeyDown
   Position = poDesktopCenter
   ShowInTaskBar = stNever
-  LCLVersion = '3.7.0.0'
+  LCLVersion = '3.8.0.0'
   object sgTasks: TStringGrid
     Left = 15
     Height = 492
@@ -89,7 +89,7 @@ object fmTasks: TfmTasks
       Width = 75
       Anchors = [akRight, akBottom]
       Caption = 'Close'
-      TabOrder = 3
+      TabOrder = 4
       TabStop = False
       OnClick = bnOKClick
     end
@@ -109,7 +109,7 @@ object fmTasks: TfmTasks
       Width = 75
       Anchors = [akRight, akBottom]
       Caption = 'Copy'
-      TabOrder = 2
+      TabOrder = 3
       TabStop = False
       OnClick = bnCopyClick
     end
@@ -120,16 +120,32 @@ object fmTasks: TfmTasks
       Width = 125
       Anchors = [akRight, akBottom]
       Caption = 'Toggle state'
-      TabOrder = 1
+      TabOrder = 2
       TabStop = False
       OnClick = bnToggleClick
     end
     object lbTot: TLabel
-      Left = 268
+      Left = 208
       Height = 16
-      Top = 4
+      Top = 5
       Width = 82
       Caption = 'Todo items: 0'
+    end
+    object cbResources: TComboBox
+      Left = 464
+      Height = 20
+      Top = 4
+      Width = 202
+      ItemHeight = 26
+      ItemIndex = 0
+      Items.Strings = (
+        'All the resources'
+      )
+      Sorted = True
+      Style = csDropDownList
+      TabOrder = 1
+      Text = 'All the resources'
+      OnChange = cbResourcesChange
     end
   end
 end
