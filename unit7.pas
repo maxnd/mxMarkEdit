@@ -83,6 +83,8 @@ resourcestring
   srcut023 = 'Transform a numbered list into a list with dashes (-).';
   srcut024 = 'Set the current position of the cursor in the bookmark.';
   srcut025 = 'Move the cursor to the position already set in the bookmark.';
+  srcut025b = 'Show the picture contained in a Markdown image link at the beginning of the ' +
+       'current paragraph (Esc to close).';
   srcut026 = 'Activate the presentation mode and highlight the following paragraph, ' +
     'skipping the empty lines.';
   srcut026b = 'Activate the presentation mode and highlight the previous paragraph, ' +
@@ -210,7 +212,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 90;
+  sgShortcuts.RowCount := 91;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -288,6 +290,9 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + J';
   sgShortcuts.Cells[1, i] := srcut025;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Shift + P';
+  sgShortcuts.Cells[1, i] := srcut025b;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + E';
   sgShortcuts.Cells[1, i] := srcut026;

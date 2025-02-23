@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.8, published on February 22 2025.
+Version 1.3.9, published on February 23 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -242,7 +242,7 @@ it’s possible to use the app for presentations:
 
 In presentation mode, the status bar is hidden, and the spell checking is automatically disabled. To quit the presentation mode, press `Esc` or click anywhere in the text. Possibly, reenable the spell checking.
 
-If in the document there is a link to a picture at the beginning of a paragraph and properly formatted (e.g. `![Data on sales](file:///Users/massimo/Downloads/sales-data.jpg`), that picture will be shown during the presentation.
+If in the document there is a link to a picture at the beginning of a paragraph and properly formatted (e.g. `![Data on sales](file:///Users/massimo/Downloads/sales-data.jpg`), that picture will be shown during the presentation. To close the picture, click on it or press `ESC`.
 
 Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimized for mxMarkEdit with the menu item `Tools` - `Optimize presentation...` if it has to be presented with mxMarkEdit.
 
@@ -345,6 +345,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `.`: transform a numbered list into a list with dashes (`-`).
 * `Meta` + `Shift` + `J`: set the current position of the cursor in the bookmark.
 * `Meta` + `J`: move the cursor to the position already set in the bookmark.
+* `Meta` + `Shift` + `P`: show the picture contained in a Markdown image link at the beginning of the current paragraph.
 * `Meta` + `E`: show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Shift` + `E`: show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Arrow down`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
@@ -429,6 +430,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+**Version 1.3.9**
+
+- Added `Meta + Shift + P` to show the picture contained in a Markdown image link at the beginning of the current paragraph.
+- Bugs fixing: deleting some cells in the grid didn't activated the save function.
 
 **Version 1.3.8**
 

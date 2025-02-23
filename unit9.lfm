@@ -12,7 +12,7 @@ object fmPicture: TfmPicture
   OnKeyDown = FormKeyDown
   Position = poMainFormCenter
   ShowInTaskBar = stNever
-  LCLVersion = '3.7.0.0'
+  LCLVersion = '3.8.0.0'
   object bvPicture: TBevel
     Left = 0
     Height = 408

@@ -37,7 +37,7 @@ begin
   if (((key = Ord('E')) and (Shift = [ssMeta]) or
   ((key = 40) and (Shift = [ssMeta])) or
   ((key = Ord('E')) and (Shift = [ssMeta, ssShift]) or
-  ((key = 38) and (Shift = [ssMeta]))))) then
+  ((key = 38) and (Shift = [ssMeta])) or (key = 27)))) then
   begin
     key := 0;
     Close;

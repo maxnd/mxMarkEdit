@@ -1503,6 +1503,27 @@ begin
     key := 0;
   end
   else
+  if ((key = Ord('P')) and (Shift = [ssMeta, ssShift])) then
+  begin
+    if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '![' then
+    begin
+      stFile := UTF8Copy(dbText.Lines[dbText.CaretPos.Y],
+        UTF8CocoaPos('](', dbText.Lines[dbText.CaretPos.Y]) + 9,
+        UTF8CocoaPos(')', dbText.Lines[dbText.CaretPos.Y]) -
+        UTF8CocoaPos('](', dbText.Lines[dbText.CaretPos.Y]) - 9);
+      stFile := UTF8StringReplace(stFile, '%20', ' ', [rfReplaceAll]);
+    end;
+    if FileExistsUTF8(stFile) then
+    try
+      fmPicture.Width := fmMain.Width * 2 div 3;
+      fmPicture.Height := fmMain.Height * 2 div 3;
+      fmPicture.imPicture.Picture.LoadFromFile(stFile);
+      fmPicture.ShowModal;
+    except
+    end;
+    key := 0;
+  end
+  else
   if ((key = Ord('D')) and (Shift = [ssMeta])) then
   begin
     if dateformat = 'en' then
@@ -2392,6 +2413,10 @@ begin
           grRect := sgTable.SelectedRange[i];
           sgTable.Clean(grRect, [gzNormal]);
         end;
+        blTableMod := True;
+        stGridLoaded := stTableLoaded;
+        LabelFileNameChars;
+        blTableSaved := False;
       end;
       key := 0;
     end;
