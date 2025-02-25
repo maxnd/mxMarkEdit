@@ -1,4 +1,4 @@
-//***********************************************************************
+// ***********************************************************************
 // ***********************************************************************
 // mxMarkEdit 1.x
 // Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
@@ -37,11 +37,14 @@ type
   { TfmMain }
 
   TfmMain = class(TForm)
+    bnResetFilter: TButton;
     cbFilter: TComboBox;
     dbText: TMemo;
+    edFilterGrid: TEdit;
     lbDateTime: TLabel;
     lbChars: TLabel;
     lbFindGrid: TLabel;
+    lbFilterGrid: TLabel;
     miFileImpTables: TMenuItem;
     miFileInsert: TMenuItem;
     miToolsBiblio: TMenuItem;
@@ -121,6 +124,8 @@ type
     procedure dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure dbTextKeyPress(Sender: TObject; var Key: char);
     procedure dbTextKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure edFilterGridKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure edFindGridKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -187,6 +192,7 @@ type
     procedure CreateYAML;
     procedure DeactForm(stFileName: String);
     procedure DisablePresenting;
+    procedure FilterInGrid;
     procedure FindInGrid(blDown: Boolean);
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
     function GetPara(txt: NSTextStorage; textOffset: integer;
@@ -196,6 +202,7 @@ type
     procedure OpenLastFile(stLastFileName: String);
     procedure RenumberFootnotes;
     procedure RenumberList;
+    procedure ResetFilterGrid;
     function SaveFile: boolean;
     procedure SaveScreenShot;
     procedure SelectInsertFootnote;
@@ -357,6 +364,8 @@ begin
     lbChars.Font.Color := clSilver;
     lbFindGrid.Font.Color := clSilver;
     edFindGrid.Font.Color := clSilver;
+    lbFilterGrid.Font.Color := clSilver;
+    edFilterGrid.Font.Color := clSilver;
     lbDateTime.Font.Color := clSilver;
     clTitle1 := clWhite;
     clTitle2 := clWhite;
@@ -391,6 +400,8 @@ begin
     lbChars.Font.Color := clDkGray;
     lbFindGrid.Font.Color := clDkGray;
     edFindGrid.Font.Color := clDkGray;
+    lbFilterGrid.Font.Color := clDkGray;
+    edFilterGrid.Font.Color := clDkGray;
     lbDateTime.Font.Color := clDkGray;
     clTitle1 := clBlack;
     clTitle2 := clBlack;
@@ -668,6 +679,7 @@ begin
       stFileName := ParamStrUTF8(1);
       DeactForm(stFileName);
       dbText.Lines.LoadFromFile(stFileName);
+      ResetFilterGrid;
       if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
       begin
         sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
@@ -705,6 +717,7 @@ begin
       odOpen.FileName := stFileName;
       DeactForm(stFileName);
       dbText.Lines.LoadFromFile(stFileName);
+      ResetFilterGrid;
       if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
       begin
         sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
@@ -748,6 +761,7 @@ begin
     stFileName := FileNames[0];
     DeactForm(stFileName);
     dbText.Lines.LoadFromFile(stFileName);
+    ResetFilterGrid;
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
@@ -2151,6 +2165,22 @@ begin
   end;
 end;
 
+procedure TfmMain.edFilterGridKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = 13 then
+  begin
+    if edFilterGrid.Text <> '' then
+    begin
+      FilterInGrid;
+    end
+    else
+    begin
+      ResetFilterGrid;
+    end;
+  end;
+end;
+
 procedure TfmMain.sgTitlesClick(Sender: TObject);
 var
   i, iLen, iHeader: integer;
@@ -3251,6 +3281,7 @@ begin
     stFileName := odOpen.FileName;
     DeactForm(stFileName);
     dbText.Lines.LoadFromFile(stFileName);
+    ResetFilterGrid;
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
@@ -3329,6 +3360,7 @@ begin
           '.csv', [cffOverwriteFile]);
         if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
         begin
+          ResetFilterGrid;
           sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
             #9, False);
           sgTable.RowCount := csTableRowCount;
@@ -5925,6 +5957,60 @@ begin
   end;
 end;
 
+procedure TfmMain.FilterInGrid;
+var
+  i, x: Integer;
+begin
+  if ((pnGrid.Height > 1) and (edFilterGrid.Text <> '')
+    and (sgTable.Col > 1)) then
+  begin
+    for i := sgTable.Row downto 0 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end;
+    end;
+    if ((i > 0) and (i < sgTable.RowCount - 1)) then
+    begin
+      for x := i + 1 to sgTable.RowCount - 1 do
+      begin
+        if sgTable.Cells[1, x] <> '' then
+        begin
+          Break;
+        end
+        else
+        if sgTable.Cells[sgTable.Col, x] <> '' then
+        begin
+          if UTF8CocoaPos(UTF8UpperString(edFilterGrid.Text),
+            UTF8UpperString(sgTable.Cells[sgTable.Col, x]), 1) > 0 then
+          begin
+            sgTable.RowHeights[x] := sgTable.DefaultRowHeight;
+          end
+          else
+          begin
+            sgTable.RowHeights[x] := 0;
+          end;
+        end;
+      end;
+    end
+  end;
+end;
+
+procedure TfmMain.ResetFilterGrid;
+var
+  i: Integer;
+begin
+  for i := 1 to sgTable.RowCount - 1 do
+  begin
+    if sgTable.RowHeights[i] = 0 then
+    begin
+      sgTable.RowHeights[i] := sgTable.DefaultRowHeight;
+    end;
+  end;
+  edFilterGrid.Clear;
+end;
+
 procedure TfmMain.CreateYAML;
 begin
   blTextOnChange := True;
@@ -5963,6 +6049,7 @@ begin
     stFileName := stLastFileName;
     DeactForm(stFileName);
     dbText.Lines.LoadFromFile(stFileName);
+    ResetFilterGrid;
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
     begin
       sgTable.LoadFromCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',

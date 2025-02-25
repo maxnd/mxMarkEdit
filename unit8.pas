@@ -98,6 +98,7 @@ begin
     checkTextInDocument(nil);
   TCocoaTextView(NSScrollView(dbEditor.Handle).documentView).
     undoManager.removeAllActions;
+  dbeditor.Font.Name := fmMain.dbText.Font.Name;
 end;
 
 procedure TfmEditor.FormShow(Sender: TObject);
@@ -122,7 +123,7 @@ begin
   begin
     Close;
     key := 0;
-  end
+  end;
 end;
 
 procedure TfmEditor.bnOKClick(Sender: TObject);

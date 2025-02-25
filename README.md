@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.9, published on February 23 2025.
+Version 1.3.10, published on February 25 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -143,6 +143,8 @@ In the grid, it’s possible to select more cells dragging the mouse or holding 
 To edit easily a cell in the grid, it's available an extended editor activated with the shortcut `Ctrl + Space`. In this editor no formatting is available, but the links are properly recognized. To quit the editor, use the `Close` button or press `ESC`.
 
 At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` or the shortcut `Meta + G` to select the following cell after the current one in just the current field (column) of the current table that contains that text, or `Shift + Return` or the shortcut `Meta + Shift G` to select the previous cell before the current one in just the current field (column) of the current table that contains that text. Anyway, if the selected column is the first, containing the table names, the search will look for the following or previous table name. The search is case insensitive. To continue the search, select again the field and press `Return` or `Shift + Return`, or use the shortcut `Meta + G` or `Meta + Shift + G` when the grid is focused.
+
+At the right of the `Find` field there is the `Filter` field useful to filter the rows of the current table. To activate the filter, write something in this field and press `Return` to filter the rows of the current table which in the current field contain the typed text. To clear all the filters in all the tables, clear the content of the `Filter` field and press `Return`.
 
 If a cell contains a formula, in the cell below it will be reported the result of the calculation of all the numbers contained in the previous cells of the same field (column) and of the same table. The result will be updated when a value in those cells will be changed. Textual contents and improperly formatted numbers will not be considered. The name of the table and of the field (column) must be specified, otherwise no result will be shown.
 
@@ -430,6 +432,11 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+**Version 1.3.10**
+
+- Added the filter box under the grid.
+- The expanded editor uses now the default font of the text with a more readable size.
 
 **Version 1.3.9**
 

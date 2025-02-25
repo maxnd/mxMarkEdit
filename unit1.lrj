@@ -6,6 +6,7 @@
 {"hash":4294967295,"name":"tfmmain.sgtitles.columns[0].title.caption","sourcebytes":[],"value":""},
 {"hash":4294967295,"name":"tfmmain.sgtitles.columns[1].title.caption","sourcebytes":[],"value":""},
 {"hash":315460,"name":"tfmmain.lbfindgrid.caption","sourcebytes":[70,105,110,100],"value":"Find"},
+{"hash":80755394,"name":"tfmmain.lbfiltergrid.caption","sourcebytes":[70,105,108,116,101,114],"value":"Filter"},
 {"hash":315429,"name":"tfmmain.mifile.caption","sourcebytes":[70,105,108,101],"value":"File"},
 {"hash":21703,"name":"tfmmain.mifilenew.caption","sourcebytes":[78,101,119],"value":"New"},
 {"hash":107745630,"name":"tfmmain.mifileopen.caption","sourcebytes":[79,112,101,110,46,46,46],"value":"Open..."},
