@@ -101,6 +101,7 @@ resourcestring
   srcut030 = 'Show the tables grid.';
   srcut030b = 'Copy the selected citations in the document so that they can be properly ' +
     'pasted in the bibliographic table.';
+  srcut030c = 'Show the citation taken from the bibliographic table that matches the current key.';
   srcut031 = 'If the cursor is within a heading, cut this heading and all the ' +
     'text that is under it, included possible headings of lower levels.';
   srcut032 = 'Within a footnote reference in the document, move the ' +
@@ -323,6 +324,9 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Opt + C';
   sgShortcuts.Cells[1, i] := srcut030b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Shift + K';
+  sgShortcuts.Cells[1, i] := srcut030c;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Shift + X';
   sgShortcuts.Cells[1, i] := srcut031;

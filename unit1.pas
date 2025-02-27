@@ -305,6 +305,7 @@ resourcestring
     'with the bibliography?';
   msg024 = 'It was not possible to save the file with bibliography.';
   msg025 = 'Replace the content of the grid with the tables of the selected file?';
+  msg026 = 'The selected key has no match in the bibliographic table.';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -1080,7 +1081,8 @@ var
   slCitations: TStringList;
   i, iPos, iNum: integer;
   rngStart, rngEnd: NSRange;
-  blCode: boolean;
+  stAttWord: NSAttributedString;
+  blCode, blQuoteFound: boolean;
   stText: WideString;
   myDate: TDate;
 begin
@@ -1639,6 +1641,73 @@ begin
       slCitations.Free;
     end;
     key := 0;
+  end
+  else
+  if ((key = Ord('K')) and (Shift = [ssShift, ssMeta])) then
+  begin
+    iPos := dbText.SelStart;
+    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+      documentView).selectedRange;
+    rngStart.length := 1;
+    stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      attributedSubstringFromRange(rngStart);
+    while ((UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> '{') and
+      (UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> LineEnding) and
+      (rngStart.location > 0)) do
+    begin
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        moveBackward(nil);
+      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).selectedRange;
+      rngStart.length := 1;
+      stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        attributedSubstringFromRange(rngStart);
+    end;
+    if UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) = '{' then
+    begin
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        moveForward(nil);
+      rngEnd := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).selectedRange;
+      rngEnd.length := 1;
+      while ((UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> '}') and
+        (UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> LineEnding) and
+        (rngEnd.location < TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+        documentView).textStorage.length)) do
+      begin
+        TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+          moveForward(nil);
+        rngEnd := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+          documentView).selectedRange;
+        rngEnd.length := 1;
+        stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          attributedSubstringFromRange(rngEnd);
+      end;
+      if UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) = '}' then
+      begin
+        rngStart.location := rngStart.location + 1;
+        rngStart.length := rngEnd.location - rngStart.location;
+        stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+          attributedSubstringFromRange(rngStart);
+        dbText.SelStart := iPos;
+        blQuoteFound := False;
+        for i := 1 to sgTable.RowCount - 1 do
+        begin
+          if sgTable.Cells[2, i] = NSStringToString(stAttWord.string_) then
+          begin
+            MessageDlg(sgTable.Cells[4, i] + ', '+
+              sgTable.Cells[5, i] + ', ' +
+              sgTable.Cells[7, i] + '.', mtInformation, [mbOK], 0);
+            blQuoteFound := True;
+            Break;
+          end;
+        end;
+        if blQuoteFound = False then
+        begin
+          MessageDlg(msg026, mtWarning, [mbOK], 0);
+        end;
+      end;
+    end;
   end
   else
   if ((key = 190) and (Shift = [ssAlt, ssMeta])) then

@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.10, published on February 25 2025.
+Version 1.3.11, published on February 27 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -204,6 +204,8 @@ Finally, it's possible to keep and update all the bibliography in just one `.cvs
 
 To insert a citation of a work in the document, normally in the footnotes, just insert its identification key between two curly brackets, followed by all the detailed elements necessary for the single citation. For example, `Cf. {Taylor 2024}, pp. 23-46.`. It's necessary to be careful in typing correctly the key of the work to be quoted, respecting uppercase and lowercase. To do this, just display the bibliographic table, identify the key to be reported, copy it in clipboard with the shortcut `Meta + Opt + C` and paste it into the text.
 
+To have a visual feedback of the citation related to a key without opening the grid, use the shortcut `Meta + Shift + K` when the cursor is inside the key, that is among the two curly brackets that surround it.
+
 If it's necessary to quote an ancient text contained in a modern edition and to mention a number or chapter of its passage after the original title, use the key just for the modern work, and quote manually the first. For instance: `S. Augustine, *De Civitate Dei* I, 1-36, in {Augustine 2020}, 50.`. Of course, only the modern edition will appear in the bibliography.
 
 ### Producing a document with bibliography
@@ -358,6 +360,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Opt` + `U`: capitalize the current word.
 * `Meta` + `Shift` + `T`: show the tables grid.
 * `Meta + Opt + C`: copy the selected citations so that they can be properly pasted in the bibliographic table.
+* `Meta + Shift + K`: show the citation taken from the bibliographic table that matches the current key.
 * `Meta` + `Shift` + `X`: if the cursor is within a heading, cut in the clipboard the same heading and all the text that is under it, included possible headings of lower levels; this text may be pasted elsewhere;
 * `Meta` + `Shift` + `F`:
   * within a footnote reference in the document (e.g. `[^1]`), move the cursor to the corresponding footnote;
@@ -432,6 +435,10 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+**Version 1.3.11**
+
+- Added the shortcut `Meta + Shift + K` to show the citation taken from the bibliographic table that matches the current key.
 
 **Version 1.3.10**
 
