@@ -443,7 +443,7 @@ The software creates these two configuration files that can be deleted to reset 
 - In the grid, now the filter doesn't hide the formulas and the result fields, and the rows not filtered are not included in the computations.
 - The `---count` formula now counts the number of the visible rows of the column, also non numeric.
 - Added the shortcut `Meta + Ctrl + Shift + F` to focus the filter field in the grid.
-. Minor graphic improvements.
+- Minor graphic improvements.
 - Bugs fixing: when a filter was activated or a row deleted, the result of the formulas of the current table was not updated.
 
 **Version 1.3.11**
