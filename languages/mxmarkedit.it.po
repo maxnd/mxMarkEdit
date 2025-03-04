@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.3.11"
+msgid "1.3.12"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1183,7 +1183,11 @@ msgstr "Ordina in modo discendente il contenuto della colonna corrente nella tab
 
 #: unit7.srcut053
 msgid "Move the cursor in the search field, if it’s visible."
-msgstr "Sposta il cursore nel campo di ricerca, se è visibile."
+msgstr "Sposta il cursore nel campo ricerca, se è visibile."
+
+#: unit7.srcut053b
+msgid "Move the cursor in the filter field, if it's visible."
+msgstr "Sposta il cursore nel campo filtro, se è visibile."
 
 #: unit7.srcut054
 msgid "Copy the content of the selected cells in the clipboard."

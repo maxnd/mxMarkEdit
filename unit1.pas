@@ -188,6 +188,8 @@ type
     procedure miToolsShortcutsClick(Sender: TObject);
     procedure tmDateTimeTimer(Sender: TObject);
   private
+    procedure CalcAllColInGrid;
+    procedure CalcInGrid(iCol: Integer);
     procedure CreateBackup;
     procedure CreateYAML;
     procedure DeactForm(stFileName: String);
@@ -394,6 +396,7 @@ begin
     sgTable.FixedColor := clWhite;
     sgTable.BorderStyle := bsNone;
     sgTable.FocusColor := clGray;
+    pnFindGrid.Color := clWhite;
     sgTable.SelectedColor := clSilver;
     fmMain.Color := clWhite;
     spTitles.Color := clForm;
@@ -815,6 +818,15 @@ begin
     begin
       pnGrid.Height := 1;
       dbText.SetFocus;
+    end;
+    key := 0;
+  end
+  else
+  if ((key = Ord('F')) and (Shift = [ssCtrl, ssShift, ssMeta])) then
+  begin
+    if ((pnGrid.Height > 1) and (edFilterGrid.Visible = True)) then
+    begin
+      edFilterGrid.SetFocus;
     end;
     key := 0;
   end
@@ -2370,110 +2382,8 @@ begin
 end;
 
 procedure TfmMain.sgTableEditingDone(Sender: TObject);
-var
-  dbNum, dbSum, dbMax, dbMin: Double;
-  flNum: boolean;
-  dbCount, iTop, i: Integer;
 begin
-  if ((sgTable.Row > 1) and (sgTable.Col > 1)) then
-  begin
-    dbNum := 0;
-    iTop := -1;
-    for i := sgTable.Row - 1 downto 1 do
-    begin
-      if sgTable.Cells[1, i] <> '' then
-      begin
-        iTop := i + 1;
-        Break;
-      end;
-    end;
-    dbSum := 0;
-    dbMin := 0;
-    dbMax := 0;
-    dbCount := 0;
-    flNum := False;
-    if iTop > - 1 then
-    begin
-      for i := iTop to sgTable.RowCount - 2 do
-      begin
-        if ((sgTable.Cells[1, i] <> '') or (sgTable.Cells[1, i + 1] <> '')) then
-        begin
-          Exit;
-        end
-        else
-        if (((sgTable.Cells[sgTable.Col, i] = '------') or
-           (sgTable.Cells[sgTable.Col, i] = '---sum')) and
-          (i < sgTable.RowCount - 2)) then
-        begin
-          if flNum = True then
-          begin
-            sgTable.Cells[sgTable.Col, i + 1] := lb009 + ' ' +
-              FormatFloat('0.##', dbSum);
-          end;
-        end
-        else
-        if ((sgTable.Cells[sgTable.Col, i] = '---max') and
-          (i < sgTable.RowCount - 2)) then
-        begin
-          if flNum = True then
-          begin
-            sgTable.Cells[sgTable.Col, i + 1] := lb010 + ' ' +
-              FormatFloat('0.##', dbMax);
-          end;
-        end
-        else
-        if ((sgTable.Cells[sgTable.Col, i] = '---min') and
-          (i < sgTable.RowCount - 2)) then
-        begin
-          if flNum = True then
-          begin
-            sgTable.Cells[sgTable.Col, i + 1] := lb011 + ' ' +
-              FormatFloat('0.##', dbMin);
-          end;
-        end
-        else
-        if ((sgTable.Cells[sgTable.Col, i] = '---avg') and
-          (i < sgTable.RowCount - 2)) then
-        begin
-          if flNum = True then
-          begin
-            sgTable.Cells[sgTable.Col, i + 1] := lb012 + ' ' +
-              FormatFloat('0.##', dbSum / dbCount);
-          end;
-        end
-        else
-        if ((sgTable.Cells[sgTable.Col, i] = '---count') and
-          (i < sgTable.RowCount - 2)) then
-        begin
-          if flNum = True then
-          begin
-            sgTable.Cells[sgTable.Col, i + 1] := lb013 + ' ' +
-              FormatFloat('0.##', dbCount);
-          end;
-        end
-        else
-        if TryStrToFloat(sgTable.Cells[sgTable.Col, i], dbNum) = True then
-        begin
-          if flNum = False then
-          begin
-            dbMin := dbNum;
-            dbMax := dbNum;
-            flNum := True;
-          end;
-          dbSum := dbSum + dbNum;
-          if dbMax < dbNum then
-          begin
-            dbMax := dbNum;
-          end;
-          if dbMin > dbNum then
-          begin
-            dbMin := dbNum;
-          end;
-          Inc(dbCount);
-        end;
-      end;
-    end;
-  end;
+  CalcInGrid(sgTable.Col);
 end;
 
 procedure TfmMain.edFindGridKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -2494,7 +2404,7 @@ end;
 
 procedure TfmMain.sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
-  i, x, iTop, iBottom, iRight, iNextTable: Integer;
+  i, x, iTop, iBottom, iRight, iNextTable, iCol, iRow: Integer;
   iNum: Double;
   stField: String;
   grRect: TGridRect;
@@ -2507,11 +2417,21 @@ begin
     begin
       if MessageDlg(msg015, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
       begin
+        iCol := sgTable.Col;
+        iRow := sgTable.Row;
         for i := 0 to sgTable.SelectedRangeCount-1 do
         begin
           grRect := sgTable.SelectedRange[i];
           sgTable.Clean(grRect, [gzNormal]);
         end;
+        while ((sgTable.RowHeights[iRow] = 0) and
+          (iRow < sgTable.RowCount - 1)) do
+        begin
+          Inc(iRow);
+        end;
+        sgTable.Col := iCol;
+        sgTable.Row := iRow;
+        CalcAllColInGrid;
         blTableMod := True;
         stGridLoaded := stTableLoaded;
         LabelFileNameChars;
@@ -2538,7 +2458,17 @@ begin
         Exit;
       end;
     end;
+    iCol := sgTable.Col;
+    iRow := sgTable.Row;
     sgTable.DeleteColRow(False, sgTable.Row);
+    while ((sgTable.RowHeights[iRow] = 0) and
+      (iRow < sgTable.RowCount - 1)) do
+    begin
+      Inc(iRow);
+    end;
+    sgTable.Col := iCol;
+    sgTable.Row := iRow;
+    CalcAllColInGrid;
     sgTable.RowCount := csTableRowCount;
     blTableMod := True;
     stGridLoaded := stTableLoaded;
@@ -6026,6 +5956,214 @@ begin
   end;
 end;
 
+procedure TfmMain.CalcAllColInGrid;
+var
+  i, iTop: Integer;
+begin
+  iTop := -1;
+  for i := sgTable.Row - 1 downto 1 do
+  begin
+    if sgTable.Cells[1, i] <> '' then
+    begin
+      iTop := i + 1;
+      Break;
+    end;
+  end;
+  if iTop > - 1 then
+  begin
+    for i := 2 to sgTable.ColCount - 1 do
+    begin
+      if sgTable.Cells[i, iTop] <> '' then
+      begin
+        CalcInGrid(i);
+      end
+      else
+      begin
+        Exit;
+      end;
+    end;
+  end;
+end;
+
+procedure TfmMain.CalcInGrid(iCol: Integer);
+var
+  dbNum, dbSum, dbMax, dbMin: Double;
+  flNum: boolean;
+  dbCount, iTop, i: Integer;
+begin
+  if ((sgTable.Row > 1) and (iCol > 1)) then
+  begin
+    dbNum := 0;
+    iTop := -1;
+    for i := sgTable.Row - 1 downto 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        iTop := i + 1;
+        Break;
+      end;
+    end;
+    {if ((iTop > - 1) and ((sgTable.Cells[iCol, iTop] = '------') or
+    (sgTable.Cells[iCol, iTop] = '---sum') or
+    (sgTable.Cells[iCol, iTop] = '---max') or
+    (sgTable.Cells[iCol, iTop] = '---min') or
+    (sgTable.Cells[iCol, iTop] = '---avg') or
+    (sgTable.Cells[iCol, iTop] = '---count'))) then
+    begin
+      sgTable.Cells[iCol, iTop + 1] := '';
+      Exit;
+    end;}
+    dbSum := -MaxInt;
+    dbMin := -MaxInt;
+    dbMax := -MaxInt;
+    dbCount := -MaxInt;
+    flNum := False;
+    if iTop > - 1 then
+    begin
+      for i := iTop to sgTable.RowCount - 2 do
+      begin
+        if ((sgTable.Cells[1, i] <> '') or (sgTable.Cells[1, i + 1] <> '')) then
+        begin
+          Exit;
+        end
+        else
+        if sgTable.RowHeights[i] = 0 then
+        begin
+          Continue;
+        end
+        else
+        if (((sgTable.Cells[iCol, i] = '------') or
+           (sgTable.Cells[iCol, i] = '---sum')) and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          if flNum = True then
+          begin
+            if dbSum = -MaxInt then
+            begin
+              sgTable.Cells[iCol, i + 1] := lb009 + ' ?';
+            end
+            else
+            begin
+              sgTable.Cells[iCol, i + 1] := lb009 + ' ' +
+                FormatFloat('0.##', dbSum);
+            end;
+          end
+          else
+          begin
+            sgTable.Cells[iCol, i + 1] := lb009 + ' ?';
+          end;
+        end
+        else
+        if ((sgTable.Cells[iCol, i] = '---max') and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          if flNum = True then
+          begin
+            if dbMax = -MaxInt then
+            begin
+              sgTable.Cells[iCol, i + 1] := lb010 + ' ?';
+            end
+            else
+            begin
+              sgTable.Cells[iCol, i + 1] := lb010 + ' ' +
+                FormatFloat('0.##', dbMax);
+            end;
+          end
+          else
+          begin
+            sgTable.Cells[iCol, i + 1] := lb010 + ' ?';
+          end;
+        end
+        else
+        if ((sgTable.Cells[iCol, i] = '---min') and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          if flNum = True then
+          begin
+            if dbMin = -MaxInt then
+            begin
+              sgTable.Cells[iCol, i + 1] := lb011 + ' ?';
+            end
+            else
+            begin
+              sgTable.Cells[iCol, i + 1] := lb011 + ' ' +
+                FormatFloat('0.##', dbMin);
+            end;
+          end
+          else
+          begin
+            sgTable.Cells[iCol, i + 1] := lb011 + ' ?';
+          end;
+        end
+        else
+        if ((sgTable.Cells[iCol, i] = '---avg') and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          if flNum = True then
+          begin
+            if dbMax = -MaxInt then
+            begin
+              sgTable.Cells[iCol, i + 1] := lb012 + ' ?';
+            end
+            else
+            begin
+              sgTable.Cells[iCol, i + 1] := lb012 + ' ' +
+                FormatFloat('0.##', dbSum / dbCount);
+            end;
+          end
+          else
+          begin
+            sgTable.Cells[iCol, i + 1] := lb012 + ' ?';
+          end;
+        end
+        else
+        if ((sgTable.Cells[iCol, i] = '---count') and
+          (i < sgTable.RowCount - 2)) then
+        begin
+          if dbCount = -MaxInt then
+          begin
+            sgTable.Cells[iCol, i + 1] := lb013 + ' 0';
+          end
+          else
+          begin
+            sgTable.Cells[iCol, i + 1] := lb013 + ' ' +
+              FormatFloat('0.##', dbCount);
+          end;
+        end
+        else
+        begin
+          if sgTable.Cells[iCol, i] <> '' then
+          begin
+            if dbCount = -MaxInt then dbCount := 0;
+            Inc(dbCount);
+          end;
+          if TryStrToFloat(sgTable.Cells[iCol, i], dbNum) = True then
+          begin
+            if dbSum = -MaxInt then dbSum := 0;
+            if dbMin = -MaxInt then dbMin := 0;
+            if dbMax = -MaxInt then dbMax := 0;
+            if flNum = False then
+            begin
+              dbMin := dbNum;
+              dbMax := dbNum;
+              flNum := True;
+            end;
+            dbSum := dbSum + dbNum;
+            if dbMax < dbNum then
+            begin
+              dbMax := dbNum;
+            end;
+            if dbMin > dbNum then
+            begin
+              dbMin := dbNum;
+            end;
+          end;
+        end;
+      end;
+    end;
+  end;
+end;
+
 procedure TfmMain.FilterInGrid;
 var
   i, x: Integer;
@@ -6051,8 +6189,20 @@ begin
         else
         if sgTable.Cells[sgTable.Col, x] <> '' then
         begin
-          if UTF8CocoaPos(UTF8UpperString(edFilterGrid.Text),
-            UTF8UpperString(sgTable.Cells[sgTable.Col, x]), 1) > 0 then
+          if ((UTF8CocoaPos(UTF8UpperString(edFilterGrid.Text),
+            UTF8UpperString(sgTable.Cells[sgTable.Col, x]), 1) > 0) or
+            (sgTable.Cells[sgTable.Col, x] = '------') or
+            (sgTable.Cells[sgTable.Col, x] = '---sum') or
+            (sgTable.Cells[sgTable.Col, x] = '---max') or
+            (sgTable.Cells[sgTable.Col, x] = '---min') or
+            (sgTable.Cells[sgTable.Col, x] = '---avg') or
+            (sgTable.Cells[sgTable.Col, x] = '---count') or
+            (sgTable.Cells[sgTable.Col, x - 1] = '------') or
+            (sgTable.Cells[sgTable.Col, x - 1] = '---sum') or
+            (sgTable.Cells[sgTable.Col, x - 1] = '---max') or
+            (sgTable.Cells[sgTable.Col, x - 1] = '---min') or
+            (sgTable.Cells[sgTable.Col, x - 1] = '---avg') or
+            (sgTable.Cells[sgTable.Col, x - 1] = '---count')) then
           begin
             sgTable.RowHeights[x] := sgTable.DefaultRowHeight;
           end
@@ -6062,7 +6212,8 @@ begin
           end;
         end;
       end;
-    end
+    end;
+    CalcAllColInGrid;
   end;
 end;
 
@@ -6078,6 +6229,7 @@ begin
     end;
   end;
   edFilterGrid.Clear;
+  CalcAllColInGrid;
 end;
 
 procedure TfmMain.CreateYAML;

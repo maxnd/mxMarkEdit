@@ -1271,7 +1271,7 @@ object fmMain: TfmMain
         BevelOuter = bvNone
         ClientHeight = 42
         ClientWidth = 877
-        Color = clForm
+        Color = 2632235
         ParentBackground = False
         ParentColor = False
         ParentFont = False
@@ -1279,7 +1279,7 @@ object fmMain: TfmMain
         object edFindGrid: TEdit
           Left = 103
           Height = 21
-          Top = 9
+          Top = 11
           Width = 200
           TabOrder = 0
           OnKeyDown = edFindGridKeyDown
@@ -1287,7 +1287,7 @@ object fmMain: TfmMain
         object lbFindGrid: TLabel
           Left = 49
           Height = 16
-          Top = 11
+          Top = 13
           Width = 26
           Alignment = taRightJustify
           Caption = 'Find'
@@ -1306,7 +1306,7 @@ object fmMain: TfmMain
         object edFilterGrid: TEdit
           Left = 414
           Height = 21
-          Top = 9
+          Top = 11
           Width = 200
           TabOrder = 1
           OnKeyDown = edFilterGridKeyDown
@@ -1314,12 +1314,12 @@ object fmMain: TfmMain
         object lbFilterGrid: TLabel
           Left = 360
           Height = 16
-          Top = 11
+          Top = 15
           Width = 30
           Alignment = taRightJustify
           Caption = 'Filter'
           Color = clForm
-          Font.Color = clSilver
+          Font.Color = clBlack
           ParentColor = False
           ParentFont = False
         end

@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.11, published on February 27 2025.
+Version 1.3.12, published on March 4 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -154,9 +154,9 @@ The formulas are the followings:
 - `---max`: reports the bigger number;
 - `---min`: reports the smaller number;
 - `---avg`: reports the average of the numbers;
-- `---count`: reports the total number of the numbers;
+- `---count`: reports the total number of the rows, also non numeric;
 
-The formulas are shown in the color set by the user for the code (see below the option of the app for more information).
+The formulas are shown in the color set by the user for the code (see below the option of the app for more information). The possible filter doesn't hide the formulas and the following result fields, and the rows not filtered are not included in the computations. Before closing the document, remove the filter, so that the result fields are saved with the values relative to all the data of the column.
 
 It's possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its name.
 
@@ -395,6 +395,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `S`: sort ascending the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
 * `Meta` + `Ctrl` + `Shift` + `S`: sort descending the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
 * `Meta` + `Ctrl` + `F`: move the cursor in the search field, if it’s visible.
+* `Meta` + `Ctrl` + `Shift` + `F`: move the cursor in the filter field, if it’s visible.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
 * `Meta` + `V`: paste the content of the clipboard in the current (and possibly following) cells.
 * `Esc`: undo the last changes while the editor of a cell in the grid is still active.
@@ -408,7 +409,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 
 ### In the search files form
 
-* `Meta` + `Shift` + `F`: move the cursor in the `Find` field.
+* `Meta` + `F`: move the cursor in the `Find` field.
 * `Esc`: close the form.
 
 ### In the words recurrence form
@@ -436,6 +437,14 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+**Version 1.3.12**
+
+- In the grid, now the filter doesn't hide the formulas and the result fields, and the rows not filtered are not included in the computations.
+- The `---count` formula now counts the number of the visible rows of the column, also non numeric.
+- Added the shortcut `Meta + Ctrl + Shift + F` to focus the filter field in the grid.
+. Minor graphic improvements.
+- Bugs fixing: when a filter was activated or a row deleted, the result of the formulas of the current table was not updated.
 
 **Version 1.3.11**
 
