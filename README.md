@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.12, published on March 4 2025.
+Version 1.3.13, published on March 5 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -437,6 +437,10 @@ The software creates these two configuration files that can be deleted to reset 
 - Mentioned in [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 
 ## Revision history
+
+**Version 1.3.13**
+
+- Bugs fixing: when a cell in the grid was edited, the text was initially selected and the left and right keys where not able to move the cursor to the beginning or end of the text.
 
 **Version 1.3.12**
 

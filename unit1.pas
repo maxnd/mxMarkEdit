@@ -2411,6 +2411,11 @@ var
   myDate: TDate;
   fs: TFormatSettings;
 begin
+  if ((sgTable.EditorMode = True) and ((key = 39) or (key = 37))) then
+  begin
+    Key := 133;
+  end
+  else
   if ((key = 8) and (Shift = [])) then
   begin
     if sgTable.EditorMode = False then
