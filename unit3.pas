@@ -49,6 +49,7 @@ type
     cbStFontsMono: TComboBox;
     cbDelay: TComboBox;
     cbLineSpacing: TComboBox;
+    cbShowMarkers: TCheckBox;
     edPanOptions: TEdit;
     edPanTemplate: TEdit;
     edPanOutput: TEdit;
@@ -73,6 +74,7 @@ type
     lbStMaxSize: TLabel;
     lbStSize: TLabel;
     lbStSizeMono: TLabel;
+    lbShowMarkers: TLabel;
     lnStLineSpace: TLabel;
     lnStFonts: TLabel;
     lnStDelay: TLabel;
@@ -90,6 +92,7 @@ type
     procedure bnStFontTodoColorClick(Sender: TObject);
     procedure cbDelayChange(Sender: TObject);
     procedure cbLineSpacingChange(Sender: TObject);
+    procedure cbShowMarkersChange(Sender: TObject);
     procedure cbStFontsChange(Sender: TObject);
     procedure cbStFontsMonoChange(Sender: TObject);
     procedure edPanPathChange(Sender: TObject);
@@ -171,6 +174,7 @@ begin
   edStSize.Text := IntToStr(fmMain.dbText.Font.Size);
   edStSizeMono.text := IntToStr(iFontMonoSize);
   edStMaxSize.Text := IntToStr(iMaxSize);
+  cbShowMarkers.Checked := blShowMarkers;
   stLineSpacing := FormatFloat('0.0', iLineSpacing);
   stLineSpacing := stLineSpacing[1] + '.' + stLineSpacing[3];
   cbLineSpacing.ItemIndex := cbLineSpacing.Items.
@@ -386,6 +390,12 @@ begin
     11: iLineSpacing := 1.9;
     12: iLineSpacing := 2.0;
   end;
+  fmMain.FormatListTitleTodo;
+end;
+
+procedure TfmOptions.cbShowMarkersChange(Sender: TObject);
+begin
+  blShowMarkers := cbShowMarkers.Checked;
   fmMain.FormatListTitleTodo;
 end;
 

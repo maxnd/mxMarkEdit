@@ -1047,7 +1047,7 @@ object fmOptions: TfmOptions
   OnShow = FormShow
   Position = poDesktopCenter
   ShowInTaskBar = stNever
-  LCLVersion = '3.7.0.0'
+  LCLVersion = '3.8.0.0'
   object cbStFonts: TComboBox
     Left = 45
     Height = 20
@@ -1073,7 +1073,7 @@ object fmOptions: TfmOptions
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
-    TabOrder = 27
+    TabOrder = 28
     TabStop = False
     OnClick = bnCloseClick
   end
@@ -1105,20 +1105,20 @@ object fmOptions: TfmOptions
   end
   object edPanOptions: TEdit
     Left = 43
-    Height = 22
+    Height = 21
     Top = 409
     Width = 289
     ParentColor = True
-    TabOrder = 21
+    TabOrder = 22
     Text = '+footnotes+inline_notes'
   end
   object edPanOutput: TEdit
     Left = 344
-    Height = 22
+    Height = 21
     Top = 469
     Width = 168
     ParentColor = True
-    TabOrder = 24
+    TabOrder = 25
     Text = '.docx'
   end
   object lbPanOutput: TLabel
@@ -1139,11 +1139,11 @@ object fmOptions: TfmOptions
   end
   object edPanTemplate: TEdit
     Left = 45
-    Height = 22
+    Height = 21
     Top = 469
     Width = 267
     ParentColor = True
-    TabOrder = 23
+    TabOrder = 24
     Text = 'word-template.docx'
     OnChange = edPanTemplateChange
   end
@@ -1157,11 +1157,11 @@ object fmOptions: TfmOptions
   end
   object edPanPath: TEdit
     Left = 344
-    Height = 22
+    Height = 21
     Top = 409
     Width = 149
     ParentColor = True
-    TabOrder = 22
+    TabOrder = 23
     Text = '/usr/local/bin/'
     OnChange = edPanPathChange
   end
@@ -1282,7 +1282,7 @@ object fmOptions: TfmOptions
       '180'
     )
     Style = csDropDownList
-    TabOrder = 20
+    TabOrder = 18
     Text = '7'
     OnChange = cbDelayChange
   end
@@ -1325,7 +1325,7 @@ object fmOptions: TfmOptions
       '2.0'
     )
     Style = csDropDownList
-    TabOrder = 19
+    TabOrder = 17
     Text = '1.0'
     OnChange = cbLineSpacingChange
   end
@@ -1339,7 +1339,7 @@ object fmOptions: TfmOptions
   end
   object edStSize: TEdit
     Left = 43
-    Height = 22
+    Height = 21
     Top = 284
     Width = 50
     NumbersOnly = True
@@ -1369,7 +1369,7 @@ object fmOptions: TfmOptions
     OnClick = edStSizeLessClick
   end
   object lbStSizeMono: TLabel
-    Left = 298
+    Left = 229
     Height = 16
     Top = 261
     Width = 103
@@ -1377,8 +1377,8 @@ object fmOptions: TfmOptions
     ParentColor = False
   end
   object edStSizeMono: TEdit
-    Left = 296
-    Height = 22
+    Left = 227
+    Height = 21
     Top = 284
     Width = 50
     NumbersOnly = True
@@ -1388,7 +1388,7 @@ object fmOptions: TfmOptions
     Text = '10'
   end
   object edStSizeMonoPlus: TButton
-    Left = 356
+    Left = 287
     Height = 21
     Top = 284
     Width = 24
@@ -1398,7 +1398,7 @@ object fmOptions: TfmOptions
     OnClick = edStSizeMonoPlusClick
   end
   object edStSizeMonoLess: TButton
-    Left = 384
+    Left = 315
     Height = 21
     Top = 284
     Width = 24
@@ -1417,13 +1417,13 @@ object fmOptions: TfmOptions
   end
   object edStMaxSize: TEdit
     Left = 344
-    Height = 22
+    Height = 21
     Top = 345
     Width = 102
     NumbersOnly = True
     ParentColor = True
     ReadOnly = True
-    TabOrder = 16
+    TabOrder = 19
     Text = '250000'
   end
   object edStMaxSizePlus: TButton
@@ -1432,7 +1432,7 @@ object fmOptions: TfmOptions
     Top = 345
     Width = 24
     Caption = '+'
-    TabOrder = 17
+    TabOrder = 20
     TabStop = False
     OnClick = edStMaxSizePlusClick
   end
@@ -1442,7 +1442,7 @@ object fmOptions: TfmOptions
     Top = 345
     Width = 24
     Caption = '-'
-    TabOrder = 18
+    TabOrder = 21
     TabStop = False
     OnClick = edStMaxSizeLessClick
   end
@@ -1453,7 +1453,7 @@ object fmOptions: TfmOptions
     Width = 150
     Anchors = [akRight, akBottom]
     Caption = 'Set standard colors'
-    TabOrder = 25
+    TabOrder = 26
     TabStop = False
     OnClick = bnSetColorsClick
   end
@@ -1464,9 +1464,28 @@ object fmOptions: TfmOptions
     Width = 150
     Anchors = [akRight, akBottom]
     Caption = 'Remove colors'
-    TabOrder = 26
+    TabOrder = 27
     TabStop = False
     OnClick = bnRemoveColorsClick
+  end
+  object cbShowMarkers: TCheckBox
+    Left = 494
+    Height = 18
+    Top = 287
+    Width = 18
+    Anchors = [akTop, akRight]
+    TabOrder = 16
+    OnChange = cbShowMarkersChange
+  end
+  object lbShowMarkers: TLabel
+    Left = 427
+    Height = 16
+    Top = 261
+    Width = 85
+    Alignment = taRightJustify
+    Anchors = [akTop, akRight]
+    Caption = 'Show markers'
+    ParentColor = False
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'

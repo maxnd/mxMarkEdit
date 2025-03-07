@@ -239,13 +239,15 @@ var
   clTodo: TColor = clBlack;
   clInsertionPoint: TColor;
   clFontContrast: TColor;
-  clFontFade: Tcolor;
+  clFontFade: TColor;
+  clGridHeadings: TColor;
   stFontMono: string = 'Menlo';
   iFontMonoSize: smallint = 18;
   stFileName: string = '';
   iBookmarkPos: integer = 0;
   iDelay: integer = 7;
   iLineSpacing: double = 1.0;
+  blShowMarkers: Bool = False;
   LastDatabase1, LastDatabase2, LastDatabase3, LastDatabase4: string;
   LastDatabase5, LastDatabase6, LastDatabase7, LastDatabase8: string;
   LastPosDatabase1, LastPosDatabase2, LastPosDatabase3, LastPosDatabase4: integer;
@@ -364,6 +366,7 @@ begin
     sgTable.FocusColor := clSilver;
     sgTable.Editor.Color := $00282A2B;
     sgTable.SelectedColor := $00454545;
+    clGridHeadings := $00373737;
     lbChars.Font.Color := clSilver;
     lbFindGrid.Font.Color := clSilver;
     edFindGrid.Font.Color := clSilver;
@@ -398,6 +401,7 @@ begin
     sgTable.FocusColor := clGray;
     pnFindGrid.Color := clWhite;
     sgTable.SelectedColor := clSilver;
+    clGridHeadings := $00F0F0F0;
     fmMain.Color := clWhite;
     spTitles.Color := clForm;
     pnBottom.Color := clForm;
@@ -491,6 +495,7 @@ begin
       stFileName := MyIni.ReadString('mxmarkedit', 'filename', '');
       iDelay := MyIni.ReadInteger('mxmarkedit', 'delay', 7);
       iLineSpacing := MyIni.ReadFloat('mxmarkedit', 'linespacing', 1.0);
+      blShowMarkers := MyIni.ReadBool('mxmarkedit', 'showmarkers', false);
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
         '+footnotes+inline_notes');
       pandocTemplate := MyIni.ReadString('mxmarkedit', 'pantemplate',
@@ -983,6 +988,7 @@ begin
     MyIni.WriteString('mxmarkedit', 'filename', stFileName);
     MyIni.WriteInteger('mxmarkedit', 'delay', iDelay);
     MyIni.WriteFloat('mxmarkedit', 'linespacing', iLineSpacing);
+    MyIni.WriteBool('mxmarkedit', 'showmarkers', blShowMarkers);
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
     MyIni.WriteString('mxmarkedit', 'panoutputput', pandocOutput);
     MyIni.WriteString('mxmarkedit', 'panpath', pandocPath);
@@ -3186,6 +3192,10 @@ end;
 procedure TfmMain.sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
   aState: TGridDrawState);
 begin
+  if ((sgTable.Cells[1, aRow] <> '') and (aRow > 0)) then
+  begin
+    sgTable.Canvas.Brush.Color := clGridHeadings;
+  end;
   if aRow = 0 then
   begin
     sgTable.Canvas.Font.Style := [fsBold];
@@ -4398,8 +4408,18 @@ begin
           begin
             rng.location := iStartHeading - 1;
             rng.length := 1;
-            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            if blShowMarkers = False then
+            begin
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            end
+            else
+            begin
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clTitle1), rng);
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                applyFontTraits_range(NSBoldFontMask, rng);
+            end;
             rng.location := iStartHeading;
             rng.length := i - iStartHeading;
             TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
@@ -4411,8 +4431,18 @@ begin
           begin
             rng.location := iStartHeading - 1;
             rng.length := 2;
-            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            if blShowMarkers = False then
+            begin
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            end
+            else
+            begin
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clTitle2), rng);
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                applyFontTraits_range(NSItalicFontMask, rng);
+            end;
             rng.location := iStartHeading + 1;
             rng.length := i - iStartHeading - 1;
             TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
@@ -4424,8 +4454,18 @@ begin
           begin
             rng.location := iStartHeading - 1;
             rng.length := 3;
-            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            if blShowMarkers = False then
+            begin
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            end
+            else
+            begin
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clTitle3), rng);
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                applyFontTraits_range(NSItalicFontMask, rng);
+            end;
             rng.location := iStartHeading + 2;
             rng.length := i - iStartHeading - 2;
             TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
@@ -4437,8 +4477,18 @@ begin
           begin
             rng.location := iStartHeading - 1;
             rng.length := 4;
-            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            if blShowMarkers = False then
+            begin
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            end
+            else
+            begin
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clTitle3), rng);
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                applyFontTraits_range(NSItalicFontMask, rng);
+            end;
             rng.location := iStartHeading + 3;
             rng.length := i - iStartHeading - 3;
             TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
@@ -4450,8 +4500,18 @@ begin
           begin
             rng.location := iStartHeading - 1;
             rng.length := 5;
-            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            if blShowMarkers = False then
+            begin
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            end
+            else
+            begin
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clTitle3), rng);
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                applyFontTraits_range(NSItalicFontMask, rng);
+            end;
             rng.location := iStartHeading + 4;
             rng.length := i - iStartHeading - 4;
             TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
@@ -4463,8 +4523,18 @@ begin
           begin
             rng.location := iStartHeading - 1;
             rng.length := 6;
-            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            if blShowMarkers = False then
+            begin
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+            end
+            else
+            begin
+              TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+                setTextColor_range(ColorToNSColor(clTitle3), rng);
+              TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+                applyFontTraits_range(NSItalicFontMask, rng);
+            end;
             rng.location := iStartHeading + 5;
             rng.length := i - iStartHeading - 5;
             TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
@@ -4568,10 +4638,13 @@ begin
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
             addAttribute_value_range(NSBackgroundColorAttributeName,
             ColorToNSColor(clQuote), rng);
-          rng.location := iStartQuote - 1;
-          rng.length := 1;
-          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          if blShowMarkers = False then
+          begin
+            rng.location := iStartQuote - 1;
+            rng.length := 1;
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          end;
         end;
       end;
     end;
@@ -4600,14 +4673,17 @@ begin
           applyFontTraits_range(NSBoldFontMask, rng);
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
           applyFontTraits_range(NSItalicFontMask, rng);
-        rng.location := iStartBoldItalics - 1;
-        rng.length := 3;
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-          addAttribute_value_range(NSFontAttributeName, miniFont, rng);
-        rng.location := i - 1;
-        rng.length := 3;
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-          addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+        if blShowMarkers = False then
+        begin
+          rng.location := iStartBoldItalics - 1;
+          rng.length := 3;
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          rng.location := i - 1;
+          rng.length := 3;
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+        end;
       end;
     end
     // Bold
@@ -4627,14 +4703,17 @@ begin
         rng.length := i - iStartBold - 2;
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
           applyFontTraits_range(NSBoldFontMask, rng);
-        rng.location := iStartBold - 1;
-        rng.length := 2;
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-          addAttribute_value_range(NSFontAttributeName, miniFont, rng);
-        rng.location := i - 1;
-        rng.length := 2;
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-          addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+        if blShowMarkers = False then
+        begin
+          rng.location := iStartBold - 1;
+          rng.length := 2;
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          rng.location := i - 1;
+          rng.length := 2;
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+        end;
       end;
     end
     // Italics
@@ -4655,14 +4734,17 @@ begin
         rng.length := i - iStartItalics + 1;
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
           applyFontTraits_range(NSItalicFontMask, rng);
-        rng.location := iStartItalics - 1;
-        rng.length := 1;
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-          addAttribute_value_range(NSFontAttributeName, miniFont, rng);
-        rng.location := i - 1;
-        rng.length := 1;
-        TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-          addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+        if blShowMarkers = False then
+        begin
+          rng.location := iStartItalics - 1;
+          rng.length := 1;
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          rng.location := i - 1;
+          rng.length := 1;
+          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+        end;
       end;
     end
     else
@@ -4717,12 +4799,32 @@ begin
         begin
           rng.location := iStartMono - 1;
           rng.length := 1;
-          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          if blShowMarkers = False then
+          begin
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          end
+          else
+          begin
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, monoFont, rng);
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clCode), rng);
+          end;
           rng.location := i - 1;
           rng.length := 1;
-          TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
-            addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          if blShowMarkers = False then
+          begin
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, miniFont, rng);
+          end
+          else
+          begin
+            TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.
+              addAttribute_value_range(NSFontAttributeName, monoFont, rng);
+            TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+              setTextColor_range(ColorToNSColor(clCode), rng);
+          end;
         end;
       end;
     end

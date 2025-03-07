@@ -39,5 +39,6 @@
 {"hash":45,"name":"tfmoptions.edstmaxsizeless.caption","sourcebytes":[45],"value":"-"},
 {"hash":153805827,"name":"tfmoptions.bnsetcolors.caption","sourcebytes":[83,101,116,32,115,116,97,110,100,97,114,100,32,99,111,108,111,114,115],"value":"Set standard colors"},
 {"hash":241326771,"name":"tfmoptions.bnremovecolors.caption","sourcebytes":[82,101,109,111,118,101,32,99,111,108,111,114,115],"value":"Remove colors"},
+{"hash":102266339,"name":"tfmoptions.lbshowmarkers.caption","sourcebytes":[83,104,111,119,32,109,97,114,107,101,114,115],"value":"Show markers"},
 {"hash":256115346,"name":"tfmoptions.cdcolordialog.title","sourcebytes":[83,101,108,101,99,116,32,97,32,99,111,108,111,114],"value":"Select a color"}
 ]}

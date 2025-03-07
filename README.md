@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.13, published on March 5 2025.
+Version 1.3.14, published on March 7 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -89,7 +89,7 @@ Screenshots of the app used as meeting manager with fancy data
 
 ## Formatting
 
-Some Markdown markers are hidden, as the text that follows them or is contained within them is properly formatted. These markers are:
+Some Markdown markers are hidden, as the text that follows them or is contained within them is properly formatted. This behavior may be changed in the options of the app. These markers are:
 
 * headers (beginning with `#`, `##`, `###`, `####`, `#####` and `######`);
 * italics (`*` or `_`), bold (`**` or `__`) and bold italics (`***` or `___`);
@@ -304,6 +304,7 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 - the color of the other levels titles;
 - the size of the normal font;
 - the size of the code font;
+- the possibility to show the Markdown markers while leaving active the formatting;
 - the line spacing value (1.0 is the default);
 - the delay in days for the new deadlines (7 is the default);
 - the number of characters of a document beyond which it's loaded without formatting; it's calculated by the size of the file, not counting the characters, so it could be a bit inaccurate;
@@ -441,6 +442,11 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 ## Revision history
+
+**Version 1.3.14**
+
+- Added in the options of the app the possibility to show the Markdown markers while leaving active the formatting.
+- In the table, the rows with the tables and field names are now slightly highlighted.
 
 **Version 1.3.13**
 
