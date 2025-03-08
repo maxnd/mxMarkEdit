@@ -32,7 +32,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.3.14"
+msgid "1.3.15"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1196,6 +1196,10 @@ msgstr ""
 
 #: unit7.srcut053b
 msgid "Move the cursor in the filter field, if it's visible."
+msgstr ""
+
+#: unit7.srcut053c
+msgid "Remove the filters in the current table and calculate the formulas."
 msgstr ""
 
 #: unit7.srcut054

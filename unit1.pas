@@ -349,6 +349,7 @@ uses copyright, unit2, unit3, unit4, unit5, unit6, unit7, unit8, unit9;
 procedure TfmMain.FormCreate(Sender: TObject);
 var
   MyIni: TIniFile;
+  nsInset: NSSize;
 begin
   if LowerCase(UTF8Copy(NSStringToString(
     NSLocale.preferredLanguages.objectAtIndex(0)), 1, 2)) = 'it' then
@@ -670,6 +671,10 @@ begin
     setRichText(True);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     textContainer.setLineFragmentPadding(50);
+  nsInset.height := 30;
+  nsInset.width := 0;
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    setTextContainerInset(nsInset);
   // To avoid messing text on formatting
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     layoutManager.setAllowsNonContiguousLayout(False);
@@ -832,6 +837,16 @@ begin
     if ((pnGrid.Height > 1) and (edFilterGrid.Visible = True)) then
     begin
       edFilterGrid.SetFocus;
+    end;
+    key := 0;
+  end
+  else
+  if ((key = Ord('F')) and (Shift = [ssCtrl, ssShift])) then
+  begin
+    if ((pnGrid.Height > 1) and (edFindGrid.Visible = True)) then
+    begin
+      edFilterGrid.Clear;
+      ResetFilterGrid;
     end;
     key := 0;
   end
@@ -3192,7 +3207,8 @@ end;
 procedure TfmMain.sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
   aState: TGridDrawState);
 begin
-  if ((sgTable.Cells[1, aRow] <> '') and (aRow > 0)) then
+  if ((sgTable.Cells[1, aRow] <> '') and (aRow > 0) and
+  not((sgTable.Row = aRow) and (sgTable.Col = aCol))) then
   begin
     sgTable.Canvas.Brush.Color := clGridHeadings;
   end;
@@ -6110,16 +6126,6 @@ begin
         Break;
       end;
     end;
-    {if ((iTop > - 1) and ((sgTable.Cells[iCol, iTop] = '------') or
-    (sgTable.Cells[iCol, iTop] = '---sum') or
-    (sgTable.Cells[iCol, iTop] = '---max') or
-    (sgTable.Cells[iCol, iTop] = '---min') or
-    (sgTable.Cells[iCol, iTop] = '---avg') or
-    (sgTable.Cells[iCol, iTop] = '---count'))) then
-    begin
-      sgTable.Cells[iCol, iTop + 1] := '';
-      Exit;
-    end;}
     dbSum := -MaxInt;
     dbMin := -MaxInt;
     dbMax := -MaxInt;
@@ -6294,6 +6300,11 @@ begin
           Break;
         end
         else
+        if sgTable.RowHeights[x] = 0 then
+        begin
+          Continue;
+        end
+        else
         if sgTable.Cells[sgTable.Col, x] <> '' then
         begin
           if ((UTF8CocoaPos(UTF8UpperString(edFilterGrid.Text),
@@ -6326,17 +6337,39 @@ end;
 
 procedure TfmMain.ResetFilterGrid;
 var
-  i: Integer;
+  i, x: Integer;
 begin
-  for i := 1 to sgTable.RowCount - 1 do
+  if ((pnGrid.Height > 1) and (sgTable.Cells[1, sgTable.Row] = '' )) then
   begin
-    if sgTable.RowHeights[i] = 0 then
+    for i := sgTable.Row downto 0 do
     begin
-      sgTable.RowHeights[i] := sgTable.DefaultRowHeight;
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end;
     end;
+    if ((i > 0) and (i < sgTable.RowCount - 1)) then
+    begin
+      for x := i + 1 to sgTable.RowCount - 1 do
+      begin
+        if sgTable.Cells[1, x] <> '' then
+        begin
+          Break;
+        end
+        else
+        if sgTable.RowHeights[x] = sgTable.DefaultRowHeight then
+        begin
+          Continue;
+        end
+        else
+        begin
+          sgTable.RowHeights[x] := sgTable.DefaultRowHeight;
+        end;
+      end;
+    end;
+    edFilterGrid.Clear;
+    CalcAllColInGrid;
   end;
-  edFilterGrid.Clear;
-  CalcAllColInGrid;
 end;
 
 procedure TfmMain.CreateYAML;

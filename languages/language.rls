@@ -11,7 +11,7 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'n"'#10#10'#: tfmcopyright.lbcopyrightname.caption'#10'msgctxt "tfmcopyright'
   +'.lbcopyrightname.caption"'#10'msgid "mxMarkEdit"'#10'msgstr ""'#10#10'#: tf'
   +'mcopyright.lbcopyrightvers.caption'#10'msgid "Version"'#10'msgstr "Versione'
-  +'"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.3.14"'#10'ms'
+  +'"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.3.15"'#10'ms'
   +'gstr ""'#10#10'#: tfmcopyright.lbok.caption'#10'msgctxt "tfmcopyright.lbok.'
   +'caption"'#10'msgid "OK"'#10'msgstr ""'#10#10'#: tfmeditor.bnok.caption'#10
   +'msgctxt "tfmeditor.bnok.caption"'#10'msgid "Close"'#10'msgstr "Chiudi"'#10
@@ -494,29 +494,31 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'mpo ricerca, se '#195#168' visibile."'#10#10'#: unit7.srcut053b'#10'msgid "'
   +'Move the cursor in the filter field, if it''s visible."'#10'msgstr "Sposta '
   +'il cursore nel campo filtro, se '#195#168' visibile."'#10#10'#: unit7.srcut'
-  +'054'#10'msgid "Copy the content of the selected cells in the clipboard."'#10
-  +'msgstr "Copia il contenuto delle celle selezionate negli appunti."'#10#10'#'
-  +': unit7.srcut055'#10'msgid "Paste the content of the clipboard in the curre'
-  +'nt (and following) cells."'#10'msgstr "Incolla il contenuto degli appunti n'
-  +'elle celle correnti (e successive)."'#10#10'#: unit7.srcut056'#10'msgid "Un'
-  +'do the last changes while the editor of a cell in the grid is still active.'
-  +'"'#10'msgstr "Annulla le ultime modifiche mentre l''editor di una cella nel'
-  +'la griglia '#195#168' ancora attivo."'#10#10'#: unit7.srcut057'#10'msgid " '
-  +'In the todo form"'#10'msgstr " Maschera delle attivit'#195#160'"'#10#10'#: '
-  +'unit7.srcut058'#10'msgid "Hide the todo items already done."'#10'msgstr "Na'
-  +'scondi le attivit'#195#160' gi'#195#160' eseguite."'#10#10'#: unit7.srcut05'
-  +'9'#10'msgid "Toggle the state of the selected todo item from to be done to '
-  +'done, and vice versa."'#10'msgstr "Alterna lo stato dell''elemento attivit'
-  +#195#160' selezionato da incompleto a fatto e viceversa."'#10#10'#: unit7.sr'
-  +'cut059b'#10'msgid "Copy in the clipboard the todo items."'#10'msgstr "Copia'
-  +' in ritaglio le attivit'#195#160'."'#10#10'#: unit7.srcut060'#10'msgctxt "u'
-  +'nit7.srcut060"'#10'msgid "Close the form."'#10'msgstr "Chiude la maschera."'
-  ,#10#10'#: unit7.srcut061'#10'msgid " In the search files form"'#10'msgstr " '
-  +'Maschera di ricerca file"'#10#10'#: unit7.srcut062'#10'msgid "Move the curs'
-  +'or in the Find field."'#10'msgstr "Sposta il cursore nel campo Trova."'#10
-  +#10'#: unit7.srcut063'#10'msgctxt "unit7.srcut063"'#10'msgid "Close the form'
-  +'."'#10'msgstr "Chiude la maschera."'#10#10'#: unit7.srcut064'#10'msgid " In'
-  +' the words recurrence form"'#10'msgstr " Maschera di ricorrenza parole"'#10
-  +#10'#: unit7.srcut065'#10'msgctxt "unit7.srcut065"'#10'msgid "Close the form'
-  +'."'#10'msgstr "Chiude la maschera."'#10#10
+  +'053c'#10'msgid "Remove the filters in the current table and calculate the f'
+  +'ormulas."'#10'msgstr "Rimuovi i filtri nella tabella corrente e calcola le '
+  +'formule."'#10#10'#: unit7.srcut054'#10'msgid "Copy the content of the selec'
+  +'ted cells in the clipboard."'#10'msgstr "Copia il contenuto delle celle sel'
+  +'ezionate negli appunti."'#10#10'#: unit7.srcut055'#10'msgid "Paste the cont'
+  +'ent of the clipboard in the current (and following) cells."'#10'msgstr "Inc'
+  +'olla il contenuto degli appunti nelle celle correnti (e successive)."'#10#10
+  +'#: unit7.srcut056'#10'msgid "Undo the last changes while the editor of a ce'
+  +'ll in the grid is still active."'#10'msgstr "Annulla le ultime modifiche me'
+  +'ntre l''editor di una cella nella griglia '#195#168' ancora attivo."'#10#10
+  +'#: unit7.srcut057'#10'msgid " In the todo form"'#10'msgstr " Maschera delle'
+  +' attivit'#195#160'"'#10#10'#: unit7.srcut058'#10'msgid "Hide the todo items'
+  +' already done."'#10'msgstr "Nascondi le attivit'#195#160' gi'#195#160' eseg'
+  +'uite."'#10#10'#: unit7.srcut059'#10'msgid "Toggle the state of the selected'
+  +' todo item from to be done to done, and vice versa."'#10'msgstr "Alterna lo'
+  +' stato dell''elemento attivit'#195#160' selezionato da incompleto a fatto e'
+  +' viceversa."'#10#10'#: unit7.srcut059b'#10'msgid "Copy in the clipboard the'
+  ,' todo items."'#10'msgstr "Copia in ritaglio le attivit'#195#160'."'#10#10'#'
+  +': unit7.srcut060'#10'msgctxt "unit7.srcut060"'#10'msgid "Close the form."'
+  +#10'msgstr "Chiude la maschera."'#10#10'#: unit7.srcut061'#10'msgid " In the'
+  +' search files form"'#10'msgstr " Maschera di ricerca file"'#10#10'#: unit7.'
+  +'srcut062'#10'msgid "Move the cursor in the Find field."'#10'msgstr "Sposta '
+  +'il cursore nel campo Trova."'#10#10'#: unit7.srcut063'#10'msgctxt "unit7.sr'
+  +'cut063"'#10'msgid "Close the form."'#10'msgstr "Chiude la maschera."'#10#10
+  +'#: unit7.srcut064'#10'msgid " In the words recurrence form"'#10'msgstr " Ma'
+  +'schera di ricorrenza parole"'#10#10'#: unit7.srcut065'#10'msgctxt "unit7.sr'
+  +'cut065"'#10'msgid "Close the form."'#10'msgstr "Chiude la maschera."'#10#10
 ]);

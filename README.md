@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.14, published on March 7 2025.
+Version 1.3.15, published on March 8 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -144,7 +144,7 @@ To edit easily a cell in the grid, it's available an extended editor activated w
 
 At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` or the shortcut `Meta + G` to select the following cell after the current one in just the current field (column) of the current table that contains that text, or `Shift + Return` or the shortcut `Meta + Shift G` to select the previous cell before the current one in just the current field (column) of the current table that contains that text. Anyway, if the selected column is the first, containing the table names, the search will look for the following or previous table name. The search is case insensitive. To continue the search, select again the field and press `Return` or `Shift + Return`, or use the shortcut `Meta + G` or `Meta + Shift + G` when the grid is focused.
 
-At the right of the `Find` field there is the `Filter` field useful to filter the rows of the current table. To activate the filter, write something in this field and press `Return` to filter the rows of the current table which in the current field contain the typed text. To clear all the filters in all the tables, clear the content of the `Filter` field and press `Return`.
+At the right of the `Find` field there is the `Filter` field useful to filter the rows of the current table. To activate the filter, write something in this field and press `Return` to filter the rows of the current table which in the current field contain the typed text. Other filters will be added to the existing one(s), to emulate the `and` condition. To clear the filters in the current table and calculate the formulas, clear the content of the `Filter` field and press `Return` or use the shortcut `Ctrl + Shift + F`.
 
 If a cell contains a formula, in the cell below it will be reported the result of the calculation of all the numbers contained in the previous cells of the same field (column) and of the same table. The result will be updated when a value in those cells will be changed. Textual contents and improperly formatted numbers will not be considered. The name of the table and of the field (column) must be specified, otherwise no result will be shown.
 
@@ -156,7 +156,7 @@ The formulas are the followings:
 - `---avg`: reports the average of the numbers;
 - `---count`: reports the total number of the rows, also non numeric;
 
-The formulas are shown in the color set by the user for the code (see below the option of the app for more information). The possible filter doesn't hide the formulas and the following result fields, and the rows not filtered are not included in the computations. Before closing the document, remove the filter, so that the result fields are saved with the values relative to all the data of the column.
+The formulas are shown in the color set by the user for the code (see below the option of the app for more information). The possible filter doesn't hide the formulas and the following result fields, and the rows not filtered are not included in the computations. Deleting a row activate the computation of the formulas, but not move a row in another table. Before closing the document, remove the filters from each table, so that the result fields are saved with the values relative to all the data of the column.
 
 It's possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its name.
 
@@ -397,6 +397,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `Shift` + `S`: sort descending the content of the current column (field) in the current table, after confirmation; see `Tables` title above for more information.
 * `Meta` + `Ctrl` + `F`: move the cursor in the search field, if it’s visible.
 * `Meta` + `Ctrl` + `Shift` + `F`: move the cursor in the filter field, if it’s visible.
+* `Ctrl` + `Shift` + `F`: remove the filters in the current table and calculate the formulas.
 * `Meta` + `C`: copy the content of the selected cells in the clipboard.
 * `Meta` + `V`: paste the content of the clipboard in the current (and possibly following) cells.
 * `Esc`: undo the last changes while the editor of a cell in the grid is still active.
@@ -435,13 +436,20 @@ The software creates these two configuration files that can be deleted to reset 
 
 ## Mentions and reviews
 
-- [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
-- [MacUpdate](https://www.macupdate.com/app/mac/64986/mxmarkedit).
 - [App Catalog](https://appcatalog.cloud/apps/mxmarkedit).
+- [Free Download Manager](https://en.freedownloadmanager.org/Mac-OS/mxMarkEdit-FREE.html).
+- [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 - [LibHunt](https://www.libhunt.com/r/mxMarkEdit).
+- [MacUpdate](https://www.macupdate.com/app/mac/64986/mxmarkedit).
 
 
 ## Revision history
+
+**Version 1.3.15**
+
+- The filters in the grid now are added to the possible existing ones, emulating the `and` condition.
+- Added the shortcut `Ctrl + Shift + F` to remove the filters in the current table and calculate the formulas.
+- Added some space at the beginning and at the end of the text to create some distance from the top and bottom borders of the text field.
 
 **Version 1.3.14**
 

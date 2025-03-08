@@ -148,6 +148,7 @@ resourcestring
     'after confirmation, stopping before the formula if it''s present in any column.';
   srcut053 = 'Move the cursor in the search field, if it’s visible.';
   srcut053b = 'Move the cursor in the filter field, if it''s visible.';
+  srcut053c = 'Remove the filters in the current table and calculate the formulas.';
   srcut054 = 'Copy the content of the selected cells in the clipboard.';
   srcut055 = 'Paste the content of the clipboard in the current (and following) cells.';
   srcut056 = 'Undo the last changes while the editor of a cell in the grid is still active.';
@@ -214,7 +215,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 93;
+  sgShortcuts.RowCount := 94;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -424,6 +425,9 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Ctrl + Shift + F';
   sgShortcuts.Cells[1, i] := srcut053b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Ctrl + Shift + F';
+  sgShortcuts.Cells[1, i] := srcut053c;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + C';
   sgShortcuts.Cells[1, i] := srcut054;
