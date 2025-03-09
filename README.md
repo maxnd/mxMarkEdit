@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.15, published on March 8 2025.
+Version 1.3.16, published on March 9 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -445,6 +445,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 ## Revision history
 
+**Version 1.3.16**
+
+- At the bottom of the todo form, when the completed items are visible, now it's shown also their number and their percentage with respect to the total number of items.
+- Bugs fixing: pressing `Return` at the end of a todo item with a deadline but without any description didn't delete it.
+- Bugs fixing: toggling the state of a todo item in the todo form didn't always work as expected.
+
 **Version 1.3.15**
 
 - The filters in the grid now are added to the possible existing ones, emulating the `and` condition.
@@ -693,76 +699,4 @@ The software creates these two configuration files that can be deleted to reset 
 - Minor graphic improvements.
 - Bugs fixing: when the path of the file was very long, the date and time label on the right was overwritten.
 
-**Version 1.1.14**
-
-- In presentation mode, the cursor is now hidden, and the selected paragraph is shown at the middle of the screen.
-- In light mode, the default font color of code, links, etc. is now more readable. 
-- Bugs fixing: sometimes, the look of the document was not updated properly.
-- Bugs fixing: on opening one of the last four files, the last position of the cursor was not always properly recovered.
-
-**Version 1.1.13**
-
-- The grid has now 10000 rows and 105 columns.
-- The `Insert link to file` menu item now allows to select and insert more files, and to include them in the text within the proper Markdown markers.
-- Added shortcut `Meta` + `Opt` + `.` to transform a list with dashes (`-`) into a numbered list.
-- Added shortcut `Meta` + `Ctrl` + `.` to transform a numbered list into a with dashes (`-`).
-- Bugs fixing: pressing `Return` in an empty item of a list delete this item only if it’s followed by an empty paragraph.
-- Bugs fixing: on opening one of the last four files, the last position of the cursor was not always properly recovered.
-
-**Version 1.1.12**
-
-- Bugs fixing: it was not possible to format in bold or italics the selected text if starting at the beginning of a new paragraph.
-- Bugs fixing: the possible Markdown markers within Markdown links was not properly shown.
-
-**Version 1.1.11**
-
-- Added new functions in the tables grid beyond `sum`: `max`, `min`, `avg`, `count`. Now they are shown in the color set by the user for the code.
-- Added a sorting radio item in the `Words recurrence form`.
-- Bugs fixing in the `Words recurrence form`.
-- Bugs fixing in the tables grid.
-
-**Version 1.1.10**
-
-- Added the `Show words recurrence form` menu item and functionality (see above for information).
-- In the grid, the `Return` key pressed in a cell at the left end of a table doesn’t select the following cell at its right but the first cell of the following row, in the second column.
-
-**Version 1.1.9**
-
-- Citations now have a lighter or darker background, while having the same font size.
-- Bugs fixing: the formatting within the citations was not effective.
-- Minor bugs fixing.
-
-**Version 1.1.8**
-
-- New shortcut in the grid `Meta` + `Opt` + `Shift` + `I` to add a new column in the current table.
-- New shortcut in the grid `Meta` + `Opt` + `Shift` + `Backspace` to delete the current column in the current table.
-- The shortcut in the grid `Meta` + `Arrow right` now moves to the last edited column of the current row.
-- The shortcut in the grid `Meta` + `Arrow down` now moves to the last edited row of the current column, if the selection is not in the first column.
-- Bugs fixing: `Backspace` erased the whole content of the current cell even when the editor was active.
-- Minor graphic improvements.
-
-**Version 1.1.7**
-
-- The procedure of the menu item `Edit` - `Show duplicate words` now requires no confirmation.
-- Minor bugs fixing and graphic improvements.
-
-**Version 1.1.6**
-
-- `Backspace` deletes the content of the selected cells after confirmation.
-- The procedure to check possible repeated words in the current paragraph and the previous one is now much faster.
-- Bugs fixing: the procedure to check possible repeated words in the current paragraph and the previous one didn’t work always as expected.
-
-**Version 1.1.5**
-
-- When a `.cvs` file is loaded, the grid is not shown automatically, but in the status bar at the bottom, after the name of the file, a sign of a diamond is shown to alert the user that there are some data inside it.
-- Added the possibility to show the sum of a column of numbers in the grid.
-- Bugs fixing: when the grid was modified in a new file without a name, it was possible to exit the app without being asked to save the file.
-
-**Version 1.1.4**
-
-- Bugs fixing: it was not possible to search for a table name in the grid.
-- Bugs fixing: in some circumstances, the last line of the text was not properly updated.
-
-**Version 1.1.3**
-
-- Bugs fixing: when a new Markdown file was created, a grid file was created as well even if there were no data inside it.
+[...]

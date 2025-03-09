@@ -72,6 +72,7 @@ resourcestring
   tsk002 = 'days';
   tsk003 = 'Todo items:';
   tsk004 = 'All the resources';
+  tsk005 = 'done';
 
 implementation
 
@@ -127,14 +128,11 @@ begin
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8('X'), rng);
       fmMain.FormatListTitleTodo;
-      if cbHide.Checked = True then
-      begin
-        CreateList;
-      end;
     end
     else
     begin
       sgTasks.Cells[1, sgTasks.Row] := '0';
+      fmMain.dbText.SelStart := StrToInt(sgTasks.Cells[0, sgTasks.Row]);
       Application.ProcessMessages;
       rng := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         selectedRange;
@@ -144,7 +142,7 @@ begin
         insertText_replacementRange(NSStringUtf8(' '), rng);
       fmMain.FormatListTitleTodo;
     end;
-    sgTasks.Refresh;
+    CreateList;
   end;
 end;
 
@@ -329,7 +327,7 @@ end;
 
 procedure TfmTasks.CreateList;
 var
-  i, n, iLength: integer;
+  i, n, iLength, iCompleted: integer;
   dtDeadline: TDate;
   stDays, stHeading, stTitle, stResource: string;
   blResource: Boolean = False;
@@ -337,6 +335,7 @@ var
 begin
   sgTasks.RowCount := 1;
   iLength := 0;
+  iCompleted := 0;
   try
     Cursor := crHourGlass;
     slTodo := TStringList.Create;
@@ -411,6 +410,7 @@ begin
             UTF8Copy(slTodo[i], 7, UTF8Length(slTodo[i]));
         end;
         sgTasks.Cells[1, sgTasks.RowCount - 1] := '1';
+        Inc(iCompleted);
       end;
       iLength := iLength + StrToNSString(slTodo[i], True).length + 1;
     end;
@@ -462,7 +462,16 @@ begin
     cbResources.Items.Add(' ' + tsk004);
     cbResources.ItemIndex := 0;
   end;
-  lbTot.Caption := tsk003 + ' ' + FormatFloat('#,0', sgTasks.RowCount - 1);
+  if cbHide.Checked = True then
+  begin
+    lbTot.Caption := tsk003 + ' ' + FormatFloat('#,0', sgTasks.RowCount - 1);
+  end
+  else
+  begin
+    lbTot.Caption := tsk003 + ' ' + FormatFloat('#,0', sgTasks.RowCount - 1) +
+    ' (' + tsk005 + ': ' + FormatFloat('#,0', iCompleted) + ', ' +
+    FormatFloat('#,0', iCompleted / (sgTasks.RowCount - 1) * 100) + '%)';
+  end;
 end;
 
 end.

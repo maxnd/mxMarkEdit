@@ -2154,9 +2154,19 @@ var
 begin
   if key = #13 then
   begin
+    myDate := Date;
     if (((dbText.Lines[dbText.CaretPos.Y - 1] = '- [ ] ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- [X] ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- [x] ') or
+      (dbText.Lines[dbText.CaretPos.Y - 1] = '- [ ] ' +
+        FormatDateTime('yyyy-mm-dd', IncDay(myDate,
+        StrToInt(fmOptions.cbDelay.Text))) + ' • ') or
+      (dbText.Lines[dbText.CaretPos.Y - 1] = '- [X] ' +
+        FormatDateTime('yyyy-mm-dd', IncDay(myDate,
+        StrToInt(fmOptions.cbDelay.Text))) + ' • ') or
+      (dbText.Lines[dbText.CaretPos.Y - 1] = '- [x] ' +
+        FormatDateTime('yyyy-mm-dd', IncDay(myDate,
+        StrToInt(fmOptions.cbDelay.Text))) + ' • ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '+ ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '+ ') or
