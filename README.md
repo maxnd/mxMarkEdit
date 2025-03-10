@@ -440,6 +440,7 @@ The software creates these two configuration files that can be deleted to reset 
 - [Free Download Manager](https://en.freedownloadmanager.org/Mac-OS/mxMarkEdit-FREE.html).
 - [Indie Apps Catalog](https://indieappcatalog.com/app/991483088552/mxmarkedit).
 - [LibHunt](https://www.libhunt.com/r/mxMarkEdit).
+- [Mac Informer](https://macdownload.informer.com/mxmarkedit/).
 - [MacUpdate](https://www.macupdate.com/app/mac/64986/mxmarkedit).
 
 
