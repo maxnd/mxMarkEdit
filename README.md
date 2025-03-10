@@ -429,12 +429,12 @@ The software creates these two configuration files that can be deleted to reset 
 - `/Users/[username]/Library/Preferences/mxmarkedit`
 - `/Users/[username]/Library/Preferences/mxmarkedit.plist`
 
-## Troubleshooting
+# Troubleshooting
 
 - When creating a footnote reference, the cursor gets lost in the text? Be sure to use the version 1.3.4 of following of the app, create a new footnote reference and then possibly delete it. This should fix the problem.
 - If the title of a document contains a colon, Pandoc cannot translate it in Word, but simply nothing happens.
 
-## Mentions and reviews
+# Mentions and reviews
 
 - [App Catalog](https://appcatalog.cloud/apps/mxmarkedit).
 - [Free Download Manager](https://en.freedownloadmanager.org/Mac-OS/mxMarkEdit-FREE.html).
@@ -444,7 +444,7 @@ The software creates these two configuration files that can be deleted to reset 
 - [MacUpdate](https://www.macupdate.com/app/mac/64986/mxmarkedit).
 
 
-## Revision history
+# Revision history
 
 **Version 1.3.16**
 
