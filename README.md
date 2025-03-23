@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.16, published on March 9 2025.
+Version 1.3.17, published on March 23 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -216,6 +216,8 @@ Once the document has been completed and the keys of the various works have been
 - The second citation of a work is composed by associating the contents of columns C1, E1 (abbreviated title) and F1 separated by a comma.
 - If a citation is about the same work as the immediately preceding citation, the word `Ibidem` is inserted in italics in place of its bibliographic data.
 - The bibliography is inserted at the end of the text. It contains all and only the works actually cited in the document, and is created associating the content of columns B1, D1 and F1 separated by a comma. The bibliography is ordered alphabetically.
+
+If the editorial rules require that the author(s) are not separated from the title by a comma, as a workaround, terminate the author(s) with a symbol not used in Markdown and anywhere else in the text (like `§`), and then in the final document with the citations compiled search and replace this symbol and comma (like `§,`) with nothing.
 
 If a `Ibidem` is followed by the same page numbers of the previous citations, they may be removed manually if this is required by the editorial rules.
 
@@ -445,6 +447,11 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.3.17**
+
+- Bugs fixing: the combo box above the title list didn't change the selection of the titles immediately.
+- Small improvements in the documentation.
 
 **Version 1.3.16**
 

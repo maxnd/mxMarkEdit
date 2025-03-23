@@ -1126,6 +1126,7 @@ object fmMain: TfmMain
       Style = csDropDownList
       TabOrder = 0
       Text = 'All the headings'
+      OnChange = cbFilterChange
     end
     object sgTitles: TStringGrid
       Cursor = crHandPoint
