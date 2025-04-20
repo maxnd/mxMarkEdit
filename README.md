@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.17, published on March 23 2025.
+Version 1.3.18, published on April 20 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -176,15 +176,15 @@ The first column on the left must contain the name of the table, as usual. Sever
 
 The second column (A1) must contain the key of the work, that is, some words or numbers that identify it uniquely within all the tables contained in the grid. It is suggested to use the surname of the first author followed by a space and the year of publication. If there are multiple works by the same author published in the same year, a progressive lowercase letter may be added after the year. For example, to report the bibliographic data of a book written by R. Taylor in 2024, the key could be `Taylor 2024`. If there were multiple works published by the same author in 2024, the subsequent works would have the key `Taylor 2024a`, `Taylor 2024b`, etc. It is the user's responsibility to verify that the key assigned to a work is unique, that is, it has not already been assigned to another work. To do this, use the shortcut `Meta` + `Ctrl` + `K`, active just in this column, to make it unique. If the key is composed as `surname + year`, sorting the works by key will sort them by author and then by year.
 
-The third column (B1) must contain the author or authors of the work with the formatting required for the bibliography that will be inserted at the end of the document. In order for the authors to be ordered alphabetically, their surname must be inserted before their name.
+The third column (B1) must contain the author or authors of the work with the formatting required for the bibliography that will be inserted at the end of the document, followed possibly by separators like comma and space. In order for the authors to be ordered alphabetically, their surname must be inserted before their name.
 
-The fourth column (C1) must contain the author or authors of the work with the formatting required for footnotes. Normally, the name is bulleted and precedes the surname.
+The fourth column (C1) must contain the author or authors of the work with the formatting required for footnotes, followed possibly by separators like comma and space. Normally, the name is bulleted and precedes the surname.
 
 The fifth column (D1) must contain the full title of the work; it's necessary to insert the italics markers (asterisks) if needed.
 
 The sixth column (E1) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first; it's necessary to insert the italics markers (asterisks) if needed.
 
-The seventh column (F1) must contain the details of the citation, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies.
+The seventh column (F1) must contain the details of the citation, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies; it could be preceded by separators, like comma and space.
 
 In the following columns can be freely insert the data considered useful, also using the extended editor that is activated with `Ctrl + Space`. For example, it may be needed a field in which to insert comments on the work, even of a certain length, or the name of the relative PDF file, a link to the publisher's website, and so on. The columns after F1 will be ignored by the app for the purposes of compiling citations.
 
@@ -210,18 +210,16 @@ If it's necessary to quote an ancient text contained in a modern edition and to 
 
 ### Producing a document with bibliography
 
-Once the document has been completed and the keys of the various works have been inserted, the menu item `Tools - Compile bibliography` can be used. In this way, mxMarkEdit creates another file in the same folder as the one in use, with the same name and the extension ` - with bibliography`. In this file, the various keys are replaced by the actual citations of the works, in the following way.
+Once the document has been completed and the keys of the various works have been inserted, the menu item `Tools - Compile bibliography` can be used. In this way, mxMarkEdit creates another file in the same folder as the one in use, with the same name and the extension ` - with bibliography`, convert it with Pandoc and open it with the word processor. In this file, the various keys are replaced by the actual citations of the works, in the following way.
 
-- The first citation of a work is composed by associating the contents of columns C1, D1 and F1 separated by a comma.
-- The second citation of a work is composed by associating the contents of columns C1, E1 (abbreviated title) and F1 separated by a comma.
+- The first citation of a work is composed by associating the contents of columns C1, D1 and F1.
+- The second citation of a work is composed by associating the contents of columns C1, E1 (abbreviated title) and F1.
 - If a citation is about the same work as the immediately preceding citation, the word `Ibidem` is inserted in italics in place of its bibliographic data.
-- The bibliography is inserted at the end of the text. It contains all and only the works actually cited in the document, and is created associating the content of columns B1, D1 and F1 separated by a comma. The bibliography is ordered alphabetically.
-
-If the editorial rules require that the author(s) are not separated from the title by a comma, as a workaround, terminate the author(s) with a symbol not used in Markdown and anywhere else in the text (like `§`), and then in the final document with the citations compiled search and replace this symbol and comma (like `§,`) with nothing.
+- The bibliography is inserted at the end of the text. It contains all and only the works actually cited in the document, and is created associating the content of columns B1, D1 and F1. The bibliography is ordered alphabetically.
 
 If a `Ibidem` is followed by the same page numbers of the previous citations, they may be removed manually if this is required by the editorial rules.
 
-In case the citations need to be formatted differently to correspond to other methodological requests, it is enough to correct only the content of column F1, containing the details of the works, in all the tables, and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
+In case the citations need to be formatted differently to correspond to other methodological requests, it is enough to correct only the content of the columns and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
 
 While in mxMarkEdit it's not possible to format the authors in small caps, it's easy to do this in a Word or Writer document exported with Pandoc. In the bibliography table, format the authors like this: `[Taylor, Bill]{.smallcaps}`. When exported with Pandoc, the final document will have the authors in small caps.
 
@@ -447,6 +445,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.3.18**
+
+- When `Compile bibliography` functionality is called, the output document is converted automatically with Pandoc in the defined format.
+- In the composition of the citations, no comma is added by the app among the various parts of the citations. Commas or any other separator must be inserted by the user in the different columns; see above for details. This change has been done to make the citation system able to match the various requirements of the editors.
+- Bugs fixing: the shortcuts `Mets + C`, `Meta + V` and `Meta + X` were not active during the editing of a cell in the grid.
 
 **Version 1.3.17**
 

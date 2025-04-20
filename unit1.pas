@@ -2590,10 +2590,33 @@ begin
   else
   if ((key = Ord('V')) and (Shift = [ssMeta])) then
   begin
-    blTableMod := True;
-    stGridLoaded := stTableLoaded;
-    LabelFileNameChars;
-    blTableSaved := False;
+    if sgTable.EditorMode = False then
+    begin
+      blTableMod := True;
+      stGridLoaded := stTableLoaded;
+      LabelFileNameChars;
+      blTableSaved := False;
+    end
+    else
+    begin
+      TEdit(sgTable.Editor).PasteFromClipboard;
+    end;
+  end
+  else
+  if ((key = Ord('C')) and (Shift = [ssMeta])) then
+  begin
+    if sgTable.EditorMode = True then
+    begin
+      TEdit(sgTable.Editor).CopyToClipboard;
+    end;
+  end
+  else
+  if ((key = Ord('X')) and (Shift = [ssMeta])) then
+  begin
+    if sgTable.EditorMode = True then
+    begin
+      TEdit(sgTable.Editor).CutToClipboard;
+    end;
   end
   else
   if ((key = Ord('C')) and (Shift = [ssMeta, ssAlt])) then
@@ -3918,7 +3941,7 @@ procedure TfmMain.miToolsBiblioClick(Sender: TObject);
 var
   slText, slBiblio: TStringList;
   stText, stNewText: WideString;
-  stOldKey, stNewKey, stAuthor: String;
+  stArgument, stInput, stOutput, stOldKey, stNewKey, stAuthor: String;
   i, iRow, iLen, iPos: Integer;
   blBracket: Bool = False;
 begin
@@ -4005,13 +4028,13 @@ begin
         begin
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
-            sgTable.Cells[4, i] + ', ' + sgTable.Cells[5, i] + ', ' +
+            sgTable.Cells[4, i] + ' ' + sgTable.Cells[5, i] + ' ' +
             sgTable.Cells[7, i], [rfIgnoreCase]);
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
-            sgTable.Cells[4, i] + ', ' + sgTable.Cells[6, i],
+            sgTable.Cells[4, i] + ' ' + sgTable.Cells[6, i],
             [rfReplaceAll, rfIgnoreCase]);
-          slBiblio.Add(sgTable.Cells[3, i] + ', ' + sgTable.Cells[5, i] + ', ' +
+          slBiblio.Add(sgTable.Cells[3, i] + ' ' + sgTable.Cells[5, i] + ' ' +
             sgTable.Cells[7, i] + '.');
         end;
         Application.ProcessMessages;
@@ -4055,6 +4078,29 @@ begin
       end;
       slText.SaveToFile(ExtractFileNameWithoutExt(stFileName) +
         ' - ' + lb000 + '.md');
+      stInput := ExtractFileNameWithoutExt(stFileName) +
+        ' - ' + lb000 + '.md';
+      stOutput := ExtractFileNameWithoutExt(stFileName) +
+        ' - ' + lb000 + pandocOutput;
+      if FileExistsUTF8(pandocTemplate) then
+      begin
+        stArgument := pandocPath + 'pandoc ' + '--from markdown' +
+          pandocOptions + ' -s "' + stInput + '" -o "' + stOutput +
+          '" --reference-doc "' + pandocTemplate + '" && open "' + stOutput + '"';
+      end
+      else
+      begin
+        stArgument := pandocPath + 'pandoc ' + '--from markdown' +
+          pandocOptions + ' -s "' + stInput + '" -o "' + stOutput +
+          '" && open "' + stOutput + '"';
+      end;
+      try
+        Screen.Cursor := crHourGlass;
+        Application.ProcessMessages;
+        Unix.fpSystem(stArgument);
+      finally
+        Screen.Cursor := crDefault;
+      end;
     except
       MessageDlg(msg024, mtWarning, [mbOK], 0);
     end;

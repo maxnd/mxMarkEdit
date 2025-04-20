@@ -1509,6 +1509,7 @@ object fmMain: TfmMain
       end
       object miToolsBiblio: TMenuItem
         Caption = 'Compile bibliography'
+        ShortCut = 20560
         OnClick = miToolsBiblioClick
       end
       object miToolsOptmize: TMenuItem

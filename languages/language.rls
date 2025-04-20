@@ -11,7 +11,7 @@ LazarusResources.Add('mxmarkedit.it','PO',[
   +'n"'#10#10'#: tfmcopyright.lbcopyrightname.caption'#10'msgctxt "tfmcopyright'
   +'.lbcopyrightname.caption"'#10'msgid "mxMarkEdit"'#10'msgstr ""'#10#10'#: tf'
   +'mcopyright.lbcopyrightvers.caption'#10'msgid "Version"'#10'msgstr "Versione'
-  +'"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.3.16"'#10'ms'
+  +'"'#10#10'#: tfmcopyright.lbcopyrightvers1.caption'#10'msgid "1.3.17"'#10'ms'
   +'gstr ""'#10#10'#: tfmcopyright.lbok.caption'#10'msgctxt "tfmcopyright.lbok.'
   +'caption"'#10'msgid "OK"'#10'msgstr ""'#10#10'#: tfmeditor.bnok.caption'#10
   +'msgctxt "tfmeditor.bnok.caption"'#10'msgid "Close"'#10'msgstr "Chiudi"'#10
