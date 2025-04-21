@@ -500,8 +500,12 @@ begin
       iDelay := MyIni.ReadInteger('mxmarkedit', 'delay', 7);
       iLineSpacing := MyIni.ReadFloat('mxmarkedit', 'linespacing', 1.0);
       blShowMarkers := MyIni.ReadBool('mxmarkedit', 'showmarkers', false);
-      stAuthSeparator := MyIni.ReadString('mxmarkedit', 'authseparator', ', ');
-      stTitleSeparator := MyIni.ReadString('mxmarkedit', 'titleseparator', ', ');
+      stAuthSeparator := MyIni.ReadString('mxmarkedit', 'authseparator', ', $');
+      stAuthSeparator := UTF8Copy(stAuthSeparator, 1,
+        UTF8Length(stAuthSeparator) - 1);
+      stTitleSeparator := MyIni.ReadString('mxmarkedit', 'titleseparator', ', $');
+      stTitleSeparator := UTF8Copy(stTitleSeparator, 1,
+        UTF8Length(stTitleSeparator) - 1);
       blAuthSmallCaps := MyIni.ReadBool('mxmarkedit', 'authsmallcaps', false);
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
         '+footnotes+inline_notes');
@@ -1010,8 +1014,8 @@ begin
     MyIni.WriteInteger('mxmarkedit', 'delay', iDelay);
     MyIni.WriteFloat('mxmarkedit', 'linespacing', iLineSpacing);
     MyIni.WriteBool('mxmarkedit', 'showmarkers', blShowMarkers);
-    MyIni.WriteString('mxmarkedit', 'authseparator', stAuthSeparator);
-    MyIni.WriteString('mxmarkedit', 'titleseparator', stTitleSeparator);
+    MyIni.WriteString('mxmarkedit', 'authseparator', stAuthSeparator + '$');
+    MyIni.WriteString('mxmarkedit', 'titleseparator', stTitleSeparator + '$');
     MyIni.WriteBool('mxmarkedit', 'authsmallcaps', blAuthSmallCaps);
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
     MyIni.WriteString('mxmarkedit', 'panoutputput', pandocOutput);
