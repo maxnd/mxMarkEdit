@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.3.18"
+msgid "1.3.19"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -368,6 +368,11 @@ msgstr ""
 msgid "Select a color"
 msgstr "Selezionare un colore"
 
+#: tfmoptions.edauthseparator.text
+msgctxt "tfmoptions.edauthseparator.text"
+msgid ", "
+msgstr ""
+
 #: tfmoptions.edpanoptions.text
 msgid "+footnotes+inline_notes"
 msgstr ""
@@ -426,6 +431,21 @@ msgctxt "tfmoptions.edstsizeplus.caption"
 msgid "+"
 msgstr ""
 
+#: tfmoptions.edtitleseparator.text
+msgctxt "tfmoptions.edtitleseparator.text"
+msgid ", "
+msgstr ""
+
+#: tfmoptions.lbauthseparator.caption
+msgctxt "tfmoptions.lbauthseparator.caption"
+msgid "Author separator"
+msgstr "Separatore autore"
+
+#: tfmoptions.lbauthsmallcaps.caption
+msgctxt "tfmoptions.lbauthsmallcaps.caption"
+msgid "Authors in small caps"
+msgstr "Autori in maiuscoletto"
+
 #: tfmoptions.lbexistexe.caption
 msgctxt "tfmoptions.lbexistexe.caption"
 msgid "●"
@@ -456,6 +476,14 @@ msgstr "Modello"
 msgid "Show markers"
 msgstr "Mostra marcatori"
 
+#: tfmoptions.lbstdelay.caption
+msgid "Delay in days for deadlines"
+msgstr "Ritardo in giorni per scad."
+
+#: tfmoptions.lbstlinespace.caption
+msgid "Line spacing"
+msgstr "Interlinea"
+
 #: tfmoptions.lbstmaxsize.caption
 msgid "No formatting beyond length"
 msgstr "Non formattare oltre lung."
@@ -468,9 +496,10 @@ msgstr "Dimensione font normale"
 msgid "Size of code font"
 msgstr "Dimensione font codice"
 
-#: tfmoptions.lnstdelay.caption
-msgid "Delay in days for deadlines"
-msgstr "Ritardo in giorni per scad."
+#: tfmoptions.lbtitleseparator.caption
+msgctxt "tfmoptions.lbtitleseparator.caption"
+msgid "Title separator"
+msgstr "Separatore titolo"
 
 #: tfmoptions.lnstfonts.caption
 msgid "Font name"
@@ -479,10 +508,6 @@ msgstr "Nome del font"
 #: tfmoptions.lnstfontsmono.caption
 msgid "Code font name"
 msgstr "Nome del font per codice"
-
-#: tfmoptions.lnstlinespace.caption
-msgid "Line spacing"
-msgstr "Interlinea"
 
 #: tfmpicture.caption
 msgid "Picture"

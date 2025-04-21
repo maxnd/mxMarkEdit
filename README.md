@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.18, published on April 20 2025.
+Version 1.3.19, published on April 21 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -176,9 +176,9 @@ The first column on the left must contain the name of the table, as usual. Sever
 
 The second column (A1) must contain the key of the work, that is, some words or numbers that identify it uniquely within all the tables contained in the grid. It is suggested to use the surname of the first author followed by a space and the year of publication. If there are multiple works by the same author published in the same year, a progressive lowercase letter may be added after the year. For example, to report the bibliographic data of a book written by R. Taylor in 2024, the key could be `Taylor 2024`. If there were multiple works published by the same author in 2024, the subsequent works would have the key `Taylor 2024a`, `Taylor 2024b`, etc. It is the user's responsibility to verify that the key assigned to a work is unique, that is, it has not already been assigned to another work. To do this, use the shortcut `Meta` + `Ctrl` + `K`, active just in this column, to make it unique. If the key is composed as `surname + year`, sorting the works by key will sort them by author and then by year.
 
-The third column (B1) must contain the author or authors of the work with the formatting required for the bibliography that will be inserted at the end of the document, followed possibly by separators like comma and space. In order for the authors to be ordered alphabetically, their surname must be inserted before their name.
+The third column (B1) must contain the author or authors of the work with the formatting required for the bibliography that will be inserted at the end of the document. In order for the authors to be ordered alphabetically, their surname must be inserted before their name.
 
-The fourth column (C1) must contain the author or authors of the work with the formatting required for footnotes, followed possibly by separators like comma and space. Normally, the name is bulleted and precedes the surname.
+The fourth column (C1) must contain the author or authors of the work with the formatting required for footnotes. Normally, the name is bulleted and precedes the surname.
 
 The fifth column (D1) must contain the full title of the work; it's necessary to insert the italics markers (asterisks) if needed.
 
@@ -210,18 +210,19 @@ If it's necessary to quote an ancient text contained in a modern edition and to 
 
 ### Producing a document with bibliography
 
-Once the document has been completed and the keys of the various works have been inserted, the menu item `Tools - Compile bibliography` can be used. In this way, mxMarkEdit creates another file in the same folder as the one in use, with the same name and the extension ` - with bibliography`, convert it with Pandoc and open it with the word processor. In this file, the various keys are replaced by the actual citations of the works, in the following way.
+Once the document has been completed and the keys of the various works have been inserted, the menu item `Tools - Compile bibliography` can be used. In this way, mxMarkEdit creates another file in the same folder as the one in use, with the same name and the extension ` - with bibliography`, convert it with Pandoc and open it with the word processor without adding the possible content of the table at the end of the text. In this file, the various keys are replaced by the actual citations of the works, in the following way.
 
 - The first citation of a work is composed by associating the contents of columns C1, D1 and F1.
 - The second citation of a work is composed by associating the contents of columns C1, E1 (abbreviated title) and F1.
 - If a citation is about the same work as the immediately preceding citation, the word `Ibidem` is inserted in italics in place of its bibliographic data.
 - The bibliography is inserted at the end of the text. It contains all and only the works actually cited in the document, and is created associating the content of columns B1, D1 and F1. The bibliography is ordered alphabetically.
+- The contents of the B1 and C1 columns are followed by the `Author separator`, specified in the options.
+- The contents of the D1 and E1 columns are followed by the `Title separator`, specified in the options.
+- To have the authors formatted in small caps in the text exported with Pandoc, select `Authors in small caps` in the options.
 
 If a `Ibidem` is followed by the same page numbers of the previous citations, they may be removed manually if this is required by the editorial rules.
 
 In case the citations need to be formatted differently to correspond to other methodological requests, it is enough to correct only the content of the columns and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
-
-While in mxMarkEdit it's not possible to format the authors in small caps, it's easy to do this in a Word or Writer document exported with Pandoc. In the bibliography table, format the authors like this: `[Taylor, Bill]{.smallcaps}`. When exported with Pandoc, the final document will have the authors in small caps.
 
 ### mxMarkEdit and other reference managers
 
@@ -308,6 +309,9 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 - the line spacing value (1.0 is the default);
 - the delay in days for the new deadlines (7 is the default);
 - the number of characters of a document beyond which it's loaded without formatting; it's calculated by the size of the file, not counting the characters, so it could be a bit inaccurate;
+- the separators added in the citations between the author(s) and the title;
+- the separators added in the citations between the title and the details;
+- the option to make the author(s) in small caps in the Pandoc output file;
 - the Pandoc options;
 - the path of the Pandoc executable;
 - the possible template (a file of Word, PowerPoint, Writer, etc.) to use as a reference;
@@ -445,6 +449,10 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.3.19**
+
+- Added the `Author separator`, `Title separator` and `Authors in small caps` in the options of the app, to have a better management of the citations.
 
 **Version 1.3.18**
 

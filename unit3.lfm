@@ -1,13 +1,13 @@
 object fmOptions: TfmOptions
   Left = 450
-  Height = 551
-  Top = 178
+  Height = 619
+  Top = 110
   Width = 547
   ActiveControl = cbStFonts
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Options'
-  ClientHeight = 551
+  ClientHeight = 619
   ClientWidth = 547
   Color = clForm
   Icon.Data = {
@@ -1069,11 +1069,11 @@ object fmOptions: TfmOptions
   object bnClose: TButton
     Left = 437
     Height = 30
-    Top = 502
+    Top = 570
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
-    TabOrder = 28
+    TabOrder = 29
     TabStop = False
     OnClick = bnCloseClick
   end
@@ -1090,7 +1090,7 @@ object fmOptions: TfmOptions
     Left = 296
     Height = 36
     Top = 208
-    Width = 218
+    Width = 216
     Caption = 'Titles 3 - 6 color'
     TabOrder = 9
     OnClick = bnStFontTitle3ColorModClick
@@ -1098,7 +1098,7 @@ object fmOptions: TfmOptions
   object lbPanOptions: TLabel
     Left = 45
     Height = 16
-    Top = 389
+    Top = 442
     Width = 112
     Caption = 'Options of Pandoc'
     ParentColor = False
@@ -1106,25 +1106,25 @@ object fmOptions: TfmOptions
   object edPanOptions: TEdit
     Left = 43
     Height = 21
-    Top = 409
+    Top = 462
     Width = 289
     ParentColor = True
-    TabOrder = 22
+    TabOrder = 25
     Text = '+footnotes+inline_notes'
   end
   object edPanOutput: TEdit
     Left = 344
     Height = 21
-    Top = 469
+    Top = 522
     Width = 168
     ParentColor = True
-    TabOrder = 25
+    TabOrder = 30
     Text = '.docx'
   end
   object lbPanOutput: TLabel
     Left = 344
     Height = 16
-    Top = 449
+    Top = 502
     Width = 64
     Caption = 'Output file'
     ParentColor = False
@@ -1132,7 +1132,7 @@ object fmOptions: TfmOptions
   object lbPanTemplate: TLabel
     Left = 45
     Height = 16
-    Top = 449
+    Top = 502
     Width = 56
     Caption = 'Template'
     ParentColor = False
@@ -1140,17 +1140,17 @@ object fmOptions: TfmOptions
   object edPanTemplate: TEdit
     Left = 45
     Height = 21
-    Top = 469
+    Top = 522
     Width = 267
     ParentColor = True
-    TabOrder = 24
+    TabOrder = 31
     Text = 'word-template.docx'
     OnChange = edPanTemplateChange
   end
   object lbPanPath: TLabel
     Left = 344
     Height = 16
-    Top = 389
+    Top = 442
     Width = 92
     Caption = 'Path of Pandoc'
     ParentColor = False
@@ -1158,10 +1158,10 @@ object fmOptions: TfmOptions
   object edPanPath: TEdit
     Left = 344
     Height = 21
-    Top = 409
+    Top = 462
     Width = 149
     ParentColor = True
-    TabOrder = 23
+    TabOrder = 26
     Text = '/usr/local/bin/'
     OnChange = edPanPathChange
   end
@@ -1223,7 +1223,7 @@ object fmOptions: TfmOptions
     Left = 296
     Height = 36
     Top = 128
-    Width = 218
+    Width = 216
     Caption = 'Footnote color'
     TabOrder = 5
     OnClick = bnStFontFootColorClick
@@ -1240,7 +1240,7 @@ object fmOptions: TfmOptions
   object lbExistModel: TLabel
     Left = 320
     Height = 16
-    Top = 472
+    Top = 525
     Width = 12
     Caption = '●'
     Font.Color = clGreen
@@ -1249,7 +1249,7 @@ object fmOptions: TfmOptions
   object lbExistExe: TLabel
     Left = 500
     Height = 16
-    Top = 412
+    Top = 465
     Width = 12
     Caption = '●'
     Font.Color = clGreen
@@ -1286,7 +1286,7 @@ object fmOptions: TfmOptions
     Text = '7'
     OnChange = cbDelayChange
   end
-  object lnStDelay: TLabel
+  object lbStDelay: TLabel
     Left = 161
     Height = 16
     Top = 323
@@ -1294,7 +1294,7 @@ object fmOptions: TfmOptions
     Caption = 'Delay in days for deadlines'
     ParentColor = False
   end
-  object lnStLineSpace: TLabel
+  object lbStLineSpace: TLabel
     Left = 45
     Height = 16
     Top = 323
@@ -1449,22 +1449,22 @@ object fmOptions: TfmOptions
   object bnSetColors: TButton
     Left = 45
     Height = 30
-    Top = 502
+    Top = 570
     Width = 150
     Anchors = [akRight, akBottom]
     Caption = 'Set standard colors'
-    TabOrder = 26
+    TabOrder = 27
     TabStop = False
     OnClick = bnSetColorsClick
   end
   object bnRemoveColors: TButton
     Left = 216
     Height = 30
-    Top = 502
+    Top = 570
     Width = 150
     Anchors = [akRight, akBottom]
     Caption = 'Remove colors'
-    TabOrder = 27
+    TabOrder = 28
     TabStop = False
     OnClick = bnRemoveColorsClick
   end
@@ -1486,6 +1486,58 @@ object fmOptions: TfmOptions
     Anchors = [akTop, akRight]
     Caption = 'Show markers'
     ParentColor = False
+  end
+  object edAuthSeparator: TEdit
+    Left = 43
+    Height = 21
+    Top = 407
+    Width = 101
+    TabOrder = 22
+    Text = ', '
+    OnChange = edAuthSeparatorChange
+  end
+  object lbAuthSeparator: TLabel
+    Left = 45
+    Height = 16
+    Top = 384
+    Width = 102
+    Caption = 'Author separator'
+    ParentColor = False
+  end
+  object lbTitleSeparator: TLabel
+    Left = 231
+    Height = 16
+    Top = 384
+    Width = 88
+    Caption = 'Title separator'
+    ParentColor = False
+  end
+  object edTitleSeparator: TEdit
+    Left = 229
+    Height = 21
+    Top = 407
+    Width = 101
+    TabOrder = 23
+    Text = ', '
+    OnChange = edTitleSeparatorChange
+  end
+  object lbAuthSmallCaps: TLabel
+    Left = 383
+    Height = 16
+    Top = 384
+    Width = 129
+    Alignment = taRightJustify
+    Caption = 'Authors in small caps'
+    ParentColor = False
+  end
+  object cbAuthSmallCaps: TCheckBox
+    Left = 494
+    Height = 18
+    Top = 410
+    Width = 18
+    Anchors = [akTop, akRight]
+    TabOrder = 24
+    OnChange = cbAuthSmallCapsChange
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'

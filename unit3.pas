@@ -46,10 +46,13 @@ type
     bnStFontTitle1ColorMod: TButton;
     bnStFontTitle2ColorMod: TButton;
     bnStFontTodoColor: TButton;
+    cbAuthSmallCaps: TCheckBox;
     cbStFontsMono: TComboBox;
     cbDelay: TComboBox;
     cbLineSpacing: TComboBox;
     cbShowMarkers: TCheckBox;
+    edAuthSeparator: TEdit;
+    edTitleSeparator: TEdit;
     edPanOptions: TEdit;
     edPanTemplate: TEdit;
     edPanOutput: TEdit;
@@ -75,10 +78,13 @@ type
     lbStSize: TLabel;
     lbStSizeMono: TLabel;
     lbShowMarkers: TLabel;
-    lnStLineSpace: TLabel;
+    lbStLineSpace: TLabel;
     lnStFonts: TLabel;
-    lnStDelay: TLabel;
+    lbStDelay: TLabel;
     lnStFontsMono: TLabel;
+    lbAuthSeparator: TLabel;
+    lbTitleSeparator: TLabel;
+    lbAuthSmallCaps: TLabel;
     procedure bnSetColorsClick(Sender: TObject);
     procedure bnRemoveColorsClick(Sender: TObject);
     procedure bnCloseClick(Sender: TObject);
@@ -90,11 +96,13 @@ type
     procedure bnStFontTitle2ColorModClick(Sender: TObject);
     procedure bnStFontTitle1ColorModClick(Sender: TObject);
     procedure bnStFontTodoColorClick(Sender: TObject);
+    procedure cbAuthSmallCapsChange(Sender: TObject);
     procedure cbDelayChange(Sender: TObject);
     procedure cbLineSpacingChange(Sender: TObject);
     procedure cbShowMarkersChange(Sender: TObject);
     procedure cbStFontsChange(Sender: TObject);
     procedure cbStFontsMonoChange(Sender: TObject);
+    procedure edAuthSeparatorChange(Sender: TObject);
     procedure edPanPathChange(Sender: TObject);
     procedure edPanTemplateChange(Sender: TObject);
     procedure edStMaxSizeLessClick(Sender: TObject);
@@ -103,6 +111,7 @@ type
     procedure edStSizeMonoLessClick(Sender: TObject);
     procedure edStSizeMonoPlusClick(Sender: TObject);
     procedure edStSizePlusClick(Sender: TObject);
+    procedure edTitleSeparatorChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -179,6 +188,9 @@ begin
   stLineSpacing := stLineSpacing[1] + '.' + stLineSpacing[3];
   cbLineSpacing.ItemIndex := cbLineSpacing.Items.
     IndexOf(stLineSpacing);
+  edAuthSeparator.Text := stAuthSeparator;
+  edTitleSeparator.Text := stTitleSeparator;
+  cbAuthSmallCaps.Checked := blAuthSmallCaps;
   edPanOptions.Text := pandocOptions;
   edPanTemplate.Text := pandocTemplate;
   edPanOutput.Text := pandocOutput;
@@ -226,6 +238,11 @@ begin
   fmMain.FormatListTitleTodo;
 end;
 
+procedure TfmOptions.edAuthSeparatorChange(Sender: TObject);
+begin
+  stAuthSeparator := edAuthSeparator.Text;
+end;
+
 procedure TfmOptions.edPanPathChange(Sender: TObject);
 begin
   if FileExistsUTF8(edPanPath.Text + 'pandoc') then
@@ -258,6 +275,11 @@ begin
     fmMain.dbText.Font.Size := StrToInt(edStSize.Text);
     fmMain.FormatListTitleTodo;
   end;
+end;
+
+procedure TfmOptions.edTitleSeparatorChange(Sender: TObject);
+begin
+  stTitleSeparator := edTitleSeparator.Text;
 end;
 
 procedure TfmOptions.edStSizeLessClick(Sender: TObject);
@@ -366,6 +388,11 @@ begin
     clTodo := cdColorDialog.Color;
     fmMain.FormatListTitleTodo;
   end;
+end;
+
+procedure TfmOptions.cbAuthSmallCapsChange(Sender: TObject);
+begin
+  blAuthSmallCaps := cbAuthSmallCaps.Checked;
 end;
 
 procedure TfmOptions.cbDelayChange(Sender: TObject);

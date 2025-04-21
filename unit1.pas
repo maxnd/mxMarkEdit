@@ -273,6 +273,9 @@ var
   csTableRowCount: Integer = 10000;
   blTextOnChange: boolean = False;
   stGridLoaded: String = '';
+  stAuthSeparator: String = ', ';
+  stTitleSeparator: String = ', ';
+  blAuthSmallCaps: boolean = False;
   pandocPath: string = '/usr/local/bin/';
   pandocOptions: string = '+footnotes+inline_notes';
   pandocTemplate: string = 'word-template.docx';
@@ -497,6 +500,9 @@ begin
       iDelay := MyIni.ReadInteger('mxmarkedit', 'delay', 7);
       iLineSpacing := MyIni.ReadFloat('mxmarkedit', 'linespacing', 1.0);
       blShowMarkers := MyIni.ReadBool('mxmarkedit', 'showmarkers', false);
+      stAuthSeparator := MyIni.ReadString('mxmarkedit', 'authseparator', ', ');
+      stTitleSeparator := MyIni.ReadString('mxmarkedit', 'titleseparator', ', ');
+      blAuthSmallCaps := MyIni.ReadBool('mxmarkedit', 'authsmallcaps', false);
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
         '+footnotes+inline_notes');
       pandocTemplate := MyIni.ReadString('mxmarkedit', 'pantemplate',
@@ -1004,6 +1010,9 @@ begin
     MyIni.WriteInteger('mxmarkedit', 'delay', iDelay);
     MyIni.WriteFloat('mxmarkedit', 'linespacing', iLineSpacing);
     MyIni.WriteBool('mxmarkedit', 'showmarkers', blShowMarkers);
+    MyIni.WriteString('mxmarkedit', 'authseparator', stAuthSeparator);
+    MyIni.WriteString('mxmarkedit', 'titleseparator', stTitleSeparator);
+    MyIni.WriteBool('mxmarkedit', 'authsmallcaps', blAuthSmallCaps);
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
     MyIni.WriteString('mxmarkedit', 'panoutputput', pandocOutput);
     MyIni.WriteString('mxmarkedit', 'panpath', pandocPath);
@@ -3941,7 +3950,8 @@ procedure TfmMain.miToolsBiblioClick(Sender: TObject);
 var
   slText, slBiblio: TStringList;
   stText, stNewText: WideString;
-  stArgument, stInput, stOutput, stOldKey, stNewKey, stAuthor: String;
+  stArgument, stInput, stOutput, stOldKey, stNewKey, stAuthor,
+    stAuthFormCit, stAuthFormBib: String;
   i, iRow, iLen, iPos: Integer;
   blBracket: Bool = False;
 begin
@@ -4026,16 +4036,26 @@ begin
         else
         if UTF8CocoaPos('{' + sgTable.Cells[2, i] + '}', slText.Text) > 0 then
         begin
+          if blAuthSmallCaps = True then
+          begin
+            stAuthFormBib := '[' + sgTable.Cells[3, i] + ']{.smallcaps}';
+            stAuthFormCit := '[' + sgTable.Cells[4, i] + ']{.smallcaps}';
+          end
+          else
+          begin
+            stAuthFormBib := sgTable.Cells[3, i];
+            stAuthFormCit := sgTable.Cells[4, i];
+          end;
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
-            sgTable.Cells[4, i] + ' ' + sgTable.Cells[5, i] + ' ' +
-            sgTable.Cells[7, i], [rfIgnoreCase]);
+            stAuthFormCit + stAuthSeparator + sgTable.Cells[5, i] +
+              stTitleSeparator + sgTable.Cells[7, i], [rfIgnoreCase]);
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
-            sgTable.Cells[4, i] + ' ' + sgTable.Cells[6, i],
+            stAuthFormCit + stAuthSeparator + sgTable.Cells[6, i],
             [rfReplaceAll, rfIgnoreCase]);
-          slBiblio.Add(sgTable.Cells[3, i] + ' ' + sgTable.Cells[5, i] + ' ' +
-            sgTable.Cells[7, i] + '.');
+          slBiblio.Add(stAuthFormBib + stAuthSeparator +
+            sgTable.Cells[5, i] + stTitleSeparator + sgTable.Cells[7, i] + '.');
         end;
         Application.ProcessMessages;
       end;

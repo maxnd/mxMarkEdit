@@ -22,8 +22,8 @@
 {"hash":60415,"name":"tfmoptions.lbexistmodel.caption","sourcebytes":[226,151,143],"value":"\u25CF"},
 {"hash":60415,"name":"tfmoptions.lbexistexe.caption","sourcebytes":[226,151,143],"value":"\u25CF"},
 {"hash":55,"name":"tfmoptions.cbdelay.text","sourcebytes":[55],"value":"7"},
-{"hash":250793427,"name":"tfmoptions.lnstdelay.caption","sourcebytes":[68,101,108,97,121,32,105,110,32,100,97,121,115,32,102,111,114,32,100,101,97,100,108,105,110,101,115],"value":"Delay in days for deadlines"},
-{"hash":257415479,"name":"tfmoptions.lnstlinespace.caption","sourcebytes":[76,105,110,101,32,115,112,97,99,105,110,103],"value":"Line spacing"},
+{"hash":250793427,"name":"tfmoptions.lbstdelay.caption","sourcebytes":[68,101,108,97,121,32,105,110,32,100,97,121,115,32,102,111,114,32,100,101,97,100,108,105,110,101,115],"value":"Delay in days for deadlines"},
+{"hash":257415479,"name":"tfmoptions.lbstlinespace.caption","sourcebytes":[76,105,110,101,32,115,112,97,99,105,110,103],"value":"Line spacing"},
 {"hash":13328,"name":"tfmoptions.cblinespacing.text","sourcebytes":[49,46,48],"value":"1.0"},
 {"hash":90437220,"name":"tfmoptions.lbstsize.caption","sourcebytes":[83,105,122,101,32,111,102,32,110,111,114,109,97,108,32,102,111,110,116],"value":"Size of normal font"},
 {"hash":834,"name":"tfmoptions.edstsize.text","sourcebytes":[49,50],"value":"12"},
@@ -40,5 +40,10 @@
 {"hash":153805827,"name":"tfmoptions.bnsetcolors.caption","sourcebytes":[83,101,116,32,115,116,97,110,100,97,114,100,32,99,111,108,111,114,115],"value":"Set standard colors"},
 {"hash":241326771,"name":"tfmoptions.bnremovecolors.caption","sourcebytes":[82,101,109,111,118,101,32,99,111,108,111,114,115],"value":"Remove colors"},
 {"hash":102266339,"name":"tfmoptions.lbshowmarkers.caption","sourcebytes":[83,104,111,119,32,109,97,114,107,101,114,115],"value":"Show markers"},
+{"hash":736,"name":"tfmoptions.edauthseparator.text","sourcebytes":[44,32],"value":", "},
+{"hash":166232066,"name":"tfmoptions.lbauthseparator.caption","sourcebytes":[65,117,116,104,111,114,32,115,101,112,97,114,97,116,111,114],"value":"Author separator"},
+{"hash":229616034,"name":"tfmoptions.lbtitleseparator.caption","sourcebytes":[84,105,116,108,101,32,115,101,112,97,114,97,116,111,114],"value":"Title separator"},
+{"hash":736,"name":"tfmoptions.edtitleseparator.text","sourcebytes":[44,32],"value":", "},
+{"hash":68667027,"name":"tfmoptions.lbauthsmallcaps.caption","sourcebytes":[65,117,116,104,111,114,115,32,105,110,32,115,109,97,108,108,32,99,97,112,115],"value":"Authors in small caps"},
 {"hash":256115346,"name":"tfmoptions.cdcolordialog.title","sourcebytes":[83,101,108,101,99,116,32,97,32,99,111,108,111,114],"value":"Select a color"}
 ]}
