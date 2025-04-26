@@ -1754,6 +1754,7 @@ begin
         end;
       end;
     end;
+    key := 0;
   end
   else
   if ((key = 190) and (Shift = [ssAlt, ssMeta])) then
@@ -4053,12 +4054,12 @@ begin
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
             stAuthFormCit + stAuthSeparator + sgTable.Cells[5, i] +
-              stTitleSeparator + sgTable.Cells[7, i], [rfIgnoreCase]);
+              stTitleSeparator + sgTable.Cells[8, i], [rfIgnoreCase]);
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
             stAuthFormCit + stAuthSeparator + sgTable.Cells[6, i],
             [rfReplaceAll, rfIgnoreCase]);
-          slBiblio.Add(stAuthFormBib + stAuthSeparator +
+          slBiblio.Add(stAuthFormBib + stAuthSeparator + #9 +
             sgTable.Cells[5, i] + stTitleSeparator + sgTable.Cells[7, i] + '.');
         end;
         Application.ProcessMessages;
@@ -4082,17 +4083,21 @@ begin
         slBiblio.Sort;
         for i := 0 to slBiblio.Count - 1 do
         begin
-          if stAuthor = UTF8Copy(slBiblio[i], 1, UTF8Pos(',',
+          if stAuthor = UTF8Copy(slBiblio[i], 1, UTF8Pos(#9,
             slBiblio[i]) - 1) then
           begin
-            slText.Insert(iPos, '———.' + UTF8Copy(slBiblio[i], UTF8Pos(',',
-            slBiblio[i]), UTF8Length(slBiblio[i])));
+            slText.Insert(iPos, '———.' + stAuthSeparator + UTF8Copy(slBiblio[i],
+              UTF8Pos(#9, slBiblio[i]) + 1, UTF8Length(slBiblio[i])));
           end
           else
           begin
-            slText.Insert(iPos, slBiblio[i]);
+            slText.Insert(iPos, UTF8Copy(slBiblio[i], 1,
+              UTF8Pos(#9, slBiblio[i]) - 1) +
+              UTF8Copy(slBiblio[i], UTF8Pos(#9, slBiblio[i]) + 1,
+              UTF8Length(slBiblio[i])));
           end;
-          stAuthor := UTF8Copy(slBiblio[i], 1, UTF8Pos(',', slBiblio[i]) - 1);
+          stAuthor := UTF8Copy(slBiblio[i], 1, UTF8Pos(#9,
+            slBiblio[i]) - 1);
           Inc(iPos);
           slText.Insert(iPos, '');
           Inc(iPos);

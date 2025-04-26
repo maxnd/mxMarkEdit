@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.19, published on April 21 2025.
+Version 1.3.20, published on April 26 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -118,6 +118,8 @@ The formatting should work instantly, without delaying the typing, at least up t
 
 By default, the app deactivate text formatting for documents bigger than 250,000 characters. This value can be modified in the options of the app (see below) to fit the performance of one's own Mac. The size of the document is calculated by the size of the file, not counting the characters, so it could be a bit inaccurate.
 
+The inline footnotes should be preferred over the traditional ones, because deleting a reference of a footnote and not the corresponding text or vice versa could compromise the match between other footnotes and their references.
+
 ## Titles and todo list
 
 At the left of the text, there’s a list of the titles (starting with `#`) and todo items (starting with `– [ ]`  or `– [X]`). By clicking on an item in this list, the cursor moves to the corresponding title or todo item. While moving the cursor in the text, the corresponding title or todo item is highlighted.
@@ -184,7 +186,9 @@ The fifth column (D1) must contain the full title of the work; it's necessary to
 
 The sixth column (E1) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first; it's necessary to insert the italics markers (asterisks) if needed.
 
-The seventh column (F1) must contain the details of the citation, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies; it could be preceded by separators, like comma and space.
+The seventh column (F1) must contain the details of the citation for the bibliography, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies.
+
+The eighth column (G1) must contain the details of the citation for the footnotes, such as the publisher, place of publication and year.
 
 In the following columns can be freely insert the data considered useful, also using the extended editor that is activated with `Ctrl + Space`. For example, it may be needed a field in which to insert comments on the work, even of a certain length, or the name of the relative PDF file, a link to the publisher's website, and so on. The columns after F1 will be ignored by the app for the purposes of compiling citations.
 
@@ -192,10 +196,9 @@ It's possible to copy and paste in the grid any kind of citation taken from refe
 
 - Copy in the clipboard the citation from a website or a reference manager; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`.
 - Paste the content of the clipboard temporarily in the current document; if there are more citations, each of them must be in a different paragraph.
-- In each item, separate the author(s) from the title and the title from the following details with a tab, replacing the comma and space or the dot and space that usually separate these elements; remove also the possible semicolon or period at the end of each citation.
+- In each item, copy, paste and modify the various elements (author, title, etc.) so that they match the content of the bibliographic grid; each element must be separated by a tab, and every existing separator must be removed.
 - Select the citation(s) and copy them in the clipboard with the shortcut `Meta + Opt + C`.
 - Paste the citation(s) in the B1 column of a new row in the grid; all the data will fill properly the following cells; the titles will be included among the italics markers if they do not begin and end with quotation marks.
-- Check and possibly change the name of the author(s) for bibliography and footnotes in the B1 and C1 columns, and the short title in the E1 column.
 - Add the key in the A1 column and use the shortcut `Meta + Ctrl + K` to make it unique.
 
 Finally, it's possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it's easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
@@ -212,17 +215,17 @@ If it's necessary to quote an ancient text contained in a modern edition and to 
 
 Once the document has been completed and the keys of the various works have been inserted, the menu item `Tools - Compile bibliography` can be used. In this way, mxMarkEdit creates another file in the same folder as the one in use, with the same name and the extension ` - with bibliography`, convert it with Pandoc and open it with the word processor without adding the possible content of the table at the end of the text. In this file, the various keys are replaced by the actual citations of the works, in the following way.
 
-- The first citation of a work is composed by associating the contents of columns C1, D1 and F1.
-- The second citation of a work is composed by associating the contents of columns C1, E1 (abbreviated title) and F1.
+- The first citation of a work is composed by associating the contents of columns C1, D1 and G1.
+- The second citation of a work is composed by associating the contents of columns C1, E1 (abbreviated title) and G1.
 - If a citation is about the same work as the immediately preceding citation, the word `Ibidem` is inserted in italics in place of its bibliographic data.
 - The bibliography is inserted at the end of the text. It contains all and only the works actually cited in the document, and is created associating the content of columns B1, D1 and F1. The bibliography is ordered alphabetically.
 - The contents of the B1 and C1 columns are followed by the `Author separator`, specified in the options.
 - The contents of the D1 and E1 columns are followed by the `Title separator`, specified in the options.
-- To have the authors formatted in small caps in the text exported with Pandoc, select `Authors in small caps` in the options.
+- To have the authors formatted in small caps in the text exported with Pandoc, select `Authors in small caps` in the options. To have the same formatting for some text in other fields, use this format: `[M. Regan]{.smallcaps}`.
 
 If a `Ibidem` is followed by the same page numbers of the previous citations, they may be removed manually if this is required by the editorial rules.
 
-In case the citations need to be formatted differently to correspond to other methodological requests, it is enough to correct only the content of the columns and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
+In case the citations need to be formatted differently to correspond to other methodological requests, correct only the content of the columns and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
 
 ### mxMarkEdit and other reference managers
 
@@ -449,6 +452,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.3.20*
+
+- In the composition of the citations, the details of the items for the footnotes are taken from the G1 column, while those for the bibliography are still taken from the F1 column.
+- Bugs fixing: the composition of some citations were note correct.
+- The documentation has been corrected and improved.
 
 **Version 1.3.19**
 
