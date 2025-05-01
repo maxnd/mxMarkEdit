@@ -1,4 +1,8 @@
 {"version":1,"strings":[
 {"hash":79367010,"name":"tfmeditor.caption","sourcebytes":[69,100,105,116,111,114],"value":"Editor"},
-{"hash":4863637,"name":"tfmeditor.bnok.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}
+{"hash":4863637,"name":"tfmeditor.bnok.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":60144,"name":"tfmeditor.bnleft.caption","sourcebytes":[226,134,144],"value":"\u2190"},
+{"hash":60145,"name":"tfmeditor.bnup.caption","sourcebytes":[226,134,145],"value":"\u2191"},
+{"hash":60147,"name":"tfmeditor.bndown.caption","sourcebytes":[226,134,147],"value":"\u2193"},
+{"hash":60146,"name":"tfmeditor.bnright.caption","sourcebytes":[226,134,146],"value":"\u2192"}
 ]}

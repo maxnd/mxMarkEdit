@@ -3254,11 +3254,6 @@ end;
 procedure TfmMain.sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
   aState: TGridDrawState);
 begin
-  if ((sgTable.Cells[1, aRow] <> '') and (aRow > 0) and
-  not((sgTable.Row = aRow) and (sgTable.Col = aCol))) then
-  begin
-    sgTable.Canvas.Brush.Color := clGridHeadings;
-  end;
   if aRow = 0 then
   begin
     sgTable.Canvas.Font.Style := [fsBold];
@@ -3956,7 +3951,7 @@ var
   slText, slBiblio: TStringList;
   stText, stNewText: WideString;
   stArgument, stInput, stOutput, stOldKey, stNewKey, stAuthor,
-    stAuthFormCit, stAuthFormBib: String;
+    stAuthFormCit, stAuthFormBib, stDetailsCit, stDetailsBib: String;
   i, iRow, iLen, iPos: Integer;
   blBracket: Bool = False;
 begin
@@ -4043,28 +4038,65 @@ begin
         begin
           if blAuthSmallCaps = True then
           begin
-            stAuthFormBib := '[' + sgTable.Cells[3, i] + ']{.smallcaps}';
-            stAuthFormCit := '[' + sgTable.Cells[4, i] + ']{.smallcaps}';
+            if sgTable.Cells[3, i] <> '' then
+            begin
+              stAuthFormBib := '[' + sgTable.Cells[3, i] + ']{.smallcaps}';
+            end
+            else
+            begin
+              stAuthFormBib := '';
+            end;
+            if sgTable.Cells[4, i] <> '' then
+            begin
+              stAuthFormCit := '[' + sgTable.Cells[4, i] + ']{.smallcaps}';
+            end
+            else
+            begin
+              stAuthFormCit := '';
+            end;
           end
           else
           begin
             stAuthFormBib := sgTable.Cells[3, i];
             stAuthFormCit := sgTable.Cells[4, i];
           end;
+          if stAuthFormBib <> '' then
+          begin
+            stAuthFormBib := stAuthFormBib + stAuthSeparator;
+          end;
+          if stAuthFormCit <> '' then
+          begin
+            stAuthFormCit := stAuthFormCit + stAuthSeparator;
+          end;
+          if sgTable.Cells[7, i] <> '' then
+          begin
+            stDetailsBib := stTitleSeparator + sgTable.Cells[7, i];
+          end
+          else
+          begin
+            stDetailsBib := '';
+          end;
+          if sgTable.Cells[8, i] <> '' then
+          begin
+            stDetailsCit := stTitleSeparator + sgTable.Cells[8, i];
+          end
+          else
+          begin
+            stDetailsCit := '';
+          end;
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
-            stAuthFormCit + stAuthSeparator + sgTable.Cells[5, i] +
-              stTitleSeparator + sgTable.Cells[8, i], [rfIgnoreCase]);
+            stAuthFormCit + sgTable.Cells[5, i] + stDetailsCit, [rfIgnoreCase]);
           slText.Text := UTF8StringReplace(slText.Text,
             '{' + sgTable.Cells[2, i] + '}',
-            stAuthFormCit + stAuthSeparator + sgTable.Cells[6, i],
+            stAuthFormCit + sgTable.Cells[6, i],
             [rfReplaceAll, rfIgnoreCase]);
-          slBiblio.Add(stAuthFormBib + stAuthSeparator + #9 +
-            sgTable.Cells[5, i] + stTitleSeparator + sgTable.Cells[7, i] + '.');
+          slBiblio.Add(stAuthFormBib + #9 +
+            sgTable.Cells[5, i] + stDetailsBib + '.');
         end;
         Application.ProcessMessages;
       end;
-      iPos := slText.Count - 1;
+      iPos := slText.Count;
       for i := 0 to slText.Count - 1 do
       begin
         if Copy(slText[i], 1, 5) = '[^1]:' then
@@ -4081,8 +4113,16 @@ begin
         slText.Insert(iPos, '');
         iPos := iPos + 4;
         slBiblio.Sort;
+        stAuthor := '';
         for i := 0 to slBiblio.Count - 1 do
         begin
+          if UTF8Copy(slBiblio[i], 1, UTF8Pos(#9,
+            slBiblio[i]) - 1) = '' then
+          begin
+            slText.Insert(iPos, UTF8Copy(slBiblio[i],
+              UTF8Pos(#9, slBiblio[i]) + 1, UTF8Length(slBiblio[i])));
+          end
+          else
           if stAuthor = UTF8Copy(slBiblio[i], 1, UTF8Pos(#9,
             slBiblio[i]) - 1) then
           begin

@@ -36,9 +36,45 @@ object fmEditor: TfmEditor
       Width = 75
       Anchors = [akRight, akBottom]
       Caption = 'Close'
-      TabOrder = 0
+      TabOrder = 4
       TabStop = False
       OnClick = bnOKClick
+    end
+    object bnLeft: TButton
+      Left = 20
+      Height = 25
+      Top = 2
+      Width = 60
+      Caption = '←'
+      TabOrder = 0
+      OnClick = bnLeftClick
+    end
+    object bnUp: TButton
+      Left = 100
+      Height = 25
+      Top = 2
+      Width = 60
+      Caption = '↑'
+      TabOrder = 1
+      OnClick = bnUpClick
+    end
+    object bnDown: TButton
+      Left = 180
+      Height = 25
+      Top = 2
+      Width = 60
+      Caption = '↓'
+      TabOrder = 2
+      OnClick = bnDownClick
+    end
+    object bnRight: TButton
+      Left = 260
+      Height = 25
+      Top = 2
+      Width = 60
+      Caption = '→'
+      TabOrder = 3
+      OnClick = bnRightClick
     end
   end
   object dbEditor: TMemo

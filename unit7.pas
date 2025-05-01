@@ -112,6 +112,10 @@ resourcestring
     'footnote, both properly automatically numbered.';
   srcut035 = ' In the tables grid';
   srcut035b = 'Open the extended editor.';
+  srcut035b1 = 'In the extended editor, show the cell at the left of the current one.';
+  srcut035b2 = 'In the extended editor, show the cell over the current one.';
+  srcut035b3 = 'In the extended editor, show the cell at the right of the current one.';
+  srcut035b4 = 'In the extended editor, show the cell below the current one.';
   srcut035c = 'Copy the bibliographic key in the second column among curly brackets.';
   srcut035d = 'Make unique the current key in the second column.';
   srcut036 = 'Insert a new row.';
@@ -215,7 +219,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 94;
+  sgShortcuts.RowCount := 98;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -347,6 +351,18 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Ctrl + ' + srcut00g;
   sgShortcuts.Cells[1, i] := srcut035b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00c;
+  sgShortcuts.Cells[1, i] := srcut035b1;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00a;
+  sgShortcuts.Cells[1, i] := srcut035b2;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00d;
+  sgShortcuts.Cells[1, i] := srcut035b3;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Opt + ' + srcut00b;
+  sgShortcuts.Cells[1, i] := srcut035b4;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Opt + C';
   sgShortcuts.Cells[1, i] := srcut035c;

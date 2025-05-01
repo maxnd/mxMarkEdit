@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.20, published on April 26 2025.
+Version 1.3.21, published on May 1 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -18,13 +18,13 @@ The PDF manual may be downloaded also within the app, with the `Help - Download 
 
 ---
 
-mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data, and also a file manager to search for a sentence in all the documents or spreadsheets contained in a folder. It's also possible to use the app as a presentation manager. Finally, mxMarkEdit has a built-in bibliographic manager which may use the bibliography stored in the grid to compile the citations within a document in a way that resembles the one used by BibLaTex.
+mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data, and also a file manager to search for a sentence in all the documents or spreadsheets contained in a folder. It’s also possible to use the app as a presentation manager. Finally, mxMarkEdit has a built-in bibliographic manager which may use the bibliography stored in the grid to compile the citations within a document in a way that resembles the one used by BibLaTex.
 
 mxMarkEdit is a native macOS app and works nicely with Apple Intelligence.
 
 The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
 
-mxMarkEdit *doesn't use Electron* because of its performance and [security issues](https://medium.com/@flynn.kelseyelizabeth/dont-use-electron-until-you-ve-read-this-article-52d30401303d). The formatting of Markdown text is made by an original algorithm written in Free Pascal.
+mxMarkEdit *doesn’t use Electron* because of its performance and [security issues](https://medium.com/@flynn.kelseyelizabeth/dont-use-electron-until-you-ve-read-this-article-52d30401303d). The formatting of Markdown text is made by an original algorithm written in Free Pascal.
 
 mxMarkEdit has been deeply influenced by [Org-mode](https://orgmode.org). Although it has far less functionalities and customisations than the latter, it’s a standard Mac app which benefits of the Apple spell checking and standard shortcuts.
 
@@ -45,7 +45,7 @@ To install Pandoc, not necessary to use the app but necessary to export the Mark
 
 To open automatically Markdown files with mxMarkEdit, follow the [Apple Guidelines](https://support.apple.com/en-sa/guide/mac-help/mh35597/mac).
 
-In the `untested` folder of the source code there's a version of the app compiled for Mac with Intel chip. It's neither tested nor notarized.
+In the `untested` folder of the source code there’s a version of the app compiled for Mac with Intel chip. It’s neither tested nor notarized.
 
 ## Look of the app
 
@@ -116,7 +116,7 @@ Links are properly recognized and formatted if the formatting is not disabled. A
 
 The formatting should work instantly, without delaying the typing, at least up to about 250,000 characters (test made in a Mac Pro with M1 chip and 8 GB of RAM). To work speedily with bigger documents, disable the formatting and, if necessary, also the titles and todo list (see below the `Edit` menu notes). In this way, even a text of few millions of characters may be modified without any delay in typing.
 
-By default, the app deactivate text formatting for documents bigger than 250,000 characters. This value can be modified in the options of the app (see below) to fit the performance of one's own Mac. The size of the document is calculated by the size of the file, not counting the characters, so it could be a bit inaccurate.
+By default, the app deactivate text formatting for documents bigger than 250,000 characters. This value can be modified in the options of the app (see below) to fit the performance of one’s own Mac. The size of the document is calculated by the size of the file, not counting the characters, so it could be a bit inaccurate.
 
 The inline footnotes should be preferred over the traditional ones, because deleting a reference of a footnote and not the corresponding text or vice versa could compromise the match between other footnotes and their references.
 
@@ -140,9 +140,9 @@ The content of the grid is saved in a separate file with the same name of the on
 
 When a `.cvs` file is loaded, the grid is not automatically shown, but in the status bar at the bottom, after the name of the `.md` file, it’s shown the label `& .csv`, to alert the user that there are some data inside the grid.
 
-In the grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document, or deleted. It’s possible also to paste some data copied from a spreadsheet like Excel or Numbers. See below for the shortcuts useful to do that. It's also possible to auto resize the width of the columns with a double click at the right of their headings.
+In the grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document, or deleted. It’s possible also to paste some data copied from a spreadsheet like Excel or Numbers. See below for the shortcuts useful to do that. It’s also possible to auto resize the width of the columns with a double click at the right of their headings.
 
-To edit easily a cell in the grid, it's available an extended editor activated with the shortcut `Ctrl + Space`. In this editor no formatting is available, but the links are properly recognized. To quit the editor, use the `Close` button or press `ESC`.
+To edit easily a cell in the grid, it’s available an extended editor activated with the shortcut `Ctrl + Space`. In this editor no formatting is available, but the links are properly recognized. At the left bottom there are 4 buttons to show the cell at the left, above, at the right and below the current one, mapped to the shortcuts `Meta + Opt + Left / Up / Right / Down arrow`. To quit the editor, use the `Close` button or press `ESC`.
 
 At the bottom, there’s the `Find` field useful to search for data contained in the grid. Type within it the text to be found and press `Return` or the shortcut `Meta + G` to select the following cell after the current one in just the current field (column) of the current table that contains that text, or `Shift + Return` or the shortcut `Meta + Shift G` to select the previous cell before the current one in just the current field (column) of the current table that contains that text. Anyway, if the selected column is the first, containing the table names, the search will look for the following or previous table name. The search is case insensitive. To continue the search, select again the field and press `Return` or `Shift + Return`, or use the shortcut `Meta + G` or `Meta + Shift + G` when the grid is focused.
 
@@ -158,9 +158,9 @@ The formulas are the followings:
 - `---avg`: reports the average of the numbers;
 - `---count`: reports the total number of the rows, also non numeric;
 
-The formulas are shown in the color set by the user for the code (see below the option of the app for more information). The possible filter doesn't hide the formulas and the following result fields, and the rows not filtered are not included in the computations. Deleting a row activate the computation of the formulas, but not move a row in another table. Before closing the document, remove the filters from each table, so that the result fields are saved with the values relative to all the data of the column.
+The formulas are shown in the color set by the user for the code (see below the option of the app for more information). The possible filter doesn’t hide the formulas and the following result fields, and the rows not filtered are not included in the computations. Deleting a row activate the computation of the formulas, but not move a row in another table. Before closing the document, remove the filters from each table, so that the result fields are saved with the values relative to all the data of the column.
 
-It's possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it's necessary to mark the bottom row of the current table creating a fictional table after it; it's enough to write just its name.
+It’s possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it’s necessary to mark the bottom row of the current table creating a fictional table after it; it’s enough to write just its name.
 
 To replace the content of the grid with the tables contained in a `.csv` file created with mxMarkEdit, use the menu item `File - Import tables...`. To delete the content of the grid so that it’s not loaded any more, delete the related file with the `.csv` extension when it’s not loaded.
 
@@ -176,23 +176,23 @@ In mxMarkEdit, the tables containing a bibliography must be structured as follow
 
 The first column on the left must contain the name of the table, as usual. Several bibliographic tables may be inserted in sequence with different names to structure the bibliographic material in various areas.
 
-The second column (A1) must contain the key of the work, that is, some words or numbers that identify it uniquely within all the tables contained in the grid. It is suggested to use the surname of the first author followed by a space and the year of publication. If there are multiple works by the same author published in the same year, a progressive lowercase letter may be added after the year. For example, to report the bibliographic data of a book written by R. Taylor in 2024, the key could be `Taylor 2024`. If there were multiple works published by the same author in 2024, the subsequent works would have the key `Taylor 2024a`, `Taylor 2024b`, etc. It is the user's responsibility to verify that the key assigned to a work is unique, that is, it has not already been assigned to another work. To do this, use the shortcut `Meta` + `Ctrl` + `K`, active just in this column, to make it unique. If the key is composed as `surname + year`, sorting the works by key will sort them by author and then by year.
+The second column (A1) must contain the key of the work, that is, some words or numbers that identify it uniquely within all the tables contained in the grid. It is suggested to use the surname of the first author followed by a space and the year of publication. If there are multiple works by the same author published in the same year, a progressive lowercase letter may be added after the year. For example, to report the bibliographic data of a book written by R. Taylor in 2024, the key could be `Taylor 2024`. If there were multiple works published by the same author in 2024, the subsequent works would have the key `Taylor 2024a`, `Taylor 2024b`, etc. It is the user’s responsibility to verify that the key assigned to a work is unique, that is, it has not already been assigned to another work. To do this, use the shortcut `Meta` + `Ctrl` + `K`, active just in this column, to make it unique. If the key is composed as `surname + year`, sorting the works by key will sort them by author and then by year.
 
 The third column (B1) must contain the author or authors of the work with the formatting required for the bibliography that will be inserted at the end of the document. In order for the authors to be ordered alphabetically, their surname must be inserted before their name.
 
 The fourth column (C1) must contain the author or authors of the work with the formatting required for footnotes. Normally, the name is bulleted and precedes the surname.
 
-The fifth column (D1) must contain the full title of the work; it's necessary to insert the italics markers (asterisks) if needed.
+The fifth column (D1) must contain the full title of the work; it’s necessary to insert the italics markers (asterisks) if needed.
 
-The sixth column (E1) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first; it's necessary to insert the italics markers (asterisks) if needed.
+The sixth column (E1) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first; it’s necessary to insert the italics markers (asterisks) if needed.
 
 The seventh column (F1) must contain the details of the citation for the bibliography, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies.
 
 The eighth column (G1) must contain the details of the citation for the footnotes, such as the publisher, place of publication and year.
 
-In the following columns can be freely insert the data considered useful, also using the extended editor that is activated with `Ctrl + Space`. For example, it may be needed a field in which to insert comments on the work, even of a certain length, or the name of the relative PDF file, a link to the publisher's website, and so on. The columns after F1 will be ignored by the app for the purposes of compiling citations.
+In the following columns can be freely insert the data considered useful, also using the extended editor that is activated with `Ctrl + Space`. For example, it may be needed a field in which to insert comments on the work, even of a certain length, or the name of the relative PDF file, a link to the publisher’s website, and so on. The columns after F1 will be ignored by the app for the purposes of compiling citations.
 
-It's possible to copy and paste in the grid any kind of citation taken from reference managers like Zotero and Mendeley as well as from websites or library catalogs. Follow these simple steps.
+It’s possible to copy and paste in the grid any kind of citation taken from reference managers like Zotero and Mendeley as well as from websites or library catalogs. Follow these simple steps.
 
 - Copy in the clipboard the citation from a website or a reference manager; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`.
 - Paste the content of the clipboard temporarily in the current document; if there are more citations, each of them must be in a different paragraph.
@@ -201,15 +201,15 @@ It's possible to copy and paste in the grid any kind of citation taken from refe
 - Paste the citation(s) in the B1 column of a new row in the grid; all the data will fill properly the following cells; the titles will be included among the italics markers if they do not begin and end with quotation marks.
 - Add the key in the A1 column and use the shortcut `Meta + Ctrl + K` to make it unique.
 
-Finally, it's possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it's easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
+Finally, it’s possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it’s easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
 
 ### Inserting citations in the text
 
-To insert a citation of a work in the document, normally in the footnotes, just insert its identification key between two curly brackets, followed by all the detailed elements necessary for the single citation. For example, `Cf. {Taylor 2024}, pp. 23-46.`. It's necessary to be careful in typing correctly the key of the work to be quoted, respecting uppercase and lowercase. To do this, just display the bibliographic table, identify the key to be reported, copy it in clipboard with the shortcut `Meta + Opt + C` and paste it into the text.
+To insert a citation of a work in the document, normally in the footnotes, just insert its identification key between two curly brackets, followed by all the detailed elements necessary for the single citation. For example, `Cf. {Taylor 2024}, pp. 23-46.`. It’s necessary to be careful in typing correctly the key of the work to be quoted, respecting uppercase and lowercase. To do this, just display the bibliographic table, identify the key to be reported, copy it in clipboard with the shortcut `Meta + Opt + C` and paste it into the text.
 
 To have a visual feedback of the citation related to a key without opening the grid, use the shortcut `Meta + Shift + K` when the cursor is inside the key, that is among the two curly brackets that surround it.
 
-If it's necessary to quote an ancient text contained in a modern edition and to mention a number or chapter of its passage after the original title, use the key just for the modern work, and quote manually the first. For instance: `S. Augustine, *De Civitate Dei* I, 1-36, in {Augustine 2020}, 50.`. Of course, only the modern edition will appear in the bibliography.
+If it’s necessary to quote an ancient text contained in a modern edition and to mention a number or chapter of its passage after the original title, use the key just for the modern work, and quote manually the first. For instance: `S. Augustine, *De Civitate Dei* I, 1-36, in {Augustine 2020}, 50.`. Of course, only the modern edition will appear in the bibliography.
 
 ### Producing a document with bibliography
 
@@ -225,15 +225,15 @@ Once the document has been completed and the keys of the various works have been
 
 If a `Ibidem` is followed by the same page numbers of the previous citations, they may be removed manually if this is required by the editorial rules.
 
-In case the citations need to be formatted differently to correspond to other methodological requests, correct only the content of the columns and then to regenerate the document with bibliography. So, there's no need to correct all the individual citations contained in the document.
+In case the citations need to be formatted differently to correspond to other methodological requests, correct only the content of the columns and then to regenerate the document with bibliography. So, there’s no need to correct all the individual citations contained in the document.
 
 ### mxMarkEdit and other reference managers
 
 As is apparent from these notes, the bibliographic manager of mxMarkEdit, while not having the functionality of more specialized software such as Zotero and Mendeley, is a much simpler and more usable tool, both for those who plan to dedicate themselves to research only temporarily, to simply write a dissertation, and for those who find the system of composing citations based on style sheets too complex and dangerous.
 
-This approach allows to reformat all the citations of a document simply by changing the style sheet in use, but it becomes tricky when there's no style that perfectly matches the methodological needs of one's institution or publisher. Furthermore, there is always the risk that in particular cases the style sheet does not give the desired results. The approach used by mxMarkEdit is much more solid, as the citation, even the part that follows the title, is composed by the user in its final form, and therefore is certainly correct. Even if this involves the need to rewrite it if it's necessary to adapt to other methodological requests, the user never runs into dangerous malfunctions.
+This approach allows to reformat all the citations of a document simply by changing the style sheet in use, but it becomes tricky when there’s no style that perfectly matches the methodological needs of one’s institution or publisher. Furthermore, there is always the risk that in particular cases the style sheet does not give the desired results. The approach used by mxMarkEdit is much more solid, as the citation, even the part that follows the title, is composed by the user in its final form, and therefore is certainly correct. Even if this involves the need to rewrite it if it’s necessary to adapt to other methodological requests, the user never runs into dangerous malfunctions.
 
-Anyway, it's also possible to use Zotero or Mendeley as main bibliographic manager and import from their data all the items that are relevant for a specific article or book inserting them in a bibliographic table with the shortcuts shown above. In this way, one sticks with a solid and fully featured bibliographic manager but may use at the same time the simpler and secure bibliographic system of mxMarkEdit to compile the citations.
+Anyway, it’s also possible to use Zotero or Mendeley as main bibliographic manager and import from their data all the items that are relevant for a specific article or book inserting them in a bibliographic table with the shortcuts shown above. In this way, one sticks with a solid and fully featured bibliographic manager but may use at the same time the simpler and secure bibliographic system of mxMarkEdit to compile the citations.
 
 Finally, the mxMarkEdit bibliographic database, being contained in a `.csv` file, can always be read and modified, maybe by writing some code, so that it can be imported into other software.
 
@@ -266,7 +266,7 @@ In the grid above the buttons it will be shown a row for each occurrence of the 
 
 The search in files returns maximum 100 recurrences for each document or spreadsheet analysed, and stops at 5,000 global recurrences, asking the user to possibly specify more words to find. Emojis too can be searched for.
 
-Moving the mouse over the label of the file path and name, at the bottom left of the main interface of the app, a hint appears with the complete content, even if in the label it's truncated due to its length.
+Moving the mouse over the label of the file path and name, at the bottom left of the main interface of the app, a hint appears with the complete content, even if in the label it’s truncated due to its length.
 
 ## Menu items
 
@@ -286,7 +286,7 @@ The `Edit - Show duplicate words` menu item shows in red all the words of each s
 
 The `Show words recurrence form` menu item opens a form with the list of all the words used in the current document, excluded the possible YAML headings (`title:`, `author:` etc.), and their recurrence, that is how many times they appear in the document. By default, the list is sorted by recurrence, but it’s possible to click on the radio item `Sort by words`, at the right bottom, to sort the list by name. Below the grid there is a field in which it’s possible to type the words that should not be considered, like articles, separated by commas. These words are automatically sorted. Below this field, there are some buttons to include the word selected in the grid within the words to skip, to update the results after having changed the words to skip, to copy in the clipboard the content of the grid and to close the form.
 
-The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, its color, size and line spacing, greatly improving the performance of the app with very large documents. In the options, it's possible to set the number of characters of a document beyond which it's loaded without formatting, that is just activating automatically this functionality.
+The `Edit - Disable formatting` menu item prevents the formatting of the text, except the normal font name, its color, size and line spacing, greatly improving the performance of the app with very large documents. In the options, it’s possible to set the number of characters of a document beyond which it’s loaded without formatting, that is just activating automatically this functionality.
 
 The `Tools - Optimize presentation...` menu item creates a copy of the current presentation optimized to be shown with mxMarkEdit, and saves it with the name of the file in use plus ` - mxMarkEdit` addition. Basically, the various items of first level are separated by an empty paragraph, and the repeated titles of the slides are removed.
 
@@ -311,7 +311,7 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 - the possibility to show the Markdown markers while leaving active the formatting;
 - the line spacing value (1.0 is the default);
 - the delay in days for the new deadlines (7 is the default);
-- the number of characters of a document beyond which it's loaded without formatting; it's calculated by the size of the file, not counting the characters, so it could be a bit inaccurate;
+- the number of characters of a document beyond which it’s loaded without formatting; it’s calculated by the size of the file, not counting the characters, so it could be a bit inaccurate;
 - the separators added in the citations between the author(s) and the title;
 - the separators added in the citations between the title and the details;
 - the option to make the author(s) in small caps in the Pandoc output file;
@@ -378,6 +378,10 @@ There are also some shortcuts beyond the ones related to the menu items.
 ### In the tables grid
 
 * `Ctrl` + `Space`: open the extended editor.
+* `Meta` + `Opt` + `Arrow left`: in the extended editor, show the cell at the left of the current one.
+* `Meta` + `Opt` + `Arrow top`: in the extended editor, show the cell over the current one.
+* `Meta` + `Opt` + `Arrow right`: in the extended editor, show the cell at the right of the current one.
+* `Meta` + `Opt` + `Arrow down`: in the extended editor, show the cell below the current one.
 * `Meta` + `Opt` + `C`: copy the bibliographic key contained in the second column among curly brackets.
 * `Meta` + `Ctrl` + `K`: make unique the current key contained in the second column.
 * `Meta` + `Shift` + `I`: insert a new row.
@@ -453,6 +457,11 @@ The software creates these two configuration files that can be deleted to reset 
 
 # Revision history
 
+**Version 1.3.21*
+
+- In the extended editor, there are 4 buttons to show the cell at the left, above, at the right and below the current one, mapped to the shortcuts `Meta + Opt + Left / Up / Right / Down arrow`.
+- Bugs fixing: the composition of some citations were note correct.
+
 **Version 1.3.20*
 
 - In the composition of the citations, the details of the items for the footnotes are taken from the G1 column, while those for the bibliography are still taken from the F1 column.
@@ -471,14 +480,14 @@ The software creates these two configuration files that can be deleted to reset 
 
 **Version 1.3.17**
 
-- Bugs fixing: the combo box above the title list didn't change the selection of the titles immediately.
+- Bugs fixing: the combo box above the title list didn’t change the selection of the titles immediately.
 - Small improvements in the documentation.
 
 **Version 1.3.16**
 
-- At the bottom of the todo form, when the completed items are visible, now it's shown also their number and their percentage with respect to the total number of items.
-- Bugs fixing: pressing `Return` at the end of a todo item with a deadline but without any description didn't delete it.
-- Bugs fixing: toggling the state of a todo item in the todo form didn't always work as expected.
+- At the bottom of the todo form, when the completed items are visible, now it’s shown also their number and their percentage with respect to the total number of items.
+- Bugs fixing: pressing `Return` at the end of a todo item with a deadline but without any description didn’t delete it.
+- Bugs fixing: toggling the state of a todo item in the todo form didn’t always work as expected.
 
 **Version 1.3.15**
 
@@ -497,7 +506,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 **Version 1.3.12**
 
-- In the grid, now the filter doesn't hide the formulas and the result fields, and the rows not filtered are not included in the computations.
+- In the grid, now the filter doesn’t hide the formulas and the result fields, and the rows not filtered are not included in the computations.
 - The `---count` formula now counts the number of the visible rows of the column, also non numeric.
 - Added the shortcut `Meta + Ctrl + Shift + F` to focus the filter field in the grid.
 - Minor graphic improvements.
@@ -515,11 +524,11 @@ The software creates these two configuration files that can be deleted to reset 
 **Version 1.3.9**
 
 - Added `Meta + Shift + P` to show the picture contained in a Markdown image link at the beginning of the current paragraph.
-- Bugs fixing: deleting some cells in the grid didn't activated the save function.
+- Bugs fixing: deleting some cells in the grid didn’t activated the save function.
 
 **Version 1.3.8**
 
-- Bugs fixing: the checking of duplicate words didn't always work as expected.
+- Bugs fixing: the checking of duplicate words didn’t always work as expected.
 - Added the shortcut `Meta + Shift + G` in the grid to search upward.
 
 **Version 1.3.7**
@@ -527,7 +536,7 @@ The software creates these two configuration files that can be deleted to reset 
 - Added the possibility to assign a todo item to one or more resources and to filter the items assigned to a resource in the todo form.
 - Bugs fixing: in the todo form, the heading of the items without a deadline was not reported.
 - Bugs fixing: the find and replace functions could be activated also if the search field was empty.
-- Bugs fixing: the checking of duplicate words didn't always work as expected.
+- Bugs fixing: the checking of duplicate words didn’t always work as expected.
 - Minor bugs fixing.
 
 **Version 1.3.6**
@@ -538,13 +547,13 @@ The software creates these two configuration files that can be deleted to reset 
 **Version 1.3.5**
 
 - The `Meta + Opt + C` shortcut now requires that the author(s), the title and the details of a citations are separated by a tab.
-- When a link to a picture is created, it's now properly formatted.
+- When a link to a picture is created, it’s now properly formatted.
 
 **Version 1.3.4**
 
-- During presentations, if it's highlighted a link to a picture at the beginning of a paragraph, this picture is shown.
+- During presentations, if it’s highlighted a link to a picture at the beginning of a paragraph, this picture is shown.
 - The shortcut `Meta + Opt + C` now allows to copy more citations divided in different paragraphs.
-- The title of the citations is not italicized by default any more (citations of article don't require that), but the shortcut `Meta + Opt + C` adds the italics markers to the titles if they don't begin and end with quotation marks.
+- The title of the citations is not italicized by default any more (citations of article don’t require that), but the shortcut `Meta + Opt + C` adds the italics markers to the titles if they don’t begin and end with quotation marks.
 - Improved the bibliography compilation.
 - Bugs fixing: the footnote numbering could not work as expected.
 - Minor improvements.
@@ -557,7 +566,7 @@ The software creates these two configuration files that can be deleted to reset 
 **Version 1.3.2**
 
 - In the grid, added the shortcut `Meta + Opt + C` to copy the bibliographic key in the clipboard among curly brackets.
-- Bugs fixing: the bibliography manager didn't work as expected.
+- Bugs fixing: the bibliography manager didn’t work as expected.
 - Bugs fixing: the file search form was not available.
 
 **Version 1.3.1**
@@ -592,7 +601,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 **Version 1.2.24**
 
-- Bugs fixing: sometimes cutting a header in the clipboard didn't work as expected.
+- Bugs fixing: sometimes cutting a header in the clipboard didn’t work as expected.
 - Small bugs fixing.
 
 **Version 1.2.23**
@@ -613,7 +622,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 **Version 1.2.20**
 
-- In the file search open by `File - Search in files...` menu item, it's now possibile to use `\n`, `\r` and `\t` to look for line feeds, returns and tabs.
+- In the file search open by `File - Search in files...` menu item, it’s now possibile to use `\n`, `\r` and `\t` to look for line feeds, returns and tabs.
 - Minor graphic improvements in presentation mode.
 
 **Version 1.2.19**
@@ -629,7 +638,7 @@ The software creates these two configuration files that can be deleted to reset 
 **Version 1.2.17**
 
 - Added menu item `File - Insert...`, to insert the content of a Markdown file in the current one at the cursor position.
-- Deleting an empty row in the grid now doesn't require confirmation.
+- Deleting an empty row in the grid now doesn’t require confirmation.
 - Minor graphic improvements in presentation mode.
 - Small bugs fixing.
 
@@ -687,7 +696,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 **Version 1.2.6**
 
-- In the options, has been added the specification of the number of characters of a document beyond which it's loaded without formatting. It's calculated by the size of the file, not counting the characters, so it could be a bit inaccurate. Formatting can be activated afterward.
+- In the options, has been added the specification of the number of characters of a document beyond which it’s loaded without formatting. It’s calculated by the size of the file, not counting the characters, so it could be a bit inaccurate. Formatting can be activated afterward.
 - The possible hiding of the title and todo list is now restored when the app is run again.
 
 **Version 1.2.5**
@@ -710,21 +719,21 @@ The software creates these two configuration files that can be deleted to reset 
 
 **Version 1.2.2**
 
-- Opening one the last four files used, now it's restored also the last selected cell.
+- Opening one the last four files used, now it’s restored also the last selected cell.
 - In presentation mode, the headings are now highlighted like the other paragraphs.
 - Minor graphics improvements in presentation mode.
 - Bugs fixing: in some circumstances, the content of the grid could not be saved.
 
 **Version 1.2.1**
 
-- Bugs fixing: the `Meta` + `V` shortcut in the grid didn't set it as modified.
+- Bugs fixing: the `Meta` + `V` shortcut in the grid didn’t set it as modified.
 - Bugs fixing: a value pasted with the `Meta` + `V` shortcut in the grid was not considered by a possible function.
-- Bugs fixing: the shortcuts `Meta` + `C`, `Meta` + `X`, `Meta` + `V` and `Meta` + `A` in the fields of the search form didn't work as expected.
+- Bugs fixing: the shortcuts `Meta` + `C`, `Meta` + `X`, `Meta` + `V` and `Meta` + `A` in the fields of the search form didn’t work as expected.
 
 **Version 1.2.0**
 
 - Added files search. See above the `Files management` title for information.
-- Moving the mouse over the label of the file path and name, at the bottom left, now shows a hint with the complete content, even if in the label it's truncated due to its length.
+- Moving the mouse over the label of the file path and name, at the bottom left, now shows a hint with the complete content, even if in the label it’s truncated due to its length.
 - Minor graphic improvements.
 - Bugs fixing: when the path of the file was very long, the date and time label on the right was overwritten.
 

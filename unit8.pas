@@ -35,16 +35,26 @@ type
   { TfmEditor }
 
   TfmEditor = class(TForm)
+    bnLeft: TButton;
+    bnUp: TButton;
+    bnDown: TButton;
+    bnRight: TButton;
     dbEditor: TMemo;
     pnTasks: TPanel;
     bnOK: TButton;
+    procedure bnDownClick(Sender: TObject);
+    procedure bnLeftClick(Sender: TObject);
     procedure bnOKClick(Sender: TObject);
+    procedure bnRightClick(Sender: TObject);
+    procedure bnUpClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
   private
+    procedure LoadCell;
+    procedure SaveCell;
 
   public
 
@@ -52,6 +62,10 @@ type
 
 var
   fmEditor: TfmEditor;
+
+resourcestring
+
+  lbedit001 = 'Cell';
 
 implementation
 
@@ -98,27 +112,46 @@ begin
     checkTextInDocument(nil);
   TCocoaTextView(NSScrollView(dbEditor.Handle).documentView).
     undoManager.removeAllActions;
-  dbeditor.Font.Name := fmMain.dbText.Font.Name;
+  dbEditor.Font.Name := fmMain.dbText.Font.Name;
 end;
 
 procedure TfmEditor.FormShow(Sender: TObject);
 begin
-  dbEditor.Text := fmMain.sgTable.Cells[fmMain.sgTable.Col, fmMain.sgTable.Row];
-  dbEditor.SelStart := 0;
+  LoadCell;
 end;
 
 procedure TfmEditor.FormHide(Sender: TObject);
-var
-  stText: String;
 begin
-  stText := dbEditor.Text;
-  stText := UTF8StringReplace(stText, #9, ' ', [rfReplaceAll]);
-  fmMain.sgTable.Cells[fmMain.sgTable.Col, fmMain.sgTable.Row] := stText;
+  SaveCell;
 end;
 
 procedure TfmEditor.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
+  if ((key = 37) and (Shift = [ssMeta, ssAlt])) then
+  begin
+    bnLeftClick(nil);
+    key := 0;
+  end
+  else
+  if ((key = 38) and (Shift = [ssMeta, ssAlt])) then
+  begin
+    bnUpClick(nil);
+    key := 0;
+  end
+  else
+  if ((key = 39) and (Shift = [ssMeta, ssAlt])) then
+  begin
+    bnRightClick(nil);
+    key := 0;
+  end
+  else
+  if ((key = 40) and (Shift = [ssMeta, ssAlt])) then
+  begin
+    bnDownClick(nil);
+    key := 0;
+  end
+  else
   if key = 27 then
   begin
     Close;
@@ -130,6 +163,64 @@ procedure TfmEditor.bnOKClick(Sender: TObject);
 begin
   Close;
 end;
+
+procedure TfmEditor.bnLeftClick(Sender: TObject);
+begin
+  if fmMain.sgTable.Col > 1 then
+  begin
+    SaveCell;
+    fmMain.sgTable.Col := fmMain.sgTable.Col - 1;
+    LoadCell;
+  end;
+end;
+
+procedure TfmEditor.bnUpClick(Sender: TObject);
+begin
+  if fmMain.sgTable.Row > 1 then
+  begin
+    SaveCell;
+    fmMain.sgTable.Row := fmMain.sgTable.Row - 1;
+    LoadCell;
+  end;
+end;
+
+procedure TfmEditor.bnDownClick(Sender: TObject);
+begin
+  if fmMain.sgTable.Row < fmMain.sgTable.RowCount - 1 then
+  begin
+    SaveCell;
+    fmMain.sgTable.Row := fmMain.sgTable.Row + 1;
+    LoadCell;
+  end;
+end;
+
+procedure TfmEditor.bnRightClick(Sender: TObject);
+begin
+  if fmMain.sgTable.Col < fmMain.sgTable.ColCount - 1 then
+  begin
+    SaveCell;
+    fmMain.sgTable.Col := fmMain.sgTable.Col + 1;
+    LoadCell;
+  end;
+end;
+
+procedure TfmEditor.LoadCell;
+begin
+  dbEditor.Text := fmMain.sgTable.Cells[fmMain.sgTable.Col, fmMain.sgTable.Row];
+  dbEditor.SelStart := 0;
+  fmEditor.Caption := lbedit001 + ' ' + IntToStr(fmMain.sgTable.Row) + ' / ' +
+    fmMain.sgTable.Cells[fmMain.sgTable.Col, 0];
+end;
+
+procedure TfmEditor.SaveCell;
+var
+  stText: String;
+begin
+  stText := dbEditor.Text;
+  stText := UTF8StringReplace(stText, #9, ' ', [rfReplaceAll]);
+  fmMain.sgTable.Cells[fmMain.sgTable.Col, fmMain.sgTable.Row] := stText;
+end;
+
 
 end.
 
