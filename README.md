@@ -22,7 +22,7 @@ mxMarkEdit is a free software for Mac for writing texts and todo items in [Markd
 
 mxMarkEdit is a native macOS app and works nicely with Apple Intelligence.
 
-The software has been written in [Lazarus](https://www.lazarus-ide.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
+The software has been written in [Lazarus](https://www.lazarus-ide.org) with [Free Pascal](https://www.freepascal.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
 
 mxMarkEdit *doesn’t use Electron* because of its performance and [security issues](https://medium.com/@flynn.kelseyelizabeth/dont-use-electron-until-you-ve-read-this-article-52d30401303d). The formatting of Markdown text is made by an original algorithm written in Free Pascal.
 
