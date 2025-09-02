@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.21, published on May 1 2025.
+Version 1.3.22, published on September 2 2025.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 
@@ -11,6 +11,8 @@ Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
 [Read the Italian translation of this manual in PDF](https://github.com/maxnd/mxMarkEdit/raw/main/manuals/mxmarkedit-user-manual-it.pdf).
 
 The PDF manual may be downloaded also within the app, with the `Help - Download manual` menu item.
+
+[See also a simple English video on some functionalities of the app](https://youtu.be/VVOR3j0yhos?si=NoH29MZSltc_xyZb).
 
 ---
 
@@ -456,6 +458,10 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.3.22*
+
+- Small bugs in search have been fixed.
 
 **Version 1.3.21*
 

@@ -1040,11 +1040,12 @@ object fmSearch: TfmSearch
   }
   KeyPreview = True
   Menu = mmMenuModal
+  Position = poDefault
+  ShowInTaskBar = stNever
+  LCLVersion = '4.2.0.0'
+  OnActivate = FormActivate
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
-  Position = poDesktopCenter
-  ShowInTaskBar = stNever
-  LCLVersion = '3.8.0.0'
   object edFind: TEdit
     Left = 27
     Height = 21

@@ -1038,13 +1038,13 @@ object fmMain: TfmMain
   }
   KeyPreview = True
   Menu = mmMenu
+  SnapOptions.SnapToMonitor = True
+  LCLVersion = '4.2.0.0'
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnDropFiles = FormDropFiles
   OnKeyDown = FormKeyDown
-  SnapOptions.SnapToMonitor = True
-  LCLVersion = '3.8.0.0'
   object spTitles: TSplitter
     Left = 170
     Height = 582
@@ -1071,7 +1071,7 @@ object fmMain: TfmMain
     object lbChars: TLabel
       Left = 20
       Height = 18
-      Top = 4
+      Top = 5
       Width = 716
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
@@ -1084,7 +1084,7 @@ object fmMain: TfmMain
     object lbDateTime: TLabel
       Left = 758
       Height = 18
-      Top = 4
+      Top = 5
       Width = 282
       Alignment = taRightJustify
       Anchors = [akTop, akRight]

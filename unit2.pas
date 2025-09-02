@@ -55,6 +55,7 @@ type
     procedure edFindKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure edReplaceKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
   private
@@ -119,6 +120,9 @@ begin
       showFindIndicatorForRange(rng);
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       setSelectedRange(rng);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rng);
+    fmMain.LabelFileNameChars;
   end
   else
   begin
@@ -162,6 +166,9 @@ begin
         showFindIndicatorForRange(rng);
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         setSelectedRange(rng);
+      TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        scrollRangeToVisible(rng);
+      fmMain.LabelFileNameChars;
     end
     else
     begin
@@ -226,6 +233,9 @@ begin
       showFindIndicatorForRange(rng);
     TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       setSelectedRange(rng);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rng);
+    fmMain.LabelFileNameChars;
   end
   else
   begin
@@ -257,6 +267,7 @@ begin
     fmMain.dbText.Text := UTF8StringReplace(fmMain.dbText.Text, stFind,
       stReplace, [rfIgnoreCase, rfReplaceAll]);
     fmMain.dbText.SelStart := 0;
+    fmMain.LabelFileNameChars;
     fmMain.Show;
   end;
 end;
@@ -277,6 +288,9 @@ begin
       insertText_replacementRange(NSStringUtf8(edReplace.Text), rng);
     fmMain.dbText.SelStart := rng.length + rng.location;
     bnNextClick(nil);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      scrollRangeToVisible(rng);
+    fmMain.LabelFileNameChars;
   end;
 end;
 
@@ -347,6 +361,12 @@ begin
     edReplace.SelectAll;
     key := 0;
   end;
+end;
+
+procedure TfmSearch.FormActivate(Sender: TObject);
+begin
+  fmSearch.Left := (Screen.Width - fmSearch.Width) div 2;
+  fmSearch.Top := 10;
 end;
 
 procedure TfmSearch.bnOKClick(Sender: TObject);

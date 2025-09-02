@@ -534,11 +534,11 @@ object fmCopyright: TfmCopyright
     AE426082
   }
   KeyPreview = True
-  OnCreate = FormCreate
-  OnKeyDown = FormKeyDown
   Position = poDesktopCenter
   ShowInTaskBar = stNever
-  LCLVersion = '3.8.0.0'
+  LCLVersion = '4.2.0.0'
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   object imImagecopyright: TImage
     Left = 25
     Height = 128
@@ -1476,8 +1476,8 @@ object fmCopyright: TfmCopyright
     Left = 230
     Height = 16
     Top = 118
-    Width = 34
-    Caption = '1.3.21'
+    Width = 36
+    Caption = '1.3.22'
     ParentColor = False
     ParentFont = False
   end
