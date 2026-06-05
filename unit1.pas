@@ -1,7 +1,7 @@
 // ***********************************************************************
 // ***********************************************************************
 // mxMarkEdit 1.x
-// Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
+// Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 // Free software released under GPL licence version 3 or later.
 
 // This program is free software: you can redistribute it and/or modify
@@ -339,7 +339,7 @@ resourcestring
 
 implementation
 
-uses copyright, unit2, unit3, unit4, unit5, unit6, unit7, unit8, unit9;
+uses copyright, unit3, unit4, unit5, unit6, unit7, unit8, unit9;
 
   {$R *.lfm}
 
@@ -1154,8 +1154,6 @@ begin
     end;
     blIsPresenting := True;
     spTable.Color := dbText.Color;
-    sgTitles.ScrollBars := ssNone;
-    // Must be after ScrollBars to avoid the scroll bar to appear
     cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
     while dbText.CaretPos.Y < dbText.Lines.Count do
@@ -1293,8 +1291,6 @@ begin
     end;
     blIsPresenting := True;
     spTable.Color := dbText.Color;
-    sgTitles.ScrollBars := ssNone;
-    // Must be after ScrollBars to avoid the scroll bar to appear
     cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1426,8 +1422,6 @@ begin
     key := 0;
     blIsPresenting := True;
     spTable.Color := dbText.Color;
-    sgTitles.ScrollBars := ssNone;
-    // Must be after ScrollBars to avoid the scroll bar to appear
     cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1618,13 +1612,21 @@ begin
   else
   if ((key = Ord('G')) and (Shift = [ssMeta])) then
   begin
-    fmSearch.bnNextClick(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setUsesFindBar(True);
+    NSMenuItem(miEditFind.Handle).setTag(2);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      performFindPanelAction(NSMenuItem(miEditFind.Handle));
     key := 0;
   end
   else
   if ((key = Ord('G')) and (Shift = [ssMeta, ssShift])) then
   begin
-    fmSearch.bnPreviousClick(nil);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setUsesFindBar(True);
+    NSMenuItem(miEditFind.Handle).setTag(3);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      performFindPanelAction(NSMenuItem(miEditFind.Handle));
     key := 0;
   end
   else
@@ -2071,6 +2073,7 @@ begin
   begin
     if UTF8Length(dbText.Text) > iBookmarkPos then
     begin
+      dbText.SelLength := 0;
       dbText.SelStart := iBookmarkPos;
     end;
     key := 0;
@@ -2163,7 +2166,7 @@ end;
 procedure TfmMain.dbTextKeyPress(Sender: TObject; var Key: char);
 var
   i: integer;
-  myDate: TDate;
+  myDate, checkDate: TDate;
   fs: TFormatSettings;
 begin
   if key = #13 then
@@ -2206,11 +2209,12 @@ begin
       if UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 1, 6) = '- [ ] ' then
       begin
         if TryStrToDate(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 10),
-          myDate, fs) = True then
+          checkDate, fs) = True then
         begin
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).
             insertText(NSStringUtf8('- [ ] ' +
-            UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 13)));
+            FormatDateTime('yyyy-mm-dd', IncDay(myDate,
+            StrToInt(fmOptions.cbDelay.Text))) + ' • '));
         end
         else
         begin
@@ -2219,35 +2223,21 @@ begin
         end;
       end
       else
-      if UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 1, 6) = '- [X] ' then
+      if ((UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 1, 6) = '- [X] ') or
+        (UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 1, 6) = '- [x] ')) then
       begin
         if TryStrToDate(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 10),
-          myDate, fs) = True then
+          checkDate, fs) = True then
         begin
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-            insertText(NSStringUtf8('- [X] ' +
-            UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 13)));
+            insertText(NSStringUtf8('- [ ] ' +
+            FormatDateTime('yyyy-mm-dd', IncDay(myDate,
+            StrToInt(fmOptions.cbDelay.Text))) + ' • '));
         end
         else
         begin
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-            insertText(NSStringUtf8('- [X] '));
-        end;
-      end
-      else
-      if UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 1, 6) = '- [x] ' then
-      begin
-        if TryStrToDate(UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 13),
-          myDate, fs) = True then
-        begin
-          TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-            insertText(NSStringUtf8('- [x] ' +
-            UTF8Copy(dbText.Lines[dbText.CaretPos.Y - 1], 7, 10)));
-        end
-        else
-        begin
-          TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-            insertText(NSStringUtf8('- [x] '));
+            insertText(NSStringUtf8('- [ ] '));
         end;
       end
       else
@@ -2286,8 +2276,8 @@ procedure TfmMain.dbTextKeyUp(Sender: TObject; var Key: word; Shift: TShiftState
 begin
   if ((key > 36) and (key < 41) and (blIsPresenting = False)) then
   begin
-    FormatListTitleTodo;
     LabelFileNameChars;
+    FormatListTitleTodo;
   end;
 end;
 
@@ -3605,7 +3595,11 @@ begin
     DisablePresenting;
     FormatListTitleTodo;
   end;
-  fmSearch.Show
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    setUsesFindBar(True);
+  NSMenuItem(miEditFind.Handle).setTag(1);
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    performFindPanelAction(NSMenuItem(miEditFind.Handle));
 end;
 
 procedure TfmMain.miEditLinkClick(Sender: TObject);
@@ -6593,7 +6587,6 @@ begin
   blIsPresenting := False;
   cbFilter.Visible := True;
   spTable.Color := clForm;
-  sgTitles.ScrollBars := ssAutoVertical;
   dbText.ScrollBars := ssAutoVertical;
 end;
 

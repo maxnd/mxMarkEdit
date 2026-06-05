@@ -9,14 +9,14 @@ object fmEditor: TfmEditor
   ClientHeight = 549
   ClientWidth = 1004
   KeyPreview = True
+  Position = poDesktopCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '4.5.0.0'
   OnActivate = FormActivate
   OnCreate = FormCreate
   OnHide = FormHide
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  Position = poDesktopCenter
-  ShowInTaskBar = stNever
-  LCLVersion = '3.8.0.0'
   object pnTasks: TPanel
     Left = 0
     Height = 37

@@ -9,13 +9,13 @@ object fmWords: TfmWords
   ClientHeight = 591
   ClientWidth = 641
   KeyPreview = True
+  Position = poDesktopCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '4.5.0.0'
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
-  Position = poDesktopCenter
-  ShowInTaskBar = stNever
-  LCLVersion = '3.7.0.0'
   object sgWords: TStringGrid
     Left = 15
     Height = 408
@@ -155,8 +155,8 @@ object fmWords: TfmWords
         'Sort by words'
         'Sort by recurrences'
       )
-      OnClick = rgSkipClick
       TabOrder = 5
+      OnClick = rgSkipClick
     end
   end
 end

@@ -9,10 +9,10 @@ object fmPicture: TfmPicture
   ClientHeight = 408
   ClientWidth = 676
   KeyPreview = True
-  OnKeyDown = FormKeyDown
   Position = poMainFormCenter
   ShowInTaskBar = stNever
-  LCLVersion = '3.8.0.0'
+  LCLVersion = '4.5.0.0'
+  OnKeyDown = FormKeyDown
   object bvPicture: TBevel
     Left = 0
     Height = 408

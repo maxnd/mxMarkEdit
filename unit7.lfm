@@ -9,11 +9,11 @@ object fmShortcuts: TfmShortcuts
   ClientHeight = 684
   ClientWidth = 1195
   KeyPreview = True
-  OnCreate = FormCreate
-  OnKeyDown = FormKeyDown
   Position = poDesktopCenter
   ShowInTaskBar = stNever
-  LCLVersion = '3.8.0.0'
+  LCLVersion = '4.5.0.0'
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   object pnBottom: TPanel
     Left = 0
     Height = 37

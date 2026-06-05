@@ -9,13 +9,13 @@ object fmFiles: TfmFiles
   ClientHeight = 549
   ClientWidth = 1004
   KeyPreview = True
+  Position = poDesktopCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '4.5.0.0'
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
-  Position = poDesktopCenter
-  ShowInTaskBar = stNever
-  LCLVersion = '3.7.0.0'
   object sgFiles: TStringGrid
     Left = 15
     Height = 492
@@ -103,7 +103,7 @@ object fmFiles: TfmFiles
     end
     object edFolder: TEdit
       Left = 80
-      Height = 22
+      Height = 21
       Top = 3
       Width = 240
       ReadOnly = True
@@ -138,7 +138,7 @@ object fmFiles: TfmFiles
     end
     object edFind: TEdit
       Left = 538
-      Height = 22
+      Height = 21
       Top = 3
       Width = 188
       TabOrder = 2

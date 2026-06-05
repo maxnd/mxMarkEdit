@@ -1,7 +1,7 @@
 // ***********************************************************************
 // ***********************************************************************
 // mxMarkEdit 1.x
-// Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
+// Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 // Free software released under GPL licence version 3 or later.
 
 // This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, unit1, unit2, unit3, unit4,unit5, unit6, unit7, unit8, unit9, copyright
+  Forms, unit1, unit3, unit4,unit5, unit6, unit7, unit8, unit9, copyright
   {$IFDEF Darwin}
     , clocale, iosxlocale, translate
   {$ENDIF}
@@ -44,7 +44,6 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TfmMain, fmMain);
-  Application.CreateForm(TfmSearch, fmSearch);
   Application.CreateForm(TfmOptions, fmOptions);
   Application.CreateForm(TfmShortcuts, fmShortcuts);
   Application.CreateForm(TfmWords, fmWords);

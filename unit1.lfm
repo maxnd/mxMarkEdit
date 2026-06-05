@@ -1039,7 +1039,7 @@ object fmMain: TfmMain
   KeyPreview = True
   Menu = mmMenu
   SnapOptions.SnapToMonitor = True
-  LCLVersion = '4.2.0.0'
+  LCLVersion = '4.5.0.0'
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
@@ -1106,7 +1106,7 @@ object fmMain: TfmMain
     TabOrder = 2
     object cbFilter: TComboBox
       Left = 15
-      Height = 20
+      Height = 19
       Top = 10
       Width = 145
       Align = alTop
@@ -1131,8 +1131,8 @@ object fmMain: TfmMain
     object sgTitles: TStringGrid
       Cursor = crHandPoint
       Left = 10
-      Height = 542
-      Top = 40
+      Height = 543
+      Top = 39
       Width = 200
       Align = alClient
       AutoEdit = False
@@ -1166,7 +1166,7 @@ object fmMain: TfmMain
       ParentDoubleBuffered = False
       ParentFont = False
       ParentShowHint = False
-      ScrollBars = ssAutoVertical
+      ScrollBars = ssNone
       ShowHint = True
       TabOrder = 1
       OnClick = sgTitlesClick

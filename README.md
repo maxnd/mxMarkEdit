@@ -2,17 +2,15 @@
 
 # mxMarkEdit
 
-Version 1.3.22, published on September 2 2025.
+Version 1.3.23, published on June 5 2026.
 
-Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2025.
+Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
 [Read this manual in PDF](https://github.com/maxnd/mxMarkEdit/raw/main/manuals/mxmarkedit-user-manual-en.pdf).
 
 [Read the Italian translation of this manual in PDF](https://github.com/maxnd/mxMarkEdit/raw/main/manuals/mxmarkedit-user-manual-it.pdf).
 
 The PDF manual may be downloaded also within the app, with the `Help - Download manual` menu item.
-
-[See also a simple English video on some functionalities of the app](https://youtu.be/VVOR3j0yhos?si=NoH29MZSltc_xyZb).
 
 ---
 
@@ -39,15 +37,13 @@ mxMarkEdit does not collect any user data and does not access autonomously to hi
 
 In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1 or following) ready to be copied in the `Application` directory and run. 
 
-*The app is notarized by Apple* (checked against harmful code), so it can run without any trouble also on recent macOS versions.
+The app is *not* notarized by Apple anymore. To run it, see the [Apple instructions](https://support.apple.com/en-us/102445) (section “If you want to open an app that hasn’t been notarized or is from an unidentified developer”).
 
 To download the app, click on this link: https://github.com/maxnd/mxMarkEdit/raw/main/app/mxMarkEdit.zip.
 
 To install Pandoc, not necessary to use the app but necessary to export the Markdown files in other formats, click on this link: https://pandoc.org/installing.html.
 
 To open automatically Markdown files with mxMarkEdit, follow the [Apple Guidelines](https://support.apple.com/en-sa/guide/mac-help/mh35597/mac).
-
-In the `untested` folder of the source code there’s a version of the app compiled for Mac with Intel chip. It’s neither tested nor notarized.
 
 ## Look of the app
 
@@ -274,7 +270,7 @@ Moving the mouse over the label of the file path and name, at the bottom left of
 
 The last eight opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is restored.
 
-The `Edit - Find` menu item allows to find the first occurrence – with the button `First` or by pressing `Return` - or the following occurrences – with the button `Next` or by pressing `Meta + Return` – of a sentence, or the previous ones with the button `Previous`, or to replace the text selected with the previous buttons and search for another recurrence with the button `Replace and find`, or to replace all the occurrences with the button `Replace all`. Search and replacement are not case sensitive. See below for some useful shortcuts to use these functionalities. 
+The `Edit - Find` menu item opens the standard Apple panel to find and replace text. See below for some useful shortcuts to use these functionalities. 
 
 When using the `Replace all` button, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`. Finally, when looking for the next recurrence of an emoji, it might be necessary to move the cursor after the previous finding to find the next one.
 
@@ -459,16 +455,21 @@ The software creates these two configuration files that can be deleted to reset 
 
 # Revision history
 
-**Version 1.3.22*
+**Version 1.3.23**
+
+- Text search has been replaced with the standard Apple search panel.
+- Small bugs fixed.
+
+**Version 1.3.22**
 
 - Small bugs in search have been fixed.
 
-**Version 1.3.21*
+**Version 1.3.21**
 
 - In the extended editor, there are 4 buttons to show the cell at the left, above, at the right and below the current one, mapped to the shortcuts `Meta + Opt + Left / Up / Right / Down arrow`.
 - Bugs fixing: the composition of some citations were note correct.
 
-**Version 1.3.20*
+**Version 1.3.20**
 
 - In the composition of the citations, the details of the items for the footnotes are taken from the G1 column, while those for the bibliography are still taken from the F1 column.
 - Bugs fixing: the composition of some citations were note correct.

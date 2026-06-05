@@ -1040,19 +1040,19 @@ object fmOptions: TfmOptions
     0000000000000000300EFF1F7CBE5747FD29A8FE0000000049454E44AE426082
   }
   KeyPreview = True
+  Position = poDesktopCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '4.5.0.0'
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  Position = poDesktopCenter
-  ShowInTaskBar = stNever
-  LCLVersion = '3.8.0.0'
   object cbStFonts: TComboBox
     Left = 45
-    Height = 20
+    Height = 19
     Top = 48
-    Width = 218
+    Width = 38
     ItemHeight = 26
     Style = csDropDownList
     TabOrder = 0
@@ -1203,9 +1203,9 @@ object fmOptions: TfmOptions
   end
   object cbStFontsMono: TComboBox
     Left = 294
-    Height = 20
+    Height = 19
     Top = 48
-    Width = 218
+    Width = 38
     ItemHeight = 26
     Style = csDropDownList
     TabOrder = 1
@@ -1257,9 +1257,9 @@ object fmOptions: TfmOptions
   end
   object cbDelay: TComboBox
     Left = 161
-    Height = 20
+    Height = 19
     Top = 347
-    Width = 162
+    Width = 56
     ItemHeight = 26
     ItemIndex = 7
     Items.Strings = (
@@ -1304,9 +1304,9 @@ object fmOptions: TfmOptions
   end
   object cbLineSpacing: TComboBox
     Left = 45
-    Height = 20
+    Height = 19
     Top = 347
-    Width = 93
+    Width = 53
     ItemHeight = 26
     ItemIndex = 2
     Items.Strings = (
