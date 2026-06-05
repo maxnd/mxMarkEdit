@@ -271,6 +271,7 @@ var
   iNumScreenshot: Integer = 1;
   stTableLoaded: String = ' && .csv ';
   csTableRowCount: Integer = 10000;
+  blTextLoading: boolean = False;
   blTextOnChange: boolean = False;
   stGridLoaded: String = '';
   stAuthSeparator: String = ', ';
@@ -702,6 +703,7 @@ begin
     try
       stFileName := ParamStrUTF8(1);
       DeactForm(stFileName);
+      blTextLoading := True;
       dbText.Lines.LoadFromFile(stFileName);
       ResetFilterGrid;
       if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
@@ -729,6 +731,8 @@ begin
       ShowCurrentTitleTodo;
       blFileMod := False;
       blTableMod := False;
+      blTextLoading := False;
+      FormatListTitleTodo;
     except
       MessageDlg(msg004, mtWarning, [mbOK], 0);
     end;
@@ -740,6 +744,7 @@ begin
     try
       odOpen.FileName := stFileName;
       DeactForm(stFileName);
+      blTextLoading := True;
       dbText.Lines.LoadFromFile(stFileName);
       ResetFilterGrid;
       if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
@@ -767,6 +772,8 @@ begin
       ShowCurrentTitleTodo;
       blFileMod := False;
       blTableMod := False;
+      blTextLoading := False;
+      FormatListTitleTodo;
     except
       MessageDlg(msg006, mtWarning, [mbOK], 0);
     end
@@ -784,6 +791,7 @@ begin
   try
     stFileName := FileNames[0];
     DeactForm(stFileName);
+    blTextLoading := True;
     dbText.Lines.LoadFromFile(stFileName);
     ResetFilterGrid;
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
@@ -811,6 +819,8 @@ begin
     ShowCurrentTitleTodo;
     blFileMod := False;
     blTableMod := False;
+    blTextLoading := False;
+    FormatListTitleTodo;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
@@ -1102,7 +1112,10 @@ end;
 
 procedure TfmMain.dbTextChange(Sender: TObject);
 begin
-  FormatListTitleTodo;
+  if blTextLoading = False then
+  begin
+    FormatListTitleTodo;
+  end;
   LabelFileNameChars;
   blFileSaved := False;
   blFileMod := True;
@@ -3342,6 +3355,7 @@ begin
     sgTable.RowCount := csTableRowCount;
     stFileName := odOpen.FileName;
     DeactForm(stFileName);
+    blTextLoading := True;
     dbText.Lines.LoadFromFile(stFileName);
     ResetFilterGrid;
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
@@ -3369,6 +3383,8 @@ begin
     ShowCurrentTitleTodo;
     blFileMod := False;
     blTableMod := False;
+    blTextLoading := False;
+    FormatListTitleTodo;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end;
@@ -5703,10 +5719,6 @@ var
   i: Integer;
   slColWidth: TStringList;
 begin
-  if blDisableFormatting = False then
-  begin
-    Application.processMessages;
-  end;
   if ((stFileName = LastDatabase1) and (LastPosDatabase1 > -1) and
     (LastPosDatabase1 < Length(dbText.Text))) then
   begin
@@ -6528,6 +6540,7 @@ begin
     sgTable.RowCount := csTableRowCount;
     stFileName := stLastFileName;
     DeactForm(stFileName);
+    blTextLoading := True;
     dbText.Lines.LoadFromFile(stFileName);
     ResetFilterGrid;
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
@@ -6555,6 +6568,8 @@ begin
     ShowCurrentTitleTodo;
     blFileMod := False;
     blTableMod := False;
+    blTextLoading := False;
+    FormatListTitleTodo;
   except
     MessageDlg(msg004, mtWarning, [mbOK], 0);
   end
