@@ -37,7 +37,7 @@ mxMarkEdit does not collect any user data and does not access autonomously to hi
 
 In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1 or following) ready to be copied in the `Application` directory and run. 
 
-The app is *not* notarized by Apple anymore. To run it, see the [Apple instructions](https://support.apple.com/en-us/102445) (section “If you want to open an app that hasn’t been notarized or is from an unidentified developer”).
+The app is *not* notarized by Apple anymore. To run it, see the [Apple instructions](https://support.apple.com/en-us/102445) (section “If you want to open an app that hasn’t been notarized or is from an unidentified developer”), or simply run in the terminal `xattr -r -d com.apple.quarantine /Applications/mxMarkEdit.app`.
 
 To download the app, click on this link: https://github.com/maxnd/mxMarkEdit/raw/main/app/mxMarkEdit.zip.
 
