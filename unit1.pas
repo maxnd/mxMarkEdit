@@ -121,6 +121,8 @@ type
     procedure cbFilterChange(Sender: TObject);
     procedure dbTextChange(Sender: TObject);
     procedure dbTextClick(Sender: TObject);
+    procedure dbTextContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
     procedure dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure dbTextKeyPress(Sender: TObject; var Key: char);
     procedure dbTextKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -1132,6 +1134,13 @@ begin
   DisablePresenting;
   FormatListTitleTodo;
   LabelFileNameChars;
+end;
+
+procedure TfmMain.dbTextContextPopup(Sender: TObject; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    accessibilityPerformShowMenu;
 end;
 
 procedure TfmMain.dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);

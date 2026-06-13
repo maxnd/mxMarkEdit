@@ -113,9 +113,11 @@ end;
 procedure TfmTasks.bnToggleClick(Sender: TObject);
 var
   rng: NSRange;
+  iRow: Integer;
 begin
   if sgTasks.RowCount > 1 then
   begin
+    iRow := sgTasks.Row;
     if sgTasks.Cells[1, sgTasks.Row] = '0' then
     begin
       sgTasks.Cells[1, sgTasks.Row] := '1';
@@ -128,6 +130,7 @@ begin
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8('X'), rng);
       fmMain.FormatListTitleTodo;
+      fmMain.ShowCurrentTitleTodo;
     end
     else
     begin
@@ -141,8 +144,10 @@ begin
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8(' '), rng);
       fmMain.FormatListTitleTodo;
+      fmMain.ShowCurrentTitleTodo;
     end;
     CreateList;
+    sgTasks.Row := iRow;
   end;
 end;
 
@@ -469,7 +474,7 @@ begin
   else
   begin
     lbTot.Caption := tsk003 + ' ' + FormatFloat('#,0', sgTasks.RowCount - 1) +
-    ' (' + tsk005 + ': ' + FormatFloat('#,0', iCompleted) + ', ' +
+    ' (' + tsk005 + ': ' + FormatFloat('#,0', iCompleted) + ' • ' +
     FormatFloat('#,0', iCompleted / (sgTasks.RowCount - 1) * 100) + '%)';
   end;
 end;

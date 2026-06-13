@@ -1039,7 +1039,7 @@ object fmMain: TfmMain
   KeyPreview = True
   Menu = mmMenu
   SnapOptions.SnapToMonitor = True
-  LCLVersion = '4.5.0.0'
+  LCLVersion = '4.6.0.0'
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
@@ -1207,6 +1207,7 @@ object fmMain: TfmMain
       WantTabs = True
       OnChange = dbTextChange
       OnClick = dbTextClick
+      OnContextPopup = dbTextContextPopup
       OnKeyDown = dbTextKeyDown
       OnKeyPress = dbTextKeyPress
       OnKeyUp = dbTextKeyUp

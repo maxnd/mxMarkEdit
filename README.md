@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.24, published on June 5 2026.
+Version 1.3.25, published on June 13 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -454,6 +454,10 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.3.25**
+- Compiled with Lazarus 4.6 and FPC 3.2.2.
+- Small bugs fixed.
 
 **Version 1.3.24**
 

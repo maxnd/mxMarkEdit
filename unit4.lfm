@@ -11,7 +11,7 @@ object fmTasks: TfmTasks
   KeyPreview = True
   Position = poDesktopCenter
   ShowInTaskBar = stNever
-  LCLVersion = '4.5.0.0'
+  LCLVersion = '4.6.0.0'
   OnActivate = FormActivate
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
