@@ -185,6 +185,8 @@ type
       aRect: TRect; aState: TGridDrawState);
     procedure sgTitlesGetCellHint(Sender: TObject; ACol, ARow: integer;
       var HintText: string);
+    procedure sgTitlesMouseWheelHorz(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
     procedure miToolsShortcutsClick(Sender: TObject);
@@ -2427,6 +2429,12 @@ begin
   begin
     HintText := sgTitles.Cells[ACol, ARow];
   end;
+end;
+
+procedure TfmMain.sgTitlesMouseWheelHorz(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  Handled := True;
 end;
 
 procedure TfmMain.sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: integer;

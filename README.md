@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.25, published on June 13 2026.
+Version 1.3.26, published on June 17 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -14,7 +14,7 @@ The PDF manual may be downloaded also within the app, with the `Help - Download 
 
 ---
 
-😀 Do you use mxMarkEdit, and you feel that it has far too many shortcuts and functionalities that definitely make it not for humans? Download [this nice wallpaper](https://github.com/maxnd/mxMarkEdit/raw/main/wallpaper/wallpaper-gray-mxmarkedit.png) to show everybody why!
+😀 Do you use mxMarkEdit, and you feel that it has far too many shortcuts and functionalities that definitely make it not for humans? Download [this nice wallpaper](https://github.com/maxnd/mxMarkEdit/raw/main/wallpaper/wallpaper-mxmarkedit.png) to show everybody why!
 
 ---
 
@@ -455,8 +455,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 # Revision history
 
+**Version 1.3.26**
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- Small bugs in the titles list fixed.
+
 **Version 1.3.25**
-- Compiled with Lazarus 4.6 and FPC 3.2.2.
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
 - Small bugs fixed.
 
 **Version 1.3.24**
