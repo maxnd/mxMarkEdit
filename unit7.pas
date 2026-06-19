@@ -163,7 +163,7 @@ resourcestring
   srcut060 = 'Close the form.';
   srcut061 = ' In the search files form';
   srcut062 = 'Move the cursor in the Find field.';
-  srcut063 = 'Close the form.';
+  srcut063 = 'Stop the search or close the form.';
   srcut064 = ' In the words recurrence form';
   srcut065 = 'Close the form.';
 

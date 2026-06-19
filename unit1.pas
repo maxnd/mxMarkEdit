@@ -28,8 +28,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, CocoaAll,
-  CocoaTextEdits, CocoaUtils, Clipbrd, Menus, StdCtrls, Grids, ExtCtrls,
-  DefaultTranslator, translate, IniFiles, LazUTF8, FileUtil,
+  CocoaTextEdits, CocoaUtils, Clipbrd, Menus, StdCtrls, Grids,
+  ExtCtrls, DefaultTranslator, translate, IniFiles, LazUTF8, FileUtil,
   LazFileUtils, Unix, Types, DateUtils, LCLType, LCLIntf;
 
 type
@@ -358,6 +358,7 @@ procedure TfmMain.FormCreate(Sender: TObject);
 var
   MyIni: TIniFile;
   nsInset: NSSize;
+  LinkAttributes: NSMutableDictionary;
 begin
   if LowerCase(UTF8Copy(NSStringToString(
     NSLocale.preferredLanguages.objectAtIndex(0)), 1, 2)) = 'it' then
@@ -693,6 +694,15 @@ begin
   // To avoid messing text on formatting
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     layoutManager.setAllowsNonContiguousLayout(False);
+  // Links color
+  LinkAttributes := NSMutableDictionary.alloc.init;
+  LinkAttributes.setObject_forKey(ColorToNSColor(clLink),
+    NSForegroundColorAttributeName);
+  LinkAttributes.setObject_forKey(NSNumber.
+    numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    setLinkTextAttributes(LinkAttributes);
+  LinkAttributes.release;
   // Open file from paramater on console
   if ParamStrUTF8(1) <> '' then
   begin

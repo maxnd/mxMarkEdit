@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.26, published on June 17 2026.
+Version 1.3.27, published on June 19 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -262,7 +262,7 @@ The `\n` code finds the `Line feed`, which in macOS or Linux are the paragraph b
 
 In the grid above the buttons it will be shown a row for each occurrence of the text to be found both in the documents and in the tables files, along with the context in which it appears (some words before and after it). The columns of the grid – path, file name and context – can be sorted with a click on their headers. Press `Return` on a row of the grid, or double click on it to open the corresponding file and to move the cursor to the position of the text to be found, or, if the file is a `.csv` one, to the cell that contains it.
 
-The search in files returns maximum 100 recurrences for each document or spreadsheet analysed, and stops at 5,000 global recurrences, asking the user to possibly specify more words to find. Emojis too can be searched for.
+The search in files returns maximum 100 recurrences for each document or spreadsheet analysed, and stops at 5,000 global recurrences, asking the user to possibly specify more words to find. Emojis too can be searched for. Press `Esc` to stop the search.
 
 Moving the mouse over the label of the file path and name, at the bottom left of the main interface of the app, a hint appears with the complete content, even if in the label it’s truncated due to its length.
 
@@ -271,8 +271,6 @@ Moving the mouse over the label of the file path and name, at the bottom left of
 The last eight opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is restored.
 
 The `Edit - Find` menu item opens the standard Apple panel to find and replace text. See below for some useful shortcuts to use these functionalities. 
-
-When using the `Replace all` button, the `\n` code replaces the `Line feed`, which in macOS or Linux is the paragraph break, the `\r` code replaces the `Enter` while the `\t` code replaces the tabs, both in the `Search text` field and in the `Replace with` field. In document written on Windows systems, the paragraph breaks are made by `Line feed` + `Enter`. Finally, when looking for the next recurrence of an emoji, it might be necessary to move the cursor after the previous finding to find the next one.
 
 The `Edit - Insert link to file` menu item allows to select one or more files and to insert their paths and names in the text within the Markdown markers and preceded by the `file://` heading. All the possible spaces are converted with `%20`, so that the file name may be properly recognised as a link. It’s not possible to insert relative links due to macOS restrictions.
 
@@ -298,7 +296,7 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 
 - the name and the color of the font of the text;
 - the name and the color of the font for code;
-- the color of the links (just the name, the linked file has the code font color);
+- the color of the links;
 - the color of the footnotes;
 - the color of the todo items;
 - the color of the first level titles; 
@@ -454,6 +452,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.3.27**
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- In the files management, now `Esc` stops the search if active.
+- The links to websites and files have now the same color of the link text.
+- Corrections in the documentation.
 
 **Version 1.3.26**
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.

@@ -28,7 +28,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
-  ExtCtrls, Menus, LazUTF8, CocoaAll, CocoaUtils, translate, LazFileUtils;
+  ExtCtrls, Menus, LazUTF8, CocoaAll, CocoaUtils, CocoaTextEdits,
+  translate, LazFileUtils;
 
 type
 
@@ -331,11 +332,22 @@ begin
 end;
 
 procedure TfmOptions.bnStFontLinkColorClick(Sender: TObject);
+var
+  LinkAttributes: NSMutableDictionary;
 begin
   cdColorDialog.Color := clLink;
   if cdColorDialog.Execute then
   begin
     clLink := cdColorDialog.Color;
+    // Links color
+    LinkAttributes := NSMutableDictionary.alloc.init;
+    LinkAttributes.setObject_forKey(ColorToNSColor(clLink),
+      NSForegroundColorAttributeName);
+    LinkAttributes.setObject_forKey(NSNumber.
+      numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+    TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+      setLinkTextAttributes(LinkAttributes);
+    LinkAttributes.release;
     fmMain.FormatListTitleTodo;
   end;
 end;

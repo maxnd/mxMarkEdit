@@ -68,6 +68,7 @@ type
 
 var
   fmFiles: TfmFiles;
+  blCompiling: boolean = False;
 
 resourcestring
 
@@ -171,7 +172,14 @@ procedure TfmFiles.FormKeyDown(Sender: TObject; var Key: Word;
 begin
   if key = 27 then
   begin
-    Close;
+    if blCompiling = False then
+    begin
+      Close;
+    end
+    else
+    begin
+      blCompiling := False;
+    end;
     key := 0;
   end
   else
@@ -205,6 +213,7 @@ var
   stFind, stDotIni, stDotEnd: String;
   rng: NSRange;
 begin
+  blCompiling := True;
   sgFiles.RowCount := 1;
   lbCount.Caption := '0';
   if ((edFolder.Text <> '') and (edFind.Text <> '')) then
@@ -273,6 +282,10 @@ begin
               if sgFiles.RowCount > 5000 then
               begin
                 MessageDlg(msgfl002, mtWarning, [mbOK], 0);
+                Exit;
+              end;
+              if blCompiling = False then
+              begin
                 Exit;
               end;
             end;
