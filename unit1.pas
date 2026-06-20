@@ -800,6 +800,11 @@ end;
 
 procedure TfmMain.FormDropFiles(Sender: TObject; const FileNames: array of string);
 begin
+  // To save data when a file is dropped by a link
+  if SaveFile = False then
+  begin
+    Abort;
+  end;
   // Open file from file association
   if FileExistsUTF8(FileNames[0]) = True then
   try

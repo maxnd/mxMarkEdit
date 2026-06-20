@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.27, published on June 19 2026.
+Version 1.3.27, published on June 20 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -438,7 +438,6 @@ The software creates these two configuration files that can be deleted to reset 
 
 # Troubleshooting
 
-- When creating a footnote reference, the cursor gets lost in the text? Be sure to use the version 1.3.4 of following of the app, create a new footnote reference and then possibly delete it. This should fix the problem.
 - If the title of a document contains a colon, Pandoc cannot translate it in Word, but simply nothing happens.
 
 # Mentions and reviews
@@ -452,6 +451,11 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.3.28**
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- Bugs fixing: opening a `.md` file in the app with a click on a link to that file didn't save the possibile changes to the current document.
+
 
 **Version 1.3.27**
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
