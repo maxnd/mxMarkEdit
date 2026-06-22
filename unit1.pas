@@ -823,6 +823,8 @@ begin
     end
     else
     begin
+      sgTable.RowCount := 1;
+      sgTable.RowCount := csTableRowCount;
       stGridLoaded := '';
     end;
     MoveToPos;
@@ -3450,6 +3452,8 @@ begin
     end
     else
     begin
+      sgTable.RowCount := 1;
+      sgTable.RowCount := csTableRowCount;
       stGridLoaded := '';
     end;
     MoveToPos;
@@ -6635,6 +6639,8 @@ begin
     end
     else
     begin
+      sgTable.RowCount := 1;
+      sgTable.RowCount := csTableRowCount;
       stGridLoaded := '';
     end;
     MoveToPos;

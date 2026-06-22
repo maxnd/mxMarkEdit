@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.29, published on June 22 2026.
+Version 1.3.30, published on June 22 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -453,6 +453,10 @@ The software creates these two configuration files that can be deleted to reset 
 
 # Revision history
 
+**Version 1.3.30**
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- Bugs fixing: open a `.md` file with a double click in Finder while the app is already running may retain old table data of another `.md` file.
+
 **Version 1.3.29**
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
 - Added the inline pictures: in a picture link at the beginning of a paragraph, press `Meta` + `Shift` + `Opt` + `P`.
@@ -463,7 +467,6 @@ The software creates these two configuration files that can be deleted to reset 
 **Version 1.3.28**
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
 - Bugs fixing: opening a `.md` file in the app with a click on a link to that file didn't save the possibile changes to the current document.
-
 
 **Version 1.3.27**
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
