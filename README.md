@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.28, published on June 20 2026.
+Version 1.3.29, published on June 22 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -248,7 +248,7 @@ it’s possible to use the app for presentations:
 
 In presentation mode, the status bar is hidden, and the spell checking is automatically disabled. To quit the presentation mode, press `Esc` or click anywhere in the text. Possibly, reenable the spell checking.
 
-If in the document there is a link to a picture at the beginning of a paragraph and properly formatted (e.g. `![Data on sales](file:///Users/massimo/Downloads/sales-data.jpg`), that picture will be shown during the presentation. To close the picture, click on it or press `ESC`.
+If in the document there is a link to a picture at the beginning of a paragraph and properly formatted (e.g. `![Data on sales](file:///Users/massimo/Downloads/sales-data.jpg`), that picture will be shown during the presentation in a wider window. To close the picture, click on it or press `ESC`.
 
 Keep the presentation in standard Markdown format, to be able to export it with Pandoc without any trouble, and then create a copy of it optimized for mxMarkEdit with the menu item `Tools` - `Optimize presentation...` if it has to be presented with mxMarkEdit.
 
@@ -353,7 +353,8 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `.`: transform a numbered list into a list with dashes (`-`).
 * `Meta` + `Shift` + `J`: set the current position of the cursor in the bookmark.
 * `Meta` + `J`: move the cursor to the position already set in the bookmark.
-* `Meta` + `Shift` + `P`: show the picture contained in a Markdown image link at the beginning of the current paragraph.
+* `Meta` + `Shift` + `P`: show in a form the picture contained in a Markdown image link at the beginning of the current paragraph (Esc to close).
+* `Meta` + `Shift` + `Opt` + `P`: show in the text the picture contained in a Markdown image link at the beginning of the current paragraph.
 * `Meta` + `E`: show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Shift` + `E`: show the previous paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
 * `Meta` + `Arrow down`: if presentation mode has been enabled with `Meta` + `E` or `Meta` + `Shift` + `E`, show the following paragraph in black or white, according to the theme in use, skipping the empty lines, and fades the other text; this is useful to use mxMarkEdit for presentations. See above for details.
@@ -451,6 +452,13 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.3.29**
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- Added the inline pictures: in a picture link at the beginning of a paragraph, press `Meta` + `Shift` + `Opt` + `P`.
+- Bugs fixing: the link to a `.png` picture was not created properly.
+- Bugs fixing: in presentation mode, the links were not shaded.
+- Bugs fixing: in presentation mode, the picture was not resized properly.
 
 **Version 1.3.28**
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.

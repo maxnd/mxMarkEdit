@@ -205,6 +205,7 @@ type
       isReadOnly, useDefault: boolean): NSParagraphStyle;
     function GetWritePara(txt: NSTextStorage;
       textOffset: integer): NSMutableParagraphStyle;
+    procedure InsertImageToCocoaMemo(const AFilePath: string);
     procedure OpenLastFile(stLastFileName: String);
     procedure RenumberFootnotes;
     procedure RenumberList;
@@ -1169,6 +1170,7 @@ var
   stAttWord: NSAttributedString;
   blCode, blQuoteFound: boolean;
   stText: WideString;
+  LinkAttributes: NSMutableDictionary;
   myDate: TDate;
 begin
   if ((key = Ord('E')) and (Shift = [ssMeta, ssCtrl])) then
@@ -1192,6 +1194,15 @@ begin
       dbText.SelStart := 4;
     end;
     blIsPresenting := True;
+    // Links color
+    LinkAttributes := NSMutableDictionary.alloc.init;
+    LinkAttributes.setObject_forKey(ColorToNSColor(clFontFade),
+      NSForegroundColorAttributeName);
+    LinkAttributes.setObject_forKey(NSNumber.
+      numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setLinkTextAttributes(LinkAttributes);
+    LinkAttributes.release;
     spTable.Color := dbText.Color;
     cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
@@ -1329,6 +1340,15 @@ begin
       dbText.SelStart := 4;
     end;
     blIsPresenting := True;
+    // Links color
+    LinkAttributes := NSMutableDictionary.alloc.init;
+    LinkAttributes.setObject_forKey(ColorToNSColor(clFontFade),
+      NSForegroundColorAttributeName);
+    LinkAttributes.setObject_forKey(NSNumber.
+      numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setLinkTextAttributes(LinkAttributes);
+    LinkAttributes.release;
     spTable.Color := dbText.Color;
     cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
@@ -1360,8 +1380,8 @@ begin
     end;
     if FileExistsUTF8(stFile) then
     try
-      fmPicture.Width := fmMain.Width * 2 div 3;
-      fmPicture.Height := fmMain.Height * 2 div 3;
+      fmPicture.Width := fmMain.Width -100;
+      fmPicture.Height := fmMain.Height -100;
       fmPicture.imPicture.Picture.LoadFromFile(stFile);
       fmPicture.ShowModal;
     except
@@ -1460,6 +1480,15 @@ begin
     end;
     key := 0;
     blIsPresenting := True;
+    // Links color
+    LinkAttributes := NSMutableDictionary.alloc.init;
+    LinkAttributes.setObject_forKey(ColorToNSColor(clFontFade),
+      NSForegroundColorAttributeName);
+    LinkAttributes.setObject_forKey(NSNumber.
+      numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setLinkTextAttributes(LinkAttributes);
+    LinkAttributes.release;
     spTable.Color := dbText.Color;
     cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
@@ -1497,8 +1526,8 @@ begin
     end;
     if FileExistsUTF8(stFile) then
     try
-      fmPicture.Width := fmMain.Width * 2 div 3;
-      fmPicture.Height := fmMain.Height * 2 div 3;
+      fmPicture.Width := fmMain.Width -100;
+      fmPicture.Height := fmMain.Height -100;
       fmPicture.imPicture.Picture.LoadFromFile(stFile);
       fmPicture.ShowModal;
     except
@@ -1610,10 +1639,32 @@ begin
     end;
     if FileExistsUTF8(stFile) then
     try
-      fmPicture.Width := fmMain.Width * 2 div 3;
-      fmPicture.Height := fmMain.Height * 2 div 3;
+      fmPicture.Width := fmMain.Width -100;
+      fmPicture.Height := fmMain.Height -100;
       fmPicture.imPicture.Picture.LoadFromFile(stFile);
       fmPicture.ShowModal;
+    except
+    end;
+    key := 0;
+  end
+  else
+  if ((key = Ord('P')) and (Shift = [ssMeta, ssShift, ssAlt])) then
+  begin
+    if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 2) = '![' then
+    begin
+      stFile := UTF8Copy(dbText.Lines[dbText.CaretPos.Y],
+        UTF8CocoaPos('](', dbText.Lines[dbText.CaretPos.Y]) + 9,
+        UTF8CocoaPos(')', dbText.Lines[dbText.CaretPos.Y]) -
+        UTF8CocoaPos('](', dbText.Lines[dbText.CaretPos.Y]) - 9);
+      stFile := UTF8StringReplace(stFile, '%20', ' ', [rfReplaceAll]);
+    end;
+    if FileExistsUTF8(stFile) then
+    try
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveToEndOfParagraph(nil);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        moveForward(nil);
+      InsertImageToCocoaMemo(stFile);
     except
     end;
     key := 0;
@@ -3665,7 +3716,7 @@ begin
     for i := 0 to odLink.Files.Count - 1 do
     begin
       stLink := odLink.Files[i];
-      if FilenameExtIn(stLink, ['.jpg', '.jpeg', '.pgn', '.bmp', '.heic'],
+      if FilenameExtIn(stLink, ['.jpg', '.jpeg', '.png', '.bmp', '.heic'],
         False) = True then
       begin
         stLink := '![](file://' + StringReplace(stLink, ' ', '%20',
@@ -3680,7 +3731,7 @@ begin
       begin
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).
           insertText(NSStringUtf8(stLink));
-        if FilenameExtIn(odLink.Files[i], ['.jpg', '.jpeg', '.pgn', '.bmp', '.heic'],
+        if FilenameExtIn(odLink.Files[i], ['.jpg', '.jpeg', '.png', '.bmp', '.heic'],
           False) = True then
         begin
           dbText.SelStart := dbText.SelStart - UTF8Length(stLink) + 2;
@@ -6630,11 +6681,22 @@ begin
 end;
 
 procedure TfmMain.DisablePresenting;
+var
+  LinkAttributes: NSMutableDictionary;
 begin
   blIsPresenting := False;
   cbFilter.Visible := True;
   spTable.Color := clForm;
   dbText.ScrollBars := ssAutoVertical;
+  // Links color
+  LinkAttributes := NSMutableDictionary.alloc.init;
+  LinkAttributes.setObject_forKey(ColorToNSColor(clLink),
+    NSForegroundColorAttributeName);
+  LinkAttributes.setObject_forKey(NSNumber.
+    numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+  TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+    setLinkTextAttributes(LinkAttributes);
+  LinkAttributes.release;
 end;
 
 procedure TfmMain.CreateBackup;
@@ -6809,6 +6871,40 @@ begin
     Result := fdd;
   finally
     ns.Release;
+  end;
+end;
+
+procedure TfmMain.InsertImageToCocoaMemo(const AFilePath: string);
+var
+  Img: NSImage;
+  Cell: NSTextAttachmentCell;
+  Attachment: NSTextAttachment;
+  AttrStr: NSAttributedString;
+  SelectedRange: NSRange;
+begin
+  Img := NSImage.alloc.initWithContentsOfFile(NSStr(AFilePath));
+  if Img = nil then Exit;
+  try
+    Cell := NSTextAttachmentCell.alloc.initImageCell(Img);
+    Attachment := NSTextAttachment.alloc.init;
+    Attachment.setAttachmentCell(Cell);
+    AttrStr := NSAttributedString.attributedStringWithAttachment(Attachment);
+    SelectedRange := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      selectedRange;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      textStorage.beginEditing;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      textStorage.replaceCharactersInRange_withAttributedString(SelectedRange, AttrStr);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      textStorage.endEditing;
+    SelectedRange.location := SelectedRange.location + 1;
+    SelectedRange.length := 0;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setSelectedRange(SelectedRange);
+  finally
+    Cell.release;
+    Attachment.release;
+    Img.release;
   end;
 end;
 
