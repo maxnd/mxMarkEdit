@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.3.30, published on June 22 2026.
+Version 1.4.0, published on June 24 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -101,6 +101,8 @@ Other Markdown markers are not hidden, but are shown in a different color define
 * inline footnotes, like `^[Text of the footnote.]`;
 * links to websites or files, like `[my web site](www.mywebsite.com)`;
 * links to pictures, like `![my picture](img.jpg)`.
+
+To show a picture in the text after its link, see below for the proper shortcut.
 
 The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned. Pandoc should instead manage them properly.
 
@@ -266,9 +268,17 @@ The search in files returns maximum 100 recurrences for each document or spreads
 
 Moving the mouse over the label of the file path and name, at the bottom left of the main interface of the app, a hint appears with the complete content, even if in the label it’s truncated due to its length.
 
+## Using the app in a team
+
+The app can be used in a team, giving team members access to the various files. To keep track of who made which changes, use management software like GitHub, manually downloading the files to one's Mac, editing them, and then uploading them again. The app doesn't have any features to simplify this process.
+
+More simply, share the various files on a cloud or a shared folder on a server on a local network, ensuring everyone can access them and only some can edit them. Read-only files should be opened using the `File – Open as read-only...` menu item. If they were opened normally, the app, unable to save them to their original location, might not quit and prompt the user to save them to another location. This option is intended for personal use of the app, to avoid the risk of losing data if it's not possible to save them to their original location.
+
 ## Menu items
 
 The last eight opened files are available in the `File` menu. When they are opened, the cursor move to the last position it had during the last editing, and the width of the columns of the grid is restored.
+
+The `File – Open as read-only...` menu item opens a file without giving the user the possibility to edit it. The file name is not added to the list of recently opened files.
 
 The `Edit - Find` menu item opens the standard Apple panel to find and replace text. See below for some useful shortcuts to use these functionalities. 
 
@@ -452,6 +462,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.4.0**
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- Added the possibility to open a file in read-only mode (see menu `File`).
+- Bugs fixing: the shortcut for bold and italics didn't remove the existing formatting.
+- Bugs fixing: when the document is empty and the grid has no data, the app doesn't ask to save data any more.
 
 **Version 1.3.30**
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.

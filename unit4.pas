@@ -115,6 +115,10 @@ var
   rng: NSRange;
   iRow: Integer;
 begin
+  if blReadOnly = True then
+  begin
+    Exit;
+  end;
   if sgTasks.RowCount > 1 then
   begin
     iRow := sgTasks.Row;

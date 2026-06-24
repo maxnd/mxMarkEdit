@@ -45,6 +45,7 @@ type
     lbChars: TLabel;
     lbFindGrid: TLabel;
     lbFilterGrid: TLabel;
+    miFileOpenReadOnly: TMenuItem;
     miFileImpTables: TMenuItem;
     miFileInsert: TMenuItem;
     miToolsBiblio: TMenuItem;
@@ -205,6 +206,7 @@ type
       isReadOnly, useDefault: boolean): NSParagraphStyle;
     function GetWritePara(txt: NSTextStorage;
       textOffset: integer): NSMutableParagraphStyle;
+    function GetYAML: String;
     procedure InsertImageToCocoaMemo(const AFilePath: string);
     procedure OpenLastFile(stLastFileName: String);
     procedure RenumberFootnotes;
@@ -265,6 +267,7 @@ var
   RowDatabase5, RowDatabase6, RowDatabase7, RowDatabase8: integer;
   ColWidthDatabase1, ColWidthDatabase2, ColWidthDatabase3, ColWidthDatabase4: String;
   ColWidthDatabase5, ColWidthDatabase6, ColWidthDatabase7, ColWidthDatabase8: String;
+  blReadOnly: boolean = False;
   blFileSaved: boolean = True;
   blFileMod: boolean = False;
   blTableSaved: boolean = True;
@@ -341,6 +344,7 @@ resourcestring
   lb011 = 'Minimum value:';
   lb012 = 'Average:';
   lb013 = 'Count:';
+  lb014 = 'read-only';
   dateformat = 'en';
 
 implementation
@@ -812,6 +816,17 @@ begin
     stFileName := FileNames[0];
     DeactForm(stFileName);
     blTextLoading := True;
+    blReadOnly := False;
+    dbText.ReadOnly := blReadOnly;
+    if blReadOnly = False then
+    begin
+      sgTable.Options := sgTable.Options + [goEditing];
+    end
+    else
+    begin
+      sgTable.Options := sgTable.Options - [goEditing];
+    end;
+    fmEditor.dbEditor.ReadOnly := blReadOnly;
     dbText.Lines.LoadFromFile(stFileName);
     ResetFilterGrid;
     if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
@@ -1042,7 +1057,14 @@ begin
     MyIni.WriteString('mxmarkedit', 'code', ColorToString(clCode));
     MyIni.WriteString('mxmarkedit', 'todo', ColorToString(clTodo));
     MyIni.WriteInteger('mxmarkedit', 'titlewidth', pnTitTodo.Width);
-    MyIni.WriteString('mxmarkedit', 'filename', stFileName);
+    if blReadOnly = True then
+    begin
+      MyIni.WriteString('mxmarkedit', 'filename', '');
+    end
+    else
+    begin
+      MyIni.WriteString('mxmarkedit', 'filename', stFileName);
+    end;
     MyIni.WriteInteger('mxmarkedit', 'delay', iDelay);
     MyIni.WriteFloat('mxmarkedit', 'linespacing', iLineSpacing);
     MyIni.WriteBool('mxmarkedit', 'showmarkers', blShowMarkers);
@@ -1129,7 +1151,10 @@ begin
   finally
     MyIni.Free;
   end;
-  CreateBackup;
+  if blReadOnly = False then
+  begin
+    CreateBackup;
+  end;
 end;
 
 procedure TfmMain.dbTextChange(Sender: TObject);
@@ -2061,17 +2086,48 @@ begin
     end;
     rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       selectedRange;
-    rngEnd.location := rngStart.location + rngStart.length + 2;
-    rngEnd.length := 0;
-    rngStart.length := 0;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      setSelectedRange(rngStart);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      insertText(NSStringUtf8('**'));
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      setSelectedRange(rngEnd);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      insertText(NSStringUtf8('**'));
+    rngEnd.location := rngStart.location + rngStart.length;
+    if ((rngStart.location > 1) and
+      (rngEnd.location < TCocoaTextView(NSScrollView(dbText.Handle).
+      documentView).textStorage.length - 1)) then
+    begin
+      rngStart.location := rngStart.location - 2;
+      rngStart.length := 2;
+      rngEnd.length := 2;
+    end;
+    if ((NSStringToString(TCocoaTextView(NSScrollView(dbText.Handle).
+      documentView).textStorage.string_.
+      substringWithRange(rngStart)) = '**') and
+      (NSStringToString(TCocoaTextView(NSScrollView(dbText.Handle).
+      documentView).textStorage.string_.
+      substringWithRange(rngEnd)) = '**')) then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8(''), rngStart);
+      rngEnd.location := rngEnd.location - 2;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8(''), rngEnd);
+      rngEnd.length := 0;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setSelectedRange(rngEnd);
+    end
+    else
+    begin
+      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        selectedRange;
+      rngEnd.location := rngStart.location + rngStart.length;
+      rngStart.length := 0;
+      rngEnd.location := rngEnd.location + 2;
+      rngEnd.length := 0;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setSelectedRange(rngStart);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText(NSStringUtf8('**'));
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setSelectedRange(rngEnd);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText(NSStringUtf8('**'));
+    end;
     key := 0;
   end
   else
@@ -2084,17 +2140,48 @@ begin
     end;
     rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       selectedRange;
-    rngEnd.location := rngStart.location + rngStart.length + 1;
-    rngEnd.length := 0;
-    rngStart.length := 0;
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      setSelectedRange(rngStart);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      insertText(NSStringUtf8('*'));
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      setSelectedRange(rngEnd);
-    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-      insertText(NSStringUtf8('*'));
+    rngEnd.location := rngStart.location + rngStart.length;
+    if ((rngStart.location > 0) and
+      (rngEnd.location < TCocoaTextView(NSScrollView(dbText.Handle).
+      documentView).textStorage.length)) then
+    begin
+      rngStart.location := rngStart.location - 1;
+      rngStart.length := 1;
+      rngEnd.length := 1;
+    end;
+    if ((NSStringToString(TCocoaTextView(NSScrollView(dbText.Handle).
+      documentView).textStorage.string_.
+      substringWithRange(rngStart)) = '*') and
+      (NSStringToString(TCocoaTextView(NSScrollView(dbText.Handle).
+      documentView).textStorage.string_.
+      substringWithRange(rngEnd)) = '*')) then
+    begin
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8(''), rngStart);
+      rngEnd.location := rngEnd.location - 1;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8(''), rngEnd);
+      rngEnd.length := 0;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setSelectedRange(rngEnd);
+    end
+    else
+    begin
+      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
+        selectedRange;
+      rngEnd.location := rngStart.location + rngStart.length;
+      rngStart.length := 0;
+      rngEnd.location := rngEnd.location + 1;
+      rngEnd.length := 0;
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setSelectedRange(rngStart);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText(NSStringUtf8('*'));
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        setSelectedRange(rngEnd);
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText(NSStringUtf8('*'));
+    end;
     key := 0;
   end
   else
@@ -3411,7 +3498,14 @@ begin
   begin
     Exit;
   end;
-  CreateBackup;
+  if blReadOnly = False then
+  begin
+    CreateBackup;
+  end;
+  blReadOnly := False;
+  dbText.ReadOnly := blReadOnly;
+  sgTable.Options := sgTable.Options + [goEditing];
+  fmEditor.dbEditor.ReadOnly := blReadOnly;
   stFileName := '';
   CreateYAML;
   dbText.SelStart := 11;
@@ -3433,7 +3527,28 @@ begin
   begin
     Exit;
   end;
-  CreateBackup;
+  if blReadOnly = False then
+  begin
+    CreateBackup;
+  end;
+  if Sender = miFileOpenReadOnly then
+  begin
+    blReadOnly := True;
+  end
+  else
+  begin
+    blReadOnly := False;
+  end;
+  dbText.ReadOnly := blReadOnly;
+  if blReadOnly = False then
+  begin
+    sgTable.Options := sgTable.Options + [goEditing];
+  end
+  else
+  begin
+    sgTable.Options := sgTable.Options - [goEditing];
+  end;
+  fmEditor.dbEditor.ReadOnly := blReadOnly;
   if odOpen.Execute then
   try
     sgTable.RowCount := 1;
@@ -5407,7 +5522,7 @@ end;
 procedure TfmMain.LabelFileNameChars;
 var
   iLength, iPos: integer;
-  stFilePath: String;
+  stFilePath, stReadOnly: String;
 begin
   iLength := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
     textStorage.characters.Count;
@@ -5425,9 +5540,17 @@ begin
         stFilePath := '...' + Copy(stFilePath, Length(stFilePath) - 30,
           Length(stFilePath));
       end;
+      if blReadOnly = True then
+      begin
+        stReadOnly := ' (' + lb014 + ')';
+      end
+      else
+      begin
+        stReadOnly := '';
+      end;
       lbChars.Caption := stFilePath + '/  •  ' +
-        ExtractFileName(stFileName) + stGridLoaded + '  •  ' + msg001 + ' ' +
-        FormatFloat('#,##0', iLength) + ' (' +
+        ExtractFileName(stFileName) + stGridLoaded + stReadOnly + '  •  ' +
+        msg001 + ' ' + FormatFloat('#,##0', iLength) + ' (' +
         FormatFloat('#0', iPos / iLength * 100) + '%)';
     end
     else
@@ -5440,6 +5563,10 @@ end;
 
 procedure TfmMain.UpdateLastFile;
 begin
+  if blReadOnly = True then
+  begin
+    Exit;
+  end;
   if stFileName = LastDatabase2 then
   begin
     LastDatabase2 := LastDatabase1;
@@ -5792,6 +5919,8 @@ begin
     end
     else
     begin
+      if (((dbText.Text <> '') and (dbText.Text <> GetYAML)) or
+        ((blTableMod = True))) then
       if MessageDlg(msg002, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
       begin
         Result := False;
@@ -6594,23 +6723,30 @@ procedure TfmMain.CreateYAML;
 begin
   blTextOnChange := True;
   dbText.Clear;
+  dbText.Text := GetYAML;
   sgTitles.Clear;
-  dbText.Lines.Add('---');
-  dbText.Lines.Add('title: ');
-  dbText.Lines.Add('author: ');
-  if dateformat = 'en' then
-  begin
-    dbText.Lines.Add('date: ' + FormatDateTime('mmmm d yyyy', Date()));
-  end
-  else
-  begin
-    dbText.Lines.Add('date: ' + FormatDateTime('d mmmm yyyy', Date()));
-  end;
-  dbText.Lines.Add('abstract: ');
-  dbText.Lines.Add('---');
   dbText.SelStart := 11;
   blTextOnChange := False;
   FormatListTitleTodo;
+end;
+
+function TfmMain.GetYAML: String;
+begin
+  Result := '---' + LineEnding;
+  Result := Result + 'title: ' + LineEnding;
+  Result := Result + 'author: ' + LineEnding;
+  if dateformat = 'en' then
+  begin
+    Result := Result + 'date: ' + FormatDateTime('mmmm d yyyy',
+      Date()) + LineEnding;
+  end
+  else
+  begin
+    Result := Result + 'date: ' + FormatDateTime('d mmmm yyyy',
+      Date()) + LineEnding;
+  end;
+  Result := Result + 'abstract: ' + LineEnding;
+  Result := Result + '---' + LineEnding;
 end;
 
 procedure TfmMain.OpenLastFile(stLastFileName: String);
@@ -6620,7 +6756,21 @@ begin
   begin
     Exit;
   end;
-  CreateBackup;
+  if blReadOnly = False then
+  begin
+    CreateBackup;
+  end;
+  blReadOnly := False;
+  dbText.ReadOnly := blReadOnly;
+  if blReadOnly = False then
+  begin
+    sgTable.Options := sgTable.Options + [goEditing];
+  end
+  else
+  begin
+    sgTable.Options := sgTable.Options - [goEditing];
+  end;
+  fmEditor.dbEditor.ReadOnly := blReadOnly;
   if FileExistsUTF8(stLastFileName) then
   try
     sgTable.RowCount := 1;

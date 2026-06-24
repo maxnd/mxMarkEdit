@@ -10,6 +10,7 @@
 {"hash":315429,"name":"tfmmain.mifile.caption","sourcebytes":[70,105,108,101],"value":"File"},
 {"hash":21703,"name":"tfmmain.mifilenew.caption","sourcebytes":[78,101,119],"value":"New"},
 {"hash":107745630,"name":"tfmmain.mifileopen.caption","sourcebytes":[79,112,101,110,46,46,46],"value":"Open..."},
+{"hash":85507358,"name":"tfmmain.mifileopenreadonly.caption","sourcebytes":[79,112,101,110,32,97,115,32,114,101,97,100,45,111,110,108,121,46,46,46],"value":"Open as read-only..."},
 {"hash":164184414,"name":"tfmmain.mifileinsert.caption","sourcebytes":[73,110,115,101,114,116,46,46,46],"value":"Insert..."},
 {"hash":264191758,"name":"tfmmain.mifileimptables.caption","sourcebytes":[73,109,112,111,114,116,32,116,97,98,108,101,115,46,46,46],"value":"Import tables..."},
 {"hash":31059806,"name":"tfmmain.mifilessearch.caption","sourcebytes":[83,101,97,114,99,104,32,105,110,32,102,105,108,101,115,46,46,46],"value":"Search in files..."},

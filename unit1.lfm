@@ -1347,6 +1347,11 @@ object fmMain: TfmMain
         ShortCut = 4175
         OnClick = miFileOpenClick
       end
+      object miFileOpenReadOnly: TMenuItem
+        Caption = 'Open as read-only...'
+        ShortCut = 53327
+        OnClick = miFileOpenClick
+      end
       object miFileInsert: TMenuItem
         Caption = 'Insert...'
         ShortCut = 20559
