@@ -31,7 +31,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, unit1, unit3, unit4,unit5, unit6, unit7, unit8, unit9, copyright
+  Forms, main, options, tasks, words, files, 
+shortcuts, editor, picture, copyright
   {$IFDEF Darwin}
     , clocale, iosxlocale, translate
   {$ENDIF}

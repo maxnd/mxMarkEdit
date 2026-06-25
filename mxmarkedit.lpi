@@ -27,6 +27,7 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
+      <RevisionNr Value="1"/>
       <StringTable Comments="A free Markdown editor for macOS" LegalCopyright="Massimo Nardello, Modena 2024 - 2026" LegalTrademarks="Massimo Nardello, Modena 2024 - 2026" OriginalFilename="mxMarkEdit" ProductName="mxMarkEdit"/>
     </VersionInfo>
     <BuildModes>
@@ -50,12 +51,11 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="unit1.pas"/>
+        <Filename Value="main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit1"/>
       </Unit>
       <Unit>
         <Filename Value="copyright.pas"/>
@@ -65,60 +65,53 @@
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="unit3.pas"/>
+        <Filename Value="options.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmOptions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit3"/>
       </Unit>
       <Unit>
-        <Filename Value="unit4.pas"/>
+        <Filename Value="tasks.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmTasks"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit4"/>
       </Unit>
       <Unit>
-        <Filename Value="unit5.pas"/>
+        <Filename Value="words.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmWords"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit5"/>
       </Unit>
       <Unit>
-        <Filename Value="unit6.pas"/>
+        <Filename Value="files.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmFiles"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit6"/>
       </Unit>
       <Unit>
-        <Filename Value="unit7.pas"/>
+        <Filename Value="shortcuts.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmShortcuts"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit7"/>
       </Unit>
       <Unit>
-        <Filename Value="unit8.pas"/>
+        <Filename Value="editor.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmEditor"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit8"/>
       </Unit>
       <Unit>
-        <Filename Value="unit9.pas"/>
+        <Filename Value="picture.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmPicture"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit9"/>
       </Unit>
     </Units>
   </ProjectOptions>

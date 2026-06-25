@@ -19,7 +19,7 @@
 // ***********************************************************************
 // ***********************************************************************
 
-unit Unit5;
+unit words;
 
 {$mode ObjFPC}{$H+}
 {$modeswitch objectivec1}
@@ -74,7 +74,7 @@ resourcestring
 
 implementation
 
-uses Unit1;
+uses main;
 
 {$R *.lfm}
 

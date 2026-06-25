@@ -19,7 +19,7 @@
 // ***********************************************************************
 // ***********************************************************************
 
-unit Unit1;
+unit main;
 
 {$mode objfpc}{$H+}
 {$modeswitch objectivec1}
@@ -349,7 +349,7 @@ resourcestring
 
 implementation
 
-uses copyright, unit3, unit4, unit5, unit6, unit7, unit8, unit9;
+uses copyright, options, tasks, words, files, shortcuts, editor, picture;
 
   {$R *.lfm}
 
@@ -2331,6 +2331,146 @@ begin
     cbFilter.ItemIndex := 5;
     FormatListTitleTodo;
     dbText.SetFocus;
+  end
+  else
+  if ((key = Ord('1')) and (Shift = [ssCtrl, ssMeta])) then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+      documentView).selectedRange.location;
+    rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
+    if rngStart.length < 7 then
+    begin
+      rngStart.length := rngStart.length + 1;
+    end
+    else
+    begin
+      rngStart.length := 0;
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8('# '), rngStart);
+    FormatListTitleTodo;
+  end
+  else
+  if ((key = Ord('2')) and (Shift = [ssCtrl, ssMeta])) then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+      documentView).selectedRange.location;
+    rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
+    if rngStart.length < 7 then
+    begin
+      rngStart.length := rngStart.length + 1;
+    end
+    else
+    begin
+      rngStart.length := 0;
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8('## '), rngStart);
+    FormatListTitleTodo;
+  end
+  else
+  if ((key = Ord('3')) and (Shift = [ssCtrl, ssMeta])) then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+      documentView).selectedRange.location;
+    rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
+    if rngStart.length < 7 then
+    begin
+      rngStart.length := rngStart.length + 1;
+    end
+    else
+    begin
+      rngStart.length := 0;
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8('### '), rngStart);
+    FormatListTitleTodo;
+  end
+  else
+  if ((key = Ord('4')) and (Shift = [ssCtrl, ssMeta])) then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+      documentView).selectedRange.location;
+    rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
+    if rngStart.length < 7 then
+    begin
+      rngStart.length := rngStart.length + 1;
+    end
+    else
+    begin
+      rngStart.length := 0;
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8('#### '), rngStart);
+    FormatListTitleTodo;
+  end
+  else
+  if ((key = Ord('5')) and (Shift = [ssCtrl, ssMeta])) then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+      documentView).selectedRange.location;
+    rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
+    if rngStart.length < 7 then
+    begin
+      rngStart.length := rngStart.length + 1;
+    end
+    else
+    begin
+      rngStart.length := 0;
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8('##### '), rngStart);
+    FormatListTitleTodo;
+  end
+  else
+  if ((key = Ord('6')) and (Shift = [ssCtrl, ssMeta])) then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+      documentView).selectedRange.location;
+    rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
+    if rngStart.length < 7 then
+    begin
+      rngStart.length := rngStart.length + 1;
+    end
+    else
+    begin
+      rngStart.length := 0;
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8('###### '), rngStart);
+    FormatListTitleTodo;
+  end
+  else
+  if ((key = Ord('0')) and (Shift = [ssCtrl, ssMeta])) then
+  begin
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      moveToBeginningOfParagraph(nil);
+    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
+      documentView).selectedRange.location;
+    rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
+    if rngStart.length < 7 then
+    begin
+      rngStart.length := rngStart.length + 1;
+    end
+    else
+    begin
+      rngStart.length := 0;
+    end;
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+        insertText_replacementRange(NSStringUtf8(''), rngStart);
+    FormatListTitleTodo;
   end
   else
   if blIsPresenting = True then

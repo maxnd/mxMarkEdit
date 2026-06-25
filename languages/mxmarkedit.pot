@@ -1,6 +1,781 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: editor.lbedit001
+msgctxt "editor.lbedit001"
+msgid "Cell"
+msgstr ""
+
+#: files.msgfl001
+msgctxt "files.msgfl001"
+msgid "Error in searching in the files."
+msgstr ""
+
+#: files.msgfl002
+msgctxt "files.msgfl002"
+msgid "The search has stopped to 5,000 occurrences; try to refine it."
+msgstr ""
+
+#: main.dateformat
+msgctxt "main.dateformat"
+msgid "en"
+msgstr ""
+
+#: main.dlg001
+msgctxt "main.dlg001"
+msgid "Markdown files|*.md|All files|*"
+msgstr ""
+
+#: main.dlg002
+msgctxt "main.dlg002"
+msgid "Save Markdown file"
+msgstr ""
+
+#: main.dlg003
+msgctxt "main.dlg003"
+msgid "Open Markdown file"
+msgstr ""
+
+#: main.dlg004
+msgctxt "main.dlg004"
+msgid "All files|*"
+msgstr ""
+
+#: main.dlg005
+msgctxt "main.dlg005"
+msgid "Open file"
+msgstr ""
+
+#: main.dlg006
+msgctxt "main.dlg006"
+msgid "Tables|*.csv"
+msgstr ""
+
+#: main.dlg007
+msgctxt "main.dlg007"
+msgid "Open tables"
+msgstr ""
+
+#: main.lb000
+msgctxt "main.lb000"
+msgid "with bibliography"
+msgstr ""
+
+#: main.lb000b
+msgctxt "main.lb000b"
+msgid "# Bibliography"
+msgstr ""
+
+#: main.lb001
+msgctxt "main.lb001"
+msgid "All the headings"
+msgstr ""
+
+#: main.lb002
+msgctxt "main.lb002"
+msgid "Headings 1 - 5"
+msgstr ""
+
+#: main.lb003
+msgctxt "main.lb003"
+msgid "Headings 1 - 4"
+msgstr ""
+
+#: main.lb004
+msgctxt "main.lb004"
+msgid "Headings 1 - 3"
+msgstr ""
+
+#: main.lb005
+msgctxt "main.lb005"
+msgid "Headings 1 - 2"
+msgstr ""
+
+#: main.lb006
+msgctxt "main.lb006"
+msgid "Headings 1"
+msgstr ""
+
+#: main.lb007
+msgctxt "main.lb007"
+msgid "Tables names"
+msgstr ""
+
+#: main.lb008
+msgctxt "main.lb008"
+msgid "Tables"
+msgstr ""
+
+#: main.lb009
+msgctxt "main.lb009"
+msgid "Sum:"
+msgstr ""
+
+#: main.lb010
+msgctxt "main.lb010"
+msgid "Maximum value:"
+msgstr ""
+
+#: main.lb011
+msgctxt "main.lb011"
+msgid "Minimum value:"
+msgstr ""
+
+#: main.lb012
+msgctxt "main.lb012"
+msgid "Average:"
+msgstr ""
+
+#: main.lb013
+msgctxt "main.lb013"
+msgid "Count:"
+msgstr ""
+
+#: main.lb014
+msgctxt "main.lb014"
+msgid "read-only"
+msgstr ""
+
+#: main.msg001
+msgctxt "main.msg001"
+msgid "Characters:"
+msgstr ""
+
+#: main.msg002
+msgctxt "main.msg002"
+msgid "Discard text changes?"
+msgstr ""
+
+#: main.msg003
+msgctxt "main.msg003"
+msgid "It was not possible to save the current file."
+msgstr ""
+
+#: main.msg004
+msgctxt "main.msg004"
+msgid "It was not possible to load the selected file."
+msgstr ""
+
+#: main.msg005
+msgctxt "main.msg005"
+msgid "Create a new document?"
+msgstr ""
+
+#: main.msg006
+msgctxt "main.msg006"
+msgid "It was not possible to load the last used file."
+msgstr ""
+
+#: main.msg007
+msgctxt "main.msg007"
+msgid "The file is not available."
+msgstr ""
+
+#: main.msg008
+msgctxt "main.msg008"
+msgid "The current document has no name."
+msgstr ""
+
+#: main.msg009
+msgctxt "main.msg009"
+msgid "It was not possible to create the backup file."
+msgstr ""
+
+#: main.msg010
+msgctxt "main.msg010"
+msgid "Delete the current column of the current table?"
+msgstr ""
+
+#: main.msg011
+msgctxt "main.msg011"
+msgid "It's not possible to create a footnote reference at the beginning of a paragraph."
+msgstr ""
+
+#: main.msg012
+msgctxt "main.msg012"
+msgid "It's not possible to insert a new row since the last one contains some data."
+msgstr ""
+
+#: main.msg013
+msgctxt "main.msg013"
+msgid "Delete the current row?"
+msgstr ""
+
+#: main.msg014
+msgctxt "main.msg014"
+msgid "Sort the content of current column of the current table?"
+msgstr ""
+
+#: main.msg015
+msgctxt "main.msg015"
+msgid "Delete the content of the selected cells?"
+msgstr ""
+
+#: main.msg016
+msgctxt "main.msg016"
+msgid "Insert a new column in the current table?"
+msgstr ""
+
+#: main.msg017
+msgctxt "main.msg017"
+msgid "This functionality must be called within a heading and not at the end of the text."
+msgstr ""
+
+#: main.msg018
+msgctxt "main.msg018"
+msgid "Cut in the clipboard all the text under the current heading?"
+msgstr ""
+
+#: main.msg019
+msgctxt "main.msg019"
+msgid "The table is not delimited at the bottom; add a fictional title after its last row in the first left column."
+msgstr ""
+
+#: main.msg020
+msgctxt "main.msg020"
+msgid "Create in a new file a version of the current presentation optimized for mxMarkEdit?"
+msgstr ""
+
+#: main.msg021
+msgctxt "main.msg021"
+msgid "It was not possible to save the optimized file."
+msgstr ""
+
+#: main.msg022
+msgctxt "main.msg022"
+msgid "Save in the Downloads directory the screenshots of the presentation (press ESC to stop)?"
+msgstr ""
+
+#: main.msg023
+msgctxt "main.msg023"
+msgid "Create in a new file a version of the current document with the bibliography?"
+msgstr ""
+
+#: main.msg024
+msgctxt "main.msg024"
+msgid "It was not possible to save the file with bibliography."
+msgstr ""
+
+#: main.msg025
+msgctxt "main.msg025"
+msgid "Replace the content of the grid with the tables of the selected file?"
+msgstr ""
+
+#: main.msg026
+msgctxt "main.msg026"
+msgid "The selected key has no match in the bibliographic table."
+msgstr ""
+
+#: shortcuts.srcut001
+msgctxt "shortcuts.srcut001"
+msgid " In the main form"
+msgstr ""
+
+#: shortcuts.srcut002
+msgctxt "shortcuts.srcut002"
+msgid "Undo the last action in the document (not in the grid)."
+msgstr ""
+
+#: shortcuts.srcut003
+msgctxt "shortcuts.srcut003"
+msgid "Redo the last action in the document (not in the grid)."
+msgstr ""
+
+#: shortcuts.srcut004
+msgctxt "shortcuts.srcut004"
+msgid "Select one of the six filter options above the title and todo list."
+msgstr ""
+
+#: shortcuts.srcut004b
+msgctxt "shortcuts.srcut004b"
+msgid "Set the current paragraph as 1-6 header."
+msgstr ""
+
+#: shortcuts.srcut004c
+msgctxt "shortcuts.srcut004c"
+msgid "Remove the header marker from the current paragraph."
+msgstr ""
+
+#: shortcuts.srcut005
+msgctxt "shortcuts.srcut005"
+msgid "Change the size of the normal font."
+msgstr ""
+
+#: shortcuts.srcut006
+msgctxt "shortcuts.srcut006"
+msgid "Change the size of the mono font, used for code."
+msgstr ""
+
+#: shortcuts.srcut007
+msgctxt "shortcuts.srcut007"
+msgid "Delete the current paragraph."
+msgstr ""
+
+#: shortcuts.srcut008
+msgctxt "shortcuts.srcut008"
+msgid "Insert the current date."
+msgstr ""
+
+#: shortcuts.srcut009
+msgctxt "shortcuts.srcut009"
+msgid "Insert the current date and time."
+msgstr ""
+
+#: shortcuts.srcut00a
+msgctxt "shortcuts.srcut00a"
+msgid "Arrow up"
+msgstr ""
+
+#: shortcuts.srcut00b
+msgctxt "shortcuts.srcut00b"
+msgid "Arrow down"
+msgstr ""
+
+#: shortcuts.srcut00c
+msgctxt "shortcuts.srcut00c"
+msgid "Arrow left"
+msgstr ""
+
+#: shortcuts.srcut00d
+msgctxt "shortcuts.srcut00d"
+msgid "Arrow right"
+msgstr ""
+
+#: shortcuts.srcut00e
+msgctxt "shortcuts.srcut00e"
+msgid "Backspace"
+msgstr ""
+
+#: shortcuts.srcut00f
+msgctxt "shortcuts.srcut00f"
+msgid "or"
+msgstr ""
+
+#: shortcuts.srcut00g
+msgctxt "shortcuts.srcut00g"
+msgid "Space"
+msgstr ""
+
+#: shortcuts.srcut010
+msgctxt "shortcuts.srcut010"
+msgid "Format the selected text in bold, or the current word if no text is selected."
+msgstr ""
+
+#: shortcuts.srcut011
+msgctxt "shortcuts.srcut011"
+msgid "Format the selected text in italics, or the current word if no text is selected."
+msgstr ""
+
+#: shortcuts.srcut012
+msgctxt "shortcuts.srcut012"
+msgid "If the cursor is inside a numbered list, renumber the list."
+msgstr ""
+
+#: shortcuts.srcut013
+msgctxt "shortcuts.srcut013"
+msgid "Renumber all the possible footnotes references if they have been manually changed."
+msgstr ""
+
+#: shortcuts.srcut014
+msgctxt "shortcuts.srcut014"
+msgid "Find in the document the next recurrence of the text specified in the search form, even if it’s closed."
+msgstr ""
+
+#: shortcuts.srcut015
+msgctxt "shortcuts.srcut015"
+msgid "Find in the document the previous recurrence of the text specified in the search form, even if it’s closed."
+msgstr ""
+
+#: shortcuts.srcut016
+msgctxt "shortcuts.srcut016"
+msgid "Create a todo item with a deadline whose delay in days is specified in the options, or set it as done or to be done."
+msgstr ""
+
+#: shortcuts.srcut017
+msgctxt "shortcuts.srcut017"
+msgid "Create a todo item without a deadline, or set it as done or to be done."
+msgstr ""
+
+#: shortcuts.srcut018
+msgctxt "shortcuts.srcut018"
+msgid "Move up the current paragraph."
+msgstr ""
+
+#: shortcuts.srcut019
+msgctxt "shortcuts.srcut019"
+msgid "Move down the current paragraph."
+msgstr ""
+
+#: shortcuts.srcut020
+msgctxt "shortcuts.srcut020"
+msgid "Select the previous heading."
+msgstr ""
+
+#: shortcuts.srcut021
+msgctxt "shortcuts.srcut021"
+msgid "Select the next heading."
+msgstr ""
+
+#: shortcuts.srcut022
+msgctxt "shortcuts.srcut022"
+msgid "Transform a list with dashes (-) into a numbered list."
+msgstr ""
+
+#: shortcuts.srcut023
+msgctxt "shortcuts.srcut023"
+msgid "Transform a numbered list into a list with dashes (-)."
+msgstr ""
+
+#: shortcuts.srcut024
+msgctxt "shortcuts.srcut024"
+msgid "Set the current position of the cursor in the bookmark."
+msgstr ""
+
+#: shortcuts.srcut025
+msgctxt "shortcuts.srcut025"
+msgid "Move the cursor to the position already set in the bookmark."
+msgstr ""
+
+#: shortcuts.srcut025b
+msgctxt "shortcuts.srcut025b"
+msgid "Show in a form the picture contained in a Markdown image link at the beginning of the current paragraph (Esc to close)."
+msgstr ""
+
+#: shortcuts.srcut025c
+msgctxt "shortcuts.srcut025c"
+msgid "Show in the text the picture contained in a Markdown image link at the beginning of the current paragraph."
+msgstr ""
+
+#: shortcuts.srcut026
+msgctxt "shortcuts.srcut026"
+msgid "Activate the presentation mode and highlight the following paragraph, skipping the empty lines."
+msgstr ""
+
+#: shortcuts.srcut026b
+msgctxt "shortcuts.srcut026b"
+msgid "Activate the presentation mode and highlight the previous paragraph, skipping the empty lines."
+msgstr ""
+
+#: shortcuts.srcut026c
+msgctxt "shortcuts.srcut026c"
+msgid "If the presentation mode is activated, highlight the following paragraph, skipping the empty lines."
+msgstr ""
+
+#: shortcuts.srcut026d
+msgctxt "shortcuts.srcut026d"
+msgid "If the presentation mode is activated, highlight the previous paragraph, skipping the empty lines."
+msgstr ""
+
+#: shortcuts.srcut026e
+msgctxt "shortcuts.srcut026e"
+msgid "Activate the presentation mode and save all the screenshots in the Downloads folder."
+msgstr ""
+
+#: shortcuts.srcut027
+msgctxt "shortcuts.srcut027"
+msgid "Make uppercase the current word."
+msgstr ""
+
+#: shortcuts.srcut028
+msgctxt "shortcuts.srcut028"
+msgid "Make lowercase the current word."
+msgstr ""
+
+#: shortcuts.srcut029
+msgctxt "shortcuts.srcut029"
+msgid "Capitalize the current word."
+msgstr ""
+
+#: shortcuts.srcut030
+msgctxt "shortcuts.srcut030"
+msgid "Show the tables grid."
+msgstr ""
+
+#: shortcuts.srcut030b
+msgctxt "shortcuts.srcut030b"
+msgid "Copy the selected citations in the document so that they can be properly pasted in the bibliographic table."
+msgstr ""
+
+#: shortcuts.srcut030c
+msgctxt "shortcuts.srcut030c"
+msgid "Show the citation taken from the bibliographic table that matches the current key."
+msgstr ""
+
+#: shortcuts.srcut031
+msgctxt "shortcuts.srcut031"
+msgid "If the cursor is within a heading, cut this heading and all the text that is under it, included possible headings of lower levels."
+msgstr ""
+
+#: shortcuts.srcut032
+msgctxt "shortcuts.srcut032"
+msgid "Within a footnote reference in the document, move the cursor to the corresponding footnote."
+msgstr ""
+
+#: shortcuts.srcut033
+msgctxt "shortcuts.srcut033"
+msgid "Within a footnote, move the cursor to the corresponding footnote reference in the document."
+msgstr ""
+
+#: shortcuts.srcut034
+msgctxt "shortcuts.srcut034"
+msgid "In other positions, create a new footnote reference and a new footnote, both properly automatically numbered."
+msgstr ""
+
+#: shortcuts.srcut035
+msgctxt "shortcuts.srcut035"
+msgid " In the tables grid"
+msgstr ""
+
+#: shortcuts.srcut035b
+msgctxt "shortcuts.srcut035b"
+msgid "Open the extended editor."
+msgstr ""
+
+#: shortcuts.srcut035b1
+msgctxt "shortcuts.srcut035b1"
+msgid "In the extended editor, show the cell at the left of the current one."
+msgstr ""
+
+#: shortcuts.srcut035b2
+msgctxt "shortcuts.srcut035b2"
+msgid "In the extended editor, show the cell over the current one."
+msgstr ""
+
+#: shortcuts.srcut035b3
+msgctxt "shortcuts.srcut035b3"
+msgid "In the extended editor, show the cell at the right of the current one."
+msgstr ""
+
+#: shortcuts.srcut035b4
+msgctxt "shortcuts.srcut035b4"
+msgid "In the extended editor, show the cell below the current one."
+msgstr ""
+
+#: shortcuts.srcut035c
+msgctxt "shortcuts.srcut035c"
+msgid "Copy the bibliographic key in the second column among curly brackets."
+msgstr ""
+
+#: shortcuts.srcut035d
+msgctxt "shortcuts.srcut035d"
+msgid "Make unique the current key in the second column."
+msgstr ""
+
+#: shortcuts.srcut036
+msgctxt "shortcuts.srcut036"
+msgid "Insert a new row."
+msgstr ""
+
+#: shortcuts.srcut037
+msgctxt "shortcuts.srcut037"
+msgid "Delete the content of the selected cell or cells, after confirmation."
+msgstr ""
+
+#: shortcuts.srcut038
+msgctxt "shortcuts.srcut038"
+msgid "Delete the current row, after confirmation if it’s not empty."
+msgstr ""
+
+#: shortcuts.srcut039
+msgctxt "shortcuts.srcut039"
+msgid "Search downward the text typed in the Find field starting from the current position and just in the current column of the current table."
+msgstr ""
+
+#: shortcuts.srcut039b
+msgctxt "shortcuts.srcut039b"
+msgid "Search upward the text typed in the Find field starting from the current position and just in the current column of the current table."
+msgstr ""
+
+#: shortcuts.srcut040
+msgctxt "shortcuts.srcut040"
+msgid "Move up the current row."
+msgstr ""
+
+#: shortcuts.srcut041
+msgctxt "shortcuts.srcut041"
+msgid "Move down the current row."
+msgstr ""
+
+#: shortcuts.srcut042
+msgctxt "shortcuts.srcut042"
+msgid "Add a new column in the current table, after confirmation."
+msgstr ""
+
+#: shortcuts.srcut043
+msgctxt "shortcuts.srcut043"
+msgid "Delete the current column in the current table, after confirmation, if it’s not the first one, containing the tables names."
+msgstr ""
+
+#: shortcuts.srcut044
+msgctxt "shortcuts.srcut044"
+msgid "Move left the current column just of the current table with its content."
+msgstr ""
+
+#: shortcuts.srcut045
+msgctxt "shortcuts.srcut045"
+msgid "Move right the current column just of the current table with its content."
+msgstr ""
+
+#: shortcuts.srcut046
+msgctxt "shortcuts.srcut046"
+msgid "Move the current table, with all its field, before the previous one."
+msgstr ""
+
+#: shortcuts.srcut047
+msgctxt "shortcuts.srcut047"
+msgid "Move the current table, with all its field, after the next one."
+msgstr ""
+
+#: shortcuts.srcut048
+msgctxt "shortcuts.srcut048"
+msgid "In the tables names column, select the previous table title, while in the other columns move the cursor to the top of the grid."
+msgstr ""
+
+#: shortcuts.srcut049
+msgctxt "shortcuts.srcut049"
+msgid "In the tables names column, select the following table title, while in the  other columns move the cursor to the last edited row of the current column."
+msgstr ""
+
+#: shortcuts.srcut050
+msgctxt "shortcuts.srcut050"
+msgid "Move the cursor to the first column of the grid."
+msgstr ""
+
+#: shortcuts.srcut050b
+msgctxt "shortcuts.srcut050b"
+msgid "Move the cursor to the last right edited column of the current row."
+msgstr ""
+
+#: shortcuts.srcut051
+msgctxt "shortcuts.srcut051"
+msgid "Insert the current date except in the tables names column and in the headings."
+msgstr ""
+
+#: shortcuts.srcut051b
+msgctxt "shortcuts.srcut051b"
+msgid "If the current cell contains a date, increase it of one day."
+msgstr ""
+
+#: shortcuts.srcut051c
+msgctxt "shortcuts.srcut051c"
+msgid "If the current cell contains a date, decrease it of one day."
+msgstr ""
+
+#: shortcuts.srcut052
+msgctxt "shortcuts.srcut052"
+msgid "Sort ascending the content of the current column in the current table, after confirmation, stopping before the formula if it’s present in any column."
+msgstr ""
+
+#: shortcuts.srcut052b
+msgctxt "shortcuts.srcut052b"
+msgid "Sort descending the content of the current column in the current table, after confirmation, stopping before the formula if it’s present in any column."
+msgstr ""
+
+#: shortcuts.srcut053
+msgctxt "shortcuts.srcut053"
+msgid "Move the cursor in the search field, if it’s visible."
+msgstr ""
+
+#: shortcuts.srcut053b
+msgctxt "shortcuts.srcut053b"
+msgid "Move the cursor in the filter field, if it’s visible."
+msgstr ""
+
+#: shortcuts.srcut053c
+msgctxt "shortcuts.srcut053c"
+msgid "Remove the filters in the current table and calculate the formulas."
+msgstr ""
+
+#: shortcuts.srcut054
+msgctxt "shortcuts.srcut054"
+msgid "Copy the content of the selected cells in the clipboard."
+msgstr ""
+
+#: shortcuts.srcut055
+msgctxt "shortcuts.srcut055"
+msgid "Paste the content of the clipboard in the current (and following) cells."
+msgstr ""
+
+#: shortcuts.srcut056
+msgctxt "shortcuts.srcut056"
+msgid "Undo the last changes while the editor of a cell in the grid is still active."
+msgstr ""
+
+#: shortcuts.srcut057
+msgctxt "shortcuts.srcut057"
+msgid " In the todo form"
+msgstr ""
+
+#: shortcuts.srcut058
+msgctxt "shortcuts.srcut058"
+msgid "Hide the todo items already done."
+msgstr ""
+
+#: shortcuts.srcut059
+msgctxt "shortcuts.srcut059"
+msgid "Toggle the state of the selected todo item from to be done to done, and vice versa."
+msgstr ""
+
+#: shortcuts.srcut059b
+msgctxt "shortcuts.srcut059b"
+msgid "Copy in the clipboard the todo items."
+msgstr ""
+
+#: shortcuts.srcut060
+msgctxt "shortcuts.srcut060"
+msgid "Close the form."
+msgstr ""
+
+#: shortcuts.srcut061
+msgctxt "shortcuts.srcut061"
+msgid " In the search files form"
+msgstr ""
+
+#: shortcuts.srcut062
+msgctxt "shortcuts.srcut062"
+msgid "Move the cursor in the Find field."
+msgstr ""
+
+#: shortcuts.srcut063
+msgctxt "shortcuts.srcut063"
+msgid "Stop the search or close the form."
+msgstr ""
+
+#: shortcuts.srcut064
+msgctxt "shortcuts.srcut064"
+msgid " In the words recurrence form"
+msgstr ""
+
+#: shortcuts.srcut065
+msgctxt "shortcuts.srcut065"
+msgid "Close the form."
+msgstr ""
+
+#: tasks.tsk001
+msgctxt "tasks.tsk001"
+msgid "day"
+msgstr ""
+
+#: tasks.tsk002
+msgctxt "tasks.tsk002"
+msgid "days"
+msgstr ""
+
+#: tasks.tsk003
+msgctxt "tasks.tsk003"
+msgid "Todo items:"
+msgstr ""
+
+#: tasks.tsk004
+msgctxt "tasks.tsk004"
+msgid "All the resources"
+msgstr ""
+
+#: tasks.tsk005
+msgctxt "tasks.tsk005"
+msgid "done"
+msgstr ""
+
 #: tfmcopyright.caption
 msgctxt "tfmcopyright.caption"
 msgid "Copyright"
@@ -32,7 +807,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.0"
+msgid "1.4.1"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -648,640 +1423,18 @@ msgstr ""
 msgid "Recurrences"
 msgstr ""
 
-#: unit1.dateformat
-msgid "en"
-msgstr ""
-
-#: unit1.dlg001
-msgid "Markdown files|*.md|All files|*"
-msgstr ""
-
-#: unit1.dlg002
-msgctxt "unit1.dlg002"
-msgid "Save Markdown file"
-msgstr ""
-
-#: unit1.dlg003
-msgctxt "unit1.dlg003"
-msgid "Open Markdown file"
-msgstr ""
-
-#: unit1.dlg004
-msgid "All files|*"
-msgstr ""
-
-#: unit1.dlg005
-msgctxt "unit1.dlg005"
-msgid "Open file"
-msgstr ""
-
-#: unit1.dlg006
-msgid "Tables|*.csv"
-msgstr ""
-
-#: unit1.dlg007
-msgid "Open tables"
-msgstr ""
-
-#: unit1.lb000
-msgid "with bibliography"
-msgstr ""
-
-#: unit1.lb000b
-msgid "# Bibliography"
-msgstr ""
-
-#: unit1.lb001
-msgctxt "unit1.lb001"
-msgid "All the headings"
-msgstr ""
-
-#: unit1.lb002
-msgctxt "unit1.lb002"
-msgid "Headings 1 - 5"
-msgstr ""
-
-#: unit1.lb003
-msgid "Headings 1 - 4"
-msgstr ""
-
-#: unit1.lb004
-msgid "Headings 1 - 3"
-msgstr ""
-
-#: unit1.lb005
-msgid "Headings 1 - 2"
-msgstr ""
-
-#: unit1.lb006
-msgctxt "unit1.lb006"
-msgid "Headings 1"
-msgstr ""
-
-#: unit1.lb007
-msgid "Tables names"
-msgstr ""
-
-#: unit1.lb008
-msgid "Tables"
-msgstr ""
-
-#: unit1.lb009
-msgid "Sum:"
-msgstr ""
-
-#: unit1.lb010
-msgid "Maximum value:"
-msgstr ""
-
-#: unit1.lb011
-msgid "Minimum value:"
-msgstr ""
-
-#: unit1.lb012
-msgid "Average:"
-msgstr ""
-
-#: unit1.lb013
-msgid "Count:"
-msgstr ""
-
-#: unit1.lb014
-msgid "read-only"
-msgstr ""
-
-#: unit1.msg001
-msgid "Characters:"
-msgstr ""
-
-#: unit1.msg002
-msgid "Discard text changes?"
-msgstr ""
-
-#: unit1.msg003
-msgid "It was not possible to save the current file."
-msgstr ""
-
-#: unit1.msg004
-msgid "It was not possible to load the selected file."
-msgstr ""
-
-#: unit1.msg005
-msgid "Create a new document?"
-msgstr ""
-
-#: unit1.msg006
-msgid "It was not possible to load the last used file."
-msgstr ""
-
-#: unit1.msg007
-msgid "The file is not available."
-msgstr ""
-
-#: unit1.msg008
-msgid "The current document has no name."
-msgstr ""
-
-#: unit1.msg009
-msgid "It was not possible to create the backup file."
-msgstr ""
-
-#: unit1.msg010
-msgid "Delete the current column of the current table?"
-msgstr ""
-
-#: unit1.msg011
-msgid "It's not possible to create a footnote reference at the beginning of a paragraph."
-msgstr ""
-
-#: unit1.msg012
-msgid "It's not possible to insert a new row since the last one contains some data."
-msgstr ""
-
-#: unit1.msg013
-msgid "Delete the current row?"
-msgstr ""
-
-#: unit1.msg014
-msgid "Sort the content of current column of the current table?"
-msgstr ""
-
-#: unit1.msg015
-msgid "Delete the content of the selected cells?"
-msgstr ""
-
-#: unit1.msg016
-msgid "Insert a new column in the current table?"
-msgstr ""
-
-#: unit1.msg017
-msgid "This functionality must be called within a heading and not at the end of the text."
-msgstr ""
-
-#: unit1.msg018
-msgid "Cut in the clipboard all the text under the current heading?"
-msgstr ""
-
-#: unit1.msg019
-msgid "The table is not delimited at the bottom; add a fictional title after its last row in the first left column."
-msgstr ""
-
-#: unit1.msg020
-msgid "Create in a new file a version of the current presentation optimized for mxMarkEdit?"
-msgstr ""
-
-#: unit1.msg021
-msgid "It was not possible to save the optimized file."
-msgstr ""
-
-#: unit1.msg022
-msgid "Save in the Downloads directory the screenshots of the presentation (press ESC to stop)?"
-msgstr ""
-
-#: unit1.msg023
-msgid "Create in a new file a version of the current document with the bibliography?"
-msgstr ""
-
-#: unit1.msg024
-msgid "It was not possible to save the file with bibliography."
-msgstr ""
-
-#: unit1.msg025
-msgid "Replace the content of the grid with the tables of the selected file?"
-msgstr ""
-
-#: unit1.msg026
-msgid "The selected key has no match in the bibliographic table."
-msgstr ""
-
-#: unit4.tsk001
-msgid "day"
-msgstr ""
-
-#: unit4.tsk002
-msgid "days"
-msgstr ""
-
-#: unit4.tsk003
-msgid "Todo items:"
-msgstr ""
-
-#: unit4.tsk004
-msgctxt "unit4.tsk004"
-msgid "All the resources"
-msgstr ""
-
-#: unit4.tsk005
-msgid "done"
-msgstr ""
-
-#: unit5.msgsk001
-msgctxt "unit5.msgsk001"
+#: words.msgsk001
+msgctxt "words.msgsk001"
 msgid "Words used:"
 msgstr ""
 
-#: unit5.msgsk002
+#: words.msgsk002
+msgctxt "words.msgsk002"
 msgid "Sort by words"
 msgstr ""
 
-#: unit5.msgsk003
+#: words.msgsk003
+msgctxt "words.msgsk003"
 msgid "Sort by recurrences"
-msgstr ""
-
-#: unit6.msgfl001
-msgid "Error in searching in the files."
-msgstr ""
-
-#: unit6.msgfl002
-msgid "The search has stopped to 5,000 occurrences; try to refine it."
-msgstr ""
-
-#: unit7.srcut001
-msgid " In the main form"
-msgstr ""
-
-#: unit7.srcut002
-msgid "Undo the last action in the document (not in the grid)."
-msgstr ""
-
-#: unit7.srcut003
-msgid "Redo the last action in the document (not in the grid)."
-msgstr ""
-
-#: unit7.srcut004
-msgid "Select one of the six filter options above the title and todo list."
-msgstr ""
-
-#: unit7.srcut005
-msgid "Change the size of the normal font."
-msgstr ""
-
-#: unit7.srcut006
-msgid "Change the size of the mono font, used for code."
-msgstr ""
-
-#: unit7.srcut007
-msgid "Delete the current paragraph."
-msgstr ""
-
-#: unit7.srcut008
-msgid "Insert the current date."
-msgstr ""
-
-#: unit7.srcut009
-msgid "Insert the current date and time."
-msgstr ""
-
-#: unit7.srcut00a
-msgid "Arrow up"
-msgstr ""
-
-#: unit7.srcut00b
-msgid "Arrow down"
-msgstr ""
-
-#: unit7.srcut00c
-msgid "Arrow left"
-msgstr ""
-
-#: unit7.srcut00d
-msgid "Arrow right"
-msgstr ""
-
-#: unit7.srcut00e
-msgid "Backspace"
-msgstr ""
-
-#: unit7.srcut00f
-msgid "or"
-msgstr ""
-
-#: unit7.srcut00g
-msgid "Space"
-msgstr ""
-
-#: unit7.srcut010
-msgid "Format the selected text in bold, or the current word if no text is selected."
-msgstr ""
-
-#: unit7.srcut011
-msgid "Format the selected text in italics, or the current word if no text is selected."
-msgstr ""
-
-#: unit7.srcut012
-msgid "If the cursor is inside a numbered list, renumber the list."
-msgstr ""
-
-#: unit7.srcut013
-msgid "Renumber all the possible footnotes references if they have been manually changed."
-msgstr ""
-
-#: unit7.srcut014
-msgid "Find in the document the next recurrence of the text specified in the search form, even if it’s closed."
-msgstr ""
-
-#: unit7.srcut015
-msgid "Find in the document the previous recurrence of the text specified in the search form, even if it’s closed."
-msgstr ""
-
-#: unit7.srcut016
-msgid "Create a todo item with a deadline whose delay in days is specified in the options, or set it as done or to be done."
-msgstr ""
-
-#: unit7.srcut017
-msgid "Create a todo item without a deadline, or set it as done or to be done."
-msgstr ""
-
-#: unit7.srcut018
-msgid "Move up the current paragraph."
-msgstr ""
-
-#: unit7.srcut019
-msgid "Move down the current paragraph."
-msgstr ""
-
-#: unit7.srcut020
-msgid "Select the previous heading."
-msgstr ""
-
-#: unit7.srcut021
-msgid "Select the next heading."
-msgstr ""
-
-#: unit7.srcut022
-msgid "Transform a list with dashes (-) into a numbered list."
-msgstr ""
-
-#: unit7.srcut023
-msgid "Transform a numbered list into a list with dashes (-)."
-msgstr ""
-
-#: unit7.srcut024
-msgid "Set the current position of the cursor in the bookmark."
-msgstr ""
-
-#: unit7.srcut025
-msgid "Move the cursor to the position already set in the bookmark."
-msgstr ""
-
-#: unit7.srcut025b
-msgid "Show in a form the picture contained in a Markdown image link at the beginning of the current paragraph (Esc to close)."
-msgstr ""
-
-#: unit7.srcut025c
-msgid "Show in the text the picture contained in a Markdown image link at the beginning of the current paragraph."
-msgstr ""
-
-#: unit7.srcut026
-msgid "Activate the presentation mode and highlight the following paragraph, skipping the empty lines."
-msgstr ""
-
-#: unit7.srcut026b
-msgid "Activate the presentation mode and highlight the previous paragraph, skipping the empty lines."
-msgstr ""
-
-#: unit7.srcut026c
-msgid "If the presentation mode is activated, highlight the following paragraph, skipping the empty lines."
-msgstr ""
-
-#: unit7.srcut026d
-msgid "If the presentation mode is activated, highlight the previous paragraph, skipping the empty lines."
-msgstr ""
-
-#: unit7.srcut026e
-msgid "Activate the presentation mode and save all the screenshots in the Downloads folder."
-msgstr ""
-
-#: unit7.srcut027
-msgid "Make uppercase the current word."
-msgstr ""
-
-#: unit7.srcut028
-msgid "Make lowercase the current word."
-msgstr ""
-
-#: unit7.srcut029
-msgid "Capitalize the current word."
-msgstr ""
-
-#: unit7.srcut030
-msgid "Show the tables grid."
-msgstr ""
-
-#: unit7.srcut030b
-msgid "Copy the selected citations in the document so that they can be properly pasted in the bibliographic table."
-msgstr ""
-
-#: unit7.srcut030c
-msgid "Show the citation taken from the bibliographic table that matches the current key."
-msgstr ""
-
-#: unit7.srcut031
-msgid "If the cursor is within a heading, cut this heading and all the text that is under it, included possible headings of lower levels."
-msgstr ""
-
-#: unit7.srcut032
-msgid "Within a footnote reference in the document, move the cursor to the corresponding footnote."
-msgstr ""
-
-#: unit7.srcut033
-msgid "Within a footnote, move the cursor to the corresponding footnote reference in the document."
-msgstr ""
-
-#: unit7.srcut034
-msgid "In other positions, create a new footnote reference and a new footnote, both properly automatically numbered."
-msgstr ""
-
-#: unit7.srcut035
-msgid " In the tables grid"
-msgstr ""
-
-#: unit7.srcut035b
-msgid "Open the extended editor."
-msgstr ""
-
-#: unit7.srcut035b1
-msgid "In the extended editor, show the cell at the left of the current one."
-msgstr ""
-
-#: unit7.srcut035b2
-msgid "In the extended editor, show the cell over the current one."
-msgstr ""
-
-#: unit7.srcut035b3
-msgid "In the extended editor, show the cell at the right of the current one."
-msgstr ""
-
-#: unit7.srcut035b4
-msgid "In the extended editor, show the cell below the current one."
-msgstr ""
-
-#: unit7.srcut035c
-msgid "Copy the bibliographic key in the second column among curly brackets."
-msgstr ""
-
-#: unit7.srcut035d
-msgid "Make unique the current key in the second column."
-msgstr ""
-
-#: unit7.srcut036
-msgid "Insert a new row."
-msgstr ""
-
-#: unit7.srcut037
-msgid "Delete the content of the selected cell or cells, after confirmation."
-msgstr ""
-
-#: unit7.srcut038
-msgid "Delete the current row, after confirmation if it's not empty."
-msgstr ""
-
-#: unit7.srcut039
-msgid "Search downward the text typed in the Find field starting from the current position and just in the current column of the current table."
-msgstr ""
-
-#: unit7.srcut039b
-msgid "Search upward the text typed in the Find field starting from the current position and just in the current column of the current table."
-msgstr ""
-
-#: unit7.srcut040
-msgid "Move up the current row."
-msgstr ""
-
-#: unit7.srcut041
-msgid "Move down the current row."
-msgstr ""
-
-#: unit7.srcut042
-msgid "Add a new column in the current table, after confirmation."
-msgstr ""
-
-#: unit7.srcut043
-msgid "Delete the current column in the current table, after confirmation, if it’s not the first one, containing the tables names."
-msgstr ""
-
-#: unit7.srcut044
-msgid "Move left the current column just of the current table with its content."
-msgstr ""
-
-#: unit7.srcut045
-msgid "Move right the current column just of the current table with its content."
-msgstr ""
-
-#: unit7.srcut046
-msgid "Move the current table, with all its field, before the previous one."
-msgstr ""
-
-#: unit7.srcut047
-msgid "Move the current table, with all its field, after the next one."
-msgstr ""
-
-#: unit7.srcut048
-msgid "In the tables names column, select the previous table title, while in the other columns move the cursor to the top of the grid."
-msgstr ""
-
-#: unit7.srcut049
-msgid "In the tables names column, select the following table title, while in the  other columns move the cursor to the last edited row of the current column."
-msgstr ""
-
-#: unit7.srcut050
-msgid "Move the cursor to the first column of the grid."
-msgstr ""
-
-#: unit7.srcut050b
-msgctxt "unit7.srcut050b"
-msgid "Move the cursor to the last right edited column of the current row."
-msgstr ""
-
-#: unit7.srcut051
-msgctxt "unit7.srcut051"
-msgid "Insert the current date except in the tables names column and in the headings."
-msgstr ""
-
-#: unit7.srcut051b
-msgid "If the current cell contains a date, increase it of one day."
-msgstr ""
-
-#: unit7.srcut051c
-msgid "If the current cell contains a date, decrease it of one day."
-msgstr ""
-
-#: unit7.srcut052
-msgid "Sort ascending the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
-msgstr ""
-
-#: unit7.srcut052b
-msgid "Sort descending the content of the current column in the current table, after confirmation, stopping before the formula if it's present in any column."
-msgstr ""
-
-#: unit7.srcut053
-msgid "Move the cursor in the search field, if it’s visible."
-msgstr ""
-
-#: unit7.srcut053b
-msgid "Move the cursor in the filter field, if it's visible."
-msgstr ""
-
-#: unit7.srcut053c
-msgid "Remove the filters in the current table and calculate the formulas."
-msgstr ""
-
-#: unit7.srcut054
-msgid "Copy the content of the selected cells in the clipboard."
-msgstr ""
-
-#: unit7.srcut055
-msgid "Paste the content of the clipboard in the current (and following) cells."
-msgstr ""
-
-#: unit7.srcut056
-msgid "Undo the last changes while the editor of a cell in the grid is still active."
-msgstr ""
-
-#: unit7.srcut057
-msgid " In the todo form"
-msgstr ""
-
-#: unit7.srcut058
-msgid "Hide the todo items already done."
-msgstr ""
-
-#: unit7.srcut059
-msgid "Toggle the state of the selected todo item from to be done to done, and vice versa."
-msgstr ""
-
-#: unit7.srcut059b
-msgid "Copy in the clipboard the todo items."
-msgstr ""
-
-#: unit7.srcut060
-msgctxt "unit7.srcut060"
-msgid "Close the form."
-msgstr ""
-
-#: unit7.srcut061
-msgid " In the search files form"
-msgstr ""
-
-#: unit7.srcut062
-msgid "Move the cursor in the Find field."
-msgstr ""
-
-#: unit7.srcut063
-msgctxt "unit7.srcut063"
-msgid "Stop the search or close the form."
-msgstr ""
-
-#: unit7.srcut064
-msgid " In the words recurrence form"
-msgstr ""
-
-#: unit7.srcut065
-msgctxt "unit7.srcut065"
-msgid "Close the form."
-msgstr ""
-
-#: unit8.lbedit001
-msgid "Cell"
 msgstr ""
 

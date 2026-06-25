@@ -19,7 +19,7 @@
 // ***********************************************************************
 // ***********************************************************************
 
-unit Unit6;
+unit files;
 
 {$mode ObjFPC}{$H+}
 {$modeswitch objectivec1}
@@ -77,7 +77,7 @@ resourcestring
 
 implementation
 
-uses Unit1;
+uses main;
 
 {$R *.lfm}
 

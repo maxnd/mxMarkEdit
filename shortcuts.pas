@@ -19,7 +19,7 @@
 // ***********************************************************************
 // ***********************************************************************
 
-unit Unit7;
+unit shortcuts;
 
 {$mode ObjFPC}{$H+}
 {$modeswitch objectivec1}
@@ -59,6 +59,8 @@ resourcestring
   srcut002 = 'Undo the last action in the document (not in the grid).';
   srcut003 = 'Redo the last action in the document (not in the grid).';
   srcut004 = 'Select one of the six filter options above the title and todo list.';
+  srcut004b = 'Set the current paragraph as 1-6 header.';
+  srcut004c = 'Remove the header marker from the current paragraph.';
   srcut005 = 'Change the size of the normal font.';
   srcut006 = 'Change the size of the mono font, used for code.';
   srcut007 = 'Delete the current paragraph.';
@@ -122,7 +124,7 @@ resourcestring
   srcut035d = 'Make unique the current key in the second column.';
   srcut036 = 'Insert a new row.';
   srcut037 = 'Delete the content of the selected cell or cells, after confirmation.';
-  srcut038 = 'Delete the current row, after confirmation if it''s not empty.';
+  srcut038 = 'Delete the current row, after confirmation if it’s not empty.';
   srcut039 = 'Search downward the text typed in the Find field starting from the current position ' +
       'and just in the current column of the current table.';
   srcut039b = 'Search upward the text typed in the Find field starting from the current position ' +
@@ -149,11 +151,11 @@ resourcestring
   srcut051b = 'If the current cell contains a date, increase it of one day.';
   srcut051c = 'If the current cell contains a date, decrease it of one day.';
   srcut052 = 'Sort ascending the content of the current column in the current table, ' +
-    'after confirmation, stopping before the formula if it''s present in any column.';
+    'after confirmation, stopping before the formula if it’s present in any column.';
   srcut052b = 'Sort descending the content of the current column in the current table, ' +
-    'after confirmation, stopping before the formula if it''s present in any column.';
+    'after confirmation, stopping before the formula if it’s present in any column.';
   srcut053 = 'Move the cursor in the search field, if it’s visible.';
-  srcut053b = 'Move the cursor in the filter field, if it''s visible.';
+  srcut053b = 'Move the cursor in the filter field, if it’s visible.';
   srcut053c = 'Remove the filters in the current table and calculate the formulas.';
   srcut054 = 'Copy the content of the selected cells in the clipboard.';
   srcut055 = 'Paste the content of the clipboard in the current (and following) cells.';
@@ -179,7 +181,7 @@ resourcestring
 
 implementation
 
-uses Unit1;
+uses main;
 
 {$R *.lfm}
 
@@ -221,7 +223,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 99;
+  sgShortcuts.RowCount := 101;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -236,6 +238,12 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Opt + 1-6';
   sgShortcuts.Cells[1, i] := srcut004;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + 1-6';
+  sgShortcuts.Cells[1, i] := srcut004b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Ctrl + 0';
+  sgShortcuts.Cells[1, i] := srcut004c;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + ''+'' ' + srcut00f + ' ''-''';
   sgShortcuts.Cells[1, i] := srcut005;

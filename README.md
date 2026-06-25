@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.4.0, published on June 24 2026.
+Version 1.4.1, published on June 26 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -342,6 +342,8 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Z`: undo the last action in the document (not in the grid).
 * `Meta` + `Shift` + `Y`: redo the last action in the document (not in the grid).
 * `Meta` + `Opt` + `1-6`: select one of the six filter options above the title and todo list.
+* `Meta` + `Ctrl` + `1-6`: set the current paragraph as 1-6 header.
+* `Meta` + `Ctrl` + `0`: remove the header marker from the current paragraph.
 * `Meta` + `+` or `-`: change the size of the normal font.
 * `Meta` + `Ctrl` + `+` or `-`: change the size of the mono font, use for code.
 * `Meta` + `Shift` + `Backspace`: delete the current paragraph.
@@ -462,6 +464,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.4.1**
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- New shortcut: `Meta` + `Ctrl` + `1-6`: set the current paragraph as 1-6 header.
+- New shortcut: `Meta` + `Ctrl` + `0`: remove the header marker from the current paragraph.
+- In the code, the unit files have been renamed properly.
 
 **Version 1.4.0**
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
