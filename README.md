@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.4.1, published on June 26 2026.
+Version 1.4.1, published on June 25 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
