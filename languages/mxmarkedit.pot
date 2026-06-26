@@ -807,7 +807,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.1"
+msgid "1.4.2"
 msgstr ""
 
 #: tfmcopyright.lbok.caption

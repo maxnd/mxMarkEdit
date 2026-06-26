@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.4.1, published on June 25 2026.
+Version 1.4.2, published on June 26 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -102,7 +102,7 @@ Other Markdown markers are not hidden, but are shown in a different color define
 * links to websites or files, like `[my web site](www.mywebsite.com)`;
 * links to pictures, like `![my picture](img.jpg)`.
 
-To show a picture in the text after its link, see below for the proper shortcut.
+To show a picture in the text after its link or in a another window, see below for the proper shortcuts.
 
 The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned. Pandoc should instead manage them properly.
 
@@ -156,9 +156,9 @@ The formulas are the followings:
 - `---max`: reports the bigger number;
 - `---min`: reports the smaller number;
 - `---avg`: reports the average of the numbers;
-- `---count`: reports the total number of the rows, also non numeric;
+- `---count`: reports the total number of the rows, also nonnumeric;
 
-The formulas are shown in the color set by the user for the code (see below the option of the app for more information). The possible filter doesn’t hide the formulas and the following result fields, and the rows not filtered are not included in the computations. Deleting a row activate the computation of the formulas, but not move a row in another table. Before closing the document, remove the filters from each table, so that the result fields are saved with the values relative to all the data of the column.
+The formulas are shown in the color set by the user for the code (see below the option of the app for more information). The possible filter doesn’t hide the formulas and the following result fields, and the rows not filtered are not included in the computations. Deleting a row activate the computation of the formulas, but not move a row in another table. Before closing the document, remove the filters from each table, so that the result fields are saved with the values relative to all the data of the column. The numbers in the cells could be typed by the user with the thousand separators, since the app can handle it properly. The results are shown always with the thousand separators.
 
 It’s possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it’s necessary to mark the bottom row of the current table creating a fictional table after it; it’s enough to write just its name.
 
@@ -464,6 +464,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.4.2**
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- Added the thousand separator in the numbers within the grid.
+- Reduced the responsiveness of the horizontal scrolling in the data grid.
+- Corrections in the documentation.
 
 **Version 1.4.1**
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.

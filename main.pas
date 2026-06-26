@@ -177,6 +177,8 @@ type
     procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTableKeyPress(Sender: TObject; var Key: char);
     procedure sgTableKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure sgTableMouseWheelHorz(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
     procedure sgTableSetEditText(Sender: TObject; ACol, ARow: Integer;
@@ -1184,6 +1186,7 @@ end;
 procedure TfmMain.dbTextContextPopup(Sender: TObject; MousePos: TPoint;
   var Handled: Boolean);
 begin
+  Handled := True;
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     accessibilityPerformShowMenu;
 end;
@@ -2335,6 +2338,7 @@ begin
   else
   if ((key = Ord('1')) and (Shift = [ssCtrl, ssMeta])) then
   begin
+    iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
     rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
@@ -2350,11 +2354,13 @@ begin
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8('# '), rngStart);
+    dbText.SelStart := iPos - rngStart.length + 2;
     FormatListTitleTodo;
   end
   else
   if ((key = Ord('2')) and (Shift = [ssCtrl, ssMeta])) then
   begin
+    iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
     rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
@@ -2370,11 +2376,13 @@ begin
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8('## '), rngStart);
+    dbText.SelStart := iPos - rngStart.length + 3;
     FormatListTitleTodo;
   end
   else
   if ((key = Ord('3')) and (Shift = [ssCtrl, ssMeta])) then
   begin
+    iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
     rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
@@ -2390,11 +2398,13 @@ begin
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8('### '), rngStart);
+    dbText.SelStart := iPos - rngStart.length + 4;
     FormatListTitleTodo;
   end
   else
   if ((key = Ord('4')) and (Shift = [ssCtrl, ssMeta])) then
   begin
+    iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
     rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
@@ -2410,11 +2420,13 @@ begin
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8('#### '), rngStart);
+    dbText.SelStart := iPos - rngStart.length + 5;
     FormatListTitleTodo;
   end
   else
   if ((key = Ord('5')) and (Shift = [ssCtrl, ssMeta])) then
   begin
+    iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
     rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
@@ -2430,11 +2442,13 @@ begin
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8('##### '), rngStart);
+    dbText.SelStart := iPos - rngStart.length + 6;
     FormatListTitleTodo;
   end
   else
   if ((key = Ord('6')) and (Shift = [ssCtrl, ssMeta])) then
   begin
+    iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
     rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
@@ -2450,11 +2464,13 @@ begin
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8('###### '), rngStart);
+    dbText.SelStart := iPos - rngStart.length + 7;
     FormatListTitleTodo;
   end
   else
   if ((key = Ord('0')) and (Shift = [ssCtrl, ssMeta])) then
   begin
+    iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
     rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
@@ -2470,6 +2486,7 @@ begin
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         insertText_replacementRange(NSStringUtf8(''), rngStart);
+    dbText.SelStart := iPos - rngStart.length;
     FormatListTitleTodo;
   end
   else
@@ -3108,7 +3125,7 @@ begin
         begin
           if TryStrToFloat(sgTable.Cells[sgTable.Col, i], iNum) = True then
           begin
-            sgTable.Cells[sgTable.Col, i] := FormatFloat('0.####', iNum);
+            sgTable.Cells[sgTable.Col, i] := FormatFloat('0,0.####', iNum);
           end;
         end;
       end;
@@ -3563,6 +3580,21 @@ begin
   if ((key = Ord('V')) and (Shift = [ssMeta])) then
   begin
     sgTableEditingDone(nil);
+  end;
+end;
+
+procedure TfmMain.sgTableMouseWheelHorz(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  Handled := True;
+  if WheelDelta > 200 then
+  begin
+    sgTable.LeftCol := sgTable.LeftCol + 1
+  end
+  else
+  if WheelDelta < -200 then
+  begin
+    sgTable.LeftCol := sgTable.LeftCol - 1;
   end;
 end;
 
@@ -6645,7 +6677,7 @@ begin
             else
             begin
               sgTable.Cells[iCol, i + 1] := lb009 + ' ' +
-                FormatFloat('0.##', dbSum);
+                FormatFloat('0,0.##', dbSum);
             end;
           end
           else
@@ -6666,7 +6698,7 @@ begin
             else
             begin
               sgTable.Cells[iCol, i + 1] := lb010 + ' ' +
-                FormatFloat('0.##', dbMax);
+                FormatFloat('0,0.##', dbMax);
             end;
           end
           else
@@ -6687,7 +6719,7 @@ begin
             else
             begin
               sgTable.Cells[iCol, i + 1] := lb011 + ' ' +
-                FormatFloat('0.##', dbMin);
+                FormatFloat('0,0.##', dbMin);
             end;
           end
           else
@@ -6708,7 +6740,7 @@ begin
             else
             begin
               sgTable.Cells[iCol, i + 1] := lb012 + ' ' +
-                FormatFloat('0.##', dbSum / dbCount);
+                FormatFloat('0,0.##', dbSum / dbCount);
             end;
           end
           else
@@ -6727,7 +6759,7 @@ begin
           else
           begin
             sgTable.Cells[iCol, i + 1] := lb013 + ' ' +
-              FormatFloat('0.##', dbCount);
+              FormatFloat('0,0.##', dbCount);
           end;
         end
         else
@@ -6737,7 +6769,8 @@ begin
             if dbCount = -MaxInt then dbCount := 0;
             Inc(dbCount);
           end;
-          if TryStrToFloat(sgTable.Cells[iCol, i], dbNum) = True then
+          if TryStrToFloat(UTF8StringReplace(sgTable.Cells[iCol, i],
+            ThousandSeparator, '', []), dbNum) = True then
           begin
             if dbSum = -MaxInt then dbSum := 0;
             if dbMin = -MaxInt then dbMin := 0;

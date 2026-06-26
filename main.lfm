@@ -1262,6 +1262,7 @@ object fmMain: TfmMain
         OnKeyDown = sgTableKeyDown
         OnKeyPress = sgTableKeyPress
         OnKeyUp = sgTableKeyUp
+        OnMouseWheelHorz = sgTableMouseWheelHorz
         OnPrepareCanvas = sgTablePrepareCanvas
         OnSetEditText = sgTableSetEditText
       end
