@@ -281,6 +281,7 @@ var
   iNumScreenshot: Integer = 1;
   stTableLoaded: String = ' && .csv ';
   csTableRowCount: Integer = 10000;
+  stThousandSep: String = ',';
   blTextLoading: boolean = False;
   blTextOnChange: boolean = False;
   stGridLoaded: String = '';
@@ -371,6 +372,7 @@ begin
     NSLocale.preferredLanguages.objectAtIndex(0)), 1, 2)) = 'it' then
   begin
     translate.TranslateTo('mxmarkedit.it');
+    stThousandSep := '.';
   end;
   if IsAppDark = True then
   begin
@@ -2759,7 +2761,13 @@ begin
 end;
 
 procedure TfmMain.sgTableEditingDone(Sender: TObject);
+var
+  iNum: Double;
 begin
+  if TryStrToFloat(sgTable.Cells[sgTable.Col, sgTable.Row], iNum) = True then
+  begin
+    sgTable.Cells[sgTable.Col, sgTable.Row] := FormatFloat('#,##0.######', iNum);
+  end;
   CalcInGrid(sgTable.Col);
 end;
 
@@ -3107,9 +3115,10 @@ begin
       begin
         for i := iTop to iBottom do
         begin
-          if TryStrToFloat(sgTable.Cells[sgTable.Col, i], iNum) = True then
+          if TryStrToFloat(UTF8StringReplace(sgTable.Cells[sgTable.Col, i],
+            stThousandSep, '', []), iNum) = True then
           begin
-            sgTable.Cells[sgTable.Col, i] := FormatFloat('000000000000.####', iNum);
+            sgTable.Cells[sgTable.Col, i] := FormatFloat('000000000000.######', iNum);
           end;
         end;
         if Shift = [ssMeta, ssCtrl] then
@@ -3125,7 +3134,7 @@ begin
         begin
           if TryStrToFloat(sgTable.Cells[sgTable.Col, i], iNum) = True then
           begin
-            sgTable.Cells[sgTable.Col, i] := FormatFloat('0,0.####', iNum);
+            sgTable.Cells[sgTable.Col, i] := FormatFloat('#,##0.######', iNum);
           end;
         end;
       end;
@@ -6677,7 +6686,7 @@ begin
             else
             begin
               sgTable.Cells[iCol, i + 1] := lb009 + ' ' +
-                FormatFloat('0,0.##', dbSum);
+                FormatFloat('#,##0.######', dbSum);
             end;
           end
           else
@@ -6698,7 +6707,7 @@ begin
             else
             begin
               sgTable.Cells[iCol, i + 1] := lb010 + ' ' +
-                FormatFloat('0,0.##', dbMax);
+                FormatFloat('#,##0.######', dbMax);
             end;
           end
           else
@@ -6719,7 +6728,7 @@ begin
             else
             begin
               sgTable.Cells[iCol, i + 1] := lb011 + ' ' +
-                FormatFloat('0,0.##', dbMin);
+                FormatFloat('#,##0.######', dbMin);
             end;
           end
           else
@@ -6740,7 +6749,7 @@ begin
             else
             begin
               sgTable.Cells[iCol, i + 1] := lb012 + ' ' +
-                FormatFloat('0,0.##', dbSum / dbCount);
+                FormatFloat('#,##0.######', dbSum / dbCount);
             end;
           end
           else
@@ -6759,7 +6768,7 @@ begin
           else
           begin
             sgTable.Cells[iCol, i + 1] := lb013 + ' ' +
-              FormatFloat('0,0.##', dbCount);
+              FormatFloat('#,##0.######', dbCount);
           end;
         end
         else
@@ -6770,7 +6779,7 @@ begin
             Inc(dbCount);
           end;
           if TryStrToFloat(UTF8StringReplace(sgTable.Cells[iCol, i],
-            ThousandSeparator, '', []), dbNum) = True then
+            stThousandSep, '', []), dbNum) = True then
           begin
             if dbSum = -MaxInt then dbSum := 0;
             if dbMin = -MaxInt then dbMin := 0;
