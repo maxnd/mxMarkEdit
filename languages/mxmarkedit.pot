@@ -188,12 +188,12 @@ msgstr ""
 
 #: main.msg011
 msgctxt "main.msg011"
-msgid "It's not possible to create a footnote reference at the beginning of a paragraph."
+msgid "It’s not possible to create a footnote reference at the beginning of a paragraph."
 msgstr ""
 
 #: main.msg012
 msgctxt "main.msg012"
-msgid "It's not possible to insert a new row since the last one contains some data."
+msgid "It’s not possible to insert a new row since the last one contains some data."
 msgstr ""
 
 #: main.msg013
@@ -701,6 +701,19 @@ msgctxt "shortcuts.srcut056"
 msgid "Undo the last changes while the editor of a cell in the grid is still active."
 msgstr ""
 
+#: shortcuts.srcut056a
+msgid " In the Zotero form"
+msgstr ""
+
+#: shortcuts.srcut056b
+msgid "Insert the citation in the grid."
+msgstr ""
+
+#: shortcuts.srcut056c
+msgctxt "shortcuts.srcut056c"
+msgid "Close the form."
+msgstr ""
+
 #: shortcuts.srcut057
 msgctxt "shortcuts.srcut057"
 msgid " In the todo form"
@@ -807,7 +820,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.3"
+msgid "1.4.4"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1081,6 +1094,11 @@ msgstr ""
 
 #: tfmmain.mitoolstransparency.caption
 msgid "Transparency"
+msgstr ""
+
+#: tfmmain.mitoolszotero.caption
+msgctxt "tfmmain.mitoolszotero.caption"
+msgid "Zotero..."
 msgstr ""
 
 #: tfmmain.odlink.title
@@ -1421,6 +1439,73 @@ msgstr ""
 
 #: tfmwords.sgwords.columns[1].title.caption
 msgid "Recurrences"
+msgstr ""
+
+#: tfmzotero.bnclose.caption
+msgctxt "tfmzotero.bnclose.caption"
+msgid "Close"
+msgstr ""
+
+#: tfmzotero.bnfind.caption
+msgctxt "tfmzotero.bnfind.caption"
+msgid "Find"
+msgstr ""
+
+#: tfmzotero.bninsert.caption
+msgid "Insert in grid"
+msgstr ""
+
+#: tfmzotero.caption
+msgctxt "tfmzotero.caption"
+msgid "Zotero"
+msgstr ""
+
+#: tfmzotero.cbinitname.caption
+msgid "Author initial name"
+msgstr ""
+
+#: tfmzotero.grdetail.columns[0].title.caption
+msgctxt "tfmzotero.grdetail.columns[0].title.caption"
+msgid "Type"
+msgstr ""
+
+#: tfmzotero.grdetail.columns[1].title.caption
+msgid "Value"
+msgstr ""
+
+#: tfmzotero.gritem.columns[0].title.caption
+msgid "Last name"
+msgstr ""
+
+#: tfmzotero.gritem.columns[1].title.caption
+msgid "First name"
+msgstr ""
+
+#: tfmzotero.gritem.columns[2].title.caption
+msgctxt "tfmzotero.gritem.columns[2].title.caption"
+msgid "Type"
+msgstr ""
+
+#: tfmzotero.gritem.columns[3].title.caption
+msgctxt "tfmzotero.gritem.columns[3].title.caption"
+msgid "Title"
+msgstr ""
+
+#: tfmzotero.lbexistmodel.caption
+msgctxt "tfmzotero.lbexistmodel.caption"
+msgid "●"
+msgstr ""
+
+#: tfmzotero.lbsearchauthor.caption
+msgid "Author contains"
+msgstr ""
+
+#: tfmzotero.lbsearchtitle.caption
+msgid "Title contains"
+msgstr ""
+
+#: tfmzotero.lbzoteropath.caption
+msgid "Zotero path"
 msgstr ""
 
 #: words.msgsk001

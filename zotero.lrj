@@ -1,0 +1,17 @@
+{"version":1,"strings":[
+{"hash":102149263,"name":"tfmzotero.caption","sourcebytes":[90,111,116,101,114,111],"value":"Zotero"},
+{"hash":174528181,"name":"tfmzotero.gritem.columns[0].title.caption","sourcebytes":[76,97,115,116,32,110,97,109,101],"value":"Last name"},
+{"hash":174299301,"name":"tfmzotero.gritem.columns[1].title.caption","sourcebytes":[70,105,114,115,116,32,110,97,109,101],"value":"First name"},
+{"hash":376933,"name":"tfmzotero.gritem.columns[2].title.caption","sourcebytes":[84,121,112,101],"value":"Type"},
+{"hash":5966629,"name":"tfmzotero.gritem.columns[3].title.caption","sourcebytes":[84,105,116,108,101],"value":"Title"},
+{"hash":376933,"name":"tfmzotero.grdetail.columns[0].title.caption","sourcebytes":[84,121,112,101],"value":"Type"},
+{"hash":6063029,"name":"tfmzotero.grdetail.columns[1].title.caption","sourcebytes":[86,97,108,117,101],"value":"Value"},
+{"hash":158728808,"name":"tfmzotero.lbzoteropath.caption","sourcebytes":[90,111,116,101,114,111,32,112,97,116,104],"value":"Zotero path"},
+{"hash":115871075,"name":"tfmzotero.lbsearchtitle.caption","sourcebytes":[84,105,116,108,101,32,99,111,110,116,97,105,110,115],"value":"Title contains"},
+{"hash":11301411,"name":"tfmzotero.lbsearchauthor.caption","sourcebytes":[65,117,116,104,111,114,32,99,111,110,116,97,105,110,115],"value":"Author contains"},
+{"hash":162184389,"name":"tfmzotero.cbinitname.caption","sourcebytes":[65,117,116,104,111,114,32,105,110,105,116,105,97,108,32,110,97,109,101],"value":"Author initial name"},
+{"hash":4863637,"name":"tfmzotero.bnclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":194673556,"name":"tfmzotero.bninsert.caption","sourcebytes":[73,110,115,101,114,116,32,105,110,32,103,114,105,100],"value":"Insert in grid"},
+{"hash":60415,"name":"tfmzotero.lbexistmodel.caption","sourcebytes":[226,151,143],"value":"\u25CF"},
+{"hash":315460,"name":"tfmzotero.bnfind.caption","sourcebytes":[70,105,110,100],"value":"Find"}
+]}

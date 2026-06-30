@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.4.3, published on June 27 2026.
+Version 1.4.4, published on June 30 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -18,7 +18,7 @@ The PDF manual may be downloaded also within the app, with the `Help - Download 
 
 ---
 
-mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data, and also a file manager to search for a sentence in all the documents or spreadsheets contained in a folder. It’s also possible to use the app as a presentation manager. Finally, mxMarkEdit has a built-in bibliographic manager which may use the bibliography stored in the grid to compile the citations within a document in a way that resembles the one used by BibLaTex.
+mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data, and also a file manager to search for a sentence in all the documents or spreadsheets contained in a folder. It’s also possible to use the app as a presentation manager. Finally, mxMarkEdit has a built-in bibliographic manager which may use the bibliography stored in the grid to compile the citations within a document in a way that resembles the one used by BibLaTex. Data from Zotero may be imported directly.
 
 mxMarkEdit is a native macOS app and works nicely with Apple Intelligence.
 
@@ -194,14 +194,9 @@ The eighth column (G1) must contain the details of the citation for the footnote
 
 In the following columns can be freely insert the data considered useful, also using the extended editor that is activated with `Ctrl + Space`. For example, it may be needed a field in which to insert comments on the work, even of a certain length, or the name of the relative PDF file, a link to the publisher’s website, and so on. The columns after F1 will be ignored by the app for the purposes of compiling citations.
 
-It’s possible to copy and paste in the grid any kind of citation taken from reference managers like Zotero and Mendeley as well as from websites or library catalogs. Follow these simple steps.
+It’s possible to import one or more citations from Zotero in the form `Zotero`, shown by the functionality `Tools` – `Zotero...`. Even if the access to Zotero database is read only, so there is no possibility to change it, it’s better to work on a copy. In any case, check that the path and the file name at the left bottom of the form corresponds to the original Zotero database or to a copy.
 
-- Copy in the clipboard the citation from a website or a reference manager; in Zotero, use the shortcut `Meta + Shift + A` or `Meta + Shift + C`.
-- Paste the content of the clipboard temporarily in the current document; if there are more citations, each of them must be in a different paragraph.
-- In each item, copy, paste and modify the various elements (author, title, etc.) so that they match the content of the bibliographic grid; each element must be separated by a tab, and every existing separator must be removed.
-- Select the citation(s) and copy them in the clipboard with the shortcut `Meta + Opt + C`.
-- Paste the citation(s) in the B1 column of a new row in the grid; all the data will fill properly the following cells; the titles will be included among the italics markers if they do not begin and end with quotation marks.
-- Add the key in the A1 column and use the shortcut `Meta + Ctrl + K` to make it unique.
+In one or both fields `Title contains` and `Author contains`, type some text to be searched for in the Zotero database and press `Return` or click on the button `Find`. The results, that is, the author names and the titles, are shown in the top left grid. Select an item in this grid to have the full citation compiled in the citation field below the grid for the columns A1 – E1, according to the mentioned pattern: the key, the authors and the titles. Check the `Author initial name` checkbox to have only the author initial names. Then compile manually the details of the citation for the column F1: double click on the various useful items in the top right grid to have them added in the citation field. The text of this field may be also changed directly if necessary. To insert the content of this field in a new row of the grid, click on the button `Insert in grid` or use the shortcut `Meta` + `I`. The key will be made unique automatically. The G1 column will be compiled as the F1, since usually there is no difference among them, but can be modified manually by the user if necessary.
 
 Finally, it’s possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it’s easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
 
@@ -424,6 +419,11 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `V`: paste the content of the clipboard in the current (and possibly following) cells.
 * `Esc`: undo the last changes while the editor of a cell in the grid is still active.
 
+### In the Zotero form
+
+* `Meta` + `I`: Insert the citation in the grid.
+* `Esc`: close the form.
+
 ### In the todo form
 
 * `Meta` + `Opt` + `H`: hide the todo items already done.
@@ -467,7 +467,13 @@ The software creates these two configuration files that can be deleted to reset 
 
 # Revision history
 
+**Version 1.4.4**
+
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- Added Zotero integration.
+
 **Version 1.4.3**
+
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
 - Numbers in data grid have thousand separator by default.
 - Bugs fixing: in the data grid, number sorting didn't work with thousand separator.

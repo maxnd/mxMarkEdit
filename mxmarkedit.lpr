@@ -31,8 +31,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, main, options, tasks, words, files, 
-shortcuts, editor, picture, copyright
+  Forms, sqlite3laz, main, options, tasks, words, files, 
+shortcuts, editor, picture, zotero, copyright
   {$IFDEF Darwin}
     , clocale, iosxlocale, translate
   {$ENDIF}
@@ -52,6 +52,7 @@ begin
   Application.CreateForm(TfmFiles, fmFiles);
   Application.CreateForm(TfmEditor, fmEditor);
   Application.CreateForm(TfmPicture, fmPicture);
+  Application.CreateForm(TfmZotero, fmZotero);
   Application.CreateForm(TfmCopyright, fmCopyright);
   Application.Run;
 end.

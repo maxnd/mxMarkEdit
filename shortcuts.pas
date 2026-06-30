@@ -160,6 +160,9 @@ resourcestring
   srcut054 = 'Copy the content of the selected cells in the clipboard.';
   srcut055 = 'Paste the content of the clipboard in the current (and following) cells.';
   srcut056 = 'Undo the last changes while the editor of a cell in the grid is still active.';
+  srcut056a = ' In the Zotero form';
+  srcut056b = 'Insert the citation in the grid.';
+  srcut056c = 'Close the form.';
   srcut057 = ' In the todo form';
   srcut058 = 'Hide the todo items already done.';
   srcut059 = 'Toggle the state of the selected todo item from to be done to done, and vice versa.';
@@ -223,7 +226,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 101;
+  sgShortcuts.RowCount := 106;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -466,6 +469,16 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Esc';
   sgShortcuts.Cells[1, i] := srcut056;
+  Inc(i);
+  Inc(i);
+  sgShortcuts.Cells[0, i] := srcut056a;
+  Inc(i);
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + I';
+  sgShortcuts.Cells[1, i] := srcut056b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Esc';
+  sgShortcuts.Cells[1, i] := srcut056c;
   Inc(i);
   Inc(i);
   sgShortcuts.Cells[0, i] := srcut057;

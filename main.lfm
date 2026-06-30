@@ -1524,6 +1524,11 @@ object fmMain: TfmMain
         Caption = 'Optimize presentation...'
         OnClick = miToolsOptmizeClick
       end
+      object miToolsZotero: TMenuItem
+        Caption = 'Zotero...'
+        ShortCut = 20570
+        OnClick = miToolsZoteroClick
+      end
       object Sep4: TMenuItem
         Caption = '-'
       end

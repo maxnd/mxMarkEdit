@@ -27,7 +27,7 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
-      <RevisionNr Value="3"/>
+      <RevisionNr Value="4"/>
       <StringTable Comments="A free Markdown editor for macOS" LegalCopyright="Massimo Nardello, Modena 2024 - 2026" LegalTrademarks="Massimo Nardello, Modena 2024 - 2026" OriginalFilename="mxMarkEdit" ProductName="mxMarkEdit"/>
     </VersionInfo>
     <BuildModes>
@@ -41,6 +41,12 @@
       <FormatVersion Value="2"/>
     </RunParams>
     <RequiredPackages>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+      <Item>
+        <PackageName Value="sqlite3laz"/>
+      </Item>
       <Item>
         <PackageName Value="LCL"/>
       </Item>
@@ -110,6 +116,13 @@
         <Filename Value="picture.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmPicture"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="zotero.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fmZotero"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>

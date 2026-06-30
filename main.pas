@@ -45,6 +45,7 @@ type
     lbChars: TLabel;
     lbFindGrid: TLabel;
     lbFilterGrid: TLabel;
+    miToolsZotero: TMenuItem;
     miFileOpenReadOnly: TMenuItem;
     miFileImpTables: TMenuItem;
     miFileInsert: TMenuItem;
@@ -173,6 +174,7 @@ type
     procedure miToolsTrans1Click(Sender: TObject);
     procedure miToolsTrans2Click(Sender: TObject);
     procedure miToolsTrans3Click(Sender: TObject);
+    procedure miToolsZoteroClick(Sender: TObject);
     procedure sgTableEditingDone(Sender: TObject);
     procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTableKeyPress(Sender: TObject; var Key: char);
@@ -292,6 +294,7 @@ var
   pandocOptions: string = '+footnotes+inline_notes';
   pandocTemplate: string = 'word-template.docx';
   pandocOutput: string = '.docx';
+  stZoteroPath: string;
 
 resourcestring
 
@@ -305,8 +308,8 @@ resourcestring
   msg008 = 'The current document has no name.';
   msg009 = 'It was not possible to create the backup file.';
   msg010 = 'Delete the current column of the current table?';
-  msg011 = 'It''s not possible to create a footnote reference at the beginning of a paragraph.';
-  msg012 = 'It''s not possible to insert a new row since the last one contains some data.';
+  msg011 = 'It’s not possible to create a footnote reference at the beginning of a paragraph.';
+  msg012 = 'It’s not possible to insert a new row since the last one contains some data.';
   msg013 = 'Delete the current row?';
   msg014 = 'Sort the content of current column of the current table?';
   msg015 = 'Delete the content of the selected cells?';
@@ -352,7 +355,7 @@ resourcestring
 
 implementation
 
-uses copyright, options, tasks, words, files, shortcuts, editor, picture;
+uses copyright, options, tasks, words, files, shortcuts, editor, picture, zotero;
 
   {$R *.lfm}
 
@@ -468,6 +471,7 @@ begin
   cbFilter.Items.Add(lb001);
   cbFilter.ItemIndex := 5;
   CreateYAML;
+  stZoteroPath := GetUserDir + 'Zotero/zotero.sqlite';
   myHomeDir := GetUserDir + 'Library/Preferences/';
   myConfigFile := 'mxmarkedit';
   if DirectoryExists(myHomeDir) = False then
@@ -528,6 +532,10 @@ begin
         'word-template.docx');
       pandocOutput := MyIni.ReadString('mxmarkedit', 'panoutputput', '.docx');
       pandocPath := MyIni.ReadString('mxmarkedit', 'panpath', '/usr/local/bin/');
+      if MyIni.ReadString('mxmarkedit', 'zoteropath', '') <> '' then
+      begin
+        stZoteroPath := MyIni.ReadString('mxmarkedit', 'zoteropath', '');
+      end;
       if MyIni.ReadString('mxmarkedit', 'lastfile1', '') <> '' then
       begin
         LastDatabase1 := MyIni.ReadString('mxmarkedit', 'lastfile1', '');
@@ -1078,6 +1086,7 @@ begin
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
     MyIni.WriteString('mxmarkedit', 'panoutputput', pandocOutput);
     MyIni.WriteString('mxmarkedit', 'panpath', pandocPath);
+    MyIni.WriteString('mxmarkedit', 'zoteropath', stZoteroPath);
     if LastDatabase1 <> '' then
     begin
       MyIni.WriteString('mxmarkedit', 'lastfile1', LastDatabase1);
@@ -4669,6 +4678,15 @@ begin
   end;
 end;
 
+procedure TfmMain.miToolsZoteroClick(Sender: TObject);
+begin
+  if blIsPresenting = True then
+  begin
+    DisablePresenting;
+    FormatListTitleTodo;
+  end;
+  fmZotero.ShowModal;
+end;
 
 procedure TfmMain.miToolsOpenWinClick(Sender: TObject);
 begin

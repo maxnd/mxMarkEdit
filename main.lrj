@@ -35,6 +35,7 @@
 {"hash":159354147,"name":"tfmmain.mitoolspandoc.caption","sourcebytes":[67,111,110,118,101,114,116,32,119,105,116,104,32,80,97,110,100,111,99],"value":"Convert with Pandoc"},
 {"hash":85988041,"name":"tfmmain.mitoolsbiblio.caption","sourcebytes":[67,111,109,112,105,108,101,32,98,105,98,108,105,111,103,114,97,112,104,121],"value":"Compile bibliography"},
 {"hash":1748558,"name":"tfmmain.mitoolsoptmize.caption","sourcebytes":[79,112,116,105,109,105,122,101,32,112,114,101,115,101,110,116,97,116,105,111,110,46,46,46],"value":"Optimize presentation..."},
+{"hash":180978286,"name":"tfmmain.mitoolszotero.caption","sourcebytes":[90,111,116,101,114,111,46,46,46],"value":"Zotero..."},
 {"hash":81436951,"name":"tfmmain.mitoolsopenwin.caption","sourcebytes":[79,112,101,110,32,97,110,111,116,104,101,114,32,119,105,110,100,111,119],"value":"Open another window"},
 {"hash":53494025,"name":"tfmmain.mitoolstransparency.caption","sourcebytes":[84,114,97,110,115,112,97,114,101,110,99,121],"value":"Transparency"},
 {"hash":349765,"name":"tfmmain.mitoolstrans1.caption","sourcebytes":[78,111,110,101],"value":"None"},
