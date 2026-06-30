@@ -453,6 +453,7 @@ The software creates these two configuration files that can be deleted to reset 
 
 # Troubleshooting
 
+- If the app cannot open the Zotero library in the `Documents` or `Downloads` directory, probably it's a matter of file permission. Open a `.md` file in this folder, give the app the permission to access the folder, quit and run again the app.
 - If the title of a document contains a colon, Pandoc cannot translate it in Word, but simply nothing happens.
 
 # Mentions and reviews
