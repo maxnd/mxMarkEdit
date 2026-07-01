@@ -13,5 +13,6 @@
 {"hash":4863637,"name":"tfmzotero.bnclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
 {"hash":194673556,"name":"tfmzotero.bninsert.caption","sourcebytes":[73,110,115,101,114,116,32,105,110,32,103,114,105,100],"value":"Insert in grid"},
 {"hash":60415,"name":"tfmzotero.lbexistmodel.caption","sourcebytes":[226,151,143],"value":"\u25CF"},
-{"hash":315460,"name":"tfmzotero.bnfind.caption","sourcebytes":[70,105,110,100],"value":"Find"}
+{"hash":315460,"name":"tfmzotero.bnfind.caption","sourcebytes":[70,105,110,100],"value":"Find"},
+{"hash":203655296,"name":"tfmzotero.lbtotalitems.caption","sourcebytes":[84,111,116,97,108,32,105,116,101,109,115,58,32,48],"value":"Total items: 0"}
 ]}

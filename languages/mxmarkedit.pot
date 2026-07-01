@@ -706,11 +706,17 @@ msgid " In the Zotero form"
 msgstr ""
 
 #: shortcuts.srcut056b
-msgid "Insert the citation in the grid."
+msgctxt "shortcuts.srcut056b"
+msgid "In the detail grid, add the selected item."
 msgstr ""
 
 #: shortcuts.srcut056c
 msgctxt "shortcuts.srcut056c"
+msgid "Insert the citation in the grid."
+msgstr ""
+
+#: shortcuts.srcut056d
+msgctxt "shortcuts.srcut056d"
 msgid "Close the form."
 msgstr ""
 
@@ -820,7 +826,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.4"
+msgid "1.4.5"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1504,6 +1510,10 @@ msgstr ""
 msgid "Title contains"
 msgstr ""
 
+#: tfmzotero.lbtotalitems.caption
+msgid "Total items: 0"
+msgstr ""
+
 #: tfmzotero.lbzoteropath.caption
 msgid "Zotero path"
 msgstr ""
@@ -1521,5 +1531,13 @@ msgstr ""
 #: words.msgsk003
 msgctxt "words.msgsk003"
 msgid "Sort by recurrences"
+msgstr ""
+
+#: zotero.zot001
+msgid "Total items:"
+msgstr ""
+
+#: zotero.zotmsg001
+msgid "It was not possible to access Zotero data. Check that data file is not locked and the app has the permission to access its folder."
 msgstr ""
 

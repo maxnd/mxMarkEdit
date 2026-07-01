@@ -705,10 +705,17 @@ msgid " In the Zotero form"
 msgstr " Maschera di Zotero"
 
 #: shortcuts.srcut056b
+msgctxt "shortcuts.srcut056b"
+msgid "In the detail grid, add the selected item."
+msgstr "Nella griglia dei dettagli, inserisce l'elemento selezionato."
+
+#: shortcuts.srcut056c
+msgctxt "shortcuts.srcut056c"
 msgid "Insert the citation in the grid."
 msgstr "Inserisce la citazione nella griglia."
 
-#: shortcuts.srcut056c
+#: shortcuts.srcut056d
+msgctxt "shortcuts.srcut056d"
 msgid "Close the form."
 msgstr "Chiude la maschera."
 
@@ -818,7 +825,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.4"
+msgid "1.4.5"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1498,6 +1505,10 @@ msgstr "L’autore contiene"
 msgid "Title contains"
 msgstr "Il titolo contiene"
 
+#: tfmzotero.lbtotalitems.caption
+msgid "Total items: 0"
+msgstr ""
+
 #: tfmzotero.lbzoteropath.caption
 msgid "Zotero path"
 msgstr "Percorso Zotero"
@@ -1516,4 +1527,12 @@ msgstr "Ordina per parole"
 msgctxt "words.msgsk003"
 msgid "Sort by recurrences"
 msgstr "Ordina per ricorrenze"
+
+#: zotero.zot001
+msgid "Total items:"
+msgstr ""
+
+#: zotero.zotmsg001
+msgid "It was not possible to access Zotero data. Check that data file is not locked and the app has the permission to access its folder."
+msgstr "Non è stato possibile accedere ai dati di Zotero. Controllare che il file dati non sia bloccato e che l'app abbia il permesso di accedere alla sua cartella."
 

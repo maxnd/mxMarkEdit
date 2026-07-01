@@ -19,7 +19,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos X="25" Y="8"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="4681" Left="1" Top="4662" ID="1"/>
@@ -34,7 +33,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="73" Y="10"/>
+        <CursorPos X="69" Y="10"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -86,8 +85,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="153"/>
-        <CursorPos X="48" Y="164"/>
+        <TopLine Value="218"/>
+        <CursorPos X="36" Y="227"/>
         <UsageCount Value="206"/>
         <Bookmarks Count="1">
           <Item0 Y="62" Left="1" Top="54" ID="3"/>
@@ -101,7 +100,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="28" Y="12"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="195"/>
       </Unit>
       <Unit>
         <Filename Value="picture.pas"/>
@@ -111,7 +110,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="5"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="149"/>
       </Unit>
       <Unit>
         <Filename Value="zotero.pas"/>
@@ -120,7 +119,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
       </Unit>
       <Unit>
         <Filename Value="unit2.pas"/>
@@ -340,7 +339,7 @@
     <Debugger>
       <Backend Value="{9619FED1-DBF4-9AEB-0EAD-3887BB70D30B}"/>
     </Debugger>
-    <JumpHistory HistoryIndex="3">
+    <JumpHistory HistoryIndex="5">
       <Position>
         <Filename Value="main.pas"/>
         <Caret Line="179" Column="29" TopLine="159"/>
@@ -356,6 +355,14 @@
       <Position>
         <Filename Value="main.pas"/>
         <Caret Line="878" Column="23" TopLine="865"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="352" Column="33" TopLine="346"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="769" TopLine="748"/>
       </Position>
     </JumpHistory>
     <RunParams>

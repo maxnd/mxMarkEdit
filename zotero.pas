@@ -49,6 +49,7 @@ type
     dbItem: TSqlite3Dataset;
     dbDetail: TSqlite3Dataset;
     grDetail: TDBGrid;
+    lbTotalItems: TLabel;
     lbExistModel: TLabel;
     lbZoteroPath: TLabel;
     lbSearchTitle: TLabel;
@@ -66,6 +67,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure grDetailDblClick(Sender: TObject);
+    procedure grDetailKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+      );
   private
 
   public
@@ -74,6 +77,12 @@ type
 
 var
   fmZotero: TfmZotero;
+
+resourcestring
+
+  zot001 = 'Total items:';
+  zotmsg001 = 'It was not possible to access Zotero data. Check that data file ' +
+    'is not locked and the app has the permission to access its folder.';
 
 implementation
 
@@ -139,6 +148,15 @@ begin
   end;
 end;
 
+procedure TfmZotero.grDetailKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = 13 then
+  begin
+    grDetailDblClick(nil);
+  end;
+end;
+
 procedure TfmZotero.edZoteroPathChange(Sender: TObject);
 begin
   stZoteroPath := edZoteroPath.Text;
@@ -181,8 +199,10 @@ begin
     'AND itemCreators.itemID = itemData.itemID';
   try
     dbItem.Open;
+    lbTotalItems.Caption := zot001 + ' ' + IntToStr(dbItem.RecordCount);
     grItem.SetFocus;
-  finally
+  except
+    MessageDlg(zotmsg001, mtWarning, [mbOK], 0);
   end;
 end;
 
@@ -362,7 +382,8 @@ begin
     end;
     dbDetail.First;
     meQuote.Text := stKey + ' | ' + meQuote.Text;
-  finally
+  except
+    MessageDlg(zotmsg001, mtWarning, [mbOK], 0);
   end;
 end;
 

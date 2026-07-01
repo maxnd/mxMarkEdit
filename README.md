@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.4.4, published on June 30 2026.
+Version 1.4.5, published on July 1 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -198,7 +198,7 @@ In the following columns can be freely insert the data considered useful, also u
 
 It’s possible to import one or more citations from Zotero in the form `Zotero`, shown by the functionality `Tools` – `Zotero...`. Even if the access to Zotero database is read only, so there is no possibility to change it, it’s better to work on a copy. In any case, check that the path and the file name at the left bottom of the form corresponds to the original Zotero database or to a copy.
 
-In one or both fields `Title contains` and `Author contains`, type some text to be searched for in the Zotero database and press `Return` or click on the button `Find`. The results, that is, the author names and the titles, are shown in the top left grid. Select an item in this grid to have the full citation compiled in the citation field below the grid for the columns A1 – E1, according to the mentioned pattern: the key, the authors and the titles. Check the `Author initial name` checkbox to have only the author initial names. Then compile manually the details of the citation for the column F1: double click on the various useful items in the top right grid to have them added in the citation field. The text of this field may be also changed directly if necessary. To insert the content of this field in a new row of the grid, click on the button `Insert in grid` or use the shortcut `Meta` + `I`. The key will be made unique automatically. The G1 column will be compiled as the F1, since usually there is no difference among them, but can be modified manually by the user if necessary.
+In one or both fields `Title contains` and `Author contains`, type some text to be searched for in the Zotero database and press `Return` or click on the button `Find`. The results, that is, the author names and the titles, are shown in the top left grid. Select an item in this grid to have the full citation compiled in the citation field below the grid for the columns A1 – E1, according to the mentioned pattern: the key, the authors and the titles. Check the `Author initial name` checkbox to have only the author initial names. Then compile manually the details of the citation for the column F1: double click or press `Return` on the various useful items in the top right grid to have them added in the citation field. The text of this field may be also changed directly if necessary. To insert the content of this field in a new row of the grid, click on the button `Insert in grid` or use the shortcut `Meta` + `I`. The key will be made unique automatically. The G1 column will be compiled as the F1, since usually there is no difference among them, but can be modified manually by the user if necessary.
 
 Finally, it’s possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it’s easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
 
@@ -423,7 +423,8 @@ There are also some shortcuts beyond the ones related to the menu items.
 
 ### In the Zotero form
 
-* `Meta` + `I`: Insert the citation in the grid.
+* `Return`: on the detail grid, add the selected item.
+* `Meta` + `I`: insert the citation in the grid.
 * `Esc`: close the form.
 
 ### In the todo form
@@ -469,6 +470,13 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.4.5**
+
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.1.
+- Improved error messages on Zotero connection.
+- Added number of items in Zotero connection.
+- Added use of tab to navigate among the Zotero grids and `Return` on details grid to add the selected one.
 
 **Version 1.4.4**
 

@@ -2163,7 +2163,7 @@ object fmZotero: TfmZotero
     FixedColor = clForm
     FixedCols = 0
     Flat = True
-    Options = [dgTitles, dgColumnResize, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTruncCellHints, dgThumbTracking, dgDisplayMemoText]
+    Options = [dgTitles, dgColumnResize, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTruncCellHints, dgThumbTracking, dgDisplayMemoText]
     ReadOnly = True
     Scrollbars = ssAutoBoth
     ShowHint = True
@@ -2192,12 +2192,13 @@ object fmZotero: TfmZotero
     FixedCols = 0
     FixedHotColor = clForm
     Flat = True
-    Options = [dgTitles, dgColumnResize, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTruncCellHints, dgDisplayMemoText]
+    Options = [dgTitles, dgColumnResize, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTruncCellHints, dgDisplayMemoText]
     ReadOnly = True
     Scrollbars = ssAutoBoth
     ShowHint = True
     TabOrder = 1
     OnDblClick = grDetailDblClick
+    OnKeyDown = grDetailKeyDown
   end
   object edZoteroPath: TEdit
     Left = 8
@@ -2227,28 +2228,28 @@ object fmZotero: TfmZotero
   object lbZoteroPath: TLabel
     Left = 8
     Height = 16
-    Top = 448
+    Top = 451
     Width = 71
     Caption = 'Zotero path'
   end
   object lbSearchTitle: TLabel
     Left = 440
     Height = 16
-    Top = 448
+    Top = 451
     Width = 81
     Caption = 'Title contains'
   end
   object lbSearchAuthor: TLabel
     Left = 699
     Height = 16
-    Top = 448
+    Top = 451
     Width = 96
     Caption = 'Author contains'
   end
   object meQuote: TMemo
     Left = 8
-    Height = 72
-    Top = 336
+    Height = 62
+    Top = 355
     Width = 932
     ParentFont = False
     ScrollBars = ssAutoVertical
@@ -2258,7 +2259,7 @@ object fmZotero: TfmZotero
   object cbInitName: TCheckBox
     Left = 8
     Height = 18
-    Top = 416
+    Top = 419
     Width = 132
     Caption = 'Author initial name'
     TabOrder = 3
@@ -2302,6 +2303,13 @@ object fmZotero: TfmZotero
     Caption = 'Find'
     TabOrder = 9
     OnClick = bnFindClick
+  end
+  object lbTotalItems: TLabel
+    Left = 8
+    Height = 16
+    Top = 323
+    Width = 82
+    Caption = 'Total items: 0'
   end
   object dbItem: TSqlite3Dataset
     Options = [soWildcardKey]
