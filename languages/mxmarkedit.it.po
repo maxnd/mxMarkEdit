@@ -1507,7 +1507,7 @@ msgstr "Il titolo contiene"
 
 #: tfmzotero.lbtotalitems.caption
 msgid "Total items: 0"
-msgstr ""
+msgstr "Totale elementi: 0"
 
 #: tfmzotero.lbzoteropath.caption
 msgid "Zotero path"
@@ -1530,7 +1530,7 @@ msgstr "Ordina per ricorrenze"
 
 #: zotero.zot001
 msgid "Total items:"
-msgstr ""
+msgstr "Totale elementi:"
 
 #: zotero.zotmsg001
 msgid "It was not possible to access Zotero data. Check that data file is not locked and the app has the permission to access its folder."
