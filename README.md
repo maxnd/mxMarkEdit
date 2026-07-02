@@ -16,6 +16,10 @@ For troubles in using the app, see below the *Troubleshooting* section.
 
 ---
 
+🗣️ See some nice presentations on why and how a manager, a university profossor and a student might  use mxMarkEdit in the [wiki section](https://github.com/maxnd/mxMarkEdit/wiki).
+
+---
+
 😀 Do you use mxMarkEdit, and you feel that it has far too many shortcuts and functionalities that definitely make it not for humans? Download [this nice wallpaper](https://github.com/maxnd/mxMarkEdit/raw/main/wallpaper/wallpaper-mxmarkedit.png) to show everybody why!
 
 ---
