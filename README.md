@@ -16,7 +16,7 @@ For troubles in using the app, see below the *Troubleshooting* section.
 
 ---
 
-🗣️ See some nice presentations on why and how a manager, a university profossor and a student might  use mxMarkEdit in the [wiki section](https://github.com/maxnd/mxMarkEdit/wiki).
+❤️ See some nice presentations on why and how a manager, a university professor and a student might  use mxMarkEdit in the [wiki section](https://github.com/maxnd/mxMarkEdit/wiki).
 
 ---
 
