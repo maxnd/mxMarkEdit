@@ -39,6 +39,7 @@ type
     bnFind: TButton;
     bnInsert: TButton;
     cbInitName: TCheckBox;
+    cbTitIt: TCheckBox;
     dbAuthors: TSqlite3Dataset;
     edZoteroPath: TEdit;
     edSearchTitle: TEdit;
@@ -200,7 +201,10 @@ begin
   try
     dbItem.Open;
     lbTotalItems.Caption := zot001 + ' ' + IntToStr(dbItem.RecordCount);
-    grItem.SetFocus;
+    if dbItem.RecordCount > 0 then
+    begin;
+      grItem.SetFocus;
+    end;
   except
     MessageDlg(zotmsg001, mtWarning, [mbOK], 0);
   end;
@@ -281,7 +285,7 @@ end;
 procedure TfmZotero.dbItemAfterScroll(DataSet: TDataSet);
 var
   i: integer;
-  stKey: string;
+  stKey, stTitIt: string;
 begin
   try
     meQuote.Clear;
@@ -306,6 +310,14 @@ begin
     dbDetail.Open;
     if dbAuthors.RecordCount > 0 then
     begin
+      if cbTitIt.Checked = True then
+      begin
+        stTitIt := '*';
+      end
+      else
+      begin
+        stTitIt := '';
+      end;
       stKey := dbAuthors.FieldByName('lastName').AsString;
       for i := 0 to dbAuthors.RecordCount - 1 do
       begin
@@ -359,16 +371,18 @@ begin
       end;
       meQuote.Text := meQuote.Text + ' | ';
     end;
-    meQuote.Text := meQuote.Text + dbItem.FieldByName('value').AsString + ' | ';
+    meQuote.Text := meQuote.Text + stTitIt +
+      dbItem.FieldByName('value').AsString + stTitIt + ' | ';
     if UTF8Pos('.', dbItem.FieldByName('value').AsString) > 0 then
     begin
-      meQuote.Text := meQuote.Text +
+      meQuote.Text := meQuote.Text + stTitIt +
         UTF8Copy(dbItem.FieldByName('value').AsString, 1,
-        UTF8Pos('.', dbItem.FieldByName('value').AsString) - 1) + ' |';
+        UTF8Pos('.', dbItem.FieldByName('value').AsString) - 1) + stTitIt + ' |';
     end
     else
     begin
-      meQuote.Text := meQuote.Text + dbItem.FieldByName('value').AsString + ' |';
+      meQuote.Text := meQuote.Text + stTitIt +
+        dbItem.FieldByName('value').AsString + stTitIt + ' |';
     end;
     for i := 0 to dbDetail.RecordCount - 1 do
     begin

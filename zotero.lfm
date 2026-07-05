@@ -2206,7 +2206,7 @@ object fmZotero: TfmZotero
     Top = 472
     Width = 299
     TabStop = False
-    TabOrder = 4
+    TabOrder = 5
     OnChange = edZoteroPathChange
   end
   object edSearchTitle: TEdit
@@ -2214,7 +2214,7 @@ object fmZotero: TfmZotero
     Height = 21
     Top = 472
     Width = 232
-    TabOrder = 5
+    TabOrder = 6
     OnKeyDown = edSearchTitleKeyDown
   end
   object edSearchAuthor: TEdit
@@ -2222,7 +2222,7 @@ object fmZotero: TfmZotero
     Height = 21
     Top = 472
     Width = 241
-    TabOrder = 6
+    TabOrder = 7
     OnKeyDown = edSearchTitleKeyDown
   end
   object lbZoteroPath: TLabel
@@ -2262,6 +2262,8 @@ object fmZotero: TfmZotero
     Top = 419
     Width = 132
     Caption = 'Author initial name'
+    Checked = True
+    State = cbChecked
     TabOrder = 3
     OnChange = cbInitNameChange
   end
@@ -2272,7 +2274,7 @@ object fmZotero: TfmZotero
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Close'
-    TabOrder = 8
+    TabOrder = 9
     OnClick = bnCloseClick
   end
   object bnInsert: TButton
@@ -2282,7 +2284,7 @@ object fmZotero: TfmZotero
     Width = 152
     Anchors = [akRight, akBottom]
     Caption = 'Insert in grid'
-    TabOrder = 7
+    TabOrder = 8
     OnClick = bnInsertClick
   end
   object lbExistModel: TLabel
@@ -2301,7 +2303,7 @@ object fmZotero: TfmZotero
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Find'
-    TabOrder = 9
+    TabOrder = 10
     OnClick = bnFindClick
   end
   object lbTotalItems: TLabel
@@ -2310,6 +2312,17 @@ object fmZotero: TfmZotero
     Top = 323
     Width = 82
     Caption = 'Total items: 0'
+  end
+  object cbTitIt: TCheckBox
+    Left = 230
+    Height = 18
+    Top = 419
+    Width = 107
+    Caption = 'Titles in italics'
+    Checked = True
+    State = cbChecked
+    TabOrder = 4
+    OnChange = cbInitNameChange
   end
   object dbItem: TSqlite3Dataset
     Options = [soWildcardKey]

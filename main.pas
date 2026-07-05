@@ -45,6 +45,7 @@ type
     lbChars: TLabel;
     lbFindGrid: TLabel;
     lbFilterGrid: TLabel;
+    meQuote: TMemo;
     miToolsZotero: TMenuItem;
     miFileOpenReadOnly: TMenuItem;
     miFileImpTables: TMenuItem;
@@ -73,6 +74,7 @@ type
     miToolsOpenWin: TMenuItem;
     odLink: TOpenDialog;
     odTables: TOpenDialog;
+    pnQuote: TPanel;
     pnBackground: TPanel;
     pnFindGrid: TPanel;
     pnGrid: TPanel;
@@ -136,6 +138,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure meQuoteExit(Sender: TObject);
+    procedure meQuoteKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+      );
     procedure miEditFindDuplicateClick(Sender: TObject);
     procedure miEditHideListClick(Sender: TObject);
     procedure miEditLinkClick(Sender: TObject);
@@ -328,6 +333,7 @@ resourcestring
   msg024 = 'It was not possible to save the file with bibliography.';
   msg025 = 'Replace the content of the grid with the tables of the selected file?';
   msg026 = 'The selected key has no match in the bibliographic table.';
+  msg027 = 'Delete all the content of the current TABLE?';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -413,6 +419,7 @@ begin
     dbText.Font.Color := clBlack;
     sgTitles.Font.Color := clBlack;
     dbText.Color := clWhite;
+    meQuote.Color := clWhite;
     sgTitles.Color := clWhite;
     sgTable.FixedGridLineColor := clSilver;
     sgTable.GridLineColor := clSilver;
@@ -720,6 +727,8 @@ begin
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     setLinkTextAttributes(LinkAttributes);
   LinkAttributes.release;
+  TCocoaTextView(NSScrollView(meQuote.Handle).documentView).
+    setFocusRingType(1);
   // Open file from paramater on console
   if ParamStrUTF8(1) <> '' then
   begin
@@ -1185,6 +1194,23 @@ procedure TfmMain.cbFilterChange(Sender: TObject);
 begin
   FormatListTitleTodo;
   dbText.SetFocus;
+end;
+
+procedure TfmMain.meQuoteExit(Sender: TObject);
+begin
+  pnQuote.Visible := False;
+  meQuote.Clear;
+  dbText.SetFocus;
+end;
+
+procedure TfmMain.meQuoteKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = 27 then
+  begin
+    meQuoteExit(nil);
+    key := 0;
+  end;
 end;
 
 procedure TfmMain.dbTextClick(Sender: TObject);
@@ -1874,9 +1900,15 @@ begin
         begin
           if sgTable.Cells[2, i] = NSStringToString(stAttWord.string_) then
           begin
-            MessageDlg(sgTable.Cells[4, i] + ', '+
+            meQuote.Text := sgTable.Cells[4, i] + ', '+
               sgTable.Cells[5, i] + ', ' +
-              sgTable.Cells[7, i] + '.', mtInformation, [mbOK], 0);
+              sgTable.Cells[7, i] + '.';
+            meQuote.Font.Color := dbText.Font.Color;
+            meQuote.Font.Name := dbText.Font.Name;
+            pnQuote.Left := (Screen.Width - pnQuote.Width) div 2;
+            pnQuote.Top := (Screen.Height - pnQuote.Height) div 2;
+            pnQuote.Visible := True;
+            meQuote.SetFocus;
             blQuoteFound := True;
             Break;
           end;
@@ -2838,6 +2870,70 @@ begin
       end;
       key := 0;
     end;
+  end
+  else
+  if ((key = Ord('A')) and (Shift = [ssMeta]) and
+    (sgTable.Col = 1) and (sgTable.Row < sgTable.RowCount - 1) and
+    (sgTable.Cells[1, sgTable.Row] <> '')) then
+  begin
+    key := 0;
+    grRect.Top := sgTable.Row;
+    grRect.Left := sgTable.Col;
+
+    for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
+    begin
+      if sgTable.Cells[1, i] <> '' then
+      begin
+        Break;
+      end;
+    end;
+    if ((i = sgTable.RowCount - 1) and (sgTable.Cells[1, i] = '')) then
+    begin
+      grRect.Height := i - sgTable.Row;
+    end
+    else
+    begin;
+      grRect.Height := i - 1 - sgTable.Row;
+    end;
+    for i := sgTable.Col + 1 to sgTable.ColCount - 1 do
+    begin
+      if sgTable.Cells[i, sgTable.Row] = '' then
+      begin
+        Break;
+      end;
+    end;
+    if i = sgTable.ColCount - 1 then
+    begin
+      grRect.Width := i - sgTable.Col;
+    end
+    else
+    begin
+      grRect.Width := i - sgTable.Col - 1;
+    end;
+    sgTable.Selection := grRect;
+  end
+  else
+  if ((key = 8) and (Shift = [ssMeta, ssShift]) and
+    (sgTable.Col = 1) and (sgTable.Cells[1, sgTable.Row] <> '')) then
+  begin
+    key := 0;
+    if MessageDlg(msg027, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+    begin
+      Exit;
+    end;
+    for i := sgTable.Row to sgTable.RowCount - 1 do
+    begin
+      sgTable.DeleteColRow(False, sgTable.Row);
+      if sgTable.Cells[1, sgTable.Row] <> '' then
+      begin
+        Break;
+      end;
+    end;
+    sgTable.RowCount := csTableRowCount;
+    blTableMod := True;
+    stGridLoaded := stTableLoaded;
+    LabelFileNameChars;
+    blTableSaved := False;
   end
   else
   if ((key = 8) and (Shift = [ssMeta, ssShift])) then
@@ -4442,7 +4538,19 @@ begin
           begin
             if sgTable.Cells[3, i] <> '' then
             begin
-              stAuthFormBib := '[' + sgTable.Cells[3, i] + ']{.smallcaps}';
+              if UTF8Pos(' (', sgTable.Cells[3, i]) > 0 then
+              begin
+                stAuthFormBib := '[' +
+                  UTF8Copy(sgTable.Cells[3, i], 1,
+                  UTF8Pos(' (', sgTable.Cells[3, i]) - 1) + ']{.smallcaps}' +
+                  UTF8Copy(sgTable.Cells[3, i],
+                  UTF8Pos(' (', sgTable.Cells[3, i]),
+                  UTF8Length(sgTable.Cells[3, i]));
+              end
+              else
+              begin
+                stAuthFormBib := '[' + sgTable.Cells[3, i] + ']{.smallcaps}';
+              end
             end
             else
             begin
@@ -4450,7 +4558,19 @@ begin
             end;
             if sgTable.Cells[4, i] <> '' then
             begin
-              stAuthFormCit := '[' + sgTable.Cells[4, i] + ']{.smallcaps}';
+              if UTF8Pos(' (', sgTable.Cells[4, i]) > 0 then
+              begin
+                stAuthFormCit := '[' +
+                  UTF8Copy(sgTable.Cells[4, i], 1,
+                  UTF8Pos(' (', sgTable.Cells[4, i]) - 1) + ']{.smallcaps}' +
+                  UTF8Copy(sgTable.Cells[4, i],
+                  UTF8Pos(' (', sgTable.Cells[4, i]),
+                  UTF8Length(sgTable.Cells[4, i]));
+              end
+              else
+              begin
+                stAuthFormCit := '[' + sgTable.Cells[4, i] + ']{.smallcaps}';
+              end
             end
             else
             begin

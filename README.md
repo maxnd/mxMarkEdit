@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.4.5, published on July 1 2026.
+Version 1.4.6, published on July 5 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -138,7 +138,7 @@ To assign a todo item to one or more resources (persons), insert their names eve
 
 ## Tables
 
-At the bottom of the text there’s an Excel-like grid of 105 columns and 10,000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the name of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The name in the first column is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possible to insert any kind of data. It’s possible to add more tables in the grid, adding other names under the `Table names` column followed by some fields, like in the second screenshot above.
+At the bottom of the text there’s an Excel-like grid of 105 columns and 10,000 rows which may contain simple tables, which are horizontal portions of this grid. This is hidden by default, and can be shown dragging up with the mouse the splitter at the bottom of the text, or with the shortcut `Meta` + `Shift` + `T`. In the first column on the left, named `Tables names`, the user must type the name of a table (e.g. `Books`), and in the columns at its right (`A1`, `B1`, etc.) all the necessary fields (e.g. `Author`, `Title`, `Year`, etc.). The name in the first column is shown with the color of the `headings 2`, while the fields have the color of the `headings 3`. Below the fields, it’s possible to insert any kind of data. It’s possible to add more tables in the grid, adding other names under the `Tables names` column followed by some fields, like in the second screenshot above. To mark the bottom row of a table not followed by another table, type something in the `Tables names` column just after it.
 
 If it’s necessary to insert dates in a field, use the format `year-month-day`, where month and day are always of two digits (e.g. `2025-01-05`), so that the sorting on this field will produce a correct result. See below for some shortcuts useful to insert and change the dates.
 
@@ -168,7 +168,7 @@ The formulas are the followings:
 
 The formulas are shown in the color set by the user for the code (see below the option of the app for more information). The possible filter doesn’t hide the formulas and the following result fields, and the rows not filtered are not included in the computations. Deleting a row activate the computation of the formulas, but not move a row in another table. Before closing the document, remove the filters from each table, so that the result fields are saved with the values relative to all the data of the column.
 
-It’s possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the tables names column, it’s necessary to mark the bottom row of the current table creating a fictional table after it; it’s enough to write just its name.
+It’s possible to sort the content of the current column of the current table with the shortcut `Meta` + `Ctrl` + `S` (ascending) or `Meta` + `Ctrl` + `Shift` + `S` (descending). Numeric content are put before textual ones, and the possible empty lines before numbers. If a formula is present in any column, the sorting is limited to the rows before it. If no formula is present and the table is not followed by another table, with a name in the table names column, it’s necessary to mark the bottom row of the current table typing something in the `Tables names` column just after it.
 
 To replace the content of the grid with the tables contained in a `.csv` file created with mxMarkEdit, use the menu item `File - Import tables...`. To delete the content of the grid so that it’s not loaded any more, delete the related file with the `.csv` extension when it’s not loaded.
 
@@ -202,7 +202,7 @@ In the following columns can be freely insert the data considered useful, also u
 
 It’s possible to import one or more citations from Zotero in the form `Zotero`, shown by the functionality `Tools` – `Zotero...`. Even if the access to Zotero database is read only, so there is no possibility to change it, it’s better to work on a copy. In any case, check that the path and the file name at the left bottom of the form corresponds to the original Zotero database or to a copy.
 
-In one or both fields `Title contains` and `Author contains`, type some text to be searched for in the Zotero database and press `Return` or click on the button `Find`. The results, that is, the author names and the titles, are shown in the top left grid. Select an item in this grid to have the full citation compiled in the citation field below the grid for the columns A1 – E1, according to the mentioned pattern: the key, the authors and the titles. Check the `Author initial name` checkbox to have only the author initial names. Then compile manually the details of the citation for the column F1: double click or press `Return` on the various useful items in the top right grid to have them added in the citation field. The text of this field may be also changed directly if necessary. To insert the content of this field in a new row of the grid, click on the button `Insert in grid` or use the shortcut `Meta` + `I`. The key will be made unique automatically. The G1 column will be compiled as the F1, since usually there is no difference among them, but can be modified manually by the user if necessary.
+In one or both fields `Title contains` and `Author contains`, type some text to be searched for in the Zotero database and press `Return` or click on the button `Find`. The results, that is, the author names and the titles, are shown in the top left grid. Select an item in this grid to have the full citation compiled in the citation field below the grid for the columns A1 – E1, according to the mentioned pattern: the key, the authors and the titles. Check the `Author initial name` checkbox to have only the author initial names and `Titles in italics` to have the titles in italics. Then compile manually the details of the citation for the column F1: double click or press `Return` on the various useful items in the top right grid to have them added in the citation field. The text of this field may be also changed directly if necessary. To insert the content of this field in a new row of the grid, click on the button `Insert in grid` or use the shortcut `Meta` + `I`. The key will be made unique automatically. The G1 column will be compiled as the F1, since usually there is no difference among them, but can be modified manually by the user if necessary.
 
 Finally, it’s possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it’s easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
 
@@ -210,7 +210,7 @@ Finally, it’s possible to keep and update all the bibliography in just one `.c
 
 To insert a citation of a work in the document, normally in the footnotes, just insert its identification key between two curly brackets, followed by all the detailed elements necessary for the single citation. For example, `Cf. {Taylor 2024}, pp. 23-46.`. It’s necessary to be careful in typing correctly the key of the work to be quoted, respecting uppercase and lowercase. To do this, just display the bibliographic table, identify the key to be reported, copy it in clipboard with the shortcut `Meta + Opt + C` and paste it into the text.
 
-To have a visual feedback of the citation related to a key without opening the grid, use the shortcut `Meta + Shift + K` when the cursor is inside the key, that is among the two curly brackets that surround it.
+To have a visual feedback of the citation related to a key without opening the grid, use the shortcut `Meta + Shift + K` when the cursor is inside the key, that is among the two curly brackets that surround it. Press `Esc` or click outside the preview to close it.
 
 If it’s necessary to quote an ancient text contained in a modern edition and to mention a number or chapter of its passage after the original title, use the key just for the modern work, and quote manually the first. For instance: `S. Augustine, *De Civitate Dei* I, 1-36, in {Augustine 2020}, 50.`. Of course, only the modern edition will appear in the bibliography.
 
@@ -398,7 +398,9 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `Ctrl` + `K`: make unique the current key contained in the second column.
 * `Meta` + `Shift` + `I`: insert a new row.
 * `Backspace`: delete the content of the selected cell or cells, after confirmation.
-* `Meta` + `Shift` + `Backspace`: delete the current row, after confirmation if it’s not empty.
+* `Meta` + `Shift` + `Backspace`: not on a table name, delete the current row, after confirmation if it’s not empty.
+* `Meta` + `Shift` + `Backspace`: on a table name, delete it after confirmation.
+* `Meta` + `A`: on a table name, select it.
 * `Meta` + `G`: search downward the text typed in the `Find` field starting from the current position and just in the current column (field) of the current table.
 * `Meta` + `Shift` + `G`: search upward the text typed in the `Find` field starting from the current position and just in the current column (field) of the current table.
 * `Meta` + `Opt` + `Arrow up`: move up the current row.
@@ -474,6 +476,16 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.4.6**
+
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.2.
+- New shortcut `Meta` + `Shift` + `Backspace`: on a table name, delete it after confirmation.
+- New shortcut `Meta` + `A`: on a table name, select it.
+- Added titles in italics checkbox in the Zotero panel.
+- Bugs fixing: when the authors are exported with Pandoc in small caps, also the possible “edited by“ sentence was in small caps.
+- Improvements of the documentation.
+
 
 **Version 1.4.5**
 

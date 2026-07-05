@@ -266,6 +266,10 @@ msgctxt "main.msg026"
 msgid "The selected key has no match in the bibliographic table."
 msgstr ""
 
+#: main.msg027
+msgid "Delete all the content of the current TABLE?"
+msgstr ""
+
 #: shortcuts.srcut001
 msgctxt "shortcuts.srcut001"
 msgid " In the main form"
@@ -573,7 +577,15 @@ msgstr ""
 
 #: shortcuts.srcut038
 msgctxt "shortcuts.srcut038"
-msgid "Delete the current row, after confirmation if it’s not empty."
+msgid "Not on a table name, delete the current row, after confirmation if it’s not empty."
+msgstr ""
+
+#: shortcuts.srcut038b
+msgid "On a table name, delete it after confirmation."
+msgstr ""
+
+#: shortcuts.srcut038c
+msgid "On a table name, select it."
 msgstr ""
 
 #: shortcuts.srcut039
@@ -826,7 +838,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.5"
+msgid "1.4.6"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1468,6 +1480,10 @@ msgstr ""
 
 #: tfmzotero.cbinitname.caption
 msgid "Author initial name"
+msgstr ""
+
+#: tfmzotero.cbtitit.caption
+msgid "Titles in italics"
 msgstr ""
 
 #: tfmzotero.grdetail.columns[0].title.caption

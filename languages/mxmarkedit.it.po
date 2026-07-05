@@ -266,6 +266,10 @@ msgctxt "main.msg026"
 msgid "The selected key has no match in the bibliographic table."
 msgstr "La chiave selezionata non ha alcuna corrispondenza nella tabella bibliografica."
 
+#: main.msg027
+msgid "Delete all the content of the current TABLE?"
+msgstr "Cancellare tutto il contenuto della TABELLA corrente?"
+
 #: shortcuts.srcut001
 msgctxt "shortcuts.srcut001"
 msgid " In the main form"
@@ -573,8 +577,16 @@ msgstr "Elimina il contenuto della cella o delle celle selezionate, dopo una con
 
 #: shortcuts.srcut038
 msgctxt "shortcuts.srcut038"
-msgid "Delete the current row, after confirmation if it’s not empty."
-msgstr "Elimina la riga corrente, dopo una conferma se non è vuota."
+msgid "Not on a table name, delete the current row, after confirmation if it’s not empty."
+msgstr "Se non sul nome di una tabella, elimina la riga corrente, dopo una conferma se non è vuota."
+
+#: shortcuts.srcut038b
+msgid "On a table name, delete it after confirmation."
+msgstr "Sul nome di una tabella, la cancella dopo la conferma."
+
+#: shortcuts.srcut038c
+msgid "On a table name, select it."
+msgstr "Sul nome di una tabella, la seleziona."
 
 #: shortcuts.srcut039
 msgctxt "shortcuts.srcut039"
@@ -825,7 +837,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.5"
+msgid "1.4.6"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1464,6 +1476,10 @@ msgstr "Zotero"
 #: tfmzotero.cbinitname.caption
 msgid "Author initial name"
 msgstr "Nome autore puntato"
+
+#: tfmzotero.cbtitit.caption
+msgid "Titles in italics"
+msgstr "Titoli in corsivo"
 
 #: tfmzotero.grdetail.columns[0].title.caption
 msgctxt "tfmzotero.grdetail.columns[0].title.caption"

@@ -1330,6 +1330,36 @@ object fmMain: TfmMain
       end
     end
   end
+  object pnQuote: TPanel
+    Left = 88
+    Height = 135
+    Top = 281
+    Width = 615
+    BevelOuter = bvNone
+    BorderStyle = bsSingle
+    ClientHeight = 133
+    ClientWidth = 613
+    TabOrder = 4
+    Visible = False
+    object meQuote: TMemo
+      Left = 0
+      Height = 133
+      Top = 0
+      Width = 613
+      Align = alClient
+      BorderSpacing.InnerBorder = 6
+      BorderStyle = bsNone
+      Color = 2632235
+      Font.Color = clForm
+      Font.Height = -16
+      ParentFont = False
+      ReadOnly = True
+      ScrollBars = ssAutoVertical
+      TabOrder = 0
+      OnExit = meQuoteExit
+      OnKeyDown = meQuoteKeyDown
+    end
+  end
   object mmMenu: TMainMenu
     Left = 328
     Top = 87

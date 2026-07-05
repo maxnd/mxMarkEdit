@@ -124,7 +124,9 @@ resourcestring
   srcut035d = 'Make unique the current key in the second column.';
   srcut036 = 'Insert a new row.';
   srcut037 = 'Delete the content of the selected cell or cells, after confirmation.';
-  srcut038 = 'Delete the current row, after confirmation if it’s not empty.';
+  srcut038 = 'Not on a table name, delete the current row, after confirmation if it’s not empty.';
+  srcut038b = 'On a table name, delete it after confirmation.';
+  srcut038c = 'On a table name, select it.';
   srcut039 = 'Search downward the text typed in the Find field starting from the current position ' +
       'and just in the current column of the current table.';
   srcut039b = 'Search upward the text typed in the Find field starting from the current position ' +
@@ -227,7 +229,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 107;
+  sgShortcuts.RowCount := 109;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -395,6 +397,12 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Shift + ' + srcut00e;
   sgShortcuts.Cells[1, i] := srcut038;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + Shift + ' + srcut00e;
+  sgShortcuts.Cells[1, i] := srcut038b;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Meta + A';
+  sgShortcuts.Cells[1, i] := srcut038c;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + G';
   sgShortcuts.Cells[1, i] := srcut039;
