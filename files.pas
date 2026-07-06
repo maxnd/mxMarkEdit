@@ -58,6 +58,8 @@ type
     procedure sgFilesDblClick(Sender: TObject);
     procedure sgFilesKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
       );
+    procedure sgFilesMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
   private
     procedure CreateFilesList;
     procedure OpenFile;
@@ -202,6 +204,21 @@ begin
   begin
     OpenFile;
     key := 0;
+  end;
+end;
+
+procedure TfmFiles.sgFilesMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  Handled := True;
+  if WheelDelta > 20 then
+  begin
+    sgFiles.TopRow := sgFiles.TopRow - 1
+  end
+  else
+  if WheelDelta < -20 then
+  begin
+    sgFiles.TopRow := sgFiles.TopRow + 1;
   end;
 end;
 

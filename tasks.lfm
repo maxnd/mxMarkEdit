@@ -62,6 +62,7 @@ object fmTasks: TfmTasks
     TabOrder = 0
     OnDblClick = sgTasksDblClick
     OnDrawCell = sgTasksDrawCell
+    OnMouseWheel = sgTasksMouseWheel
     ColWidths = (
       0
       70

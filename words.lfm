@@ -48,6 +48,7 @@ object fmWords: TfmWords
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goColSizing, goRowSelect, goSmoothScroll]
     RowCount = 2
     TabOrder = 1
+    OnMouseWheel = sgWordsMouseWheel
     ColWidths = (
       400
       200

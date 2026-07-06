@@ -28,7 +28,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Grids, ExtCtrls,
-  StdCtrls, LazUTF8, translate, CocoaUtils, Clipbrd, IniFiles, LazFileUtils;
+  StdCtrls, LazUTF8, translate, CocoaUtils, Clipbrd, IniFiles, LazFileUtils, Types;
 
 type
 
@@ -55,6 +55,8 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure meSkipExit(Sender: TObject);
     procedure rgSkipClick(Sender: TObject);
+    procedure sgWordsMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
   private
     procedure CreateWordsList;
     procedure SortSkipWords;
@@ -217,6 +219,21 @@ begin
       sgWords.Cells[1, i] := FormatFloat('0',
       StrToInt(sgWords.Cells[1, i]));
     end;
+  end;
+end;
+
+procedure TfmWords.sgWordsMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  Handled := True;
+  if WheelDelta > 20 then
+  begin
+    sgWords.TopRow := sgWords.TopRow - 1
+  end
+  else
+  if WheelDelta < -20 then
+  begin
+    sgWords.TopRow := sgWords.TopRow + 1;
   end;
 end;
 

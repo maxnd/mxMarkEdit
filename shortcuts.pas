@@ -28,7 +28,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Grids, ExtCtrls,
-  StdCtrls, LazUTF8, translate;
+  StdCtrls, LazUTF8, translate, Types;
 
 type
 
@@ -41,6 +41,8 @@ type
     procedure bnOKClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure sgShortcutsMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure sgShortcutsPrepareCanvas(Sender: TObject; aCol, aRow: Integer;
       aState: TGridDrawState);
   private
@@ -207,6 +209,22 @@ begin
   begin
     key := 0;
     Close;
+  end;
+end;
+
+procedure TfmShortcuts.sgShortcutsMouseWheel(Sender: TObject;
+  Shift: TShiftState; WheelDelta: Integer; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+  Handled := True;
+  if WheelDelta > 20 then
+  begin
+    sgShortcuts.TopRow := sgShortcuts.TopRow - 1
+  end
+  else
+  if WheelDelta < -20 then
+  begin
+    sgShortcuts.TopRow := sgShortcuts.TopRow + 1;
   end;
 end;
 

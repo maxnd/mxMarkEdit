@@ -60,6 +60,7 @@ object fmFiles: TfmFiles
     TabOrder = 0
     OnDblClick = sgFilesDblClick
     OnKeyDown = sgFilesKeyDown
+    OnMouseWheel = sgFilesMouseWheel
     ColWidths = (
       0
       300

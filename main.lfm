@@ -1172,6 +1172,7 @@ object fmMain: TfmMain
       OnClick = sgTitlesClick
       OnDrawCell = sgTitlesDrawCell
       OnGetCellHint = sgTitlesGetCellHint
+      OnMouseWheel = sgTitlesMouseWheel
       OnMouseWheelHorz = sgTitlesMouseWheelHorz
       OnPrepareCanvas = sgTitlesPrepareCanvas
     end
@@ -1262,6 +1263,7 @@ object fmMain: TfmMain
         OnKeyDown = sgTableKeyDown
         OnKeyPress = sgTableKeyPress
         OnKeyUp = sgTableKeyUp
+        OnMouseWheel = sgTableMouseWheel
         OnMouseWheelHorz = sgTableMouseWheelHorz
         OnPrepareCanvas = sgTablePrepareCanvas
         OnSetEditText = sgTableSetEditText

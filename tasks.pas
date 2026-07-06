@@ -55,6 +55,8 @@ type
     procedure sgTasksDblClick(Sender: TObject);
     procedure sgTasksDrawCell(Sender: TObject; aCol, aRow: integer;
       aRect: TRect; aState: TGridDrawState);
+    procedure sgTasksMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
   private
     procedure CreateList;
   public
@@ -331,6 +333,21 @@ begin
       sgTasks.Canvas.TextOut(aRect.Left + 3, aRect.Top + 3,
         sgTasks.Cells[aCol, aRow]);
     end;
+  end;
+end;
+
+procedure TfmTasks.sgTasksMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  Handled := True;
+  if WheelDelta > 20 then
+  begin
+    sgTasks.TopRow := sgTasks.TopRow - 1
+  end
+  else
+  if WheelDelta < -20 then
+  begin
+    sgTasks.TopRow := sgTasks.TopRow + 1;
   end;
 end;
 

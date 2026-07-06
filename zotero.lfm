@@ -1,12 +1,12 @@
 object fmZotero: TfmZotero
   Left = 264
-  Height = 544
+  Height = 615
   Top = 135
   Width = 950
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Zotero'
-  ClientHeight = 544
+  ClientHeight = 615
   ClientWidth = 950
   Icon.Data = {
     3E08010000000100010080800000010020002808010016000000280000008000
@@ -2168,6 +2168,7 @@ object fmZotero: TfmZotero
     Scrollbars = ssAutoBoth
     ShowHint = True
     TabOrder = 0
+    OnMouseWheel = grItemMouseWheel
   end
   object grDetail: TDBGrid
     Left = 600
@@ -2199,11 +2200,12 @@ object fmZotero: TfmZotero
     TabOrder = 1
     OnDblClick = grDetailDblClick
     OnKeyDown = grDetailKeyDown
+    OnMouseWheel = grDetailMouseWheel
   end
   object edZoteroPath: TEdit
     Left = 8
     Height = 21
-    Top = 472
+    Top = 544
     Width = 299
     TabStop = False
     TabOrder = 5
@@ -2212,7 +2214,7 @@ object fmZotero: TfmZotero
   object edSearchTitle: TEdit
     Left = 440
     Height = 21
-    Top = 472
+    Top = 544
     Width = 232
     TabOrder = 6
     OnKeyDown = edSearchTitleKeyDown
@@ -2220,7 +2222,7 @@ object fmZotero: TfmZotero
   object edSearchAuthor: TEdit
     Left = 699
     Height = 21
-    Top = 472
+    Top = 544
     Width = 241
     TabOrder = 7
     OnKeyDown = edSearchTitleKeyDown
@@ -2228,29 +2230,32 @@ object fmZotero: TfmZotero
   object lbZoteroPath: TLabel
     Left = 8
     Height = 16
-    Top = 451
+    Top = 523
     Width = 71
     Caption = 'Zotero path'
   end
   object lbSearchTitle: TLabel
     Left = 440
     Height = 16
-    Top = 451
+    Top = 523
     Width = 81
     Caption = 'Title contains'
   end
   object lbSearchAuthor: TLabel
     Left = 699
     Height = 16
-    Top = 451
+    Top = 523
     Width = 96
     Caption = 'Author contains'
   end
   object meQuote: TMemo
     Left = 8
-    Height = 62
+    Height = 131
     Top = 355
     Width = 932
+    BorderSpacing.InnerBorder = 6
+    Color = 2632235
+    Font.Height = -16
     ParentFont = False
     ScrollBars = ssAutoVertical
     TabOrder = 2
@@ -2259,7 +2264,7 @@ object fmZotero: TfmZotero
   object cbInitName: TCheckBox
     Left = 8
     Height = 18
-    Top = 419
+    Top = 491
     Width = 132
     Caption = 'Author initial name'
     Checked = True
@@ -2270,7 +2275,7 @@ object fmZotero: TfmZotero
   object bnClose: TButton
     Left = 856
     Height = 32
-    Top = 504
+    Top = 575
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Close'
@@ -2280,7 +2285,7 @@ object fmZotero: TfmZotero
   object bnInsert: TButton
     Left = 672
     Height = 32
-    Top = 504
+    Top = 575
     Width = 152
     Anchors = [akRight, akBottom]
     Caption = 'Insert in grid'
@@ -2290,7 +2295,7 @@ object fmZotero: TfmZotero
   object lbExistModel: TLabel
     Left = 320
     Height = 16
-    Top = 475
+    Top = 547
     Width = 12
     Caption = '●'
     Font.Color = clGreen
@@ -2299,7 +2304,7 @@ object fmZotero: TfmZotero
   object bnFind: TButton
     Left = 584
     Height = 25
-    Top = 508
+    Top = 579
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Find'
@@ -2309,14 +2314,14 @@ object fmZotero: TfmZotero
   object lbTotalItems: TLabel
     Left = 8
     Height = 16
-    Top = 323
+    Top = 326
     Width = 82
     Caption = 'Total items: 0'
   end
   object cbTitIt: TCheckBox
     Left = 230
     Height = 18
-    Top = 419
+    Top = 491
     Width = 107
     Caption = 'Titles in italics'
     Checked = True

@@ -28,7 +28,7 @@ interface
 
 uses
   Classes, SysUtils, SQLite3DS, DB, Forms, Controls, Graphics, Dialogs, DBGrids,
-  StdCtrls, CocoaUtils, LazUTF8, LazFileUtils, Clipbrd;
+  StdCtrls, CocoaUtils, CocoaTextEdits, CocoaAll, LazUTF8, LazFileUtils, Clipbrd, Types;
 
 type
 
@@ -70,6 +70,10 @@ type
     procedure grDetailDblClick(Sender: TObject);
     procedure grDetailKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
       );
+    procedure grDetailMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+    procedure grItemMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
   private
 
   public
@@ -99,11 +103,14 @@ begin
   begin
     grItem.SelectedColor := $005E5E5E;
     grDetail.SelectedColor := $005E5E5E;
+    meQuote.Font.Color := clWhite;
   end
   else
   begin
     grItem.SelectedColor := $00EBEBEB;
     grDetail.SelectedColor := $00EBEBEB;
+    meQuote.Font.Color := clBlack;
+    meQuote.Color := clWhite;
   end;
   edZoteroPath.Text := stZoteroPath;
   dbItem.FileName := stZoteroPath;
@@ -115,6 +122,8 @@ end;
 
 procedure TfmZotero.FormActivate(Sender: TObject);
 begin
+  TCocoaTextView(NSScrollView(meQuote.Handle).documentView).
+    setFocusRingType(1);
   edSearchTitle.SetFocus;
 end;
 
@@ -143,8 +152,22 @@ begin
         UTF8Copy(dbDetail.FieldByName('value').AsString, 1, 4);
     end
     else
+    if dbDetail.FieldByName('fieldName').AsString = 'pages' then
     begin
-      meQuote.Text := meQuote.Text + ' ' + dbDetail.FieldByName('value').AsString;
+      meQuote.Text := meQuote.Text + ' #' +
+        dbDetail.FieldByName('value').AsString;
+    end
+    else
+    if ((dbDetail.FieldByName('fieldName').AsString = 'publicationTitle') and
+      (cbTitIt.Checked = True)) then
+    begin;
+      meQuote.Text := meQuote.Text + ' *' +
+        dbDetail.FieldByName('value').AsString + '*';
+    end
+    else
+    begin
+      meQuote.Text := meQuote.Text + ' ' +
+        dbDetail.FieldByName('value').AsString;
     end;
   end;
 end;
@@ -155,6 +178,36 @@ begin
   if key = 13 then
   begin
     grDetailDblClick(nil);
+  end;
+end;
+
+procedure TfmZotero.grDetailMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  Handled := True;
+  if WheelDelta > 40 then
+  begin
+    grDetail.DataSource.DataSet.MoveBy(- 1);
+  end
+  else
+  if WheelDelta < -40 then
+  begin
+    grDetail.DataSource.DataSet.MoveBy(1);
+  end;
+end;
+
+procedure TfmZotero.grItemMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  Handled := True;
+  if WheelDelta > 40 then
+  begin
+    grItem.DataSource.DataSet.MoveBy(- 1);
+  end
+  else
+  if WheelDelta < -40 then
+  begin
+    grItem.DataSource.DataSet.MoveBy(1);
   end;
 end;
 
@@ -241,8 +294,36 @@ begin
         UTF8Copy(stQuote, 1, UTF8Pos(' | ', stQuote) - 1);
       if i = 7 then
       begin
-        fmMain.sgTable.Cells[i + 1, fmMain.sgTable.Row] :=
+        fmMain.sgTable.Cells[i, fmMain.sgTable.Row] :=
           UTF8Copy(stQuote, 1, UTF8Pos(' | ', stQuote) - 1);
+        if UTF8Pos('#', stQuote) > 0 then
+        begin
+          fmMain.sgTable.Cells[i, fmMain.sgTable.Row] :=
+            StringReplace(fmMain.sgTable.Cells[i, fmMain.sgTable.Row],
+            '#', '', []);
+        end;
+        if UTF8Pos(', #', stQuote) > 0 then
+        begin
+          fmMain.sgTable.Cells[i + 1, fmMain.sgTable.Row] :=
+            UTF8Copy(stQuote, 1, UTF8Pos('#', stQuote) - 3);
+        end
+        else
+        if UTF8Pos(' #', stQuote) > 0 then
+        begin
+          fmMain.sgTable.Cells[i + 1, fmMain.sgTable.Row] :=
+            UTF8Copy(stQuote, 1, UTF8Pos('#', stQuote) - 2);
+        end
+        else
+        if UTF8Pos('#', stQuote) > 0 then
+        begin
+          fmMain.sgTable.Cells[i + 1, fmMain.sgTable.Row] :=
+            UTF8Copy(stQuote, 1, UTF8Pos('#', stQuote) - 1);
+        end
+        else
+        begin
+          fmMain.sgTable.Cells[i + 1, fmMain.sgTable.Row] :=
+            UTF8Copy(stQuote, 1, UTF8Pos(' | ', stQuote) - 1);
+        end;
       end;
       stQuote := UTF8Copy(stQuote, UTF8Pos(' | ', stQuote) + 3,
         UTF8Length(stQuote));

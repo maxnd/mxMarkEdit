@@ -184,6 +184,8 @@ type
     procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTableKeyPress(Sender: TObject; var Key: char);
     procedure sgTableKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure sgTableMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure sgTableMouseWheelHorz(Sender: TObject; Shift: TShiftState;
       WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
@@ -195,6 +197,8 @@ type
       aRect: TRect; aState: TGridDrawState);
     procedure sgTitlesGetCellHint(Sender: TObject; ACol, ARow: integer;
       var HintText: string);
+    procedure sgTitlesMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure sgTitlesMouseWheelHorz(Sender: TObject; Shift: TShiftState;
       WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: integer;
@@ -2786,6 +2790,21 @@ begin
   end;
 end;
 
+procedure TfmMain.sgTitlesMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  Handled := True;
+  if WheelDelta > 20 then
+  begin
+    sgTitles.TopRow := sgTitles.TopRow - 1
+  end
+  else
+  if WheelDelta < -20 then
+  begin
+    sgTitles.TopRow := sgTitles.TopRow + 1;
+  end;
+end;
+
 procedure TfmMain.sgTitlesMouseWheelHorz(Sender: TObject; Shift: TShiftState;
   WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
 begin
@@ -3697,16 +3716,31 @@ begin
   end;
 end;
 
+procedure TfmMain.sgTableMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  Handled := True;
+  if WheelDelta > 20 then
+  begin
+    sgTable.TopRow := sgTable.TopRow - 1
+  end
+  else
+  if WheelDelta < -20 then
+  begin
+    sgTable.TopRow := sgTable.TopRow + 1;
+  end;
+end;
+
 procedure TfmMain.sgTableMouseWheelHorz(Sender: TObject; Shift: TShiftState;
   WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
 begin
   Handled := True;
-  if WheelDelta > 200 then
+  if WheelDelta > 250 then
   begin
     sgTable.LeftCol := sgTable.LeftCol + 1
   end
   else
-  if WheelDelta < -200 then
+  if WheelDelta < -250 then
   begin
     sgTable.LeftCol := sgTable.LeftCol - 1;
   end;

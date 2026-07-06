@@ -75,6 +75,7 @@ object fmShortcuts: TfmShortcuts
     RowCount = 2
     ShowHint = True
     TabOrder = 1
+    OnMouseWheel = sgShortcutsMouseWheel
     OnPrepareCanvas = sgShortcutsPrepareCanvas
     ColWidths = (
       220
