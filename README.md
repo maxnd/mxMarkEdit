@@ -6,6 +6,10 @@ Version 1.4.7, published on July 6 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
+🔶 mxMarkEdit is a local-first, native macOS Markdown editor designed for power users, writers, and academics. Deeply inspired by Emacs Org-mode, it seamlessly blends distraction-free text editing with inline visual formatting, a native bibliography manager compatible with Zotero, a integrated Excel-like data grids and comprehensive task management.
+
+---
+
 [Read this manual in PDF](https://github.com/maxnd/mxMarkEdit/raw/main/manuals/mxmarkedit-user-manual-en.pdf).
 
 [Read the Italian translation of this manual in PDF](https://github.com/maxnd/mxMarkEdit/raw/main/manuals/mxmarkedit-user-manual-it.pdf).
@@ -16,9 +20,7 @@ For troubles in using the app, see below the *Troubleshooting* section.
 
 ---
 
-❤️ See in the [wiki section](https://github.com/maxnd/mxMarkEdit/wiki) some nice presentations on why and how a manager, a university professor, a student and a corporate team might want to use mxMarkEdit.
-
----
+See in the [wiki section](https://github.com/maxnd/mxMarkEdit/wiki) some nice presentations on why and how a manager, a university professor, a student and a corporate team might want to use mxMarkEdit.
 
 😀 Do you use mxMarkEdit, and you feel that it has far too many shortcuts and functionalities that definitely make it not for humans? Download [this nice wallpaper](https://github.com/maxnd/mxMarkEdit/raw/main/wallpaper/wallpaper-mxmarkedit.png) to show everybody why!
 
