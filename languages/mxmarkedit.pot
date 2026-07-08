@@ -838,7 +838,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.7"
+msgid "1.4.8"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1091,6 +1091,10 @@ msgstr ""
 
 #: tfmmain.mitoolspandoc.caption
 msgid "Convert with Pandoc"
+msgstr ""
+
+#: tfmmain.mitoolspandocnotable.caption
+msgid "Convert with Pandoc without table"
 msgstr ""
 
 #: tfmmain.mitoolsshortcuts.caption

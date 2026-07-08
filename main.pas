@@ -45,6 +45,7 @@ type
     lbChars: TLabel;
     lbFindGrid: TLabel;
     lbFilterGrid: TLabel;
+    miToolsPandocNoTable: TMenuItem;
     meQuote: TMemo;
     miToolsZotero: TMenuItem;
     miFileOpenReadOnly: TMenuItem;
@@ -4386,7 +4387,8 @@ begin
     Exit;
   end;
   stOutput := ExtractFileNameWithoutExt(stFileName) + pandocOutput;
-  if FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv') then
+  if ((Sender = miToolsPandoc) and
+    (FileExistsUTF8(ExtractFileNameWithoutExt(stFileName) + '.csv'))) then
   try
     iLastRow := -1;
     for y := sgTable.RowCount - 1 downto 1 do
@@ -4483,7 +4485,8 @@ var
   slText, slBiblio: TStringList;
   stText, stNewText: WideString;
   stArgument, stInput, stOutput, stOldKey, stNewKey, stAuthor,
-    stAuthFormCit, stAuthFormBib, stDetailsCit, stDetailsBib: String;
+    stAuthFormCit, stAuthFormBib, stDetailsCit,
+    stDetailsBib, stNewIdemAuth, stOldIdemAuth: String;
   i, iRow, iLen, iPos: Integer;
   blBracket: Bool = False;
 begin
@@ -4500,6 +4503,7 @@ begin
   begin
     Exit;
   end;
+  miFileSaveClick(nil);
   if SaveFile = False then
   begin
     Exit;
@@ -4622,7 +4626,7 @@ begin
           end;
           if stAuthFormCit <> '' then
           begin
-            stAuthFormCit := stAuthFormCit + stAuthSeparator;
+            stAuthFormCit := #2 + stAuthFormCit + #3 + stAuthSeparator;
           end;
           if sgTable.Cells[7, i] <> '' then
           begin
@@ -4652,6 +4656,34 @@ begin
         end;
         Application.ProcessMessages;
       end;
+
+      stOldIdemAuth := '';
+      while UTF8CocoaPos(#2, slText.Text) > 0 do
+      begin
+        stNewIdemAuth := UTF8Copy(slText.Text,
+          UTF8CocoaPos(#2, slText.Text) + 1,
+          UTF8CocoaPos(#3, slText.Text) - UTF8CocoaPos(#2, slText.Text) - 1);
+        if stNewIdemAuth = stOldIdemAuth then
+        begin
+          if blAuthSmallCaps = True then
+          begin
+            slText.Text := UTF8StringReplace(slText.text,
+              #2 + stNewIdemAuth + #3, '[Idem]{.smallcaps}', []);
+          end
+          else
+          begin
+            slText.Text := UTF8StringReplace(slText.text,
+              #2 + stNewIdemAuth + #3, 'Idem', []);
+          end;
+        end
+        else
+        begin
+          stOldIdemAuth := stNewIdemAuth;
+          slText.Text := UTF8StringReplace(slText.text, #2, '', []);
+          slText.Text := UTF8StringReplace(slText.text, #3, '', []);
+        end;
+      end;
+
       iPos := slText.Count;
       for i := 0 to slText.Count - 1 do
       begin

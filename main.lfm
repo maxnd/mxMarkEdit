@@ -1547,6 +1547,11 @@ object fmMain: TfmMain
         ShortCut = 4176
         OnClick = miToolsPandocClick
       end
+      object miToolsPandocNoTable: TMenuItem
+        Caption = 'Convert with Pandoc without table'
+        ShortCut = 36944
+        OnClick = miToolsPandocClick
+      end
       object miToolsBiblio: TMenuItem
         Caption = 'Compile bibliography'
         ShortCut = 20560

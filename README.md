@@ -2,7 +2,7 @@
 
 # mxMarkEdit
 
-Version 1.4.7, published on July 6 2026.
+Version 1.4.8, published on July 8 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -228,6 +228,8 @@ Once the document has been completed and the keys of the various works have been
 - The contents of the D1 and E1 columns are followed by the `Title separator`, specified in the options.
 - To have the authors formatted in small caps in the text exported with Pandoc, select `Authors in small caps` in the options. To have the same formatting for some text in other fields, use this format: `[M. Regan]{.smallcaps}`.
 
+In citations, if an author is the same as the previous one, it is replaced by `Idem`. It is the user's responsibility to verify that the two authors are not homonyms with the same name.
+
 If a `Ibidem` is followed by the same page numbers of the previous citations, they may be removed manually if this is required by the editorial rules.
 
 In case the citations need to be formatted differently to correspond to other methodological requests, correct only the content of the columns and then to regenerate the document with bibliography. So, there’s no need to correct all the individual citations contained in the document.
@@ -302,6 +304,8 @@ The `Edit - Disable formatting` menu item prevents the formatting of the text, e
 The `Tools - Optimize presentation...` menu item creates a copy of the current presentation optimized to be shown with mxMarkEdit, and saves it with the name of the file in use plus ` - mxMarkEdit` addition. Basically, the various items of first level are separated by an empty paragraph, and the repeated titles of the slides are removed.
 
 The `Tools - Convert with Pandoc` menu item converts the current document and its possible tables into another format specified in the options of the software. The converted file is created in the same folder of the current document.
+
+The `Tools - Convert with Pandoc without table` menu item converts the current document without its possible tables into another format specified in the options of the software. The converted file is created in the same folder of the current document.
 
 The `Tools - Open another window` menu item opens another instance of the software if the app is located in the `Applications` directory.
 
@@ -478,6 +482,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.4.8**
+
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.2.
+- In citations, if an author is the same as the previous one, it is replaced by `Idem`.
+- Added the new menu item `Tools - Convert with Pandoc without table`.
 
 **Version 1.4.7**
 
