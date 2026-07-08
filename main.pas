@@ -4661,8 +4661,8 @@ begin
       while UTF8CocoaPos(#2, slText.Text) > 0 do
       begin
         stNewIdemAuth := UTF8Copy(slText.Text,
-          UTF8CocoaPos(#2, slText.Text) + 1,
-          UTF8CocoaPos(#3, slText.Text) - UTF8CocoaPos(#2, slText.Text) - 1);
+          UTF8Pos(#2, slText.Text) + 1,
+          UTF8Pos(#3, slText.Text) - UTF8Pos(#2, slText.Text) - 1);
         if stNewIdemAuth = stOldIdemAuth then
         begin
           if blAuthSmallCaps = True then
