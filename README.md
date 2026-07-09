@@ -18,23 +18,19 @@ The PDF manual may be downloaded also within the app, with the `Help - Download 
 
 For troubles in using the app, see below the *Troubleshooting* section.
 
----
-
 See in the [wiki section](https://github.com/maxnd/mxMarkEdit/wiki) some nice presentations on why and how a manager, a university professor, a student and a corporate team might want to use mxMarkEdit.
 
 😀 Do you use mxMarkEdit, and you feel that it has far too many shortcuts and functionalities that definitely make it not for humans? Download [this nice wallpaper](https://github.com/maxnd/mxMarkEdit/raw/main/wallpaper/wallpaper-mxmarkedit.png) to show everybody why!
 
 ---
 
-mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), provided that it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data, and also a file manager to search for a sentence in all the documents or spreadsheets contained in a folder. It’s also possible to use the app as a presentation manager. Finally, mxMarkEdit has a built-in bibliographic manager which may use the bibliography stored in the grid to compile the citations within a document in a way that resembles the one used by BibLaTex. Data from Zotero may be imported directly.
-
-mxMarkEdit is a native macOS app and works nicely with Apple Intelligence.
+mxMarkEdit is a free software for Mac for writing texts and todo items in [Markdown format](https://pandoc.org/MANUAL.html#pandocs-markdown) and easily exporting them to other formats with [Pandoc](https://pandoc.org), if it’s installed in the system in use. In each document, it’s available an Excel-like grid useful to manage various sets of data, and a file manager to search for a sentence in all the documents or spreadsheets contained in a folder. It’s also possible to use the app as a simple presentation manager. Finally, mxMarkEdit has a built-in bibliographic manager which may use the bibliography stored in the grid to compile the citations within a document in a way that resembles the one used by BibLaTex. Data from Zotero may be imported directly.
 
 The software has been written in [Lazarus](https://www.lazarus-ide.org) with [Free Pascal](https://www.freepascal.org) and is released under the GPL version 3 license or following, available in www.gnu.org/licenses/gpl-3.0.html. The software runs in English or Italian.
 
 mxMarkEdit *doesn’t use Electron* because of its performance and [security issues](https://medium.com/@flynn.kelseyelizabeth/dont-use-electron-until-you-ve-read-this-article-52d30401303d). The formatting of Markdown text is made by an original algorithm written in Free Pascal.
 
-mxMarkEdit has been deeply influenced by [Org-mode](https://orgmode.org). Although it has far less functionalities and customisations than the latter, it’s a standard Mac app which benefits of the Apple spell checking and standard shortcuts.
+mxMarkEdit has been deeply influenced by [Org-mode](https://orgmode.org). Although it has far less functionalities and customizations than the latter, it’s a standard Mac app which benefits of Apple artificial intelligence and spell checking, and uses standard shortcuts.
 
 ### Privacy
 
@@ -110,7 +106,7 @@ Other Markdown markers are not hidden, but are shown in a different color define
 * links to websites or files, like `[my web site](www.mywebsite.com)`;
 * links to pictures, like `![my picture](img.jpg)`.
 
-To show a picture in the text after its link or in a another window, see below for the proper shortcuts.
+To show temporarily a picture in the text after its link or in a another window, see below for the proper shortcuts.
 
 The markers cannot be escaped as far as the formatting of mxMarkEdit is concerned. Pandoc should instead manage them properly.
 
@@ -194,7 +190,7 @@ The fourth column (C1) must contain the author or authors of the work with the f
 
 The fifth column (D1) must contain the full title of the work; it’s necessary to insert the italics markers (asterisks) if needed.
 
-The sixth column (E1) must contain the abbreviated title of the work, which will be used for citations of a work subsequent to the first; it’s necessary to insert the italics markers (asterisks) if needed.
+The sixth column (E1) must contain the abbreviated title of the work, which will be used for citations of a work after the first; it’s necessary to insert the italics markers (asterisks) if needed.
 
 The seventh column (F1) must contain the details of the citation for the bibliography, such as the publisher, place of publication, year and total pages (not relating to the single citation) in the case of articles or miscellanies.
 
@@ -206,13 +202,13 @@ It’s possible to import one or more citations from Zotero in the form `Zotero`
 
 In one or both fields `Title contains` and `Author contains`, type some text to be searched for in the Zotero database and press `Return` or click on the button `Find`. The results, that is, the author names and the titles, are shown in the top left grid. Select an item in this grid to have the full citation compiled in the citation field below the grid for the columns A1 – E1, according to the mentioned pattern: the key, the authors and the titles. Check the `Author initial name` checkbox to have only the author initial names and `Titles in italics` to have the titles in italics. Then compile manually the details of the citation for the column F1: double click or press `Return` on the various useful items in the top right grid to have them added in the citation field separated by `|` among two spaces. The field `pages` will be preceded by `#`, which will be automatically removed when inserting the quote in the grid. The text of the quote may be changed directly if necessary. To insert the content of this field in a new row of the grid, click on the button `Insert in grid` or use the shortcut `Meta` + `I`. The key will be made unique automatically. The G1 column will be compiled as the F1, except the pages of articles or sections of books.
 
-Finally, it’s possible to keep and update all the bibliography in just one `.cvs` file in order to avoid scattering it in many files. Then it’s easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
+Finally, it’s possible to keep and update all the bibliography in just one `.cvs` file to avoid scattering it in many files. Then it’s easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
 
 ### Inserting citations in the text
 
 To insert a citation of a work in the document, normally in the footnotes, just insert its identification key between two curly brackets, followed by all the detailed elements necessary for the single citation. For example, `Cf. {Taylor 2024}, pp. 23-46.`. It’s necessary to be careful in typing correctly the key of the work to be quoted, respecting uppercase and lowercase. To do this, just display the bibliographic table, identify the key to be reported, copy it in clipboard with the shortcut `Meta + Opt + C` and paste it into the text.
 
-To have a visual feedback of the citation related to a key without opening the grid, use the shortcut `Meta + Shift + K` when the cursor is inside the key, that is among the two curly brackets that surround it. Press `Esc` or click outside the preview to close it.
+To have visual feedback of the citation related to a key without opening the grid, use the shortcut `Meta + Shift + K` when the cursor is inside the key, that is among the two curly brackets that surround it. Press `Esc` or click outside the preview to close it.
 
 If it’s necessary to quote an ancient text contained in a modern edition and to mention a number or chapter of its passage after the original title, use the key just for the modern work, and quote manually the first. For instance: `S. Augustine, *De Civitate Dei* I, 1-36, in {Augustine 2020}, 50.`. Of course, only the modern edition will appear in the bibliography.
 
@@ -223,14 +219,16 @@ Once the document has been completed and the keys of the various works have been
 - The first citation of a work is composed by associating the contents of columns C1, D1 and G1.
 - The second citation of a work is composed by associating the contents of columns C1, E1 (abbreviated title) and G1.
 - If a citation is about the same work as the immediately preceding citation, the word `Ibidem` is inserted in italics in place of its bibliographic data.
-- The bibliography is inserted at the end of the text. It contains all and only the works actually cited in the document, and is created associating the content of columns B1, D1 and F1. The bibliography is ordered alphabetically.
+- The bibliography is inserted at the end of the text. It contains all and only the works cited in the document, and is created associating the content of columns B1, D1 and F1. The bibliography is ordered alphabetically.
 - The contents of the B1 and C1 columns are followed by the `Author separator`, specified in the options.
 - The contents of the D1 and E1 columns are followed by the `Title separator`, specified in the options.
 - To have the authors formatted in small caps in the text exported with Pandoc, select `Authors in small caps` in the options. To have the same formatting for some text in other fields, use this format: `[M. Regan]{.smallcaps}`.
 
-In citations, if an author is the same as the previous one, it is replaced by `Idem`. It is the user's responsibility to verify that the two authors are not homonyms with the same name.
+In citations, if an author is the same as the previous one, it is replaced by `Idem`. It is the user's responsibility to verify that the two authors are not homonyms but the same person.
 
 If a `Ibidem` is followed by the same page numbers of the previous citations, they may be removed manually if this is required by the editorial rules.
+
+It’s not possible to automatically remove the author’s name alone from citations following the first, leaving only the author’s last name. As a workaround, insert a character not used elsewhere in the document, such as `%` or `$`, into column E1 at the beginning of the abbreviated title and after any possible asterisk. Then, once the document is exported to Word or Writer, search for every single occurrence of that character, remove it, and manually correct the author's name immediately preceding it.
 
 In case the citations need to be formatted differently to correspond to other methodological requests, correct only the content of the columns and then to regenerate the document with bibliography. So, there’s no need to correct all the individual citations contained in the document.
 
@@ -307,7 +305,7 @@ The `Tools - Convert with Pandoc` menu item converts the current document and it
 
 The `Tools - Convert with Pandoc without table` menu item converts the current document without its possible tables into another format specified in the options of the software. The converted file is created in the same folder of the current document.
 
-The `Tools - Open another window` menu item opens another instance of the software if the app is located in the `Applications` directory.
+The `Tools - Open another window` menu item opens another instance of the software if the app is in the `Applications` directory.
 
 The `Tools - Transparency` menu item activate or deactivate two levels of transparency of the interface of the software, giving the impression to watch or type on a dark or clear glass, according to the mode in use. This functionality is just for aesthetic reasons.
 
@@ -338,7 +336,7 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 
 A green or red circle is shown at the right of the fields of the path of the Pandoc executable and of the template to inform that the files are present or not. See the Pandoc manual for more information.
 
-The `Help` - `Shortcuts list` menu item show a list of all the shortcuts available that are not related to menu items.
+The `Help` - `Shortcuts list` menu item shows a list of all the shortcuts available that are not related to menu items.
 
 The other menu items are self-explaining.
 
@@ -488,6 +486,7 @@ The software creates these two configuration files that can be deleted to reset 
 - Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.2.
 - In citations, if an author is the same as the previous one, it is replaced by `Idem`.
 - Added the new menu item `Tools - Convert with Pandoc without table`.
+- Improvements of the documentation.
 
 **Version 1.4.7**
 
