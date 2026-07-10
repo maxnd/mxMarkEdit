@@ -14,6 +14,8 @@ Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
 [Read the Italian translation of this manual in PDF](https://github.com/maxnd/mxMarkEdit/raw/main/manuals/mxmarkedit-user-manual-it.pdf).
 
+The official [YouTube channel](https://www.youtube.com/@mxnrd) of the app contains some English and Italian videos generated with Google NotebookLM about the use of the app by university professors and students, and also by corporate managers and teams.
+
 The PDF manual may be downloaded also within the app, with the `Help - Download manual` menu item.
 
 For troubles in using the app, see below the *Troubleshooting* section.
