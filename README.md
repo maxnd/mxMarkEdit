@@ -1,4 +1,4 @@
-<img align="left" src="https://github.com/maxnd/mxMarkEdit/raw/main/icon_new_square.png" width="128">
+<img align="float:left" src="https://github.com/maxnd/mxMarkEdit/raw/main/icon_new_square.png" width="128">
 
 # mxMarkEdit
 
