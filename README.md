@@ -1,4 +1,4 @@
-<img align=“left” src=“https://github.com/maxnd/mxMarkEdit/blob/main/icon128.png”   width=“64”>
+<img align=“left” src=“https://github.com/maxnd/mxMarkEdit/raw/main/icon_new_square.png”   width=“64”>
 
 # mxMarkEdit
 
