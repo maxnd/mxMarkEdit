@@ -1,5 +1,11 @@
 <img align="left" src="https://github.com/maxnd/mxMarkEdit/raw/main/icon_new_square.png" width="128">
 
+<style>
+  h1 {
+    border:none;
+  }
+</style>
+
 <summary><h1>mxMarkEdit</h1></summary>
  
 Version 1.4.8, published on July 8 2026.
