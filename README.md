@@ -1,7 +1,8 @@
-<img align="left" src="https://github.com/maxnd/mxMarkEdit/raw/main/icon_new_square.png" width="128">
+<img align="top" src="https://github.com/maxnd/mxMarkEdit/raw/main/icon_new_square.png" width="128">
 
-<h1>mxMarkEdit</h1>
- 
+# mxMarkEdit
+
+
 Version 1.4.8, published on July 8 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
