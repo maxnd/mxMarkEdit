@@ -127,11 +127,11 @@ type
     procedure dbTextChange(Sender: TObject);
     procedure dbTextClick(Sender: TObject);
     procedure dbTextContextPopup(Sender: TObject; MousePos: TPoint;
-      var Handled: Boolean);
+      var Handled: boolean);
     procedure dbTextKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure dbTextKeyPress(Sender: TObject; var Key: char);
     procedure dbTextKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
-    procedure edFilterGridKeyDown(Sender: TObject; var Key: Word;
+    procedure edFilterGridKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure edFindGridKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
@@ -140,8 +140,7 @@ type
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure meQuoteExit(Sender: TObject);
-    procedure meQuoteKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
-      );
+    procedure meQuoteKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure miEditFindDuplicateClick(Sender: TObject);
     procedure miEditHideListClick(Sender: TObject);
     procedure miEditLinkClick(Sender: TObject);
@@ -184,14 +183,14 @@ type
     procedure sgTableEditingDone(Sender: TObject);
     procedure sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTableKeyPress(Sender: TObject; var Key: char);
-    procedure sgTableKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure sgTableKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure sgTableMouseWheel(Sender: TObject; Shift: TShiftState;
-      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+      WheelDelta: integer; MousePos: TPoint; var Handled: boolean);
     procedure sgTableMouseWheelHorz(Sender: TObject; Shift: TShiftState;
-      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+      WheelDelta: integer; MousePos: TPoint; var Handled: boolean);
     procedure sgTablePrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
-    procedure sgTableSetEditText(Sender: TObject; ACol, ARow: Integer;
+    procedure sgTableSetEditText(Sender: TObject; ACol, ARow: integer;
       const Value: string);
     procedure sgTitlesClick(Sender: TObject);
     procedure sgTitlesDrawCell(Sender: TObject; aCol, aRow: integer;
@@ -199,30 +198,31 @@ type
     procedure sgTitlesGetCellHint(Sender: TObject; ACol, ARow: integer;
       var HintText: string);
     procedure sgTitlesMouseWheel(Sender: TObject; Shift: TShiftState;
-      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+      WheelDelta: integer; MousePos: TPoint; var Handled: boolean);
     procedure sgTitlesMouseWheelHorz(Sender: TObject; Shift: TShiftState;
-      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+      WheelDelta: integer; MousePos: TPoint; var Handled: boolean);
     procedure sgTitlesPrepareCanvas(Sender: TObject; aCol, aRow: integer;
       aState: TGridDrawState);
     procedure miToolsShortcutsClick(Sender: TObject);
     procedure tmDateTimeTimer(Sender: TObject);
   private
     procedure CalcAllColInGrid;
-    procedure CalcInGrid(iCol: Integer);
+    procedure CalcInGrid(iCol: integer);
+    function CountChars(Memo: TMemo): integer;
     procedure CreateBackup;
     procedure CreateYAML;
-    procedure DeactForm(stFileName: String);
+    procedure DeactForm(stFileName: string);
     procedure DisablePresenting;
     procedure FilterInGrid;
-    procedure FindInGrid(blDown: Boolean);
+    procedure FindInGrid(blDown: boolean);
     function GetDict(txt: NSTextStorage; textOffset: integer): NSDictionary;
     function GetPara(txt: NSTextStorage; textOffset: integer;
       isReadOnly, useDefault: boolean): NSParagraphStyle;
     function GetWritePara(txt: NSTextStorage;
       textOffset: integer): NSMutableParagraphStyle;
-    function GetYAML: String;
+    function GetYAML: string;
     procedure InsertImageToCocoaMemo(const AFilePath: string);
-    procedure OpenLastFile(stLastFileName: String);
+    procedure OpenLastFile(stLastFileName: string);
     procedure RenumberFootnotes;
     procedure RenumberList;
     procedure ResetFilterGrid;
@@ -232,7 +232,7 @@ type
     procedure CutZone;
     procedure SetTable;
   public
-    function GetHeaderLevel(stHeader: String): Integer;
+    function GetHeaderLevel(stHeader: string): integer;
     procedure UpdateLastFile;
     procedure LabelFileNameChars;
     procedure MoveToPos;
@@ -279,8 +279,8 @@ var
   ColDatabase5, ColDatabase6, ColDatabase7, ColDatabase8: integer;
   RowDatabase1, RowDatabase2, RowDatabase3, RowDatabase4: integer;
   RowDatabase5, RowDatabase6, RowDatabase7, RowDatabase8: integer;
-  ColWidthDatabase1, ColWidthDatabase2, ColWidthDatabase3, ColWidthDatabase4: String;
-  ColWidthDatabase5, ColWidthDatabase6, ColWidthDatabase7, ColWidthDatabase8: String;
+  ColWidthDatabase1, ColWidthDatabase2, ColWidthDatabase3, ColWidthDatabase4: string;
+  ColWidthDatabase5, ColWidthDatabase6, ColWidthDatabase7, ColWidthDatabase8: string;
   blReadOnly: boolean = False;
   blFileSaved: boolean = True;
   blFileMod: boolean = False;
@@ -289,16 +289,16 @@ var
   blHideTitleTodo: boolean = False;
   blDisableFormatting: boolean = False;
   blIsPresenting: boolean = False;
-  iMaxSize: Integer = 250000;
-  iNumScreenshot: Integer = 1;
-  stTableLoaded: String = ' && .csv ';
-  csTableRowCount: Integer = 10000;
-  stThousandSep: String = ',';
+  iMaxSize: integer = 250000;
+  iNumScreenshot: integer = 1;
+  stTableLoaded: string = ' && .csv ';
+  csTableRowCount: integer = 10000;
+  stThousandSep: string = ',';
   blTextLoading: boolean = False;
   blTextOnChange: boolean = False;
-  stGridLoaded: String = '';
-  stAuthSeparator: String = ', ';
-  stTitleSeparator: String = ', ';
+  stGridLoaded: string = '';
+  stAuthSeparator: string = ', ';
+  stTitleSeparator: string = ', ';
   blAuthSmallCaps: boolean = False;
   pandocPath: string = '/usr/local/bin/';
   pandocOptions: string = '+footnotes+inline_notes';
@@ -339,6 +339,7 @@ resourcestring
   msg025 = 'Replace the content of the grid with the tables of the selected file?';
   msg026 = 'The selected key has no match in the bibliographic table.';
   msg027 = 'Delete all the content of the current TABLE?';
+  msg028 = 'Selected characters:';
   dlg001 = 'Markdown files|*.md|All files|*';
   dlg002 = 'Save Markdown file';
   dlg003 = 'Open Markdown file';
@@ -458,8 +459,8 @@ begin
     clFontContrast := clBlack;
     clFontFade := $00D6D6D6;
   end;
-  clInsertionPoint := NSColorToColorRef(TCocoaTextView(NSScrollView(dbText.Handle).
-    documentView).insertionPointColor);
+  clInsertionPoint := NSColorToColorRef(
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).insertionPointColor);
   sgTitles.FocusRectVisible := False;
   sgTable.FocusRectVisible := False;
   sgTable.TitleFont.Style := [fsBold];
@@ -530,14 +531,14 @@ begin
       stFileName := MyIni.ReadString('mxmarkedit', 'filename', '');
       iDelay := MyIni.ReadInteger('mxmarkedit', 'delay', 7);
       iLineSpacing := MyIni.ReadFloat('mxmarkedit', 'linespacing', 1.0);
-      blShowMarkers := MyIni.ReadBool('mxmarkedit', 'showmarkers', false);
+      blShowMarkers := MyIni.ReadBool('mxmarkedit', 'showmarkers', False);
       stAuthSeparator := MyIni.ReadString('mxmarkedit', 'authseparator', ', $');
       stAuthSeparator := UTF8Copy(stAuthSeparator, 1,
         UTF8Length(stAuthSeparator) - 1);
       stTitleSeparator := MyIni.ReadString('mxmarkedit', 'titleseparator', ', $');
       stTitleSeparator := UTF8Copy(stTitleSeparator, 1,
         UTF8Length(stTitleSeparator) - 1);
-      blAuthSmallCaps := MyIni.ReadBool('mxmarkedit', 'authsmallcaps', false);
+      blAuthSmallCaps := MyIni.ReadBool('mxmarkedit', 'authsmallcaps', False);
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
         '+footnotes+inline_notes');
       pandocTemplate := MyIni.ReadString('mxmarkedit', 'pantemplate',
@@ -716,8 +717,8 @@ begin
     setRichText(True);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     textContainer.setLineFragmentPadding(50);
-  nsInset.height := 30;
-  nsInset.width := 0;
+  nsInset.Height := 30;
+  nsInset.Width := 0;
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     setTextContainerInset(nsInset);
   // To avoid messing text on formatting
@@ -727,11 +728,11 @@ begin
   LinkAttributes := NSMutableDictionary.alloc.init;
   LinkAttributes.setObject_forKey(ColorToNSColor(clLink),
     NSForegroundColorAttributeName);
-  LinkAttributes.setObject_forKey(NSNumber.
-    numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+  LinkAttributes.setObject_forKey(NSNumber.numberWithInteger(NSUnderlineStyleSingle),
+    NSUnderlineStyleAttributeName);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     setLinkTextAttributes(LinkAttributes);
-  LinkAttributes.release;
+  LinkAttributes.Release;
   TCocoaTextView(NSScrollView(meQuote.Handle).documentView).
     setFocusRingType(1);
   // Open file from paramater on console
@@ -1208,8 +1209,7 @@ begin
   dbText.SetFocus;
 end;
 
-procedure TfmMain.meQuoteKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfmMain.meQuoteKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
   if key = 27 then
   begin
@@ -1226,7 +1226,7 @@ begin
 end;
 
 procedure TfmMain.dbTextContextPopup(Sender: TObject; MousePos: TPoint;
-  var Handled: Boolean);
+  var Handled: boolean);
 begin
   Handled := True;
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1241,13 +1241,13 @@ var
   rngStart, rngEnd: NSRange;
   stAttWord: NSAttributedString;
   blCode, blQuoteFound: boolean;
-  stText: WideString;
+  stText: widestring;
   LinkAttributes: NSMutableDictionary;
   myDate: TDate;
 begin
   if ((key = Ord('E')) and (Shift = [ssMeta, ssCtrl])) then
   begin
-    if MessageDlg(msg022, mtconfirmation, [mbOK, mbCancel], 0) = mrCancel then
+    if MessageDlg(msg022, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
     begin
       Exit;
     end;
@@ -1270,11 +1270,11 @@ begin
     LinkAttributes := NSMutableDictionary.alloc.init;
     LinkAttributes.setObject_forKey(ColorToNSColor(clFontFade),
       NSForegroundColorAttributeName);
-    LinkAttributes.setObject_forKey(NSNumber.
-      numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+    LinkAttributes.setObject_forKey(NSNumber.numberWithInteger(
+      NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setLinkTextAttributes(LinkAttributes);
-    LinkAttributes.release;
+    LinkAttributes.Release;
     spTable.Color := dbText.Color;
     cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
@@ -1324,42 +1324,42 @@ begin
           end;
           if i = 0 then
           begin
-            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='title:' then
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = 'title:' then
             begin
               rngStart.length := 6;
               TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
-            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='subtitle:' then
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) = 'subtitle:' then
             begin
               rngStart.length := 9;
               TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
-            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) ='author:' then
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) = 'author:' then
             begin
               rngStart.length := 7;
               TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
-            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='email:' then
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = 'email:' then
             begin
               rngStart.length := 6;
               TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
-            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) ='date:' then
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) = 'date:' then
             begin
               rngStart.length := 5;
               TCocoaTextView(NSScrollView(dbText.Handle).documentView).
                 setTextColor_range(ColorToNSColor(clFontFade), rngStart);
             end
             else
-            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='abstract:' then
+            if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) = 'abstract:' then
             begin
               rngStart.length := 9;
               TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1394,8 +1394,8 @@ begin
     end;
   end
   else
-  if (((key = Ord('E')) and (Shift = [ssMeta]) or
-  ((key = 40) and (Shift = [ssMeta]) and (blIsPresenting = True)))) then
+  if (((key = Ord('E')) and (Shift = [ssMeta]) or ((key = 40) and
+    (Shift = [ssMeta]) and (blIsPresenting = True)))) then
   begin
     if miEditDisableForm.Checked = True then
     begin
@@ -1416,11 +1416,11 @@ begin
     LinkAttributes := NSMutableDictionary.alloc.init;
     LinkAttributes.setObject_forKey(ColorToNSColor(clFontFade),
       NSForegroundColorAttributeName);
-    LinkAttributes.setObject_forKey(NSNumber.
-      numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+    LinkAttributes.setObject_forKey(NSNumber.numberWithInteger(
+      NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setLinkTextAttributes(LinkAttributes);
-    LinkAttributes.release;
+    LinkAttributes.Release;
     spTable.Color := dbText.Color;
     cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
@@ -1452,8 +1452,8 @@ begin
     end;
     if FileExistsUTF8(stFile) then
     try
-      fmPicture.Width := fmMain.Width -100;
-      fmPicture.Height := fmMain.Height -100;
+      fmPicture.Width := fmMain.Width - 100;
+      fmPicture.Height := fmMain.Height - 100;
       fmPicture.imPicture.Picture.LoadFromFile(stFile);
       fmPicture.ShowModal;
     except
@@ -1479,42 +1479,42 @@ begin
         end;
         if i = 0 then
         begin
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='title:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = 'title:' then
           begin
             rngStart.length := 6;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='subtitle:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) = 'subtitle:' then
           begin
             rngStart.length := 9;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) ='author:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) = 'author:' then
           begin
             rngStart.length := 7;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='email:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = 'email:' then
           begin
             rngStart.length := 6;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) ='date:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) = 'date:' then
           begin
             rngStart.length := 5;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='abstract:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) = 'abstract:' then
           begin
             rngStart.length := 9;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1556,11 +1556,11 @@ begin
     LinkAttributes := NSMutableDictionary.alloc.init;
     LinkAttributes.setObject_forKey(ColorToNSColor(clFontFade),
       NSForegroundColorAttributeName);
-    LinkAttributes.setObject_forKey(NSNumber.
-      numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+    LinkAttributes.setObject_forKey(NSNumber.numberWithInteger(
+      NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setLinkTextAttributes(LinkAttributes);
-    LinkAttributes.release;
+    LinkAttributes.Release;
     spTable.Color := dbText.Color;
     cbFilter.Visible := False;
     dbText.ScrollBars := ssNone;
@@ -1569,8 +1569,7 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveBackward(nil);
     while (((dbText.Lines[dbText.CaretPos.Y] = '') or
-        (dbText.Lines[dbText.CaretPos.Y] = '---')) and
-        (dbText.CaretPos.Y > 0)) do
+        (dbText.Lines[dbText.CaretPos.Y] = '---')) and (dbText.CaretPos.Y > 0)) do
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         moveBackward(nil);
@@ -1598,8 +1597,8 @@ begin
     end;
     if FileExistsUTF8(stFile) then
     try
-      fmPicture.Width := fmMain.Width -100;
-      fmPicture.Height := fmMain.Height -100;
+      fmPicture.Width := fmMain.Width - 100;
+      fmPicture.Height := fmMain.Height - 100;
       fmPicture.imPicture.Picture.LoadFromFile(stFile);
       fmPicture.ShowModal;
     except
@@ -1625,42 +1624,42 @@ begin
         end;
         if i = 0 then
         begin
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='title:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = 'title:' then
           begin
             rngStart.length := 6;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='subtitle:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) = 'subtitle:' then
           begin
             rngStart.length := 9;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) ='author:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 7) = 'author:' then
           begin
             rngStart.length := 7;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) ='email:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 6) = 'email:' then
           begin
             rngStart.length := 6;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) ='date:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 5) = 'date:' then
           begin
             rngStart.length := 5;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
               setTextColor_range(ColorToNSColor(clFontFade), rngStart);
           end
           else
-          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) ='abstract:' then
+          if UTF8Copy(dbText.Lines[dbText.CaretPos.Y], 1, 9) = 'abstract:' then
           begin
             rngStart.length := 9;
             TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1711,8 +1710,8 @@ begin
     end;
     if FileExistsUTF8(stFile) then
     try
-      fmPicture.Width := fmMain.Width -100;
-      fmPicture.Height := fmMain.Height -100;
+      fmPicture.Width := fmMain.Width - 100;
+      fmPicture.Height := fmMain.Height - 100;
       fmPicture.imPicture.Picture.LoadFromFile(stFile);
       fmPicture.ShowModal;
     except
@@ -1830,14 +1829,14 @@ begin
         for i := 0 to slCitations.Count - 1 do
         begin
           stClip := slCitations[i];
-          stClip := UTF8Copy(stClip, 1, UTF8CocoaPos(#9, stClip, 1) - 1) + #9 +
-            UTF8Copy(stClip, 1, UTF8Pos(#9, stClip) - 1) + #9 + '*' +
-            UTF8Copy(stClip, UTF8Pos(#9, stClip) + 1, UTF8Pos(#9,
-            stClip, UTF8Pos(#9, stClip) + 1) - UTF8Pos(#9, stClip) - 1) +
-            '*' + #9 + '*' + UTF8Copy(stClip, UTF8Pos(#9, stClip) + 1, UTF8Pos(#9,
-            stClip, UTF8Pos(#9, stClip) + 1) - UTF8Pos(#9, stClip) - 1) +
-            '*' + #9 + UTF8Copy(stClip, UTF8Pos(#9,
-            stClip, UTF8Pos(#9, stClip) + 1) + 1, UTF8Length(stClip));
+          stClip := UTF8Copy(stClip, 1, UTF8CocoaPos(#9, stClip, 1) - 1) +
+            #9 + UTF8Copy(stClip, 1, UTF8Pos(#9, stClip) - 1) + #9 +
+            '*' + UTF8Copy(stClip, UTF8Pos(#9, stClip) + 1,
+            UTF8Pos(#9, stClip, UTF8Pos(#9, stClip) + 1) - UTF8Pos(#9, stClip) - 1) +
+            '*' + #9 + '*' + UTF8Copy(stClip, UTF8Pos(#9, stClip) +
+            1, UTF8Pos(#9, stClip, UTF8Pos(#9, stClip) + 1) - UTF8Pos(#9, stClip) - 1) +
+            '*' + #9 + UTF8Copy(stClip, UTF8Pos(#9, stClip,
+            UTF8Pos(#9, stClip) + 1) + 1, UTF8Length(stClip));
           stClip := StringReplace(stClip, '*«', '«', [rfReplaceAll]);
           stClip := StringReplace(stClip, '»*', '»', [rfReplaceAll]);
           stClip := StringReplace(stClip, '*"', '"', [rfReplaceAll]);
@@ -1856,19 +1855,19 @@ begin
   if ((key = Ord('K')) and (Shift = [ssShift, ssMeta])) then
   begin
     iPos := dbText.SelStart;
-    rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-      documentView).selectedRange;
+    rngStart := TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange;
     rngStart.length := 1;
     stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       attributedSubstringFromRange(rngStart);
     while ((UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> '{') and
-      (UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> LineEnding) and
-      (rngStart.location > 0)) do
+        (UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> LineEnding) and
+        (rngStart.location > 0)) do
     begin
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         moveBackward(nil);
-      rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-        documentView).selectedRange;
+      rngStart := TCocoaTextView(
+        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange;
       rngStart.length := 1;
       stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
         attributedSubstringFromRange(rngStart);
@@ -1877,18 +1876,18 @@ begin
     begin
       TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
         moveForward(nil);
-      rngEnd := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-        documentView).selectedRange;
+      rngEnd := TCocoaTextView(
+        NSScrollView(fmMain.dbText.Handle).documentView).selectedRange;
       rngEnd.length := 1;
       while ((UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> '}') and
-        (UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> LineEnding) and
-        (rngEnd.location < TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-        documentView).textStorage.length)) do
+          (UTF8Copy(NSStringToString(stAttWord.string_), 1, 1) <> LineEnding) and
+          (rngEnd.location < TCocoaTextView(
+          NSScrollView(fmMain.dbText.Handle).documentView).textStorage.length)) do
       begin
         TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
           moveForward(nil);
-        rngEnd := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-          documentView).selectedRange;
+        rngEnd := TCocoaTextView(
+          NSScrollView(fmMain.dbText.Handle).documentView).selectedRange;
         rngEnd.length := 1;
         stAttWord := TCocoaTextView(NSScrollView(dbText.Handle).documentView).
           attributedSubstringFromRange(rngEnd);
@@ -1905,9 +1904,8 @@ begin
         begin
           if sgTable.Cells[2, i] = NSStringToString(stAttWord.string_) then
           begin
-            meQuote.Text := sgTable.Cells[4, i] + ', '+
-              sgTable.Cells[5, i] + ', ' +
-              sgTable.Cells[7, i] + '.';
+            meQuote.Text := sgTable.Cells[4, i] + ', ' +
+              sgTable.Cells[5, i] + ', ' + sgTable.Cells[7, i] + '.';
             meQuote.Font.Color := dbText.Font.Color;
             meQuote.Font.Name := dbText.Font.Name;
             pnQuote.Left := (Screen.Width - pnQuote.Width) div 2;
@@ -1931,7 +1929,7 @@ begin
   begin
     i := dbText.CaretPos.Y;
     if UTF8Copy(dbText.Lines[i], 1, 2) = '- ' then
-    iNum := 1;
+      iNum := 1;
     while i > -1 do
     begin
       if UTF8Copy(dbText.Lines[i], 1, 2) <> '- ' then
@@ -1945,7 +1943,7 @@ begin
     begin
       if UTF8Copy(dbText.Lines[i], 1, 2) = '- ' then
       begin
-        dbText.Lines[i] := IntToStr(iNum) +'. ' +
+        dbText.Lines[i] := IntToStr(iNum) + '. ' +
           UTF8Copy(dbText.Lines[i], 3, UTF8Length(dbText.Lines[i]));
         Inc(iNum);
         Inc(i);
@@ -1960,25 +1958,25 @@ begin
   if ((key = 190) and (Shift = [ssCtrl, ssMeta])) then
   begin
     i := dbText.CaretPos.Y;
-    if TryStrToInt(UTF8Copy(dbText.Lines[i], 1,
-      UTF8Pos('. ', dbText.Lines[i]) - 1), iNum) = True then
-    while i > -1 do
-    begin
-      if TryStrToInt(UTF8Copy(dbText.Lines[i], 1,
-        UTF8Pos('. ', dbText.Lines[i]) - 1), iNum) = False then
+    if TryStrToInt(UTF8Copy(dbText.Lines[i], 1, UTF8Pos('. ', dbText.Lines[i]) - 1),
+      iNum) = True then
+      while i > -1 do
       begin
-        Break;
+        if TryStrToInt(UTF8Copy(dbText.Lines[i], 1, UTF8Pos('. ', dbText.Lines[i]) -
+          1), iNum) = False then
+        begin
+          Break;
+        end;
+        Dec(i);
       end;
-      Dec(i);
-    end;
     Inc(i);
     while i < dbText.Lines.Count do
     begin
-      if TryStrToInt(UTF8Copy(dbText.Lines[i], 1,
-        UTF8Pos('. ', dbText.Lines[i]) - 1), iNum) = True then
+      if TryStrToInt(UTF8Copy(dbText.Lines[i], 1, UTF8Pos('. ', dbText.Lines[i]) -
+        1), iNum) = True then
       begin
-        dbText.Lines[i] := '- ' + UTF8Copy(dbText.Lines[i], UTF8Pos('. ',
-          dbText.Lines[i]) + 2, UTF8Length(dbText.Lines[i]));
+        dbText.Lines[i] := '- ' + UTF8Copy(dbText.Lines[i],
+          UTF8Pos('. ', dbText.Lines[i]) + 2, UTF8Length(dbText.Lines[i]));
         Inc(i);
       end
       else
@@ -2138,19 +2136,19 @@ begin
     rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       selectedRange;
     rngEnd.location := rngStart.location + rngStart.length;
-    if ((rngStart.location > 1) and
-      (rngEnd.location < TCocoaTextView(NSScrollView(dbText.Handle).
-      documentView).textStorage.length - 1)) then
+    if ((rngStart.location > 1) and (rngEnd.location <
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.length - 1))
+    then
     begin
       rngStart.location := rngStart.location - 2;
       rngStart.length := 2;
       rngEnd.length := 2;
     end;
-    if ((NSStringToString(TCocoaTextView(NSScrollView(dbText.Handle).
-      documentView).textStorage.string_.
+    if ((NSStringToString(TCocoaTextView(
+      NSScrollView(dbText.Handle).documentView).textStorage.string_.
       substringWithRange(rngStart)) = '**') and
-      (NSStringToString(TCocoaTextView(NSScrollView(dbText.Handle).
-      documentView).textStorage.string_.
+      (NSStringToString(TCocoaTextView(
+      NSScrollView(dbText.Handle).documentView).textStorage.string_.
       substringWithRange(rngEnd)) = '**')) then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -2192,19 +2190,18 @@ begin
     rngStart := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
       selectedRange;
     rngEnd.location := rngStart.location + rngStart.length;
-    if ((rngStart.location > 0) and
-      (rngEnd.location < TCocoaTextView(NSScrollView(dbText.Handle).
-      documentView).textStorage.length)) then
+    if ((rngStart.location > 0) and (rngEnd.location <
+      TCocoaTextView(NSScrollView(dbText.Handle).documentView).textStorage.length)) then
     begin
       rngStart.location := rngStart.location - 1;
       rngStart.length := 1;
       rngEnd.length := 1;
     end;
-    if ((NSStringToString(TCocoaTextView(NSScrollView(dbText.Handle).
-      documentView).textStorage.string_.
+    if ((NSStringToString(TCocoaTextView(
+      NSScrollView(dbText.Handle).documentView).textStorage.string_.
       substringWithRange(rngStart)) = '*') and
-      (NSStringToString(TCocoaTextView(NSScrollView(dbText.Handle).
-      documentView).textStorage.string_.
+      (NSStringToString(TCocoaTextView(
+      NSScrollView(dbText.Handle).documentView).textStorage.string_.
       substringWithRange(rngEnd)) = '*')) then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -2286,8 +2283,8 @@ begin
         myDate := Date;
         TCocoaTextView(NSScrollView(dbText.Handle).documentView).
           insertText_replacementRange(NSStringUtf8('- [ ] ' +
-          FormatDateTime('yyyy-mm-dd',
-          IncDay(myDate, StrToInt(fmOptions.cbDelay.Text))) + ' • '), rngStart);
+          FormatDateTime('yyyy-mm-dd', IncDay(myDate,
+          StrToInt(fmOptions.cbDelay.Text))) + ' • '), rngStart);
       end;
     end;
     key := 0;
@@ -2389,8 +2386,8 @@ begin
     iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
-    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-      documentView).selectedRange.location;
+    rngStart.location := TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange.location;
     rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
     if rngStart.length < 7 then
     begin
@@ -2401,7 +2398,7 @@ begin
       rngStart.length := 0;
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText_replacementRange(NSStringUtf8('# '), rngStart);
+      insertText_replacementRange(NSStringUtf8('# '), rngStart);
     dbText.SelStart := iPos - rngStart.length + 2;
     FormatListTitleTodo;
   end
@@ -2411,8 +2408,8 @@ begin
     iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
-    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-      documentView).selectedRange.location;
+    rngStart.location := TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange.location;
     rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
     if rngStart.length < 7 then
     begin
@@ -2423,7 +2420,7 @@ begin
       rngStart.length := 0;
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText_replacementRange(NSStringUtf8('## '), rngStart);
+      insertText_replacementRange(NSStringUtf8('## '), rngStart);
     dbText.SelStart := iPos - rngStart.length + 3;
     FormatListTitleTodo;
   end
@@ -2433,8 +2430,8 @@ begin
     iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
-    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-      documentView).selectedRange.location;
+    rngStart.location := TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange.location;
     rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
     if rngStart.length < 7 then
     begin
@@ -2445,7 +2442,7 @@ begin
       rngStart.length := 0;
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText_replacementRange(NSStringUtf8('### '), rngStart);
+      insertText_replacementRange(NSStringUtf8('### '), rngStart);
     dbText.SelStart := iPos - rngStart.length + 4;
     FormatListTitleTodo;
   end
@@ -2455,8 +2452,8 @@ begin
     iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
-    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-      documentView).selectedRange.location;
+    rngStart.location := TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange.location;
     rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
     if rngStart.length < 7 then
     begin
@@ -2467,7 +2464,7 @@ begin
       rngStart.length := 0;
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText_replacementRange(NSStringUtf8('#### '), rngStart);
+      insertText_replacementRange(NSStringUtf8('#### '), rngStart);
     dbText.SelStart := iPos - rngStart.length + 5;
     FormatListTitleTodo;
   end
@@ -2477,8 +2474,8 @@ begin
     iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
-    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-      documentView).selectedRange.location;
+    rngStart.location := TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange.location;
     rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
     if rngStart.length < 7 then
     begin
@@ -2489,7 +2486,7 @@ begin
       rngStart.length := 0;
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText_replacementRange(NSStringUtf8('##### '), rngStart);
+      insertText_replacementRange(NSStringUtf8('##### '), rngStart);
     dbText.SelStart := iPos - rngStart.length + 6;
     FormatListTitleTodo;
   end
@@ -2499,8 +2496,8 @@ begin
     iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
-    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-      documentView).selectedRange.location;
+    rngStart.location := TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange.location;
     rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
     if rngStart.length < 7 then
     begin
@@ -2511,7 +2508,7 @@ begin
       rngStart.length := 0;
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText_replacementRange(NSStringUtf8('###### '), rngStart);
+      insertText_replacementRange(NSStringUtf8('###### '), rngStart);
     dbText.SelStart := iPos - rngStart.length + 7;
     FormatListTitleTodo;
   end
@@ -2521,8 +2518,8 @@ begin
     iPos := dbText.SelStart;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       moveToBeginningOfParagraph(nil);
-    rngStart.location := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).
-      documentView).selectedRange.location;
+    rngStart.location := TCocoaTextView(
+      NSScrollView(fmMain.dbText.Handle).documentView).selectedRange.location;
     rngStart.length := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
     if rngStart.length < 7 then
     begin
@@ -2533,9 +2530,16 @@ begin
       rngStart.length := 0;
     end;
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-        insertText_replacementRange(NSStringUtf8(''), rngStart);
+      insertText_replacementRange(NSStringUtf8(''), rngStart);
     dbText.SelStart := iPos - rngStart.length;
     FormatListTitleTodo;
+  end
+  else
+  if ((key = Ord('L')) and (Shift = [ssCtrl, ssShift])) then
+  begin
+    MessageDlg(msg028 + ' ' + FormatFloat('#,##0',
+      CountChars(dbText)), mtInformation, [mbOK], 0);
+    key := 0;
   end
   else
   if blIsPresenting = True then
@@ -2543,8 +2547,8 @@ begin
     if ((key = 38) or (key = 40)) then
     begin
       key := 0;
-    end
-  end
+    end;
+  end;
 end;
 
 procedure TfmMain.dbTextKeyPress(Sender: TObject; var Key: char);
@@ -2560,14 +2564,14 @@ begin
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- [X] ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- [x] ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- [ ] ' +
-        FormatDateTime('yyyy-mm-dd', IncDay(myDate,
-        StrToInt(fmOptions.cbDelay.Text))) + ' • ') or
+      FormatDateTime('yyyy-mm-dd',
+      IncDay(myDate, StrToInt(fmOptions.cbDelay.Text))) + ' • ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- [X] ' +
-        FormatDateTime('yyyy-mm-dd', IncDay(myDate,
-        StrToInt(fmOptions.cbDelay.Text))) + ' • ') or
+      FormatDateTime('yyyy-mm-dd',
+      IncDay(myDate, StrToInt(fmOptions.cbDelay.Text))) + ' • ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- [x] ' +
-        FormatDateTime('yyyy-mm-dd', IncDay(myDate,
-        StrToInt(fmOptions.cbDelay.Text))) + ' • ') or
+      FormatDateTime('yyyy-mm-dd',
+      IncDay(myDate, StrToInt(fmOptions.cbDelay.Text))) + ' • ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '+ ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '- ') or
       (dbText.Lines[dbText.CaretPos.Y - 1] = '+ ') or
@@ -2577,7 +2581,7 @@ begin
       (UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) > 1) and
       (UTF8Length(dbText.Lines[dbText.CaretPos.Y - 1]) =
       UTF8Pos('. ', dbText.Lines[dbText.CaretPos.Y - 1]) + 1))) and
-      ((dbText.Lines[dbText.CaretPos.Y] ='') or
+      ((dbText.Lines[dbText.CaretPos.Y] = '') or
       (dbText.CaretPos.Y = dbText.Lines.Count))) then
     begin
       TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -2597,8 +2601,8 @@ begin
         begin
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).
             insertText(NSStringUtf8('- [ ] ' +
-            FormatDateTime('yyyy-mm-dd', IncDay(myDate,
-            StrToInt(fmOptions.cbDelay.Text))) + ' • '));
+            FormatDateTime('yyyy-mm-dd',
+            IncDay(myDate, StrToInt(fmOptions.cbDelay.Text))) + ' • '));
         end
         else
         begin
@@ -2615,8 +2619,8 @@ begin
         begin
           TCocoaTextView(NSScrollView(dbText.Handle).documentView).
             insertText(NSStringUtf8('- [ ] ' +
-            FormatDateTime('yyyy-mm-dd', IncDay(myDate,
-            StrToInt(fmOptions.cbDelay.Text))) + ' • '));
+            FormatDateTime('yyyy-mm-dd',
+            IncDay(myDate, StrToInt(fmOptions.cbDelay.Text))) + ' • '));
         end
         else
         begin
@@ -2665,7 +2669,7 @@ begin
   end;
 end;
 
-procedure TfmMain.edFilterGridKeyDown(Sender: TObject; var Key: Word;
+procedure TfmMain.edFilterGridKeyDown(Sender: TObject; var Key: word;
   Shift: TShiftState);
 begin
   if key = 13 then
@@ -2684,7 +2688,7 @@ end;
 procedure TfmMain.sgTitlesClick(Sender: TObject);
 var
   i, iLen, iHeader: integer;
-  stText: WideString = '';
+  stText: widestring = '';
   rng: NSRange;
   blCode: boolean = False;
 begin
@@ -2792,12 +2796,12 @@ begin
 end;
 
 procedure TfmMain.sgTitlesMouseWheel(Sender: TObject; Shift: TShiftState;
-  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+  WheelDelta: integer; MousePos: TPoint; var Handled: boolean);
 begin
   Handled := True;
   if WheelDelta > 20 then
   begin
-    sgTitles.TopRow := sgTitles.TopRow - 1
+    sgTitles.TopRow := sgTitles.TopRow - 1;
   end
   else
   if WheelDelta < -20 then
@@ -2807,7 +2811,7 @@ begin
 end;
 
 procedure TfmMain.sgTitlesMouseWheelHorz(Sender: TObject; Shift: TShiftState;
-  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+  WheelDelta: integer; MousePos: TPoint; var Handled: boolean);
 begin
   Handled := True;
 end;
@@ -2823,7 +2827,7 @@ end;
 
 procedure TfmMain.sgTableEditingDone(Sender: TObject);
 var
-  iNum: Double;
+  iNum: double;
 begin
   if TryStrToFloat(sgTable.Cells[sgTable.Col, sgTable.Row], iNum) = True then
   begin
@@ -2834,8 +2838,8 @@ end;
 
 procedure TfmMain.edFindGridKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if (((key = 13) and (Shift = [ssMeta])) or
-   ((key = Ord('G')) and (Shift = [ssMeta, ssShift]))) then
+  if (((key = 13) and (Shift = [ssMeta])) or ((key = Ord('G')) and
+    (Shift = [ssMeta, ssShift]))) then
   begin
     FindInGrid(False);
     key := 0;
@@ -2850,9 +2854,9 @@ end;
 
 procedure TfmMain.sgTableKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
-  i, x, iTop, iBottom, iRight, iNextTable, iCol, iRow: Integer;
-  iNum: Double;
-  stField: String;
+  i, x, iTop, iBottom, iRight, iNextTable, iCol, iRow: integer;
+  iNum: double;
+  stField: string;
   grRect: TGridRect;
   myDate: TDate;
   fs: TFormatSettings;
@@ -2866,17 +2870,17 @@ begin
   begin
     if sgTable.EditorMode = False then
     begin
-      if MessageDlg(msg015, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
+      if MessageDlg(msg015, mtConfirmation, [mbOK, mbCancel], 0) = mrOk then
       begin
         iCol := sgTable.Col;
         iRow := sgTable.Row;
-        for i := 0 to sgTable.SelectedRangeCount-1 do
+        for i := 0 to sgTable.SelectedRangeCount - 1 do
         begin
           grRect := sgTable.SelectedRange[i];
           sgTable.Clean(grRect, [gzNormal]);
         end;
-        while ((sgTable.RowHeights[iRow] = 0) and
-          (iRow < sgTable.RowCount - 1)) do
+        while ((sgTable.RowHeights[iRow] = 0) and (iRow <
+            sgTable.RowCount - 1)) do
         begin
           Inc(iRow);
         end;
@@ -2892,9 +2896,8 @@ begin
     end;
   end
   else
-  if ((key = Ord('A')) and (Shift = [ssMeta]) and
-    (sgTable.Col = 1) and (sgTable.Row < sgTable.RowCount - 1) and
-    (sgTable.Cells[1, sgTable.Row] <> '')) then
+  if ((key = Ord('A')) and (Shift = [ssMeta]) and (sgTable.Col = 1) and
+    (sgTable.Row < sgTable.RowCount - 1) and (sgTable.Cells[1, sgTable.Row] <> '')) then
   begin
     key := 0;
     grRect.Top := sgTable.Row;
@@ -2912,7 +2915,8 @@ begin
       grRect.Height := i - sgTable.Row;
     end
     else
-    begin;
+    begin
+      ;
       grRect.Height := i - 1 - sgTable.Row;
     end;
     for i := sgTable.Col + 1 to sgTable.ColCount - 1 do
@@ -2933,8 +2937,8 @@ begin
     sgTable.Selection := grRect;
   end
   else
-  if ((key = 8) and (Shift = [ssMeta, ssShift]) and
-    (sgTable.Col = 1) and (sgTable.Cells[1, sgTable.Row] <> '')) then
+  if ((key = 8) and (Shift = [ssMeta, ssShift]) and (sgTable.Col = 1) and
+    (sgTable.Cells[1, sgTable.Row] <> '')) then
   begin
     key := 0;
     if MessageDlg(msg027, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
@@ -2976,8 +2980,7 @@ begin
     iCol := sgTable.Col;
     iRow := sgTable.Row;
     sgTable.DeleteColRow(False, sgTable.Row);
-    while ((sgTable.RowHeights[iRow] = 0) and
-      (iRow < sgTable.RowCount - 1)) do
+    while ((sgTable.RowHeights[iRow] = 0) and (iRow < sgTable.RowCount - 1)) do
     begin
       Inc(iRow);
     end;
@@ -3191,7 +3194,7 @@ begin
   if ((key = Ord('S')) and ((Shift = [ssMeta, ssCtrl]) or
     (Shift = [ssMeta, ssCtrl, ssShift]))) then
   begin
-    if MessageDlg(msg014, mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
+    if MessageDlg(msg014, mtConfirmation, [mbOK, mbCancel], 0) = mrOk then
     begin
       iTop := -1;
       iBottom := -1;
@@ -3220,10 +3223,10 @@ begin
               (sgTable.Cells[x, i] = '---min') or
               (sgTable.Cells[x, i] = '---max') or
               (sgTable.Cells[x, i] = '---count')) then
-              begin
-                iBottom := i - 1;
-                Break;
-              end;
+            begin
+              iBottom := i - 1;
+              Break;
+            end;
           end;
         end;
         if iBottom > -1 then
@@ -3325,11 +3328,10 @@ begin
     fs := DefaultFormatSettings;
     fs.DateSeparator := '-';
     fs.ShortDateFormat := 'yyyy/mm/dd';
-    if TryStrToDate(sgTable.Cells[sgTable.Col, sgTable.Row],
-      myDate, fs) = True then
+    if TryStrToDate(sgTable.Cells[sgTable.Col, sgTable.Row], myDate, fs) = True then
     begin
-      sgTable.Cells[sgTable.Col, sgTable.Row] := FormatDateTime('yyyy-mm-dd',
-        IncDay(myDate, -1));
+      sgTable.Cells[sgTable.Col, sgTable.Row] :=
+        FormatDateTime('yyyy-mm-dd', IncDay(myDate, -1));
     end;
     key := 0;
   end
@@ -3339,11 +3341,10 @@ begin
     fs := DefaultFormatSettings;
     fs.DateSeparator := '-';
     fs.ShortDateFormat := 'yyyy/mm/dd';
-    if TryStrToDate(sgTable.Cells[sgTable.Col, sgTable.Row],
-      myDate, fs) = True then
+    if TryStrToDate(sgTable.Cells[sgTable.Col, sgTable.Row], myDate, fs) = True then
     begin
-      sgTable.Cells[sgTable.Col, sgTable.Row] := FormatDateTime('yyyy-mm-dd',
-        IncDay(myDate, 1));
+      sgTable.Cells[sgTable.Col, sgTable.Row] :=
+        FormatDateTime('yyyy-mm-dd', IncDay(myDate, 1));
     end;
     key := 0;
   end
@@ -3402,11 +3403,11 @@ begin
     if ((sgTable.Row > 1) and (sgTable.Col = 1)) then
     begin
       for i := sgTable.Row - 1 downto 1 do
-      if sgTable.Cells[1, i] <> '' then
-      begin
-        sgTable.Row := i;
-        Break;
-      end;
+        if sgTable.Cells[1, i] <> '' then
+        begin
+          sgTable.Row := i;
+          Break;
+        end;
     end
     else
     begin
@@ -3454,7 +3455,7 @@ begin
           Break;
         end;
       end;
-      if iBottom > - 1 then
+      if iBottom > -1 then
       begin
         Break;
       end;
@@ -3519,7 +3520,7 @@ begin
   if ((key = 39) and (Shift = [ssAlt, ssMeta])) then
   begin
     if ((sgTable.Col = sgTable.ColCount - 1) or (sgTable.Col = 1) or
-      (sgTable.Row = sgTable.RowCount - 1))then
+      (sgTable.Row = sgTable.RowCount - 1)) then
     begin
       key := 0;
       Exit;
@@ -3564,11 +3565,11 @@ begin
     if ((sgTable.Row < sgTable.RowCount - 1) and (sgTable.Col = 1)) then
     begin
       for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
-      if sgTable.Cells[1, i] <> '' then
-      begin
-        sgTable.Row := i;
-        Break;
-      end;
+        if sgTable.Cells[1, i] <> '' then
+        begin
+          sgTable.Row := i;
+          Break;
+        end;
     end
     else
     begin
@@ -3586,7 +3587,7 @@ begin
   else
   if ((key = 40) and (Shift = [ssMeta, ssCtrl])) then
   begin
-    if sgTable.Row = sgTable.RowCount -1 then
+    if sgTable.Row = sgTable.RowCount - 1 then
     begin
       key := 0;
       Exit;
@@ -3613,7 +3614,7 @@ begin
           Break;
         end;
       end;
-      if iBottom > - 1 then
+      if iBottom > -1 then
       begin
         Break;
       end;
@@ -3676,13 +3677,12 @@ end;
 
 procedure TfmMain.sgTableKeyPress(Sender: TObject; var Key: char);
 var
-  i, iTop: Integer;
+  i, iTop: integer;
 begin
   if key = #13 then
   begin
-    if ((sgTable.Cells[1, sgTable.Row] = '') and
-      (sgTable.Col < sgTable.ColCount - 1) and
-      (sgTable.Row < sgTable.RowCount - 1) and
+    if ((sgTable.Cells[1, sgTable.Row] = '') and (sgTable.Col <
+      sgTable.ColCount - 1) and (sgTable.Row < sgTable.RowCount - 1) and
       (sgTable.EditorMode = True)) then
     begin
       iTop := -1;
@@ -3708,8 +3708,7 @@ begin
   end;
 end;
 
-procedure TfmMain.sgTableKeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfmMain.sgTableKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
   if ((key = Ord('V')) and (Shift = [ssMeta])) then
   begin
@@ -3718,12 +3717,12 @@ begin
 end;
 
 procedure TfmMain.sgTableMouseWheel(Sender: TObject; Shift: TShiftState;
-  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+  WheelDelta: integer; MousePos: TPoint; var Handled: boolean);
 begin
   Handled := True;
   if WheelDelta > 20 then
   begin
-    sgTable.TopRow := sgTable.TopRow - 1
+    sgTable.TopRow := sgTable.TopRow - 1;
   end
   else
   if WheelDelta < -20 then
@@ -3733,12 +3732,12 @@ begin
 end;
 
 procedure TfmMain.sgTableMouseWheelHorz(Sender: TObject; Shift: TShiftState;
-  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+  WheelDelta: integer; MousePos: TPoint; var Handled: boolean);
 begin
   Handled := True;
   if WheelDelta > 250 then
   begin
-    sgTable.LeftCol := sgTable.LeftCol + 1
+    sgTable.LeftCol := sgTable.LeftCol + 1;
   end
   else
   if WheelDelta < -250 then
@@ -3785,7 +3784,7 @@ begin
   end;
 end;
 
-procedure TfmMain.sgTableSetEditText(Sender: TObject; ACol, ARow: Integer;
+procedure TfmMain.sgTableSetEditText(Sender: TObject; ACol, ARow: integer;
   const Value: string);
 begin
   blTableMod := True;
@@ -3812,7 +3811,7 @@ end;
 
 procedure TfmMain.miFileNewClick(Sender: TObject);
 var
-  i: Integer;
+  i: integer;
 begin
   DisablePresenting;
   if SaveFile = False then
@@ -4013,7 +4012,7 @@ end;
 procedure TfmMain.miFileSaveAsClick(Sender: TObject);
 var
   myList: TStringList;
-  stOldFile: String;
+  stOldFile: string;
 begin
   DisablePresenting;
   if ((UTF8Length(dbText.Lines[1]) > 7) and
@@ -4036,7 +4035,7 @@ begin
       myList.Free;
     end;
     if ((FileExistsUTF8(ExtractFileNameWithoutExt(stOldFile) + '.csv')) or
-      (blTableSaved = False))then
+      (blTableSaved = False)) then
     begin
       sgTable.SaveToCSVFile(ExtractFileNameWithoutExt(stFileName) + '.csv',
         #9, False);
@@ -4144,7 +4143,7 @@ end;
 procedure TfmMain.miEditLinkClick(Sender: TObject);
 var
   stLink: string;
-  i: Integer;
+  i: integer;
 begin
   if blIsPresenting = True then
   begin
@@ -4200,9 +4199,9 @@ var
   rng: NSRange;
   iLen, i, iSelStart: integer;
   slList1, slList2: TStringList;
-  stText: WideString;
-  stItem: String = '';
-  stSeparators: String = '*_.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ' + LineEnding;
+  stText: widestring;
+  stItem: string = '';
+  stSeparators: string = '*_.,;:-–(){}[]/\''"’‘”“«»?¿!¡ ' + LineEnding;
 begin
   if blIsPresenting = True then
   begin
@@ -4230,8 +4229,7 @@ begin
       end
       else
       if (((stText[i] = '.') and ((stText[i + 1] = ' ') or (i = iLen))) or
-        (stText[i] = '?') or (stText[i] = '!') or
-        (stText[i] = LineEnding)) then
+        (stText[i] = '?') or (stText[i] = '!') or (stText[i] = LineEnding)) then
       begin
         slList1.Text := slList2.Text;
         slList2.Clear;
@@ -4290,7 +4288,7 @@ end;
 
 procedure TfmMain.miEditHideListClick(Sender: TObject);
 var
-  iPos: Integer;
+  iPos: integer;
 begin
   if blIsPresenting = True then
   begin
@@ -4320,7 +4318,7 @@ end;
 procedure TfmMain.miEditDisableFormClick(Sender: TObject);
 var
   iLen, iPos: integer;
-  stText: WideString = '';
+  stText: widestring = '';
   myFont: NSFont;
   fd: NSFontDescriptor;
   rng: NSRange;
@@ -4483,11 +4481,11 @@ end;
 procedure TfmMain.miToolsBiblioClick(Sender: TObject);
 var
   slText, slBiblio: TStringList;
-  stText, stNewText: WideString;
+  stText, stNewText: widestring;
   stArgument, stInput, stOutput, stOldKey, stNewKey, stAuthor,
-    stAuthFormCit, stAuthFormBib, stDetailsCit,
-    stDetailsBib, stNewIdemAuth, stOldIdemAuth: String;
-  i, iRow, iLen, iPos: Integer;
+  stAuthFormCit, stAuthFormBib, stDetailsCit, stDetailsBib,
+  stNewIdemAuth, stOldIdemAuth: string;
+  i, iRow, iLen, iPos: integer;
   blBracket: Bool = False;
 begin
   if blIsPresenting = True then
@@ -4578,8 +4576,8 @@ begin
             begin
               if UTF8Pos(' (', sgTable.Cells[3, i]) > 0 then
               begin
-                stAuthFormBib := '[' +
-                  UTF8Copy(sgTable.Cells[3, i], 1,
+                stAuthFormBib :=
+                  '[' + UTF8Copy(sgTable.Cells[3, i], 1,
                   UTF8Pos(' (', sgTable.Cells[3, i]) - 1) + ']{.smallcaps}' +
                   UTF8Copy(sgTable.Cells[3, i],
                   UTF8Pos(' (', sgTable.Cells[3, i]),
@@ -4588,7 +4586,7 @@ begin
               else
               begin
                 stAuthFormBib := '[' + sgTable.Cells[3, i] + ']{.smallcaps}';
-              end
+              end;
             end
             else
             begin
@@ -4598,8 +4596,8 @@ begin
             begin
               if UTF8Pos(' (', sgTable.Cells[4, i]) > 0 then
               begin
-                stAuthFormCit := '[' +
-                  UTF8Copy(sgTable.Cells[4, i], 1,
+                stAuthFormCit :=
+                  '[' + UTF8Copy(sgTable.Cells[4, i], 1,
                   UTF8Pos(' (', sgTable.Cells[4, i]) - 1) + ']{.smallcaps}' +
                   UTF8Copy(sgTable.Cells[4, i],
                   UTF8Pos(' (', sgTable.Cells[4, i]),
@@ -4608,7 +4606,7 @@ begin
               else
               begin
                 stAuthFormCit := '[' + sgTable.Cells[4, i] + ']{.smallcaps}';
-              end
+              end;
             end
             else
             begin
@@ -4644,15 +4642,14 @@ begin
           begin
             stDetailsCit := '';
           end;
-          slText.Text := UTF8StringReplace(slText.Text,
-            '{' + sgTable.Cells[2, i] + '}',
-            stAuthFormCit + sgTable.Cells[5, i] + stDetailsCit, [rfIgnoreCase]);
-          slText.Text := UTF8StringReplace(slText.Text,
-            '{' + sgTable.Cells[2, i] + '}',
-            stAuthFormCit + sgTable.Cells[6, i],
+          slText.Text := UTF8StringReplace(slText.Text, '{' +
+            sgTable.Cells[2, i] + '}', stAuthFormCit + sgTable.Cells[5, i] +
+            stDetailsCit, [rfIgnoreCase]);
+          slText.Text := UTF8StringReplace(slText.Text, '{' +
+            sgTable.Cells[2, i] + '}', stAuthFormCit + sgTable.Cells[6, i],
             [rfReplaceAll, rfIgnoreCase]);
-          slBiblio.Add(stAuthFormBib + #9 +
-            sgTable.Cells[5, i] + stDetailsBib + '.');
+          slBiblio.Add(stAuthFormBib + #9 + sgTable.Cells[5, i] +
+            stDetailsBib + '.');
         end;
         Application.ProcessMessages;
       end;
@@ -4660,27 +4657,26 @@ begin
       stOldIdemAuth := '';
       while UTF8CocoaPos(#2, slText.Text) > 0 do
       begin
-        stNewIdemAuth := UTF8Copy(slText.Text,
-          UTF8Pos(#2, slText.Text) + 1,
-          UTF8Pos(#3, slText.Text) - UTF8Pos(#2, slText.Text) - 1);
+        stNewIdemAuth := UTF8Copy(slText.Text, UTF8Pos(#2, slText.Text) +
+          1, UTF8Pos(#3, slText.Text) - UTF8Pos(#2, slText.Text) - 1);
         if stNewIdemAuth = stOldIdemAuth then
         begin
           if blAuthSmallCaps = True then
           begin
-            slText.Text := UTF8StringReplace(slText.text,
-              #2 + stNewIdemAuth + #3, '[Idem]{.smallcaps}', []);
+            slText.Text := UTF8StringReplace(slText.Text, #2 +
+              stNewIdemAuth + #3, '[Idem]{.smallcaps}', []);
           end
           else
           begin
-            slText.Text := UTF8StringReplace(slText.text,
-              #2 + stNewIdemAuth + #3, 'Idem', []);
+            slText.Text := UTF8StringReplace(slText.Text, #2 +
+              stNewIdemAuth + #3, 'Idem', []);
           end;
         end
         else
         begin
           stOldIdemAuth := stNewIdemAuth;
-          slText.Text := UTF8StringReplace(slText.text, #2, '', []);
-          slText.Text := UTF8StringReplace(slText.text, #3, '', []);
+          slText.Text := UTF8StringReplace(slText.Text, #2, '', []);
+          slText.Text := UTF8StringReplace(slText.Text, #3, '', []);
         end;
       end;
 
@@ -4704,28 +4700,26 @@ begin
         stAuthor := '';
         for i := 0 to slBiblio.Count - 1 do
         begin
-          if UTF8Copy(slBiblio[i], 1, UTF8Pos(#9,
-            slBiblio[i]) - 1) = '' then
+          if UTF8Copy(slBiblio[i], 1, UTF8Pos(#9, slBiblio[i]) - 1) = '' then
           begin
             slText.Insert(iPos, UTF8Copy(slBiblio[i],
               UTF8Pos(#9, slBiblio[i]) + 1, UTF8Length(slBiblio[i])));
           end
           else
-          if stAuthor = UTF8Copy(slBiblio[i], 1, UTF8Pos(#9,
-            slBiblio[i]) - 1) then
+          if stAuthor = UTF8Copy(slBiblio[i], 1,
+            UTF8Pos(#9, slBiblio[i]) - 1) then
           begin
-            slText.Insert(iPos, '———.' + stAuthSeparator + UTF8Copy(slBiblio[i],
-              UTF8Pos(#9, slBiblio[i]) + 1, UTF8Length(slBiblio[i])));
+            slText.Insert(iPos, '———.' + stAuthSeparator +
+              UTF8Copy(slBiblio[i], UTF8Pos(#9, slBiblio[i]) + 1,
+              UTF8Length(slBiblio[i])));
           end
           else
           begin
             slText.Insert(iPos, UTF8Copy(slBiblio[i], 1,
-              UTF8Pos(#9, slBiblio[i]) - 1) +
-              UTF8Copy(slBiblio[i], UTF8Pos(#9, slBiblio[i]) + 1,
-              UTF8Length(slBiblio[i])));
+              UTF8Pos(#9, slBiblio[i]) - 1) + UTF8Copy(
+              slBiblio[i], UTF8Pos(#9, slBiblio[i]) + 1, UTF8Length(slBiblio[i])));
           end;
-          stAuthor := UTF8Copy(slBiblio[i], 1, UTF8Pos(#9,
-            slBiblio[i]) - 1);
+          stAuthor := UTF8Copy(slBiblio[i], 1, UTF8Pos(#9, slBiblio[i]) - 1);
           Inc(iPos);
           slText.Insert(iPos, '');
           Inc(iPos);
@@ -4735,10 +4729,9 @@ begin
       end;
       slText.SaveToFile(ExtractFileNameWithoutExt(stFileName) +
         ' - ' + lb000 + '.md');
-      stInput := ExtractFileNameWithoutExt(stFileName) +
-        ' - ' + lb000 + '.md';
-      stOutput := ExtractFileNameWithoutExt(stFileName) +
-        ' - ' + lb000 + pandocOutput;
+      stInput := ExtractFileNameWithoutExt(stFileName) + ' - ' + lb000 + '.md';
+      stOutput := ExtractFileNameWithoutExt(stFileName) + ' - ' +
+        lb000 + pandocOutput;
       if FileExistsUTF8(pandocTemplate) then
       begin
         stArgument := pandocPath + 'pandoc ' + '--from markdown' +
@@ -4772,9 +4765,9 @@ end;
 procedure TfmMain.miToolsOptmizeClick(Sender: TObject);
 var
   slOrig, slDest: TStringList;
-  i: Integer;
+  i: integer;
   blYAML: boolean = False;
-  stHeading2: String = '';
+  stHeading2: string = '';
 begin
   if blIsPresenting = True then
   begin
@@ -4831,7 +4824,7 @@ begin
           else
           begin
             slDest.Add('');
-          end
+          end;
         end
         else
         if ((slOrig[i] = '---') and (i > 0)) then
@@ -4923,7 +4916,8 @@ begin
     NSLocale.preferredLanguages.objectAtIndex(0)), 1, 2)) = 'it' then
   begin
     OpenURL('https://github.com/maxnd/mxMarkEdit/raw/main/manuals/' +
-      'mxmarkedit-user-manual-it.pdf');  end
+      'mxmarkedit-user-manual-it.pdf');
+  end
   else
   begin
     OpenURL('https://github.com/maxnd/mxMarkEdit/raw/main/manuals/' +
@@ -4950,10 +4944,10 @@ var
   i, iLen, iPos, iTopRow, iLevel, iIndent, iTab: integer;
   blHeading, blPosInHeading, blBoldItalics, blItalics, blBold, blMono,
   blQuote, blStartLinesQuote, blFootnote, blLink: boolean;
-  iStartHeading, iStartBoldItalics, iStartItalics, iStartBold, iStartMono,
-  iStartQuote, iStartLinesQuote, iStartFootnote, iStartLink: integer;
-  stText: WideString = '';
-  stTitle: WideString = '';
+  iStartHeading, iStartBoldItalics, iStartItalics, iStartBold,
+  iStartMono, iStartQuote, iStartLinesQuote, iStartFootnote, iStartLink: integer;
+  stText: widestring = '';
+  stTitle: widestring = '';
   stSpaces: string = '';
   fd: NSFontDescriptor;
   myFont, monoFont, miniFont: NSFont;
@@ -5615,8 +5609,7 @@ begin
         blLink := False;
       end;
     end
-    else if ((stText[i] = '(') and (stText[i - 1] <> ']') and
-      (blLink = True)) then
+    else if ((stText[i] = '(') and (stText[i - 1] <> ']') and (blLink = True)) then
     begin
       blLink := False;
     end
@@ -5656,7 +5649,7 @@ var
   rng: NSRange;
   stAttWord: NSAttributedString;
   stWord: string;
-  stText: WideString;
+  stText: widestring;
 begin
   if dbText.Text = '' then
   begin
@@ -5771,7 +5764,7 @@ var
   blFootNum, blFootnote: boolean;
   iStartFootNum, iStartFootnote, iNum, iIncNum, i, iLen, iLine, n: integer;
   stNum: string;
-  stText: WideString;
+  stText: widestring;
   rng: NSRange;
   slNumList, slFootnotes: TStringList;
 begin
@@ -5907,7 +5900,7 @@ end;
 procedure TfmMain.LabelFileNameChars;
 var
   iLength, iPos: integer;
-  stFilePath, stReadOnly: String;
+  stFilePath, stReadOnly: string;
 begin
   iLength := TCocoaTextView(NSScrollView(fmMain.dbText.Handle).documentView).
     textStorage.characters.Count;
@@ -5919,11 +5912,11 @@ begin
     begin
       lbChars.Hint := ExtractFileDir(stFileName) + '/  •  ' +
         ExtractFileName(stFileName);
-      stFilePath :=  ExtractFileDir(stFileName);
+      stFilePath := ExtractFileDir(stFileName);
       if Length(stFilePath) > 30 then
       begin
-        stFilePath := '...' + Copy(stFilePath, Length(stFilePath) - 30,
-          Length(stFilePath));
+        stFilePath := '...' + Copy(stFilePath, Length(stFilePath) -
+          30, Length(stFilePath));
       end;
       if blReadOnly = True then
       begin
@@ -5933,10 +5926,10 @@ begin
       begin
         stReadOnly := '';
       end;
-      lbChars.Caption := stFilePath + '/  •  ' +
-        ExtractFileName(stFileName) + stGridLoaded + stReadOnly + '  •  ' +
-        msg001 + ' ' + FormatFloat('#,##0', iLength) + ' (' +
-        FormatFloat('#0', iPos / iLength * 100) + '%)';
+      lbChars.Caption := stFilePath + '/  •  ' + ExtractFileName(stFileName) +
+        stGridLoaded + stReadOnly + '  •  ' + msg001 + ' ' +
+        FormatFloat('#,##0', iLength) + ' (' + FormatFloat('#0',
+        iPos / iLength * 100) + '%)';
     end
     else
     begin
@@ -6247,7 +6240,7 @@ end;
 function TfmMain.SaveFile: boolean;
 var
   myList: TStringList;
-  i: Integer;
+  i: integer;
 begin
   Result := True;
   if ((stFileName <> '') and (stFileName = LastDatabase1)) then
@@ -6306,10 +6299,10 @@ begin
     begin
       if (((dbText.Text <> '') and (dbText.Text <> GetYAML)) or
         ((blTableMod = True))) then
-      if MessageDlg(msg002, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
-      begin
-        Result := False;
-      end;
+        if MessageDlg(msg002, mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
+        begin
+          Result := False;
+        end;
     end;
   end;
 end;
@@ -6317,7 +6310,7 @@ end;
 procedure TfmMain.MoveToPos;
 var
   rng: NSRange;
-  i: Integer;
+  i: integer;
   slColWidth: TStringList;
 begin
   if ((stFileName = LastDatabase1) and (LastPosDatabase1 > -1) and
@@ -6342,10 +6335,10 @@ begin
     except
     end
     else
-    for i := 1 to sgTable.ColCount - 1 do
-    begin
-      sgTable.ColWidths[i] := 280;
-    end;
+      for i := 1 to sgTable.ColCount - 1 do
+      begin
+        sgTable.ColWidths[i] := 280;
+      end;
   end
   else
   if ((stFileName = LastDatabase2) and (LastPosDatabase2 > -1) and
@@ -6370,10 +6363,10 @@ begin
     except
     end
     else
-    for i := 1 to sgTable.ColCount - 1 do
-    begin
-      sgTable.ColWidths[i] := 280;
-    end;
+      for i := 1 to sgTable.ColCount - 1 do
+      begin
+        sgTable.ColWidths[i] := 280;
+      end;
   end
   else
   if ((stFileName = LastDatabase3) and (LastPosDatabase3 > -1) and
@@ -6398,10 +6391,10 @@ begin
     except
     end
     else
-    for i := 1 to sgTable.ColCount - 1 do
-    begin
-      sgTable.ColWidths[i] := 280;
-    end;
+      for i := 1 to sgTable.ColCount - 1 do
+      begin
+        sgTable.ColWidths[i] := 280;
+      end;
   end
   else
   if ((stFileName = LastDatabase4) and (LastPosDatabase4 > -1) and
@@ -6426,10 +6419,10 @@ begin
     except
     end
     else
-    for i := 1 to sgTable.ColCount - 1 do
-    begin
-      sgTable.ColWidths[i] := 280;
-    end;
+      for i := 1 to sgTable.ColCount - 1 do
+      begin
+        sgTable.ColWidths[i] := 280;
+      end;
   end
 
   else
@@ -6455,10 +6448,10 @@ begin
     except
     end
     else
-    for i := 1 to sgTable.ColCount - 1 do
-    begin
-      sgTable.ColWidths[i] := 280;
-    end;
+      for i := 1 to sgTable.ColCount - 1 do
+      begin
+        sgTable.ColWidths[i] := 280;
+      end;
   end
   else
   if ((stFileName = LastDatabase6) and (LastPosDatabase6 > -1) and
@@ -6483,10 +6476,10 @@ begin
     except
     end
     else
-    for i := 1 to sgTable.ColCount - 1 do
-    begin
-      sgTable.ColWidths[i] := 280;
-    end;
+      for i := 1 to sgTable.ColCount - 1 do
+      begin
+        sgTable.ColWidths[i] := 280;
+      end;
   end
   else
   if ((stFileName = LastDatabase7) and (LastPosDatabase7 > -1) and
@@ -6511,10 +6504,10 @@ begin
     except
     end
     else
-    for i := 1 to sgTable.ColCount - 1 do
-    begin
-      sgTable.ColWidths[i] := 280;
-    end;
+      for i := 1 to sgTable.ColCount - 1 do
+      begin
+        sgTable.ColWidths[i] := 280;
+      end;
   end
   else
   if ((stFileName = LastDatabase8) and (LastPosDatabase8 > -1) and
@@ -6539,10 +6532,10 @@ begin
     except
     end
     else
-    for i := 1 to sgTable.ColCount - 1 do
-    begin
-      sgTable.ColWidths[i] := 280;
-    end;
+      for i := 1 to sgTable.ColCount - 1 do
+      begin
+        sgTable.ColWidths[i] := 280;
+      end;
   end
   else
   begin
@@ -6563,7 +6556,7 @@ procedure TfmMain.RenumberList;
 var
   i, iStart, iEnd, iPos, iNum, iTest: integer;
   rng: NSRange;
-  stText: WideString;
+  stText: widestring;
 begin
   if dbText.Text = '' then
   begin
@@ -6676,8 +6669,8 @@ end;
 
 procedure TfmMain.CutZone;
 var
-  stText: String;
-  iTop, iBottom, iPos, iLevel: Integer;
+  stText: string;
+  iTop, iBottom, iPos, iLevel: integer;
 begin
   iLevel := GetHeaderLevel(dbText.Lines[dbText.CaretPos.Y]);
   if iLevel = 7 then
@@ -6718,25 +6711,25 @@ begin
   end;
 end;
 
-function TfmMain.GetHeaderLevel(stHeader: String): Integer;
+function TfmMain.GetHeaderLevel(stHeader: string): integer;
 begin
   Result := 7;
   if Copy(stHeader, 1, 2) = '# ' then Result := 1
   else
-  if Copy(stHeader, 1, 3) = '## ' then result := 2
+  if Copy(stHeader, 1, 3) = '## ' then Result := 2
   else
   if Copy(stHeader, 1, 4) = '### ' then Result := 3
   else
-  if Copy(stHeader, 1, 5) = '#### ' then result := 4
+  if Copy(stHeader, 1, 5) = '#### ' then Result := 4
   else
   if Copy(stHeader, 1, 6) = '##### ' then Result := 5
   else
-  if Copy(stHeader, 1, 7) = '###### ' then result := 6;
+  if Copy(stHeader, 1, 7) = '###### ' then Result := 6;
 end;
 
-procedure TfmMain.FindInGrid(blDown: Boolean);
+procedure TfmMain.FindInGrid(blDown: boolean);
 var
-  i: Integer;
+  i: integer;
 begin
   if blDown = True then
   begin
@@ -6757,21 +6750,21 @@ begin
         end;
       end
       else
-      for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
-      begin
-        if sgTable.Cells[1, i] <> '' then
+        for i := sgTable.Row + 1 to sgTable.RowCount - 1 do
         begin
-          Break;
-        end
-        else
-        if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
-          UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
-        begin
-          sgTable.Row := i;
-          sgTable.SetFocus;
-          Break;
+          if sgTable.Cells[1, i] <> '' then
+          begin
+            Break;
+          end
+          else
+          if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
+            UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
+          begin
+            sgTable.Row := i;
+            sgTable.SetFocus;
+            Break;
+          end;
         end;
-      end;
     end;
   end
   else
@@ -6792,28 +6785,28 @@ begin
         end;
       end
       else
-      for i := sgTable.Row - 1 downto 1 do
-      begin
-        if sgTable.Cells[1, i] <> '' then
+        for i := sgTable.Row - 1 downto 1 do
         begin
-          Break;
-        end
-        else
-        if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
-          UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
-        begin
-          sgTable.Row := i;
-          sgTable.SetFocus;
-          Break;
+          if sgTable.Cells[1, i] <> '' then
+          begin
+            Break;
+          end
+          else
+          if UTF8CocoaPos(UTF8UpperString(edFindGrid.Text),
+            UTF8UpperString(sgTable.Cells[sgTable.Col, i]), 1) > 0 then
+          begin
+            sgTable.Row := i;
+            sgTable.SetFocus;
+            Break;
+          end;
         end;
-      end;
     end;
   end;
 end;
 
 procedure TfmMain.CalcAllColInGrid;
 var
-  i, iTop: Integer;
+  i, iTop: integer;
 begin
   iTop := -1;
   for i := sgTable.Row - 1 downto 1 do
@@ -6824,7 +6817,7 @@ begin
       Break;
     end;
   end;
-  if iTop > - 1 then
+  if iTop > -1 then
   begin
     for i := 2 to sgTable.ColCount - 1 do
     begin
@@ -6840,11 +6833,11 @@ begin
   end;
 end;
 
-procedure TfmMain.CalcInGrid(iCol: Integer);
+procedure TfmMain.CalcInGrid(iCol: integer);
 var
-  dbNum, dbSum, dbMax, dbMin: Double;
+  dbNum, dbSum, dbMax, dbMin: double;
   flNum: boolean;
-  dbCount, iTop, i: Integer;
+  dbCount, iTop, i: integer;
 begin
   if ((sgTable.Row > 1) and (iCol > 1)) then
   begin
@@ -6863,7 +6856,7 @@ begin
     dbMax := -MaxInt;
     dbCount := -MaxInt;
     flNum := False;
-    if iTop > - 1 then
+    if iTop > -1 then
     begin
       for i := iTop to sgTable.RowCount - 2 do
       begin
@@ -6878,7 +6871,7 @@ begin
         end
         else
         if (((sgTable.Cells[iCol, i] = '------') or
-           (sgTable.Cells[iCol, i] = '---sum')) and
+          (sgTable.Cells[iCol, i] = '---sum')) and
           (i < sgTable.RowCount - 2)) then
         begin
           if flNum = True then
@@ -6889,8 +6882,8 @@ begin
             end
             else
             begin
-              sgTable.Cells[iCol, i + 1] := lb009 + ' ' +
-                FormatFloat('#,##0.######', dbSum);
+              sgTable.Cells[iCol, i + 1] :=
+                lb009 + ' ' + FormatFloat('#,##0.######', dbSum);
             end;
           end
           else
@@ -6910,8 +6903,8 @@ begin
             end
             else
             begin
-              sgTable.Cells[iCol, i + 1] := lb010 + ' ' +
-                FormatFloat('#,##0.######', dbMax);
+              sgTable.Cells[iCol, i + 1] :=
+                lb010 + ' ' + FormatFloat('#,##0.######', dbMax);
             end;
           end
           else
@@ -6931,8 +6924,8 @@ begin
             end
             else
             begin
-              sgTable.Cells[iCol, i + 1] := lb011 + ' ' +
-                FormatFloat('#,##0.######', dbMin);
+              sgTable.Cells[iCol, i + 1] :=
+                lb011 + ' ' + FormatFloat('#,##0.######', dbMin);
             end;
           end
           else
@@ -6952,8 +6945,8 @@ begin
             end
             else
             begin
-              sgTable.Cells[iCol, i + 1] := lb012 + ' ' +
-                FormatFloat('#,##0.######', dbSum / dbCount);
+              sgTable.Cells[iCol, i + 1] :=
+                lb012 + ' ' + FormatFloat('#,##0.######', dbSum / dbCount);
             end;
           end
           else
@@ -6971,8 +6964,8 @@ begin
           end
           else
           begin
-            sgTable.Cells[iCol, i + 1] := lb013 + ' ' +
-              FormatFloat('#,##0.######', dbCount);
+            sgTable.Cells[iCol, i + 1] :=
+              lb013 + ' ' + FormatFloat('#,##0.######', dbCount);
           end;
         end
         else
@@ -7012,10 +7005,9 @@ end;
 
 procedure TfmMain.FilterInGrid;
 var
-  i, x: Integer;
+  i, x: integer;
 begin
-  if ((pnGrid.Height > 1) and (edFilterGrid.Text <> '')
-    and (sgTable.Col > 1)) then
+  if ((pnGrid.Height > 1) and (edFilterGrid.Text <> '') and (sgTable.Col > 1)) then
   begin
     for i := sgTable.Row downto 0 do
     begin
@@ -7070,9 +7062,9 @@ end;
 
 procedure TfmMain.ResetFilterGrid;
 var
-  i, x: Integer;
+  i, x: integer;
 begin
-  if ((pnGrid.Height > 1) and (sgTable.Cells[1, sgTable.Row] = '' )) then
+  if ((pnGrid.Height > 1) and (sgTable.Cells[1, sgTable.Row] = '')) then
   begin
     for i := sgTable.Row downto 0 do
     begin
@@ -7116,26 +7108,26 @@ begin
   FormatListTitleTodo;
 end;
 
-function TfmMain.GetYAML: String;
+function TfmMain.GetYAML: string;
 begin
   Result := '---' + LineEnding;
   Result := Result + 'title: ' + LineEnding;
   Result := Result + 'author: ' + LineEnding;
   if dateformat = 'en' then
   begin
-    Result := Result + 'date: ' + FormatDateTime('mmmm d yyyy',
-      Date()) + LineEnding;
+    Result := Result + 'date: ' + FormatDateTime('mmmm d yyyy', Date()) +
+      LineEnding;
   end
   else
   begin
-    Result := Result + 'date: ' + FormatDateTime('d mmmm yyyy',
-      Date()) + LineEnding;
+    Result := Result + 'date: ' + FormatDateTime('d mmmm yyyy', Date()) +
+      LineEnding;
   end;
   Result := Result + 'abstract: ' + LineEnding;
   Result := Result + '---' + LineEnding;
 end;
 
-procedure TfmMain.OpenLastFile(stLastFileName: String);
+procedure TfmMain.OpenLastFile(stLastFileName: string);
 begin
   DisablePresenting;
   if SaveFile = False then
@@ -7204,7 +7196,7 @@ begin
   end;
 end;
 
-procedure TfmMain.DeactForm(stFileName: String);
+procedure TfmMain.DeactForm(stFileName: string);
 begin
   if FileSizeUtf8(stFileName) > iMaxSize then
   begin
@@ -7234,11 +7226,11 @@ begin
   LinkAttributes := NSMutableDictionary.alloc.init;
   LinkAttributes.setObject_forKey(ColorToNSColor(clLink),
     NSForegroundColorAttributeName);
-  LinkAttributes.setObject_forKey(NSNumber.
-    numberWithInteger(NSUnderlineStyleSingle), NSUnderlineStyleAttributeName);
+  LinkAttributes.setObject_forKey(NSNumber.numberWithInteger(NSUnderlineStyleSingle),
+    NSUnderlineStyleAttributeName);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     setLinkTextAttributes(LinkAttributes);
-  LinkAttributes.release;
+  LinkAttributes.Release;
 end;
 
 procedure TfmMain.CreateBackup;
@@ -7318,7 +7310,7 @@ procedure TfmMain.SaveScreenShot;
 var
   ScreenDC: HDC;
   bmpPicture: TBitmap;
-  jpgPicture : TJPEGImage;
+  jpgPicture: TJPEGImage;
 begin
   try
     bmpPicture := TBitmap.Create;
@@ -7444,9 +7436,30 @@ begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setSelectedRange(SelectedRange);
   finally
-    Cell.release;
-    Attachment.release;
-    Img.release;
+    Cell.Release;
+    Attachment.Release;
+    Img.Release;
+  end;
+end;
+
+function TfmMain.CountChars(Memo: TMemo): integer;
+var
+  NSScroll: NSScrollView;
+  NSText: NSTextView;
+  Selection: NSRange;
+  StringCocoa: NSString;
+  StringPascal: string;
+begin
+  Result := 0;
+  if (Memo = nil) or (Memo.Handle = 0) then Exit;
+  NSScroll := NSScrollView(Memo.Handle);
+  NSText := NSTextView(NSScroll.documentView);
+  Selection := NSText.selectedRange;
+  if Selection.length > 0 then
+  begin
+    StringCocoa := NSText.string_.substringWithRange(Selection);
+    StringPascal := string(StringCocoa.utf8string);
+    Result := UTF8Length(StringPascal);
   end;
 end;
 

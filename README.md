@@ -3,7 +3,7 @@
 # mxMarkEdit
 
 
-Version 1.4.8, published on July 8 2026.
+Version 1.4.9, published on July 12 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -385,6 +385,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 * `Meta` + `U`: make uppercase the current word.
 * `Meta` + `Opt` + `Shift` + `U`: make lowercase the current word.
 * `Meta` + `Opt` + `U`: capitalize the current word.
+* `Ctrl` + `Shift` + `L`:  show the number of selected characters.
 * `Meta` + `Shift` + `T`: show the tables grid.
 * `Meta + Opt + C`: copy the selected citations so that they can be properly pasted in the bibliographic table.
 * `Meta + Shift + K`: show the citation taken from the bibliographic table that matches the current key.
@@ -483,6 +484,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+**Version 1.4.9**
+
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.2.
+- Added the shortcut `Ctrl` + `Shift` + `L`, to show the number of selected characters.
+- Changed the icon of the app.
 
 **Version 1.4.8**
 

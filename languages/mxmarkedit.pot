@@ -270,6 +270,10 @@ msgstr ""
 msgid "Delete all the content of the current TABLE?"
 msgstr ""
 
+#: main.msg028
+msgid "Selected characters:"
+msgstr ""
+
 #: shortcuts.srcut001
 msgctxt "shortcuts.srcut001"
 msgid " In the main form"
@@ -488,6 +492,10 @@ msgstr ""
 #: shortcuts.srcut029
 msgctxt "shortcuts.srcut029"
 msgid "Capitalize the current word."
+msgstr ""
+
+#: shortcuts.srcut029b
+msgid "Show the number of selected characters."
 msgstr ""
 
 #: shortcuts.srcut030
@@ -838,7 +846,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.8"
+msgid "1.4.9"
 msgstr ""
 
 #: tfmcopyright.lbok.caption

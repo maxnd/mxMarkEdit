@@ -104,6 +104,7 @@ resourcestring
   srcut027 = 'Make uppercase the current word.';
   srcut028 = 'Make lowercase the current word.';
   srcut029 = 'Capitalize the current word.';
+  srcut029b = 'Show the number of selected characters.';
   srcut030 = 'Show the tables grid.';
   srcut030b = 'Copy the selected citations in the document so that they can be properly ' +
     'pasted in the bibliographic table.';
@@ -247,7 +248,7 @@ procedure TfmShortcuts.AddText;
 var
   i: Integer;
 begin
-  sgShortcuts.RowCount := 109;
+  sgShortcuts.RowCount := 110;
   sgShortcuts.RowHeights[0];
   i := 1;
   // Main form
@@ -361,6 +362,9 @@ begin
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Opt + U';
   sgShortcuts.Cells[1, i] := srcut029;
+  Inc(i);
+  sgShortcuts.Cells[0, i] := 'Ctrl + Shift + L';
+  sgShortcuts.Cells[1, i] := srcut029b;
   Inc(i);
   sgShortcuts.Cells[0, i] := 'Meta + Shift + T';
   sgShortcuts.Cells[1, i] := srcut030;

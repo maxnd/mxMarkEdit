@@ -189,7 +189,7 @@ msgstr "Eliminare la colonna corrente della tabella corrente?"
 #: main.msg011
 msgctxt "main.msg011"
 msgid "It’s not possible to create a footnote reference at the beginning of a paragraph."
-msgstr "Non è possibile creare un riferimento ad una nota a pié pagina all’inizio di un paragrafo."
+msgstr "Non è possibile creare un riferimento ad una nota a piè pagina all’inizio di un paragrafo."
 
 #: main.msg012
 msgctxt "main.msg012"
@@ -269,6 +269,10 @@ msgstr "La chiave selezionata non ha alcuna corrispondenza nella tabella bibliog
 #: main.msg027
 msgid "Delete all the content of the current TABLE?"
 msgstr "Cancellare tutto il contenuto della TABELLA corrente?"
+
+#: main.msg028
+msgid "Selected characters:"
+msgstr "Caratteri selezionati:"
 
 #: shortcuts.srcut001
 msgctxt "shortcuts.srcut001"
@@ -489,6 +493,10 @@ msgstr "Rendi minuscola la parola corrente."
 msgctxt "shortcuts.srcut029"
 msgid "Capitalize the current word."
 msgstr "Rendi maiuscola l’iniziale della parola corrente."
+
+#: shortcuts.srcut029b
+msgid "Show the number of selected characters."
+msgstr "Mostra il numero dei caratteri selezionati."
 
 #: shortcuts.srcut030
 msgctxt "shortcuts.srcut030"
@@ -837,7 +845,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.8"
+msgid "1.4.9"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1345,7 +1353,7 @@ msgstr "Nome del font per codice"
 
 #: tfmpicture.caption
 msgid "Picture"
-msgstr ""
+msgstr "Immagine"
 
 #: tfmshortcuts.bnok.caption
 msgctxt "tfmshortcuts.bnok.caption"
