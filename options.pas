@@ -48,6 +48,7 @@ type
     bnStFontTitle2ColorMod: TButton;
     bnStFontTodoColor: TButton;
     cbAuthSmallCaps: TCheckBox;
+    cbIdem: TCheckBox;
     cbStFontsMono: TComboBox;
     cbDelay: TComboBox;
     cbLineSpacing: TComboBox;
@@ -80,6 +81,7 @@ type
     lbStSizeMono: TLabel;
     lbShowMarkers: TLabel;
     lbStLineSpace: TLabel;
+    lbIdem: TLabel;
     lnStFonts: TLabel;
     lbStDelay: TLabel;
     lnStFontsMono: TLabel;
@@ -99,6 +101,7 @@ type
     procedure bnStFontTodoColorClick(Sender: TObject);
     procedure cbAuthSmallCapsChange(Sender: TObject);
     procedure cbDelayChange(Sender: TObject);
+    procedure cbIdemChange(Sender: TObject);
     procedure cbLineSpacingChange(Sender: TObject);
     procedure cbShowMarkersChange(Sender: TObject);
     procedure cbStFontsChange(Sender: TObject);
@@ -192,6 +195,7 @@ begin
   edAuthSeparator.Text := stAuthSeparator;
   edTitleSeparator.Text := stTitleSeparator;
   cbAuthSmallCaps.Checked := blAuthSmallCaps;
+  cbIdem.Checked := blIdem;
   edPanOptions.Text := pandocOptions;
   edPanTemplate.Text := pandocTemplate;
   edPanOutput.Text := pandocOutput;
@@ -410,6 +414,11 @@ end;
 procedure TfmOptions.cbDelayChange(Sender: TObject);
 begin
   iDelay := cbDelay.ItemIndex;
+end;
+
+procedure TfmOptions.cbIdemChange(Sender: TObject);
+begin
+  blIdem := cbIdem.Checked;
 end;
 
 procedure TfmOptions.cbLineSpacingChange(Sender: TObject);

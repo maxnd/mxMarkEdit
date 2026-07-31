@@ -44,7 +44,7 @@ object fmOptions: TfmOptions
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
-    TabOrder = 29
+    TabOrder = 30
     TabStop = False
     OnClick = bnCloseClick
   end
@@ -80,7 +80,7 @@ object fmOptions: TfmOptions
     Top = 462
     Width = 289
     ParentColor = True
-    TabOrder = 25
+    TabOrder = 26
     Text = '+footnotes+inline_notes'
   end
   object edPanOutput: TEdit
@@ -89,7 +89,7 @@ object fmOptions: TfmOptions
     Top = 522
     Width = 168
     ParentColor = True
-    TabOrder = 30
+    TabOrder = 31
     Text = '.docx'
   end
   object lbPanOutput: TLabel
@@ -114,7 +114,7 @@ object fmOptions: TfmOptions
     Top = 522
     Width = 267
     ParentColor = True
-    TabOrder = 31
+    TabOrder = 32
     Text = 'word-template.docx'
     OnChange = edPanTemplateChange
   end
@@ -132,7 +132,7 @@ object fmOptions: TfmOptions
     Top = 462
     Width = 149
     ParentColor = True
-    TabOrder = 26
+    TabOrder = 27
     Text = '/usr/local/bin/'
     OnChange = edPanPathChange
   end
@@ -424,7 +424,7 @@ object fmOptions: TfmOptions
     Width = 150
     Anchors = [akRight, akBottom]
     Caption = 'Set standard colors'
-    TabOrder = 27
+    TabOrder = 28
     TabStop = False
     OnClick = bnSetColorsClick
   end
@@ -435,7 +435,7 @@ object fmOptions: TfmOptions
     Width = 150
     Anchors = [akRight, akBottom]
     Caption = 'Remove colors'
-    TabOrder = 28
+    TabOrder = 29
     TabStop = False
     OnClick = bnRemoveColorsClick
   end
@@ -462,7 +462,7 @@ object fmOptions: TfmOptions
     Left = 43
     Height = 21
     Top = 407
-    Width = 101
+    Width = 70
     TabOrder = 22
     Text = ', '
     OnChange = edAuthSeparatorChange
@@ -471,23 +471,23 @@ object fmOptions: TfmOptions
     Left = 45
     Height = 16
     Top = 384
-    Width = 102
-    Caption = 'Author separator'
+    Width = 70
+    Caption = 'Author sep.'
     ParentColor = False
   end
   object lbTitleSeparator: TLabel
-    Left = 231
+    Left = 143
     Height = 16
     Top = 384
-    Width = 88
-    Caption = 'Title separator'
+    Width = 56
+    Caption = 'Title sep.'
     ParentColor = False
   end
   object edTitleSeparator: TEdit
-    Left = 229
+    Left = 141
     Height = 21
     Top = 407
-    Width = 101
+    Width = 70
     TabOrder = 23
     Text = ', '
     OnChange = edTitleSeparatorChange
@@ -507,8 +507,30 @@ object fmOptions: TfmOptions
     Top = 410
     Width = 18
     Anchors = [akTop, akRight]
-    TabOrder = 24
+    Checked = True
+    State = cbChecked
+    TabOrder = 25
     OnChange = cbAuthSmallCapsChange
+  end
+  object lbIdem: TLabel
+    Left = 264
+    Height = 16
+    Top = 384
+    Width = 57
+    Alignment = taRightJustify
+    Caption = 'Use Idem'
+    ParentColor = False
+  end
+  object cbIdem: TCheckBox
+    Left = 303
+    Height = 18
+    Top = 410
+    Width = 18
+    Anchors = [akTop, akRight]
+    Checked = True
+    State = cbChecked
+    TabOrder = 24
+    OnChange = cbIdemChange
   end
   object cdColorDialog: TColorDialog
     Title = 'Select a color'

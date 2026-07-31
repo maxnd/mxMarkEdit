@@ -846,7 +846,7 @@ msgid "Version"
 msgstr ""
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.9"
+msgid "1.4.10"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1283,7 +1283,7 @@ msgstr ""
 
 #: tfmoptions.lbauthseparator.caption
 msgctxt "tfmoptions.lbauthseparator.caption"
-msgid "Author separator"
+msgid "Author sep."
 msgstr ""
 
 #: tfmoptions.lbauthsmallcaps.caption
@@ -1299,6 +1299,10 @@ msgstr ""
 #: tfmoptions.lbexistmodel.caption
 msgctxt "tfmoptions.lbexistmodel.caption"
 msgid "●"
+msgstr ""
+
+#: tfmoptions.lbidem.caption
+msgid "Use Idem"
 msgstr ""
 
 #: tfmoptions.lbpanoptions.caption
@@ -1345,7 +1349,7 @@ msgstr ""
 
 #: tfmoptions.lbtitleseparator.caption
 msgctxt "tfmoptions.lbtitleseparator.caption"
-msgid "Title separator"
+msgid "Title sep."
 msgstr ""
 
 #: tfmoptions.lnstfonts.caption

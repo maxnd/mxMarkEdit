@@ -3,7 +3,7 @@
 # mxMarkEdit
 
 
-Version 1.4.9, published on July 12 2026.
+Version 1.4.10, published on July 31 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -23,7 +23,7 @@ For troubles in using the app, see below the *Troubleshooting* section.
 
 See in the [wiki section](https://github.com/maxnd/mxMarkEdit/wiki) some nice presentations on why and how a manager, a university professor, a student and a corporate team might want to use mxMarkEdit.
 
-😀 Do you use mxMarkEdit, and you feel that it has far too many shortcuts and functionalities that definitely make it not for humans? Download [this nice wallpaper](https://github.com/maxnd/mxMarkEdit/raw/main/wallpaper/wallpaper-mxmarkedit.png) to show everybody why!
+😀 Download [this nice wallpaper](https://github.com/maxnd/mxMarkEdit/raw/main/wallpaper/wallpaper-mxmarkedit.png) of mxMarkEdit!
 
 ---
 
@@ -330,6 +330,7 @@ The `Tools - Options` menu item opens the options of the app, where are specifie
 - the number of characters of a document beyond which it’s loaded without formatting; it’s calculated by the size of the file, not counting the characters, so it could be a bit inaccurate;
 - the separators added in the citations between the author(s) and the title;
 - the separators added in the citations between the title and the details;
+- the option to use *Idem* when the author is the same of the previous citation in the Pandoc output file;
 - the option to make the author(s) in small caps in the Pandoc output file;
 - the Pandoc options;
 - the path of the Pandoc executable;
@@ -484,6 +485,12 @@ The software creates these two configuration files that can be deleted to reset 
 
 
 # Revision history
+
+
+**Version 1.4.10**
+
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Tahoe 26.5.2.
+- In the options, added the option to use *Idem* when the author is the same of the previous citation in the Pandoc output file.
 
 **Version 1.4.9**
 

@@ -845,7 +845,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.9"
+msgid "1.4.10"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
@@ -1280,8 +1280,8 @@ msgstr ""
 
 #: tfmoptions.lbauthseparator.caption
 msgctxt "tfmoptions.lbauthseparator.caption"
-msgid "Author separator"
-msgstr "Separatore autore"
+msgid "Author sep."
+msgstr "Sep. autore"
 
 #: tfmoptions.lbauthsmallcaps.caption
 msgctxt "tfmoptions.lbauthsmallcaps.caption"
@@ -1297,6 +1297,10 @@ msgstr ""
 msgctxt "tfmoptions.lbexistmodel.caption"
 msgid "●"
 msgstr ""
+
+#: tfmoptions.lbidem.caption
+msgid "Use Idem"
+msgstr "Usa Idem"
 
 #: tfmoptions.lbpanoptions.caption
 msgid "Options of Pandoc"
@@ -1340,8 +1344,8 @@ msgstr "Dimensione font codice"
 
 #: tfmoptions.lbtitleseparator.caption
 msgctxt "tfmoptions.lbtitleseparator.caption"
-msgid "Title separator"
-msgstr "Separatore titolo"
+msgid "Title sep."
+msgstr "Sep. titolo"
 
 #: tfmoptions.lnstfonts.caption
 msgid "Font name"

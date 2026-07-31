@@ -18,7 +18,7 @@
         <ComponentName Value="fmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <CursorPos X="33" Y="13"/>
+        <CursorPos X="18" Y="15"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -29,11 +29,9 @@
         <ComponentName Value="fmCopyright"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <CursorPos X="70" Y="9"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="17" Y="20"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="options.pas"/>
@@ -41,7 +39,9 @@
         <ComponentName Value="fmOptions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="33" Y="9"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -52,10 +52,8 @@
         <ComponentName Value="fmTasks"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="words.pas"/>
@@ -63,10 +61,8 @@
         <ComponentName Value="fmWords"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="files.pas"/>
@@ -74,10 +70,8 @@
         <ComponentName Value="fmFiles"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="shortcuts.pas"/>
@@ -85,12 +79,10 @@
         <ComponentName Value="fmShortcuts"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="30" Y="100"/>
         <UsageCount Value="206"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="editor.pas"/>
@@ -98,10 +90,8 @@
         <ComponentName Value="fmEditor"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="picture.pas"/>
@@ -109,10 +99,8 @@
         <ComponentName Value="fmPicture"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="168"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="169"/>
       </Unit>
       <Unit>
         <Filename Value="zotero.pas"/>
@@ -120,12 +108,9 @@
         <ComponentName Value="fmZotero"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="9"/>
-        <CursorPos X="34" Y="6"/>
-        <UsageCount Value="61"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="35" Y="9"/>
+        <UsageCount Value="62"/>
       </Unit>
       <Unit>
         <Filename Value="unit2.pas"/>
@@ -343,19 +328,7 @@
     <Debugger>
       <Backend Value="{9619FED1-DBF4-9AEB-0EAD-3887BB70D30B}"/>
     </Debugger>
-    <JumpHistory HistoryIndex="23">
-      <Position>
-        <Filename Value="main.pas"/>
-        <Caret Line="2544" Column="28" TopLine="2532"/>
-      </Position>
-      <Position>
-        <Filename Value="main.pas"/>
-        <Caret Line="7450" Column="39" TopLine="7441"/>
-      </Position>
-      <Position>
-        <Filename Value="main.pas"/>
-        <Caret Line="2539" TopLine="2525"/>
-      </Position>
+    <JumpHistory HistoryIndex="24">
       <Position>
         <Filename Value="main.pas"/>
         <Caret Line="342" Column="38" TopLine="334"/>
@@ -439,6 +412,22 @@
       <Position>
         <Filename Value="main.pas"/>
         <Caret Line="344" Column="35" TopLine="329"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="302" Column="12" TopLine="289"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="542" Column="10" TopLine="522"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="1103" TopLine="1082"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="4685" Column="9" TopLine="4642"/>
       </Position>
     </JumpHistory>
     <RunParams>

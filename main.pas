@@ -299,7 +299,8 @@ var
   stGridLoaded: string = '';
   stAuthSeparator: string = ', ';
   stTitleSeparator: string = ', ';
-  blAuthSmallCaps: boolean = False;
+  blAuthSmallCaps: boolean = True;
+  blIdem: boolean = True;
   pandocPath: string = '/usr/local/bin/';
   pandocOptions: string = '+footnotes+inline_notes';
   pandocTemplate: string = 'word-template.docx';
@@ -538,7 +539,8 @@ begin
       stTitleSeparator := MyIni.ReadString('mxmarkedit', 'titleseparator', ', $');
       stTitleSeparator := UTF8Copy(stTitleSeparator, 1,
         UTF8Length(stTitleSeparator) - 1);
-      blAuthSmallCaps := MyIni.ReadBool('mxmarkedit', 'authsmallcaps', False);
+      blAuthSmallCaps := MyIni.ReadBool('mxmarkedit', 'authsmallcaps', True);
+      blIdem := MyIni.ReadBool('mxmarkedit', 'idem', True);
       pandocOptions := MyIni.ReadString('mxmarkedit', 'panoption',
         '+footnotes+inline_notes');
       pandocTemplate := MyIni.ReadString('mxmarkedit', 'pantemplate',
@@ -1097,7 +1099,7 @@ begin
     MyIni.WriteBool('mxmarkedit', 'showmarkers', blShowMarkers);
     MyIni.WriteString('mxmarkedit', 'authseparator', stAuthSeparator + '$');
     MyIni.WriteString('mxmarkedit', 'titleseparator', stTitleSeparator + '$');
-    MyIni.WriteBool('mxmarkedit', 'authsmallcaps', blAuthSmallCaps);
+    MyIni.WriteBool('mxmarkedit', 'idem', blIdem);
     MyIni.WriteString('mxmarkedit', 'pantemplate', pandocTemplate);
     MyIni.WriteString('mxmarkedit', 'panoutputput', pandocOutput);
     MyIni.WriteString('mxmarkedit', 'panpath', pandocPath);
@@ -4653,30 +4655,32 @@ begin
         end;
         Application.ProcessMessages;
       end;
-
-      stOldIdemAuth := '';
-      while UTF8CocoaPos(#2, slText.Text) > 0 do
+      if blIdem = True then
       begin
-        stNewIdemAuth := UTF8Copy(slText.Text, UTF8Pos(#2, slText.Text) +
-          1, UTF8Pos(#3, slText.Text) - UTF8Pos(#2, slText.Text) - 1);
-        if stNewIdemAuth = stOldIdemAuth then
+        stOldIdemAuth := '';
+        while UTF8CocoaPos(#2, slText.Text) > 0 do
         begin
-          if blAuthSmallCaps = True then
+          stNewIdemAuth := UTF8Copy(slText.Text, UTF8Pos(#2, slText.Text) +
+            1, UTF8Pos(#3, slText.Text) - UTF8Pos(#2, slText.Text) - 1);
+          if stNewIdemAuth = stOldIdemAuth then
           begin
-            slText.Text := UTF8StringReplace(slText.Text, #2 +
-              stNewIdemAuth + #3, '[Idem]{.smallcaps}', []);
+            if blAuthSmallCaps = True then
+            begin
+              slText.Text := UTF8StringReplace(slText.Text, #2 +
+                stNewIdemAuth + #3, '[Idem]{.smallcaps}', []);
+            end
+            else
+            begin
+              slText.Text := UTF8StringReplace(slText.Text, #2 +
+                stNewIdemAuth + #3, 'Idem', []);
+            end;
           end
           else
           begin
-            slText.Text := UTF8StringReplace(slText.Text, #2 +
-              stNewIdemAuth + #3, 'Idem', []);
+            stOldIdemAuth := stNewIdemAuth;
+            slText.Text := UTF8StringReplace(slText.Text, #2, '', []);
+            slText.Text := UTF8StringReplace(slText.Text, #3, '', []);
           end;
-        end
-        else
-        begin
-          stOldIdemAuth := stNewIdemAuth;
-          slText.Text := UTF8StringReplace(slText.Text, #2, '', []);
-          slText.Text := UTF8StringReplace(slText.Text, #3, '', []);
         end;
       end;
 
