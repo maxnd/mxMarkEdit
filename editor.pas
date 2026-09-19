@@ -63,10 +63,6 @@ type
 var
   fmEditor: TfmEditor;
 
-resourcestring
-
-  lbedit001 = 'Cell';
-
 implementation
 
 uses main;
@@ -93,7 +89,7 @@ begin
   TCocoaTextView(NSScrollView(dbEditor.Handle).documentView).
     setContinuousSpellCheckingEnabled(True);
   TCocoaTextView(NSScrollView(dbEditor.Handle).documentView).
-    setGrammarCheckingEnabled(False);
+    setGrammarCheckingEnabled(True);
   TCocoaTextView(NSScrollView(dbEditor.Handle).documentView).
     setFocusRingType(1);
   TCocoaTextView(NSScrollView(dbEditor.Handle).documentView).
@@ -205,11 +201,30 @@ begin
 end;
 
 procedure TfmEditor.LoadCell;
+var
+  i: Integer;
+  stTitle: String;
 begin
   dbEditor.Text := fmMain.sgTable.Cells[fmMain.sgTable.Col, fmMain.sgTable.Row];
   dbEditor.SelStart := 0;
-  fmEditor.Caption := lbedit001 + ' ' + IntToStr(fmMain.sgTable.Row) + ' / ' +
-    fmMain.sgTable.Cells[fmMain.sgTable.Col, 0];
+  fmEditor.Caption := '';
+  for i := fmMain.sgTable.Row downto 0 do
+  begin
+    if fmMain.sgTable.Cells[1, i] <> '' then
+    begin
+      if fmMain.sgTable.Cells[fmMain.sgTable.Col, i] <> '' then
+      begin
+        fmEditor.Caption :=  fmMain.sgTable.Cells[fmMain.sgTable.Col, i] +
+          '  |  ' + IntToStr(fmMain.sgTable.Row);
+      end
+      else
+      begin
+        fmEditor.Caption :=  fmMain.sgTable.Cells[fmMain.sgTable.Col, 0] +
+          '  |  ' + IntToStr(fmMain.sgTable.Row);
+      end;
+      Break;
+    end;
+  end;
 end;
 
 procedure TfmEditor.SaveCell;

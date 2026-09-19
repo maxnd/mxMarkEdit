@@ -208,6 +208,7 @@ type
   private
     procedure CalcAllColInGrid;
     procedure CalcInGrid(iCol: integer);
+    function CleanRepAuthors(stAuthors: String): String;
     function CountChars(Memo: TMemo): integer;
     procedure CreateBackup;
     procedure CreateYAML;
@@ -496,7 +497,7 @@ begin
   begin
     try
       MyIni := TIniFile.Create(myHomeDir + myConfigFile);
-      if MyIni.ReadString('mxpanmark', 'maximize', '') = 'true' then
+      if MyIni.ReadString('mxmarkedit', 'maximize', '') = 'true' then
       begin
         fmMain.WindowState := wsMaximized;
       end
@@ -704,7 +705,7 @@ begin
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     setContinuousSpellCheckingEnabled(True);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
-    setGrammarCheckingEnabled(False);
+    setGrammarCheckingEnabled(True);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
     setFocusRingType(1);
   TCocoaTextView(NSScrollView(dbText.Handle).documentView).
@@ -1017,12 +1018,16 @@ begin
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setContinuousSpellCheckingEnabled(False);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setGrammarCheckingEnabled(False);
     miEditDisSpell.Checked := True;
   end
   else
   begin
     TCocoaTextView(NSScrollView(dbText.Handle).documentView).
       setContinuousSpellCheckingEnabled(True);
+    TCocoaTextView(NSScrollView(dbText.Handle).documentView).
+      setGrammarCheckingEnabled(True);
     miEditDisSpell.Checked := False;
   end;
 end;
@@ -4485,7 +4490,7 @@ var
   slText, slBiblio: TStringList;
   stText, stNewText: widestring;
   stArgument, stInput, stOutput, stOldKey, stNewKey, stAuthor,
-  stAuthFormCit, stAuthFormBib, stDetailsCit, stDetailsBib,
+  stAuthFormCit, stAuthFormCitRep, stAuthFormBib, stDetailsCit, stDetailsBib,
   stNewIdemAuth, stOldIdemAuth: string;
   i, iRow, iLen, iPos: integer;
   blBracket: Bool = False;
@@ -4609,17 +4614,22 @@ begin
               begin
                 stAuthFormCit := '[' + sgTable.Cells[4, i] + ']{.smallcaps}';
               end;
+              stAuthFormCitRep := stAuthFormCit;
             end
             else
             begin
               stAuthFormCit := '';
+              stAuthFormCitRep := '';
             end;
           end
           else
           begin
             stAuthFormBib := sgTable.Cells[3, i];
             stAuthFormCit := sgTable.Cells[4, i];
+            stAuthFormCitRep := sgTable.Cells[4, i];
           end;
+          stAuthFormCit := StringReplace(stAuthFormCit, '~', '', [rfReplaceAll]);
+          stAuthFormCitRep := CleanRepAuthors(stAuthFormCitRep);
           if stAuthFormBib <> '' then
           begin
             stAuthFormBib := stAuthFormBib + stAuthSeparator;
@@ -4627,6 +4637,10 @@ begin
           if stAuthFormCit <> '' then
           begin
             stAuthFormCit := #2 + stAuthFormCit + #3 + stAuthSeparator;
+          end;
+          if stAuthFormCitRep <> '' then
+          begin
+            stAuthFormCitRep := #2 + stAuthFormCitRep + #3 + stAuthSeparator;
           end;
           if sgTable.Cells[7, i] <> '' then
           begin
@@ -4648,7 +4662,7 @@ begin
             sgTable.Cells[2, i] + '}', stAuthFormCit + sgTable.Cells[5, i] +
             stDetailsCit, [rfIgnoreCase]);
           slText.Text := UTF8StringReplace(slText.Text, '{' +
-            sgTable.Cells[2, i] + '}', stAuthFormCit + sgTable.Cells[6, i],
+            sgTable.Cells[2, i] + '}', stAuthFormCitRep + sgTable.Cells[6, i],
             [rfReplaceAll, rfIgnoreCase]);
           slBiblio.Add(stAuthFormBib + #9 + sgTable.Cells[5, i] +
             stDetailsBib + '.');
@@ -4662,7 +4676,8 @@ begin
         begin
           stNewIdemAuth := UTF8Copy(slText.Text, UTF8Pos(#2, slText.Text) +
             1, UTF8Pos(#3, slText.Text) - UTF8Pos(#2, slText.Text) - 1);
-          if stNewIdemAuth = stOldIdemAuth then
+          if ((stNewIdemAuth = stOldIdemAuth) or
+            (stNewIdemAuth = CleanRepAuthors(stOldIdemAuth))) then
           begin
             if blAuthSmallCaps = True then
             begin
@@ -7332,6 +7347,29 @@ begin
     bmpPicture.Free;
     jpgPicture.Free;
   end;
+end;
+
+function TfmMain.CleanRepAuthors(stAuthors: String): String;
+var
+  i: Integer;
+  flName: Bool = False;
+begin
+  if stAuthors = '' then
+    Exit;
+  Result := '';
+  for i := 1 to UTF8Length(stAuthors) do
+  begin
+    if UTF8Copy(stAuthors, i, 1) = '~' then
+    begin
+      flName := not flName;
+    end
+    else
+    if flName = False then
+    begin
+      Result := Result + UTF8Copy(stAuthors, i, 1);
+    end;
+  end;
+  Result := Trim(Result);
 end;
 
 // *******************************************************

@@ -3,7 +3,7 @@
 # mxMarkEdit
 
 
-Version 1.4.10, published on July 31 2026.
+Version 1.4.11, published on September 19 2026.
 
 Author and copyright: Massimo Nardello, Modena (Italy) 2024 - 2026.
 
@@ -226,12 +226,11 @@ Once the document has been completed and the keys of the various works have been
 - The contents of the B1 and C1 columns are followed by the `Author separator`, specified in the options.
 - The contents of the D1 and E1 columns are followed by the `Title separator`, specified in the options.
 - To have the authors formatted in small caps in the text exported with Pandoc, select `Authors in small caps` in the options. To have the same formatting for some text in other fields, use this format: `[M. Regan]{.smallcaps}`.
+- To have the authors’ names in the C1 column removed in the repeated citations, include them among two `~` (e.g.: `~M.~ Taylor - ~L.~ Tracy`).
 
 In citations, if an author is the same as the previous one, it is replaced by `Idem`. It is the user's responsibility to verify that the two authors are not homonyms but the same person.
 
 If a `Ibidem` is followed by the same page numbers of the previous citations, they may be removed manually if this is required by the editorial rules.
-
-It’s not possible to automatically remove the author’s name alone from citations following the first, leaving only the author’s last name. As a workaround, insert a character not used elsewhere in the document, such as `%` or `$`, into column E1 at the beginning of the abbreviated title and after any possible asterisk. Then, once the document is exported to Word or Writer, search for every single occurrence of that character, remove it, and manually correct the author's name immediately preceding it.
 
 In case the citations need to be formatted differently to correspond to other methodological requests, correct only the content of the columns and then to regenerate the document with bibliography. So, there’s no need to correct all the individual citations contained in the document.
 
@@ -486,6 +485,13 @@ The software creates these two configuration files that can be deleted to reset 
 
 # Revision history
 
+
+**Version 1.4.11**
+
+- Compiled with Lazarus 4.6 and FPC 3.2.2, tested on macOS Golden Gate 27.0.
+- In the bibliography manager, the author name(s) in the C1 column may be marked among `~` to have it (them) removed in the repeated citations.
+- Grammar control is now enabled by default.
+- At the top of the editing field of the table there's now the name of the column.
 
 **Version 1.4.10**
 

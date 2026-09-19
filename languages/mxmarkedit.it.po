@@ -1,11 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-#: editor.lbedit001
-msgctxt "editor.lbedit001"
-msgid "Cell"
-msgstr "Cella"
-
 #: files.msgfl001
 msgctxt "files.msgfl001"
 msgid "Error in searching in the files."
@@ -845,7 +840,7 @@ msgid "Version"
 msgstr "Versione"
 
 #: tfmcopyright.lbcopyrightvers1.caption
-msgid "1.4.10"
+msgid "1.4.11"
 msgstr ""
 
 #: tfmcopyright.lbok.caption
