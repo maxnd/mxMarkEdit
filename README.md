@@ -46,7 +46,7 @@ In the `app` directory of the source code there is an app compiled for Mac with 
 
 The app is *not* notarized by Apple anymore. To run it, see the [Apple instructions](https://support.apple.com/en-us/102445) (section “If you want to open an app that hasn’t been notarized or is from an unidentified developer”), or simply run in the terminal `xattr -r -d com.apple.quarantine /Applications/mxMarkEdit.app`.
 
-To download the app, click on this link: https://github.com/maxnd/mxMarkEdit/raw/main/app/mxMarkEdit.zip.
+💡 Download the latest version of the app from [GitHub Releases](https://github.com/maxnd/mxMarkEdit/releases/latest).
 
 To install Pandoc, not necessary to use the app but necessary to export the Markdown files in other formats, click on this link: https://pandoc.org/installing.html.
 
