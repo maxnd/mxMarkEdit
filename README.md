@@ -42,11 +42,20 @@ mxMarkEdit does not collect any user data and does not access autonomously to hi
 
 ## Download and install
 
-In the `app` directory of the source code there is an app compiled for Mac with the Silicon chip (M1 or following) ready to be copied in the `Application` directory and run. 
+The app works only on Mac with Silicon chip (M1 or following), and is *not* notarized by Apple anymore. To run it, see the [Apple instructions](https://support.apple.com/en-us/102445) (section “If you want to open an app that hasn’t been notarized or is from an unidentified developer”), or simply run in the terminal:
 
-The app is *not* notarized by Apple anymore. To run it, see the [Apple instructions](https://support.apple.com/en-us/102445) (section “If you want to open an app that hasn’t been notarized or is from an unidentified developer”), or simply run in the terminal `xattr -r -d com.apple.quarantine /Applications/mxMarkEdit.app`.
+```
+xattr -r -d com.apple.quarantine /Applications/mxMarkEdit.app`
+```
 
-💡 Download the latest version of the app from [GitHub Releases](https://github.com/maxnd/mxMarkEdit/releases/latest).
+💡 Download the latest version of the app from [GitHub Releases](https://github.com/maxnd/mxMarkEdit/releases/latest) and copy it in the `Applications` folder.
+
+To install the app from Homebrew, type in the terminal:
+
+```
+brew tap maxnd/tap
+brew install --cask mxmarkedit
+```
 
 To install Pandoc, not necessary to use the app but necessary to export the Markdown files in other formats, click on this link: https://pandoc.org/installing.html.
 
@@ -145,7 +154,7 @@ If it’s necessary to insert dates in a field, use the format `year-month-day`,
 
 The content of the grid is saved in a separate file with the same name of the one in use, but with the `.csv` extension. In this file the items are separated by tabs, and it may be easily imported in a spreadsheet. When the current document is exported to Pandoc, if there are some data in the grid, the software creates a new file with the extension `.export` which contains both the document and the tables properly formatted in Markdown format. In the converted document in Word or Writer format, the tables are located at the end of the text.
 
-When a `.cvs` file is loaded, the grid is not automatically shown, but in the status bar at the bottom, after the name of the `.md` file, it’s shown the label `& .csv`, to alert the user that there are some data inside the grid.
+When a `.csv` file is loaded, the grid is not automatically shown, but in the status bar at the bottom, after the name of the `.md` file, it’s shown the label `& .csv`, to alert the user that there are some data inside the grid.
 
 In the grid, it’s possible to select more cells dragging the mouse or holding the `Shift` key and pressing the arrow keys. The selected text can be copied in the clipboard and pasted in another position of the grid or in a document, or deleted. It’s possible also to paste some data copied from a spreadsheet like Excel or Numbers. See below for the shortcuts useful to do that. It’s also possible to auto resize the width of the columns with a double click at the right of their headings.
 
@@ -205,7 +214,7 @@ It’s possible to import one or more citations from Zotero in the form `Zotero`
 
 In one or both fields `Title contains` and `Author contains`, type some text to be searched for in the Zotero database and press `Return` or click on the button `Find`. The results, that is, the author names and the titles, are shown in the top left grid. Select an item in this grid to have the full citation compiled in the citation field below the grid for the columns A1 – E1, according to the mentioned pattern: the key, the authors and the titles. Check the `Author initial name` checkbox to have only the author initial names and `Titles in italics` to have the titles in italics. Then compile manually the details of the citation for the column F1: double click or press `Return` on the various useful items in the top right grid to have them added in the citation field separated by `|` among two spaces. The field `pages` will be preceded by `#`, which will be automatically removed when inserting the quote in the grid. The text of the quote may be changed directly if necessary. To insert the content of this field in a new row of the grid, click on the button `Insert in grid` or use the shortcut `Meta` + `I`. The key will be made unique automatically. The G1 column will be compiled as the F1, except the pages of articles or sections of books.
 
-Finally, it’s possible to keep and update all the bibliography in just one `.cvs` file to avoid scattering it in many files. Then it’s easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
+Finally, it’s possible to keep and update all the bibliography in just one `.csv` file to avoid scattering it in many files. Then it’s easy to update the bibliographic tables of each other file in use with the latest version of data importing that main bibliographic file with the menu item `File - Import tables...`.
 
 ### Inserting citations in the text
 
@@ -459,7 +468,7 @@ There are also some shortcuts beyond the ones related to the menu items.
 
 ## Backup
 
-When a `.md` file that has been modified is closed, a backup copy is created with the `.bak` extension. The same happens for the `.cvs` file, with the `.cvs.bak` extension.
+When a `.md` file that has been modified is closed, a backup copy is created with the `.bak` extension. The same happens for the `.csv` file, with the `.csv.bak` extension.
 
 ## Configuration files
 
